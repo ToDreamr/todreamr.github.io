@@ -1,0 +1,3120 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth" data-default-appearance="dark"
+  data-auto-appearance="true"><head>
+
+  <meta charset="utf-8" />
+  
+  <meta http-equiv="content-language" content="en" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  
+  <title>Redis &middot; 春江花朝秋月夜</title>
+  <meta name="title" content="Redis &middot; 春江花朝秋月夜" />
+  
+  <meta name="description" content="介绍了并发环境下Redis的解决方案" />
+  <meta name="keywords" content="缓存, " />
+  
+  
+  <link rel="canonical" href="/entire-note/java/%E7%BC%93%E5%AD%98/" />
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.b0d4aeb65335611c810957fcff4af94f45bb796b37facd9be6f7287ee03ce57038918ff5d4ac7a6ea77914fde6d3942c0243d3d17f90926c454b4ea3499e973a.css"
+    integrity="sha512-sNSutlM1YRyBCVf8/0r5T0W7eWs3&#43;s2b5vcofuA85XA4kY/11Kx6bqd5FP3m05QsAkPT0X&#43;QkmxFS06jSZ6XOg==" />
+  
+  
+  <script type="text/javascript" src="/js/appearance.min.516a16745bea5a9bd011138d254cc0fd3973cd55ce6e15f3dec763e7c7c2c7448f8fe7b54cca811cb821b0c7e12cd161caace1dd794ac3d34d40937cbcc9ee12.js"
+    integrity="sha512-UWoWdFvqWpvQERONJUzA/TlzzVXObhXz3sdj58fCx0SPj&#43;e1TMqBHLghsMfhLNFhyqzh3XlKw9NNQJN8vMnuEg=="></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script defer type="text/javascript" id="script-bundle" src="/js/main.bundle.min.6c7ae15a14b4f78dc4f6e7f92e5a4e05d69a1eafe594e439255e5f72defe4531e8fda36f83cf9730e27868220649112476686eec9d28c582deaabe019c419dbd.js"
+    integrity="sha512-bHrhWhS0943E9uf5LlpOBdaaHq/llOQ5JV5fct7&#43;RTHo/aNvg8&#43;XMOJ4aCIGSREkdmhu7J0oxYLeqr4BnEGdvQ==" data-copy="" data-copied=""></script>
+  
+  
+  <script src="/js/zoom.min.js"></script>
+  
+  
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="Redis" />
+<meta property="og:description" content="介绍了并发环境下Redis的解决方案" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/entire-note/java/%E7%BC%93%E5%AD%98/" /><meta property="og:image" content="/entire-note/java/%E7%BC%93%E5%AD%98/featured.png"/><meta property="article:section" content="entire-note" />
+<meta property="article:published_time" content="2023-10-03T20:31:04+08:00" />
+<meta property="article:modified_time" content="2023-10-03T20:31:04+08:00" />
+
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/entire-note/java/%E7%BC%93%E5%AD%98/featured.png"/>
+<meta name="twitter:title" content="Redis"/>
+<meta name="twitter:description" content="介绍了并发环境下Redis的解决方案"/>
+
+  
+  <script type="application/ld+json">
+  [{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Entire-notes",
+    "name": "Redis",
+    "headline": "Redis",
+    "description": "介绍了并发环境下Redis的解决方案",
+    "abstract": "Redis学习： # 通用命令 # 不要在主节点用：keys param 命令来查询，这查询速率很慢，单线程将会被阻塞 del param（可以是多个参数） :删除指定的key exists param(判断key是否存在) expire key time :设置有效期时间 ttl key :查看key的有效期\nString类型 # 最简单的Redis数据类型，value：string,int,float；最大空间不超过512M set key value get key\nMset 批量 添加key-value",
+    "inLanguage": "en",
+    "url" : "\/entire-note\/java\/%E7%BC%93%E5%AD%98\/",
+    "author" : {
+      "@type": "Person",
+      "name": "春江花朝秋月夜"
+    },
+    "copyrightYear": "2023",
+    "dateCreated": "2023-10-03T20:31:04\u002b08:00",
+    "datePublished": "2023-10-03T20:31:04\u002b08:00",
+    
+    "dateModified": "2023-10-03T20:31:04\u002b08:00",
+    
+    "keywords": ["缓存"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "357"
+  }]
+  </script>
+
+
+  
+  
+  <meta name="author" content="春江花朝秋月夜" />
+  
+  
+  
+  <link href="https://space.bilibili.com/159283119?spm_id_from=333.1007.0.0" rel="me" />
+  
+  
+  <link href="https://github.com/ToDreamr" rel="me" />
+  
+  
+  
+  
+
+<script src="/lib/jquery/jquery.slim.min.js" integrity=""></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PEDMYR1V0K"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PEDMYR1V0K');
+</script>
+
+
+  
+  
+  <meta name="theme-color"/>
+
+  
+  
+</head>
+<body
+  class="flex flex-col h-screen px-6 m-auto text-lg leading-7 max-w-7xl bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32">
+  <div id="the-top" class="absolute flex self-center">
+    <a class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 focus:translate-y-0 dark:bg-neutral-600"
+      href="#main-content"><span
+        class="font-bold text-primary-600 ltr:pr-2 rtl:pl-2 dark:text-primary-400">&darr;</span>Skip to main content</a>
+  </div>
+  
+  
+  <div class="min-h-[148px]"></div>
+<div class="fixed inset-x-0 pl-[24px] pr-[24px]" style="z-index:100">
+  <div id="menu-blur" class="absolute opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl shadow-2xl"></div>
+  <div class="relative max-w-[64rem] ml-auto mr-auto">
+    <div style="padding-left:0;padding-right:0;padding-top:2px;padding-bottom:3px ;height: 70px;font-family: 华文中宋,serif"
+     class="main-menu flex items-center justify-between px-4 py-6 sm:px-6 md:justify-start space-x-3" >
+  
+  
+  
+  <div>
+    <a href="/" class="flex">
+    <span class="sr-only">春江花朝秋月夜</span>
+
+    <img src="/img/author.png" width="16" height="16"
+         class="logo max-h-[5rem] max-w-[5rem] object-scale-down object-left nozoom" alt="春江花朝秋月夜" />
+
+    </a>
+  </div>
+  
+  <div class="flex flex-1 items-center justify-between">
+
+    <nav class="flex space-x-3">
+
+      
+      <a href="/" class="text-base font-medium text-gray-500 hover:text-gray-900">春江花朝秋月夜</a>
+      
+
+    </nav>
+    <nav class="hidden md:flex items-center space-x-5 md:ml-12 h-12">
+
+      
+      
+      
+  <a href="/"  class="flex items-center">
+    
+    <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="">
+        首页
+    </p>
+</a>
+
+
+      
+      
+  <a href="/%E7%AC%94%E8%AE%B0/"  class="flex items-center">
+    
+    <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="如何通过hugo搭建自己的博客">
+        笔记
+    </p>
+</a>
+
+
+      
+      
+  <a href="/tasks/"  class="flex items-center">
+    
+    <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="学习计划">
+        事项
+    </p>
+</a>
+
+
+      
+      
+  <a href="/all/"  class="flex items-center">
+    
+    <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="全部">
+        全部
+    </p>
+</a>
+
+
+      
+      
+  <a href="/tags/"  class="flex items-center">
+    
+    <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="Tags">
+        系列文章
+    </p>
+</a>
+
+
+      
+      
+  <a href="/friend/"  class="flex items-center">
+    
+    <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="friend">
+        友链
+    </p>
+</a>
+
+
+      
+      
+  <a href=""  class="flex items-center">
+    
+    <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="">
+        文档
+    </p>
+</a>
+
+
+      
+      
+
+      
+
+
+      
+      <button id="search-button" aria-label="Search" class="text-base hover:text-primary-600 dark:hover:text-primary-400 h-12"
+              title="">
+      
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+      </button>
+
+      
+
+
+      
+      
+      <div
+              class="ltr:mr-14 rtl:ml-14 cursor-pointer text-sm text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400">
+        <button id="appearance-switcher" aria-label="Dark mode switcher" type="button">
+          <div class="flex items-center justify-center h-12 dark:hidden">
+            
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+
+  </span>
+
+
+          </div>
+          <div class="items-center justify-center hidden h-12 dark:flex">
+            
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+
+  </span>
+
+
+          </div>
+        </button>
+
+      </div>
+      
+
+    </nav>
+    <div class="flex md:hidden items-center space-x-5 md:ml-12">
+
+      <span></span>
+
+      
+
+
+      
+      <button id="search-button-mobile" aria-label="Search" class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+              title="">
+      
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+      </button>
+      
+
+      
+      
+      <button id="appearance-switcher-mobile" aria-label="Dark mode switcher" type="button" style="margin-right:5px">
+        <div class="flex items-center justify-center h-12 dark:hidden">
+          
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+
+  </span>
+
+
+        </div>
+        <div class="items-center justify-center hidden h-12 dark:flex">
+          
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+
+  </span>
+
+
+        </div>
+      </button>
+      
+
+    </div>
+
+  </div>
+  <div class="-my-2 -mr-2 md:hidden">
+
+    <label id="menu-button" for="menu-controller" class="block">
+      <input type="checkbox" id="menu-controller" class="hidden" />
+      
+      <div class="cursor-pointer hover:text-primary-600 dark:hover:text-primary-400">
+        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 96C0 78.33 14.33 64 32 64H416C433.7 64 448 78.33 448 96C448 113.7 433.7 128 416 128H32C14.33 128 0 113.7 0 96zM0 256C0 238.3 14.33 224 32 224H416C433.7 224 448 238.3 448 256C448 273.7 433.7 288 416 288H32C14.33 288 0 273.7 0 256zM416 448H32C14.33 448 0 433.7 0 416C0 398.3 14.33 384 32 384H416C433.7 384 448 398.3 448 416C448 433.7 433.7 448 416 448z"/></svg>
+
+  </span>
+
+
+      </div>
+      <div id="menu-wrapper" style="padding-top:5px;"
+           class="fixed inset-0 z-30 invisible w-screen h-screen m-0 overflow-auto transition-opacity opacity-0 cursor-default bg-neutral-100/50 backdrop-blur-sm dark:bg-neutral-900/50">
+        <ul
+                class="flex space-y-2 mt-3 flex-col items-end w-full px-6 py-6 mx-auto overflow-visible list-none ltr:text-right rtl:text-left max-w-7xl">
+
+          <li>
+                        <span
+                                class="cursor-pointer inline-block align-text-bottom hover:text-primary-600 dark:hover:text-primary-400">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+  </span>
+
+</span>
+          </li>
+
+          
+
+          
+  <li class="mt-1">
+    <a href="/"  class="flex items-center">
+        
+        <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="">
+            首页
+        </p>
+    </a>
+</li>
+
+
+
+          
+
+          
+  <li class="mt-1">
+    <a href="/%E7%AC%94%E8%AE%B0/"  class="flex items-center">
+        
+        <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="如何通过hugo搭建自己的博客">
+            笔记
+        </p>
+    </a>
+</li>
+
+
+
+          
+
+          
+  <li class="mt-1">
+    <a href="/tasks/"  class="flex items-center">
+        
+        <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="学习计划">
+            事项
+        </p>
+    </a>
+</li>
+
+
+
+          
+
+          
+  <li class="mt-1">
+    <a href="/all/"  class="flex items-center">
+        
+        <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="全部">
+            全部
+        </p>
+    </a>
+</li>
+
+
+
+          
+
+          
+  <li class="mt-1">
+    <a href="/tags/"  class="flex items-center">
+        
+        <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="Tags">
+            系列文章
+        </p>
+    </a>
+</li>
+
+
+
+          
+
+          
+  <li class="mt-1">
+    <a href="/friend/"  class="flex items-center">
+        
+        <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="friend">
+            友链
+        </p>
+    </a>
+</li>
+
+
+
+          
+
+          
+  <li class="mt-1">
+    <a href=""  class="flex items-center">
+        
+        <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="">
+            文档
+        </p>
+    </a>
+</li>
+
+
+
+          
+
+        </ul>
+        
+        
+
+      </div>
+    </label>
+  </div>
+
+  <div>
+    <iframe id="music" style="align-content: center;align-items: center" frameborder="no" border="0" marginwidth="0"
+            marginheight="0" width=200 height=86
+            src="//music.163.com/outchain/player?type=2&id=447925058&auto=1&height=66"></iframe>
+  </div>
+  <button class="change-music" onclick="getMusicList()">下一曲</button>
+  
+</div>
+<style>
+  .change-music{
+    margin-top: 20px;
+    width: 8%;
+    height: 50%;
+    font-family: 华文中宋,serif;
+     
+     
+     
+  }
+</style>
+<script>
+  
+  var MusicLists=[];
+  var musicUrl="";
+  function getMusicList()
+  {
+    
+    MusicLists.push
+    (29567192,1974443814,447926067,447925058,1974444808,
+            1974444807,29567187
+    );
+    var musicIndex=Math.floor(Math.random()*MusicLists.length+1);
+    
+    musicUrl="https://music.163.com/outchain/player?type=2&id="+MusicLists[musicIndex]+"&auto=1&height=66";
+    var frame=document.getElementById("music");
+    frame.src=musicUrl;
+  }
+</script>
+
+
+
+
+<script>
+  (function () {
+    var $mainmenu = $('.main-menu');
+    var path = window.location.pathname;
+    $mainmenu.find('a[href="' + path + '"]').each(function (i, e) {
+      $(e).children('p').addClass('active');
+    });
+  })();
+</script>
+
+
+  </div>
+</div>
+<script>
+  window.addEventListener('scroll', function (e) {
+    var scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    var background_blur = document.getElementById('menu-blur');
+    background_blur.style.opacity = (scroll / 300);
+  });
+</script>
+
+  
+  <div class="relative flex flex-col grow">
+    <main id="main-content" class="grow">
+      
+
+
+<article>
+  
+  
+  
+  
+  
+  
+
+
+<div id="hero" class="h-[150px] md:h-[200px]"></div>
+
+
+    
+    <div class="fixed inset-x-0 top-0 h-[800px] single_hero_background nozoom"
+    style="background-image:url(/entire-note/java/%E7%BC%93%E5%AD%98/featured_hua0ceea336368c2b5da8818142adc90bd_8145_1200x0_resize_box_3.png);">
+    
+
+
+    <div class="absolute inset-0 bg-gradient-to-t from-neutral dark:from-neutral-800 to-transparent mix-blend-normal">
+    </div>
+    <div
+        class="absolute inset-0 opacity-60 bg-gradient-to-t from-neutral dark:from-neutral-800 to-neutral-100 dark:to-neutral-800 mix-blend-normal">
+    </div>
+</div>
+
+  
+  
+
+  <header id="single_header" class="mt-5 max-w-prose">
+    
+    <ol class="text-sm text-neutral-500 dark:text-neutral-400 print:hidden">
+  
+  
+    
+  
+    
+  
+  <li class="inline hidden">
+    <a
+      class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
+      href="/"
+      ></a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+  
+  <li class="inline ">
+    <a
+      class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
+      href="/entire-note/"
+      >Entire-notes</a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+  
+  <li class="inline hidden">
+    <a
+      class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
+      href="/entire-note/java/%E7%BC%93%E5%AD%98/"
+      >Redis</a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+</ol>
+
+
+    
+    <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral" style="font-family: 华文中宋,serif">
+      Redis
+    </h1>
+    <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+      
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2023-10-03 20:31:04 &#43;0800 CST">3 October 2023</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">2 mins</span><span class="px-2 text-primary-500">&middot;</span>
+
+
+<script type="text/javascript" src="/js/zen-mode.min.16f2e42a0014d476212e14c056b26b69bc85cb5de15352a5e3a1a0be498055dc1bf0926cef44baef1cc7fa2dfc5de0052892645cd3766598065f47b15c4bd44d.js" integrity="sha512-FvLkKgAU1HYhLhTAVrJrabyFy13hU1Kl46GgvkmAVdwb8JJs70S67xzH&#43;i38XeAFKJJkXNN2ZZgGX0exXEvUTQ=="></script>
+
+<span class="mb-[2px]">
+    <span id="zen-mode-button"
+          class="text-lg hover:text-primary-500"
+          title="Enable zen mode"
+          data-title-i18n-disable="Enable zen mode"
+          data-title-i18n-enable="Disable zen mode">
+        <span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="50px" height="50px">
+    <path fill="currentColor" d="M 12.980469 4 C 9.1204688 4 5.9804688 7.14 5.9804688 11 L 6 26 L 9.9804688 26 L 9.9804688 11 C 9.9804688 9.35 11.320469 8 12.980469 8 L 40.019531 8 C 41.679531 8 43.019531 9.35 43.019531 11 L 43.019531 39 C 43.019531 40.65 41.679531 42 40.019531 42 L 29 42 C 29 43.54 28.420938 44.94 27.460938 46 L 40.019531 46 C 43.879531 46 47.019531 42.86 47.019531 39 L 47.019531 11 C 47.019531 7.14 43.879531 4 40.019531 4 L 12.980469 4 z M 7 28 C 4.794 28 3 29.794 3 32 L 3 42 C 3 44.206 4.794 46 7 46 L 23 46 C 25.206 46 27 44.206 27 42 L 27 32 C 27 29.794 25.206 28 23 28 L 7 28 z M 7 32 L 23 32 L 23.001953 42 L 7 42 L 7 32 z"/>
+</svg>
+  </span>
+
+</span>
+    </span>
+</span>
+  
+
+  
+  
+</div>
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/%E7%BC%93%E5%AD%98/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    缓存
+  </span>
+</span>
+  </span>
+  
+  
+  
+  
+</div>
+
+
+
+
+    </div>
+
+    
+    
+    
+    
+    
+
+    
+    
+    
+<div class="flex author">
+  
+  
+  
+  
+  
+  
+  <img class="!mt-0 !mb-0 h-24 w-24 rounded-full ltr:mr-4 rtl:ml-4" width="96" height="96"
+    alt="春江花朝秋月夜" src="/img/default_hud65e42c374bcd9580abb2944fca98866_909698_192x192_fill_box_center_3.png" />
+  
+  
+  <div class="place-self-center">
+    
+    <div class="text-[0.6rem] uppercase leading-3 text-neutral-500 dark:text-neutral-400">
+      作者
+    </div>
+    <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
+      春江花朝秋月夜
+    </div>
+    
+    
+    <div class="text-sm text-neutral-700 dark:text-neutral-400">重湖叠𪩘清嘉。有三秋桂子，十里荷花。羌管弄晴，菱歌泛夜，嬉嬉钓叟莲娃。千骑拥高牙。乘醉听箫鼓，吟赏烟霞。异日图将好景，归去凤池夸。</div>
+    
+    <div class="text-2xl sm:text-lg">
+  <div class="flex flex-wrap text-neutral-400 dark:text-neutral-500">
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://space.bilibili.com/159283119?spm_id_from=333.1007.0.0"
+          target="_blank"
+          aria-label="Bilibili"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1699377062375" class="icon" viewBox="0 0 1129 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4167" xmlns:xlink="http://www.w3.org/1999/xlink" width="220.5078125" height="200"><path d="M234.909 9.656a80.468 80.468 0 0 1 68.398 0 167.374 167.374 0 0 1 41.843 30.578l160.937 140.82h115.07l160.936-140.82a168.983 168.983 0 0 1 41.843-30.578A80.468 80.468 0 0 1 930.96 76.445a80.468 80.468 0 0 1-17.703 53.914 449.818 449.818 0 0 1-35.406 32.187 232.553 232.553 0 0 1-22.531 18.508h100.585a170.593 170.593 0 0 1 118.289 53.109 171.397 171.397 0 0 1 53.914 118.288v462.693a325.897 325.897 0 0 1-4.024 70.007 178.64 178.64 0 0 1-80.468 112.656 173.007 173.007 0 0 1-92.539 25.75h-738.7a341.186 341.186 0 0 1-72.421-4.024A177.835 177.835 0 0 1 28.91 939.065a172.202 172.202 0 0 1-27.36-92.539V388.662a360.498 360.498 0 0 1 0-66.789A177.03 177.03 0 0 1 162.487 178.64h105.414c-16.899-12.07-31.383-26.555-46.672-39.43a80.468 80.468 0 0 1-25.75-65.984 80.468 80.468 0 0 1 39.43-63.57M216.4 321.873a80.468 80.468 0 0 0-63.57 57.937 108.632 108.632 0 0 0 0 30.578v380.615a80.468 80.468 0 0 0 55.523 80.469 106.218 106.218 0 0 0 34.601 5.632h654.208a80.468 80.468 0 0 0 76.444-47.476 112.656 112.656 0 0 0 8.047-53.109v-354.06a135.187 135.187 0 0 0 0-38.625 80.468 80.468 0 0 0-52.304-54.719 129.554 129.554 0 0 0-49.89-7.242H254.22a268.764 268.764 0 0 0-37.82 0z m0 0" fill="#20B0E3" p-id="4168"></path><path d="M348.369 447.404a80.468 80.468 0 0 1 55.523 18.507 80.468 80.468 0 0 1 28.164 59.547v80.468a80.468 80.468 0 0 1-16.094 51.5 80.468 80.468 0 0 1-131.968-9.656 104.609 104.609 0 0 1-10.46-54.719v-80.468a80.468 80.468 0 0 1 70.007-67.593z m416.02 0a80.468 80.468 0 0 1 86.102 75.64v80.468a94.148 94.148 0 0 1-12.07 53.11 80.468 80.468 0 0 1-132.773 0 95.757 95.757 0 0 1-12.875-57.133V519.02a80.468 80.468 0 0 1 70.007-70.812z m0 0" fill="#20B0E3" p-id="4169"></path></svg>
+  </span>
+
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://github.com/ToDreamr"
+          target="_blank"
+          aria-label="Github"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+
+  </span>
+
+</span></a
+        >
+      
+    
+  </div>
+
+</div>
+  </div>
+</div>
+    
+
+    
+
+    
+
+    
+    <div class="mb-5"></div>
+    
+
+  </header>
+
+  <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row" style="font-family: 华文中宋,serif">
+
+    
+    <div style="width: 28%" class="order-first lg:ml-auto px-0 lg:order-last ltr:lg:pl-8 rtl:lg:pr-8">
+    <div class="toc ltr:pl-5 rtl:pr-5 print:hidden lg:sticky lg:top-[140px]">
+
+     <details open class="toc-right mt-0 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 hidden lg:block">
+  <summary
+    class="block py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    Table of Contents
+  </summary>
+  <div
+    class="min-w-[220px] py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#redis学习">Redis学习：</a>
+          <ul>
+            <li><a href="#通用命令">通用命令</a></li>
+            <li><a href="#string类型">String类型</a></li>
+            <li><a href="#如何区分不同的key">如何区分不同的key？</a></li>
+            <li><a href="#hash类型">Hash类型</a></li>
+            <li><a href="#list类型">List类型</a></li>
+            <li><a href="#set类型">Set类型</a></li>
+            <li><a href="#sortedset">SortedSet</a></li>
+          </ul>
+        </li>
+        <li><a href="#hr"><hr/></a></li>
+        <li><a href="#redis实际开发时序列化的问题">Redis实际开发时序列化的问题</a></li>
+        <li><a href="#session共享问题基于redis实现的session数据数据共享">Session共享问题，基于Redis实现的Session数据数据共享</a></li>
+        <li><a href="#缓存更新策略">缓存更新策略：</a>
+          <ul>
+            <li><a href="#缓存穿透">缓存穿透：</a></li>
+            <li><a href="#缓存雪崩">缓存雪崩</a></li>
+            <li><a href="#缓存击穿">缓存击穿</a></li>
+            <li><a href="#多线程下高并发超卖问题是怎么发生的">多线程下高并发超卖问题是怎么发生的</a></li>
+          </ul>
+        </li>
+        <li><a href="#锁的介绍">锁的介绍：</a>
+          <ul>
+            <li><a href="#悲观锁">悲观锁：</a></li>
+            <li><a href="#一人一单">一人一单</a></li>
+          </ul>
+        </li>
+        <li><a href="#分布式锁">分布式锁</a></li>
+        <li><a href="#基于redis实现分布式锁">基于Redis实现分布式锁：</a>
+          <ul>
+            <li><a href="#用lua脚本来解决原子性问题">用Lua脚本来解决原子性问题</a></li>
+          </ul>
+        </li>
+        <li><a href="#redisson问题呵呵这是一个把分布式锁实现好的开源框架">Redisson问题(呵呵，这是一个把分布式锁实现好的开源框架)</a></li>
+        <li><a href="#redisson-分布式锁原理">redisson 分布式锁原理：</a>
+          <ul>
+            <li><a href="#分布式锁的主从一致性问题">分布式锁的主从一致性问题。</a></li>
+            <li><a href="#利用redis来优化秒杀">利用Redis来优化秒杀</a></li>
+            <li><a href="#windows相关命令">Windows相关命令：</a></li>
+          </ul>
+        </li>
+        <li><a href="#hr-1"><hr/></a></li>
+        <li><a href="#消息队列message-queuerabbitmq-kafka-redisq">消息队列【Message Queue】:【RabbitMq Kafka RedisQ】</a>
+          <ul>
+            <li>
+              <ul>
+                <li><a href="#基于redis-list结构来模拟消息队列">基于Redis-List结构来模拟消息队列</a></li>
+                <li><a href="#基于pubsub的消息队列">基于PubSub的消息队列</a></li>
+                <li><a href="#基于stream的消息队列基于redis-50实现">基于Stream的消息队列。基于Redis-5.0实现</a></li>
+              </ul>
+            </li>
+            <li><a href="#消费者组">消费者组：</a></li>
+            <li><a href="#三种消息队列list-pubsub-stream-解决方案的区别">三种消息队列List PubSub Stream 解决方案的区别</a></li>
+          </ul>
+        </li>
+        <li><a href="#发布达人探店">发布达人探店</a></li>
+        <li><a href="#关注推送feed流提供沉浸式体验">关注推送，Feed流，提供沉浸式体验</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</details>
+<details class="toc-inside mt-0 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 lg:hidden">
+  <summary
+    class="py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    Table of Contents
+  </summary>
+  <div
+    class="py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#redis学习">Redis学习：</a>
+          <ul>
+            <li><a href="#通用命令">通用命令</a></li>
+            <li><a href="#string类型">String类型</a></li>
+            <li><a href="#如何区分不同的key">如何区分不同的key？</a></li>
+            <li><a href="#hash类型">Hash类型</a></li>
+            <li><a href="#list类型">List类型</a></li>
+            <li><a href="#set类型">Set类型</a></li>
+            <li><a href="#sortedset">SortedSet</a></li>
+          </ul>
+        </li>
+        <li><a href="#hr"><hr/></a></li>
+        <li><a href="#redis实际开发时序列化的问题">Redis实际开发时序列化的问题</a></li>
+        <li><a href="#session共享问题基于redis实现的session数据数据共享">Session共享问题，基于Redis实现的Session数据数据共享</a></li>
+        <li><a href="#缓存更新策略">缓存更新策略：</a>
+          <ul>
+            <li><a href="#缓存穿透">缓存穿透：</a></li>
+            <li><a href="#缓存雪崩">缓存雪崩</a></li>
+            <li><a href="#缓存击穿">缓存击穿</a></li>
+            <li><a href="#多线程下高并发超卖问题是怎么发生的">多线程下高并发超卖问题是怎么发生的</a></li>
+          </ul>
+        </li>
+        <li><a href="#锁的介绍">锁的介绍：</a>
+          <ul>
+            <li><a href="#悲观锁">悲观锁：</a></li>
+            <li><a href="#一人一单">一人一单</a></li>
+          </ul>
+        </li>
+        <li><a href="#分布式锁">分布式锁</a></li>
+        <li><a href="#基于redis实现分布式锁">基于Redis实现分布式锁：</a>
+          <ul>
+            <li><a href="#用lua脚本来解决原子性问题">用Lua脚本来解决原子性问题</a></li>
+          </ul>
+        </li>
+        <li><a href="#redisson问题呵呵这是一个把分布式锁实现好的开源框架">Redisson问题(呵呵，这是一个把分布式锁实现好的开源框架)</a></li>
+        <li><a href="#redisson-分布式锁原理">redisson 分布式锁原理：</a>
+          <ul>
+            <li><a href="#分布式锁的主从一致性问题">分布式锁的主从一致性问题。</a></li>
+            <li><a href="#利用redis来优化秒杀">利用Redis来优化秒杀</a></li>
+            <li><a href="#windows相关命令">Windows相关命令：</a></li>
+          </ul>
+        </li>
+        <li><a href="#hr-1"><hr/></a></li>
+        <li><a href="#消息队列message-queuerabbitmq-kafka-redisq">消息队列【Message Queue】:【RabbitMq Kafka RedisQ】</a>
+          <ul>
+            <li>
+              <ul>
+                <li><a href="#基于redis-list结构来模拟消息队列">基于Redis-List结构来模拟消息队列</a></li>
+                <li><a href="#基于pubsub的消息队列">基于PubSub的消息队列</a></li>
+                <li><a href="#基于stream的消息队列基于redis-50实现">基于Stream的消息队列。基于Redis-5.0实现</a></li>
+              </ul>
+            </li>
+            <li><a href="#消费者组">消费者组：</a></li>
+            <li><a href="#三种消息队列list-pubsub-stream-解决方案的区别">三种消息队列List PubSub Stream 解决方案的区别</a></li>
+          </ul>
+        </li>
+        <li><a href="#发布达人探店">发布达人探店</a></li>
+        <li><a href="#关注推送feed流提供沉浸式体验">关注推送，Feed流，提供沉浸式体验</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</details>
+
+ 
+<script>
+  (function () {
+    var $toc = $('#TableOfContents');
+    if ($toc.length > 0) {
+      var $window = $(window);
+
+      function onScroll() {
+        var currentScroll = $window.scrollTop();
+        var h = $('.anchor');
+        var id = "";
+        h.each(function (i, e) {
+          e = $(e);
+          if (e.offset().top - $(window).height()/3 <= currentScroll) {
+            id = e.attr('id');
+          }
+        });
+        var active = $toc.find('a.active');      
+        if (active.length == 1 && active.eq(0).attr('href') == '#' + id) return true;
+
+        active.each(function (i, e) {
+          
+            $(e).removeClass('active');
+          
+        });
+        $toc.find('a[href="#' + id + '"]').addClass('active')
+        $toc.find('a[href="#' + id + '"]').parentsUntil('#TableOfContents').each(function (i, e) {
+          $(e).children('a').parents('ul').show();          
+        });
+      }
+
+      $window.on('scroll', onScroll);
+      $(document).ready(function () {
+        
+        onScroll();
+      });
+    }
+  })();
+</script>
+  
+    </div>
+    </div>
+    
+
+
+    <div class="min-w-0 min-h-0 max-w-fit" style="width: 100%">
+      
+
+
+      <div class="article-content max-w-prose mb-20">
+        <h2 class="relative group">Redis学习： 
+    <div id="redis学习" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#redis%e5%ad%a6%e4%b9%a0" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<h3 class="relative group">通用命令 
+    <div id="通用命令" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e9%80%9a%e7%94%a8%e5%91%bd%e4%bb%a4" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>不要在主节点用：keys param 命令来查询，这查询速率很慢，单线程将会被阻塞</br>
+del param（可以是多个参数） :删除指定的key</br>
+exists param(判断key是否存在)</br>
+expire key time :设置有效期时间</br>
+ttl key :查看key的有效期</br></p>
+<h3 class="relative group">String类型 
+    <div id="string类型" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#string%e7%b1%bb%e5%9e%8b" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>最简单的Redis数据类型，value：string,int,float；最大空间不超过512M</br>
+set key value
+get key</p>
+<p>Mset 批量 添加key-value</p>
+<p>Mget批量获取</p>
+<p>数值类型：incr ：让变量自增加一</p>
+<p>incrby  num：按照步长增加</p>
+<p>setnx:不存在 key才可以添加这个key</p>
+<h3 class="relative group">如何区分不同的key？ 
+    <div id="如何区分不同的key" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e5%a6%82%e4%bd%95%e5%8c%ba%e5%88%86%e4%b8%8d%e5%90%8c%e7%9a%84key" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>利用层级结构来表明table，以后的大部分业务都是用层级结构来展现和布局的！</p>
+<h3 class="relative group">Hash类型 
+    <div id="hash类型" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#hash%e7%b1%bb%e5%9e%8b" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>哈希类型，也叫做散列，Hash的value是一个无须字典，类似于HashMap的结构。</p>
+<p>具有field这一个字段，这是不一样的。</p>
+<h3 class="relative group">List类型 
+    <div id="list类型" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#list%e7%b1%bb%e5%9e%8b" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>类似于 LinkedList(也就是双向链表)</p>
+<ul>
+<li>有序</li>
+<li>元素可重复</li>
+<li>插入删除快</li>
+<li>查询速度一般</li>
+</ul>
+<p>Lpush key element：向左侧插入元素 返回列表长度，相应的向右边：Rpush key element</p>
+<p>Lpop key:移除左侧第一个元素，没有则返回nil</p>
+<p>Blop/Brpop key times:阻塞队列的插入 ,加上阻塞时间</p>
+<p>如何用List来模拟栈？</p>
+<p>入口和出口一起。Lpush和Lpop</p>
+<p>模拟队列？</p>
+<p>入口和出口不在一起。Lpush和Rpop</p>
+<p>模拟阻塞队列？</p>
+<p>入口出口不在一边，取的时候用阻塞Brpop/Blpop</p>
+<h3 class="relative group">Set类型 
+    <div id="set类型" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#set%e7%b1%bb%e5%9e%8b" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>类似于HashSet，可以看作是value为null的hashMap。</p>
+<p>Sadd key member:添加一个或多个元素。</p>
+<p>Srem key member:删除元素</p>
+<p>Smembers：获取所有元素</p>
+<p>Sinter key1 key2:求取交集</p>
+<p>Sdiff：求差集</p>
+<p>Sunion:求并集</p>
+<p>Scard:求元素个数</p>
+<p>Sismenber key member:是否是成员</p>
+<h3 class="relative group">SortedSet 
+    <div id="sortedset" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#sortedset" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_3_hud2080ab2c5d09a4a4d79bcb8075c6ea9_169119_330x0_resize_box_3.png 330w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_3_hud2080ab2c5d09a4a4d79bcb8075c6ea9_169119_660x0_resize_box_3.png 660w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_3_hud2080ab2c5d09a4a4d79bcb8075c6ea9_169119_1024x0_resize_box_3.png 1024w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_3_hud2080ab2c5d09a4a4d79bcb8075c6ea9_169119_1320x0_resize_box_3.png 2x"
+        src="/entire-note/java/%E7%BC%93%E5%AD%98/md/img_3_hud2080ab2c5d09a4a4d79bcb8075c6ea9_169119_660x0_resize_box_3.png"
+        alt="img_3.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>zrank key  member:排名从0开始计算</p>
+<p>zcount key min max:统计区间数量</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_4_hu1d1ae0190ff2b0e75e8ce15494584b36_68398_330x0_resize_box_3.png 330w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_4_hu1d1ae0190ff2b0e75e8ce15494584b36_68398_660x0_resize_box_3.png 660w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_4_hu1d1ae0190ff2b0e75e8ce15494584b36_68398_1024x0_resize_box_3.png 1024w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_4_hu1d1ae0190ff2b0e75e8ce15494584b36_68398_1320x0_resize_box_3.png 2x"
+        src="/entire-note/java/%E7%BC%93%E5%AD%98/md/img_4_hu1d1ae0190ff2b0e75e8ce15494584b36_68398_660x0_resize_box_3.png"
+        alt="img_4.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<h2 class="relative group"><hr/> 
+    <div id="hr" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#hr" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<h2 class="relative group">Redis实际开发时序列化的问题 
+    <div id="redis实际开发时序列化的问题" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#redis%e5%ae%9e%e9%99%85%e5%bc%80%e5%8f%91%e6%97%b6%e5%ba%8f%e5%88%97%e5%8c%96%e7%9a%84%e9%97%ae%e9%a2%98" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/image_hu1b57031cf2d3e8c3e9f15077f4dfad14_132556_330x0_resize_box_3.png 330w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/image_hu1b57031cf2d3e8c3e9f15077f4dfad14_132556_660x0_resize_box_3.png 660w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/image_hu1b57031cf2d3e8c3e9f15077f4dfad14_132556_1024x0_resize_box_3.png 1024w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/image_hu1b57031cf2d3e8c3e9f15077f4dfad14_132556_1320x0_resize_box_3.png 2x"
+        src="/entire-note/java/%E7%BC%93%E5%AD%98/md/image_hu1b57031cf2d3e8c3e9f15077f4dfad14_132556_660x0_resize_box_3.png"
+        alt="Alt text"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<h2 class="relative group">Session共享问题，基于Redis实现的Session数据数据共享 
+    <div id="session共享问题基于redis实现的session数据数据共享" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#session%e5%85%b1%e4%ba%ab%e9%97%ae%e9%a2%98%e5%9f%ba%e4%ba%8eredis%e5%ae%9e%e7%8e%b0%e7%9a%84session%e6%95%b0%e6%8d%ae%e6%95%b0%e6%8d%ae%e5%85%b1%e4%ba%ab" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>多台Tomcat服务器，每一台都有不同的Session空间，将会存在共享问题,互相拷贝具有时间延迟和空间浪费的问题。</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_5_hu1ffa09859a19d0d7cbea405a67b16959_190795_330x0_resize_box_3.png 330w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_5_hu1ffa09859a19d0d7cbea405a67b16959_190795_660x0_resize_box_3.png 660w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_5_hu1ffa09859a19d0d7cbea405a67b16959_190795_1024x0_resize_box_3.png 1024w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_5_hu1ffa09859a19d0d7cbea405a67b16959_190795_1320x0_resize_box_3.png 2x"
+        src="/entire-note/java/%E7%BC%93%E5%AD%98/md/img_5_hu1ffa09859a19d0d7cbea405a67b16959_190795_660x0_resize_box_3.png"
+        alt="img_5.png "
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<blockquote>
+<p>解决方案：Redis数据共享</p>
+</blockquote>
+<blockquote>
+<p>code作为key显然是不行的，将会覆盖，所有选用Phone作为key，使用Hash结构来存储，
+内存占用也会比较少相对于String类型，使用随机token作为key来存储用户信息。
+现在token作为登录凭证，返回token给客户端</p>
+</blockquote>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_6_hu26faa234bc81c05e29aebf2ed3b54c24_217483_330x0_resize_box_3.png 330w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_6_hu26faa234bc81c05e29aebf2ed3b54c24_217483_660x0_resize_box_3.png 660w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_6_hu26faa234bc81c05e29aebf2ed3b54c24_217483_1024x0_resize_box_3.png 1024w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_6_hu26faa234bc81c05e29aebf2ed3b54c24_217483_1320x0_resize_box_3.png 2x"
+        src="/entire-note/java/%E7%BC%93%E5%AD%98/md/img_6_hu26faa234bc81c05e29aebf2ed3b54c24_217483_660x0_resize_box_3.png"
+        alt="img_6.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<blockquote>
+<p>缓存：浏览器缓存-&gt;应用层缓存（Redis，Nginx,Tomcat&hellip;各种缓存）-&gt;数据库缓存，根据索引来进行缓存，减少磁盘IO</p>
+</blockquote>
+<p>优点：降低后端负载，提高读写速率，降低响应时间
+成本：数据一致性成本，当数据库发生改变时，缓存未跟新，就会出现不一致，
+代码维护成本也会提高，为了高可用，运维成本也会提高</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_8_hu45b79c4d0edd6387cb16cc50f16e436e_446691_330x0_resize_box_3.png 330w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_8_hu45b79c4d0edd6387cb16cc50f16e436e_446691_660x0_resize_box_3.png 660w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_8_hu45b79c4d0edd6387cb16cc50f16e436e_446691_1024x0_resize_box_3.png 1024w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_8_hu45b79c4d0edd6387cb16cc50f16e436e_446691_1320x0_resize_box_3.png 2x"
+        src="/entire-note/java/%E7%BC%93%E5%AD%98/md/img_8_hu45b79c4d0edd6387cb16cc50f16e436e_446691_660x0_resize_box_3.png"
+        alt="img_8.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<h2 class="relative group">缓存更新策略： 
+    <div id="缓存更新策略" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e7%bc%93%e5%ad%98%e6%9b%b4%e6%96%b0%e7%ad%96%e7%95%a5" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>内存淘汰，超时剔除(低一致性)，主动更新（高一致性）</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_9_huf95e6401161b9a656572599468363a76_147660_330x0_resize_box_3.png 330w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_9_huf95e6401161b9a656572599468363a76_147660_660x0_resize_box_3.png 660w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_9_huf95e6401161b9a656572599468363a76_147660_1024x0_resize_box_3.png 1024w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_9_huf95e6401161b9a656572599468363a76_147660_1320x0_resize_box_3.png 2x"
+        src="/entire-note/java/%E7%BC%93%E5%AD%98/md/img_9_huf95e6401161b9a656572599468363a76_147660_660x0_resize_box_3.png"
+        alt="img_9.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<blockquote>
+<p>主动更新：</p>
+<p>1调用者更新数据库时同时更新缓存；（可控性最高）</p>
+<p>2 缓存和数据库整合为一个服务；</p>
+<p>3 调用只操作，独立异步线程持久化到数据库,从而实现缓存和数据库一致</p>
+</blockquote>
+<blockquote>
+<p>删除缓存（无效操作太多）而不是更新缓存，单体项目需要将缓存和数据库放在一个事务，考虑线程安全
+Cache Aside Pattern（解决线程安全问题）
+
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_10_hu7b81f60104981f08ee2684f3ce769bdb_140138_330x0_resize_box_3.png 330w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_10_hu7b81f60104981f08ee2684f3ce769bdb_140138_660x0_resize_box_3.png 660w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_10_hu7b81f60104981f08ee2684f3ce769bdb_140138_1024x0_resize_box_3.png 1024w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_10_hu7b81f60104981f08ee2684f3ce769bdb_140138_1320x0_resize_box_3.png 2x"
+        src="/entire-note/java/%E7%BC%93%E5%AD%98/md/img_10_hu7b81f60104981f08ee2684f3ce769bdb_140138_660x0_resize_box_3.png"
+        alt="img_10.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+</blockquote>
+<h3 class="relative group">缓存穿透： 
+    <div id="缓存穿透" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e7%bc%93%e5%ad%98%e7%a9%bf%e9%80%8f" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p><em>请求客户端数据中，缓存里面和数据库里面数据都不存在，请求都打到数据库上面了</em></p>
+<blockquote>
+<p>解决办法：布隆过滤器（内存占用少），缓存空对象或者null（额外内存消耗，可能造成短期不一致）
+
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_11_hube6519297e098fd8bf07217005424288_166584_330x0_resize_box_3.png 330w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_11_hube6519297e098fd8bf07217005424288_166584_660x0_resize_box_3.png 660w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_11_hube6519297e098fd8bf07217005424288_166584_1024x0_resize_box_3.png 1024w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_11_hube6519297e098fd8bf07217005424288_166584_1320x0_resize_box_3.png 2x"
+        src="/entire-note/java/%E7%BC%93%E5%AD%98/md/img_11_hube6519297e098fd8bf07217005424288_166584_660x0_resize_box_3.png"
+        alt="img_11.png"
+      />
+      
+      
+    </figure>
+  
+
+
+主动添加 对ID的复杂度</p>
+</blockquote>
+<h3 class="relative group">缓存雪崩 
+    <div id="缓存雪崩" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e7%bc%93%e5%ad%98%e9%9b%aa%e5%b4%a9" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<blockquote>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_12_hu64b2fd31e55b889b1ca28e4bc0a37984_468141_330x0_resize_box_3.png 330w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_12_hu64b2fd31e55b889b1ca28e4bc0a37984_468141_660x0_resize_box_3.png 660w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_12_hu64b2fd31e55b889b1ca28e4bc0a37984_468141_1024x0_resize_box_3.png 1024w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_12_hu64b2fd31e55b889b1ca28e4bc0a37984_468141_1320x0_resize_box_3.png 2x"
+        src="/entire-note/java/%E7%BC%93%E5%AD%98/md/img_12_hu64b2fd31e55b889b1ca28e4bc0a37984_468141_660x0_resize_box_3.png"
+        alt="img_12.png"
+      />
+      
+      
+    </figure>
+  
+
+
+很多key同时失效</p>
+</blockquote>
+<h3 class="relative group">缓存击穿 
+    <div id="缓存击穿" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e7%bc%93%e5%ad%98%e5%87%bb%e7%a9%bf" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<blockquote>
+<p>热点key突然失效，无效热点数据给数据库带来巨大压力</p>
+<p>1：使用互斥锁来写入缓存，但是互相等待时间比较长，性能较差</p>
+<p>2：逻辑过期TTL=-1</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_13_hub9b998b6b2efa51b2aefe952ea1433d0_248455_330x0_resize_box_3.png 330w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_13_hub9b998b6b2efa51b2aefe952ea1433d0_248455_660x0_resize_box_3.png 660w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_13_hub9b998b6b2efa51b2aefe952ea1433d0_248455_1024x0_resize_box_3.png 1024w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_13_hub9b998b6b2efa51b2aefe952ea1433d0_248455_1320x0_resize_box_3.png 2x"
+        src="/entire-note/java/%E7%BC%93%E5%AD%98/md/img_13_hub9b998b6b2efa51b2aefe952ea1433d0_248455_660x0_resize_box_3.png"
+        alt="img_13.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_14_hub70dfdb59a4c1e95cdaf3d61a1a5eab2_94487_330x0_resize_box_3.png 330w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_14_hub70dfdb59a4c1e95cdaf3d61a1a5eab2_94487_660x0_resize_box_3.png 660w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_14_hub70dfdb59a4c1e95cdaf3d61a1a5eab2_94487_1024x0_resize_box_3.png 1024w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_14_hub70dfdb59a4c1e95cdaf3d61a1a5eab2_94487_1320x0_resize_box_3.png 2x"
+        src="/entire-note/java/%E7%BC%93%E5%AD%98/md/img_14_hub70dfdb59a4c1e95cdaf3d61a1a5eab2_94487_660x0_resize_box_3.png"
+        alt="img_14.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+</blockquote>
+<p>选择一致性还是可用性</p>
+<blockquote>
+<p>全局唯一 ID生成器
+
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_15_hua0438ecc5333c254f35ea6aa6d137822_114648_330x0_resize_box_3.png 330w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_15_hua0438ecc5333c254f35ea6aa6d137822_114648_660x0_resize_box_3.png 660w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_15_hua0438ecc5333c254f35ea6aa6d137822_114648_1024x0_resize_box_3.png 1024w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_15_hua0438ecc5333c254f35ea6aa6d137822_114648_1320x0_resize_box_3.png 2x"
+        src="/entire-note/java/%E7%BC%93%E5%AD%98/md/img_15_hua0438ecc5333c254f35ea6aa6d137822_114648_660x0_resize_box_3.png"
+        alt="img_15.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+</blockquote>
+<p>UUID：没有满足特性 ，RedisId：数字类型，snowflake：算法，维护机器ID</p>
+<h3 class="relative group">多线程下高并发超卖问题是怎么发生的 
+    <div id="多线程下高并发超卖问题是怎么发生的" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e5%a4%9a%e7%ba%bf%e7%a8%8b%e4%b8%8b%e9%ab%98%e5%b9%b6%e5%8f%91%e8%b6%85%e5%8d%96%e9%97%ae%e9%a2%98%e6%98%af%e6%80%8e%e4%b9%88%e5%8f%91%e7%94%9f%e7%9a%84" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<blockquote>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_17_hu9d751a7fc5762ab7f900c18f81b145dc_452243_330x0_resize_box_3.png 330w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_17_hu9d751a7fc5762ab7f900c18f81b145dc_452243_660x0_resize_box_3.png 660w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_17_hu9d751a7fc5762ab7f900c18f81b145dc_452243_1024x0_resize_box_3.png 1024w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_17_hu9d751a7fc5762ab7f900c18f81b145dc_452243_1320x0_resize_box_3.png 2x"
+        src="/entire-note/java/%E7%BC%93%E5%AD%98/md/img_17_hu9d751a7fc5762ab7f900c18f81b145dc_452243_660x0_resize_box_3.png"
+        alt="img_17.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_18_hub9b652e49e5164cbc2ddf2b0a6b35969_63463_330x0_resize_box_3.png 330w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_18_hub9b652e49e5164cbc2ddf2b0a6b35969_63463_660x0_resize_box_3.png 660w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_18_hub9b652e49e5164cbc2ddf2b0a6b35969_63463_1024x0_resize_box_3.png 1024w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_18_hub9b652e49e5164cbc2ddf2b0a6b35969_63463_1320x0_resize_box_3.png 2x"
+        src="/entire-note/java/%E7%BC%93%E5%AD%98/md/img_18_hub9b652e49e5164cbc2ddf2b0a6b35969_63463_660x0_resize_box_3.png"
+        alt="img_18.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+</blockquote>
+<p>当线程扣减时候，多线程查询库存，扣减库存之前，直接一个数据用两次，使得出现并发安全问题。</p>
+<h2 class="relative group">锁的介绍： 
+    <div id="锁的介绍" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e9%94%81%e7%9a%84%e4%bb%8b%e7%bb%8d" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<h3 class="relative group">悲观锁： 
+    <div id="悲观锁" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e6%82%b2%e8%a7%82%e9%94%81" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<blockquote>
+<p>悲观锁</p>
+<p>例如synchronized 和lock，认为线程安全问题一定会发生，在操作数据之前一定要获得锁之后才执行</p>
+</blockquote>
+<blockquote>
+<p>乐观锁</p>
+<p>认为线程安全问题不一定会发生，多数情况不发生，不加锁，
+在线程做数据更新时进行数据判断，看之前的判断数据是否发生修改，性能相较于乐观锁好</p>
+</blockquote>
+<blockquote>
+<p>那怎么判断之前的数据是否发生了修改呢？</p>
+</blockquote>
+<p>1：版本号法（最广泛）
+给数据加上版本号，同时在修改时不仅要查询版本号同时还要修改版本号</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_16_huff27ec626230f2b3d8bbd6b0d841503d_124135_330x0_resize_box_3.png 330w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_16_huff27ec626230f2b3d8bbd6b0d841503d_124135_660x0_resize_box_3.png 660w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_16_huff27ec626230f2b3d8bbd6b0d841503d_124135_1024x0_resize_box_3.png 1024w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_16_huff27ec626230f2b3d8bbd6b0d841503d_124135_1320x0_resize_box_3.png 2x"
+        src="/entire-note/java/%E7%BC%93%E5%AD%98/md/img_16_huff27ec626230f2b3d8bbd6b0d841503d_124135_660x0_resize_box_3.png"
+        alt="img_16.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>2：CAS方法，假如数据本身具有变化，那么数据本深就可以作为版本号</p>
+<p>3：分段锁，解决成功率较低的问题，实际秒杀还要对秒杀进行优化，不对数据库造成压力</p>
+<blockquote>
+<p>集群模式下的并发安全问题：</p>
+<p>当出现集群和负载均衡时，可能出现交叉执行，锁失效了，这就是分布式来解决这个问题</p>
+<p>锁监视器不是同一个</p>
+<p>出现了两套JVM，锁监视器具有不同的，这将会导致出现并发安全问题</p>
+<p>==》解决办法：分布式锁</p>
+</blockquote>
+<h3 class="relative group">一人一单 
+    <div id="一人一单" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e4%b8%80%e4%ba%ba%e4%b8%80%e5%8d%95" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<h2 class="relative group">分布式锁 
+    <div id="分布式锁" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e5%88%86%e5%b8%83%e5%bc%8f%e9%94%81" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>实现原理：不同的JVM采用同一个JVM</p>
+<p>分布式锁特点：多进程可见同时时互斥的锁，高可用性，高并发（高性能），安全性，是否会产生死锁</p>
+<p>是否满足可重入性？（不是重点）</p>
+<blockquote>
+<p>分布式锁的实现</p>
+<p>实现方式：Mysql Redis Zookeeper</p>
+<p>mysql:利用mysql本身的互斥锁机制，redis:利用setnx这样的互斥命令，利用key的过期时间来解决安全问题。</p>
+<p>zookeeper 利用唯一节点和有序性来实现互斥锁。高可用性还是比较好的，安全性较好</p>
+</blockquote>
+<h2 class="relative group">基于Redis实现分布式锁： 
+    <div id="基于redis实现分布式锁" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e5%9f%ba%e4%ba%8eredis%e5%ae%9e%e7%8e%b0%e5%88%86%e5%b8%83%e5%bc%8f%e9%94%81" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_19_hu4c3ee620973ccf4911d7ef4655804ddb_183034_330x0_resize_box_3.png 330w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_19_hu4c3ee620973ccf4911d7ef4655804ddb_183034_660x0_resize_box_3.png 660w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_19_hu4c3ee620973ccf4911d7ef4655804ddb_183034_1024x0_resize_box_3.png 1024w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_19_hu4c3ee620973ccf4911d7ef4655804ddb_183034_1320x0_resize_box_3.png 2x"
+        src="/entire-note/java/%E7%BC%93%E5%AD%98/md/img_19_hu4c3ee620973ccf4911d7ef4655804ddb_183034_660x0_resize_box_3.png"
+        alt="img_19.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_20_hub67f2694cdab70d48f9077ebf927f9c5_133785_330x0_resize_box_3.png 330w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_20_hub67f2694cdab70d48f9077ebf927f9c5_133785_660x0_resize_box_3.png 660w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_20_hub67f2694cdab70d48f9077ebf927f9c5_133785_1024x0_resize_box_3.png 1024w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_20_hub67f2694cdab70d48f9077ebf927f9c5_133785_1320x0_resize_box_3.png 2x"
+        src="/entire-note/java/%E7%BC%93%E5%AD%98/md/img_20_hub67f2694cdab70d48f9077ebf927f9c5_133785_660x0_resize_box_3.png"
+        alt="img_20.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>127.0.0.1:6379&gt; help set
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  SET key value <span style="color:#f92672">[</span>EX seconds|PX milliseconds|EXAT timestamp|PXAT milliseconds-timestamp|KEEPTTL<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>NX|XX<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>GET<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>  summary: Set the string value of a key
+</span></span><span style="display:flex;"><span>  since: 1.0.0
+</span></span><span style="display:flex;"><span>  group: string
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>127.0.0.1:6379&gt; set lock thread EX <span style="color:#ae81ff">10</span> NX
+</span></span><span style="display:flex;"><span>OK
+</span></span><span style="display:flex;"><span>127.0.0.1:6379&gt; set lock thread EX <span style="color:#ae81ff">10</span> NX
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span>nil<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>127.0.0.1:6379&gt; ttl lock
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span>integer<span style="color:#f92672">)</span> -2
+</span></span></code></pre></div><p>实现将会是非阻塞式的分布式锁</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_21_hu23e88b3cb9d01d81ee050ad52255ee46_161836_330x0_resize_box_3.png 330w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_21_hu23e88b3cb9d01d81ee050ad52255ee46_161836_660x0_resize_box_3.png 660w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_21_hu23e88b3cb9d01d81ee050ad52255ee46_161836_1024x0_resize_box_3.png 1024w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_21_hu23e88b3cb9d01d81ee050ad52255ee46_161836_1320x0_resize_box_3.png 2x"
+        src="/entire-note/java/%E7%BC%93%E5%AD%98/md/img_21_hu23e88b3cb9d01d81ee050ad52255ee46_161836_660x0_resize_box_3.png"
+        alt="img_21.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>极端情况线程出现并发安全问题。</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_22_huc2b1c3de8d4dd9242ba903c24843781b_82299_330x0_resize_box_3.png 330w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_22_huc2b1c3de8d4dd9242ba903c24843781b_82299_660x0_resize_box_3.png 660w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_22_huc2b1c3de8d4dd9242ba903c24843781b_82299_1024x0_resize_box_3.png 1024w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_22_huc2b1c3de8d4dd9242ba903c24843781b_82299_1320x0_resize_box_3.png 2x"
+        src="/entire-note/java/%E7%BC%93%E5%AD%98/md/img_22_huc2b1c3de8d4dd9242ba903c24843781b_82299_660x0_resize_box_3.png"
+        alt="img_22.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>解决办法：释放锁的时候需要进行检查，看自己的锁标识是否和之前获取的一样。</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_23_hu4afed12674e8ed417aec2815d692afb5_25673_330x0_resize_box_3.png 330w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_23_hu4afed12674e8ed417aec2815d692afb5_25673_660x0_resize_box_3.png 660w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_23_hu4afed12674e8ed417aec2815d692afb5_25673_1024x0_resize_box_3.png 1024w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_23_hu4afed12674e8ed417aec2815d692afb5_25673_1320x0_resize_box_3.png 2x"
+        src="/entire-note/java/%E7%BC%93%E5%AD%98/md/img_23_hu4afed12674e8ed417aec2815d692afb5_25673_660x0_resize_box_3.png"
+        alt="img_23.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_24_hu4619cc571aa33563d81a382be6744679_4276_330x0_resize_box_3.png 330w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_24_hu4619cc571aa33563d81a382be6744679_4276_660x0_resize_box_3.png 660w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_24_hu4619cc571aa33563d81a382be6744679_4276_1024x0_resize_box_3.png 1024w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_24_hu4619cc571aa33563d81a382be6744679_4276_1320x0_resize_box_3.png 2x"
+        src="/entire-note/java/%E7%BC%93%E5%AD%98/md/img_24_hu4619cc571aa33563d81a382be6744679_4276_660x0_resize_box_3.png"
+        alt="img_24.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>只要redis锁发生了超时释放就有可能发生并发问题。</p>
+<p>例如FullGc时，发生阻塞就会出现并发问题，所以释放锁和判断锁标识必须是原子性的，必须同时</p>
+<h3 class="relative group">用Lua脚本来解决原子性问题 
+    <div id="用lua脚本来解决原子性问题" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e7%94%a8lua%e8%84%9a%e6%9c%ac%e6%9d%a5%e8%a7%a3%e5%86%b3%e5%8e%9f%e5%ad%90%e6%80%a7%e9%97%ae%e9%a2%98" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>利用看门狗解决锁超时释放的问题</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_25_hubb6a7efebc337b4e3346c6ae4f0489dc_20711_330x0_resize_box_3.png 330w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_25_hubb6a7efebc337b4e3346c6ae4f0489dc_20711_660x0_resize_box_3.png 660w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_25_hubb6a7efebc337b4e3346c6ae4f0489dc_20711_1024x0_resize_box_3.png 1024w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_25_hubb6a7efebc337b4e3346c6ae4f0489dc_20711_1320x0_resize_box_3.png 2x"
+        src="/entire-note/java/%E7%BC%93%E5%AD%98/md/img_25_hubb6a7efebc337b4e3346c6ae4f0489dc_20711_660x0_resize_box_3.png"
+        alt="img_25.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_26_hu947a703ce5f365575facd6af40a603f2_57417_330x0_resize_box_3.png 330w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_26_hu947a703ce5f365575facd6af40a603f2_57417_660x0_resize_box_3.png 660w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_26_hu947a703ce5f365575facd6af40a603f2_57417_1024x0_resize_box_3.png 1024w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_26_hu947a703ce5f365575facd6af40a603f2_57417_1320x0_resize_box_3.png 2x"
+        src="/entire-note/java/%E7%BC%93%E5%AD%98/md/img_26_hu947a703ce5f365575facd6af40a603f2_57417_660x0_resize_box_3.png"
+        alt="img_26.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<h2 class="relative group">Redisson问题(呵呵，这是一个把分布式锁实现好的开源框架) 
+    <div id="redisson问题呵呵这是一个把分布式锁实现好的开源框架" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#redisson%e9%97%ae%e9%a2%98%e5%91%b5%e5%91%b5%e8%bf%99%e6%98%af%e4%b8%80%e4%b8%aa%e6%8a%8a%e5%88%86%e5%b8%83%e5%bc%8f%e9%94%81%e5%ae%9e%e7%8e%b0%e5%a5%bd%e7%9a%84%e5%bc%80%e6%ba%90%e6%a1%86%e6%9e%b6" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_27_huf9f054eb5d477ab97b7d27da037cc99b_184882_330x0_resize_box_3.png 330w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_27_huf9f054eb5d477ab97b7d27da037cc99b_184882_660x0_resize_box_3.png 660w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_27_huf9f054eb5d477ab97b7d27da037cc99b_184882_1024x0_resize_box_3.png 1024w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_27_huf9f054eb5d477ab97b7d27da037cc99b_184882_1320x0_resize_box_3.png 2x"
+        src="/entire-note/java/%E7%BC%93%E5%AD%98/md/img_27_huf9f054eb5d477ab97b7d27da037cc99b_184882_660x0_resize_box_3.png"
+        alt="img_27.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_28_hu042ecfdb3593eebb2fbb7aff1ad0a3c7_294261_330x0_resize_box_3.png 330w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_28_hu042ecfdb3593eebb2fbb7aff1ad0a3c7_294261_660x0_resize_box_3.png 660w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_28_hu042ecfdb3593eebb2fbb7aff1ad0a3c7_294261_1024x0_resize_box_3.png 1024w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_28_hu042ecfdb3593eebb2fbb7aff1ad0a3c7_294261_1320x0_resize_box_3.png 2x"
+        src="/entire-note/java/%E7%BC%93%E5%AD%98/md/img_28_hu042ecfdb3593eebb2fbb7aff1ad0a3c7_294261_660x0_resize_box_3.png"
+        alt="img_28.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_29_hu8bbd2eecde287e7759fa7c2540c9a91a_313789_330x0_resize_box_3.png 330w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_29_hu8bbd2eecde287e7759fa7c2540c9a91a_313789_660x0_resize_box_3.png 660w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_29_hu8bbd2eecde287e7759fa7c2540c9a91a_313789_1024x0_resize_box_3.png 1024w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_29_hu8bbd2eecde287e7759fa7c2540c9a91a_313789_1320x0_resize_box_3.png 2x"
+        src="/entire-note/java/%E7%BC%93%E5%AD%98/md/img_29_hu8bbd2eecde287e7759fa7c2540c9a91a_313789_660x0_resize_box_3.png"
+        alt="img_29.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<h2 class="relative group">redisson 分布式锁原理： 
+    <div id="redisson-分布式锁原理" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#redisson-%e5%88%86%e5%b8%83%e5%bc%8f%e9%94%81%e5%8e%9f%e7%90%86" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_30_hudfa6c20ffd6d364b83ad38fec56a5d07_116765_330x0_resize_box_3.png 330w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_30_hudfa6c20ffd6d364b83ad38fec56a5d07_116765_660x0_resize_box_3.png 660w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_30_hudfa6c20ffd6d364b83ad38fec56a5d07_116765_1024x0_resize_box_3.png 1024w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_30_hudfa6c20ffd6d364b83ad38fec56a5d07_116765_1320x0_resize_box_3.png 2x"
+        src="/entire-note/java/%E7%BC%93%E5%AD%98/md/img_30_hudfa6c20ffd6d364b83ad38fec56a5d07_116765_660x0_resize_box_3.png"
+        alt="img_30.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>可重入：利用hash结构来记录线程id和重入次数，类似于ReentryLock</p>
+<p>可重试：利用信号量实现等待和获取锁失败的重试机制</p>
+<p>超时续约：利用看门狗，在获取锁之后，每隔一段时间，就自动续约，锁满血复活。</p>
+<h3 class="relative group">分布式锁的主从一致性问题。 
+    <div id="分布式锁的主从一致性问题" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e5%88%86%e5%b8%83%e5%bc%8f%e9%94%81%e7%9a%84%e4%b8%bb%e4%bb%8e%e4%b8%80%e8%87%b4%e6%80%a7%e9%97%ae%e9%a2%98" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>利用redisson的multi lock来实现</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_31_hu908d3ab902dd47007289dd0cdfbd68bc_286040_330x0_resize_box_3.png 330w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_31_hu908d3ab902dd47007289dd0cdfbd68bc_286040_660x0_resize_box_3.png 660w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_31_hu908d3ab902dd47007289dd0cdfbd68bc_286040_1024x0_resize_box_3.png 1024w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_31_hu908d3ab902dd47007289dd0cdfbd68bc_286040_1320x0_resize_box_3.png 2x"
+        src="/entire-note/java/%E7%BC%93%E5%AD%98/md/img_31_hu908d3ab902dd47007289dd0cdfbd68bc_286040_660x0_resize_box_3.png"
+        alt="img_31.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<h3 class="relative group">利用Redis来优化秒杀 
+    <div id="利用redis来优化秒杀" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e5%88%a9%e7%94%a8redis%e6%9d%a5%e4%bc%98%e5%8c%96%e7%a7%92%e6%9d%80" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>使用Set类型，解决唯一性问题。lua脚本来解决锁释放和事务提交的原子性问题</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_32_hud11499a4519edb7258788f6dc0874e1d_509351_330x0_resize_box_3.png 330w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_32_hud11499a4519edb7258788f6dc0874e1d_509351_660x0_resize_box_3.png 660w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_32_hud11499a4519edb7258788f6dc0874e1d_509351_1024x0_resize_box_3.png 1024w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_32_hud11499a4519edb7258788f6dc0874e1d_509351_1320x0_resize_box_3.png 2x"
+        src="/entire-note/java/%E7%BC%93%E5%AD%98/md/img_32_hud11499a4519edb7258788f6dc0874e1d_509351_660x0_resize_box_3.png"
+        alt="img_32.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>将下单信息添加到阻塞队列里面</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_33_hu216a56d6493f080d754a9ccb950f2252_177291_330x0_resize_box_3.png 330w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_33_hu216a56d6493f080d754a9ccb950f2252_177291_660x0_resize_box_3.png 660w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_33_hu216a56d6493f080d754a9ccb950f2252_177291_1024x0_resize_box_3.png 1024w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_33_hu216a56d6493f080d754a9ccb950f2252_177291_1320x0_resize_box_3.png 2x"
+        src="/entire-note/java/%E7%BC%93%E5%AD%98/md/img_33_hu216a56d6493f080d754a9ccb950f2252_177291_660x0_resize_box_3.png"
+        alt="img_33.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<h3 class="relative group">Windows相关命令： 
+    <div id="windows相关命令" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#windows%e7%9b%b8%e5%85%b3%e5%91%bd%e4%bb%a4" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<blockquote>
+<p>查找并记录需要杀死的进程号码： netstat -ano</p>
+<p>查找端口：netstat -ano|findstr [Port]</p>
+<p>查找名称：tasklist |findstr [PID]</p>
+<p>杀死进程： taskkill -f -pid [PID]</p>
+</blockquote>
+<h2 class="relative group"><hr/> 
+    <div id="hr-1" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#hr-1" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<h2 class="relative group">消息队列【Message Queue】:【RabbitMq Kafka RedisQ】 
+    <div id="消息队列message-queuerabbitmq-kafka-redisq" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e6%b6%88%e6%81%af%e9%98%9f%e5%88%97message-queuerabbitmq-kafka-redisq" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>基于Redis实现的异步阻塞队列存在jvm内存溢出问题，基于此实现了消息队列。</p>
+<blockquote>
+<p>消息队列：存储和管理消息，称为消息代理（message broker）</p>
+<p>生产者:发送消息到消息队列</p>
+<p>消费者：从消息队列中获取消息并处理</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_34_hu9ad26c46a6f99f2311bc026313d95ed7_137478_330x0_resize_box_3.png 330w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_34_hu9ad26c46a6f99f2311bc026313d95ed7_137478_660x0_resize_box_3.png 660w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_34_hu9ad26c46a6f99f2311bc026313d95ed7_137478_1024x0_resize_box_3.png 1024w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_34_hu9ad26c46a6f99f2311bc026313d95ed7_137478_1320x0_resize_box_3.png 2x"
+        src="/entire-note/java/%E7%BC%93%E5%AD%98/md/img_34_hu9ad26c46a6f99f2311bc026313d95ed7_137478_660x0_resize_box_3.png"
+        alt="img_34.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+</blockquote>
+<h4 class="relative group">基于Redis-List结构来模拟消息队列 
+    <div id="基于redis-list结构来模拟消息队列" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e5%9f%ba%e4%ba%8eredis-list%e7%bb%93%e6%9e%84%e6%9d%a5%e6%a8%a1%e6%8b%9f%e6%b6%88%e6%81%af%e9%98%9f%e5%88%97" aria-label="Anchor">#</a>
+    </span>        
+    
+</h4>
+<p>BLpush+BRpop/BRpush+BLpop</p>
+<p>独立于JVM，不依赖于机器，具备数据持久化，满足消息的有序性。
+无法避免消息丢失，只支持单消费者。</p>
+<h4 class="relative group">基于PubSub的消息队列 
+    <div id="基于pubsub的消息队列" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e5%9f%ba%e4%ba%8epubsub%e7%9a%84%e6%b6%88%e6%81%af%e9%98%9f%e5%88%97" aria-label="Anchor">#</a>
+    </span>        
+    
+</h4>
+<p>发布-订阅模式</p>
+<p>支持多生产和多消费：publish subscribe，psubscribe匹配使用正则表达式</p>
+<p>不支持消息持久化，无法避免消息丢失（当客户端宕机时，不接受消息，消息将会丢失），消息堆积有上限。</p>
+<h4 class="relative group">基于Stream的消息队列。基于Redis-5.0实现 
+    <div id="基于stream的消息队列基于redis-50实现" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e5%9f%ba%e4%ba%8estream%e7%9a%84%e6%b6%88%e6%81%af%e9%98%9f%e5%88%97%e5%9f%ba%e4%ba%8eredis-50%e5%ae%9e%e7%8e%b0" aria-label="Anchor">#</a>
+    </span>        
+    
+</h4>
+<p>XADD key [队列是否创建] [消息队列最大上限] [ID] [filed] [value]
+XREAD [count] [block sec] streams [key] [id]
+xgroup creat key groupName ID
+消息可回溯，可阻塞读取，可被多个消费者读取，有漏读的风险
+单词：pending:待定</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_35_hu23c1393a9ee25da5d76a07a7c3605d1d_174288_330x0_resize_box_3.png 330w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_35_hu23c1393a9ee25da5d76a07a7c3605d1d_174288_660x0_resize_box_3.png 660w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_35_hu23c1393a9ee25da5d76a07a7c3605d1d_174288_1024x0_resize_box_3.png 1024w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_35_hu23c1393a9ee25da5d76a07a7c3605d1d_174288_1320x0_resize_box_3.png 2x"
+        src="/entire-note/java/%E7%BC%93%E5%AD%98/md/img_35_hu23c1393a9ee25da5d76a07a7c3605d1d_174288_660x0_resize_box_3.png"
+        alt="img_35.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_36_huf819e0d10f5f7d364057d4862d1baa94_207208_330x0_resize_box_3.png 330w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_36_huf819e0d10f5f7d364057d4862d1baa94_207208_660x0_resize_box_3.png 660w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_36_huf819e0d10f5f7d364057d4862d1baa94_207208_1024x0_resize_box_3.png 1024w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_36_huf819e0d10f5f7d364057d4862d1baa94_207208_1320x0_resize_box_3.png 2x"
+        src="/entire-note/java/%E7%BC%93%E5%AD%98/md/img_36_huf819e0d10f5f7d364057d4862d1baa94_207208_660x0_resize_box_3.png"
+        alt="img_36.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_37_hu983c2076c9ea40803c7411e345f4aa4b_475230_330x0_resize_box_3.png 330w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_37_hu983c2076c9ea40803c7411e345f4aa4b_475230_660x0_resize_box_3.png 660w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_37_hu983c2076c9ea40803c7411e345f4aa4b_475230_1024x0_resize_box_3.png 1024w,
+        /entire-note/java/%E7%BC%93%E5%AD%98/md/img_37_hu983c2076c9ea40803c7411e345f4aa4b_475230_1320x0_resize_box_3.png 2x"
+        src="/entire-note/java/%E7%BC%93%E5%AD%98/md/img_37_hu983c2076c9ea40803c7411e345f4aa4b_475230_660x0_resize_box_3.png"
+        alt="img_37.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<h3 class="relative group">消费者组： 
+    <div id="消费者组" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e6%b6%88%e8%b4%b9%e8%80%85%e7%bb%84" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>消息分流 消息标识（确保消息都会被消费） 消息确认（消息处于pending状态，存入list中，需要得到确认 ）</p>
+<p>xgroup create/destory/delconsumer key groupName ID [&ldquo;mkstream&rdquo;]</p>
+<p>基于stream来实现的消费者组，
+读取消息都是从pending-list中读取消息，实现方法是通过id进行筛选</p>
+<p>消息读取之后必须进行确认，参数为消息id，确认之后消息id将会被消息队列移除</p>
+<p>消费者组的名称一般企业环境下都是写在yml文件里面</p>
+<p>
+
+
+
+
+  
+  
+  
+    <figure>
+      <img class="my-0 rounded-md" src="md/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97.png" alt="img.png" />
+      
+    </figure>
+  
+
+</p>
+<h3 class="relative group">三种消息队列List PubSub Stream 解决方案的区别 
+    <div id="三种消息队列list-pubsub-stream-解决方案的区别" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e4%b8%89%e7%a7%8d%e6%b6%88%e6%81%af%e9%98%9f%e5%88%97list-pubsub-stream-%e8%a7%a3%e5%86%b3%e6%96%b9%e6%a1%88%e7%9a%84%e5%8c%ba%e5%88%ab" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>
+
+
+
+
+  
+  
+  
+    <figure>
+      <img class="my-0 rounded-md" src="md/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E6%A8%A1%E5%BC%8F.png" alt="img_1.png" />
+      
+    </figure>
+  
+
+</p>
+<h2 class="relative group">发布达人探店 
+    <div id="发布达人探店" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e5%8f%91%e5%b8%83%e8%be%be%e4%ba%ba%e6%8e%a2%e5%ba%97" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>对两张表去进行表的设计：</p>
+<p>利用Zsort来作为点赞和排行榜数据结构
+相关命令：zadd member score ,zscore member，zrange key from to</p>
+<h2 class="relative group">关注推送，Feed流，提供沉浸式体验 
+    <div id="关注推送feed流提供沉浸式体验" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e5%85%b3%e6%b3%a8%e6%8e%a8%e9%80%81feed%e6%b5%81%e6%8f%90%e4%be%9b%e6%b2%89%e6%b5%b8%e5%bc%8f%e4%bd%93%e9%aa%8c" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<blockquote>
+<p>常见的两种实现模式：</p>
+<p>timeline：核心需要带上时间戳，不做内容筛选，信息全面，实现相对简单，但是信息噪音比较多</p>
+<p>实现方式：拉模式，推模式，推拉结合</p>
+<p>拉模式（读扩散）：缺点是延迟高</p>
+<p>
+
+
+
+
+  
+  
+  
+    <figure>
+      <img class="my-0 rounded-md" src="md/%E6%8E%A8%E6%A8%A1%E5%BC%8F.png" alt="img_2.png" />
+      
+    </figure>
+  
+
+</p>
+<p>推模式</p>
+<p>
+
+
+
+
+  
+  
+  
+    <figure>
+      <img class="my-0 rounded-md" src="md/%E6%8B%89%E6%A8%A1%E5%BC%8F.png" alt="img_3.png" />
+      
+    </figure>
+  
+
+</p>
+<p>推拉结合：
+
+
+
+
+
+  
+  
+  
+    <figure>
+      <img class="my-0 rounded-md" src="md/%E6%8E%A8%E6%8B%89%E7%BB%93%E5%90%88%E6%A8%A1%E5%BC%8F.png" alt="img.png" />
+      
+    </figure>
+  
+
+</p>
+<p>收件箱使用redis来实现，查询redis查询收件箱数据时需要实现分页查询，list，soretedset，数据的角标会发生变换，按照传统的分页方案将会出现错误</p>
+<p>
+
+
+
+
+  
+  
+  
+    <figure>
+      <img class="my-0 rounded-md" src="md/feed%E5%88%86%E9%A1%B5%E9%97%AE%E9%A2%98.png" alt="img_1.png" />
+      
+    </figure>
+  
+
+</p>
+<p>
+
+
+
+
+  
+  
+  
+    <figure>
+      <img class="my-0 rounded-md" src="md/%E6%BB%9A%E5%8A%A8%E5%88%86%E9%A1%B5.png" alt="img_2.png" />
+      
+    </figure>
+  
+
+</p>
+<p>智能排序：针对用户使用习惯做一些算法，尽量接近用户使用习惯，但当用户习惯与算法不对称时，将会出现反作用</p>
+</blockquote>
+
+      </div>
+
+
+
+
+    </div>
+
+    
+    <script>
+      var oid = "views_entire-note\\java\\缓存\\index.md"
+      var oid_likes = "likes_entire-note\\java\\缓存\\index.md"
+    </script>
+    
+    
+    
+    <script type="text/javascript" src="/js/page.min.5b1bad196a6075a1e11bae1dc95f24f67b610948a00525e347566c5a62338ea78f1c7224ab9a53873dcdb2a1a7d7d391b8a8ef45561297f68806c01315b0c4f6.js" integrity="sha512-WxutGWpgdaHhG64dyV8k9nthCUigBSXjR1ZsWmIzjqePHHIkq5pThz3NsqGn19ORuKjvRVYSl/aIBsATFbDE9g=="></script>
+
+  </section>
+
+  <footer style="width: 100%">
+          
+
+          
+  
+  <section class="flex flex-row flex-wrap justify-center pt-4 text-xl">
+    
+      
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="https://twitter.com/intent/tweet/?url=/entire-note/java/%E7%BC%93%E5%AD%98/&amp;text=Redis"
+      title="Tweet on Twitter"
+      aria-label="Tweet on Twitter"
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg>
+  </span>
+
+
+    </a>
+      
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="https://t.me/share/url?url=/entire-note/java/%E7%BC%93%E5%AD%98/&amp;resubmit=true&amp;title=Redis"
+      title=""
+      aria-label=""
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M248,8C111.033,8,0,119.033,0,256S111.033,504,248,504,496,392.967,496,256,384.967,8,248,8ZM362.952,176.66c-3.732,39.215-19.881,134.378-28.1,178.3-3.476,18.584-10.322,24.816-16.948,25.425-14.4,1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25,5.342-39.5,3.652-3.793,67.107-61.51,68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608,69.142-14.845,10.194-26.894,9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7,18.45-13.7,108.446-47.248,144.628-62.3c68.872-28.647,83.183-33.623,92.511-33.789,2.052-.034,6.639.474,9.61,2.885a10.452,10.452,0,0,1,3.53,6.716A43.765,43.765,0,0,1,362.952,176.66Z"/></svg>
+
+  </span>
+
+
+    </a>
+      
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="mailto:?body=/entire-note/java/%E7%BC%93%E5%AD%98/&amp;subject=Redis"
+      title="Send via email"
+      aria-label="Send via email"
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M207.8 20.73c-93.45 18.32-168.7 93.66-187 187.1c-27.64 140.9 68.65 266.2 199.1 285.1c19.01 2.888 36.17-12.26 36.17-31.49l.0001-.6631c0-15.74-11.44-28.88-26.84-31.24c-84.35-12.98-149.2-86.13-149.2-174.2c0-102.9 88.61-185.5 193.4-175.4c91.54 8.869 158.6 91.25 158.6 183.2l0 16.16c0 22.09-17.94 40.05-40 40.05s-40.01-17.96-40.01-40.05v-120.1c0-8.847-7.161-16.02-16.01-16.02l-31.98 .0036c-7.299 0-13.2 4.992-15.12 11.68c-24.85-12.15-54.24-16.38-86.06-5.106c-38.75 13.73-68.12 48.91-73.72 89.64c-9.483 69.01 43.81 128 110.9 128c26.44 0 50.43-9.544 69.59-24.88c24 31.3 65.23 48.69 109.4 37.49C465.2 369.3 496 324.1 495.1 277.2V256.3C495.1 107.1 361.2-9.332 207.8 20.73zM239.1 304.3c-26.47 0-48-21.56-48-48.05s21.53-48.05 48-48.05s48 21.56 48 48.05S266.5 304.3 239.1 304.3z"/></svg>
+
+  </span>
+
+
+    </a>
+      
+    
+  </section>
+
+
+          
+
+
+<h2 class="mt-8 text-2xl font-extrabold mb-10">相关笔记</h2>
+<section class="w-full grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+  
+  
+
+  <a href="/info/" class="min-w-full">
+    
+    <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
+        
+        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/img/default_bg_hu2c8ae63088ae0a9e08ad1099ffefae54_137932_600x0_resize_q75_box.jpg);"></div>
+        
+      
+
+      <div class="px-6 py-4">
+
+        
+        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
+          href="/info/">应该没人来这里吧</div>
+        
+
+        <div class="text-sm text-neutral-500 dark:text-neutral-400">
+          
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2023-10-03 00:00:00 &#43;0000 UTC">3 October 2023</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">1 min</span>
+  
+
+  
+  
+</div>
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+
+
+
+        </div>
+
+        
+      </div>
+      <div class="px-6 pt-4 pb-2">
+
+      </div>
+    </div>
+  </a>
+  
+</section>
+
+
+    
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="flex group mr-3" href="/entire-note/post/">
+              <span
+                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
+                >&larr;</span
+              >
+              <span
+                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
+                >&rarr;</span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Hello Friend</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2003-10-03 00:00:00 &#43;0000 UTC">3 October 2003</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="flex text-right group ml-3" href="/entire-note/java/javase/threadlocal/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >ThreadLocal</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2023-10-03 20:51:27 &#43;0800 CST">3 October 2023</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
+                >&rarr;</span
+              >
+              <span
+                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
+                >&larr;</span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+    
+    
+    <div class="pt-3">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="pt-3">
+        <script src="https://giscus.app/client.js"
+        data-repo="ToDreamr/todreamr.github.io"
+        data-repo-id="R_kgDOKdiu4A"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOKdiu4M4Capsk"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+</script>
+
+      </div>
+    </div>
+    
+    
+  </footer>
+</article>
+
+      <div id="top-scroller" class="pointer-events-none absolute top-[110vh] bottom-0 w-12 ltr:right-0 rtl:left-0">
+  <a href="#the-top"
+    class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 mb-16 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+    aria-label="回到顶部" title="回到顶部">
+    &uarr;
+  </a>
+</div>
+    </main><footer id="site-footer" class="py-10 print:hidden">
+  
+  
+    
+    <nav class="flex flex-row pb-4 text-base font-medium text-neutral-500 dark:text-neutral-400">
+      <ul class="flex flex-col list-none sm:flex-row">
+        
+        <li class="flex mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+          <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2" href="/tags/"
+            title="Tags">Tags</a>
+        </li>
+        
+        <li class="flex mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+          <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2" href="/info/"
+            title="应该没人来这里吧">Authors</a>
+        </li>
+        
+      </ul>
+    </nav>
+    
+  
+  <div class="flex items-center justify-between">
+
+    
+    
+    <p class="text-sm text-neutral-500 dark:text-neutral-400">
+      &copy;
+      2024
+      春江花朝秋月夜
+    </p>
+    
+
+    
+    
+    <p class="text-xs text-neutral-500 dark:text-neutral-400">
+      
+      
+      Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+        href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+        href="https://blowfish.page/" target="_blank" rel="noopener noreferrer">Blowfish</a>
+    </p>
+    
+
+  </div>
+  <script>
+    
+    mediumZoom(document.querySelectorAll("img:not(.nozoom)"), {
+      margin: 24,
+      background: 'rgba(0,0,0,0.5)',
+      scrollOffset: 0,
+    })
+    
+  </script>
+  
+  
+  <script type="text/javascript" src="/js/process.min.62060bb247f4de2b6dde45903668fefb68d792f365587605177b1227c0cf43588701edaca0cb40e2c8e2789bd5ce67c1d2a215b9fb258c3496a7cd25e7cb5fdf.js" integrity="sha512-YgYLskf03itt3kWQNmj&#43;&#43;2jXkvNlWHYFF3sSJ8DPQ1iHAe2soMtA4sjieJvVzmfB0qIVufsljDSWp80l58tf3w=="></script>
+  
+  
+</footer><div
+  id="search-wrapper"
+  class="invisible fixed inset-0 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]"
+  data-url="/"
+  style="z-index:500"
+>
+  <div
+    id="search-modal"
+    class="flex flex-col w-full max-w-3xl min-h-0 mx-auto border rounded-md shadow-lg top-20 border-neutral-200 bg-neutral dark:border-neutral-700 dark:bg-neutral-800"
+  >
+    <header class="relative z-10 flex items-center justify-between flex-none px-2">
+      <form class="flex items-center flex-auto min-w-0">
+        <div class="flex items-center justify-center w-8 h-8 text-neutral-400">
+          
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+        </div>
+        <input
+          type="search"
+          id="search-query"
+          class="flex flex-auto h-12 mx-1 bg-transparent appearance-none focus:outline-dotted focus:outline-2 focus:outline-transparent"
+          placeholder="Search"
+          tabindex="0"
+        />
+      </form>
+      <button
+        id="close-search-button"
+        class="flex items-center justify-center w-8 h-8 text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+        title="Close (Esc)"
+      >
+        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+  </span>
+
+
+      </button>
+    </header>
+    <section class="flex-auto px-2 overflow-auto">
+      <ul id="search-results">
+        
+      </ul>
+    </section>
+  </div>
+</div>
+
+  </div>
+</body>
+
+</html>

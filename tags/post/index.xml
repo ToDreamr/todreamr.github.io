@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>post on 春江花朝秋月夜</title>
+    <link>/tags/post/</link>
+    <description>Recent content in post on 春江花朝秋月夜</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2024 春江花朝秋月夜</copyright>
+    <lastBuildDate>Fri, 03 Oct 2003 00:00:00 +0000</lastBuildDate><atom:link href="/tags/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hello Friend</title>
+      <link>/entire-note/post/</link>
+      <pubDate>Fri, 03 Oct 2003 00:00:00 +0000</pubDate>
+      
+      <guid>/entire-note/post/</guid>
+      <description>我的名字是春江花朝秋月夜，我是这个博客的作者。我这样做是为了记录之前学习的笔记，这样很有成就感。 我们都知道在网络上开始做一些事情有多难，尤其是现在。但是，为了自己的头发没有白掉，加油吧，大家！
+— 春江花朝秋月夜 S01E01</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/post/featured.png" />
+    </item>
+    
+  </channel>
+</rss>

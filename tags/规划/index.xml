@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>规划 on 春江花朝秋月夜</title>
+    <link>/tags/%E8%A7%84%E5%88%92/</link>
+    <description>Recent content in 规划 on 春江花朝秋月夜</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2024 春江花朝秋月夜</copyright>
+    <lastBuildDate>Tue, 10 Oct 2023 18:05:56 +0800</lastBuildDate><atom:link href="/tags/%E8%A7%84%E5%88%92/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>学习计划</title>
+      <link>/tasks/</link>
+      <pubDate>Tue, 10 Oct 2023 18:05:56 +0800</pubDate>
+      
+      <guid>/tasks/</guid>
+      <description>希望会完成，南无阿弥陀佛🥲🥲🥲 # 1:主线学习内容，消息队列，操作系统，计算机网络（理论），分布式微服务，安全框架（Spring-Security)
+2:支线学习内容，了解csrf跨域问题，RBAC权限控制，防XSS攻击，JVM虚拟机，oauth2第三方登录（微信登录这块），ElasticSearch搜索引擎（ELK）。Zookeeper,Dubbo。容器技术Docker，K8s。
+3：深入了解（底层）：Redis底层数据结构与实现，Redis集群，哨兵模式，Redis协议，Mysql隔离级别，日志，锁，事务
+学习内容 计划日期 是否完成 延期 Redis黑马点评项目完结 这学期 ✔️ ❌ 消息队列 这学期 ✔️ ❌ SpringSecurity安全框架 这学期 ✔️ ❌ Redis底层 这学期 ❌ ❌ JUC 这学期 ✔️ ❌ JVM 这学期 ✔️ ❌ GateWay 这学期 ❌ ✔️ Nacos 这学期 ❌ ✔️ 微服务 这学期 ❌ ✔️ 数据结构-图，哈希 这学期 ❌ ❌ 期中复习 这学期 ❌ ❌ </description>
+      
+    </item>
+    
+  </channel>
+</rss>

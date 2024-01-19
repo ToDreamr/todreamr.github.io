@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>算法 on 春江花朝秋月夜</title>
+    <link>/tags/%E7%AE%97%E6%B3%95/</link>
+    <description>Recent content in 算法 on 春江花朝秋月夜</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2024 春江花朝秋月夜</copyright>
+    <lastBuildDate>Tue, 03 Oct 2023 20:52:20 +0800</lastBuildDate><atom:link href="/tags/%E7%AE%97%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>数据结构篇</title>
+      <link>/entire-note/java/javase/datastruct/</link>
+      <pubDate>Tue, 03 Oct 2023 20:52:20 +0800</pubDate>
+      
+      <guid>/entire-note/java/javase/datastruct/</guid>
+      <description>数组： # 1 public class Demo1_Array { 2 public static void main(String[] args) { 3 String [] array=new String[5];//需要初始化长度 4 array[0]=&amp;#34;hello&amp;#34;; 5 array[1]=&amp;#34;world&amp;#34;; 6 array[4]=&amp;#34;Mufasa&amp;#34;; 7 // array[5]=&amp;#34;right or not&amp;#34;;//ArrayIndexOutOfBoundsException 8 for(String str:array){ 9 System.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/java/javase/datastruct/featured.jpg" />
+    </item>
+    
+  </channel>
+</rss>

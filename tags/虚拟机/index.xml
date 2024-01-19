@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虚拟机 on 春江花朝秋月夜</title>
+    <link>/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/</link>
+    <description>Recent content in 虚拟机 on 春江花朝秋月夜</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2024 春江花朝秋月夜</copyright>
+    <lastBuildDate>Tue, 24 Oct 2023 13:58:54 +0800</lastBuildDate><atom:link href="/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>类加载</title>
+      <link>/entire-note/%E8%99%9A%E6%8B%9F%E6%9C%BA/%E7%B1%BB%E5%8A%A0%E8%BD%BD/</link>
+      <pubDate>Tue, 24 Oct 2023 13:58:54 +0800</pubDate>
+      
+      <guid>/entire-note/%E8%99%9A%E6%8B%9F%E6%9C%BA/%E7%B1%BB%E5%8A%A0%E8%BD%BD/</guid>
+      <description>CAFE BABE -&amp;gt;表示这是一个.class文件
+类加载机制 # 类加载的条件：
+使用new关键字创建对象时 使用某个类的静态成员（包括方法和字段）的时候（当然，final类型的静态字段有可能在编译的时候被放到了当前类的常量池中，这种情况下是不会触发自动加载的） 使用反射对类信息进行获取的时候（之前的数据库驱动就是这样的） 加载一个类的子类时 加载接口的实现类，且接口带有default的方法默认实现时 字节码指令 # 先返回结果再进行自增或者先自增再给出结果
+Asm字节码框架 # 劝退，还是算了。。。
+Spring实现的CGLib就是基于这个实现的。
+类加载机制 # </description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/%E8%99%9A%E6%8B%9F%E6%9C%BA/%E7%B1%BB%E5%8A%A0%E8%BD%BD/featured.png" />
+    </item>
+    
+    <item>
+      <title>元空间和引用方式</title>
+      <link>/entire-note/%E8%99%9A%E6%8B%9F%E6%9C%BA/%E5%85%83%E7%A9%BA%E9%97%B4/%E5%85%83%E7%A9%BA%E9%97%B4/</link>
+      <pubDate>Tue, 24 Oct 2023 13:28:04 +0800</pubDate>
+      
+      <guid>/entire-note/%E8%99%9A%E6%8B%9F%E6%9C%BA/%E5%85%83%E7%A9%BA%E9%97%B4/%E5%85%83%E7%A9%BA%E9%97%B4/</guid>
+      <description>引用类型 # 强引用：new Object(); # JVM不会随意回收强引用对象
+相反，将会尝试回收软引用
+软引用： # SoftReference&amp;lt;Object&amp;gt; soft=new SoftReference(); 设置内存大小：-Xms -Xmx
+ReferenceQueue&amp;lt;Object&amp;gt; queue = new ReferenceQueue&amp;lt;&amp;gt;(); SoftReference&amp;lt;Object&amp;gt; reference = new SoftReference&amp;lt;&amp;gt;(new Object(), queue); System.out.println(reference); try{ List&amp;lt;String&amp;gt; list = new ArrayList&amp;lt;&amp;gt;(); while (true) list.</description>
+      
+    </item>
+    
+    <item>
+      <title>Jvm</title>
+      <link>/entire-note/%E8%99%9A%E6%8B%9F%E6%9C%BA/jvm/</link>
+      <pubDate>Thu, 12 Oct 2023 23:51:04 +0800</pubDate>
+      
+      <guid>/entire-note/%E8%99%9A%E6%8B%9F%E6%9C%BA/jvm/</guid>
+      <description>概述 # JVM是模拟物理机实现的将javac编译为.class文件，jvm支持平台无关性。 class文件通过类加载器-》解释器-》硬件沟通
+Jvm基于HotSpot虚拟机架构同时也是基于栈实现的。与C语言不同，不同架构的操作系统编译输出的文件不同，jvm编译后产生的 文件完全相同。
+由于执行一段程序需要不断地编译和反编译，将热点执行的代买柜内为热点代码再转换为机器码提高执行效率。同时jdk1.2之后支持使用JNI来 调用C/C++代码提升代码执行效率
+指令 # 基本数据结构：堆栈+队列
+常见的编译命令：
+javap -g :vars xxx.java
+反编译： javap -v .class文件地址
+反编译后的代码栈顶元素作为操作数，当需要保存变量的时候，进入队列
+部分变量某些关键字无法保存将会保存到常量池里面。例如bipush只支持单字节数据
+环境部署 # Linux下下载相关依赖
+sudo yum install build-essential libxrender-dev xorg-dev libasound2-dev libcups2-dev gawk zip libxtst-dev libxi-dev libxt-dev gobjc gcc 环境：</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/%E8%99%9A%E6%8B%9F%E6%9C%BA/jvm/featured.png" />
+    </item>
+    
+    <item>
+      <title>垃圾回收机制</title>
+      <link>/entire-note/%E8%99%9A%E6%8B%9F%E6%9C%BA/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/</link>
+      <pubDate>Thu, 12 Oct 2023 23:51:04 +0800</pubDate>
+      
+      <guid>/entire-note/%E8%99%9A%E6%8B%9F%E6%9C%BA/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/</guid>
+      <description>垃圾回收机制 # 引用计数法 # 创建引用变量
+循环引用,当对象成为null就没办法了
+可达性分析算法：
+最终判定过程，此过程可以最后挽留对象
+重写finalize方法，最后可以救赎被gc的对象
+比如下面这个情况
+注意：
+同时，这个方法只能生效一次，躲得过初一躲不过十五
+分代收集机制: # 方法区使用永久代实现
+垃圾收集也分为： Minor GC - 次要垃圾回收，主要进行新生代区域的垃圾收集。
+触发条件：新生代的Eden区容量已满时。
+Major GC - 主要垃圾回收，主要进行老年代的垃圾收集。
+Full GC - 完全垃圾回收，对整个Java堆内存和方法区进行垃圾回收。
+触发条件1：每次晋升到老年代的对象平均大小大于老年代剩余空间</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/%E8%99%9A%E6%8B%9F%E6%9C%BA/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/featured.png" />
+    </item>
+    
+  </channel>
+</rss>

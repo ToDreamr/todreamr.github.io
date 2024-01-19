@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>leetcode on 春江花朝秋月夜</title>
+    <link>/tags/leetcode/</link>
+    <description>Recent content in leetcode on 春江花朝秋月夜</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2024 春江花朝秋月夜</copyright>
+    <lastBuildDate>Tue, 14 Nov 2023 13:47:44 +0800</lastBuildDate><atom:link href="/tags/leetcode/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>区间个位和</title>
+      <link>/%E7%AE%97%E6%B3%95/%E6%95%B0%E5%AD%A6/</link>
+      <pubDate>Tue, 14 Nov 2023 13:47:44 +0800</pubDate>
+      
+      <guid>/%E7%AE%97%E6%B3%95/%E6%95%B0%E5%AD%A6/</guid>
+      <description>计算区间之间的所有数的个位数之和 # 思路： 总体用数学办法，45循环，补齐不全的区间
+#include &amp;#34;class/head.h&amp;#34; //导入万能依赖 long long Sum(long long left,long long right,long long len) { long long left_sum=0,right_sum=0; long long left_len,right_len; left_len=right_len=0; if(left!=0)//计算左补齐 { left_sum=((left-1)*left)/2.0; left_len=left; } if(right!=9)//计算右补齐 { right_sum=((right+10)*(9-right))/2.</description>
+      
+    </item>
+    
+    <item>
+      <title>数之和</title>
+      <link>/%E7%AE%97%E6%B3%95/%E6%95%B0%E4%B9%8B%E5%92%8C/</link>
+      <pubDate>Tue, 14 Nov 2023 13:47:44 +0800</pubDate>
+      
+      <guid>/%E7%AE%97%E6%B3%95/%E6%95%B0%E4%B9%8B%E5%92%8C/</guid>
+      <description>题目：
+两数之和
+三数之和
+class Main{ //两数之和 public static int[] twoSum(int[] nums, int target) { //找出和为target的数组中元素的下标： HashMap&amp;lt;Integer,Integer&amp;gt; dic=new HashMap&amp;lt;&amp;gt;();//和 int index=0; int dicIndex=0; int len=nums.length; Set&amp;lt;Integer&amp;gt; list=new HashSet&amp;lt;&amp;gt;(); for (int i=0;i&amp;lt;len;i++){ dic.</description>
+      
+    </item>
+    
+  </channel>
+</rss>

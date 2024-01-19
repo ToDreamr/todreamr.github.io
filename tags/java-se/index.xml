@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Java SE on 春江花朝秋月夜</title>
+    <link>/tags/java-se/</link>
+    <description>Recent content in Java SE on 春江花朝秋月夜</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2024 春江花朝秋月夜</copyright>
+    <lastBuildDate>Tue, 03 Oct 2023 20:53:21 +0800</lastBuildDate><atom:link href="/tags/java-se/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>对象间的关系</title>
+      <link>/entire-note/java/javase/object/%E5%AF%B9%E8%B1%A1%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB/</link>
+      <pubDate>Tue, 03 Oct 2023 20:53:21 +0800</pubDate>
+      
+      <guid>/entire-note/java/javase/object/%E5%AF%B9%E8%B1%A1%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB/</guid>
+      <description>1 综述 在Java中对象与对象的关系总体分为四类，分别是：依赖、关联、聚合和组合。
+（1）依赖(Dependency)关系是类与类之间的联接。依赖关系表示一个类依赖于另一个类的定义，一般而言，依赖关系在Java语言中体现为局域变量、方法的形参，或者对静态方法的调用。 （2）关联(Association）关系是类与类之间的联接，它使一个类知道另一个类的属性和方法。关联可以是双向的，也可以是单向的。在Java语言中，关联关系一般使用成员变量来实现 （3）聚合(Aggregation) 关系是关联关系的一种，是强的关联关系。聚合是整体和个体之间的关系 （4）组合(Composition) 关系是关联关系的一种，是比聚合关系强的关系。它要求普通的聚合关系中代表整体的对象负责代表部分对象的生命周期，组合关系是不能共享的
+依赖： # 个类A使用到了另一个类B，而这种使用关系是具有偶然性的、临时性的、非常弱的，但是B类的变化会影响到A
+关联： # 关联是一种“拥有”的关系。表现在代码上，就是一个类包含另一个类的实例，通常表现为被关联类以类属性的形式出现在关联类的类定义中，也可以表现为关联类引用了一个类型为被关联类的全局变量。关联可以使单向的，也可以使双向的。依赖和关联的区别在于依赖是使用，关联是拥有.
+聚合 # 聚合是关联关系的一种，它是一种强关联关系（has-a）;聚合关系是整体和个体/部分之间的关系;关联关系的两个类处于同一个层次上,而聚合关系的两个类处于不同的层次上,一个是整体,一个是个体/部分;在聚合关系中,代表个体/部分的对象有可能会被多个代表整体的对象所共享;表现在代码层面上就是在构造器初始化时将两个类关联起来
+组合 # 组合也是关联关系的一种（is-a）,但它是比聚合关系更强的关系.组合关系要求聚合关系中代表整体的对象要负责代表个体/部分的对象的整个生命周期;组合关系不能共享;在组合关系中,如果代表整体的对象被销毁或破坏,那么代表个体/部分的对象也一定会被销毁或破坏,而聚在合关系中,代表个体/部分的对象则有可能被多个代表整体的对象所共享,而不一定会随着某个代表整体的对象被销毁或破坏而被销毁或破坏;</description>
+      
+    </item>
+    
+    <item>
+      <title>关键字</title>
+      <link>/entire-note/java/javase/words/</link>
+      <pubDate>Tue, 03 Oct 2023 20:53:12 +0800</pubDate>
+      
+      <guid>/entire-note/java/javase/words/</guid>
+      <description>Java中常用的关键字有以下分类： 访问控制 private protected public
+类,方法和变量修饰符 abstract class extends final implements interface native new static strictfp synchronized transient volatile
+程序控制 break continue return do while if else for instanceof switch case default</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/java/javase/words/featured.png" />
+    </item>
+    
+    <item>
+      <title>实例化Node</title>
+      <link>/entire-note/java/javase/node/%E5%AE%9E%E4%BE%8B%E5%8C%96node/</link>
+      <pubDate>Tue, 03 Oct 2023 20:52:56 +0800</pubDate>
+      
+      <guid>/entire-note/java/javase/node/%E5%AE%9E%E4%BE%8B%E5%8C%96node/</guid>
+      <description>如何从 Java 中的 LinkedList 类外部声明 Node 类型？ # 标签 java linked-list 如何声明 Node 类型的变量？ Node是LinkedList的内部类，在我正在编写的程序的main方法中，我想创建一个Node变量。但在下面代码片段的最后一行中，我收到错误消息“Nose 在 LinkedList 中具有私有(private)访问权限”。为什么我不能使用 Node 类型？
+import java.util.LinkedList; public class MinSplit { public static long leastAmount; public static void main(String args[]) { LinkedList list = new LinkedList(); LinkedList.</description>
+      
+    </item>
+    
+    <item>
+      <title>ThreadLocal</title>
+      <link>/entire-note/java/javase/threadlocal/</link>
+      <pubDate>Tue, 03 Oct 2023 20:51:27 +0800</pubDate>
+      
+      <guid>/entire-note/java/javase/threadlocal/</guid>
+      <description>特点：线程隔离，相互是隔离的，不影响的,每个线程都自己玩自己的，只操作自己的单独的变量副本
+内部维护的是ThreadLocalMap，所以有key和value
+当key指向的值为null时，value不被清理，由于key是弱引用，此时就会造成内存泄露，所以必须要通过ThreadLocal里面的remove方法手动删除值，避免内存泄露。
+ThreadLocalMap里面面由一个个由数组组成的key-value，组成了Entry 由ThreadLocal来设置值，删除值
+弱引用非常容易GC，很容易造成内存泄露，所以需要将key为null的entry清除
+引用关系：Thread-&amp;gt; ThreadLocal-&amp;gt;Entry（弱）-&amp;gt;key（弱）-&amp;gt;value(强)（不清除时容易发生内存泄露）
+//内部类，实=实现 static ThreadLocalMap createInheritedMap(ThreadLocalMap parentMap) { return new ThreadLocalMap(parentMap); } static class ThreadLocalMap { static class Entry extends WeakReference&amp;lt;ThreadLocal&amp;lt;?&amp;gt;&amp;gt; { /** The value associated with this ThreadLocal.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/java/javase/threadlocal/featured.png" />
+    </item>
+    
+  </channel>
+</rss>

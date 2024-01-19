@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>缓存 on 春江花朝秋月夜</title>
+    <link>/tags/%E7%BC%93%E5%AD%98/</link>
+    <description>Recent content in 缓存 on 春江花朝秋月夜</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2024 春江花朝秋月夜</copyright>
+    <lastBuildDate>Tue, 03 Oct 2023 20:31:04 +0800</lastBuildDate><atom:link href="/tags/%E7%BC%93%E5%AD%98/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Redis</title>
+      <link>/entire-note/java/%E7%BC%93%E5%AD%98/</link>
+      <pubDate>Tue, 03 Oct 2023 20:31:04 +0800</pubDate>
+      
+      <guid>/entire-note/java/%E7%BC%93%E5%AD%98/</guid>
+      <description>Redis学习： # 通用命令 # 不要在主节点用：keys param 命令来查询，这查询速率很慢，单线程将会被阻塞 del param（可以是多个参数） :删除指定的key exists param(判断key是否存在) expire key time :设置有效期时间 ttl key :查看key的有效期
+String类型 # 最简单的Redis数据类型，value：string,int,float；最大空间不超过512M set key value get key
+Mset 批量 添加key-value</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/java/%E7%BC%93%E5%AD%98/featured.png" />
+    </item>
+    
+  </channel>
+</rss>

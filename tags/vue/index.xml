@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>vue on 春江花朝秋月夜</title>
+    <link>/tags/vue/</link>
+    <description>Recent content in vue on 春江花朝秋月夜</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2024 春江花朝秋月夜</copyright>
+    <lastBuildDate>Sat, 04 Nov 2023 11:31:54 +0800</lastBuildDate><atom:link href="/tags/vue/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Vue3 响应式Api开发笔记</title>
+      <link>/entire-note/vue/</link>
+      <pubDate>Sat, 04 Nov 2023 11:31:54 +0800</pubDate>
+      
+      <guid>/entire-note/vue/</guid>
+      <description>Vue3 响应式Api开发笔记 # 目录结构： # 用vite构建的Vue3目录结构：
+src:
+这里是我们要开发的目录，基本上要做的事情都在这个目录里。里面包含了几个目录及文件：
+assets: 放置一些图片，如logo等。 components: 目录里面放了一个组件文件，可以不用。 App.vue: 项目入口文件，我们也可以直接将组件写这里，而不使用 components 目录。 main.js: 项目的核心文件。 index.css: 样式文件。 static	静态资源目录，如图片、字体等。
+public	公共资源目录。
+package.json	项目配置文件。
+vue3创建应用 # 实际案例 # 语法： const app = Vue.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/vue/featured.png" />
+    </item>
+    
+  </channel>
+</rss>

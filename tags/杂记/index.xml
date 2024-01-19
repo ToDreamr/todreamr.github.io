@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>杂记 on 春江花朝秋月夜</title>
+    <link>/tags/%E6%9D%82%E8%AE%B0/</link>
+    <description>Recent content in 杂记 on 春江花朝秋月夜</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2024 春江花朝秋月夜</copyright>
+    <lastBuildDate>Fri, 03 Nov 2023 22:43:25 +0800</lastBuildDate><atom:link href="/tags/%E6%9D%82%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>搭建图床</title>
+      <link>/entire-note/%E5%9B%BE%E5%BA%8A/</link>
+      <pubDate>Fri, 03 Nov 2023 22:43:25 +0800</pubDate>
+      
+      <guid>/entire-note/%E5%9B%BE%E5%BA%8A/</guid>
+      <description>通过GitHub+PicGo+CDN搭建自己的图床 # 图床一般是指储存图片的服务器，有国内和国外之分。国外的图床由于有 空间距离等因素决定访问速度很慢影响图片显示速度。国内也分为单线空间、 多线空间和cdn加速三种。# CDN 是构建在数据网络上的一种分布式的内容分发网。 CDN 的作用是采用 流媒体服务器 集群技术，克服单机系统输出带宽及并发能力不足的缺点，可极大提升系统支持的 并发流数目，减少或避免 单点失效带来的不良影响。# github搭建仓库
+下载 PicGO 配置 CDN
+创建仓库 # PICGO # 配置加速
+如何配置token？
+首先到github上选择生成自己的token：
+点击首页选择设置：
+下拉到develop settings
+选择下方生成GitHub token：</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/%E5%9B%BE%E5%BA%8A/featured.png" />
+    </item>
+    
+    <item>
+      <title>如何通过hugo搭建自己的博客</title>
+      <link>/%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Tue, 03 Oct 2023 23:44:01 +0800</pubDate>
+      
+      <guid>/%E7%AC%94%E8%AE%B0/</guid>
+      <description>如何通过Hugo这个框架来搭建一款属于自己的博客呢？ # 观前提醒：这篇笔记借鉴了下面两个作者：
+一是： 小棉尾巴
+事件契机 # 我其实原本就知道github的pages自动部署博客功能，当时大二不熟练，今天目睹专业大佬的博客，自然也就重新搞起来了。
+如下就是大佬的博客（这个主题本来尝试用，后续发现比较花哨就不采用了）
+本人搭建的博客：
+第一步下载HuGo框架： # 以Windows为例：只需打开CMD执行下面这个命令
+winget install Hugo.Hugo.Extended 等待下载完成重启Shell命令窗口即可，Hugo将会自动配置环境变量。
+检查是否安装成功：
+hugo version 第二部创建Hugo博客项目 # 只需要在文件夹下面新建终端使用如下命令，hugo将会自动创建你的项目名称文件夹 ，同时弹出一个主题链接
+hugo new site +你的项目名称 现在你需要进入你的项目也就是命令： cd 你的项目名称</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/%E7%AC%94%E8%AE%B0/featured.jpg" />
+    </item>
+    
+  </channel>
+</rss>

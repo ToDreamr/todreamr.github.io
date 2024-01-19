@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>春江花朝秋月夜</title>
+    <link>/</link>
+    <description>Recent content on 春江花朝秋月夜</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2024 春江花朝秋月夜</copyright>
+    <lastBuildDate>Tue, 14 Nov 2023 13:47:44 +0800</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>区间个位和</title>
+      <link>/%E7%AE%97%E6%B3%95/%E6%95%B0%E5%AD%A6/</link>
+      <pubDate>Tue, 14 Nov 2023 13:47:44 +0800</pubDate>
+      
+      <guid>/%E7%AE%97%E6%B3%95/%E6%95%B0%E5%AD%A6/</guid>
+      <description>计算区间之间的所有数的个位数之和 # 思路： 总体用数学办法，45循环，补齐不全的区间
+#include &amp;#34;class/head.h&amp;#34; //导入万能依赖 long long Sum(long long left,long long right,long long len) { long long left_sum=0,right_sum=0; long long left_len,right_len; left_len=right_len=0; if(left!=0)//计算左补齐 { left_sum=((left-1)*left)/2.0; left_len=left; } if(right!=9)//计算右补齐 { right_sum=((right+10)*(9-right))/2.</description>
+      
+    </item>
+    
+    <item>
+      <title>数之和</title>
+      <link>/%E7%AE%97%E6%B3%95/%E6%95%B0%E4%B9%8B%E5%92%8C/</link>
+      <pubDate>Tue, 14 Nov 2023 13:47:44 +0800</pubDate>
+      
+      <guid>/%E7%AE%97%E6%B3%95/%E6%95%B0%E4%B9%8B%E5%92%8C/</guid>
+      <description>题目：
+两数之和
+三数之和
+class Main{ //两数之和 public static int[] twoSum(int[] nums, int target) { //找出和为target的数组中元素的下标： HashMap&amp;lt;Integer,Integer&amp;gt; dic=new HashMap&amp;lt;&amp;gt;();//和 int index=0; int dicIndex=0; int len=nums.length; Set&amp;lt;Integer&amp;gt; list=new HashSet&amp;lt;&amp;gt;(); for (int i=0;i&amp;lt;len;i++){ dic.</description>
+      
+    </item>
+    
+    <item>
+      <title>Eureka</title>
+      <link>/entire-note/spring/eureka/</link>
+      <pubDate>Sat, 11 Nov 2023 23:55:26 +0800</pubDate>
+      
+      <guid>/entire-note/spring/eureka/</guid>
+      <description>整个项目很简单，主要需要注意版本的问题,这也是微服务的主要问题
+启动成功
+还是贴一下maven好
+&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;project xmlns=&amp;#34;http://maven.apache.org/POM/4.0.0&amp;#34; xmlns:xsi=&amp;#34;http://www.w3.org/2001/XMLSchema-instance&amp;#34; xsi:schemaLocation=&amp;#34;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&amp;#34;&amp;gt; &amp;lt;modelVersion&amp;gt;4.0.0&amp;lt;/modelVersion&amp;gt; &amp;lt;parent&amp;gt; &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-boot-starter-parent&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;3.0.2&amp;lt;/version&amp;gt; &amp;lt;relativePath/&amp;gt; &amp;lt;!-- lookup parent from repository --&amp;gt; &amp;lt;/parent&amp;gt; &amp;lt;groupId&amp;gt;com.example&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;eureka&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;0.0.1-SNAPSHOT&amp;lt;/version&amp;gt; &amp;lt;name&amp;gt;eureka&amp;lt;/name&amp;gt; &amp;lt;description&amp;gt;eureka&amp;lt;/description&amp;gt; &amp;lt;properties&amp;gt; &amp;lt;java.</description>
+      
+    </item>
+    
+    <item>
+      <title>没备份笔记的后果</title>
+      <link>/life-about/%E9%9A%8F%E8%AE%B0/</link>
+      <pubDate>Sat, 11 Nov 2023 10:52:20 +0800</pubDate>
+      
+      <guid>/life-about/%E9%9A%8F%E8%AE%B0/</guid>
+      <description>由于之前Vscode误删这个博客的笔记了，现在又要从仓库拉原来的笔记，实在是烦心。
+现在总算知道备份的重要性了。
+开科技也不行，github是真慢啊！！！又要先fetch再push了。。。。
+龟祖宗，好了没啊！！！
+总算好咯</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/life-about/%E9%9A%8F%E8%AE%B0/featured.png" />
+    </item>
+    
+    <item>
+      <title>RabbitMq</title>
+      <link>/entire-note/mq/</link>
+      <pubDate>Tue, 07 Nov 2023 20:52:20 +0800</pubDate>
+      
+      <guid>/entire-note/mq/</guid>
+      <description>认识RabbitMQ # 环境：ubangtu # 访问协议： amqp
+了解安装（反正也记不住）：
+sudo apt install erlang sudo apt install rabbitmq-server sudo rabbitmqctl status sudo rabbitmq-plugins enable rabbitmq_management sudo rabbitmqctl add_user 用户名 密码 sudo rabbitmqctl set_user_tags admin administrator 设计架构图：</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/mq/featured.png" />
+    </item>
+    
+    <item>
+      <title>Vue3 响应式Api开发笔记</title>
+      <link>/entire-note/vue/</link>
+      <pubDate>Sat, 04 Nov 2023 11:31:54 +0800</pubDate>
+      
+      <guid>/entire-note/vue/</guid>
+      <description>Vue3 响应式Api开发笔记 # 目录结构： # 用vite构建的Vue3目录结构：
+src:
+这里是我们要开发的目录，基本上要做的事情都在这个目录里。里面包含了几个目录及文件：
+assets: 放置一些图片，如logo等。 components: 目录里面放了一个组件文件，可以不用。 App.vue: 项目入口文件，我们也可以直接将组件写这里，而不使用 components 目录。 main.js: 项目的核心文件。 index.css: 样式文件。 static	静态资源目录，如图片、字体等。
+public	公共资源目录。
+package.json	项目配置文件。
+vue3创建应用 # 实际案例 # 语法： const app = Vue.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/vue/featured.png" />
+    </item>
+    
+    <item>
+      <title>搭建图床</title>
+      <link>/entire-note/%E5%9B%BE%E5%BA%8A/</link>
+      <pubDate>Fri, 03 Nov 2023 22:43:25 +0800</pubDate>
+      
+      <guid>/entire-note/%E5%9B%BE%E5%BA%8A/</guid>
+      <description>通过GitHub+PicGo+CDN搭建自己的图床 # 图床一般是指储存图片的服务器，有国内和国外之分。国外的图床由于有 空间距离等因素决定访问速度很慢影响图片显示速度。国内也分为单线空间、 多线空间和cdn加速三种。# CDN 是构建在数据网络上的一种分布式的内容分发网。 CDN 的作用是采用 流媒体服务器 集群技术，克服单机系统输出带宽及并发能力不足的缺点，可极大提升系统支持的 并发流数目，减少或避免 单点失效带来的不良影响。# github搭建仓库
+下载 PicGO 配置 CDN
+创建仓库 # PICGO # 配置加速
+如何配置token？
+首先到github上选择生成自己的token：
+点击首页选择设置：
+下拉到develop settings
+选择下方生成GitHub token：</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/%E5%9B%BE%E5%BA%8A/featured.png" />
+    </item>
+    
+    <item>
+      <title>Spring事务传播机制</title>
+      <link>/entire-note/%E4%BA%8B%E5%8A%A1/</link>
+      <pubDate>Fri, 03 Nov 2023 11:31:54 +0800</pubDate>
+      
+      <guid>/entire-note/%E4%BA%8B%E5%8A%A1/</guid>
+      <description>Spring事务传播机制：# # 事务传播的定义：# # 事务传播行为主要用来描述由某一个事务传播行为修饰的方法被嵌套进另一个方法的事务中，该 事务如何传播。这个概述可能不好理解，换句话就是当一个事务方法被另一个事务方法调用时，这个事务方法应该如何进行。
+spring中的事务级别#
+REQUIRED# # REQUIRED是Spring默认的传播机制。如果当前存在事务，则加入该事务；如果当前没有事务，则创建一个新事务。 REQUIRED传播机制最常用的情况是在一个事务 中进行多个操作，要么全部成功，要么全部失败。如果其中一个操作失败，整个事务都将被回滚。
+SUPPORTS# # SUPPORTS传播机制表示当前方法如果在一个事务中被调用，则加入该事务； 否则，以非事务的方式运行。SUPPORTS传播机制适用于对事务要求不高的操作，例如读取操作。
+MANDATORY# # MANDATORY传播机制表示当前方法必须在一个事务中被调用，否则将抛出异常。 MANDATORY传播机制适用于在需要事务的情况下调用方法。
+REQUIRES_NEW# # REQUIRES_NEW传播机制表示当前方法必须开启一个新事务运行，如果当前存在事务，则挂起该事务。 REQUIRES_NEW传播机制适用于对事务要求较高的操作，例如更新操作。
+NOT_SUPPORTED# # NOT_SUPPORTED传播机制表示当前方法不应该在事务中运行，如果存在事务，则挂起该事务。 NOT_SUPPORTED传播机制适用于对事务没有要求的操作，例如日志记录等。
+NEVER# # NEVER传播机制表示当前方法不应该在事务中运行，如果存在事务，则抛出异常。 NEVER传播机制适用于禁止在事务中运行的操作，例如安全检查等。</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/%E4%BA%8B%E5%8A%A1/featured.png" />
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;</title>
+      <link>/entire-note/c&#43;&#43;/</link>
+      <pubDate>Fri, 27 Oct 2023 20:52:20 +0800</pubDate>
+      
+      <guid>/entire-note/c&#43;&#43;/</guid>
+      <description>C++实现数据结构和初步的认识 # 鉴于未来数据结构和算法的实现我想通过C++来实现，现在简要总结下C++的常用方法和数据结构类型
+头文件和方法声明 # 等同于C语言
+标准输入输出函数 # std::cout &amp;lt;&amp;lt; &amp;#34;Hello, World!&amp;#34; &amp;lt;&amp;lt; std::endl; 引入 using namespace std;这可以避免函数要不断的添加前缀
+using namespace std; ... int input; cout&amp;lt;&amp;lt;&amp;#34;Hello world&amp;#34;&amp;lt;&amp;lt;endl;//输出函数 cin&amp;gt;&amp;gt;input; printf(&amp;#34;%d&amp;#34;,input); ... 传递函数的不同方式 # const修饰指针 # 修饰常量 修饰指针 修饰常量和指针 int main() { int a = 10; int b = 10; //const修饰的是指针，指针指向可以改，指针指向的值不可以更改 const int * p1 = &amp;amp;a; p1 = &amp;amp;b; //正确 //*p1 = 100; 报错 //const修饰的是常量，指针指向不可以改，指针指向的值可以更改 int * const p2 = &amp;amp;a; //p2 = &amp;amp;b; //错误 *p2 = 100; //正确 //const既修饰指针又修饰常量 const int * const p3 = &amp;amp;a; //p3 = &amp;amp;b; //错误 //*p3 = 100; //错误 system(&amp;#34;pause&amp;#34;); return 0; } 空指针和野指针 # NUll Point # int main() { //指针变量p指向内存地址编号为0的空间 int * p = NULL; //访问空指针报错 //内存编号0 ~255为系统占用内存，不允许用户访问 cout &amp;lt;&amp;lt; *p &amp;lt;&amp;lt; endl; system(&amp;#34;pause&amp;#34;); return 0; } Wild Point # int main() { //指针变量p指向内存地址编号为0x1100的空间 int * p = (int *)0x1100; //访问野指针报错 cout &amp;lt;&amp;lt; *p &amp;lt;&amp;lt; endl; system(&amp;#34;pause&amp;#34;); return 0; } 数组作为函数展示： # void array_print(int arr[],int len){ for (int i = 0; i &amp;lt; len; ++i) { cout&amp;lt;&amp;lt;arr[i]&amp;lt;&amp;lt;endl; } } void bubble_sort_(int * arr,int len){ for (int i = 0; i &amp;lt; len; ++i) { for (int j = i; j &amp;lt; len; ++j) { if (arr[i]&amp;gt;=arr[j]){ int tmp=arr[j]; arr[j]=arr[i]; arr[i]=tmp; } } } } int main(){ int arr[]={10,2,4,4,3,5,9,1,3}; bubble_sort_(arr,8); array_print(arr,8); } 当数组名传入到函数作为参数时，被退化为指向首元素的指针</description>
+      
+    </item>
+    
+    <item>
+      <title>friend</title>
+      <link>/friend/</link>
+      <pubDate>Fri, 27 Oct 2023 20:52:20 +0800</pubDate>
+      
+      <guid>/friend/</guid>
+      <description>你好我的朋友 # 我的朋友们：
+与你分享我的眼睛： https://viyi.cc/ 小棉尾巴： https://cuttontail.blog/ 陈炳坤： https://ancientelement.gitee.io/ fansea: https://fansea.gitee.io/ </description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/friend/featured.png" />
+    </item>
+    
+    <item>
+      <title>面试题</title>
+      <link>/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/</link>
+      <pubDate>Wed, 25 Oct 2023 18:23:23 +0800</pubDate>
+      
+      <guid>/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/</guid>
+      <description>题目 # 难点：合并
+解决方法：
+实体类：
+package com.atguigu; import lombok.AllArgsConstructor; import lombok.Data; /** * com.atguigu.ItemDO * * @author 春江花朝秋月夜 * @since 2023/10/25 14:45 */ @Data @AllArgsConstructor public class ItemDO { int id;//10011 int type;//具体不确定 double score;//[0，1000] @Override public String toString() { return &amp;#34;ItemDO{&amp;#34; + &amp;#34;id=&amp;#34; + id + &amp;#34;, type=&amp;#34; + type + &amp;#34;, score=&amp;#34; + score + &amp;#39;\n&amp;#39;+ &amp;#39;}&amp;#39;; } } 方法：</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/featured.png" />
+    </item>
+    
+    <item>
+      <title>类加载</title>
+      <link>/entire-note/%E8%99%9A%E6%8B%9F%E6%9C%BA/%E7%B1%BB%E5%8A%A0%E8%BD%BD/</link>
+      <pubDate>Tue, 24 Oct 2023 13:58:54 +0800</pubDate>
+      
+      <guid>/entire-note/%E8%99%9A%E6%8B%9F%E6%9C%BA/%E7%B1%BB%E5%8A%A0%E8%BD%BD/</guid>
+      <description>CAFE BABE -&amp;gt;表示这是一个.class文件
+类加载机制 # 类加载的条件：
+使用new关键字创建对象时 使用某个类的静态成员（包括方法和字段）的时候（当然，final类型的静态字段有可能在编译的时候被放到了当前类的常量池中，这种情况下是不会触发自动加载的） 使用反射对类信息进行获取的时候（之前的数据库驱动就是这样的） 加载一个类的子类时 加载接口的实现类，且接口带有default的方法默认实现时 字节码指令 # 先返回结果再进行自增或者先自增再给出结果
+Asm字节码框架 # 劝退，还是算了。。。
+Spring实现的CGLib就是基于这个实现的。
+类加载机制 # </description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/%E8%99%9A%E6%8B%9F%E6%9C%BA/%E7%B1%BB%E5%8A%A0%E8%BD%BD/featured.png" />
+    </item>
+    
+    <item>
+      <title>元空间和引用方式</title>
+      <link>/entire-note/%E8%99%9A%E6%8B%9F%E6%9C%BA/%E5%85%83%E7%A9%BA%E9%97%B4/%E5%85%83%E7%A9%BA%E9%97%B4/</link>
+      <pubDate>Tue, 24 Oct 2023 13:28:04 +0800</pubDate>
+      
+      <guid>/entire-note/%E8%99%9A%E6%8B%9F%E6%9C%BA/%E5%85%83%E7%A9%BA%E9%97%B4/%E5%85%83%E7%A9%BA%E9%97%B4/</guid>
+      <description>引用类型 # 强引用：new Object(); # JVM不会随意回收强引用对象
+相反，将会尝试回收软引用
+软引用： # SoftReference&amp;lt;Object&amp;gt; soft=new SoftReference(); 设置内存大小：-Xms -Xmx
+ReferenceQueue&amp;lt;Object&amp;gt; queue = new ReferenceQueue&amp;lt;&amp;gt;(); SoftReference&amp;lt;Object&amp;gt; reference = new SoftReference&amp;lt;&amp;gt;(new Object(), queue); System.out.println(reference); try{ List&amp;lt;String&amp;gt; list = new ArrayList&amp;lt;&amp;gt;(); while (true) list.</description>
+      
+    </item>
+    
+    <item>
+      <title>Latex语法</title>
+      <link>/entire-note/latex/</link>
+      <pubDate>Thu, 19 Oct 2023 15:55:16 +0800</pubDate>
+      
+      <guid>/entire-note/latex/</guid>
+      <description>环境设置： # \begin{center} \end{center} 这样就是一个环境，所有的都是隔离的。
+头部文件 # \documentclass{setting} \usepackage[utf8]{inputenc} \usepackage[T1]{fontenc} \usepackage{graphicx} \usepackage[]{setspace} 在头部设置文件排版样式，导入依赖包，基本在本地
+运行部分 # \begin{document} 选择合适的编译器才可以编译，否则出错
+导入自定义式样 # 更新命令：texhash 式样文件的后缀：.cls文件，在里面自定义命令和样式实现排版布局
+例如下面：
+\newcommand{\role}[2]{ {\par \textit{#1} ~ #2 \par} \vspace{0.5ex} } \newcommand{\biInfo}[2]{ {#1 \quad #2} } \newcommand{\tripleInfo}[3]{ {#1 \quad #2 \quad #3} } </description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/latex/featured.png" />
+    </item>
+    
+    <item>
+      <title>Jvm</title>
+      <link>/entire-note/%E8%99%9A%E6%8B%9F%E6%9C%BA/jvm/</link>
+      <pubDate>Thu, 12 Oct 2023 23:51:04 +0800</pubDate>
+      
+      <guid>/entire-note/%E8%99%9A%E6%8B%9F%E6%9C%BA/jvm/</guid>
+      <description>概述 # JVM是模拟物理机实现的将javac编译为.class文件，jvm支持平台无关性。 class文件通过类加载器-》解释器-》硬件沟通
+Jvm基于HotSpot虚拟机架构同时也是基于栈实现的。与C语言不同，不同架构的操作系统编译输出的文件不同，jvm编译后产生的 文件完全相同。
+由于执行一段程序需要不断地编译和反编译，将热点执行的代买柜内为热点代码再转换为机器码提高执行效率。同时jdk1.2之后支持使用JNI来 调用C/C++代码提升代码执行效率
+指令 # 基本数据结构：堆栈+队列
+常见的编译命令：
+javap -g :vars xxx.java
+反编译： javap -v .class文件地址
+反编译后的代码栈顶元素作为操作数，当需要保存变量的时候，进入队列
+部分变量某些关键字无法保存将会保存到常量池里面。例如bipush只支持单字节数据
+环境部署 # Linux下下载相关依赖
+sudo yum install build-essential libxrender-dev xorg-dev libasound2-dev libcups2-dev gawk zip libxtst-dev libxi-dev libxt-dev gobjc gcc 环境：</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/%E8%99%9A%E6%8B%9F%E6%9C%BA/jvm/featured.png" />
+    </item>
+    
+    <item>
+      <title>垃圾回收机制</title>
+      <link>/entire-note/%E8%99%9A%E6%8B%9F%E6%9C%BA/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/</link>
+      <pubDate>Thu, 12 Oct 2023 23:51:04 +0800</pubDate>
+      
+      <guid>/entire-note/%E8%99%9A%E6%8B%9F%E6%9C%BA/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/</guid>
+      <description>垃圾回收机制 # 引用计数法 # 创建引用变量
+循环引用,当对象成为null就没办法了
+可达性分析算法：
+最终判定过程，此过程可以最后挽留对象
+重写finalize方法，最后可以救赎被gc的对象
+比如下面这个情况
+注意：
+同时，这个方法只能生效一次，躲得过初一躲不过十五
+分代收集机制: # 方法区使用永久代实现
+垃圾收集也分为： Minor GC - 次要垃圾回收，主要进行新生代区域的垃圾收集。
+触发条件：新生代的Eden区容量已满时。
+Major GC - 主要垃圾回收，主要进行老年代的垃圾收集。
+Full GC - 完全垃圾回收，对整个Java堆内存和方法区进行垃圾回收。
+触发条件1：每次晋升到老年代的对象平均大小大于老年代剩余空间</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/%E8%99%9A%E6%8B%9F%E6%9C%BA/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/featured.png" />
+    </item>
+    
+    <item>
+      <title>学习计划</title>
+      <link>/tasks/</link>
+      <pubDate>Tue, 10 Oct 2023 18:05:56 +0800</pubDate>
+      
+      <guid>/tasks/</guid>
+      <description>希望会完成，南无阿弥陀佛🥲🥲🥲 # 1:主线学习内容，消息队列，操作系统，计算机网络（理论），分布式微服务，安全框架（Spring-Security)
+2:支线学习内容，了解csrf跨域问题，RBAC权限控制，防XSS攻击，JVM虚拟机，oauth2第三方登录（微信登录这块），ElasticSearch搜索引擎（ELK）。Zookeeper,Dubbo。容器技术Docker，K8s。
+3：深入了解（底层）：Redis底层数据结构与实现，Redis集群，哨兵模式，Redis协议，Mysql隔离级别，日志，锁，事务
+学习内容 计划日期 是否完成 延期 Redis黑马点评项目完结 这学期 ✔️ ❌ 消息队列 这学期 ✔️ ❌ SpringSecurity安全框架 这学期 ✔️ ❌ Redis底层 这学期 ❌ ❌ JUC 这学期 ✔️ ❌ JVM 这学期 ✔️ ❌ GateWay 这学期 ❌ ✔️ Nacos 这学期 ❌ ✔️ 微服务 这学期 ❌ ✔️ 数据结构-图，哈希 这学期 ❌ ❌ 期中复习 这学期 ❌ ❌ </description>
+      
+    </item>
+    
+    <item>
+      <title>并发进阶</title>
+      <link>/entire-note/java/%E8%BF%9B%E9%98%B6/</link>
+      <pubDate>Mon, 09 Oct 2023 20:38:19 +0800</pubDate>
+      
+      <guid>/entire-note/java/%E8%BF%9B%E9%98%B6/</guid>
+      <description>线程池 # new Thread缺点：频繁创建和销毁，浪费了线程资源，短时间创建大量线程和销毁 线程池是有限可重复使用的线程，用完需要归还
+//构造方法，含有七个参数 public ThreadPoolExecutor(int corePoolSize,//核心线程池大小 int maximumPoolSize,//最大线程池大小 long keepAliveTime,//线程最大空闲时间 TimeUnit unit,//最大空闲时间单位 BlockingQueue&amp;lt;Runnable&amp;gt; workQueue//线程等待队列，当超出最大容量时，任务进入等待队列) { this(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue, Executors.defaultThreadFactory(),//线程创建工厂，可自定义 defaultHandler//拒绝策略，实在不能加入新的任务时，拒绝任务); } 根据CPU类型分配线程池大小 # ThreadPoolExecutor # public static void main(String[] args) throws InterruptedException { ThreadPoolExecutor executor = new ThreadPoolExecutor(2, 4, //2个核心线程，最大线程数为4个 3, TimeUnit.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/java/%E8%BF%9B%E9%98%B6/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Java-Concurrent</title>
+      <link>/entire-note/java/%E5%B9%B6%E5%8F%91/</link>
+      <pubDate>Mon, 09 Oct 2023 19:49:34 +0800</pubDate>
+      
+      <guid>/entire-note/java/%E5%B9%B6%E5%8F%91/</guid>
+      <description>Java 并发编程 # 轻量级锁： # 检查当前对象的mark word是否有被其他线程占用，假如没有就会在当前栈帧里面建立一个 锁记录，复制并存储当前对象的mark word 信息。
+不像重量级锁需要向系统申请互斥量，
+CAS（无锁算法） # 显然，当cas失败的时候，说明有线程进入了这个同步代码块，这个时候，虚拟机将会检查 当前对象的mark word是否指向当前对象的栈帧，是的话就说明当前已经获得锁，否则不是-》退化为重量级锁(不可逆) 解锁时，同样使用CAS算法操作，同时唤醒挂起的线程
+偏向锁 # 当某个锁频繁的被同一个线程获取，对轻量级锁进行优化，所以偏向锁专门为单个线程服务，此时，无须再进行CAS操作，当其他线程 又开始抢锁，偏向锁可能退化为轻量级锁。注意当调用对象的hashCode（）方法，由于mark word 数据结构无法 保存hash值，偏向锁直接退化为轻量级锁。
+锁的退化不可逆
+锁消除和锁优化 # 代码块中有可能不会总是出现请求锁和释放锁的问题，（比如循环中加锁），此时锁为了优化出现锁消除和锁优化
+Java内存模型（JMM） # 主内存： 存放对象实例的部分 工作内存：虚拟机栈的部分，放入cpu的高速缓存里面。 自增操作不是由一个指令实现的！！！包括获取，修改和保存</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/java/%E5%B9%B6%E5%8F%91/featured.png" />
+    </item>
+    
+    <item>
+      <title>如何通过hugo搭建自己的博客</title>
+      <link>/%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Tue, 03 Oct 2023 23:44:01 +0800</pubDate>
+      
+      <guid>/%E7%AC%94%E8%AE%B0/</guid>
+      <description>如何通过Hugo这个框架来搭建一款属于自己的博客呢？ # 观前提醒：这篇笔记借鉴了下面两个作者：
+一是： 小棉尾巴
+事件契机 # 我其实原本就知道github的pages自动部署博客功能，当时大二不熟练，今天目睹专业大佬的博客，自然也就重新搞起来了。
+如下就是大佬的博客（这个主题本来尝试用，后续发现比较花哨就不采用了）
+本人搭建的博客：
+第一步下载HuGo框架： # 以Windows为例：只需打开CMD执行下面这个命令
+winget install Hugo.Hugo.Extended 等待下载完成重启Shell命令窗口即可，Hugo将会自动配置环境变量。
+检查是否安装成功：
+hugo version 第二部创建Hugo博客项目 # 只需要在文件夹下面新建终端使用如下命令，hugo将会自动创建你的项目名称文件夹 ，同时弹出一个主题链接
+hugo new site +你的项目名称 现在你需要进入你的项目也就是命令： cd 你的项目名称</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/%E7%AC%94%E8%AE%B0/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>对象间的关系</title>
+      <link>/entire-note/java/javase/object/%E5%AF%B9%E8%B1%A1%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB/</link>
+      <pubDate>Tue, 03 Oct 2023 20:53:21 +0800</pubDate>
+      
+      <guid>/entire-note/java/javase/object/%E5%AF%B9%E8%B1%A1%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB/</guid>
+      <description>1 综述 在Java中对象与对象的关系总体分为四类，分别是：依赖、关联、聚合和组合。
+（1）依赖(Dependency)关系是类与类之间的联接。依赖关系表示一个类依赖于另一个类的定义，一般而言，依赖关系在Java语言中体现为局域变量、方法的形参，或者对静态方法的调用。 （2）关联(Association）关系是类与类之间的联接，它使一个类知道另一个类的属性和方法。关联可以是双向的，也可以是单向的。在Java语言中，关联关系一般使用成员变量来实现 （3）聚合(Aggregation) 关系是关联关系的一种，是强的关联关系。聚合是整体和个体之间的关系 （4）组合(Composition) 关系是关联关系的一种，是比聚合关系强的关系。它要求普通的聚合关系中代表整体的对象负责代表部分对象的生命周期，组合关系是不能共享的
+依赖： # 个类A使用到了另一个类B，而这种使用关系是具有偶然性的、临时性的、非常弱的，但是B类的变化会影响到A
+关联： # 关联是一种“拥有”的关系。表现在代码上，就是一个类包含另一个类的实例，通常表现为被关联类以类属性的形式出现在关联类的类定义中，也可以表现为关联类引用了一个类型为被关联类的全局变量。关联可以使单向的，也可以使双向的。依赖和关联的区别在于依赖是使用，关联是拥有.
+聚合 # 聚合是关联关系的一种，它是一种强关联关系（has-a）;聚合关系是整体和个体/部分之间的关系;关联关系的两个类处于同一个层次上,而聚合关系的两个类处于不同的层次上,一个是整体,一个是个体/部分;在聚合关系中,代表个体/部分的对象有可能会被多个代表整体的对象所共享;表现在代码层面上就是在构造器初始化时将两个类关联起来
+组合 # 组合也是关联关系的一种（is-a）,但它是比聚合关系更强的关系.组合关系要求聚合关系中代表整体的对象要负责代表个体/部分的对象的整个生命周期;组合关系不能共享;在组合关系中,如果代表整体的对象被销毁或破坏,那么代表个体/部分的对象也一定会被销毁或破坏,而聚在合关系中,代表个体/部分的对象则有可能被多个代表整体的对象所共享,而不一定会随着某个代表整体的对象被销毁或破坏而被销毁或破坏;</description>
+      
+    </item>
+    
+    <item>
+      <title>关键字</title>
+      <link>/entire-note/java/javase/words/</link>
+      <pubDate>Tue, 03 Oct 2023 20:53:12 +0800</pubDate>
+      
+      <guid>/entire-note/java/javase/words/</guid>
+      <description>Java中常用的关键字有以下分类： 访问控制 private protected public
+类,方法和变量修饰符 abstract class extends final implements interface native new static strictfp synchronized transient volatile
+程序控制 break continue return do while if else for instanceof switch case default</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/java/javase/words/featured.png" />
+    </item>
+    
+    <item>
+      <title>实例化Node</title>
+      <link>/entire-note/java/javase/node/%E5%AE%9E%E4%BE%8B%E5%8C%96node/</link>
+      <pubDate>Tue, 03 Oct 2023 20:52:56 +0800</pubDate>
+      
+      <guid>/entire-note/java/javase/node/%E5%AE%9E%E4%BE%8B%E5%8C%96node/</guid>
+      <description>如何从 Java 中的 LinkedList 类外部声明 Node 类型？ # 标签 java linked-list 如何声明 Node 类型的变量？ Node是LinkedList的内部类，在我正在编写的程序的main方法中，我想创建一个Node变量。但在下面代码片段的最后一行中，我收到错误消息“Nose 在 LinkedList 中具有私有(private)访问权限”。为什么我不能使用 Node 类型？
+import java.util.LinkedList; public class MinSplit { public static long leastAmount; public static void main(String args[]) { LinkedList list = new LinkedList(); LinkedList.</description>
+      
+    </item>
+    
+    <item>
+      <title>数据结构篇</title>
+      <link>/entire-note/java/javase/datastruct/</link>
+      <pubDate>Tue, 03 Oct 2023 20:52:20 +0800</pubDate>
+      
+      <guid>/entire-note/java/javase/datastruct/</guid>
+      <description>数组： # 1 public class Demo1_Array { 2 public static void main(String[] args) { 3 String [] array=new String[5];//需要初始化长度 4 array[0]=&amp;#34;hello&amp;#34;; 5 array[1]=&amp;#34;world&amp;#34;; 6 array[4]=&amp;#34;Mufasa&amp;#34;; 7 // array[5]=&amp;#34;right or not&amp;#34;;//ArrayIndexOutOfBoundsException 8 for(String str:array){ 9 System.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/java/javase/datastruct/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>ThreadLocal</title>
+      <link>/entire-note/java/javase/threadlocal/</link>
+      <pubDate>Tue, 03 Oct 2023 20:51:27 +0800</pubDate>
+      
+      <guid>/entire-note/java/javase/threadlocal/</guid>
+      <description>特点：线程隔离，相互是隔离的，不影响的,每个线程都自己玩自己的，只操作自己的单独的变量副本
+内部维护的是ThreadLocalMap，所以有key和value
+当key指向的值为null时，value不被清理，由于key是弱引用，此时就会造成内存泄露，所以必须要通过ThreadLocal里面的remove方法手动删除值，避免内存泄露。
+ThreadLocalMap里面面由一个个由数组组成的key-value，组成了Entry 由ThreadLocal来设置值，删除值
+弱引用非常容易GC，很容易造成内存泄露，所以需要将key为null的entry清除
+引用关系：Thread-&amp;gt; ThreadLocal-&amp;gt;Entry（弱）-&amp;gt;key（弱）-&amp;gt;value(强)（不清除时容易发生内存泄露）
+//内部类，实=实现 static ThreadLocalMap createInheritedMap(ThreadLocalMap parentMap) { return new ThreadLocalMap(parentMap); } static class ThreadLocalMap { static class Entry extends WeakReference&amp;lt;ThreadLocal&amp;lt;?&amp;gt;&amp;gt; { /** The value associated with this ThreadLocal.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/java/javase/threadlocal/featured.png" />
+    </item>
+    
+    <item>
+      <title>Redis</title>
+      <link>/entire-note/java/%E7%BC%93%E5%AD%98/</link>
+      <pubDate>Tue, 03 Oct 2023 20:31:04 +0800</pubDate>
+      
+      <guid>/entire-note/java/%E7%BC%93%E5%AD%98/</guid>
+      <description>Redis学习： # 通用命令 # 不要在主节点用：keys param 命令来查询，这查询速率很慢，单线程将会被阻塞 del param（可以是多个参数） :删除指定的key exists param(判断key是否存在) expire key time :设置有效期时间 ttl key :查看key的有效期
+String类型 # 最简单的Redis数据类型，value：string,int,float；最大空间不超过512M set key value get key
+Mset 批量 添加key-value</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/java/%E7%BC%93%E5%AD%98/featured.png" />
+    </item>
+    
+    <item>
+      <title>应该没人来这里吧</title>
+      <link>/info/</link>
+      <pubDate>Tue, 03 Oct 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/info/</guid>
+      <description>Hi ，你好！ # 你好，我是春江花朝秋月夜，我是这个博客的作者。我这样做是为了记录之前学习的笔记 因为我基本很难记住我学过的东西&amp;hellip;. 我关心后端技术，也喜欢做一些前端效果，我偶尔写一些笔记和心得并且定期分享到 哔哩哔哩和我的 语雀频道 世界充满了很多不确定的东西，希望大家保持独立的思考。如果你好奇 我目前在做的事情,也可以了解更多 关于我的信息。
+这个博客网站在下面的支持下完成
+白天/夜晚 模式, 依赖于 UI设计 非常感谢下面的几个网站支持我 Inter UI font,由 Rasmus Andersson制作 非常感谢这位提供的帮助 PrismJS 以及我同专业的前辈： AncientElement 所以，希望你在这儿可以玩的开心！！！
+本人简历： # 本人简历</description>
+      
+    </item>
+    
+    <item>
+      <title>Hello Friend</title>
+      <link>/entire-note/post/</link>
+      <pubDate>Fri, 03 Oct 2003 00:00:00 +0000</pubDate>
+      
+      <guid>/entire-note/post/</guid>
+      <description>我的名字是春江花朝秋月夜，我是这个博客的作者。我这样做是为了记录之前学习的笔记，这样很有成就感。 我们都知道在网络上开始做一些事情有多难，尤其是现在。但是，为了自己的头发没有白掉，加油吧，大家！
+— 春江花朝秋月夜 S01E01</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/post/featured.png" />
+    </item>
+    
+    <item>
+      <title>index</title>
+      <link>/entire-note/spring/cloud/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/entire-note/spring/cloud/</guid>
+      <description>所有的服务都需要保证职责的单一原则
+RestTemplate实现远程调用
+服务注册和发现 # Eureka能够自动注册并发现微服务，然后对服务的状态、信息进行集中管理，这样当我们需要获取其他服务的信息时，我们只需要向Eureka进行查询就可以了。
+通过Eureka服务器进行服务注册与发现，那么现在我们来看看，它的负载均衡到底是如何实现的，实际上之前演示的负载均衡是依靠LoadBalancer实现的。
+在2020年前的SpringCloud版本是采用Ribbon作为负载均衡实现，但是2020年的版本之后SpringCloud把Ribbon移除了，进而用自己编写的LoadBalancer替代。
+如何找到服务？
+负载均衡 # Spring实现了一套自己的负载均衡LoadBalancer. 实际上在进行负载均衡的时候，会向Eureka发起请求，选择一个可用的对应服务，然后会返回此服务的主机地址等信息,然后才进行实际的服务调用。
+添加依赖：
+&amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-cloud-loadbalancer&amp;lt;/artifactId&amp;gt; &amp;lt;/dependency&amp;gt; 自定义负载均衡策略 LoadBalancer默认提供了两种负载均衡策略：
+RandomLoadBalancer - 随机分配策略 (默认) RoundRobinLoadBalancer - 轮询分配策略
+服务名称-》 LoadBalancerInterceptor-&amp;gt; execute -》 通过轮询规则选择服务 -》返回服务名称以供调用</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/spring/cloud/featured.png" />
+    </item>
+    
+    <item>
+      <title>music</title>
+      <link>/music/music/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/music/music/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>全部</title>
+      <link>/all/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/all/</guid>
+      <description> 最近更新 区间个位和 14 November 2023&amp;middot;1 min leetcode 数之和 14 November 2023&amp;middot;1 min leetcode Eureka 11 November 2023&amp;middot;1 min 微服务 没备份笔记的后果 11 November 2023&amp;middot;1 min 随记 RabbitMq 7 November 2023&amp;middot;2 mins 消息队列 Vue3 响应式Api开发笔记 4 November 2023&amp;middot;2 mins vue 搭建图床 3 November 2023&amp;middot;1 min 杂记 Spring事务传播机制 3 November 2023&amp;middot;1 min spring C++ 27 October 2023&amp;middot;6 mins 语言 friend 27 October 2023&amp;middot;1 min 朋友们 面试题 25 October 2023&amp;middot;1 min 面试题 类加载 24 October 2023&amp;middot;1 min 虚拟机 元空间和引用方式 24 October 2023&amp;middot;1 min 虚拟机 Latex语法 19 October 2023&amp;middot;1 min latex Jvm 12 October 2023&amp;middot;2 mins 虚拟机 垃圾回收机制 12 October 2023&amp;middot;1 min 虚拟机 学习计划 10 October 2023&amp;middot;1 min 规划 并发进阶 9 October 2023&amp;middot;4 mins 并发编程 Java-Concurrent 9 October 2023&amp;middot;3 mins 并发编程 如何通过hugo搭建自己的博客 3 October 2023&amp;middot;1 min 杂记 对象间的关系 3 October 2023&amp;middot;1 min Java SE 关键字 3 October 2023&amp;middot;5 mins Java SE 实例化Node 3 October 2023&amp;middot;1 min Java SE 数据结构篇 3 October 2023&amp;middot;1 min 算法 ThreadLocal 3 October 2023&amp;middot;2 mins Java SE Redis 3 October 2023&amp;middot;2 mins 缓存 应该没人来这里吧 3 October 2023&amp;middot;1 min Hello Friend 3 October 2003&amp;middot;1 min post index 1 January 0001&amp;middot;1 min 微服务 music 1 January 0001 封面测试 1 January 0001 </description>
+      
+    </item>
+    
+    <item>
+      <title>封面测试</title>
+      <link>/featured/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/featured/</guid>
+      <description></description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/featured/featured.jpg" />
+    </item>
+    
+  </channel>
+</rss>

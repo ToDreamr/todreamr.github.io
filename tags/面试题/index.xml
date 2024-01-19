@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>面试题 on 春江花朝秋月夜</title>
+    <link>/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/</link>
+    <description>Recent content in 面试题 on 春江花朝秋月夜</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2024 春江花朝秋月夜</copyright>
+    <lastBuildDate>Wed, 25 Oct 2023 18:23:23 +0800</lastBuildDate><atom:link href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>面试题</title>
+      <link>/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/</link>
+      <pubDate>Wed, 25 Oct 2023 18:23:23 +0800</pubDate>
+      
+      <guid>/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/</guid>
+      <description>题目 # 难点：合并
+解决方法：
+实体类：
+package com.atguigu; import lombok.AllArgsConstructor; import lombok.Data; /** * com.atguigu.ItemDO * * @author 春江花朝秋月夜 * @since 2023/10/25 14:45 */ @Data @AllArgsConstructor public class ItemDO { int id;//10011 int type;//具体不确定 double score;//[0，1000] @Override public String toString() { return &amp;#34;ItemDO{&amp;#34; + &amp;#34;id=&amp;#34; + id + &amp;#34;, type=&amp;#34; + type + &amp;#34;, score=&amp;#34; + score + &amp;#39;\n&amp;#39;+ &amp;#39;}&amp;#39;; } } 方法：</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/featured.png" />
+    </item>
+    
+  </channel>
+</rss>

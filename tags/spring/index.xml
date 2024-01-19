@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>spring on 春江花朝秋月夜</title>
+    <link>/tags/spring/</link>
+    <description>Recent content in spring on 春江花朝秋月夜</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2024 春江花朝秋月夜</copyright>
+    <lastBuildDate>Fri, 03 Nov 2023 11:31:54 +0800</lastBuildDate><atom:link href="/tags/spring/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Spring事务传播机制</title>
+      <link>/entire-note/%E4%BA%8B%E5%8A%A1/</link>
+      <pubDate>Fri, 03 Nov 2023 11:31:54 +0800</pubDate>
+      
+      <guid>/entire-note/%E4%BA%8B%E5%8A%A1/</guid>
+      <description>Spring事务传播机制：# # 事务传播的定义：# # 事务传播行为主要用来描述由某一个事务传播行为修饰的方法被嵌套进另一个方法的事务中，该 事务如何传播。这个概述可能不好理解，换句话就是当一个事务方法被另一个事务方法调用时，这个事务方法应该如何进行。
+spring中的事务级别#
+REQUIRED# # REQUIRED是Spring默认的传播机制。如果当前存在事务，则加入该事务；如果当前没有事务，则创建一个新事务。 REQUIRED传播机制最常用的情况是在一个事务 中进行多个操作，要么全部成功，要么全部失败。如果其中一个操作失败，整个事务都将被回滚。
+SUPPORTS# # SUPPORTS传播机制表示当前方法如果在一个事务中被调用，则加入该事务； 否则，以非事务的方式运行。SUPPORTS传播机制适用于对事务要求不高的操作，例如读取操作。
+MANDATORY# # MANDATORY传播机制表示当前方法必须在一个事务中被调用，否则将抛出异常。 MANDATORY传播机制适用于在需要事务的情况下调用方法。
+REQUIRES_NEW# # REQUIRES_NEW传播机制表示当前方法必须开启一个新事务运行，如果当前存在事务，则挂起该事务。 REQUIRES_NEW传播机制适用于对事务要求较高的操作，例如更新操作。
+NOT_SUPPORTED# # NOT_SUPPORTED传播机制表示当前方法不应该在事务中运行，如果存在事务，则挂起该事务。 NOT_SUPPORTED传播机制适用于对事务没有要求的操作，例如日志记录等。
+NEVER# # NEVER传播机制表示当前方法不应该在事务中运行，如果存在事务，则抛出异常。 NEVER传播机制适用于禁止在事务中运行的操作，例如安全检查等。</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/%E4%BA%8B%E5%8A%A1/featured.png" />
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>并发编程 on 春江花朝秋月夜</title>
+    <link>/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/</link>
+    <description>Recent content in 并发编程 on 春江花朝秋月夜</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2024 春江花朝秋月夜</copyright>
+    <lastBuildDate>Mon, 09 Oct 2023 20:38:19 +0800</lastBuildDate><atom:link href="/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>并发进阶</title>
+      <link>/entire-note/java/%E8%BF%9B%E9%98%B6/</link>
+      <pubDate>Mon, 09 Oct 2023 20:38:19 +0800</pubDate>
+      
+      <guid>/entire-note/java/%E8%BF%9B%E9%98%B6/</guid>
+      <description>线程池 # new Thread缺点：频繁创建和销毁，浪费了线程资源，短时间创建大量线程和销毁 线程池是有限可重复使用的线程，用完需要归还
+//构造方法，含有七个参数 public ThreadPoolExecutor(int corePoolSize,//核心线程池大小 int maximumPoolSize,//最大线程池大小 long keepAliveTime,//线程最大空闲时间 TimeUnit unit,//最大空闲时间单位 BlockingQueue&amp;lt;Runnable&amp;gt; workQueue//线程等待队列，当超出最大容量时，任务进入等待队列) { this(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue, Executors.defaultThreadFactory(),//线程创建工厂，可自定义 defaultHandler//拒绝策略，实在不能加入新的任务时，拒绝任务); } 根据CPU类型分配线程池大小 # ThreadPoolExecutor # public static void main(String[] args) throws InterruptedException { ThreadPoolExecutor executor = new ThreadPoolExecutor(2, 4, //2个核心线程，最大线程数为4个 3, TimeUnit.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/java/%E8%BF%9B%E9%98%B6/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Java-Concurrent</title>
+      <link>/entire-note/java/%E5%B9%B6%E5%8F%91/</link>
+      <pubDate>Mon, 09 Oct 2023 19:49:34 +0800</pubDate>
+      
+      <guid>/entire-note/java/%E5%B9%B6%E5%8F%91/</guid>
+      <description>Java 并发编程 # 轻量级锁： # 检查当前对象的mark word是否有被其他线程占用，假如没有就会在当前栈帧里面建立一个 锁记录，复制并存储当前对象的mark word 信息。
+不像重量级锁需要向系统申请互斥量，
+CAS（无锁算法） # 显然，当cas失败的时候，说明有线程进入了这个同步代码块，这个时候，虚拟机将会检查 当前对象的mark word是否指向当前对象的栈帧，是的话就说明当前已经获得锁，否则不是-》退化为重量级锁(不可逆) 解锁时，同样使用CAS算法操作，同时唤醒挂起的线程
+偏向锁 # 当某个锁频繁的被同一个线程获取，对轻量级锁进行优化，所以偏向锁专门为单个线程服务，此时，无须再进行CAS操作，当其他线程 又开始抢锁，偏向锁可能退化为轻量级锁。注意当调用对象的hashCode（）方法，由于mark word 数据结构无法 保存hash值，偏向锁直接退化为轻量级锁。
+锁的退化不可逆
+锁消除和锁优化 # 代码块中有可能不会总是出现请求锁和释放锁的问题，（比如循环中加锁），此时锁为了优化出现锁消除和锁优化
+Java内存模型（JMM） # 主内存： 存放对象实例的部分 工作内存：虚拟机栈的部分，放入cpu的高速缓存里面。 自增操作不是由一个指令实现的！！！包括获取，修改和保存</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/java/%E5%B9%B6%E5%8F%91/featured.png" />
+    </item>
+    
+  </channel>
+</rss>
