@@ -315,8 +315,10 @@ Mset 批量 添加key-value</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/entire-note/spring/cloud/</guid>
-      <description>所有的服务都需要保证职责的单一原则
-RestTemplate实现远程调用
+      <description>前言：本次SpringCloud微服务学习涉及NetFlix和Alibaba两不同版本，主要对应关系为：
+微服务原则：所有的服务都需要保证职责的单一原则
+SpringCloud作为一系列框架的有序集合，是SOA的延续
+SpringCloud Alibaba 是遵循SpringCloud来开发的套件，Nacos亦然
 服务注册和发现 # Eureka能够自动注册并发现微服务，然后对服务的状态、信息进行集中管理，这样当我们需要获取其他服务的信息时，我们只需要向Eureka进行查询就可以了。
 通过Eureka服务器进行服务注册与发现，那么现在我们来看看，它的负载均衡到底是如何实现的，实际上之前演示的负载均衡是依靠LoadBalancer实现的。
 在2020年前的SpringCloud版本是采用Ribbon作为负载均衡实现，但是2020年的版本之后SpringCloud把Ribbon移除了，进而用自己编写的LoadBalancer替代。
@@ -324,8 +326,7 @@ RestTemplate实现远程调用
 负载均衡 # Spring实现了一套自己的负载均衡LoadBalancer. 实际上在进行负载均衡的时候，会向Eureka发起请求，选择一个可用的对应服务，然后会返回此服务的主机地址等信息,然后才进行实际的服务调用。
 添加依赖：
 &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-cloud-loadbalancer&amp;lt;/artifactId&amp;gt; &amp;lt;/dependency&amp;gt; 自定义负载均衡策略 LoadBalancer默认提供了两种负载均衡策略：
-RandomLoadBalancer - 随机分配策略 (默认) RoundRobinLoadBalancer - 轮询分配策略
-服务名称-》 LoadBalancerInterceptor-&amp;gt; execute -》 通过轮询规则选择服务 -》返回服务名称以供调用</description>
+RandomLoadBalancer - 随机分配策略 (默认) RoundRobinLoadBalancer - 轮询分配策略</description>
       <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/spring/cloud/featured.png" />
     </item>
     
