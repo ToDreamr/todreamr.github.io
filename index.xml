@@ -7,7 +7,22 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© 2024 春江花朝秋月夜</copyright>
-    <lastBuildDate>Tue, 14 Nov 2023 13:47:44 +0800</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 26 Jan 2024 13:56:23 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>NetFlix和SpringCloudAlibaba</title>
+      <link>/entire-note/spring/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%BC%94%E8%BF%9B/</link>
+      <pubDate>Fri, 26 Jan 2024 13:56:23 +0000</pubDate>
+      
+      <guid>/entire-note/spring/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%BC%94%E8%BF%9B/</guid>
+      <description>Spring Cloud Netflix 介绍Netflix套件中有Eureka、Ribbon、Hystrix、Zuul、Feign五个非常知名的开源项目，分别被用于服务治理、负载均衡、服务容错、服务网关、服务通信。
+2018年，Netflix套件中的开源项目陆续进入了维护模式。
+2020年12月22日，Spring Cloud 2020.0.0版本发布，该版本中移除了Netflix套件中的相关依赖。
+Spring Cloud Alibaba 介绍2018年7月，Spring Cloud Alibaba正式开源，进入Spring Cloud孵化器。2018年10月，Spring Cloud Alibaba发布开源后的第一个版本。
+Spring Cloud Alibaba提供的组件如下：
+Sentinel：阿里巴巴开源产品，不仅仅可以作为断路器，也支持流量控制和服务降级。Nacos：阿里巴巴开源产品，服务注册与服务发现，同时也可以作为配置中心。RocketMQ：阿里巴巴开源的分布式消息和流计算平台。Dubbo：阿里巴巴开源产品，高性能Java RPC框架，服务通信组件。Seata：阿里巴巴开源产品，一个易于使用的高性能微服务分布式事务解决方案。Alibaba Cloud ACM：其前身为淘宝内部配置中心Diamond，是一款应用配置中心产品，需付费。Alibaba Cloud OSS：阿里云对象存储OSS是一款海量、安全、低成本、高可靠的云存储服务，需付费。Alibaba Cloud SMS：阿里云短信服务，需付费。Alibaba Cloud SchedulerX：阿里中间件自研的基于Akka架构的新一代分布式任务调度平台，需付费。spring-cloud 和 spring-cloud-alibaba 的区别Spring Cloud：Spring 官方提供的分布式应用开发的一套共用模式，也可以理解成一套微服务开发的统一的抽象编程模型。Spring Cloud Netflix：基于 Spring Cloud 编程模型实现的微服务框架，是最早期的微服务框架。近年来，Netflix 宣布大多数组件停止维护。Spring Cloud Alibaba：Alibaba 提供的基于 Spring Cloud 编程模型实现的微服务框架，其所有组件都来自于阿里巴巴微服务技术，无论是解决方案完整性、技术成熟度、社区还是文档资料等都对国内开发者非常友好。spring-cloud是Spring官方提供的微服务开发工具。它基于Spring Boot构建，提供了一系列框架和工具帮助我们快速构建分布式系统中的微服务架构。spring-cloud主要包含以下组件:</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/spring/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%BC%94%E8%BF%9B/featured.png" />
+    </item>
+    
     <item>
       <title>区间个位和</title>
       <link>/%E7%AE%97%E6%B3%95/%E6%95%B0%E5%AD%A6/</link>
@@ -51,18 +66,19 @@ class Main{ //两数之和 public static int[] twoSum(int[] nums, int target) { 
       <pubDate>Sat, 11 Nov 2023 15:08:23 +0000</pubDate>
       
       <guid>/entire-note/spring/cloud/</guid>
-      <description>前言：本次SpringCloud微服务学习涉及NetFlix和Alibaba两不同版本，主要对应关系为：
+      <description>SpringCloud # 前言：本次SpringCloud微服务学习涉及NetFlix和Alibaba两不同版本，主要对应关系为：
 微服务原则：所有的服务都需要保证职责的单一原则
 SpringCloud作为一系列框架的有序集合，是SOA的延续
 SpringCloud Alibaba 是遵循SpringCloud来开发的套件，Nacos亦然
-服务注册和发现 # Eureka能够自动注册并发现微服务，然后对服务的状态、信息进行集中管理，这样当我们需要获取其他服务的信息时，我们只需要向Eureka进行查询就可以了。
+服务注册和发现 # Eureka # Eureka能够自动注册并发现微服务，然后对服务的状态、信息进行集中管理，这样当我们需要获取其他服务的信息时，我们只需要向Eureka进行查询就可以了。
 通过Eureka服务器进行服务注册与发现，那么现在我们来看看，它的负载均衡到底是如何实现的，实际上之前演示的负载均衡是依靠LoadBalancer实现的。
 在2020年前的SpringCloud版本是采用Ribbon作为负载均衡实现，但是2020年的版本之后SpringCloud把Ribbon移除了，进而用自己编写的LoadBalancer替代。
 如何找到服务？
-负载均衡 # Spring实现了一套自己的负载均衡LoadBalancer. 实际上在进行负载均衡的时候，会向Eureka发起请求，选择一个可用的对应服务，然后会返回此服务的主机地址等信息,然后才进行实际的服务调用。
-添加依赖：
-&amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-cloud-loadbalancer&amp;lt;/artifactId&amp;gt; &amp;lt;/dependency&amp;gt; 自定义负载均衡策略 LoadBalancer默认提供了两种负载均衡策略：
-RandomLoadBalancer - 随机分配策略 (默认) RoundRobinLoadBalancer - 轮询分配策略</description>
+Nacos注册中心 # 功能：
+服务注册发现 配置中心 服务元数据/实例元数据：可以用于流量控制（在实例的metadata（元数据）中加上标签信息。通过IRule获取Server列表并根据这些Server中元数据的标签信息决定路由情况） 局域网内服务信息传输快 服务集群分级模式
+服务-集群-实例
+修改yml：
+spring: cloud: nacos: server-addr: localhost:8848 discovery: cluster-name: ClUSTER-01 对指定服务进行配置</description>
       <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/spring/cloud/featured.png" />
     </item>
     
@@ -168,15 +184,15 @@ using namespace std; ... int input; cout&amp;lt;&amp;lt;&amp;#34;Hello world&amp
     
     <item>
       <title>面试题</title>
-      <link>/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/</link>
+      <link>/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%9F%90%E4%B8%AA%E7%BE%A4%E9%87%8C%E7%9A%84/</link>
       <pubDate>Wed, 25 Oct 2023 18:23:23 +0800</pubDate>
       
-      <guid>/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/</guid>
+      <guid>/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%9F%90%E4%B8%AA%E7%BE%A4%E9%87%8C%E7%9A%84/</guid>
       <description>题目 # 难点：合并
 解决方法：
 实体类：
 package com.atguigu; import lombok.AllArgsConstructor; import lombok.Data; /** * com.atguigu.ItemDO * * @author 春江花朝秋月夜 * @since 2023/10/25 14:45 */ @Data @AllArgsConstructor public class ItemDO { int id;//10011 int type;//具体不确定 double score;//[0，1000] @Override public String toString() { return &amp;#34;ItemDO{&amp;#34; + &amp;#34;id=&amp;#34; + id + &amp;#34;, type=&amp;#34; + type + &amp;#34;, score=&amp;#34; + score + &amp;#39;\n&amp;#39;+ &amp;#39;}&amp;#39;; } } 方法：</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/featured.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%9F%90%E4%B8%AA%E7%BE%A4%E9%87%8C%E7%9A%84/featured.png" />
     </item>
     
     <item>
@@ -440,7 +456,7 @@ Mset 批量 添加key-value</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/all/</guid>
-      <description> 最近更新 区间个位和 14 November 2023&amp;middot;1 min leetcode 数之和 14 November 2023&amp;middot;1 min leetcode Eureka 11 November 2023&amp;middot;1 min 微服务 SpringCloud 11 November 2023&amp;middot;1 min 微服务 没备份笔记的后果 11 November 2023&amp;middot;1 min 随记 RabbitMq 7 November 2023&amp;middot;2 mins 消息队列 Vue3 响应式Api开发笔记 4 November 2023&amp;middot;2 mins vue 搭建图床 3 November 2023&amp;middot;1 min 杂记 Spring事务传播机制 3 November 2023&amp;middot;1 min spring C++ 27 October 2023&amp;middot;6 mins 语言 friend 27 October 2023&amp;middot;1 min 朋友们 面试题 25 October 2023&amp;middot;1 min 面试题 类加载 24 October 2023&amp;middot;1 min 虚拟机 元空间和引用方式 24 October 2023&amp;middot;1 min 虚拟机 Latex语法 19 October 2023&amp;middot;1 min latex Jvm 12 October 2023&amp;middot;2 mins 虚拟机 垃圾回收机制 12 October 2023&amp;middot;1 min 虚拟机 学习计划 10 October 2023&amp;middot;1 min 规划 并发进阶 9 October 2023&amp;middot;4 mins 并发编程 Java-Concurrent 9 October 2023&amp;middot;3 mins 并发编程 如何通过hugo搭建自己的博客 3 October 2023&amp;middot;1 min 杂记 对象间的关系 3 October 2023&amp;middot;1 min Java SE 关键字 3 October 2023&amp;middot;5 mins Java SE 实例化Node 3 October 2023&amp;middot;1 min Java SE 数据结构篇 3 October 2023&amp;middot;1 min 算法 ThreadLocal 3 October 2023&amp;middot;2 mins Java SE Redis 3 October 2023&amp;middot;2 mins 缓存 应该没人来这里吧 3 October 2023&amp;middot;1 min Hello Friend 3 October 2003&amp;middot;1 min post music 1 January 0001 封面测试 1 January 0001 </description>
+      <description> 最近更新 NetFlix和SpringCloudAlibaba 26 January 2024&amp;middot;1 min 微服务 区间个位和 14 November 2023&amp;middot;1 min leetcode 数之和 14 November 2023&amp;middot;1 min leetcode Eureka 11 November 2023&amp;middot;1 min 微服务 SpringCloud 11 November 2023&amp;middot;2 mins 微服务 没备份笔记的后果 11 November 2023&amp;middot;1 min 随记 RabbitMq 7 November 2023&amp;middot;2 mins 消息队列 Vue3 响应式Api开发笔记 4 November 2023&amp;middot;2 mins vue 搭建图床 3 November 2023&amp;middot;1 min 杂记 Spring事务传播机制 3 November 2023&amp;middot;1 min spring C++ 27 October 2023&amp;middot;6 mins 语言 friend 27 October 2023&amp;middot;1 min 朋友们 面试题 25 October 2023&amp;middot;1 min 面试题 类加载 24 October 2023&amp;middot;1 min 虚拟机 元空间和引用方式 24 October 2023&amp;middot;1 min 虚拟机 Latex语法 19 October 2023&amp;middot;1 min latex Jvm 12 October 2023&amp;middot;2 mins 虚拟机 垃圾回收机制 12 October 2023&amp;middot;1 min 虚拟机 学习计划 10 October 2023&amp;middot;1 min 规划 并发进阶 9 October 2023&amp;middot;4 mins 并发编程 Java-Concurrent 9 October 2023&amp;middot;3 mins 并发编程 如何通过hugo搭建自己的博客 3 October 2023&amp;middot;1 min 杂记 对象间的关系 3 October 2023&amp;middot;1 min Java SE 关键字 3 October 2023&amp;middot;5 mins Java SE 实例化Node 3 October 2023&amp;middot;1 min Java SE 数据结构篇 3 October 2023&amp;middot;1 min 算法 ThreadLocal 3 October 2023&amp;middot;2 mins Java SE Redis 3 October 2023&amp;middot;2 mins 缓存 应该没人来这里吧 3 October 2023&amp;middot;1 min Hello Friend 3 October 2003&amp;middot;1 min post music 1 January 0001 封面测试 1 January 0001 </description>
       
     </item>
     
