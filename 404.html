@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-CN" dir="ltr" class="scroll-smooth" data-default-appearance="dark"
+<html lang="zh-CN" dir="ltr" class="scroll-smooth" data-default-appearance="light"
   data-auto-appearance="true"><head>
 
   <meta charset="utf-8" />
   
-  <meta http-equiv="content-language" content="en" />
+  <meta http-equiv="content-language" content="zh-CN" />
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -88,6 +88,15 @@
   <link href="https://github.com/ToDreamr" rel="me" />
   
   
+  <link href="https://music.163.com/#/user/home?id=568083850" rel="me" />
+  
+  
+  <link href="https://gitee.com/rainyheights" rel="me" />
+  
+  
+  <link href="https://www.zhihu.com/people/san-qiu-luo-yue" rel="me" />
+  
+  
   
   
 
@@ -135,7 +144,7 @@
   <div id="the-top" class="absolute flex self-center">
     <a class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 focus:translate-y-0 dark:bg-neutral-600"
       href="#main-content"><span
-        class="font-bold text-primary-600 ltr:pr-2 rtl:pl-2 dark:text-primary-400">&darr;</span>Skip to main content</a>
+        class="font-bold text-primary-600 ltr:pr-2 rtl:pl-2 dark:text-primary-400">&darr;</span></a>
   </div>
   
   
@@ -158,121 +167,6 @@
     </a>
   </div>
   
-  
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-  <div id="aplayera" style="opacity:0.8;color: var(--tw-prose-headings);"></div>
-  <script src="https://cdn.jsdelivr.net/npm/axios@0.21.1/dist/axios.min.js"></script>
-  <script type="text/javascript">
-    const ap = new APlayer({
-      container: document.getElementById('aplayera'),
-      fixed: true,
-      lrcType: 3,
-      order: 'random',
-      audio: [{
-        name: '正解(混声三部合唱)',
-        artist: 'RADWIMPS',
-        url: 'https://lc-gluttony.s3.amazonaws.com/dRYJBlSN7EF3/EN2sSlJjrTnrwt7422opBQzuYtwgKUxG/RADWIMPS%20-%20%E6%AD%A3%E8%A7%A3%20%28%E6%B7%B7%E5%A3%B0%E4%B8%89%E9%83%A8%E5%90%88%E5%94%B1%29.flac',
-        cover: 'https://lc-gluttony.s3.amazonaws.com/dRYJBlSN7EF3/VoCPlwWAoRbycMbMpkk8rO3nFSY2RvVe/%E6%AD%A3%E8%A7%A3.jpg',
-        lrc: 'https://lc-gluttony.s3.amazonaws.com/dRYJBlSN7EF3/81GxLoRdTXmyBp7NCYPQNAhh6LT22Fku/RADWIMPS%20-%20%E6%AD%A3%E8%A7%A3%20%28%E6%B7%B7%E5%A3%B0%E4%B8%89%E9%83%A8%E5%90%88%E5%94%B1%29.lrc'
-      },
-        {
-          name: '蝶々結び',
-          artist: 'Aimer',
-          url: 'https://lc-gluttony.s3.amazonaws.com/dRYJBlSN7EF3/ofE4yX5UYy3zpMaNwt6nRnWQd0sIP4xi/Aimer%20-%20%E8%9D%B6%E3%80%85%E7%B5%90%E3%81%B3.flac',
-          cover: 'https://lc-gluttony.s3.amazonaws.com/dRYJBlSN7EF3/OQaFrdqT2Yiuzcmtx2uIlsLG8GjD6ok3/%E8%9D%B6%E3%80%85%E7%B5%90%E3%81%B3.jpg',
-          lrc: 'https://lc-gluttony.s3.amazonaws.com/dRYJBlSN7EF3/r1HTik6Im5Bzuvfo7JQiAMIEoBqs2m7I/Aimer%20%28%E3%82%A8%E3%83%A1%29%20-%20%E8%9D%B6%E3%80%85%E7%B5%90%E3%81%B3%20%28%E8%9D%B4%E8%9D%B6%E7%BB%93%29.lrc'
-        },
-        {
-          name: "Automatic",
-          artist: "宇多田ヒカル",
-          url: "https://api.i-meto.com/meting/api?server=netease&type=url&id=667320&auth=78f1afe517d9bf418ea443d6777123cc47bfba42",
-          cover: "https://api.i-meto.com/meting/api?server=netease&type=pic&id=18365142719545517&auth=51922ac42078bf85176cebb4a209a103c19ca491",
-          lrc: "https://api.i-meto.com/meting/api?server=netease&type=lrc&id=667320&auth=76304ae0efbc1318467d0b0a59df50649b745751"
-        },
-        {
-          name: "ルージュの伝言",
-          artist: "松任谷由実",
-          url: "https://api.i-meto.com/meting/api?server=netease&type=url&id=36089499&auth=b873aba4601c3e204e15f7b368821d427c38fdb3",
-          cover: "https://api.i-meto.com/meting/api?server=netease&type=pic&id=109951168345171414&auth=afbaeeb14c6d9fa167abeb19ab5a583e032ac152",
-          lrc: "https://api.i-meto.com/meting/api?server=netease&type=lrc&id=36089499&auth=2ee36c1004997a14211453b9291dd0bbc1820850"
-        },
-        {
-          name: "真夜中の動物園",
-          artist: "中島みゆき",
-          url: "https://api.i-meto.com/meting/api?server=netease&type=url&id=623906&auth=94b55a9d410fdf9b55f70015ed5ab4c8c0a2a5b3",
-          cover: "https://api.i-meto.com/meting/api?server=netease&type=pic&id=109951168471244891&auth=91d7980c9a09943bb13b05b78d241828622a8d4e",
-          lrc: "https://api.i-meto.com/meting/api?server=netease&type=lrc&id=623906&auth=bbc24145277059623c403d800f32a75afb4146d0"
-        },
-        {
-          name: "春灯",
-          artist: "RADWIMPS",
-          url: "https://api.i-meto.com/meting/api?server=netease&type=url&id=1824900296&auth=8f8e2f256933e38a5f2548e7da6cbcefef600ba3",
-          cover: "https://api.i-meto.com/meting/api?server=netease&type=pic&id=109951165778868973&auth=5e6e2f112925c6f278e053c09a577dd2d849cfc7",
-          lrc: "https://api.i-meto.com/meting/api?server=netease&type=lrc&id=1824900296&auth=beef63ce6d0a1813aa6eb68a60d904a5e0e47884"
-        },
-        {
-          name: "いえない",
-          artist: "RADWIMPS",
-          url: "https://api.i-meto.com/meting/api?server=netease&type=url&id=28095552&auth=9a19091c59331ecd908dff572ad50196d48ecb1e",
-          cover: "https://api.i-meto.com/meting/api?server=netease&type=pic&id=18622428441311564&auth=4d47b9ee35070769f2d174f3b93b180e7f6f470d",
-          lrc: "https://api.i-meto.com/meting/api?server=netease&type=lrc&id=28095552&auth=0ebcc77ea1088e3df35be9cb8d03781f9ba30f91"
-        }
-      ]
-    });
-    ready();
-
-    isRecover = false;
-    function ready(){
-      ap.on('canplay', function () {
-        if(!isRecover){
-          if(localStorage.getItem("musicIndex") != null){
-            musicIndex = localStorage.getItem("musicIndex");
-            musicTime = localStorage.getItem("musicTime");
-            if(ap.list.index != musicIndex){
-              ap.list.switch(musicIndex);
-            }else{
-              ap.seek(musicTime);
-              ap.play();
-              localStorage.clear();
-              ap.setAttribute(muted,'');
-              ap.setAttribute(playsinline,'');
-              isRecover = true;
-            }
-          }else{
-            isRecover = true;
-          }
-        }
-      });
-    }
-
-    window.onbeforeunload = function(event) {
-      if(!ap.audio.paused){
-        musicIndex = ap.list.index;
-        musicTime = ap.audio.currentTime;
-        localStorage.setItem("musicIndex",musicIndex);
-        localStorage.setItem("musicTime",musicTime);
-      }
-    };
-
-
-
-    var element = document.getElementsByClassName("aplayer-title")[0];
-    $(element).wrap("<a href='/radio/pick/'></a>");
-  </script>
-
-
-
-
-
-  <style type="text/css">
-    .aplayer-title, .aplayer-list-light {
-      color:#000000cc;
-    }
-    .aplayer-list{
-      color:#717070bf;
-    }
-  </style>
 
   <div class="flex flex-1 items-center justify-between">
 
@@ -630,9 +524,12 @@
             1974444807,29567187
     );
     var musicIndex=Math.floor(Math.random()*MusicLists.length+1);
+    console.log(musicIndex);
     
     musicUrl="https://music.163.com/outchain/player?type=2&id="+MusicLists[musicIndex]+"&auto=1&height=66";
     var frame=document.getElementById("music");
+    var player=document.getElementsByName('player');
+    console.log(player);
     frame.src=musicUrl;
   }
 </script>
@@ -665,12 +562,12 @@
   <div class="relative flex flex-col grow">
     <main id="main-content" class="grow">
       
-  <h1 class="mb-3 text-4xl font-extrabold">Page Not Found 😕</h1>
+  <h1 class="mb-3 text-4xl font-extrabold">找不到网页 😕</h1>
   <p class="mt-8 mb-12 text-neutral-400 dark:text-neutral-500">
-    Error 404
+    404 错误
   </p>
   <div class="prose dark:prose-invert">
-    <p>It seems that the page you've requested does not exist.</p>
+    <p>您请求的页面似乎不存在。</p>
   </div>
 
       
@@ -711,9 +608,9 @@
     <p class="text-xs text-neutral-500 dark:text-neutral-400">
       
       
-      Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+      由 <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
         href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
-        href="https://blowfish.page/" target="_blank" rel="noopener noreferrer">Blowfish</a>
+        href="https://blowfish.page/" target="_blank" rel="noopener noreferrer">Blowfish</a> 强力驱动
     </p>
     
 
@@ -758,14 +655,14 @@
           type="search"
           id="search-query"
           class="flex flex-auto h-12 mx-1 bg-transparent appearance-none focus:outline-dotted focus:outline-2 focus:outline-transparent"
-          placeholder="Search"
+          placeholder=""
           tabindex="0"
         />
       </form>
       <button
         id="close-search-button"
         class="flex items-center justify-center w-8 h-8 text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
-        title="Close (Esc)"
+        title=""
       >
         
 

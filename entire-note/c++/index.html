@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-CN" dir="ltr" class="scroll-smooth" data-default-appearance="dark"
+<html lang="zh-CN" dir="ltr" class="scroll-smooth" data-default-appearance="light"
   data-auto-appearance="true"><head>
 
   <meta charset="utf-8" />
   
-  <meta http-equiv="content-language" content="en" />
+  <meta http-equiv="content-language" content="zh-CN" />
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -85,7 +85,7 @@
     "headline": "C\u002b\u002b",
     "description": "鉴于未来数据结构和算法的实现我想通过C\u002b\u002b来实现，现在简要总结下C\u002b\u002b的常用方法和数据结构类型",
     "abstract": "C\u002b\u002b实现数据结构和初步的认识 # 鉴于未来数据结构和算法的实现我想通过C\u002b\u002b来实现，现在简要总结下C\u002b\u002b的常用方法和数据结构类型\n头文件和方法声明 # 等同于C语言\n标准输入输出函数 # std::cout \u0026lt;\u0026lt; \u0026#34;Hello, World!\u0026#34; \u0026lt;\u0026lt; std::endl; 引入 using namespace std;这可以避免函数要不断的添加前缀\nusing namespace std; ... int input; cout\u0026lt;\u0026lt;\u0026#34;Hello world\u0026#34;\u0026lt;\u0026lt;endl;\/\/输出函数 cin\u0026gt;\u0026gt;input; printf(\u0026#34;%d\u0026#34;,input); ... 传递函数的不同方式 # const修饰指针 # 修饰常量 修饰指针 修饰常量和指针 int main() { int a = 10; int b = 10; \/\/const修饰的是指针，指针指向可以改，指针指向的值不可以更改 const int * p1 = \u0026amp;a; p1 = \u0026amp;b; \/\/正确 \/\/*p1 = 100; 报错 \/\/const修饰的是常量，指针指向不可以改，指针指向的值可以更改 int * const p2 = \u0026amp;a; \/\/p2 = \u0026amp;b; \/\/错误 *p2 = 100; \/\/正确 \/\/const既修饰指针又修饰常量 const int * const p3 = \u0026amp;a; \/\/p3 = \u0026amp;b; \/\/错误 \/\/*p3 = 100; \/\/错误 system(\u0026#34;pause\u0026#34;); return 0; } 空指针和野指针 # NUll Point # int main() { \/\/指针变量p指向内存地址编号为0的空间 int * p = NULL; \/\/访问空指针报错 \/\/内存编号0 ~255为系统占用内存，不允许用户访问 cout \u0026lt;\u0026lt; *p \u0026lt;\u0026lt; endl; system(\u0026#34;pause\u0026#34;); return 0; } Wild Point # int main() { \/\/指针变量p指向内存地址编号为0x1100的空间 int * p = (int *)0x1100; \/\/访问野指针报错 cout \u0026lt;\u0026lt; *p \u0026lt;\u0026lt; endl; system(\u0026#34;pause\u0026#34;); return 0; } 数组作为函数展示： # void array_print(int arr[],int len){ for (int i = 0; i \u0026lt; len; \u002b\u002bi) { cout\u0026lt;\u0026lt;arr[i]\u0026lt;\u0026lt;endl; } } void bubble_sort_(int * arr,int len){ for (int i = 0; i \u0026lt; len; \u002b\u002bi) { for (int j = i; j \u0026lt; len; \u002b\u002bj) { if (arr[i]\u0026gt;=arr[j]){ int tmp=arr[j]; arr[j]=arr[i]; arr[i]=tmp; } } } } int main(){ int arr[]={10,2,4,4,3,5,9,1,3}; bubble_sort_(arr,8); array_print(arr,8); } 当数组名传入到函数作为参数时，被退化为指向首元素的指针",
-    "inLanguage": "en",
+    "inLanguage": "zh-CN",
     "url" : "\/entire-note\/c\u002b\u002b\/",
     "author" : {
       "@type": "Person",
@@ -115,6 +115,15 @@
   
   
   <link href="https://github.com/ToDreamr" rel="me" />
+  
+  
+  <link href="https://music.163.com/#/user/home?id=568083850" rel="me" />
+  
+  
+  <link href="https://gitee.com/rainyheights" rel="me" />
+  
+  
+  <link href="https://www.zhihu.com/people/san-qiu-luo-yue" rel="me" />
   
   
   
@@ -164,7 +173,7 @@
   <div id="the-top" class="absolute flex self-center">
     <a class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 focus:translate-y-0 dark:bg-neutral-600"
       href="#main-content"><span
-        class="font-bold text-primary-600 ltr:pr-2 rtl:pl-2 dark:text-primary-400">&darr;</span>Skip to main content</a>
+        class="font-bold text-primary-600 ltr:pr-2 rtl:pl-2 dark:text-primary-400">&darr;</span></a>
   </div>
   
   
@@ -187,121 +196,6 @@
     </a>
   </div>
   
-  
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-  <div id="aplayera" style="opacity:0.8;color: var(--tw-prose-headings);"></div>
-  <script src="https://cdn.jsdelivr.net/npm/axios@0.21.1/dist/axios.min.js"></script>
-  <script type="text/javascript">
-    const ap = new APlayer({
-      container: document.getElementById('aplayera'),
-      fixed: true,
-      lrcType: 3,
-      order: 'random',
-      audio: [{
-        name: '正解(混声三部合唱)',
-        artist: 'RADWIMPS',
-        url: 'https://lc-gluttony.s3.amazonaws.com/dRYJBlSN7EF3/EN2sSlJjrTnrwt7422opBQzuYtwgKUxG/RADWIMPS%20-%20%E6%AD%A3%E8%A7%A3%20%28%E6%B7%B7%E5%A3%B0%E4%B8%89%E9%83%A8%E5%90%88%E5%94%B1%29.flac',
-        cover: 'https://lc-gluttony.s3.amazonaws.com/dRYJBlSN7EF3/VoCPlwWAoRbycMbMpkk8rO3nFSY2RvVe/%E6%AD%A3%E8%A7%A3.jpg',
-        lrc: 'https://lc-gluttony.s3.amazonaws.com/dRYJBlSN7EF3/81GxLoRdTXmyBp7NCYPQNAhh6LT22Fku/RADWIMPS%20-%20%E6%AD%A3%E8%A7%A3%20%28%E6%B7%B7%E5%A3%B0%E4%B8%89%E9%83%A8%E5%90%88%E5%94%B1%29.lrc'
-      },
-        {
-          name: '蝶々結び',
-          artist: 'Aimer',
-          url: 'https://lc-gluttony.s3.amazonaws.com/dRYJBlSN7EF3/ofE4yX5UYy3zpMaNwt6nRnWQd0sIP4xi/Aimer%20-%20%E8%9D%B6%E3%80%85%E7%B5%90%E3%81%B3.flac',
-          cover: 'https://lc-gluttony.s3.amazonaws.com/dRYJBlSN7EF3/OQaFrdqT2Yiuzcmtx2uIlsLG8GjD6ok3/%E8%9D%B6%E3%80%85%E7%B5%90%E3%81%B3.jpg',
-          lrc: 'https://lc-gluttony.s3.amazonaws.com/dRYJBlSN7EF3/r1HTik6Im5Bzuvfo7JQiAMIEoBqs2m7I/Aimer%20%28%E3%82%A8%E3%83%A1%29%20-%20%E8%9D%B6%E3%80%85%E7%B5%90%E3%81%B3%20%28%E8%9D%B4%E8%9D%B6%E7%BB%93%29.lrc'
-        },
-        {
-          name: "Automatic",
-          artist: "宇多田ヒカル",
-          url: "https://api.i-meto.com/meting/api?server=netease&type=url&id=667320&auth=78f1afe517d9bf418ea443d6777123cc47bfba42",
-          cover: "https://api.i-meto.com/meting/api?server=netease&type=pic&id=18365142719545517&auth=51922ac42078bf85176cebb4a209a103c19ca491",
-          lrc: "https://api.i-meto.com/meting/api?server=netease&type=lrc&id=667320&auth=76304ae0efbc1318467d0b0a59df50649b745751"
-        },
-        {
-          name: "ルージュの伝言",
-          artist: "松任谷由実",
-          url: "https://api.i-meto.com/meting/api?server=netease&type=url&id=36089499&auth=b873aba4601c3e204e15f7b368821d427c38fdb3",
-          cover: "https://api.i-meto.com/meting/api?server=netease&type=pic&id=109951168345171414&auth=afbaeeb14c6d9fa167abeb19ab5a583e032ac152",
-          lrc: "https://api.i-meto.com/meting/api?server=netease&type=lrc&id=36089499&auth=2ee36c1004997a14211453b9291dd0bbc1820850"
-        },
-        {
-          name: "真夜中の動物園",
-          artist: "中島みゆき",
-          url: "https://api.i-meto.com/meting/api?server=netease&type=url&id=623906&auth=94b55a9d410fdf9b55f70015ed5ab4c8c0a2a5b3",
-          cover: "https://api.i-meto.com/meting/api?server=netease&type=pic&id=109951168471244891&auth=91d7980c9a09943bb13b05b78d241828622a8d4e",
-          lrc: "https://api.i-meto.com/meting/api?server=netease&type=lrc&id=623906&auth=bbc24145277059623c403d800f32a75afb4146d0"
-        },
-        {
-          name: "春灯",
-          artist: "RADWIMPS",
-          url: "https://api.i-meto.com/meting/api?server=netease&type=url&id=1824900296&auth=8f8e2f256933e38a5f2548e7da6cbcefef600ba3",
-          cover: "https://api.i-meto.com/meting/api?server=netease&type=pic&id=109951165778868973&auth=5e6e2f112925c6f278e053c09a577dd2d849cfc7",
-          lrc: "https://api.i-meto.com/meting/api?server=netease&type=lrc&id=1824900296&auth=beef63ce6d0a1813aa6eb68a60d904a5e0e47884"
-        },
-        {
-          name: "いえない",
-          artist: "RADWIMPS",
-          url: "https://api.i-meto.com/meting/api?server=netease&type=url&id=28095552&auth=9a19091c59331ecd908dff572ad50196d48ecb1e",
-          cover: "https://api.i-meto.com/meting/api?server=netease&type=pic&id=18622428441311564&auth=4d47b9ee35070769f2d174f3b93b180e7f6f470d",
-          lrc: "https://api.i-meto.com/meting/api?server=netease&type=lrc&id=28095552&auth=0ebcc77ea1088e3df35be9cb8d03781f9ba30f91"
-        }
-      ]
-    });
-    ready();
-
-    isRecover = false;
-    function ready(){
-      ap.on('canplay', function () {
-        if(!isRecover){
-          if(localStorage.getItem("musicIndex") != null){
-            musicIndex = localStorage.getItem("musicIndex");
-            musicTime = localStorage.getItem("musicTime");
-            if(ap.list.index != musicIndex){
-              ap.list.switch(musicIndex);
-            }else{
-              ap.seek(musicTime);
-              ap.play();
-              localStorage.clear();
-              ap.setAttribute(muted,'');
-              ap.setAttribute(playsinline,'');
-              isRecover = true;
-            }
-          }else{
-            isRecover = true;
-          }
-        }
-      });
-    }
-
-    window.onbeforeunload = function(event) {
-      if(!ap.audio.paused){
-        musicIndex = ap.list.index;
-        musicTime = ap.audio.currentTime;
-        localStorage.setItem("musicIndex",musicIndex);
-        localStorage.setItem("musicTime",musicTime);
-      }
-    };
-
-
-
-    var element = document.getElementsByClassName("aplayer-title")[0];
-    $(element).wrap("<a href='/radio/pick/'></a>");
-  </script>
-
-
-
-
-
-  <style type="text/css">
-    .aplayer-title, .aplayer-list-light {
-      color:#000000cc;
-    }
-    .aplayer-list{
-      color:#717070bf;
-    }
-  </style>
 
   <div class="flex flex-1 items-center justify-between">
 
@@ -659,9 +553,12 @@
             1974444807,29567187
     );
     var musicIndex=Math.floor(Math.random()*MusicLists.length+1);
+    console.log(musicIndex);
     
     musicUrl="https://music.163.com/outchain/player?type=2&id="+MusicLists[musicIndex]+"&auto=1&height=66";
     var frame=document.getElementById("music");
+    var player=document.getElementsByName('player');
+    console.log(player);
     frame.src=musicUrl;
   }
 </script>
@@ -704,22 +601,6 @@
   
   
 
-
-<div id="hero" class="h-[150px] md:h-[200px]"></div>
-
-
-    
-    <div class="fixed inset-x-0 top-0 h-[800px] single_hero_background nozoom"
-    style="background-image:url(/img/default_bg_hu2c8ae63088ae0a9e08ad1099ffefae54_137932_1200x0_resize_q75_box.jpg);">
-    
-
-
-    <div class="absolute inset-0 bg-gradient-to-t from-neutral dark:from-neutral-800 to-transparent mix-blend-normal">
-    </div>
-    <div
-        class="absolute inset-0 opacity-60 bg-gradient-to-t from-neutral dark:from-neutral-800 to-neutral-100 dark:to-neutral-800 mix-blend-normal">
-    </div>
-</div>
 
   
   
@@ -809,7 +690,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2023-10-27 20:52:20 &#43;0800 CST">27 October 2023</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">6 mins</span><span class="px-2 text-primary-500">&middot;</span>
+  <time datetime="2023-10-27 20:52:20 &#43;0800 CST">27 October 2023</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">6 分钟</span><span class="px-2 text-primary-500">&middot;</span>
 
 
 <script type="text/javascript" src="/js/zen-mode.min.16f2e42a0014d476212e14c056b26b69bc85cb5de15352a5e3a1a0be498055dc1bf0926cef44baef1cc7fa2dfc5de0052892645cd3766598065f47b15c4bd44d.js" integrity="sha512-FvLkKgAU1HYhLhTAVrJrabyFy13hU1Kl46GgvkmAVdwb8JJs70S67xzH&#43;i38XeAFKJJkXNN2ZZgGX0exXEvUTQ=="></script>
@@ -817,9 +698,9 @@
 <span class="mb-[2px]">
     <span id="zen-mode-button"
           class="text-lg hover:text-primary-500"
-          title="Enable zen mode"
-          data-title-i18n-disable="Enable zen mode"
-          data-title-i18n-enable="Disable zen mode">
+          title=""
+          data-title-i18n-disable=""
+          data-title-i18n-enable="">
         <span class="inline-block align-text-bottom">
 
   <span class="relative block icon">
@@ -956,6 +837,57 @@
         >
       
     
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://music.163.com/#/user/home?id=568083850"
+          target="_blank"
+          aria-label="Wangyi"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1707154946293" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2586" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><path d="M0 0m184.32 0l655.36 0q184.32 0 184.32 184.32l0 655.36q0 184.32-184.32 184.32l-655.36 0q-184.32 0-184.32-184.32l0-655.36q0-184.32 184.32-184.32Z" fill="#EA3E3C" p-id="2587"></path><path d="M527.616 849.43872a373.6064 373.6064 0 0 1-162.54976-39.00416c-112.36352-55.16288-180.00896-176.29184-172.55424-308.67456 7.41376-130.34496 85.10464-237.4656 202.752-279.552a35.85024 35.85024 0 0 1 24.15616 67.51232c-107.66336 38.49216-150.81472 136.86784-155.29984 216.13568-5.86752 103.51616 46.08 197.79584 132.34176 240.13824 124.69248 60.30336 216.91392 22.35392 260.82304-5.64224 59.8016-38.16448 97.86368-100.01408 96.95232-157.55264-1.024-63.72352-24.064-120.99584-63.27296-157.14304a145.408 145.408 0 0 0-65.5872-35.28704q2.82624 9.76896 5.64224 19.32288c13.38368 45.63968 24.94464 85.05344 25.6 114.40128a134.26688 134.26688 0 0 1-37.69344 97.76128 139.1104 139.1104 0 0 1-100.6592 40.45824 140.10368 140.10368 0 0 1-100.47488-42.24 169.12384 169.12384 0 0 1-46.2848-122.76736c1.19808-85.12512 80.11776-153.28256 162.816-175.104a324.80256 324.80256 0 0 1-6.71744-67.05152 92.0576 92.0576 0 0 1 69.18144-91.81184c46.21312-12.53376 104.448 5.19168 124.66176 37.888a35.84 35.84 0 0 1-11.70432 49.31584 35.84 35.84 0 0 1-49.26464-11.65312 62.34112 62.34112 0 0 0-48.45568-5.21216c-4.32128 1.71008-12.35968 4.90496-12.76928 23.10144a270.87872 270.87872 0 0 0 6.73792 58.51136 217.4976 217.4976 0 0 1 133.56032 57.6512c53.57568 49.38752 85.0432 125.46048 86.35392 208.71168 1.29024 81.85856-49.7664 167.86432-130.048 219.136a310.14912 310.14912 0 0 1-168.2432 48.65024z m23.6544-457.55392c-56.77056 15.6672-107.4688 63.03744-108.07296 106.42432a98.304 98.304 0 0 0 25.6512 71.43424 68.0448 68.0448 0 0 0 49.36704 20.87936 67.24608 67.24608 0 0 0 49.44896-18.944 63.19104 63.19104 0 0 0 17.23392-46.08c-0.4096-19.79392-11.7248-58.368-22.67136-95.6928-3.61472-12.42112-7.35232-25.14944-10.9568-38.02112z" fill="#FFFFFF" p-id="2588"></path></svg>
+  </span>
+
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://gitee.com/rainyheights"
+          target="_blank"
+          aria-label="Gitee"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1707288792446" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="6333" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><path d="M512 1024C230.4 1024 0 793.6 0 512S230.4 0 512 0s512 230.4 512 512-230.4 512-512 512z m259.2-569.6H480c-12.8 0-25.6 12.8-25.6 25.6v64c0 12.8 12.8 25.6 25.6 25.6h176c12.8 0 25.6 12.8 25.6 25.6V608c0 41.6-35.2 76.8-76.8 76.8h-240c-12.8 0-25.6-12.8-25.6-25.6V416c0-41.6 35.2-76.8 76.8-76.8h355.2c12.8 0 25.6-12.8 25.6-25.6v-64c0-12.8-12.8-25.6-25.6-25.6H416c-105.6 0-188.8 86.4-188.8 188.8V768c0 12.8 12.8 25.6 25.6 25.6h374.4c92.8 0 169.6-76.8 169.6-169.6V480c0-12.8-12.8-25.6-25.6-25.6z" fill="#888888" p-id="6334"></path></svg>
+  </span>
+
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://www.zhihu.com/people/san-qiu-luo-yue"
+          target="_blank"
+          aria-label="Zhihu"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1707288662942" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5244" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><path d="M564.7 230.1V803h60l25.2 71.4L756.3 803h131.5V230.1H564.7z m247.7 497h-59.9l-75.1 50.4-17.8-50.4h-18V308.3h170.7v418.8zM526.1 486.9H393.3c2.1-44.9 4.3-104.3 6.6-172.9h130.9l-0.1-8.1c0-0.6-0.2-14.7-2.3-29.1-2.1-15-6.6-34.9-21-34.9H287.8c4.4-20.6 15.7-69.7 29.4-93.8l6.4-11.2-12.9-0.7c-0.8 0-19.6-0.9-41.4 10.6-35.7 19-51.7 56.4-58.7 84.4-18.4 73.1-44.6 123.9-55.7 145.6-3.3 6.4-5.3 10.2-6.2 12.8-1.8 4.9-0.8 9.8 2.8 13 10.5 9.5 38.2-2.9 38.5-3 0.6-0.3 1.3-0.6 2.2-1 13.9-6.3 55.1-25 69.8-84.5h56.7c0.7 32.2 3.1 138.4 2.9 172.9h-141l-2.1 1.5c-23.1 16.9-30.5 63.2-30.8 65.2l-1.4 9.2h167c-12.3 78.3-26.5 113.4-34 127.4-3.7 7-7.3 14-10.7 20.8-21.3 42.2-43.4 85.8-126.3 153.6-3.6 2.8-7 8-4.8 13.7 2.4 6.3 9.3 9.1 24.6 9.1 5.4 0 11.8-0.3 19.4-1 49.9-4.4 100.8-18 135.1-87.6 17-35.1 31.7-71.7 43.9-108.9L497 850l5-12c0.8-1.9 19-46.3 5.1-95.9l-0.5-1.8-108.1-123-22 16.6c6.4-26.1 10.6-49.9 12.5-71.1h158.7v-8c0-40.1-18.5-63.9-19.2-64.9l-2.4-3z" fill="#1296DB" p-id="5245"></path></svg>
+  </span>
+
+</span></a
+        >
+      
+    
   </div>
 
 </div>
@@ -982,7 +914,7 @@
      <details open class="toc-right mt-0 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 hidden lg:block">
   <summary
     class="block py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
-    Table of Contents
+    
   </summary>
   <div
     class="min-w-[220px] py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
@@ -1064,7 +996,7 @@
 <details class="toc-inside mt-0 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 lg:hidden">
   <summary
     class="py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
-    Table of Contents
+    
   </summary>
   <div
     class="py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
@@ -1200,7 +1132,7 @@
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#c%e5%ae%9e%e7%8e%b0%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84%e5%92%8c%e5%88%9d%e6%ad%a5%e7%9a%84%e8%ae%a4%e8%af%86" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#c%e5%ae%9e%e7%8e%b0%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84%e5%92%8c%e5%88%9d%e6%ad%a5%e7%9a%84%e8%ae%a4%e8%af%86" aria-label="锚点">#</a>
     </span>        
     
 </h1>
@@ -1213,7 +1145,7 @@
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%e5%a4%b4%e6%96%87%e4%bb%b6%e5%92%8c%e6%96%b9%e6%b3%95%e5%a3%b0%e6%98%8e" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#%e5%a4%b4%e6%96%87%e4%bb%b6%e5%92%8c%e6%96%b9%e6%b3%95%e5%a3%b0%e6%98%8e" aria-label="锚点">#</a>
     </span>        
     
 </h3>
@@ -1224,7 +1156,7 @@
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%e6%a0%87%e5%87%86%e8%be%93%e5%85%a5%e8%be%93%e5%87%ba%e5%87%bd%e6%95%b0" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#%e6%a0%87%e5%87%86%e8%be%93%e5%85%a5%e8%be%93%e5%87%ba%e5%87%bd%e6%95%b0" aria-label="锚点">#</a>
     </span>        
     
 </h4>
@@ -1273,7 +1205,7 @@
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%e4%bc%a0%e9%80%92%e5%87%bd%e6%95%b0%e7%9a%84%e4%b8%8d%e5%90%8c%e6%96%b9%e5%bc%8f" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#%e4%bc%a0%e9%80%92%e5%87%bd%e6%95%b0%e7%9a%84%e4%b8%8d%e5%90%8c%e6%96%b9%e5%bc%8f" aria-label="锚点">#</a>
     </span>        
     
 </h3>
@@ -1311,7 +1243,7 @@
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#const%e4%bf%ae%e9%a5%b0%e6%8c%87%e9%92%88" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#const%e4%bf%ae%e9%a5%b0%e6%8c%87%e9%92%88" aria-label="锚点">#</a>
     </span>        
     
 </h4>
@@ -1351,7 +1283,7 @@
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%e7%a9%ba%e6%8c%87%e9%92%88%e5%92%8c%e9%87%8e%e6%8c%87%e9%92%88" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#%e7%a9%ba%e6%8c%87%e9%92%88%e5%92%8c%e9%87%8e%e6%8c%87%e9%92%88" aria-label="锚点">#</a>
     </span>        
     
 </h3>
@@ -1361,7 +1293,7 @@
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#null-point" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#null-point" aria-label="锚点">#</a>
     </span>        
     
 </h4>
@@ -1384,7 +1316,7 @@
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#wild-point" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#wild-point" aria-label="锚点">#</a>
     </span>        
     
 </h4>
@@ -1406,7 +1338,7 @@
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%e6%95%b0%e7%bb%84%e4%bd%9c%e4%b8%ba%e5%87%bd%e6%95%b0%e5%b1%95%e7%a4%ba" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#%e6%95%b0%e7%bb%84%e4%bd%9c%e4%b8%ba%e5%87%bd%e6%95%b0%e5%b1%95%e7%a4%ba" aria-label="锚点">#</a>
     </span>        
     
 </h4>
@@ -1441,7 +1373,7 @@
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%e5%88%a0%e9%99%a4%e6%95%b0%e7%bb%84%e5%85%83%e7%b4%a0%e7%a9%ba%e9%97%b4" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#%e5%88%a0%e9%99%a4%e6%95%b0%e7%bb%84%e5%85%83%e7%b4%a0%e7%a9%ba%e9%97%b4" aria-label="锚点">#</a>
     </span>        
     
 </h4>
@@ -1463,7 +1395,7 @@
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%e5%bc%95%e7%94%a8" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#%e5%bc%95%e7%94%a8" aria-label="锚点">#</a>
     </span>        
     
 </h3>
@@ -1480,7 +1412,7 @@
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%e5%87%bd%e6%95%b0%e4%bc%a0%e5%8f%82" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#%e5%87%bd%e6%95%b0%e4%bc%a0%e5%8f%82" aria-label="锚点">#</a>
     </span>        
     
 </h4>
@@ -1528,7 +1460,7 @@
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%e7%b1%bb" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#%e7%b1%bb" aria-label="锚点">#</a>
     </span>        
     
 </h3>
@@ -1538,7 +1470,7 @@
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a1%b9" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a1%b9" aria-label="锚点">#</a>
     </span>        
     
 </h4>
@@ -1554,7 +1486,7 @@
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%e9%9d%99%e6%80%81%e5%8f%98%e9%87%8f%e5%92%8c%e6%88%90%e5%91%98%e5%8f%98%e9%87%8f" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#%e9%9d%99%e6%80%81%e5%8f%98%e9%87%8f%e5%92%8c%e6%88%90%e5%91%98%e5%8f%98%e9%87%8f" aria-label="锚点">#</a>
     </span>        
     
 </h4>
@@ -1599,7 +1531,7 @@
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%e6%9e%84%e9%80%a0%e5%87%bd%e6%95%b0constructor" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#%e6%9e%84%e9%80%a0%e5%87%bd%e6%95%b0constructor" aria-label="锚点">#</a>
     </span>        
     
 </h4>
@@ -1619,7 +1551,7 @@
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%e6%8b%b7%e8%b4%9d%e6%9e%84%e9%80%a0%e5%87%bd%e6%95%b0" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#%e6%8b%b7%e8%b4%9d%e6%9e%84%e9%80%a0%e5%87%bd%e6%95%b0" aria-label="锚点">#</a>
     </span>        
     
 </h4>
@@ -1673,7 +1605,7 @@
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#this%e6%8c%87%e9%92%88" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#this%e6%8c%87%e9%92%88" aria-label="锚点">#</a>
     </span>        
     
 </h4>
@@ -1689,7 +1621,7 @@
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%e5%8f%8b%e5%85%83" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#%e5%8f%8b%e5%85%83" aria-label="锚点">#</a>
     </span>        
     
 </h3>
@@ -1847,7 +1779,7 @@
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%e8%bf%90%e7%ae%97%e7%ac%a6%e9%87%8d%e8%bd%bd" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#%e8%bf%90%e7%ae%97%e7%ac%a6%e9%87%8d%e8%bd%bd" aria-label="锚点">#</a>
     </span>        
     
 </h4>
@@ -1873,7 +1805,7 @@
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%e5%ae%9e%e7%8e%b0%e8%87%aa%e5%b7%b1%e7%9a%84%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#%e5%ae%9e%e7%8e%b0%e8%87%aa%e5%b7%b1%e7%9a%84%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b" aria-label="锚点">#</a>
     </span>        
     
 </h4>
@@ -1909,7 +1841,7 @@
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%e5%86%85%e8%81%94%e5%87%bd%e6%95%b0inline" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#%e5%86%85%e8%81%94%e5%87%bd%e6%95%b0inline" aria-label="锚点">#</a>
     </span>        
     
 </h4>
@@ -1922,7 +1854,7 @@
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%e7%bb%a7%e6%89%bf" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#%e7%bb%a7%e6%89%bf" aria-label="锚点">#</a>
     </span>        
     
 </h3>
@@ -1941,7 +1873,7 @@
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%e6%9e%84%e9%80%a0%e5%92%8c%e6%9e%90%e6%9e%84%e9%a1%ba%e5%ba%8f" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#%e6%9e%84%e9%80%a0%e5%92%8c%e6%9e%90%e6%9e%84%e9%a1%ba%e5%ba%8f" aria-label="锚点">#</a>
     </span>        
     
 </h4>
@@ -1952,7 +1884,7 @@
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%e8%8f%b1%e5%bd%a2%e7%bb%a7%e6%89%bf%e9%97%ae%e9%a2%98" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#%e8%8f%b1%e5%bd%a2%e7%bb%a7%e6%89%bf%e9%97%ae%e9%a2%98" aria-label="锚点">#</a>
     </span>        
     
 </h4>
@@ -2003,7 +1935,7 @@
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%e7%bb%a7%e6%89%bf%e4%b9%8b%e5%90%8e%e5%ad%90%e7%b1%bb%e8%8e%b7%e5%be%97%e4%ba%86%e4%bb%80%e4%b9%88" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#%e7%bb%a7%e6%89%bf%e4%b9%8b%e5%90%8e%e5%ad%90%e7%b1%bb%e8%8e%b7%e5%be%97%e4%ba%86%e4%bb%80%e4%b9%88" aria-label="锚点">#</a>
     </span>        
     
 </h4>
@@ -2018,7 +1950,7 @@
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%e5%a4%9a%e6%80%81" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#%e5%a4%9a%e6%80%81" aria-label="锚点">#</a>
     </span>        
     
 </h4>
@@ -2102,7 +2034,7 @@
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%e8%99%9a%e5%87%bd%e6%95%b0%e5%92%8c%e7%ba%af%e8%99%9a%e6%9e%90%e6%9e%84" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#%e8%99%9a%e5%87%bd%e6%95%b0%e5%92%8c%e7%ba%af%e8%99%9a%e6%9e%90%e6%9e%84" aria-label="锚点">#</a>
     </span>        
     
 </h4>
@@ -2116,7 +2048,7 @@
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%e8%99%9a%e5%87%bd%e6%95%b0%e7%9a%84%e5%89%8d%e6%8f%90" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#%e8%99%9a%e5%87%bd%e6%95%b0%e7%9a%84%e5%89%8d%e6%8f%90" aria-label="锚点">#</a>
     </span>        
     
 </h4>
@@ -2131,7 +2063,7 @@
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%e8%99%9a%e6%9e%90%e6%9e%84%e5%87%bd%e6%95%b0" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#%e8%99%9a%e6%9e%90%e6%9e%84%e5%87%bd%e6%95%b0" aria-label="锚点">#</a>
     </span>        
     
 </h4>
@@ -2145,7 +2077,7 @@
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%e7%ba%af%e8%99%9a%e5%87%bd%e6%95%b0" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#%e7%ba%af%e8%99%9a%e5%87%bd%e6%95%b0" aria-label="锚点">#</a>
     </span>        
     
 </h4>
@@ -2174,7 +2106,7 @@
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#c%e6%a8%a1%e6%9d%bf" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#c%e6%a8%a1%e6%9d%bf" aria-label="锚点">#</a>
     </span>        
     
 </h3>
@@ -2184,7 +2116,7 @@
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%e5%87%bd%e6%95%b0%e6%a8%a1%e6%9d%bf" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#%e5%87%bd%e6%95%b0%e6%a8%a1%e6%9d%bf" aria-label="锚点">#</a>
     </span>        
     
 </h4>
@@ -2244,7 +2176,7 @@
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#stl%e5%9f%ba%e6%9c%ac%e8%ae%a4%e8%af%86" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#stl%e5%9f%ba%e6%9c%ac%e8%ae%a4%e8%af%86" aria-label="锚点">#</a>
     </span>        
     
 </h3>
@@ -2284,7 +2216,7 @@
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%e5%b8%b8%e8%a7%81%e7%9a%84%e5%ae%b9%e5%99%a8" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#%e5%b8%b8%e8%a7%81%e7%9a%84%e5%ae%b9%e5%99%a8" aria-label="锚点">#</a>
     </span>        
     
 </h4>
@@ -2322,8 +2254,8 @@
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
       href="https://twitter.com/intent/tweet/?url=/entire-note/c&#43;&#43;/&amp;text=C&#43;&#43;"
-      title="Tweet on Twitter"
-      aria-label="Tweet on Twitter"
+      title="分享到 Twitter"
+      aria-label="分享到 Twitter"
       >
       
 
@@ -2359,8 +2291,8 @@
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
       href="mailto:?body=/entire-note/c&#43;&#43;/&amp;subject=C&#43;&#43;"
-      title="Send via email"
-      aria-label="Send via email"
+      title="通过电子邮件发送"
+      aria-label="通过电子邮件发送"
       >
       
 
@@ -2379,7 +2311,7 @@
           
 
 
-<h2 class="mt-8 text-2xl font-extrabold mb-10">相关笔记</h2>
+<h2 class="mt-8 text-2xl font-extrabold mb-10">Related</h2>
 <section class="w-full grid gap-4 sm:grid-cols-2 md:grid-cols-3">
   
   
@@ -2437,7 +2369,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2023-10-27 20:52:20 &#43;0800 CST">27 October 2023</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">1 min</span>
+  <time datetime="2023-10-27 20:52:20 &#43;0800 CST">27 October 2023</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
   
 
   
@@ -2556,7 +2488,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2023-10-25 18:23:23 &#43;0800 CST">25 October 2023</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">1 min</span>
+  <time datetime="2023-10-25 18:23:23 &#43;0800 CST">25 October 2023</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
   
 
   
@@ -2675,7 +2607,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2023-10-24 13:58:54 &#43;0800 CST">24 October 2023</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">1 min</span>
+  <time datetime="2023-10-24 13:58:54 &#43;0800 CST">24 October 2023</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
   
 
   
@@ -2812,15 +2744,15 @@
       <div class="pt-3">
         <script src="https://giscus.app/client.js"
         data-repo="ToDreamr/todreamr.github.io"
-        data-repo-id="R_kgDOKdiu4A"
-        data-category="Announcements"
-        data-category-id="DIC_kwDOKdiu4M4Capsk"
+        data-repo-id="R_kgDOLG9zIQ"
+        data-category="Q&A"
+        data-category-id="DIC_kwDOLG9zIc4Cc-2K"
         data-mapping="pathname"
         data-strict="0"
         data-reactions-enabled="1"
         data-emit-metadata="0"
         data-input-position="bottom"
-        data-theme="preferred_color_scheme"
+        data-theme="light_protanopia"
         data-lang="zh-CN"
         crossorigin="anonymous"
         async>
@@ -2836,7 +2768,7 @@
       <div id="top-scroller" class="pointer-events-none absolute top-[110vh] bottom-0 w-12 ltr:right-0 rtl:left-0">
   <a href="#the-top"
     class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 mb-16 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
-    aria-label="Scroll to top" title="Scroll to top">
+    aria-label="" title="">
     &uarr;
   </a>
 </div>
@@ -2877,9 +2809,9 @@
     <p class="text-xs text-neutral-500 dark:text-neutral-400">
       
       
-      Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+      由 <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
         href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
-        href="https://blowfish.page/" target="_blank" rel="noopener noreferrer">Blowfish</a>
+        href="https://blowfish.page/" target="_blank" rel="noopener noreferrer">Blowfish</a> 强力驱动
     </p>
     
 
@@ -2924,14 +2856,14 @@
           type="search"
           id="search-query"
           class="flex flex-auto h-12 mx-1 bg-transparent appearance-none focus:outline-dotted focus:outline-2 focus:outline-transparent"
-          placeholder="Search"
+          placeholder=""
           tabindex="0"
         />
       </form>
       <button
         id="close-search-button"
         class="flex items-center justify-center w-8 h-8 text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
-        title="Close (Esc)"
+        title=""
       >
         
 
