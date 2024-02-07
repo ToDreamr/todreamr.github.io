@@ -174,7 +174,7 @@
   <div id="the-top" class="absolute flex self-center">
     <a class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 focus:translate-y-0 dark:bg-neutral-600"
       href="#main-content"><span
-        class="font-bold text-primary-600 ltr:pr-2 rtl:pl-2 dark:text-primary-400">&darr;</span>Skip to main content</a>
+        class="font-bold text-primary-600 ltr:pr-2 rtl:pl-2 dark:text-primary-400">&darr;</span>跳到文章开头</a>
   </div>
   
   
@@ -709,35 +709,12 @@
 
 
 
-  
-
 
 
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2023-10-12 23:51:04 &#43;0800 CST">12 October 2023</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">2 分钟</span><span class="px-2 text-primary-500">&middot;</span>
-
-
-<script type="text/javascript" src="/js/zen-mode.min.16f2e42a0014d476212e14c056b26b69bc85cb5de15352a5e3a1a0be498055dc1bf0926cef44baef1cc7fa2dfc5de0052892645cd3766598065f47b15c4bd44d.js" integrity="sha512-FvLkKgAU1HYhLhTAVrJrabyFy13hU1Kl46GgvkmAVdwb8JJs70S67xzH&#43;i38XeAFKJJkXNN2ZZgGX0exXEvUTQ=="></script>
-
-<span class="mb-[2px]">
-    <span id="zen-mode-button"
-          class="text-lg hover:text-primary-500"
-          title=""
-          data-title-i18n-disable=""
-          data-title-i18n-enable="">
-        <span class="inline-block align-text-bottom">
-
-  <span class="relative block icon">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="50px" height="50px">
-    <path fill="currentColor" d="M 12.980469 4 C 9.1204688 4 5.9804688 7.14 5.9804688 11 L 6 26 L 9.9804688 26 L 9.9804688 11 C 9.9804688 9.35 11.320469 8 12.980469 8 L 40.019531 8 C 41.679531 8 43.019531 9.35 43.019531 11 L 43.019531 39 C 43.019531 40.65 41.679531 42 40.019531 42 L 29 42 C 29 43.54 28.420938 44.94 27.460938 46 L 40.019531 46 C 43.879531 46 47.019531 42.86 47.019531 39 L 47.019531 11 C 47.019531 7.14 43.879531 4 40.019531 4 L 12.980469 4 z M 7 28 C 4.794 28 3 29.794 3 32 L 3 42 C 3 44.206 4.794 46 7 46 L 23 46 C 25.206 46 27 44.206 27 42 L 27 32 C 27 29.794 25.206 28 23 28 L 7 28 z M 7 32 L 23 32 L 23.001953 42 L 7 42 L 7 32 z"/>
-</svg>
-  </span>
-
-</span>
-    </span>
-</span>
+  <time datetime="2023-10-12 23:51:04 &#43;0800 CST">12 October 2023</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">2 分钟</span>
   
 
   
@@ -1145,7 +1122,7 @@ javap -v .class文件地址</p>
     
 </h2>
 <p>Linux下下载相关依赖</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>sudo yum install build-essential libxrender-dev xorg-dev libasound2-dev libcups2-dev gawk zip libxtst-dev libxi-dev libxt-dev gobjc
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo yum install build-essential libxrender-dev xorg-dev libasound2-dev libcups2-dev gawk zip libxtst-dev libxi-dev libxt-dev gobjc
 </span></span></code></pre></div><p>gcc 环境：</p>
 <p>
 
@@ -1248,25 +1225,25 @@ javap -v .class文件地址</p>
 <p>C/C++开发中，我们经常通过使用申请内存的方式来创建对象或是存放某些数据，但是这样也带来了一些额外的问题，我们要在何时释放这些内存，怎么才能使得内存的使用最高效，因此，内存管
 理是一个非常严肃的问题。</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdlib.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(){
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//动态申请4个int大小的内存空间
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> memory <span style="color:#f92672">=</span> <span style="color:#a6e22e">malloc</span>(<span style="color:#66d9ef">sizeof</span>(<span style="color:#66d9ef">int</span>) <span style="color:#f92672">*</span> <span style="color:#ae81ff">4</span>);
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//修改第一个int空间的值
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    memory[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//修改第二个int空间的值
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    memory[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//遍历内存区域中所有的值
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">4</span>;i<span style="color:#f92672">++</span>){
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;%d &#34;</span>, memory[i]);
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//释放指针所指向的内存区域
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">free</span>(memory);
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//最后将指针赋值为NULL
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    memory <span style="color:#f92672">=</span> NULL;
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//动态申请4个int大小的内存空间
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span><span class="o">*</span> <span class="n">memory</span> <span class="o">=</span> <span class="nf">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="o">*</span> <span class="mi">4</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//修改第一个int空间的值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">memory</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//修改第二个int空间的值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">memory</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//遍历内存区域中所有的值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="n">i</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%d &#34;</span><span class="p">,</span> <span class="n">memory</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//释放指针所指向的内存区域
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nf">free</span><span class="p">(</span><span class="n">memory</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//最后将指针赋值为NULL
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">memory</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><blockquote>
 <p>一旦出现内存问题，我们就无法像C/C++那样对所管理的内存进行合理地处理，因为所有的内存操作都是由JVM在进行，只有了解了JVM的内存管理机制，我们才能够在出现内存相关问题时找到解决方案。</p>
 </blockquote>
@@ -1281,11 +1258,11 @@ javap -v .class文件地址</p>
     
 </h4>
 <p>调用本地方法，调用C语言，关键字native,通过静态代码块调用C/C++的实现部分</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-latex" data-lang="latex"><span style="display:flex;"><span>    public static void main(String[] args) {
-</span></span><span style="display:flex;"><span>        System.out.println(sum(1,2));
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    private static native int sum(int a, int b);//原生的方法不可以具有函数实现
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-latex" data-lang="latex"><span class="line"><span class="cl">    public static void main(String[] args) <span class="nb">{</span>
+</span></span><span class="line"><span class="cl">        System.out.println(sum(1,2));
+</span></span><span class="line"><span class="cl">    <span class="nb">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    private static native int sum(int a, int b);//原生的方法不可以具有函数实现
 </span></span></code></pre></div><p>内存区域划分</p>
 <p>
 
@@ -1418,14 +1395,14 @@ System.out.println(sum(1,2));
 </blockquote>
 <blockquote>
 </blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-latex" data-lang="latex"><span style="display:flex;"><span>String a=&#34;I am a student&#34;;
-</span></span><span style="display:flex;"><span>//        String b=&#34;I am a student&#34;;
-</span></span><span style="display:flex;"><span>//        String a=new String(&#34;I am a student&#34;);
-</span></span><span style="display:flex;"><span>//        String b=new String(&#34;I am a student&#34;);
-</span></span><span style="display:flex;"><span>String a=new String(&#34;I am &#34;)+new String(&#34;a student&#34;);
-</span></span><span style="display:flex;"><span>String b=new String(&#34;I am &#34;)+new String(&#34;a student&#34;);
-</span></span><span style="display:flex;"><span>System.out.println(a.intern()==b.intern());
-</span></span><span style="display:flex;"><span>System.out.println(a.equals(b));
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-latex" data-lang="latex"><span class="line"><span class="cl">String a=&#34;I am a student&#34;;
+</span></span><span class="line"><span class="cl">//        String b=&#34;I am a student&#34;;
+</span></span><span class="line"><span class="cl">//        String a=new String(&#34;I am a student&#34;);
+</span></span><span class="line"><span class="cl">//        String b=new String(&#34;I am a student&#34;);
+</span></span><span class="line"><span class="cl">String a=new String(&#34;I am &#34;)+new String(&#34;a student&#34;);
+</span></span><span class="line"><span class="cl">String b=new String(&#34;I am &#34;)+new String(&#34;a student&#34;);
+</span></span><span class="line"><span class="cl">System.out.println(a.intern()==b.intern());
+</span></span><span class="line"><span class="cl">System.out.println(a.equals(b));
 </span></span></code></pre></div><h4 class="relative group">new方式 
     <div id="new方式" class="anchor"></div>
     
@@ -1436,15 +1413,15 @@ System.out.println(sum(1,2));
     </span>        
     
 </h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-latex" data-lang="latex"><span style="display:flex;"><span>public static void main(String[] args) {
-</span></span><span style="display:flex;"><span>    String str1 = new String(&#34;abc&#34;);
-</span></span><span style="display:flex;"><span>    String str2 = new String(&#34;abc&#34;);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    System.out.println(str1 == str2);
-</span></span><span style="display:flex;"><span>    System.out.println(str1.equals(str2));
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span><span style="color:#75715e">%使用==判断时，比较地址得到的结果false
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">%而使用equals时因为比较的是值，所以得到true
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-latex" data-lang="latex"><span class="line"><span class="cl">public static void main(String[] args) <span class="nb">{</span>
+</span></span><span class="line"><span class="cl">    String str1 = new String(&#34;abc&#34;);
+</span></span><span class="line"><span class="cl">    String str2 = new String(&#34;abc&#34;);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    System.out.println(str1 == str2);
+</span></span><span class="line"><span class="cl">    System.out.println(str1.equals(str2));
+</span></span><span class="line"><span class="cl"><span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="c">%使用==判断时，比较地址得到的结果false
+</span></span></span><span class="line"><span class="cl"><span class="c">%而使用equals时因为比较的是值，所以得到true
 </span></span></span></code></pre></div><h4 class="relative group">直接方式 
     <div id="直接方式" class="anchor"></div>
     
@@ -1455,16 +1432,16 @@ System.out.println(sum(1,2));
     </span>        
     
 </h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-latex" data-lang="latex"><span style="display:flex;"><span>public static void main(String[] args) {
-</span></span><span style="display:flex;"><span>    String str1 = &#34;abc&#34;;
-</span></span><span style="display:flex;"><span>    String str2 = &#34;abc&#34;;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    System.out.println(str1 == str2);
-</span></span><span style="display:flex;"><span>    System.out.println(str1.equals(str2));
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span><span style="color:#75715e">%是因为我们直接使用双引号赋值
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">%会先在常量池中查找是否存在相同的字符串，若存在，则将引用直接指向该字符串；
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">%若不存在，则在常量池中生成一个字符串，再将引用指向该字符串：
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-latex" data-lang="latex"><span class="line"><span class="cl">public static void main(String[] args) <span class="nb">{</span>
+</span></span><span class="line"><span class="cl">    String str1 = &#34;abc&#34;;
+</span></span><span class="line"><span class="cl">    String str2 = &#34;abc&#34;;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    System.out.println(str1 == str2);
+</span></span><span class="line"><span class="cl">    System.out.println(str1.equals(str2));
+</span></span><span class="line"><span class="cl"><span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="c">%是因为我们直接使用双引号赋值
+</span></span></span><span class="line"><span class="cl"><span class="c">%会先在常量池中查找是否存在相同的字符串，若存在，则将引用直接指向该字符串；
+</span></span></span><span class="line"><span class="cl"><span class="c">%若不存在，则在常量池中生成一个字符串，再将引用指向该字符串：
 </span></span></span></code></pre></div><p>
 
 
@@ -1490,14 +1467,14 @@ System.out.println(sum(1,2));
     </span>        
     
 </h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-latex" data-lang="latex"><span style="display:flex;"><span>public static void main(String[] args) {
-</span></span><span style="display:flex;"><span>    //不能直接写&#34;abc&#34;，双引号的形式，写了就直接在常量池里面吧abc创好了
-</span></span><span style="display:flex;"><span>    String str1 = new String(&#34;ab&#34;)+new String(&#34;c&#34;);
-</span></span><span style="display:flex;"><span>    String str2 = new String(&#34;ab&#34;)+new String(&#34;c&#34;);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    System.out.println(str1.intern() == str2.intern());
-</span></span><span style="display:flex;"><span>    System.out.println(str1.equals(str2));
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-latex" data-lang="latex"><span class="line"><span class="cl">public static void main(String[] args) <span class="nb">{</span>
+</span></span><span class="line"><span class="cl">    //不能直接写&#34;abc&#34;，双引号的形式，写了就直接在常量池里面吧abc创好了
+</span></span><span class="line"><span class="cl">    String str1 = new String(&#34;ab&#34;)+new String(&#34;c&#34;);
+</span></span><span class="line"><span class="cl">    String str2 = new String(&#34;ab&#34;)+new String(&#34;c&#34;);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    System.out.println(str1.intern() == str2.intern());
+</span></span><span class="line"><span class="cl">    System.out.println(str1.equals(str2));
+</span></span><span class="line"><span class="cl"><span class="nb">}</span>
 </span></span></code></pre></div><p>
 
 
@@ -1531,17 +1508,17 @@ System.out.println(sum(1,2));
     </span>        
     
 </h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-latex" data-lang="latex"><span style="display:flex;"><span> int[]arr=new int[Integer.MAX_VALUE];
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-latex" data-lang="latex"><span class="line"><span class="cl"> int[]arr=new int[Integer.MAX<span class="nb">_</span>VALUE];
 </span></span></code></pre></div><p>下面来个重磅的哈哈，直接爆栈4个G</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-latex" data-lang="latex"><span style="display:flex;"><span>   static class Test{ }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        public static void main(String[] args) {
-</span></span><span style="display:flex;"><span>            List&lt;Test&gt; list = new ArrayList&lt;&gt;();
-</span></span><span style="display:flex;"><span>            while (true){
-</span></span><span style="display:flex;"><span>                list.add(new Test());    //无限创建Test对象并丢进List中
-</span></span><span style="display:flex;"><span>            }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        }
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-latex" data-lang="latex"><span class="line"><span class="cl">   static class Test<span class="nb">{</span> <span class="nb">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        public static void main(String[] args) <span class="nb">{</span>
+</span></span><span class="line"><span class="cl">            List&lt;Test&gt; list = new ArrayList&lt;&gt;();
+</span></span><span class="line"><span class="cl">            while (true)<span class="nb">{</span>
+</span></span><span class="line"><span class="cl">                list.add(new Test());    //无限创建Test对象并丢进List中
+</span></span><span class="line"><span class="cl">            <span class="nb">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nb">}</span>
 </span></span></code></pre></div><p>
 
 
@@ -1597,13 +1574,13 @@ System.out.println(sum(1,2));
     </span>        
     
 </h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-latex" data-lang="latex"><span style="display:flex;"><span> Field unsafeField= Unsafe.class.getDeclaredFields()[0];
-</span></span><span style="display:flex;"><span> unsafeField.setAccessible(true);
-</span></span><span style="display:flex;"><span> Unsafe unsafe= (Unsafe) unsafeField.get(null);
-</span></span><span style="display:flex;"><span> long memory = unsafe.allocateMemory(4);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span> unsafe.putInt(memory,123);
-</span></span><span style="display:flex;"><span> System.out.println(unsafe.getAddress(memory));
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-latex" data-lang="latex"><span class="line"><span class="cl"> Field unsafeField= Unsafe.class.getDeclaredFields()[0];
+</span></span><span class="line"><span class="cl"> unsafeField.setAccessible(true);
+</span></span><span class="line"><span class="cl"> Unsafe unsafe= (Unsafe) unsafeField.get(null);
+</span></span><span class="line"><span class="cl"> long memory = unsafe.allocateMemory(4);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> unsafe.putInt(memory,123);
+</span></span><span class="line"><span class="cl"> System.out.println(unsafe.getAddress(memory));
 </span></span></code></pre></div><h4 class="relative group">获取类中定义的属性 
     <div id="获取类中定义的属性" class="anchor"></div>
     
@@ -1614,8 +1591,8 @@ System.out.println(sum(1,2));
     </span>        
     
 </h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Class<span style="color:#f92672">.</span><span style="color:#a6e22e">getField</span><span style="color:#f92672">(</span>properties name<span style="color:#f92672">)</span> <span style="color:#75715e">//获取当前类的属性
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Class<span style="color:#f92672">.</span><span style="color:#a6e22e">getSuperClass</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getDeclaredField</span><span style="color:#f92672">(</span>properties name<span style="color:#f92672">)</span> <span style="color:#75715e">//获取当前类的父类的信息
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Class</span><span class="o">.</span><span class="na">getField</span><span class="o">(</span><span class="n">properties</span> <span class="n">name</span><span class="o">)</span> <span class="c1">//获取当前类的属性
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Class</span><span class="o">.</span><span class="na">getSuperClass</span><span class="o">().</span><span class="na">getDeclaredField</span><span class="o">(</span><span class="n">properties</span> <span class="n">name</span><span class="o">)</span> <span class="c1">//获取当前类的父类的信息
 </span></span></span></code></pre></div>
       </div>
 
@@ -2164,7 +2141,7 @@ System.out.println(sum(1,2));
       <div id="top-scroller" class="pointer-events-none absolute top-[110vh] bottom-0 w-12 ltr:right-0 rtl:left-0">
   <a href="#the-top"
     class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 mb-16 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
-    aria-label="Scroll to top" title="Scroll to top">
+    aria-label="回到顶部" title="回到顶部">
     &uarr;
   </a>
 </div>
@@ -2252,14 +2229,14 @@ System.out.println(sum(1,2));
           type="search"
           id="search-query"
           class="flex flex-auto h-12 mx-1 bg-transparent appearance-none focus:outline-dotted focus:outline-2 focus:outline-transparent"
-          placeholder="Search"
+          placeholder="搜索"
           tabindex="0"
         />
       </form>
       <button
         id="close-search-button"
         class="flex items-center justify-center w-8 h-8 text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
-        title="Close (Esc)"
+        title="关闭 (Esc)"
       >
         
 

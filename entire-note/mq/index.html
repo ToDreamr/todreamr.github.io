@@ -178,7 +178,7 @@ sudo apt install erlang sudo apt install rabbitmq-server sudo rabbitmqctl status
   <div id="the-top" class="absolute flex self-center">
     <a class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 focus:translate-y-0 dark:bg-neutral-600"
       href="#main-content"><span
-        class="font-bold text-primary-600 ltr:pr-2 rtl:pl-2 dark:text-primary-400">&darr;</span>Skip to main content</a>
+        class="font-bold text-primary-600 ltr:pr-2 rtl:pl-2 dark:text-primary-400">&darr;</span>跳到文章开头</a>
   </div>
   
   
@@ -713,35 +713,12 @@ sudo apt install erlang sudo apt install rabbitmq-server sudo rabbitmqctl status
 
 
 
-  
-
 
 
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2023-11-07 20:52:20 &#43;0800 CST">7 November 2023</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">2 分钟</span><span class="px-2 text-primary-500">&middot;</span>
-
-
-<script type="text/javascript" src="/js/zen-mode.min.16f2e42a0014d476212e14c056b26b69bc85cb5de15352a5e3a1a0be498055dc1bf0926cef44baef1cc7fa2dfc5de0052892645cd3766598065f47b15c4bd44d.js" integrity="sha512-FvLkKgAU1HYhLhTAVrJrabyFy13hU1Kl46GgvkmAVdwb8JJs70S67xzH&#43;i38XeAFKJJkXNN2ZZgGX0exXEvUTQ=="></script>
-
-<span class="mb-[2px]">
-    <span id="zen-mode-button"
-          class="text-lg hover:text-primary-500"
-          title=""
-          data-title-i18n-disable=""
-          data-title-i18n-enable="">
-        <span class="inline-block align-text-bottom">
-
-  <span class="relative block icon">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="50px" height="50px">
-    <path fill="currentColor" d="M 12.980469 4 C 9.1204688 4 5.9804688 7.14 5.9804688 11 L 6 26 L 9.9804688 26 L 9.9804688 11 C 9.9804688 9.35 11.320469 8 12.980469 8 L 40.019531 8 C 41.679531 8 43.019531 9.35 43.019531 11 L 43.019531 39 C 43.019531 40.65 41.679531 42 40.019531 42 L 29 42 C 29 43.54 28.420938 44.94 27.460938 46 L 40.019531 46 C 43.879531 46 47.019531 42.86 47.019531 39 L 47.019531 11 C 47.019531 7.14 43.879531 4 40.019531 4 L 12.980469 4 z M 7 28 C 4.794 28 3 29.794 3 32 L 3 42 C 3 44.206 4.794 46 7 46 L 23 46 C 25.206 46 27 44.206 27 42 L 27 32 C 27 29.794 25.206 28 23 28 L 7 28 z M 7 32 L 23 32 L 23.001953 42 L 7 42 L 7 32 z"/>
-</svg>
-  </span>
-
-</span>
-    </span>
-</span>
+  <time datetime="2023-11-07 20:52:20 &#43;0800 CST">7 November 2023</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">2 分钟</span>
   
 
   
@@ -1102,22 +1079,22 @@ sudo apt install erlang sudo apt install rabbitmq-server sudo rabbitmqctl status
 </h3>
 <p>访问协议： amqp</p>
 <p>了解安装（反正也记不住）：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo apt install erlang
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>sudo apt install rabbitmq-server
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>sudo rabbitmqctl status
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>sudo rabbitmq-plugins enable rabbitmq_management
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>sudo rabbitmqctl add_user 用户名 密码
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>sudo rabbitmqctl set_user_tags admin administrator
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo apt install erlang
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sudo apt install rabbitmq-server
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sudo rabbitmqctl status
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sudo rabbitmq-plugins <span class="nb">enable</span> rabbitmq_management
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sudo rabbitmqctl add_user 用户名 密码
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sudo rabbitmqctl set_user_tags admin administrator
 </span></span></code></pre></div><p>
 
 
@@ -1276,35 +1253,35 @@ sudo apt install erlang sudo apt install rabbitmq-server sudo rabbitmqctl status
     </span>        
     
 </h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-latex" data-lang="latex"><span style="display:flex;"><span>@Configuration
-</span></span><span style="display:flex;"><span>public class RabbitConfiguration {
-</span></span><span style="display:flex;"><span>    @Bean(&#34;directExchange&#34;)  //定义交换机Bean，可以很多个
-</span></span><span style="display:flex;"><span>    public Exchange exchange(){
-</span></span><span style="display:flex;"><span>        return ExchangeBuilder.directExchange(&#34;amq.direct&#34;).build();
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    @Bean(&#34;yydsQueue&#34;)     //定义消息队列
-</span></span><span style="display:flex;"><span>    public Queue queue(){
-</span></span><span style="display:flex;"><span>        return QueueBuilder
-</span></span><span style="display:flex;"><span>                .nonDurable(&#34;my-rainy&#34;)   //非持久化类型
-</span></span><span style="display:flex;"><span>                .build();
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    @Bean(&#34;binding&#34;)
-</span></span><span style="display:flex;"><span>    public Binding binding(@Qualifier(&#34;directExchange&#34;) Exchange exchange,
-</span></span><span style="display:flex;"><span>                           @Qualifier(&#34;yydsQueue&#34;) Queue queue){
-</span></span><span style="display:flex;"><span>        //将我们刚刚定义的交换机和队列进行绑定
-</span></span><span style="display:flex;"><span>        return BindingBuilder
-</span></span><span style="display:flex;"><span>                .bind(queue)   //绑定队列
-</span></span><span style="display:flex;"><span>                .to(exchange)  //到交换机
-</span></span><span style="display:flex;"><span>                .with(&#34;rainy&#34;)   //使用自定义的routingKey
-</span></span><span style="display:flex;"><span>                .noargs();
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    //转换为Json实体数据
-</span></span><span style="display:flex;"><span>    @Bean(name = &#34;Jackson2JsonMessageConverter&#34;)
-</span></span><span style="display:flex;"><span>    public Jackson2JsonMessageConverter jsonMessageConverter(){
-</span></span><span style="display:flex;"><span>        return new Jackson2JsonMessageConverter();
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-latex" data-lang="latex"><span class="line"><span class="cl">@Configuration
+</span></span><span class="line"><span class="cl">public class RabbitConfiguration <span class="nb">{</span>
+</span></span><span class="line"><span class="cl">    @Bean(&#34;directExchange&#34;)  //定义交换机Bean，可以很多个
+</span></span><span class="line"><span class="cl">    public Exchange exchange()<span class="nb">{</span>
+</span></span><span class="line"><span class="cl">        return ExchangeBuilder.directExchange(&#34;amq.direct&#34;).build();
+</span></span><span class="line"><span class="cl">    <span class="nb">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    @Bean(&#34;yydsQueue&#34;)     //定义消息队列
+</span></span><span class="line"><span class="cl">    public Queue queue()<span class="nb">{</span>
+</span></span><span class="line"><span class="cl">        return QueueBuilder
+</span></span><span class="line"><span class="cl">                .nonDurable(&#34;my-rainy&#34;)   //非持久化类型
+</span></span><span class="line"><span class="cl">                .build();
+</span></span><span class="line"><span class="cl">    <span class="nb">}</span>
+</span></span><span class="line"><span class="cl">    @Bean(&#34;binding&#34;)
+</span></span><span class="line"><span class="cl">    public Binding binding(@Qualifier(&#34;directExchange&#34;) Exchange exchange,
+</span></span><span class="line"><span class="cl">                           @Qualifier(&#34;yydsQueue&#34;) Queue queue)<span class="nb">{</span>
+</span></span><span class="line"><span class="cl">        //将我们刚刚定义的交换机和队列进行绑定
+</span></span><span class="line"><span class="cl">        return BindingBuilder
+</span></span><span class="line"><span class="cl">                .bind(queue)   //绑定队列
+</span></span><span class="line"><span class="cl">                .to(exchange)  //到交换机
+</span></span><span class="line"><span class="cl">                .with(&#34;rainy&#34;)   //使用自定义的routingKey
+</span></span><span class="line"><span class="cl">                .noargs();
+</span></span><span class="line"><span class="cl">    <span class="nb">}</span>
+</span></span><span class="line"><span class="cl">    //转换为Json实体数据
+</span></span><span class="line"><span class="cl">    @Bean(name = &#34;Jackson2JsonMessageConverter&#34;)
+</span></span><span class="line"><span class="cl">    public Jackson2JsonMessageConverter jsonMessageConverter()<span class="nb">{</span>
+</span></span><span class="line"><span class="cl">        return new Jackson2JsonMessageConverter();
+</span></span><span class="line"><span class="cl">    <span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="nb">}</span>
 </span></span></code></pre></div><p>在上面的配置中，创建了队列并且绑定了routingkey和对应的交换机，同时加入了自定义的json转换器件</p>
 <h3 class="relative group">发送消息 
     <div id="发送消息" class="anchor"></div>
@@ -1317,24 +1294,24 @@ sudo apt install erlang sudo apt install rabbitmq-server sudo rabbitmqctl status
     
 </h3>
 <p>——&gt; 借助RabbitTemplate</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-latex" data-lang="latex"><span style="display:flex;"><span>@SpringBootTest
-</span></span><span style="display:flex;"><span>@Import(RabbitConfiguration.class)
-</span></span><span style="display:flex;"><span>class RabbitmqDemoApplicationTests {
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	//消息解释器
-</span></span><span style="display:flex;"><span>	@Resource
-</span></span><span style="display:flex;"><span>	RabbitTemplate template;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	@Test
-</span></span><span style="display:flex;"><span>	void publisher() {
-</span></span><span style="display:flex;"><span>		//使用convertAndSend方法一步到位，参数基本和之前是一样的
-</span></span><span style="display:flex;"><span>		//最后一个消息本体可以是Object类型，真是大大的方便
-</span></span><span style="display:flex;"><span>		template.convertAndSend(&#34;amq.direct&#34;, &#34;rainy&#34;, &#34;Hello World!&#34;);//发送消息
-</span></span><span style="display:flex;"><span>		//如何知道发送的消息是否经过处理了？
-</span></span><span style="display:flex;"><span>		Object ackMsg = template.convertSendAndReceive(&#34;amq.direct&#34;, &#34;rainy&#34;, &#34;Hello World!&#34;);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-latex" data-lang="latex"><span class="line"><span class="cl">@SpringBootTest
+</span></span><span class="line"><span class="cl">@Import(RabbitConfiguration.class)
+</span></span><span class="line"><span class="cl">class RabbitmqDemoApplicationTests <span class="nb">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	//消息解释器
+</span></span><span class="line"><span class="cl">	@Resource
+</span></span><span class="line"><span class="cl">	RabbitTemplate template;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	@Test
+</span></span><span class="line"><span class="cl">	void publisher() <span class="nb">{</span>
+</span></span><span class="line"><span class="cl">		//使用convertAndSend方法一步到位，参数基本和之前是一样的
+</span></span><span class="line"><span class="cl">		//最后一个消息本体可以是Object类型，真是大大的方便
+</span></span><span class="line"><span class="cl">		template.convertAndSend(&#34;amq.direct&#34;, &#34;rainy&#34;, &#34;Hello World!&#34;);//发送消息
+</span></span><span class="line"><span class="cl">		//如何知道发送的消息是否经过处理了？
+</span></span><span class="line"><span class="cl">		Object ackMsg = template.convertSendAndReceive(&#34;amq.direct&#34;, &#34;rainy&#34;, &#34;Hello World!&#34;);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="nb">}</span>
 </span></span></code></pre></div><h3 class="relative group">处理消息 
     <div id="处理消息" class="anchor"></div>
     
@@ -1345,30 +1322,30 @@ sudo apt install erlang sudo apt install rabbitmq-server sudo rabbitmqctl status
     </span>        
     
 </h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-latex" data-lang="latex"><span style="display:flex;"><span>/**
-</span></span><span style="display:flex;"><span> * TestListener
-</span></span><span style="display:flex;"><span> * 监听器，实际上作为消费者
-</span></span><span style="display:flex;"><span> * @author 春江花朝秋月夜
-</span></span><span style="display:flex;"><span> * @since 2023/11/10 0:12
-</span></span><span style="display:flex;"><span> */
-</span></span><span style="display:flex;"><span>@Component  //注册为Bean,作为接受消息同时处理返回的监听器
-</span></span><span style="display:flex;"><span>public class TestListener {
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    @RabbitListener(queues = &#34;rainy&#34;)   //定义此方法为队列rainy的监听器，一旦监听到新的消息，就会接受并处理
-</span></span><span style="display:flex;"><span>    public void test(Message message){
-</span></span><span style="display:flex;"><span>        System.out.println(new String(message.getBody()));//打印消息体,消息payload可以自动转换成消息实体
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    @RabbitListener(queues = &#34;rainy&#34;)   //定义此方法为队列rainy的监听器，一旦监听到新的消息，就会接受并处理，同时还要返回响应信息
-</span></span><span style="display:flex;"><span>    public String ackMsg(Message message){
-</span></span><span style="display:flex;"><span>        System.out.println(new String(message.getBody()));//打印消息体,消息payload可以自动转换成消息实体
-</span></span><span style="display:flex;"><span>        return &#34;响应成功！&#34;;
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    @RabbitListener(queues = &#34;rainy&#34;,messageConverter = &#34;Jackson2JsonMessageConverter&#34;)   //定义此方法为队列rainy的监听器，一旦监听到新的消息，就会接受并处理，同时还要返回响应信息
-</span></span><span style="display:flex;"><span>    public String ackDTOMsg(Account message){
-</span></span><span style="display:flex;"><span>        System.out.println(message);//打印消息体,使用定义好的json转换器来转换消息中的json数据
-</span></span><span style="display:flex;"><span>        return &#34;响应成功！&#34;;
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-latex" data-lang="latex"><span class="line"><span class="cl">/**
+</span></span><span class="line"><span class="cl"> * TestListener
+</span></span><span class="line"><span class="cl"> * 监听器，实际上作为消费者
+</span></span><span class="line"><span class="cl"> * @author 春江花朝秋月夜
+</span></span><span class="line"><span class="cl"> * @since 2023/11/10 0:12
+</span></span><span class="line"><span class="cl"> */
+</span></span><span class="line"><span class="cl">@Component  //注册为Bean,作为接受消息同时处理返回的监听器
+</span></span><span class="line"><span class="cl">public class TestListener <span class="nb">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    @RabbitListener(queues = &#34;rainy&#34;)   //定义此方法为队列rainy的监听器，一旦监听到新的消息，就会接受并处理
+</span></span><span class="line"><span class="cl">    public void test(Message message)<span class="nb">{</span>
+</span></span><span class="line"><span class="cl">        System.out.println(new String(message.getBody()));//打印消息体,消息payload可以自动转换成消息实体
+</span></span><span class="line"><span class="cl">    <span class="nb">}</span>
+</span></span><span class="line"><span class="cl">    @RabbitListener(queues = &#34;rainy&#34;)   //定义此方法为队列rainy的监听器，一旦监听到新的消息，就会接受并处理，同时还要返回响应信息
+</span></span><span class="line"><span class="cl">    public String ackMsg(Message message)<span class="nb">{</span>
+</span></span><span class="line"><span class="cl">        System.out.println(new String(message.getBody()));//打印消息体,消息payload可以自动转换成消息实体
+</span></span><span class="line"><span class="cl">        return &#34;响应成功！&#34;;
+</span></span><span class="line"><span class="cl">    <span class="nb">}</span>
+</span></span><span class="line"><span class="cl">    @RabbitListener(queues = &#34;rainy&#34;,messageConverter = &#34;Jackson2JsonMessageConverter&#34;)   //定义此方法为队列rainy的监听器，一旦监听到新的消息，就会接受并处理，同时还要返回响应信息
+</span></span><span class="line"><span class="cl">    public String ackDTOMsg(Account message)<span class="nb">{</span>
+</span></span><span class="line"><span class="cl">        System.out.println(message);//打印消息体,使用定义好的json转换器来转换消息中的json数据
+</span></span><span class="line"><span class="cl">        return &#34;响应成功！&#34;;
+</span></span><span class="line"><span class="cl">    <span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="nb">}</span>
 </span></span></code></pre></div><h2 class="relative group">消息队列 
     <div id="消息队列" class="anchor"></div>
     
@@ -1466,22 +1443,22 @@ sudo apt install erlang sudo apt install rabbitmq-server sudo rabbitmqctl status
 </p>
 <p><strong>轮询分发消息</strong>：默认交替分发消息，但每个消费者都有一个预先获取数量，最开始一次性获取数量不一定是1</p>
 <p>配置消费者预获取数量：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-latex" data-lang="latex"><span style="display:flex;"><span>@Resource
-</span></span><span style="display:flex;"><span>private CachingConnectionFactory connectionFactory;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>@Bean(name = &#34;listenerContainer&#34;)
-</span></span><span style="display:flex;"><span>public SimpleRabbitListenerContainerFactory listenerContainer(){
-</span></span><span style="display:flex;"><span>    SimpleRabbitListenerContainerFactory factory = new SimpleRabbitListenerContainerFactory();
-</span></span><span style="display:flex;"><span>    factory.setConnectionFactory(connectionFactory);
-</span></span><span style="display:flex;"><span>    factory.setPrefetchCount(1);   //将PrefetchCount设定为1表示一次只能取一个
-</span></span><span style="display:flex;"><span>    return factory;
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-latex" data-lang="latex"><span class="line"><span class="cl">@Resource
+</span></span><span class="line"><span class="cl">private CachingConnectionFactory connectionFactory;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">@Bean(name = &#34;listenerContainer&#34;)
+</span></span><span class="line"><span class="cl">public SimpleRabbitListenerContainerFactory listenerContainer()<span class="nb">{</span>
+</span></span><span class="line"><span class="cl">    SimpleRabbitListenerContainerFactory factory = new SimpleRabbitListenerContainerFactory();
+</span></span><span class="line"><span class="cl">    factory.setConnectionFactory(connectionFactory);
+</span></span><span class="line"><span class="cl">    factory.setPrefetchCount(1);   //将PrefetchCount设定为1表示一次只能取一个
+</span></span><span class="line"><span class="cl">    return factory;
+</span></span><span class="line"><span class="cl"><span class="nb">}</span>
 </span></span></code></pre></div><p>配置监听器：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-latex" data-lang="latex"><span style="display:flex;"><span> //指定的监听器工厂和消费者数量
-</span></span><span style="display:flex;"><span>    @RabbitListener(queues = &#34;rainy&#34;,containerFactory = &#34;listenerContainer&#34;,concurrency = &#34;10&#34;)
-</span></span><span style="display:flex;"><span>    public void listenMsg(Message message){
-</span></span><span style="display:flex;"><span>        System.out.println(message);
-</span></span><span style="display:flex;"><span>    }
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-latex" data-lang="latex"><span class="line"><span class="cl"> //指定的监听器工厂和消费者数量
+</span></span><span class="line"><span class="cl">    @RabbitListener(queues = &#34;rainy&#34;,containerFactory = &#34;listenerContainer&#34;,concurrency = &#34;10&#34;)
+</span></span><span class="line"><span class="cl">    public void listenMsg(Message message)<span class="nb">{</span>
+</span></span><span class="line"><span class="cl">        System.out.println(message);
+</span></span><span class="line"><span class="cl">    <span class="nb">}</span>
 </span></span></code></pre></div><h3 class="relative group">发布订阅模式 
     <div id="发布订阅模式" class="anchor"></div>
     
@@ -1561,45 +1538,45 @@ sudo apt install erlang sudo apt install rabbitmq-server sudo rabbitmqctl status
 
 </p>
 <p>通过指定不同的routingkey来实现</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Configuration</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RabbitConfiguration</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Bean</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;fanoutExchange&#34;</span><span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> Exchange <span style="color:#a6e22e">exchange</span><span style="color:#f92672">(){</span>
-</span></span><span style="display:flex;"><span>      	<span style="color:#75715e">//注意这里是fanoutExchange
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> ExchangeBuilder<span style="color:#f92672">.</span><span style="color:#a6e22e">fanoutExchange</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;amq.fanout&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">build</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Bean</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;yydsQueue1&#34;</span><span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> Queue <span style="color:#a6e22e">queue</span><span style="color:#f92672">(){</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> QueueBuilder<span style="color:#f92672">.</span><span style="color:#a6e22e">nonDurable</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;yyds1&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">build</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Bean</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;binding&#34;</span><span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> Binding <span style="color:#a6e22e">binding</span><span style="color:#f92672">(</span><span style="color:#a6e22e">@Qualifier</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;fanoutExchange&#34;</span><span style="color:#f92672">)</span> Exchange exchange<span style="color:#f92672">,</span>
-</span></span><span style="display:flex;"><span>                           <span style="color:#a6e22e">@Qualifier</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;yydsQueue1&#34;</span><span style="color:#f92672">)</span> Queue queue<span style="color:#f92672">){</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> BindingBuilder
-</span></span><span style="display:flex;"><span>                <span style="color:#f92672">.</span><span style="color:#a6e22e">bind</span><span style="color:#f92672">(</span>queue<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#f92672">.</span><span style="color:#a6e22e">to</span><span style="color:#f92672">(</span>exchange<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#f92672">.</span><span style="color:#a6e22e">with</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;yyds1&#34;</span><span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#f92672">.</span><span style="color:#a6e22e">noargs</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Bean</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;yydsQueue2&#34;</span><span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> Queue <span style="color:#a6e22e">queue2</span><span style="color:#f92672">(){</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> QueueBuilder<span style="color:#f92672">.</span><span style="color:#a6e22e">nonDurable</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;yyds2&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">build</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Bean</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;binding2&#34;</span><span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> Binding <span style="color:#a6e22e">binding2</span><span style="color:#f92672">(</span><span style="color:#a6e22e">@Qualifier</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;fanoutExchange&#34;</span><span style="color:#f92672">)</span> Exchange exchange<span style="color:#f92672">,</span>
-</span></span><span style="display:flex;"><span>                           <span style="color:#a6e22e">@Qualifier</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;yydsQueue2&#34;</span><span style="color:#f92672">)</span> Queue queue<span style="color:#f92672">){</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> BindingBuilder
-</span></span><span style="display:flex;"><span>                <span style="color:#f92672">.</span><span style="color:#a6e22e">bind</span><span style="color:#f92672">(</span>queue<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#f92672">.</span><span style="color:#a6e22e">to</span><span style="color:#f92672">(</span>exchange<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#f92672">.</span><span style="color:#a6e22e">with</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;yyds2&#34;</span><span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#f92672">.</span><span style="color:#a6e22e">noargs</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Configuration</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">RabbitConfiguration</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Bean</span><span class="o">(</span><span class="s">&#34;fanoutExchange&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Exchange</span> <span class="nf">exchange</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">      	<span class="c1">//注意这里是fanoutExchange
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">return</span> <span class="n">ExchangeBuilder</span><span class="o">.</span><span class="na">fanoutExchange</span><span class="o">(</span><span class="s">&#34;amq.fanout&#34;</span><span class="o">).</span><span class="na">build</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Bean</span><span class="o">(</span><span class="s">&#34;yydsQueue1&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Queue</span> <span class="nf">queue</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">QueueBuilder</span><span class="o">.</span><span class="na">nonDurable</span><span class="o">(</span><span class="s">&#34;yyds1&#34;</span><span class="o">).</span><span class="na">build</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Bean</span><span class="o">(</span><span class="s">&#34;binding&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Binding</span> <span class="nf">binding</span><span class="o">(</span><span class="nd">@Qualifier</span><span class="o">(</span><span class="s">&#34;fanoutExchange&#34;</span><span class="o">)</span> <span class="n">Exchange</span> <span class="n">exchange</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">                           <span class="nd">@Qualifier</span><span class="o">(</span><span class="s">&#34;yydsQueue1&#34;</span><span class="o">)</span> <span class="n">Queue</span> <span class="n">queue</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">BindingBuilder</span>
+</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">bind</span><span class="o">(</span><span class="n">queue</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="n">exchange</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">with</span><span class="o">(</span><span class="s">&#34;yyds1&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">noargs</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Bean</span><span class="o">(</span><span class="s">&#34;yydsQueue2&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Queue</span> <span class="nf">queue2</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">QueueBuilder</span><span class="o">.</span><span class="na">nonDurable</span><span class="o">(</span><span class="s">&#34;yyds2&#34;</span><span class="o">).</span><span class="na">build</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Bean</span><span class="o">(</span><span class="s">&#34;binding2&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Binding</span> <span class="nf">binding2</span><span class="o">(</span><span class="nd">@Qualifier</span><span class="o">(</span><span class="s">&#34;fanoutExchange&#34;</span><span class="o">)</span> <span class="n">Exchange</span> <span class="n">exchange</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">                           <span class="nd">@Qualifier</span><span class="o">(</span><span class="s">&#34;yydsQueue2&#34;</span><span class="o">)</span> <span class="n">Queue</span> <span class="n">queue</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">BindingBuilder</span>
+</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">bind</span><span class="o">(</span><span class="n">queue</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="n">exchange</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">with</span><span class="o">(</span><span class="s">&#34;yyds2&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">noargs</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><h3 class="relative group">主题模式 trace 
     <div id="主题模式-trace" class="anchor"></div>
     
@@ -1689,9 +1666,9 @@ sudo apt install erlang sudo apt install rabbitmq-server sudo rabbitmqctl status
     </span>        
     
 </h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>sudo rabbitmqctl stop_app
-</span></span><span style="display:flex;"><span>sudo rabbitmqctl join_cluster rabbit@ubuntu-server
-</span></span><span style="display:flex;"><span>sudo rabbitmqctl start_app
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo rabbitmqctl stop_app
+</span></span><span class="line"><span class="cl">sudo rabbitmqctl join_cluster rabbit@ubuntu-server
+</span></span><span class="line"><span class="cl">sudo rabbitmqctl start_app
 </span></span></code></pre></div><h2 class="relative group">SpringCloud消息组件 
     <div id="springcloud消息组件" class="anchor"></div>
     
@@ -2308,7 +2285,7 @@ sudo apt install erlang sudo apt install rabbitmq-server sudo rabbitmqctl status
       <div id="top-scroller" class="pointer-events-none absolute top-[110vh] bottom-0 w-12 ltr:right-0 rtl:left-0">
   <a href="#the-top"
     class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 mb-16 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
-    aria-label="Scroll to top" title="Scroll to top">
+    aria-label="回到顶部" title="回到顶部">
     &uarr;
   </a>
 </div>
@@ -2396,14 +2373,14 @@ sudo apt install erlang sudo apt install rabbitmq-server sudo rabbitmqctl status
           type="search"
           id="search-query"
           class="flex flex-auto h-12 mx-1 bg-transparent appearance-none focus:outline-dotted focus:outline-2 focus:outline-transparent"
-          placeholder="Search"
+          placeholder="搜索"
           tabindex="0"
         />
       </form>
       <button
         id="close-search-button"
         class="flex items-center justify-center w-8 h-8 text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
-        title="Close (Esc)"
+        title="关闭 (Esc)"
       >
         
 
