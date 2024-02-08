@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Life-abouts on 春江花朝秋月夜</title>
-    <link>/life-about/</link>
-    <description>Recent content in Life-abouts on 春江花朝秋月夜</description>
+    <title>生活 on 春江花朝秋月夜</title>
+    <link>/tags/%E7%94%9F%E6%B4%BB/</link>
+    <description>Recent content in 生活 on 春江花朝秋月夜</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>© 2024 春江花朝秋月夜</copyright>
-    <lastBuildDate>Wed, 15 Nov 2023 18:25:34 +0800</lastBuildDate><atom:link href="/life-about/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 15 Nov 2023 18:25:34 +0800</lastBuildDate><atom:link href="/tags/%E7%94%9F%E6%B4%BB/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>我的生日</title>
       <link>/life-about/birth/</link>
@@ -21,20 +21,6 @@
 朋友送的蛋糕
 在雨中，我途径北校的荷塘。</description>
       <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/life-about/birth/featured.jpg" />
-    </item>
-    
-    <item>
-      <title>没备份笔记的后果</title>
-      <link>/life-about/%E9%9A%8F%E8%AE%B0/</link>
-      <pubDate>Sat, 11 Nov 2023 10:52:20 +0800</pubDate>
-      
-      <guid>/life-about/%E9%9A%8F%E8%AE%B0/</guid>
-      <description>由于之前Vscode误删这个博客的笔记了，现在又要从仓库拉原来的笔记，实在是烦心。
-现在总算知道备份的重要性了。
-开科技也不行，github是真慢啊！！！又要先fetch再push了。。。。
-龟祖宗，好了没啊！！！
-总算好咯</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/life-about/%E9%9A%8F%E8%AE%B0/featured.png" />
     </item>
     
   </channel>
