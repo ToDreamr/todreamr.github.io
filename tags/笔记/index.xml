@@ -7,7 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>© 2024 春江花朝秋月夜</copyright>
-    <lastBuildDate>Wed, 07 Feb 2024 19:22:59 +0800</lastBuildDate><atom:link href="/tags/%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 08 Feb 2024 14:22:59 +0800</lastBuildDate><atom:link href="/tags/%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Docker</title>
+      <link>/docker/</link>
+      <pubDate>Thu, 08 Feb 2024 14:22:59 +0800</pubDate>
+      
+      <guid>/docker/</guid>
+      <description>Docker镜像基本命令 # systemctl stop firewalld systemctl disable firewalld 启动Docker
+systemctl start docker systemctl restart docker docker -v 配置镜像
+sudo mkdir -p /etc/docker sudo tee /etc/docker/daemon.json &amp;lt;&amp;lt;- &amp;#39;EOF&amp;#39; { &amp;#34;registry-mirrors&amp;#34;:[&amp;#34;https://n0dwetq.mirror.aliyuncs.com&amp;#34;] } EOF sudo systemctl daemon-reload sudo systemctl restart docker 镜像操作</description>
+      
+    </item>
+    
     <item>
       <title>Music</title>
       <link>/music/</link>
