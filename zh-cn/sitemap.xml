@@ -19,19 +19,8 @@
     />
   </url>
   <url>
-<<<<<<< HEAD
-    <loc>/entire-note/</loc>
-    <lastmod>2024-02-07T19:22:59+08:00</lastmod>
-    <changefreq>always</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>/music/</loc>
-    <lastmod>2024-02-07T19:22:59+08:00</lastmod>
-=======
     <loc>/docker/</loc>
     <lastmod>2024-02-08T14:22:59+08:00</lastmod>
->>>>>>> edit
     <changefreq>always</changefreq>
     <priority>0.5</priority>
   </url>
@@ -50,12 +39,6 @@
       hreflang="zh-CN"
       href="/tags/"
     />
-  </url>
-  <url>
-    <loc>/entire-note/spring/music/</loc>
-    <lastmod>2024-02-07T19:22:59+08:00</lastmod>
-    <changefreq>always</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>/tags/%E7%AC%94%E8%AE%B0/</loc>
