@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>文档 on 春江花朝秋月夜</title>
+    <link>/tags/%E6%96%87%E6%A1%A3/</link>
+    <description>Recent content in 文档 on 春江花朝秋月夜</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright>© 2024 春江花朝秋月夜</copyright>
+    <lastBuildDate>Thu, 08 Feb 2024 14:22:59 +0800</lastBuildDate><atom:link href="/tags/%E6%96%87%E6%A1%A3/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>学习文档</title>
+      <link>/doc/</link>
+      <pubDate>Thu, 08 Feb 2024 14:22:59 +0800</pubDate>
+      
+      <guid>/doc/</guid>
+      <description> design Docker 8 February 2024&amp;middot;1 分钟 笔记 Music 7 February 2024&amp;middot;1 分钟 笔记 本站Music搭建相关 7 February 2024&amp;middot;1 分钟 笔记 常规面试题 29 January 2024&amp;middot;1 分钟 要求熟记 </description>
+      
+    </item>
+    
+  </channel>
+</rss>

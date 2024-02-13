@@ -1,0 +1,2372 @@
+<!DOCTYPE html>
+<html lang="zh-CN" dir="ltr" class="scroll-smooth" data-default-appearance="light"
+  data-auto-appearance="true"><head>
+
+  <meta charset="utf-8" />
+  
+  <meta http-equiv="content-language" content="zh-CN" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  
+  <title>结构型 &middot; 春江花朝秋月夜</title>
+  <meta name="title" content="结构型 &middot; 春江花朝秋月夜" />
+  
+  <meta name="description" content="A powerful, lightweight theme for Hugo built with Tailwind CSS." />
+  
+  
+  
+  <link rel="canonical" href="/doc/design/%E7%BB%93%E6%9E%84%E5%9E%8B/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%B3%BB%E5%88%97-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%89%E7%BB%93%E6%9E%84%E5%9E%8B/" />
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.b0d4aeb65335611c810957fcff4af94f45bb796b37facd9be6f7287ee03ce57038918ff5d4ac7a6ea77914fde6d3942c0243d3d17f90926c454b4ea3499e973a.css"
+    integrity="sha512-sNSutlM1YRyBCVf8/0r5T0W7eWs3&#43;s2b5vcofuA85XA4kY/11Kx6bqd5FP3m05QsAkPT0X&#43;QkmxFS06jSZ6XOg==" />
+  
+  
+  <script type="text/javascript" src="/js/appearance.min.516a16745bea5a9bd011138d254cc0fd3973cd55ce6e15f3dec763e7c7c2c7448f8fe7b54cca811cb821b0c7e12cd161caace1dd794ac3d34d40937cbcc9ee12.js"
+    integrity="sha512-UWoWdFvqWpvQERONJUzA/TlzzVXObhXz3sdj58fCx0SPj&#43;e1TMqBHLghsMfhLNFhyqzh3XlKw9NNQJN8vMnuEg=="></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script defer type="text/javascript" id="script-bundle" src="/js/main.bundle.min.6c7ae15a14b4f78dc4f6e7f92e5a4e05d69a1eafe594e439255e5f72defe4531e8fda36f83cf9730e27868220649112476686eec9d28c582deaabe019c419dbd.js"
+    integrity="sha512-bHrhWhS0943E9uf5LlpOBdaaHq/llOQ5JV5fct7&#43;RTHo/aNvg8&#43;XMOJ4aCIGSREkdmhu7J0oxYLeqr4BnEGdvQ==" data-copy="" data-copied=""></script>
+  
+  
+  <script src="/js/zoom.min.js"></script>
+  
+  
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="结构型" />
+<meta property="og:description" content="设计模式（结构型） # 结构型设计模式关注如何将现有的类或对象组织在一起形成更加强大的结构。并且根据我们前面学习的合成复用原则，我们该如何尽可能地使用关联关系来代替继承关系是我们本版块需要重点学习的内容。
+类/对象适配器模式 # 在生活中，我们经常遇到这样的一个问题：笔记本太轻薄了，以至于没有RJ45网口和USB A口（比如Macbook为了轻薄甚至全是type-c形式的雷电口）但是现在我们因为工作需要，又得使用这些接口来连接线缆，这时我们想到的第一个解决方案，就是去买一个转接口（扩展坞），扩展坞可以将type-c口转换为其他类型的接口供我们使用，实际上这就是一种适配模式。
+由于我们的电脑没有这些接口，但是提供了type-c类型的接口，虽然接口类型不一样，但是同样可以做其他接口能做的事情，比如USB文件传输、有线网络连接等，所以，这个时候，我们只需要添加一个中间人来帮我们转换一下接口形态即可。包括我们常用的充电头，为什么叫电源适配器呢？我们知道传统的供电是220V交流电，但是我们的手机可能只需要5V的电压进行充电，虽然现在有电，但是不能直接充，我们也不可能让电力公司专门为我们提供一个5V的直流电使用。这时电源适配器就开始发挥作用了，比如苹果的祖传5V1A充电头，实际上就是将220V交流电转换为5V的直流电进行传输，这样就相当于在220V交流电和我们的手机之前，做了一个适配器的角色。
+在我们的Java程序中，也会经常遇到这样的问题，比如：
+public class TestSupplier { //手机供应商 public String doSupply(){ return &#34;iPhone 14 Pro&#34;; } } public class Main { public static void main(String[] args) { TestSupplier supplier = new TestSupplier(); test( ?" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/doc/design/%E7%BB%93%E6%9E%84%E5%9E%8B/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%B3%BB%E5%88%97-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%89%E7%BB%93%E6%9E%84%E5%9E%8B/" /><meta property="article:section" content="doc" />
+
+
+
+
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="结构型"/>
+<meta name="twitter:description" content="设计模式（结构型） # 结构型设计模式关注如何将现有的类或对象组织在一起形成更加强大的结构。并且根据我们前面学习的合成复用原则，我们该如何尽可能地使用关联关系来代替继承关系是我们本版块需要重点学习的内容。
+类/对象适配器模式 # 在生活中，我们经常遇到这样的一个问题：笔记本太轻薄了，以至于没有RJ45网口和USB A口（比如Macbook为了轻薄甚至全是type-c形式的雷电口）但是现在我们因为工作需要，又得使用这些接口来连接线缆，这时我们想到的第一个解决方案，就是去买一个转接口（扩展坞），扩展坞可以将type-c口转换为其他类型的接口供我们使用，实际上这就是一种适配模式。
+由于我们的电脑没有这些接口，但是提供了type-c类型的接口，虽然接口类型不一样，但是同样可以做其他接口能做的事情，比如USB文件传输、有线网络连接等，所以，这个时候，我们只需要添加一个中间人来帮我们转换一下接口形态即可。包括我们常用的充电头，为什么叫电源适配器呢？我们知道传统的供电是220V交流电，但是我们的手机可能只需要5V的电压进行充电，虽然现在有电，但是不能直接充，我们也不可能让电力公司专门为我们提供一个5V的直流电使用。这时电源适配器就开始发挥作用了，比如苹果的祖传5V1A充电头，实际上就是将220V交流电转换为5V的直流电进行传输，这样就相当于在220V交流电和我们的手机之前，做了一个适配器的角色。
+在我们的Java程序中，也会经常遇到这样的问题，比如：
+public class TestSupplier { //手机供应商 public String doSupply(){ return &#34;iPhone 14 Pro&#34;; } } public class Main { public static void main(String[] args) { TestSupplier supplier = new TestSupplier(); test( ?"/>
+
+  
+  <script type="application/ld+json">
+  [{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Docs",
+    "name": "结构型",
+    "headline": "结构型",
+    
+    "abstract": "设计模式（结构型） # 结构型设计模式关注如何将现有的类或对象组织在一起形成更加强大的结构。并且根据我们前面学习的合成复用原则，我们该如何尽可能地使用关联关系来代替继承关系是我们本版块需要重点学习的内容。\n类\/对象适配器模式 # 在生活中，我们经常遇到这样的一个问题：笔记本太轻薄了，以至于没有RJ45网口和USB A口（比如Macbook为了轻薄甚至全是type-c形式的雷电口）但是现在我们因为工作需要，又得使用这些接口来连接线缆，这时我们想到的第一个解决方案，就是去买一个转接口（扩展坞），扩展坞可以将type-c口转换为其他类型的接口供我们使用，实际上这就是一种适配模式。\n由于我们的电脑没有这些接口，但是提供了type-c类型的接口，虽然接口类型不一样，但是同样可以做其他接口能做的事情，比如USB文件传输、有线网络连接等，所以，这个时候，我们只需要添加一个中间人来帮我们转换一下接口形态即可。包括我们常用的充电头，为什么叫电源适配器呢？我们知道传统的供电是220V交流电，但是我们的手机可能只需要5V的电压进行充电，虽然现在有电，但是不能直接充，我们也不可能让电力公司专门为我们提供一个5V的直流电使用。这时电源适配器就开始发挥作用了，比如苹果的祖传5V1A充电头，实际上就是将220V交流电转换为5V的直流电进行传输，这样就相当于在220V交流电和我们的手机之前，做了一个适配器的角色。\n在我们的Java程序中，也会经常遇到这样的问题，比如：\npublic class TestSupplier { \/\/手机供应商 public String doSupply(){ return \u0026#34;iPhone 14 Pro\u0026#34;; } } public class Main { public static void main(String[] args) { TestSupplier supplier = new TestSupplier(); test( ?",
+    "inLanguage": "zh-CN",
+    "url" : "\/doc\/design\/%E7%BB%93%E6%9E%84%E5%9E%8B\/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%B3%BB%E5%88%97-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%89%E7%BB%93%E6%9E%84%E5%9E%8B\/",
+    "author" : {
+      "@type": "Person",
+      "name": "春江花朝秋月夜"
+    },
+    
+    
+    
+    
+    
+    
+    
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "998"
+  }]
+  </script>
+
+
+  
+  
+  <meta name="author" content="春江花朝秋月夜" />
+  
+  
+  
+  <link href="https://space.bilibili.com/159283119?spm_id_from=333.1007.0.0" rel="me" />
+  
+  
+  <link href="https://github.com/ToDreamr" rel="me" />
+  
+  
+  <link href="https://music.163.com/#/user/home?id=568083850" rel="me" />
+  
+  
+  <link href="https://gitee.com/rainyheights" rel="me" />
+  
+  
+  <link href="https://www.zhihu.com/people/san-qiu-luo-yue" rel="me" />
+  
+  
+  
+  
+
+<script src="/lib/jquery/jquery.slim.min.js" integrity=""></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PEDMYR1V0K"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PEDMYR1V0K');
+</script>
+
+
+  
+  
+  <meta name="theme-color"/>
+
+  
+  
+</head>
+<body
+  class="flex flex-col h-screen px-6 m-auto text-lg leading-7 max-w-7xl bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32">
+  <div id="the-top" class="absolute flex self-center">
+    <a class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 focus:translate-y-0 dark:bg-neutral-600"
+      href="#main-content"><span
+        class="font-bold text-primary-600 ltr:pr-2 rtl:pl-2 dark:text-primary-400">&darr;</span>跳到文章开头</a>
+  </div>
+  
+  
+  <div class="min-h-[148px]"></div>
+<div class="fixed inset-x-0 pl-[24px] pr-[24px]" style="z-index:100">
+  <div id="menu-blur" class="absolute opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl shadow-2xl"></div>
+  <div class="relative max-w-[64rem] ml-auto mr-auto">
+    <div style="padding-left:0;padding-right:0;padding-top:2px;padding-bottom:3px ;height: 70px;font-family: 华文中宋,serif"
+     class="main-menu flex items-center justify-between px-4 py-6 sm:px-6 md:justify-start space-x-3" >
+  
+  
+  
+  <div>
+    <a href="/" class="flex">
+    <span class="sr-only">春江花朝秋月夜</span>
+
+    <img src="/img/author.png" width="16" height="16"
+         class="logo max-h-[5rem] max-w-[5rem] object-scale-down object-left nozoom" alt="春江花朝秋月夜" />
+
+    </a>
+  </div>
+  
+
+  <div class="flex flex-1 items-center justify-between">
+
+    <nav class="flex space-x-3">
+
+      
+      <a href="/" class="text-base font-medium text-gray-500 hover:text-gray-900">春江花朝秋月夜</a>
+      
+
+    </nav>
+    <nav class="hidden md:flex items-center space-x-5 md:ml-12 h-12">
+
+      
+      
+      
+  <a href="/"  class="flex items-center">
+    
+    <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="">
+        首页
+    </p>
+</a>
+
+
+      
+      
+  <a href="/%E7%AC%94%E8%AE%B0/"  class="flex items-center">
+    
+    <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="如何通过hugo搭建自己的博客">
+        笔记
+    </p>
+</a>
+
+
+      
+      
+  <a href="/tasks/"  class="flex items-center">
+    
+    <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="学习计划">
+        事项
+    </p>
+</a>
+
+
+      
+      
+  <a href="/all/"  class="flex items-center">
+    
+    <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="全部">
+        全部
+    </p>
+</a>
+
+
+      
+      
+  <a href="/tags/"  class="flex items-center">
+    
+    <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="Tags">
+        系列文章
+    </p>
+</a>
+
+
+      
+      
+  <a href="/friend/"  class="flex items-center">
+    
+    <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="friend">
+        友链
+    </p>
+</a>
+
+
+      
+      
+  <a href="/doc/"  class="flex items-center">
+    
+    <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="Docs">
+        文档
+    </p>
+</a>
+
+
+      
+      
+
+      
+
+
+      
+      <button id="search-button" aria-label="Search" class="text-base hover:text-primary-600 dark:hover:text-primary-400 h-12"
+              title="">
+      
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+      </button>
+
+      
+
+
+      
+      
+      <div
+              class="ltr:mr-14 rtl:ml-14 cursor-pointer text-sm text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400">
+        <button id="appearance-switcher" aria-label="Dark mode switcher" type="button">
+          <div class="flex items-center justify-center h-12 dark:hidden">
+            
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+
+  </span>
+
+
+          </div>
+          <div class="items-center justify-center hidden h-12 dark:flex">
+            
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+
+  </span>
+
+
+          </div>
+        </button>
+
+      </div>
+      
+
+    </nav>
+    <div class="flex md:hidden items-center space-x-5 md:ml-12">
+
+      <span></span>
+
+      
+
+
+      
+      <button id="search-button-mobile" aria-label="Search" class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+              title="">
+      
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+      </button>
+      
+
+      
+      
+      <button id="appearance-switcher-mobile" aria-label="Dark mode switcher" type="button" style="margin-right:5px">
+        <div class="flex items-center justify-center h-12 dark:hidden">
+          
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+
+  </span>
+
+
+        </div>
+        <div class="items-center justify-center hidden h-12 dark:flex">
+          
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+
+  </span>
+
+
+        </div>
+      </button>
+      
+
+    </div>
+
+  </div>
+  <div class="-my-2 -mr-2 md:hidden">
+
+    <label id="menu-button" for="menu-controller" class="block">
+      <input type="checkbox" id="menu-controller" class="hidden" />
+      
+      <div class="cursor-pointer hover:text-primary-600 dark:hover:text-primary-400">
+        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 96C0 78.33 14.33 64 32 64H416C433.7 64 448 78.33 448 96C448 113.7 433.7 128 416 128H32C14.33 128 0 113.7 0 96zM0 256C0 238.3 14.33 224 32 224H416C433.7 224 448 238.3 448 256C448 273.7 433.7 288 416 288H32C14.33 288 0 273.7 0 256zM416 448H32C14.33 448 0 433.7 0 416C0 398.3 14.33 384 32 384H416C433.7 384 448 398.3 448 416C448 433.7 433.7 448 416 448z"/></svg>
+
+  </span>
+
+
+      </div>
+      <div id="menu-wrapper" style="padding-top:5px;"
+           class="fixed inset-0 z-30 invisible w-screen h-screen m-0 overflow-auto transition-opacity opacity-0 cursor-default bg-neutral-100/50 backdrop-blur-sm dark:bg-neutral-900/50">
+        <ul
+                class="flex space-y-2 mt-3 flex-col items-end w-full px-6 py-6 mx-auto overflow-visible list-none ltr:text-right rtl:text-left max-w-7xl">
+
+          <li>
+                        <span
+                                class="cursor-pointer inline-block align-text-bottom hover:text-primary-600 dark:hover:text-primary-400">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+  </span>
+
+</span>
+          </li>
+
+          
+
+          
+  <li class="mt-1">
+    <a href="/"  class="flex items-center">
+        
+        <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="">
+            首页
+        </p>
+    </a>
+</li>
+
+
+
+          
+
+          
+  <li class="mt-1">
+    <a href="/%E7%AC%94%E8%AE%B0/"  class="flex items-center">
+        
+        <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="如何通过hugo搭建自己的博客">
+            笔记
+        </p>
+    </a>
+</li>
+
+
+
+          
+
+          
+  <li class="mt-1">
+    <a href="/tasks/"  class="flex items-center">
+        
+        <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="学习计划">
+            事项
+        </p>
+    </a>
+</li>
+
+
+
+          
+
+          
+  <li class="mt-1">
+    <a href="/all/"  class="flex items-center">
+        
+        <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="全部">
+            全部
+        </p>
+    </a>
+</li>
+
+
+
+          
+
+          
+  <li class="mt-1">
+    <a href="/tags/"  class="flex items-center">
+        
+        <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="Tags">
+            系列文章
+        </p>
+    </a>
+</li>
+
+
+
+          
+
+          
+  <li class="mt-1">
+    <a href="/friend/"  class="flex items-center">
+        
+        <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="friend">
+            友链
+        </p>
+    </a>
+</li>
+
+
+
+          
+
+          
+  <li class="mt-1">
+    <a href="/doc/"  class="flex items-center">
+        
+        <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="Docs">
+            文档
+        </p>
+    </a>
+</li>
+
+
+
+          
+
+        </ul>
+        
+        
+
+      </div>
+    </label>
+  </div>
+
+  <div>
+    <iframe id="music" style="align-content: center;align-items: center" frameborder="no" border="0" marginwidth="0"
+            marginheight="0" width=200 height=86
+            src="//music.163.com/outchain/player?type=2&id=447925058&auto=1&height=66"></iframe>
+  </div>
+  <button class="change-music" onclick="getMusicList()">下一曲</button>
+  
+</div>
+<style>
+  .change-music{
+    margin-top: 20px;
+    width: 8%;
+    height: 50%;
+    font-family: 华文中宋,serif;
+     
+     
+     
+  }
+</style>
+<script>
+  
+  var MusicLists=[];
+  var musicUrl="";
+  function getMusicList()
+  {
+    
+    MusicLists.push
+    (29567192,1974443814,447926067,447925058,1974444808,
+            1974444807,29567187
+    );
+    var musicIndex=Math.floor(Math.random()*MusicLists.length+1);
+    console.log(musicIndex);
+    
+    musicUrl="https://music.163.com/outchain/player?type=2&id="+MusicLists[musicIndex]+"&auto=1&height=66";
+    var frame=document.getElementById("music");
+    var player=document.getElementsByName('player');
+    console.log(player);
+    frame.src=musicUrl;
+  }
+</script>
+
+
+
+
+<script>
+  (function () {
+    var $mainmenu = $('.main-menu');
+    var path = window.location.pathname;
+    $mainmenu.find('a[href="' + path + '"]').each(function (i, e) {
+      $(e).children('p').addClass('active');
+    });
+  })();
+</script>
+
+
+  </div>
+</div>
+<script>
+  window.addEventListener('scroll', function (e) {
+    var scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    var background_blur = document.getElementById('menu-blur');
+    background_blur.style.opacity = (scroll / 300);
+  });
+</script>
+
+  
+  <div class="relative flex flex-col grow">
+    <main id="main-content" class="grow">
+      
+
+
+<article>
+  
+  
+  
+  
+  
+  
+
+
+<div id="hero" class="h-[150px] md:h-[200px]"></div>
+
+
+    
+    <div class="fixed inset-x-0 top-0 h-[800px] single_hero_background nozoom"
+    style="background-image:url(/img/annimation/1677508154920_hu7abcaa5e0ae44b563635c1e97a6d7c3c_740393_1200x0_resize_q75_box.jpeg);">
+    
+
+
+    <div class="absolute inset-0 bg-gradient-to-t from-neutral dark:from-neutral-800 to-transparent mix-blend-normal">
+    </div>
+    <div
+        class="absolute inset-0 opacity-60 bg-gradient-to-t from-neutral dark:from-neutral-800 to-neutral-100 dark:to-neutral-800 mix-blend-normal">
+    </div>
+</div>
+
+<div id="background-blur" class="fixed opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl"></div>
+<script>
+    window.addEventListener('scroll', function (e) {
+        var scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        var background_blur = document.getElementById('background-blur');
+        background_blur.style.opacity = (scroll / 300)
+    });
+</script>
+
+  
+  
+
+  <header id="single_header" class="mt-5 max-w-prose">
+    
+    <ol class="text-sm text-neutral-500 dark:text-neutral-400 print:hidden">
+  
+  
+    
+  
+    
+  
+  <li class="inline hidden">
+    <a
+      class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
+      href="/"
+      ></a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+  
+  <li class="inline ">
+    <a
+      class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
+      href="/doc/"
+      >Docs</a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+  
+  <li class="inline hidden">
+    <a
+      class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
+      href="/doc/design/%E7%BB%93%E6%9E%84%E5%9E%8B/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%B3%BB%E5%88%97-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%89%E7%BB%93%E6%9E%84%E5%9E%8B/"
+      >结构型</a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+</ol>
+
+
+    
+    <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral" style="font-family: 华文中宋,serif">
+      结构型
+    </h1>
+    <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+      
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="0001-01-01 00:00:00 &#43;0000 UTC">1 January 0001</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">5 分钟</span>
+  
+
+  
+  
+</div>
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+
+
+
+    </div>
+
+    
+    
+    
+    
+    
+
+    
+    
+    
+<div class="flex author">
+  
+  
+  
+  
+  
+  
+  <img class="!mt-0 !mb-0 h-24 w-24 rounded-full ltr:mr-4 rtl:ml-4" width="96" height="96"
+    alt="春江花朝秋月夜" src="/img/default_hud65e42c374bcd9580abb2944fca98866_909698_192x192_fill_box_center_3.png" />
+  
+  
+  <div class="place-self-center">
+    
+    <div class="text-[0.6rem] uppercase leading-3 text-neutral-500 dark:text-neutral-400">
+      作者
+    </div>
+    <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
+      春江花朝秋月夜
+    </div>
+    
+    
+    <div class="text-sm text-neutral-700 dark:text-neutral-400">重湖叠𪩘清嘉。有三秋桂子，十里荷花。羌管弄晴，菱歌泛夜，嬉嬉钓叟莲娃。千骑拥高牙。乘醉听箫鼓，吟赏烟霞。异日图将好景，归去凤池夸。</div>
+    
+    <div class="text-2xl sm:text-lg">
+  <div class="flex flex-wrap text-neutral-400 dark:text-neutral-500">
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://space.bilibili.com/159283119?spm_id_from=333.1007.0.0"
+          target="_blank"
+          aria-label="Bilibili"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1699377062375" class="icon" viewBox="0 0 1129 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4167" xmlns:xlink="http://www.w3.org/1999/xlink" width="220.5078125" height="200"><path d="M234.909 9.656a80.468 80.468 0 0 1 68.398 0 167.374 167.374 0 0 1 41.843 30.578l160.937 140.82h115.07l160.936-140.82a168.983 168.983 0 0 1 41.843-30.578A80.468 80.468 0 0 1 930.96 76.445a80.468 80.468 0 0 1-17.703 53.914 449.818 449.818 0 0 1-35.406 32.187 232.553 232.553 0 0 1-22.531 18.508h100.585a170.593 170.593 0 0 1 118.289 53.109 171.397 171.397 0 0 1 53.914 118.288v462.693a325.897 325.897 0 0 1-4.024 70.007 178.64 178.64 0 0 1-80.468 112.656 173.007 173.007 0 0 1-92.539 25.75h-738.7a341.186 341.186 0 0 1-72.421-4.024A177.835 177.835 0 0 1 28.91 939.065a172.202 172.202 0 0 1-27.36-92.539V388.662a360.498 360.498 0 0 1 0-66.789A177.03 177.03 0 0 1 162.487 178.64h105.414c-16.899-12.07-31.383-26.555-46.672-39.43a80.468 80.468 0 0 1-25.75-65.984 80.468 80.468 0 0 1 39.43-63.57M216.4 321.873a80.468 80.468 0 0 0-63.57 57.937 108.632 108.632 0 0 0 0 30.578v380.615a80.468 80.468 0 0 0 55.523 80.469 106.218 106.218 0 0 0 34.601 5.632h654.208a80.468 80.468 0 0 0 76.444-47.476 112.656 112.656 0 0 0 8.047-53.109v-354.06a135.187 135.187 0 0 0 0-38.625 80.468 80.468 0 0 0-52.304-54.719 129.554 129.554 0 0 0-49.89-7.242H254.22a268.764 268.764 0 0 0-37.82 0z m0 0" fill="#20B0E3" p-id="4168"></path><path d="M348.369 447.404a80.468 80.468 0 0 1 55.523 18.507 80.468 80.468 0 0 1 28.164 59.547v80.468a80.468 80.468 0 0 1-16.094 51.5 80.468 80.468 0 0 1-131.968-9.656 104.609 104.609 0 0 1-10.46-54.719v-80.468a80.468 80.468 0 0 1 70.007-67.593z m416.02 0a80.468 80.468 0 0 1 86.102 75.64v80.468a94.148 94.148 0 0 1-12.07 53.11 80.468 80.468 0 0 1-132.773 0 95.757 95.757 0 0 1-12.875-57.133V519.02a80.468 80.468 0 0 1 70.007-70.812z m0 0" fill="#20B0E3" p-id="4169"></path></svg>
+  </span>
+
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://github.com/ToDreamr"
+          target="_blank"
+          aria-label="Github"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+
+  </span>
+
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://music.163.com/#/user/home?id=568083850"
+          target="_blank"
+          aria-label="Wangyi"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1707154946293" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2586" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><path d="M0 0m184.32 0l655.36 0q184.32 0 184.32 184.32l0 655.36q0 184.32-184.32 184.32l-655.36 0q-184.32 0-184.32-184.32l0-655.36q0-184.32 184.32-184.32Z" fill="#EA3E3C" p-id="2587"></path><path d="M527.616 849.43872a373.6064 373.6064 0 0 1-162.54976-39.00416c-112.36352-55.16288-180.00896-176.29184-172.55424-308.67456 7.41376-130.34496 85.10464-237.4656 202.752-279.552a35.85024 35.85024 0 0 1 24.15616 67.51232c-107.66336 38.49216-150.81472 136.86784-155.29984 216.13568-5.86752 103.51616 46.08 197.79584 132.34176 240.13824 124.69248 60.30336 216.91392 22.35392 260.82304-5.64224 59.8016-38.16448 97.86368-100.01408 96.95232-157.55264-1.024-63.72352-24.064-120.99584-63.27296-157.14304a145.408 145.408 0 0 0-65.5872-35.28704q2.82624 9.76896 5.64224 19.32288c13.38368 45.63968 24.94464 85.05344 25.6 114.40128a134.26688 134.26688 0 0 1-37.69344 97.76128 139.1104 139.1104 0 0 1-100.6592 40.45824 140.10368 140.10368 0 0 1-100.47488-42.24 169.12384 169.12384 0 0 1-46.2848-122.76736c1.19808-85.12512 80.11776-153.28256 162.816-175.104a324.80256 324.80256 0 0 1-6.71744-67.05152 92.0576 92.0576 0 0 1 69.18144-91.81184c46.21312-12.53376 104.448 5.19168 124.66176 37.888a35.84 35.84 0 0 1-11.70432 49.31584 35.84 35.84 0 0 1-49.26464-11.65312 62.34112 62.34112 0 0 0-48.45568-5.21216c-4.32128 1.71008-12.35968 4.90496-12.76928 23.10144a270.87872 270.87872 0 0 0 6.73792 58.51136 217.4976 217.4976 0 0 1 133.56032 57.6512c53.57568 49.38752 85.0432 125.46048 86.35392 208.71168 1.29024 81.85856-49.7664 167.86432-130.048 219.136a310.14912 310.14912 0 0 1-168.2432 48.65024z m23.6544-457.55392c-56.77056 15.6672-107.4688 63.03744-108.07296 106.42432a98.304 98.304 0 0 0 25.6512 71.43424 68.0448 68.0448 0 0 0 49.36704 20.87936 67.24608 67.24608 0 0 0 49.44896-18.944 63.19104 63.19104 0 0 0 17.23392-46.08c-0.4096-19.79392-11.7248-58.368-22.67136-95.6928-3.61472-12.42112-7.35232-25.14944-10.9568-38.02112z" fill="#FFFFFF" p-id="2588"></path></svg>
+  </span>
+
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://gitee.com/rainyheights"
+          target="_blank"
+          aria-label="Gitee"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1707288792446" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="6333" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><path d="M512 1024C230.4 1024 0 793.6 0 512S230.4 0 512 0s512 230.4 512 512-230.4 512-512 512z m259.2-569.6H480c-12.8 0-25.6 12.8-25.6 25.6v64c0 12.8 12.8 25.6 25.6 25.6h176c12.8 0 25.6 12.8 25.6 25.6V608c0 41.6-35.2 76.8-76.8 76.8h-240c-12.8 0-25.6-12.8-25.6-25.6V416c0-41.6 35.2-76.8 76.8-76.8h355.2c12.8 0 25.6-12.8 25.6-25.6v-64c0-12.8-12.8-25.6-25.6-25.6H416c-105.6 0-188.8 86.4-188.8 188.8V768c0 12.8 12.8 25.6 25.6 25.6h374.4c92.8 0 169.6-76.8 169.6-169.6V480c0-12.8-12.8-25.6-25.6-25.6z" fill="#888888" p-id="6334"></path></svg>
+  </span>
+
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://www.zhihu.com/people/san-qiu-luo-yue"
+          target="_blank"
+          aria-label="Zhihu"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1707288662942" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5244" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><path d="M564.7 230.1V803h60l25.2 71.4L756.3 803h131.5V230.1H564.7z m247.7 497h-59.9l-75.1 50.4-17.8-50.4h-18V308.3h170.7v418.8zM526.1 486.9H393.3c2.1-44.9 4.3-104.3 6.6-172.9h130.9l-0.1-8.1c0-0.6-0.2-14.7-2.3-29.1-2.1-15-6.6-34.9-21-34.9H287.8c4.4-20.6 15.7-69.7 29.4-93.8l6.4-11.2-12.9-0.7c-0.8 0-19.6-0.9-41.4 10.6-35.7 19-51.7 56.4-58.7 84.4-18.4 73.1-44.6 123.9-55.7 145.6-3.3 6.4-5.3 10.2-6.2 12.8-1.8 4.9-0.8 9.8 2.8 13 10.5 9.5 38.2-2.9 38.5-3 0.6-0.3 1.3-0.6 2.2-1 13.9-6.3 55.1-25 69.8-84.5h56.7c0.7 32.2 3.1 138.4 2.9 172.9h-141l-2.1 1.5c-23.1 16.9-30.5 63.2-30.8 65.2l-1.4 9.2h167c-12.3 78.3-26.5 113.4-34 127.4-3.7 7-7.3 14-10.7 20.8-21.3 42.2-43.4 85.8-126.3 153.6-3.6 2.8-7 8-4.8 13.7 2.4 6.3 9.3 9.1 24.6 9.1 5.4 0 11.8-0.3 19.4-1 49.9-4.4 100.8-18 135.1-87.6 17-35.1 31.7-71.7 43.9-108.9L497 850l5-12c0.8-1.9 19-46.3 5.1-95.9l-0.5-1.8-108.1-123-22 16.6c6.4-26.1 10.6-49.9 12.5-71.1h158.7v-8c0-40.1-18.5-63.9-19.2-64.9l-2.4-3z" fill="#1296DB" p-id="5245"></path></svg>
+  </span>
+
+</span></a
+        >
+      
+    
+  </div>
+
+</div>
+  </div>
+</div>
+    
+
+    
+
+    
+
+    
+    <div class="mb-5"></div>
+    
+
+  </header>
+
+  <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row" style="font-family: 华文中宋,serif">
+
+    
+    <div style="width: 28%" class="order-first lg:ml-auto px-0 lg:order-last ltr:lg:pl-8 rtl:lg:pr-8">
+    <div class="toc ltr:pl-5 rtl:pr-5 print:hidden lg:sticky lg:top-[140px]">
+
+     <details open class="toc-right mt-0 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 hidden lg:block">
+  <summary
+    class="block py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    
+  </summary>
+  <div
+    class="min-w-[220px] py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#设计模式结构型">设计模式（结构型）</a>
+      <ul>
+        <li><a href="#类对象适配器模式">类/对象适配器模式</a></li>
+        <li><a href="#桥接模式">桥接模式</a></li>
+        <li><a href="#组合模式">组合模式</a></li>
+        <li><a href="#装饰模式">装饰模式</a></li>
+        <li><a href="#代理模式">代理模式</a></li>
+        <li><a href="#外观模式">外观模式</a></li>
+        <li><a href="#享元模式">享元模式</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</details>
+<details class="toc-inside mt-0 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 lg:hidden">
+  <summary
+    class="py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    
+  </summary>
+  <div
+    class="py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#设计模式结构型">设计模式（结构型）</a>
+      <ul>
+        <li><a href="#类对象适配器模式">类/对象适配器模式</a></li>
+        <li><a href="#桥接模式">桥接模式</a></li>
+        <li><a href="#组合模式">组合模式</a></li>
+        <li><a href="#装饰模式">装饰模式</a></li>
+        <li><a href="#代理模式">代理模式</a></li>
+        <li><a href="#外观模式">外观模式</a></li>
+        <li><a href="#享元模式">享元模式</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</details>
+
+ 
+<script>
+  (function () {
+    var $toc = $('#TableOfContents');
+    if ($toc.length > 0) {
+      var $window = $(window);
+
+      function onScroll() {
+        var currentScroll = $window.scrollTop();
+        var h = $('.anchor');
+        var id = "";
+        h.each(function (i, e) {
+          e = $(e);
+          if (e.offset().top - $(window).height()/3 <= currentScroll) {
+            id = e.attr('id');
+          }
+        });
+        var active = $toc.find('a.active');      
+        if (active.length == 1 && active.eq(0).attr('href') == '#' + id) return true;
+
+        active.each(function (i, e) {
+          
+            $(e).removeClass('active');
+          
+        });
+        $toc.find('a[href="#' + id + '"]').addClass('active')
+        $toc.find('a[href="#' + id + '"]').parentsUntil('#TableOfContents').each(function (i, e) {
+          $(e).children('a').parents('ul').show();          
+        });
+      }
+
+      $window.on('scroll', onScroll);
+      $(document).ready(function () {
+        
+        onScroll();
+      });
+    }
+  })();
+</script>
+  
+    </div>
+    </div>
+    
+
+
+    <div class="min-w-0 min-h-0 max-w-fit" style="width: 100%">
+      
+<details style="margin-left:0px" class="mt-2 mb-5 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5"  open >
+    <summary
+        class="py-1 text-lg font-semibold cursor-pointer bg-primary-200 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-primary-800 dark:text-neutral-100">
+        设计模式 - 这是系列文章之一.
+    </summary>
+    
+    
+    
+    
+    <div
+        class="py-1 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+        <a href="/doc/design/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%B3%BB%E5%88%97-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%80%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/">
+            部分 1: 面向对象设计原则
+        </a>
+    </div>
+    
+    
+    
+    <div
+        class="py-1 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+        <a href="/doc/design/%E5%88%9B%E5%BB%BA%E5%9E%8B/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%B3%BB%E5%88%97-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%BA%8C%E5%88%9B%E5%BB%BA%E5%9E%8B/">
+            部分 2: 创建型
+        </a>
+    </div>
+    
+    
+    
+    <div
+        class="py-1 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+        部分 3: 本文
+    </div>
+    
+    
+    
+    <div
+        class="py-1 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+        <a href="/doc/design/%E8%A1%8C%E4%B8%BA%E5%9E%8B/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%B3%BB%E5%88%97-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%9B%9B%E8%A1%8C%E4%B8%BA%E5%9E%8B/">
+            部分 4: 行为型
+        </a>
+    </div>
+    
+    
+
+</details>
+
+
+
+      <div class="article-content max-w-prose mb-20">
+        <p>
+
+
+
+
+  <figure>
+    <img class="my-0 rounded-md" src="https://s2.loli.net/2023/03/01/zsQt38PgRYnXcjH.png" alt="image-20230301111823966" />
+    
+  </figure>
+
+</p>
+<h1 class="relative group">设计模式（结构型） 
+    <div id="设计模式结构型" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e8%ae%be%e8%ae%a1%e6%a8%a1%e5%bc%8f%e7%bb%93%e6%9e%84%e5%9e%8b" aria-label="锚点">#</a>
+    </span>        
+    
+</h1>
+<p>结构型设计模式关注如何将现有的类或对象组织在一起形成更加强大的结构。并且根据我们前面学习的合成复用原则，我们该如何尽可能地使用关联关系来代替继承关系是我们本版块需要重点学习的内容。</p>
+<h2 class="relative group">类/对象适配器模式 
+    <div id="类对象适配器模式" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e7%b1%bb%e5%af%b9%e8%b1%a1%e9%80%82%e9%85%8d%e5%99%a8%e6%a8%a1%e5%bc%8f" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<p>在生活中，我们经常遇到这样的一个问题：笔记本太轻薄了，以至于没有RJ45网口和USB A口（比如Macbook为了轻薄甚至全是type-c形式的雷电口）但是现在我们因为工作需要，又得使用这些接口来连接线缆，这时我们想到的第一个解决方案，就是去买一个转接口（扩展坞），扩展坞可以将type-c口转换为其他类型的接口供我们使用，实际上这就是一种适配模式。</p>
+<p>
+
+
+
+
+  <figure>
+    <img class="my-0 rounded-md" src="https://s2.loli.net/2023/03/01/5HkWt8fhwIZCxPE.png" alt="image-20230301111837481" />
+    
+  </figure>
+
+</p>
+<p>由于我们的电脑没有这些接口，但是提供了type-c类型的接口，虽然接口类型不一样，但是同样可以做其他接口能做的事情，比如USB文件传输、有线网络连接等，所以，这个时候，我们只需要添加一个中间人来帮我们转换一下接口形态即可。包括我们常用的充电头，为什么叫电源适配器呢？我们知道传统的供电是220V交流电，但是我们的手机可能只需要5V的电压进行充电，虽然现在有电，但是不能直接充，我们也不可能让电力公司专门为我们提供一个5V的直流电使用。这时电源适配器就开始发挥作用了，比如苹果的祖传5V1A充电头，实际上就是将220V交流电转换为5V的直流电进行传输，这样就相当于在220V交流电和我们的手机之前，做了一个适配器的角色。</p>
+<p>在我们的Java程序中，也会经常遇到这样的问题，比如：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestSupplier</span> <span class="o">{</span>   <span class="c1">//手机供应商
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">doSupply</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s">&#34;iPhone 14 Pro&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">TestSupplier</span> <span class="n">supplier</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TestSupplier</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">      	<span class="n">test</span><span class="o">(</span> <span class="o">?</span> <span class="o">);</span>   <span class="c1">//我们没有Target类型的手机供应商，只有其他的，那这里该填个啥
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">test</span><span class="o">(</span><span class="n">Target</span> <span class="n">target</span><span class="o">){</span>   <span class="c1">//现在我们需要调用test方法，但是test方法需要Target类型的手机供应商
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;成功得到：&#34;</span><span class="o">+</span><span class="n">target</span><span class="o">.</span><span class="na">supply</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Target</span> <span class="o">{</span>    <span class="c1">//现在的手机供应商，并不是test方法所需要的那种类型
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="nf">supply</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>这个时候，我们就可以使用适配器模式了，适配器模式分为类适配器和对象适配器，我们首先来看看如何使用类适配器解决这种问题，我们直接创建一个适配器类：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestAdapter</span> <span class="kd">extends</span> <span class="n">TestSupplier</span> <span class="kd">implements</span> <span class="n">Target</span> <span class="o">{</span>  
+</span></span><span class="line"><span class="cl">  <span class="c1">//让我们的适配器继承TestSupplier并且实现Target接口
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">supply</span><span class="o">()</span> <span class="o">{</span>   <span class="c1">//接着实现supply方法，直接使用TestSupplier提供的实现
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">return</span> <span class="kd">super</span><span class="o">.</span><span class="na">doSupply</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>这样，我们就得到了一个Target类型的实现类，并且同时采用的是TestSupplier提供的实现。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">TestAdapter</span> <span class="n">adapter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TestAdapter</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">test</span><span class="o">(</span><span class="n">adapter</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">test</span><span class="o">(</span><span class="n">Target</span> <span class="n">target</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;成功得到：&#34;</span><span class="o">+</span><span class="n">target</span><span class="o">.</span><span class="na">supply</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>不过，这种实现方式需要占用一个继承坑位，如果此时Target不是接口而是抽像类的话，由于Java不支持多继承，那么就无法实现了。同时根据合成复用原则，我们应该更多的通过合成的方式去实现功能，所以我们来看看第二种，也是用的比较多的一种模式，对象适配器：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestAdapter</span> <span class="kd">implements</span> <span class="n">Target</span><span class="o">{</span>   <span class="c1">//现在不再继承TestSupplier，仅实现Target
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="n">TestSupplier</span> <span class="n">supplier</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">TestAdapter</span><span class="o">(</span><span class="n">TestSupplier</span> <span class="n">supplier</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">supplier</span> <span class="o">=</span> <span class="n">supplier</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">supply</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">supplier</span><span class="o">.</span><span class="na">doSupply</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>现在，我们就将对象以组合的形式存放在TestAdapter中，依然是通过存放的对象调用具体实现。</p>
+<h2 class="relative group">桥接模式 
+    <div id="桥接模式" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e6%a1%a5%e6%8e%a5%e6%a8%a1%e5%bc%8f" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<p>相信各位都去奶茶店买过奶茶，在购买奶茶的时候，店员首先会问我们，您需要什么类型的奶茶，比如我们此时点了一杯啵啵芋圆奶茶，接着店员会直接问我们需要大杯、中杯还是小杯，最后还会询问我们需要加什么配料，比如椰果、珍珠等，最后才会给我们制作奶茶。</p>
+<p>
+
+
+
+
+  <figure>
+    <img class="my-0 rounded-md" src="https://s2.loli.net/2023/03/01/ZAjo69kfFUuIJ52.png" alt="image-20230301111852891" />
+    
+  </figure>
+
+</p>
+<p>那么现在让你来设计一下这种模式的Java类，该怎么做呢？首先我们要明确，一杯奶茶除了类型之外，还分大中小杯，甚至可能还分加什么配料，这个时候，如果我们按照接口实现的写法：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Tea</span> <span class="o">{</span>   <span class="c1">//由具体类型的奶茶实现
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">String</span> <span class="nf">getType</span><span class="o">();</span>   <span class="c1">//不同的奶茶返回的类型不同
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Size</span> <span class="o">{</span>   <span class="c1">//分大杯小杯中杯
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">String</span> <span class="nf">getSize</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>比如现在我们创建一个新的类型：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * 大杯芋圆啵啵奶茶
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">LargeKissTea</span> <span class="kd">implements</span> <span class="n">Tea</span><span class="o">,</span> <span class="n">Size</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getSize</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s">&#34;大杯&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getType</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s">&#34;芋圆啵啵奶茶&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>虽然这样设计起来还挺合理的，但是如果现在我们的奶茶品种多起来了，并且每种奶茶都有大中小杯，现在一共有两个维度需要考虑，那么我们岂不是得一个一个去创建这些类？甚至如果还要考虑配料，那么光创建类就得创建不知道多少个了。显然这种设计不太好，我们得换个方式。</p>
+<p>这时，就可以使用我们的桥接模式了，现在我们面临的问题是，维度太多，不可能各种类型各种尺寸的奶茶都去创建一个类，那么我们就还是单独对这些接口进行简单的扩展，单独对不同的维度进行控制，但是如何实现呢？我们不妨将奶茶的类型作为最基本的抽象类，然后对尺寸、配料等属性进行桥接：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">AbstractTea</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="kd">protected</span> <span class="n">Size</span> <span class="n">size</span><span class="o">;</span>   <span class="c1">//尺寸作为桥接属性存放在类中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    
+</span></span><span class="line"><span class="cl">    <span class="kd">protected</span> <span class="nf">AbstractTea</span><span class="o">(</span><span class="n">Size</span> <span class="n">size</span><span class="o">){</span>   <span class="c1">//在构造时需要知道尺寸属性
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">this</span><span class="o">.</span><span class="na">size</span> <span class="o">=</span> <span class="n">size</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">abstract</span> <span class="n">String</span> <span class="nf">getType</span><span class="o">();</span>   <span class="c1">//具体类型依然是由子类决定
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></div><p>不过这个抽象类提供的方法还不全面，仅仅只有Tea的getType方法，我们还需要添加其他维度的方法，所以继续编写一个子类：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">RefinedAbstractTea</span> <span class="kd">extends</span> <span class="n">AbstractTea</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">protected</span> <span class="nf">RefinedAbstractTea</span><span class="o">(</span><span class="n">Size</span> <span class="n">size</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">super</span><span class="o">(</span><span class="n">size</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getSize</span><span class="o">(){</span>   <span class="c1">//添加尺寸维度获取方式
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">return</span> <span class="n">size</span><span class="o">.</span><span class="na">getSize</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>现在我们只需要单独为Size创建子类即可：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Large</span> <span class="kd">implements</span> <span class="n">Size</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getSize</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s">&#34;大杯&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>现在我们如果需要一个大杯的啵啵芋圆奶茶，只需要：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">KissTea</span> <span class="kd">extends</span> <span class="n">RefinedAbstractTea</span><span class="o">{</span>   <span class="c1">//创建一个啵啵芋圆奶茶的子类
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">protected</span> <span class="nf">KissTea</span><span class="o">(</span><span class="n">Size</span> <span class="n">size</span><span class="o">)</span> <span class="o">{</span>   <span class="c1">//在构造时需要指定具体的大小实现
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kd">super</span><span class="o">(</span><span class="n">size</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getType</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s">&#34;啵啵芋圆奶茶&#34;</span><span class="o">;</span>   <span class="c1">//返回奶茶类型
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>现在我们就将两个维度拆开，可以分别进行配置了：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">KissTea</span> <span class="n">tea</span> <span class="o">=</span> <span class="k">new</span> <span class="n">KissTea</span><span class="o">(</span><span class="k">new</span> <span class="n">Large</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">tea</span><span class="o">.</span><span class="na">getType</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">tea</span><span class="o">.</span><span class="na">getSize</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>通过桥接模式，使得抽象和实现可以沿着各自的维度来进行变化，不再是固定的绑定关系。</p>
+<h2 class="relative group">组合模式 
+    <div id="组合模式" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e7%bb%84%e5%90%88%e6%a8%a1%e5%bc%8f" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<p>组合模式实际上就是将多个组件进行组合，让用户可以对它们进行一致性处理。比如我们的文件夹，一个文件夹中可以有很多个子文件夹或是文件：</p>
+<p>
+
+
+
+
+  <figure>
+    <img class="my-0 rounded-md" src="https://s2.loli.net/2023/03/01/MYPyj9edEOmNWwU.png" alt="image-20230301111907078" />
+    
+  </figure>
+
+</p>
+<p>它就像是一个树形结构一样，有分支有叶子，而组合模式则是可以对整个树形结构上的所有节点进行递归处理，比如我们现在希望将所有文件夹中的文件的名称前面都添加一个前缀，那么就可以使用组合模式。</p>
+<p>
+
+
+
+
+  <figure>
+    <img class="my-0 rounded-md" src="https://s2.loli.net/2023/03/01/FzeBOp53ojM4Sui.png" alt="image-20230301111916996" />
+    
+  </figure>
+
+</p>
+<p>组合模式的示例如下，这里我们就用文件和文件夹的例子来讲解：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * 首先创建一个组件抽象，组件可以包含组件，组件有自己的业务方法
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">Component</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">addComponent</span><span class="o">(</span><span class="n">Component</span> <span class="n">component</span><span class="o">);</span>    <span class="c1">//添加子组件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">removeComponent</span><span class="o">(</span><span class="n">Component</span> <span class="n">component</span><span class="o">);</span>   <span class="c1">//删除子组件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="kd">abstract</span> <span class="n">Component</span> <span class="nf">getChild</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">);</span>   <span class="c1">//获取子组件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">test</span><span class="o">();</span>   <span class="c1">//执行对应的业务方法，比如修改文件名称
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></div><p>接着我们来编写两种实现类：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Directory</span> <span class="kd">extends</span> <span class="n">Component</span><span class="o">{</span>   <span class="c1">//目录可以包含多个文件或目录
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="n">List</span><span class="o">&lt;</span><span class="n">Component</span><span class="o">&gt;</span> <span class="n">child</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>   <span class="c1">//这里我们使用List来存放目录中的子组件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">addComponent</span><span class="o">(</span><span class="n">Component</span> <span class="n">component</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">child</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">component</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">removeComponent</span><span class="o">(</span><span class="n">Component</span> <span class="n">component</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">child</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">component</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Component</span> <span class="nf">getChild</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">child</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">index</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">child</span><span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">Component</span><span class="o">::</span><span class="n">test</span><span class="o">);</span>   <span class="c1">//将继续调用所有子组件的test方法执行业务
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">File</span> <span class="kd">extends</span> <span class="n">Component</span><span class="o">{</span>   <span class="c1">//文件就相当于是树叶，无法再继续添加子组件了
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">addComponent</span><span class="o">(</span><span class="n">Component</span> <span class="n">component</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">throw</span> <span class="k">new</span> <span class="n">UnsupportedOperationException</span><span class="o">();</span>   <span class="c1">//不支持这些操作了
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">removeComponent</span><span class="o">(</span><span class="n">Component</span> <span class="n">component</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">throw</span> <span class="k">new</span> <span class="n">UnsupportedOperationException</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Component</span> <span class="nf">getChild</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">throw</span> <span class="k">new</span> <span class="n">UnsupportedOperationException</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;文件名称修改成功！&#34;</span><span class="o">+</span><span class="k">this</span><span class="o">);</span>   <span class="c1">//具体的名称修改操作
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>最后，我们来测试一下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Directory</span> <span class="n">outer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Directory</span><span class="o">();</span>   <span class="c1">//新建一个外层目录
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Directory</span> <span class="n">inner</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Directory</span><span class="o">();</span>   <span class="c1">//新建一个内层目录
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">outer</span><span class="o">.</span><span class="na">addComponent</span><span class="o">(</span><span class="n">inner</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">outer</span><span class="o">.</span><span class="na">addComponent</span><span class="o">(</span><span class="k">new</span> <span class="n">File</span><span class="o">());</span>   <span class="c1">//在内层目录和外层目录都添加点文件，注意别导错包了
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">inner</span><span class="o">.</span><span class="na">addComponent</span><span class="o">(</span><span class="k">new</span> <span class="n">File</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="n">inner</span><span class="o">.</span><span class="na">addComponent</span><span class="o">(</span><span class="k">new</span> <span class="n">File</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="n">outer</span><span class="o">.</span><span class="na">test</span><span class="o">();</span>    <span class="c1">//开始执行文件名称修改操作
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></div><p>可以看到我们对最外层目录进行操作后，会递归向下处理当前目录和子目录中所有的文件。</p>
+<h2 class="relative group">装饰模式 
+    <div id="装饰模式" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e8%a3%85%e9%a5%b0%e6%a8%a1%e5%bc%8f" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<p>装饰模式就像其名字一样，为了对现有的类进行装饰。比如一张相片就一张纸，如果直接贴在墙上，总感觉少了点什么，但是我们给其添加一个好看的相框，就会变得非常对味。装饰模式的核心就在于不改变一个对象本身功能的基础上，给对象添加额外的行为，并且它是通过组合的形式完成的，而不是传统的继承关系。</p>
+<p>比如我们现在有一个普通的功能类：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">Base</span> <span class="o">{</span>   <span class="c1">//顶层抽象类，定义了一个test方法执行业务
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">test</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">BaseImpl</span> <span class="kd">extends</span> <span class="n">Base</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;我是业务方法&#34;</span><span class="o">);</span>   <span class="c1">//具体的业务方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>不过现在的实现类太单调了，我们来添加一点装饰上去：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Decorator</span> <span class="kd">extends</span> <span class="n">Base</span><span class="o">{</span>   <span class="c1">//装饰者需要将装饰目标组合到类中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="kd">protected</span> <span class="n">Base</span> <span class="n">base</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">Decorator</span><span class="o">(</span><span class="n">Base</span> <span class="n">base</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">base</span> <span class="o">=</span> <span class="n">base</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">base</span><span class="o">.</span><span class="na">test</span><span class="o">();</span>    <span class="c1">//这里暂时还是使用目标的原本方法实现
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DecoratorImpl</span> <span class="kd">extends</span> <span class="n">Decorator</span><span class="o">{</span>   <span class="c1">//装饰实现
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">DecoratorImpl</span><span class="o">(</span><span class="n">Base</span> <span class="n">base</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">super</span><span class="o">(</span><span class="n">base</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test</span><span class="o">()</span> <span class="o">{</span>    <span class="c1">//对原本的方法进行装饰，我们可以在前后都去添加额外操作
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;装饰方法：我是操作前逻辑&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">super</span><span class="o">.</span><span class="na">test</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;装饰方法：我是操作后逻辑&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>这样，我们就通过装饰模式对类的功能进行了扩展：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Base</span> <span class="n">base</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BaseImpl</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Decorator</span> <span class="n">decorator</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DecoratorImpl</span><span class="o">(</span><span class="n">base</span><span class="o">);</span>  <span class="c1">//将Base实现装饰一下
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Decorator</span> <span class="n">outer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DecoratorImpl</span><span class="o">(</span><span class="n">decorator</span><span class="o">);</span>  <span class="c1">//装饰者还可以嵌套
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="n">decorator</span><span class="o">.</span><span class="na">test</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">outer</span><span class="o">.</span><span class="na">test</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>这样我们就实现了装饰模式。</p>
+<h2 class="relative group">代理模式 
+    <div id="代理模式" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e4%bb%a3%e7%90%86%e6%a8%a1%e5%bc%8f" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<p>代理模式和装饰模式很像，初学者很容易搞混，所以这里我们得紧接着来讲解一下。首先请记住，当无法直接访问某个对象或访问某个对象存在困难时，我们就可以通过一个代理对象来间接访问。</p>
+<p>实际上代理在我们生活中处处都存在，比如手机厂商要去销售手机，但是手机厂商本身没有什么渠道可以大规模地进行售卖，很难与这些消费者进行对接，这时就得交给代理商去进行出售，比如Apple在中国的直营店很少，但是在中国的授权经销商却很多，手机厂商通过交给旗下代理商的形式来进行更大规模的出售。比如我们经常要访问Github，但是直接连接会发现很难连的上，这时我们加了一个代理就可以轻松访问，也是在体现代理的作用。</p>
+<p>
+
+
+
+
+  <figure>
+    <img class="my-0 rounded-md" src="https://s2.loli.net/2023/03/01/4yRZix1FfvaYboj.png" alt="image-20230301111934493" />
+    
+  </figure>
+
+</p>
+<p>同时，代理类需要保证客户端使用的透明性，也就是说操作起来需要与原本的真实对象相同，比如我们访问Github只需要输入网址即可访问，而添加代理之后，也是使用同样的方式去访问Github，所以操作起来是一样的。包括Spring框架其实也是依靠代理模式去实现的AOP记录日志等。</p>
+<p>比如现在有一个目标类，但是我们现在需要通过代理来使用它：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">Subject</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">test</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SubjectImpl</span> <span class="kd">extends</span> <span class="n">Subject</span><span class="o">{</span>  <span class="c1">//此类无法直接使用，需要我们进行代理
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;我是测试方法！&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>现在我们为其建立一个代理类：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Proxy</span> <span class="kd">extends</span> <span class="n">Subject</span><span class="o">{</span>   <span class="c1">//为了保证和Subject操作方式一样，保证透明性，也得继承
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="n">Subject</span> <span class="n">target</span><span class="o">;</span>   <span class="c1">//被代理的对象（甚至可以多重代理）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">Proxy</span><span class="o">(</span><span class="n">Subject</span> <span class="n">subject</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">target</span> <span class="o">=</span> <span class="n">subject</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test</span><span class="o">()</span> <span class="o">{</span>   <span class="c1">//由代理去执行被代理对象的方法，并且我们还可以在前后添油加醋
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;代理前绕方法&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">target</span><span class="o">.</span><span class="na">test</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;代理后绕方法&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>乍一看，这不跟之前的装饰模式一模一样吗？</p>
+<p>对装饰器模式来说，装饰者和被装饰者都实现同一个接口/抽象类。对代理模式来说，代理类和被代理的类都实现同一个接口/抽象类，在结构上确实没有啥区别。但是他们的作用不同，装饰器模式强调的是增强自身，在被装饰之后你能够在被增强的类上使用增强后的功能，增强后你还是你，只不过被强化了而已；代理模式强调要让别人帮你去做事情，以及添加一些本身与你业务没有太多关系的事情（记录日志、设置缓存等）重点在于让别人帮你做。</p>
+<p>装饰模式和代理模式的不同之处在于思想。</p>
+<p>当然实现代理模式除了我们上面所说的这种方式之外，我们还可以使用JDK为我们提供的动态代理机制，我们不再需要手动编写继承关系创建代理类，它能够在运行时通过反射机制为我们自动生成代理类：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Subject</span> <span class="o">{</span>  <span class="c1">//JDK提供的动态代理只支持接口
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">void</span> <span class="nf">test</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SubjectImpl</span> <span class="kd">implements</span> <span class="n">Subject</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;我是测试方法！&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>接着我们需要创建一个动态代理的处理逻辑：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestProxy</span> <span class="kd">implements</span> <span class="n">InvocationHandler</span> <span class="o">{</span>    <span class="c1">//代理类，需要实现InvocationHandler接口
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="n">Object</span> <span class="n">object</span><span class="o">;</span>   <span class="c1">//这里需要保存一下被代理的对象，下面需要用到
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">TestProxy</span><span class="o">(</span><span class="n">Object</span> <span class="n">object</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">object</span> <span class="o">=</span> <span class="n">object</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>   <span class="c1">//此方法就是调用代理对象的对应方法时会进入，这里我们就需要编写如何进行代理了
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="n">Object</span> <span class="nf">invoke</span><span class="o">(</span><span class="n">Object</span> <span class="n">proxy</span><span class="o">,</span> <span class="n">Method</span> <span class="n">method</span><span class="o">,</span> <span class="n">Object</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Throwable</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">     		<span class="c1">//method就是调用的代理对象的哪一个方法，args是实参数组
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;代理的对象：&#34;</span><span class="o">+</span><span class="n">proxy</span><span class="o">.</span><span class="na">getClass</span><span class="o">());</span>   <span class="c1">//proxy就是生成的代理对象了，我们看看是什么类型的
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">Object</span> <span class="n">res</span> <span class="o">=</span> <span class="n">method</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">object</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>   <span class="c1">//在代理中调用被代理对象原本的方法，因为你是代理，还是得执行一下别人的业务，当然也可以不执行，但是这样就失去代理的意义了，注意要用上面的object
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;方法调用完成，返回值为：&#34;</span><span class="o">+</span><span class="n">res</span><span class="o">);</span>   <span class="c1">//看看返回值是什么
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">return</span> <span class="n">res</span><span class="o">;</span>   <span class="c1">//返回返回值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>最后我们来看看如何创建一个代理类：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">SubjectImpl</span> <span class="n">subject</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SubjectImpl</span><span class="o">();</span>   <span class="c1">//被代理的大冤种
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">InvocationHandler</span> <span class="n">handler</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TestProxy</span><span class="o">(</span><span class="n">subject</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Subject</span> <span class="n">proxy</span> <span class="o">=</span> <span class="o">(</span><span class="n">Subject</span><span class="o">)</span> <span class="n">Proxy</span><span class="o">.</span><span class="na">newProxyInstance</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">            <span class="n">subject</span><span class="o">.</span><span class="na">getClass</span><span class="o">().</span><span class="na">getClassLoader</span><span class="o">(),</span>    <span class="c1">//需要传入被代理的类的类加载器
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">subject</span><span class="o">.</span><span class="na">getClass</span><span class="o">().</span><span class="na">getInterfaces</span><span class="o">(),</span>    <span class="c1">//需要传入被代理的类的接口列表
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">handler</span><span class="o">);</span>    <span class="c1">//最后传入我们实现的代理处理逻辑实现类
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">proxy</span><span class="o">.</span><span class="na">test</span><span class="o">();</span>    <span class="c1">//比如现在我们调用代理类的test方法，那么就会进入到我们上面TestProxy中invoke方法，走我们的代理逻辑
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></div><p>运行一次，可以看到调用代理类的方法，最终会走到我们的invoke方法中进行：</p>
+<p>
+
+
+
+
+  <figure>
+    <img class="my-0 rounded-md" src="https://s2.loli.net/2023/03/01/RipPFu3Q6Y5Idel.png" alt="image-20230301112001604" />
+    
+  </figure>
+
+</p>
+<p>根据接口，代理对象是<code>com.sun.proxy.$Proxy0</code>类（看名字就知道不对劲），这个类是动态生成的，我们也找不到具体的源代码。</p>
+<p>不过JDK提供的动态代理只能使用接口，如果换成我们一开始的抽象类，就没办法了，这时我们可以使用一些第三方框架来实现更多方式的动态代理，比如Spring都在使用的CGLib框架，Maven依赖如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;groupId&gt;</span>cglib<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;artifactId&gt;</span>cglib<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;version&gt;</span>3.1<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/dependency&gt;</span>
+</span></span></code></pre></div><p>由于CGlib底层使用ASM框架（JVM篇视频教程有介绍）进行字节码编辑，所以能够实现不仅仅局限于对接口的代理：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestProxy</span> <span class="kd">implements</span> <span class="n">MethodInterceptor</span> <span class="o">{</span>  <span class="c1">//首先还是编写我们的代理逻辑
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="n">Object</span> <span class="n">target</span><span class="o">;</span>   <span class="c1">//这些和之前JDK动态代理写法是一样的
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">TestProxy</span><span class="o">(</span><span class="n">Object</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">target</span> <span class="o">=</span> <span class="n">target</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>   <span class="c1">//我们也是需要在这里去编写我们的代理逻辑
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="n">Object</span> <span class="nf">intercept</span><span class="o">(</span><span class="n">Object</span> <span class="n">o</span><span class="o">,</span> <span class="n">Method</span> <span class="n">method</span><span class="o">,</span> <span class="n">Object</span><span class="o">[]</span> <span class="n">objects</span><span class="o">,</span> <span class="n">MethodProxy</span> <span class="n">methodProxy</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Throwable</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;现在是由CGLib进行代理操作！&#34;</span><span class="o">+</span><span class="n">o</span><span class="o">.</span><span class="na">getClass</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">method</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">target</span><span class="o">,</span> <span class="n">objects</span><span class="o">);</span>   <span class="c1">//也是直接调用代理对象的方法即可
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>接着我们来创建一下代理类：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">SubjectImpl</span> <span class="n">subject</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SubjectImpl</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">Enhancer</span> <span class="n">enhancer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Enhancer</span><span class="o">();</span>   <span class="c1">//增强器，一会就需要依靠增强器来为我们生成动态代理对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">enhancer</span><span class="o">.</span><span class="na">setSuperclass</span><span class="o">(</span><span class="n">SubjectImpl</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>    <span class="c1">//直接选择我们需要代理的类型，直接不需要接口或是抽象类，SuperClass作为代理类的父类存在，这样我们就可以按照指定类型的方式去操作代理类了
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">enhancer</span><span class="o">.</span><span class="na">setCallback</span><span class="o">(</span><span class="k">new</span> <span class="n">TestProxy</span><span class="o">(</span><span class="n">subject</span><span class="o">));</span>  <span class="c1">//设定我们刚刚编写好的代理逻辑
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="n">SubjectImpl</span> <span class="n">proxy</span> <span class="o">=</span> <span class="o">(</span><span class="n">SubjectImpl</span><span class="o">)</span> <span class="n">enhancer</span><span class="o">.</span><span class="na">create</span><span class="o">();</span>   <span class="c1">//直接创建代理类
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="n">proxy</span><span class="o">.</span><span class="na">test</span><span class="o">();</span>   <span class="c1">//调用代理类的test方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></div><p>可以看到，效果其实是差不多的：</p>
+<p>
+
+
+
+
+  <figure>
+    <img class="my-0 rounded-md" src="https://s2.loli.net/2023/03/01/Y1bHtnZTIoq8pBu.png" alt="image-20230301112013486" />
+    
+  </figure>
+
+</p>
+<p>可以看到代理类是<code>包名.SubjectImpl$$EnhancerByCGLIB$$47f6ed3a</code>，也是动态生成的一个类，所以我们无法去查看源码，不过此类是继承自我们指定的类型的。</p>
+<h2 class="relative group">外观模式 
+    <div id="外观模式" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e5%a4%96%e8%a7%82%e6%a8%a1%e5%bc%8f" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<p>你是否经历过类似的情况：今年计算机学院的奖学金评定工作开始了，由于你去年一不小心拿了个ACM的区域赛金牌，觉得自己又行了，于是也想参与到奖学金的争夺中，首先你的辅导员会通知你去打印你的获奖材料，然后你高高兴兴拿给辅导员之后，辅导员又给了你一张表，让你打印了之后填写一下，包括你的个人信息还有一些个人介绍，完成后，你本以为可以坐等发奖了，结果辅导员又跟你说我们评定还要去某某地方盖章，盖完章还要去找谁谁谁签字，最后还要参加一下答辩&hellip; 看着如此复杂的流程，你瞬间不想搞了。</p>
+<p>
+
+
+
+
+  <figure>
+    <img class="my-0 rounded-md" src="https://s2.loli.net/2023/03/01/y2wzFh1UWYmpgJX.png" alt="image-20230301112039165" />
+    
+  </figure>
+
+</p>
+<p>实际上我们生活中很多时候都是这样，可能在办一件事情的时候，由于部门职能的不同，你得各个部门到处跑，你肯定会抱怨一句，就不能有个人来统一一下吗，就不能在一个地方一起把事情都办了吗？这时，我们就可以用到外观模式了。</p>
+<p>外观模式充分体现了迪米特法则。可能我们的整个项目有很多个子系统，但是我们可以在这些子系统的上面加一个门面（Facade）当我们外部需要与各个子系统交互时，无需再去直接使用各个子系统，而是与门面进行交互，再由门面与后面的各个子系统操作，这样，我们以后需要办什么事情，就统一找门面就行了。这样的好处是，首先肯定方便了代码的编写，统一找门面就行，不需要去详细了解子系统，并且，当子系统需要修改时，也只需要修改门面中的逻辑，不需要大面积的变动，遵循迪米特法则尽可能少的交互。</p>
+<p>
+
+
+
+
+  <figure>
+    <img class="my-0 rounded-md" src="https://s2.loli.net/2023/03/01/BylhOfcFtni29uQ.png" alt="image-20230301112103676" />
+    
+  </figure>
+
+</p>
+<p>比如现在我们设计了三个子系统，分别是排队、结婚、领证，正常情况下我们是需要分别去找这三个部门去完成的，但是现在我们通过门面统一来完成：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SubSystemA</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test1</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;排队&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SubSystemB</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test2</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;结婚&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SubSystemC</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test3</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;领证&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>现在三个系统太复杂了，我们添加一个门面：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Facade</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">SubSystemA</span> <span class="n">a</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SubSystemA</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">SubSystemB</span> <span class="n">b</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SubSystemB</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">SubSystemC</span> <span class="n">c</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SubSystemC</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">marry</span><span class="o">(){</span>   <span class="c1">//红白喜事一条龙服务
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">a</span><span class="o">.</span><span class="na">test1</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">b</span><span class="o">.</span><span class="na">test2</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">c</span><span class="o">.</span><span class="na">test3</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>现在我们只需要一个门面就能直接把事情办完了：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Facade</span> <span class="n">facade</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Facade</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">facade</span><span class="o">.</span><span class="na">marry</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>通过使用外观模式，我们就大大降低了类与类直接的关联程度，并且简化了流程。</p>
+<h2 class="relative group">享元模式 
+    <div id="享元模式" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e4%ba%ab%e5%85%83%e6%a8%a1%e5%bc%8f" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<p>最后我们来看看享元模式（Flyweight），那么这个&quot;享元&quot;代表什么意思呢？我们先来看看下面的问题：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">str1</span> <span class="o">=</span> <span class="s">&#34;abcdefg&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">str2</span> <span class="o">=</span> <span class="s">&#34;abcd&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>我们发现上面的例子中，两个字符串虽然长短不同，但是却包含了一段相同的部分，那么现在我们如果要对内存进行优化：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">str1</span> <span class="o">=</span> <span class="s">&#34;efg&#34;</span><span class="o">;</span>   <span class="c1">//由于str1包含str2，所以我们可以去掉重复的部分，当需要原本的str1时，再合在一起
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">String</span> <span class="n">str2</span> <span class="o">=</span> <span class="s">&#34;abcd&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;str1 = &#34;</span><span class="o">+</span><span class="n">str2</span><span class="o">+</span><span class="n">str1</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>而享元模式就是这个思想，我们可以将那些重复出现的内容作为共享部分取出，这样当我们拥有大量对象时，我们把其中共同的部分抽取出来，由于提取的部分是多个对象共享只有一份，那么就可以减轻内存的压力。包括我们的围棋，实际上我们只需要知道棋盘上的各个位置是黑棋还是白棋，实际上没有毕业创建很多个棋子对象，我们只需要去复用一个黑棋和一个白棋子对象即可。</p>
+<p>比如现在我们有两个服务，但是他们都需要使用数据库工具类来操作，实际上这个工具类没必要创建多个，我们这时就可以使用享元模式，让数据库工具类作为享元类，通过享元工厂来提供一个共享的数据库工具类：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DBUtil</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">selectDB</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;我是数据库操作...&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DBUtilFactory</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">DBUtil</span> <span class="n">UTIL</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DBUtil</span><span class="o">();</span>   <span class="c1">//享元对象被存放在工厂中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="n">DBUtil</span> <span class="nf">getFlyweight</span><span class="o">(){</span>   <span class="c1">//获取享元对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">return</span> <span class="n">UTIL</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>最后当我们需要使用享元对象时，直接找享元工厂要就行了：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserService</span> <span class="o">{</span>   <span class="c1">//用户服务
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">service</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">DBUtil</span> <span class="n">util</span> <span class="o">=</span> <span class="n">DBUtilFactory</span><span class="o">.</span><span class="na">getFlyweight</span><span class="o">();</span>   <span class="c1">//通过享元工厂拿到DBUtil对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">util</span><span class="o">.</span><span class="na">selectDB</span><span class="o">();</span>    <span class="c1">//该干嘛干嘛
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>当然，这只是简单的享元模式实现，实际上我们一开始举例的String类，也在使用享元模式进行优化，比如下面的代码：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">str1</span> <span class="o">=</span> <span class="s">&#34;abcd&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">str2</span> <span class="o">=</span> <span class="s">&#34;abcd&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">str3</span> <span class="o">=</span> <span class="s">&#34;ab&#34;</span> <span class="o">+</span> <span class="s">&#34;cd&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">str1</span> <span class="o">==</span> <span class="n">str2</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">str1</span> <span class="o">==</span> <span class="n">str3</span><span class="o">);</span>   <span class="c1">//猜猜这三个对象是不是都是同一个？
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></div><p>虽然我们这里定义了三个字符串，但是我们发现，这三个对象指向的都是同一个对象，这是为什么呢？实际上这正是Java语言实现了数据的共享，想要了解具体实现请前往JVM篇视频教程。</p>
+
+      </div>
+
+
+
+
+    </div>
+
+    
+    <script>
+      var oid = "views_doc\\design\\结构型\\设计模式系列 - 设计模式（三）结构型.md"
+      var oid_likes = "likes_doc\\design\\结构型\\设计模式系列 - 设计模式（三）结构型.md"
+    </script>
+    
+    
+    
+    <script type="text/javascript" src="/js/page.min.5b1bad196a6075a1e11bae1dc95f24f67b610948a00525e347566c5a62338ea78f1c7224ab9a53873dcdb2a1a7d7d391b8a8ef45561297f68806c01315b0c4f6.js" integrity="sha512-WxutGWpgdaHhG64dyV8k9nthCUigBSXjR1ZsWmIzjqePHHIkq5pThz3NsqGn19ORuKjvRVYSl/aIBsATFbDE9g=="></script>
+
+  </section>
+
+  <footer style="width: 100%">
+          
+<details style="margin-left:0px" class="mt-2 mb-5 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5">
+    <summary
+        class="py-1 text-lg font-semibold cursor-pointer bg-primary-200 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-primary-800 dark:text-neutral-100">
+        设计模式 - 这是系列文章之一.
+    </summary>
+    
+    
+    
+    
+    <div
+        class="py-1 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+        <a href="/doc/design/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%B3%BB%E5%88%97-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%80%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/">
+            部分 1: 面向对象设计原则
+        </a>
+    </div>
+    
+    
+    
+    <div
+        class="py-1 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+        <a href="/doc/design/%E5%88%9B%E5%BB%BA%E5%9E%8B/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%B3%BB%E5%88%97-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%BA%8C%E5%88%9B%E5%BB%BA%E5%9E%8B/">
+            部分 2: 创建型
+        </a>
+    </div>
+    
+    
+    
+    <div
+        class="py-1 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+        部分 3: 本文
+    </div>
+    
+    
+    
+    <div
+        class="py-1 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+        <a href="/doc/design/%E8%A1%8C%E4%B8%BA%E5%9E%8B/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%B3%BB%E5%88%97-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%9B%9B%E8%A1%8C%E4%B8%BA%E5%9E%8B/">
+            部分 4: 行为型
+        </a>
+    </div>
+    
+    
+
+</details>
+
+
+          
+  
+  <section class="flex flex-row flex-wrap justify-center pt-4 text-xl">
+    
+      
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="https://twitter.com/intent/tweet/?url=/doc/design/%E7%BB%93%E6%9E%84%E5%9E%8B/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%B3%BB%E5%88%97-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%89%E7%BB%93%E6%9E%84%E5%9E%8B/&amp;text=%e7%bb%93%e6%9e%84%e5%9e%8b"
+      title="分享到 Twitter"
+      aria-label="分享到 Twitter"
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg>
+  </span>
+
+
+    </a>
+      
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="https://t.me/share/url?url=/doc/design/%E7%BB%93%E6%9E%84%E5%9E%8B/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%B3%BB%E5%88%97-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%89%E7%BB%93%E6%9E%84%E5%9E%8B/&amp;resubmit=true&amp;title=%e7%bb%93%e6%9e%84%e5%9e%8b"
+      title=""
+      aria-label=""
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M248,8C111.033,8,0,119.033,0,256S111.033,504,248,504,496,392.967,496,256,384.967,8,248,8ZM362.952,176.66c-3.732,39.215-19.881,134.378-28.1,178.3-3.476,18.584-10.322,24.816-16.948,25.425-14.4,1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25,5.342-39.5,3.652-3.793,67.107-61.51,68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608,69.142-14.845,10.194-26.894,9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7,18.45-13.7,108.446-47.248,144.628-62.3c68.872-28.647,83.183-33.623,92.511-33.789,2.052-.034,6.639.474,9.61,2.885a10.452,10.452,0,0,1,3.53,6.716A43.765,43.765,0,0,1,362.952,176.66Z"/></svg>
+
+  </span>
+
+
+    </a>
+      
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="mailto:?body=/doc/design/%E7%BB%93%E6%9E%84%E5%9E%8B/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%B3%BB%E5%88%97-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%89%E7%BB%93%E6%9E%84%E5%9E%8B/&amp;subject=%e7%bb%93%e6%9e%84%e5%9e%8b"
+      title="通过电子邮件发送"
+      aria-label="通过电子邮件发送"
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M207.8 20.73c-93.45 18.32-168.7 93.66-187 187.1c-27.64 140.9 68.65 266.2 199.1 285.1c19.01 2.888 36.17-12.26 36.17-31.49l.0001-.6631c0-15.74-11.44-28.88-26.84-31.24c-84.35-12.98-149.2-86.13-149.2-174.2c0-102.9 88.61-185.5 193.4-175.4c91.54 8.869 158.6 91.25 158.6 183.2l0 16.16c0 22.09-17.94 40.05-40 40.05s-40.01-17.96-40.01-40.05v-120.1c0-8.847-7.161-16.02-16.01-16.02l-31.98 .0036c-7.299 0-13.2 4.992-15.12 11.68c-24.85-12.15-54.24-16.38-86.06-5.106c-38.75 13.73-68.12 48.91-73.72 89.64c-9.483 69.01 43.81 128 110.9 128c26.44 0 50.43-9.544 69.59-24.88c24 31.3 65.23 48.69 109.4 37.49C465.2 369.3 496 324.1 495.1 277.2V256.3C495.1 107.1 361.2-9.332 207.8 20.73zM239.1 304.3c-26.47 0-48-21.56-48-48.05s21.53-48.05 48-48.05s48 21.56 48 48.05S266.5 304.3 239.1 304.3z"/></svg>
+
+  </span>
+
+
+    </a>
+      
+    
+  </section>
+
+
+          
+
+
+<h2 class="mt-8 text-2xl font-extrabold mb-10">相关文章</h2>
+<section class="w-full grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+  
+  
+
+  <a href="/doc/design/%E5%88%9B%E5%BB%BA%E5%9E%8B/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%B3%BB%E5%88%97-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%BA%8C%E5%88%9B%E5%BB%BA%E5%9E%8B/" class="min-w-full">
+    
+    <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
+        
+        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/img/annimation/4c758d7c82292f81f99d63ff1072aa9adb5c3536_raw_hu9b60894d5013d728985af7ffc2fcbbdd_675352_600x0_resize_q75_box.jpg);"></div>
+        
+      
+
+      <div class="px-6 py-4">
+
+        
+        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
+          href="/doc/design/%E5%88%9B%E5%BB%BA%E5%9E%8B/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%B3%BB%E5%88%97-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%BA%8C%E5%88%9B%E5%BB%BA%E5%9E%8B/">创建型</div>
+        
+
+        <div class="text-sm text-neutral-500 dark:text-neutral-400">
+          
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="0001-01-01 00:00:00 &#43;0000 UTC">1 January 0001</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">4 分钟</span>
+  
+
+  
+  
+</div>
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+
+
+
+        </div>
+
+        
+      </div>
+      <div class="px-6 pt-4 pb-2">
+
+      </div>
+    </div>
+  </a>
+  
+  
+
+  <a href="/doc/design/%E8%A1%8C%E4%B8%BA%E5%9E%8B/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%B3%BB%E5%88%97-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%9B%9B%E8%A1%8C%E4%B8%BA%E5%9E%8B/" class="min-w-full">
+    
+    <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
+        
+        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/img/annimation/4c758d7c82292f81f99d63ff1072aa9adb5c3536_raw_hu9b60894d5013d728985af7ffc2fcbbdd_675352_600x0_resize_q75_box.jpg);"></div>
+        
+      
+
+      <div class="px-6 py-4">
+
+        
+        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
+          href="/doc/design/%E8%A1%8C%E4%B8%BA%E5%9E%8B/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%B3%BB%E5%88%97-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%9B%9B%E8%A1%8C%E4%B8%BA%E5%9E%8B/">行为型</div>
+        
+
+        <div class="text-sm text-neutral-500 dark:text-neutral-400">
+          
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="0001-01-01 00:00:00 &#43;0000 UTC">1 January 0001</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">7 分钟</span>
+  
+
+  
+  
+</div>
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+
+
+
+        </div>
+
+        
+      </div>
+      <div class="px-6 pt-4 pb-2">
+
+      </div>
+    </div>
+  </a>
+  
+  
+
+  <a href="/doc/design/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%B3%BB%E5%88%97-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%80%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/" class="min-w-full">
+    
+    <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
+        
+        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/img/annimation/4c758d7c82292f81f99d63ff1072aa9adb5c3536_raw_hu9b60894d5013d728985af7ffc2fcbbdd_675352_600x0_resize_q75_box.jpg);"></div>
+        
+      
+
+      <div class="px-6 py-4">
+
+        
+        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
+          href="/doc/design/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%B3%BB%E5%88%97-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%80%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/">面向对象设计原则</div>
+        
+
+        <div class="text-sm text-neutral-500 dark:text-neutral-400">
+          
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="0001-01-01 00:00:00 &#43;0000 UTC">1 January 0001</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">4 分钟</span>
+  
+
+  
+  
+</div>
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+
+
+
+        </div>
+
+        
+      </div>
+      <div class="px-6 pt-4 pb-2">
+
+      </div>
+    </div>
+  </a>
+  
+</section>
+
+
+    
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="flex group mr-3" href="/doc/design/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%B3%BB%E5%88%97-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%80%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/">
+              <span
+                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
+                >&larr;</span
+              >
+              <span
+                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
+                >&rarr;</span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >面向对象设计原则</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="0001-01-01 00:00:00 &#43;0000 UTC">1 January 0001</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="flex text-right group ml-3" href="/doc/design/%E5%88%9B%E5%BB%BA%E5%9E%8B/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%B3%BB%E5%88%97-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%BA%8C%E5%88%9B%E5%BB%BA%E5%9E%8B/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >创建型</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="0001-01-01 00:00:00 &#43;0000 UTC">1 January 0001</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
+                >&rarr;</span
+              >
+              <span
+                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
+                >&larr;</span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+    
+    
+    <div class="pt-3">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="pt-3">
+        <script src="https://giscus.app/client.js"
+        data-repo="ToDreamr/todreamr.github.io"
+        data-repo-id="R_kgDOLG9zIQ"
+        data-category="Q&A"
+        data-category-id="DIC_kwDOLG9zIc4Cc-2K"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light_protanopia"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+</script>
+
+      </div>
+    </div>
+    
+    
+  </footer>
+</article>
+
+      <div id="top-scroller" class="pointer-events-none absolute top-[110vh] bottom-0 w-12 ltr:right-0 rtl:left-0">
+  <a href="#the-top"
+    class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 mb-16 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+    aria-label="回到顶部" title="回到顶部">
+    &uarr;
+  </a>
+</div>
+    </main><footer id="site-footer" class="py-10 print:hidden">
+  
+  
+    
+    <nav class="flex flex-row pb-4 text-base font-medium text-neutral-500 dark:text-neutral-400">
+      <ul class="flex flex-col list-none sm:flex-row">
+        
+        <li class="flex mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+          <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2" href="/tags/"
+            title="Tags">系列文章</a>
+        </li>
+        
+        <li class="flex mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+          <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2" href="/info/"
+            title="应该没人来这里吧">关于我</a>
+        </li>
+        
+        <li class="flex mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+          <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2" href="/doc/"
+            title="Docs">文档</a>
+        </li>
+        
+      </ul>
+    </nav>
+    
+  
+  <div class="flex items-center justify-between">
+
+    
+    
+    <p class="text-sm text-neutral-500 dark:text-neutral-400">
+      &copy;
+      2024
+      春江花朝秋月夜
+    </p>
+    
+
+    
+    
+    <p class="text-xs text-neutral-500 dark:text-neutral-400">
+      
+      
+      由 <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+        href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+        href="https://blowfish.page/" target="_blank" rel="noopener noreferrer">Blowfish</a> 强力驱动
+    </p>
+    
+
+  </div>
+  <script>
+    
+    mediumZoom(document.querySelectorAll("img:not(.nozoom)"), {
+      margin: 24,
+      background: 'rgba(0,0,0,0.5)',
+      scrollOffset: 0,
+    })
+    
+  </script>
+  
+  
+  <script type="text/javascript" src="/js/process.min.62060bb247f4de2b6dde45903668fefb68d792f365587605177b1227c0cf43588701edaca0cb40e2c8e2789bd5ce67c1d2a215b9fb258c3496a7cd25e7cb5fdf.js" integrity="sha512-YgYLskf03itt3kWQNmj&#43;&#43;2jXkvNlWHYFF3sSJ8DPQ1iHAe2soMtA4sjieJvVzmfB0qIVufsljDSWp80l58tf3w=="></script>
+  
+  
+</footer><div
+  id="search-wrapper"
+  class="invisible fixed inset-0 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]"
+  data-url="/"
+  style="z-index:500"
+>
+  <div
+    id="search-modal"
+    class="flex flex-col w-full max-w-3xl min-h-0 mx-auto border rounded-md shadow-lg top-20 border-neutral-200 bg-neutral dark:border-neutral-700 dark:bg-neutral-800"
+  >
+    <header class="relative z-10 flex items-center justify-between flex-none px-2">
+      <form class="flex items-center flex-auto min-w-0">
+        <div class="flex items-center justify-center w-8 h-8 text-neutral-400">
+          
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+        </div>
+        <input
+          type="search"
+          id="search-query"
+          class="flex flex-auto h-12 mx-1 bg-transparent appearance-none focus:outline-dotted focus:outline-2 focus:outline-transparent"
+          placeholder="搜索"
+          tabindex="0"
+        />
+      </form>
+      <button
+        id="close-search-button"
+        class="flex items-center justify-center w-8 h-8 text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+        title="关闭 (Esc)"
+      >
+        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+  </span>
+
+
+      </button>
+    </header>
+    <section class="flex-auto px-2 overflow-auto">
+      <ul id="search-results">
+        
+      </ul>
+    </section>
+  </div>
+</div>
+
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Documentation on 春江花朝秋月夜</title>
+    <link>/series/documentation/</link>
+    <description>Recent content in Documentation on 春江花朝秋月夜</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright>© 2024 春江花朝秋月夜</copyright>
+    <atom:link href="/series/documentation/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>创建型</title>
+      <link>/doc/design/%E5%88%9B%E5%BB%BA%E5%9E%8B/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%B3%BB%E5%88%97-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%BA%8C%E5%88%9B%E5%BB%BA%E5%9E%8B/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/doc/design/%E5%88%9B%E5%BB%BA%E5%9E%8B/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%B3%BB%E5%88%97-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%BA%8C%E5%88%9B%E5%BB%BA%E5%9E%8B/</guid>
+      <description>设计模式（创建型） # 软件设计模式（Design pattern），又称设计模式，是一套被反复使用、多数人知晓的、经过分类编目的、代码设计经验的总结。使用设计模式是为了可重用代码、让代码更容易被他人理解、保证代码可靠性、程序的重用性。
+肯特·贝克和 沃德·坎宁安在1987年利用克里斯托佛·亚历山大在建筑设计领域里的思想开发了设计模式并把此思想应用在Smalltalk中的图形用户接口的生成中。一年后Erich Gamma在他的 苏黎世大学博士毕业论文中开始尝试把这种思想改写为适用于软件开发。与此同时James Coplien 在1989年至1991 年也在利用相同的思想致力于C++的开发，而后于1991年发表了他的著作Advanced C++ Idioms。就在这一年Erich Gamma 得到了博士学位，然后去了美国，在那与Richard Helm, Ralph Johnson ,John Vlissides合作出版了Design Patterns - Elements of Reusable Object-Oriented Software 一书，在此书中共收录了23个设计模式。这四位作者在软件开发领域里也以他们的匿名著称Gang of Four(四人帮，简称GoF),并且是他们在此书中的协作导致了软件设计模式的突破。</description>
+      
+    </item>
+    
+    <item>
+      <title>结构型</title>
+      <link>/doc/design/%E7%BB%93%E6%9E%84%E5%9E%8B/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%B3%BB%E5%88%97-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%89%E7%BB%93%E6%9E%84%E5%9E%8B/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/doc/design/%E7%BB%93%E6%9E%84%E5%9E%8B/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%B3%BB%E5%88%97-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%89%E7%BB%93%E6%9E%84%E5%9E%8B/</guid>
+      <description>设计模式（结构型） # 结构型设计模式关注如何将现有的类或对象组织在一起形成更加强大的结构。并且根据我们前面学习的合成复用原则，我们该如何尽可能地使用关联关系来代替继承关系是我们本版块需要重点学习的内容。
+类/对象适配器模式 # 在生活中，我们经常遇到这样的一个问题：笔记本太轻薄了，以至于没有RJ45网口和USB A口（比如Macbook为了轻薄甚至全是type-c形式的雷电口）但是现在我们因为工作需要，又得使用这些接口来连接线缆，这时我们想到的第一个解决方案，就是去买一个转接口（扩展坞），扩展坞可以将type-c口转换为其他类型的接口供我们使用，实际上这就是一种适配模式。
+由于我们的电脑没有这些接口，但是提供了type-c类型的接口，虽然接口类型不一样，但是同样可以做其他接口能做的事情，比如USB文件传输、有线网络连接等，所以，这个时候，我们只需要添加一个中间人来帮我们转换一下接口形态即可。包括我们常用的充电头，为什么叫电源适配器呢？我们知道传统的供电是220V交流电，但是我们的手机可能只需要5V的电压进行充电，虽然现在有电，但是不能直接充，我们也不可能让电力公司专门为我们提供一个5V的直流电使用。这时电源适配器就开始发挥作用了，比如苹果的祖传5V1A充电头，实际上就是将220V交流电转换为5V的直流电进行传输，这样就相当于在220V交流电和我们的手机之前，做了一个适配器的角色。
+在我们的Java程序中，也会经常遇到这样的问题，比如：
+public class TestSupplier { //手机供应商 public String doSupply(){ return &amp;#34;iPhone 14 Pro&amp;#34;; } } public class Main { public static void main(String[] args) { TestSupplier supplier = new TestSupplier(); test( ?</description>
+      
+    </item>
+    
+    <item>
+      <title>行为型</title>
+      <link>/doc/design/%E8%A1%8C%E4%B8%BA%E5%9E%8B/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%B3%BB%E5%88%97-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%9B%9B%E8%A1%8C%E4%B8%BA%E5%9E%8B/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/doc/design/%E8%A1%8C%E4%B8%BA%E5%9E%8B/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%B3%BB%E5%88%97-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%9B%9B%E8%A1%8C%E4%B8%BA%E5%9E%8B/</guid>
+      <description>设计模式（行为型） # 前面我们已经学习了12种设计模式，分为两类：
+创建型：关注对象创建 结构型：关注类和对象的结构组织 我们接着来看最后一种设计模式，也是最多的一种，行为型设计模式关注系统中对象之间的交互，研究系统在运行时对象之间的相互通信与协作，进一步明确对象的职责。
+解释器模式 # 这种模式的使用场景较少，很少使用的一种设计模式，这里提一下就行。
+解释器顾名思义，就是对我们的语言进行解释，根据不同的语义来做不同的事情，比如我们在SE中学习的双栈计算器，正是根据我们输入的算式，去进行解析，并根据不同的运算符来不断进行计算。
+比如我们输入：1+2*3
+那么计算器就会进行解析然后根据语义优先计算2*3的结果然后在计算1+6最后得到7，详细实现请参考JavaSE篇双栈计算器实现。
+模板方法模式 # 模板方法模式我们之前也见到过许多，我们先来看看什么是模板方法。
+有些时候，我们的业务可能需要经历很多个步骤来完成，比如我们生病了在医院看病，首先是去门诊挂号，然后等待叫号，然后是去找医生看病，确定病因后，就根据医生的处方去前台开药，最后付钱。这一整套流程看似是规规矩矩的，但是在这其中，某些步骤并不是确定的，比如医生看病这一步，由于不同的病因，可能会进行不同的处理，最后开出来的药方也会不同，所以，整套流程中，有些操作是固定的，有些操作可能需要根据具体情况而定。
+在我们的程序中也是如此，可能某些操作是固定的，我们就可以直接在类中对应方法进行编写，但是可能某些操作需要视情况而定，由不同的子类实现来决定，这时，我们就需要让这些操作由子类来延迟实现了。现在我们就需要用到模板方法模式。
+我们先来写个例子：
+/** * 抽象诊断方法，因为现在只知道挂号和看医生是固定模式，剩下的开处方和拿药都是不确定的 */ public abstract class AbstractDiagnosis { public void test(){ System.</description>
+      
+    </item>
+    
+    <item>
+      <title>面向对象设计原则</title>
+      <link>/doc/design/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%B3%BB%E5%88%97-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%80%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/doc/design/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%B3%BB%E5%88%97-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%80%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/</guid>
+      <description>面向对象设计原则 # **注意：**推荐完成JavaEE通关路线再开始学习。
+我们在进行软件开发时，不仅仅需要将最基本的业务给完成，还要考虑整个项目的可维护性和可复用性，我们开发的项目不单单需要我们自己来维护，同时也需要其他的开发者一起来进行共同维护，因此我们在编写代码时，应该尽可能的规范。如果我们在编写代码时不注重这些问题，整个团队项目就像一座屎山，随着项目的不断扩大，整体结构只会越来越遭。
+甚至到最后你会发现，我们的程序居然是稳定运行在BUG之上的&amp;hellip;
+所以，为了尽可能避免这种情况的发生，我们就来聊聊面向对象设计原则。
+单一职责原则 # 单一职责原则（Simple Responsibility Pinciple，SRP）是最简单的面向对象设计原则，它用于控制类的粒度大小。
+一个对象应该只包含单一的职责，并且该职责被完整地封装在一个类中。
+比如我们现在有一个People类：
+//一个人类 public class People { /** * 人类会编程 */ public void coding(){ System.out.println(&amp;#34;int mian() {&amp;#34;); System.out.println(&amp;#34; printf(\&amp;#34;Holle Wrold!</description>
+      
+    </item>
+    
+  </channel>
+</rss>
