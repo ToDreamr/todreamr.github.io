@@ -431,12 +431,27 @@
     />
   </url>
   <url>
+    <loc>/series/cloud/</loc>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>/doc/docker/%E5%85%B6%E4%BB%96%E4%B8%AD%E9%97%B4%E4%BB%B6%E7%AC%94%E8%AE%B0-docker-%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/</loc>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>/doc/</loc>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>/series/mq/</loc>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>/doc/mysql/mysql%E8%BF%9B%E9%98%B6/</loc>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
   </url>
@@ -456,6 +471,11 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>/doc/rabbitmq/springcloud-%E8%BF%9B%E9%98%B6-springcloud%E7%AC%94%E8%AE%B0%E5%9B%9B%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/</loc>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>/series/</loc>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
@@ -469,6 +489,26 @@
       hreflang="zh-CN"
       href="/series/"
     />
+  </url>
+  <url>
+    <loc>/doc/cloud/%E4%B8%80/springcloud-%E8%BF%9B%E9%98%B6-springcloud%E7%AC%94%E8%AE%B0%E4%B8%80%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%9F%BA%E7%A1%80/</loc>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>/doc/cloud/%E4%B8%89/springcloud-%E8%BF%9B%E9%98%B6-springcloud%E7%AC%94%E8%AE%B0%E4%BA%8C%E5%BE%AE%E6%9C%8D%E5%8A%A1%E8%BF%9B%E9%98%B6/</loc>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>/doc/cloud/%E4%BA%8C/springcloud-%E8%BF%9B%E9%98%B6-springcloud%E7%AC%94%E8%AE%B0%E4%B8%89%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%BA%94%E7%94%A8/</loc>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>/series/sql/</loc>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>/doc/design/%E5%88%9B%E5%BB%BA%E5%9E%8B/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%B3%BB%E5%88%97-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%BA%8C%E5%88%9B%E5%BB%BA%E5%9E%8B/</loc>

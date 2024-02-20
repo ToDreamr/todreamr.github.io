@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>cloud on 春江花朝秋月夜</title>
+    <link>/series/cloud/</link>
+    <description>Recent content in cloud on 春江花朝秋月夜</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright>© 2024 春江花朝秋月夜</copyright>
+    <atom:link href="/series/cloud/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SpringCloud 1</title>
+      <link>/doc/cloud/%E4%B8%80/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/doc/cloud/%E4%B8%80/</guid>
+      <description>微服务基础 # 注意： 此阶段学习推荐的电脑配置，至少配备4核心CPU（主频3.0Ghz以上）+16GB内存，否则卡到你怀疑人生。
+前面我们讲解了SpringBoot框架，通过使用SpringBoot框架，我们的项目开发速度可以说是得到了质的提升。同时，我们对于项目的维护和理解，也会更加的轻松。可见，SpringBoot为我们的开发带来了巨大便捷。而这一部分，我们将基于SpringBoot，继续深入到企业实际场景，探讨微服务架构下的SpringCloud。这个部分我们会更加注重于架构设计上的讲解，弱化实现原理方面的研究。
+传统项目转型 # 要说近几年最火热的话题，那还得是微服务，那么什么是微服务呢？
+我们可以先从技术的演变开始看起，在我们学习JavaWeb之后，一般的网站开发模式为Servlet+JSP，但是实际上我们在学习了SSM之后，会发现这种模式已经远远落后了，第一，一个公司不可能去招那么多同时会前端+后端的开发人员，就算招到，也并不一定能保证两个方面都比较擅长，相比前后端分开学习的开发人员，显然后者的学习成本更低，专注度更高。因此前后端分离成为了一种新的趋势。通过使用SpringBoot，我们几乎可以很快速地开发一个高性能的单体应用，只需要启动一个服务端，我们整个项目就开始运行了，各项功能融于一体，开发起来也更加轻松。
+但是随着我们项目的不断扩大，单体应用似乎显得有点乏力了。
+随着越来越多的功能不断地加入到一个SpringBoot项目中，随着接口不断增加，整个系统就要在同一时间内响应更多类型的请求，显然，这种扩展方式是不可能无限使用下去的，总有一天，这个SpringBoot项目会庞大到运行缓慢。并且所有的功能如果都集成在单端上，那么所有的请求都会全部汇集到一台服务器上，对此服务器造成巨大压力。
+可以试想一下，如果我们的电脑已经升级到i9-12900K，但是依然在运行项目的时候缓慢，无法同一时间响应成千上万的请求，那么这个问题就已经不是单纯升级机器配置可以解决的了。
+传统单体架构应用随着项目规模的扩大，实际上会暴露越来越多的问题，尤其是一台服务器无法承受庞大的单体应用部署，并且单体应用的维护也会越来越困难，我们得寻找一种新的开发架构来解决这些问题了。
+In short, the microservice architectural style is an approach to developing a single application as a suite of small services, each running in its own process and communicating with lightweight mechanisms, often an HTTP resource API.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/doc/cloud/%E4%B8%80/featured.jpeg" />
+    </item>
+    
+    <item>
+      <title>SpringCloud 2</title>
+      <link>/doc/cloud/%E4%B8%89/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/doc/cloud/%E4%B8%89/</guid>
+      <description>微服务进阶 # 前面我们了解了微服务的一套解决方案，但是它是基于Netflix的解决方案，实际上我们发现，很多框架都已经停止维护了，来看看目前我们所认识到的SpringCloud各大组件的维护情况：
+注册中心： Eureka（属于Netflix，2.x版本不再开源，1.x版本仍在更新） 服务调用： Ribbon（属于Netflix，停止更新，已经彻底被移除）、SpringCloud Loadbalancer（属于SpringCloud官方，目前的默认方案） 服务降级： Hystrix（属于Netflix，停止更新，已经彻底被移除） 路由网关： Zuul（属于Netflix，停止更新，已经彻底被移除）、Gateway（属于SpringCloud官方，推荐方案） 配置中心： Config（属于SpringCloud官方） 可见，我们之前使用的整套解决方案中，超过半数的组件都已经处于不可用状态，并且部分组件都是SpringCloud官方出手提供框架进行解决，因此，寻找一套更好的解决方案势在必行，也就引出了我们本章的主角：SpringCloud Alibaba
+阿里巴巴作为业界的互联网大厂，给出了一套全新的解决方案，官方网站（中文）：https://spring-cloud-alibaba-group.github.io/github-pages/2021/zh-cn/index.html
+Spring Cloud Alibaba 致力于提供微服务开发的一站式解决方案。此项目包含开发分布式应用服务的必需组件，方便开发者通过 Spring Cloud 编程模型轻松使用这些组件来开发分布式应用服务。
+依托 Spring Cloud Alibaba，您只需要添加一些注解和少量配置，就可以将 Spring Cloud 应用接入阿里分布式应用解决方案，通过阿里中间件来迅速搭建分布式应用系统。</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/doc/cloud/%E4%B8%89/featured.jpeg" />
+    </item>
+    
+    <item>
+      <title>SpringCloud 3</title>
+      <link>/doc/cloud/%E4%BA%8C/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/doc/cloud/%E4%BA%8C/</guid>
+      <description>微服务应用 # 前面我们已经完成了SpringCloudAlibaba的学习，我们对一个微服务项目的架构体系已经有了一定的了解，那么本章我们将在应用层面继续探讨微服务。
+分布式权限校验 # 虽然完成前面的部分，我们已经可以自己去编写一个比较中规中矩的微服务项目了，但是还有一个问题我们没有解决，登录问题。假如现在要求用户登录之后，才能进行图书的查询、借阅等操作，那么我们又该如何设计这个系统呢？
+回顾我们之前进行权限校验的原理，服务器是如何判定一个请求是来自哪个用户的呢？
+首先浏览器会向服务端发送请求，访问我们的网站。 服务端收到请求后，会创建一个SESSION ID，并暂时存储在服务端，然后会发送给浏览器作为Cookie保存。 之后浏览器会一直携带此Cookie访问服务器，这样在收到请求后，就能根据携带的Cookie中的SESSION ID判断是哪个用户了。 这样服务端和浏览器之间可以轻松地建立会话了。 但是我们想一下，我们现在采用的是分布式的系统，那么在用户服务进行登录之后，其他服务比如图书服务和借阅服务，它们会知道用户登录了吗？
+实际上我们登录到用户服务之后，Session中的用户数据只会在用户服务的应用中保存，而在其他服务中，并没有对应的信息，但是我们现在希望的是，所有的服务都能够同步这些Session信息，这样我们才能实现在用户服务登录之后其他服务都能知道，那么我们该如何实现Session的同步呢？
+我们可以在每台服务器上都复制一份Session，但是这样显然是很浪费时间的，并且用户验证数据占用的内存会成倍的增加。 将Session移出服务器，用统一存储来存放，比如我们可以直接在Redis或是MySQL中存放用户的Session信息，这样所有的服务器在需要获取Session信息时，统一访问Redis或是MySQL即可，这样就能保证所有服务都可以同步Session了（是不是越来越感觉只要有问题，没有什么是加一个中间件解决不了的） 那么，我们就着重来研究一下，然后实现2号方案，这里我们就使用Redis作为Session统一存储，我们把一开始的压缩包重新解压一次，又来从头开始编写吧。
+这里我们就只使用Nacos就行了，和之前一样，我们把Nacos的包导入一下，然后进行一些配置：
+现在我们需要为每个服务都添加验证机制，首先导入依赖：
+&amp;lt;!-- SpringSession Redis支持 --&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework.session&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-session-data-redis&amp;lt;/artifactId&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;!-- 添加Redis的Starter --&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/doc/cloud/%E4%BA%8C/featured.jpeg" />
+    </item>
+    
+  </channel>
+</rss>

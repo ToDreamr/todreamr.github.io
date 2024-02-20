@@ -34,6 +34,23 @@ public class TestSupplier { //手机供应商 public String doSupply(){ return &
     </item>
     
     <item>
+      <title>面向对象设计原则</title>
+      <link>/doc/design/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%B3%BB%E5%88%97-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%80%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/doc/design/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%B3%BB%E5%88%97-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%80%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/</guid>
+      <description>面向对象设计原则 # **注意：**推荐完成JavaEE通关路线再开始学习。
+我们在进行软件开发时，不仅仅需要将最基本的业务给完成，还要考虑整个项目的可维护性和可复用性，我们开发的项目不单单需要我们自己来维护，同时也需要其他的开发者一起来进行共同维护，因此我们在编写代码时，应该尽可能的规范。如果我们在编写代码时不注重这些问题，整个团队项目就像一座屎山，随着项目的不断扩大，整体结构只会越来越遭。
+甚至到最后你会发现，我们的程序居然是稳定运行在BUG之上的&amp;hellip;
+所以，为了尽可能避免这种情况的发生，我们就来聊聊面向对象设计原则。
+单一职责原则 # 单一职责原则（Simple Responsibility Pinciple，SRP）是最简单的面向对象设计原则，它用于控制类的粒度大小。
+一个对象应该只包含单一的职责，并且该职责被完整地封装在一个类中。
+比如我们现在有一个People类：
+//一个人类 public class People { /** * 人类会编程 */ public void coding(){ System.out.println(&amp;#34;int mian() {&amp;#34;); System.out.println(&amp;#34; printf(\&amp;#34;Holle Wrold!</description>
+      
+    </item>
+    
+    <item>
       <title>行为型</title>
       <link>/doc/design/%E8%A1%8C%E4%B8%BA%E5%9E%8B/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%B3%BB%E5%88%97-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%9B%9B%E8%A1%8C%E4%B8%BA%E5%9E%8B/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -50,23 +67,6 @@ public class TestSupplier { //手机供应商 public String doSupply(){ return &
 在我们的程序中也是如此，可能某些操作是固定的，我们就可以直接在类中对应方法进行编写，但是可能某些操作需要视情况而定，由不同的子类实现来决定，这时，我们就需要让这些操作由子类来延迟实现了。现在我们就需要用到模板方法模式。
 我们先来写个例子：
 /** * 抽象诊断方法，因为现在只知道挂号和看医生是固定模式，剩下的开处方和拿药都是不确定的 */ public abstract class AbstractDiagnosis { public void test(){ System.</description>
-      
-    </item>
-    
-    <item>
-      <title>面向对象设计原则</title>
-      <link>/doc/design/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%B3%BB%E5%88%97-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%80%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/doc/design/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%B3%BB%E5%88%97-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%80%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/</guid>
-      <description>面向对象设计原则 # **注意：**推荐完成JavaEE通关路线再开始学习。
-我们在进行软件开发时，不仅仅需要将最基本的业务给完成，还要考虑整个项目的可维护性和可复用性，我们开发的项目不单单需要我们自己来维护，同时也需要其他的开发者一起来进行共同维护，因此我们在编写代码时，应该尽可能的规范。如果我们在编写代码时不注重这些问题，整个团队项目就像一座屎山，随着项目的不断扩大，整体结构只会越来越遭。
-甚至到最后你会发现，我们的程序居然是稳定运行在BUG之上的&amp;hellip;
-所以，为了尽可能避免这种情况的发生，我们就来聊聊面向对象设计原则。
-单一职责原则 # 单一职责原则（Simple Responsibility Pinciple，SRP）是最简单的面向对象设计原则，它用于控制类的粒度大小。
-一个对象应该只包含单一的职责，并且该职责被完整地封装在一个类中。
-比如我们现在有一个People类：
-//一个人类 public class People { /** * 人类会编程 */ public void coding(){ System.out.println(&amp;#34;int mian() {&amp;#34;); System.out.println(&amp;#34; printf(\&amp;#34;Holle Wrold!</description>
       
     </item>
     

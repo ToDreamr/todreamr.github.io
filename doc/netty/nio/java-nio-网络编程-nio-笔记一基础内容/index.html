@@ -71,7 +71,7 @@ NIO框架是在JDK1.4推出的，它的出现就是为了解决传统IO的不足
 缓冲区 # 一切的一切还要从缓冲区开始讲起，包括源码在内，其实这个不是很难，只是需要理清思路。
 Buffer类及其实现 # Buffer类是缓冲区的实现，类似于Java中的数组，也是用于存放和获取数据的。但是Buffer相比Java中的数组，功能就非常强大了，它包含一系列对于数组的快捷操作。
 Buffer是一个抽象类，它的核心内容：
-public abstract class Buffer { // 这四个变量的关系: mark &lt;= position &lt;= limit &lt;= capacity // 这些变量就是Buffer操作的核心了，之后我们学习的过程中可以看源码是如何操作这些变量的 private int mark = -1; private int position = 0; private int limit; private int capacity; // 直接缓冲区实现子类的数据内存地址（之后会讲解） long address; 我们来看看Buffer类的子类，包括我们认识到的所有基本类型（除了boolean类型之外）：" />
+public abstract class Buffer { // 这四个变量的关系: mark &lt;= position &lt;= limit &lt;= capacity // 这些变量就是Buffer操作的核心了，之后我们学习的过程中可以看源码是如何操作这些变量的 private int mark = -1; private int position = 0; private int limit; private int capacity; // 直接缓冲区实现子类的数据内存地址（之后会讲解） long address; 我们来看看Buffer类的子类，包括我们认识到的所有基本类型（除了 boolean类型之外）：" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/doc/netty/nio/java-nio-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B-nio-%E7%AC%94%E8%AE%B0%E4%B8%80%E5%9F%BA%E7%A1%80%E5%86%85%E5%AE%B9/" /><meta property="article:section" content="doc" />
 
@@ -87,7 +87,7 @@ NIO框架是在JDK1.4推出的，它的出现就是为了解决传统IO的不足
 缓冲区 # 一切的一切还要从缓冲区开始讲起，包括源码在内，其实这个不是很难，只是需要理清思路。
 Buffer类及其实现 # Buffer类是缓冲区的实现，类似于Java中的数组，也是用于存放和获取数据的。但是Buffer相比Java中的数组，功能就非常强大了，它包含一系列对于数组的快捷操作。
 Buffer是一个抽象类，它的核心内容：
-public abstract class Buffer { // 这四个变量的关系: mark &lt;= position &lt;= limit &lt;= capacity // 这些变量就是Buffer操作的核心了，之后我们学习的过程中可以看源码是如何操作这些变量的 private int mark = -1; private int position = 0; private int limit; private int capacity; // 直接缓冲区实现子类的数据内存地址（之后会讲解） long address; 我们来看看Buffer类的子类，包括我们认识到的所有基本类型（除了boolean类型之外）："/>
+public abstract class Buffer { // 这四个变量的关系: mark &lt;= position &lt;= limit &lt;= capacity // 这些变量就是Buffer操作的核心了，之后我们学习的过程中可以看源码是如何操作这些变量的 private int mark = -1; private int position = 0; private int limit; private int capacity; // 直接缓冲区实现子类的数据内存地址（之后会讲解） long address; 我们来看看Buffer类的子类，包括我们认识到的所有基本类型（除了 boolean类型之外）："/>
 
   
   <script type="application/ld+json">
@@ -98,7 +98,7 @@ public abstract class Buffer { // 这四个变量的关系: mark &lt;= position 
     "name": "NIO",
     "headline": "NIO",
     
-    "abstract": "NIO基础 # **注意：**推荐完成JavaSE篇、JavaWeb篇的学习再开启这一部分的学习，如果在这之前完成了JVM篇，那么看起来就会比较轻松了。\n在JavaSE的学习中，我们了解了如何使用IO进行数据传输，Java IO是阻塞的，如果在一次读写数据调用时数据还没有准备好，或者目前不可写，那么读写操作就会被阻塞直到数据准备好或目标可写为止。Java NIO则是非阻塞的，每一次数据读写调用都会立即返回，并将目前可读（或可写）的内容写入缓冲区或者从缓冲区中输出，即使当前没有可用数据，调用仍然会立即返回并且不对缓冲区做任何操作。\nNIO框架是在JDK1.4推出的，它的出现就是为了解决传统IO的不足，这一期视频，我们就将围绕着NIO开始讲解。\n缓冲区 # 一切的一切还要从缓冲区开始讲起，包括源码在内，其实这个不是很难，只是需要理清思路。\nBuffer类及其实现 # Buffer类是缓冲区的实现，类似于Java中的数组，也是用于存放和获取数据的。但是Buffer相比Java中的数组，功能就非常强大了，它包含一系列对于数组的快捷操作。\nBuffer是一个抽象类，它的核心内容：\npublic abstract class Buffer { \/\/ 这四个变量的关系: mark \u0026lt;= position \u0026lt;= limit \u0026lt;= capacity \/\/ 这些变量就是Buffer操作的核心了，之后我们学习的过程中可以看源码是如何操作这些变量的 private int mark = -1; private int position = 0; private int limit; private int capacity; \/\/ 直接缓冲区实现子类的数据内存地址（之后会讲解） long address; 我们来看看Buffer类的子类，包括我们认识到的所有基本类型（除了boolean类型之外）：",
+    "abstract": "NIO基础 # **注意：**推荐完成JavaSE篇、JavaWeb篇的学习再开启这一部分的学习，如果在这之前完成了JVM篇，那么看起来就会比较轻松了。\n在JavaSE的学习中，我们了解了如何使用IO进行数据传输，Java IO是阻塞的，如果在一次读写数据调用时数据还没有准备好，或者目前不可写，那么读写操作就会被阻塞直到数据准备好或目标可写为止。Java NIO则是非阻塞的，每一次数据读写调用都会立即返回，并将目前可读（或可写）的内容写入缓冲区或者从缓冲区中输出，即使当前没有可用数据，调用仍然会立即返回并且不对缓冲区做任何操作。\nNIO框架是在JDK1.4推出的，它的出现就是为了解决传统IO的不足，这一期视频，我们就将围绕着NIO开始讲解。\n缓冲区 # 一切的一切还要从缓冲区开始讲起，包括源码在内，其实这个不是很难，只是需要理清思路。\nBuffer类及其实现 # Buffer类是缓冲区的实现，类似于Java中的数组，也是用于存放和获取数据的。但是Buffer相比Java中的数组，功能就非常强大了，它包含一系列对于数组的快捷操作。\nBuffer是一个抽象类，它的核心内容：\npublic abstract class Buffer { \/\/ 这四个变量的关系: mark \u0026lt;= position \u0026lt;= limit \u0026lt;= capacity \/\/ 这些变量就是Buffer操作的核心了，之后我们学习的过程中可以看源码是如何操作这些变量的 private int mark = -1; private int position = 0; private int limit; private int capacity; \/\/ 直接缓冲区实现子类的数据内存地址（之后会讲解） long address; 我们来看看Buffer类的子类，包括我们认识到的所有基本类型（除了 boolean类型之外）：",
     "inLanguage": "zh-CN",
     "url" : "\/doc\/netty\/nio\/java-nio-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B-nio-%E7%AC%94%E8%AE%B0%E4%B8%80%E5%9F%BA%E7%A1%80%E5%86%85%E5%AE%B9\/",
     "author" : {
@@ -114,7 +114,7 @@ public abstract class Buffer { // 这四个变量的关系: mark &lt;= position 
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "4461"
+    "wordCount": "4498"
   }]
   </script>
 
@@ -727,7 +727,7 @@ public abstract class Buffer { // 这四个变量的关系: mark &lt;= position 
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="0001-01-01 00:00:00 &#43;0000 UTC">1 January 0001</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">21 分钟</span>
+  <time datetime="0001-01-01 00:00:00 &#43;0000 UTC">1 January 0001</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">22 分钟</span>
   
 
   
@@ -1122,7 +1122,7 @@ public abstract class Buffer { // 这四个变量的关系: mark &lt;= position 
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="c1">// 直接缓冲区实现子类的数据内存地址（之后会讲解）
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">long</span> <span class="n">address</span><span class="o">;</span>
-</span></span></code></pre></div><p>我们来看看Buffer类的子类，包括我们认识到的所有基本类型（除了<code>boolean</code>类型之外）：</p>
+</span></span></code></pre></div><p>我们来看看Buffer类的子类，包括我们认识到的所有基本类型（除了 <code>boolean</code>类型之外）：</p>
 <ul>
 <li>IntBuffer   -   int类型的缓冲区。</li>
 <li>ShortBuffer   -   short类型的缓冲区。</li>
@@ -1246,7 +1246,7 @@ public abstract class Buffer { // 这四个变量的关系: mark &lt;= position 
 </span></span><span class="line"><span class="cl">    <span class="n">position</span> <span class="o">=</span> <span class="n">p</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>   <span class="c1">//获取之后会使得Buffer类中的position+1
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="n">p</span><span class="o">;</span>   <span class="c1">//返回当前的位置
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
-</span></span></code></pre></div><p>所以put操作实际上是将底层数组<code>hb</code>在position位置上的数据进行设定。</p>
+</span></span></code></pre></div><p>所以put操作实际上是将底层数组 <code>hb</code>在position位置上的数据进行设定。</p>
 <p>
 
 
@@ -1411,15 +1411,15 @@ public abstract class Buffer { // 这四个变量的关系: mark &lt;= position 
 </span></span><span class="line"><span class="cl">    <span class="n">buffer</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">src</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Arrays</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">buffer</span><span class="o">.</span><span class="na">array</span><span class="o">()));</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><p>我们发现，结果和上面的不一样，并没有成功地将数据填到下面的IntBuffer中，这是为什么呢？实际上就是因为<code>remaining()</code>的计算问题，因为这个方法是直接计算postion的位置，但是由于我们在写操作完成之后，position跑到后面去了，也就导致<code>remaining()</code>结果最后算出来为0。</p>
-<p>因为这里不是写操作，是接下来需要从头开始进行读操作，所以我们得想个办法把position给退回到一开始的位置，这样才可以从头开始读取，那么怎么做呢？一般我们在写入完成后需要进行读操作时（后面都是这样，不只是这里），会使用<code>flip()</code>方法进行翻转：</p>
+</span></span></code></pre></div><p>我们发现，结果和上面的不一样，并没有成功地将数据填到下面的IntBuffer中，这是为什么呢？实际上就是因为 <code>remaining()</code>的计算问题，因为这个方法是直接计算postion的位置，但是由于我们在写操作完成之后，position跑到后面去了，也就导致 <code>remaining()</code>结果最后算出来为0。</p>
+<p>因为这里不是写操作，是接下来需要从头开始进行读操作，所以我们得想个办法把position给退回到一开始的位置，这样才可以从头开始读取，那么怎么做呢？一般我们在写入完成后需要进行读操作时（后面都是这样，不只是这里），会使用 <code>flip()</code>方法进行翻转：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">final</span> <span class="n">Buffer</span> <span class="nf">flip</span><span class="o">()</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">limit</span> <span class="o">=</span> <span class="n">position</span><span class="o">;</span>    <span class="c1">//修改limit值，当前写到哪里，下次读的最终位置就是这里，limit的作用开始慢慢体现了
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">position</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>    <span class="c1">//position归零
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">mark</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>    <span class="c1">//标记还原为-1，但是现在我们还没用到
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><p>这样，再次计算<code>remaining()</code>的结果就是我们需要读取的数量了，这也是为什么put方法中要用<code>remaining()</code>来计算的原因，我们再来测试一下：</p>
+</span></span></code></pre></div><p>这样，再次计算 <code>remaining()</code>的结果就是我们需要读取的数量了，这也是为什么put方法中要用 <code>remaining()</code>来计算的原因，我们再来测试一下：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">IntBuffer</span> <span class="n">src</span> <span class="o">=</span> <span class="n">IntBuffer</span><span class="o">.</span><span class="na">allocate</span><span class="o">(</span><span class="mi">5</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="n">src</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
@@ -1508,7 +1508,7 @@ public abstract class Buffer { // 这四个变量的关系: mark &lt;= position 
 
 </p>
 <p>可以看到成功地将数据读取到了数组中。</p>
-<p>当然如果我们需要直接获取数组，也可以使用<code>array()</code>方法来拿到：</p>
+<p>当然如果我们需要直接获取数组，也可以使用 <code>array()</code>方法来拿到：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">final</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">array</span><span class="o">()</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">hb</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span>   <span class="c1">//为空那说明底层不是数组实现的，肯定就没法转换了
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">throw</span> <span class="k">new</span> <span class="n">UnsupportedOperationException</span><span class="o">();</span>
@@ -1521,7 +1521,7 @@ public abstract class Buffer { // 这四个变量的关系: mark &lt;= position 
 </span></span><span class="line"><span class="cl">    <span class="n">IntBuffer</span> <span class="n">buffer</span> <span class="o">=</span> <span class="n">IntBuffer</span><span class="o">.</span><span class="na">wrap</span><span class="o">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">});</span>
 </span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Arrays</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">buffer</span><span class="o">.</span><span class="na">array</span><span class="o">()));</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><p>当然，既然都已经拿到了底层的<code>hb</code>了，我们来看看如果直接修改之后是不是读取到的就是我们的修改之后的结果了：</p>
+</span></span></code></pre></div><p>当然，既然都已经拿到了底层的 <code>hb</code>了，我们来看看如果直接修改之后是不是读取到的就是我们的修改之后的结果了：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">IntBuffer</span> <span class="n">buffer</span> <span class="o">=</span> <span class="n">IntBuffer</span><span class="o">.</span><span class="na">wrap</span><span class="o">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">});</span>
 </span></span><span class="line"><span class="cl">    <span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span> <span class="o">=</span> <span class="n">buffer</span><span class="o">.</span><span class="na">array</span><span class="o">();</span>
@@ -1529,7 +1529,7 @@ public abstract class Buffer { // 这四个变量的关系: mark &lt;= position 
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">buffer</span><span class="o">.</span><span class="na">get</span><span class="o">());</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>可以看到这种方式由于是直接拿到的底层数组，所有修改会直接生效在缓冲区中。</p>
-<p>当然除了常规的读取方式之外，我们也可以通过<code>mark()</code>来实现跳转读取，这里需要介绍一下几个操作：</p>
+<p>当然除了常规的读取方式之外，我们也可以通过 <code>mark()</code>来实现跳转读取，这里需要介绍一下几个操作：</p>
 <ul>
 <li><code>public final Buffer mark()</code>   -   标记当前位置</li>
 <li><code>public final Buffer reset()</code>   -   让当前的position位置跳转到mark当时标记的位置</li>
@@ -1597,7 +1597,7 @@ public abstract class Buffer { // 这四个变量的关系: mark &lt;= position 
 <li><code>public IntBuffer duplicate()</code>   -   复制缓冲区，会直接创建一个新的数据相同的缓冲区</li>
 <li><code>public abstract IntBuffer slice()</code>   -    划分缓冲区，会将原本的容量大小的缓冲区划分为更小的出来进行操作</li>
 <li><code>public final Buffer rewind()</code>  -   重绕缓冲区，其实就是把position归零，然后mark变回-1</li>
-<li><code>public final Buffer clear()</code>  -   将缓冲区清空，所有的变量变回最初的状态</li>
+<li><code>public final Buffer clear()</code>  -   将缓冲区清空，所有的变量变如图9回最初的状态</li>
 </ul>
 <p>我们先从压缩缓冲区开始看起，它会将整个缓冲区的大小和数据内容变成position位置到limit之间的数据，并移动到数组头部：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">IntBuffer</span> <span class="nf">compact</span><span class="o">()</span> <span class="o">{</span>
@@ -1623,7 +1623,7 @@ public abstract class Buffer { // 这四个变量的关系: mark &lt;= position 
   </figure>
 
 </p>
-<p>那么我们在执行<code> compact()</code>方法之后，会进行截取，此时<code>limit - position = 6</code>，那么就会截取第<code>4、5、6、7、8、9</code>这6个数据然后丢到最前面，接着position跑到<code>7</code>表示这是下一个继续的位置：</p>
+<p>那么我们在执行 <code> compact()</code>方法之后，会进行截取，此时 <code>limit - position = 6</code>，那么就会截取第 <code>4、5、6、7、8、9</code>这6个数据然后丢到最前面，接着position跑到 <code>7</code>表示这是下一个继续的位置：</p>
 <p>
 
 
@@ -1657,7 +1657,7 @@ public abstract class Buffer { // 这四个变量的关系: mark &lt;= position 
   </figure>
 
 </p>
-<p>我们接着来看第二个方法，那么如果我们现在需要复制一个内容一模一样的的缓冲区，该怎么做？直接使用<code>duplicate()</code>方法就可以复制了：</p>
+<p>我们接着来看第二个方法，那么如果我们现在需要复制一个内容一模一样的的缓冲区，该怎么做？直接使用 <code>duplicate()</code>方法就可以复制了：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">IntBuffer</span> <span class="nf">duplicate</span><span class="o">()</span> <span class="o">{</span>   <span class="c1">//直接new一个新的，但是是吧hb给丢进去了，而不是拷贝一个新的
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="k">new</span> <span class="n">HeapIntBuffer</span><span class="o">(</span><span class="n">hb</span><span class="o">,</span>
 </span></span><span class="line"><span class="cl">                                    <span class="k">this</span><span class="o">.</span><span class="na">markValue</span><span class="o">(),</span>
@@ -1706,7 +1706,7 @@ public abstract class Buffer { // 这四个变量的关系: mark &lt;= position 
   </figure>
 
 </p>
-<p>回顾前面我们所讲解的内容，在读取和存放时，会被<code>ix</code>方法进行调整：</p>
+<p>回顾前面我们所讲解的内容，在读取和存放时，会被 <code>ix</code>方法进行调整：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">protected</span> <span class="kt">int</span> <span class="nf">ix</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">)</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">i</span> <span class="o">+</span> <span class="n">offset</span><span class="o">;</span>   <span class="c1">//现在offset为4，那么也就是说逻辑上的i是0但是得到真实位置却是4
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
@@ -1753,13 +1753,13 @@ public abstract class Buffer { // 这四个变量的关系: mark &lt;= position 
   </figure>
 
 </p>
-<p>最后两个方法就比较简单了，我们先来看<code>rewind()</code>，它相当于是对position和mark进行了一次重置：</p>
+<p>最后两个方法就比较简单了，我们先来看 <code>rewind()</code>，它相当于是对position和mark进行了一次重置：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">final</span> <span class="n">Buffer</span> <span class="nf">rewind</span><span class="o">()</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">position</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">mark</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><p>接着是<code>clear()</code>，它相当于是将整个缓冲区回归到最初的状态了：</p>
+</span></span></code></pre></div><p>接着是 <code>clear()</code>，它相当于是将整个缓冲区回归到最初的状态了：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">final</span> <span class="n">Buffer</span> <span class="nf">clear</span><span class="o">()</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">position</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>    <span class="c1">//同上
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">limit</span> <span class="o">=</span> <span class="n">capacity</span><span class="o">;</span>   <span class="c1">//limit变回capacity
@@ -1777,7 +1777,7 @@ public abstract class Buffer { // 这四个变量的关系: mark &lt;= position 
     </span>        
     
 </h3>
-<p>缓冲区之间是可以进行比较的，我们可以看到equals方法和compareTo方法都是被重写了的，我们首先来看看<code>equals</code>方法，注意，它是判断两个缓冲区剩余的内容是否一致：</p>
+<p>缓冲区之间是可以进行比较的，我们可以看到equals方法和compareTo方法都是被重写了的，我们首先来看看 <code>equals</code>方法，注意，它是判断两个缓冲区剩余的内容是否一致：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">equals</span><span class="o">(</span><span class="n">Object</span> <span class="n">ob</span><span class="o">)</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="k">this</span> <span class="o">==</span> <span class="n">ob</span><span class="o">)</span>   <span class="c1">//要是两个缓冲区是同一个对象，肯定一样
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
@@ -1807,7 +1807,7 @@ public abstract class Buffer { // 这四个变量的关系: mark &lt;= position 
 </span></span><span class="line"><span class="cl">    <span class="n">IntBuffer</span> <span class="n">buffer1</span> <span class="o">=</span> <span class="n">IntBuffer</span><span class="o">.</span><span class="na">wrap</span><span class="o">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">6</span><span class="o">,</span> <span class="mi">7</span><span class="o">,</span> <span class="mi">8</span><span class="o">,</span> <span class="mi">9</span><span class="o">,</span> <span class="mi">0</span><span class="o">});</span>
 </span></span><span class="line"><span class="cl">    <span class="n">IntBuffer</span> <span class="n">buffer2</span> <span class="o">=</span> <span class="n">IntBuffer</span><span class="o">.</span><span class="na">wrap</span><span class="o">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="mi">6</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">7</span><span class="o">,</span> <span class="mi">8</span><span class="o">,</span> <span class="mi">9</span><span class="o">,</span> <span class="mi">0</span><span class="o">});</span>
 </span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">buffer1</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">buffer2</span><span class="o">));</span>   <span class="c1">//直接比较
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  
 </span></span><span class="line"><span class="cl">    <span class="n">buffer1</span><span class="o">.</span><span class="na">position</span><span class="o">(</span><span class="mi">6</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl">    <span class="n">buffer2</span><span class="o">.</span><span class="na">position</span><span class="o">(</span><span class="mi">6</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">buffer1</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">buffer2</span><span class="o">));</span>   <span class="c1">//比较从下标6开始的剩余内容
@@ -1824,7 +1824,7 @@ public abstract class Buffer { // 这四个变量的关系: mark &lt;= position 
   </figure>
 
 </p>
-<p>那么我们接着来看比较，<code>compareTo</code>方法，它实际上是<code>Comparable</code>接口提供的方法，它实际上比较的也是pos开始剩余的内容：</p>
+<p>那么我们接着来看比较，<code>compareTo</code>方法，它实际上是 <code>Comparable</code>接口提供的方法，它实际上比较的也是pos开始剩余的内容：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">int</span> <span class="nf">compareTo</span><span class="o">(</span><span class="n">IntBuffer</span> <span class="n">that</span><span class="o">)</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">thisPos</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">position</span><span class="o">();</span>    <span class="c1">//获取并计算两个缓冲区的pos和remain
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">thisRem</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">limit</span><span class="o">()</span> <span class="o">-</span> <span class="n">thisPos</span><span class="o">;</span>
@@ -1890,7 +1890,7 @@ public abstract class Buffer { // 这四个变量的关系: mark &lt;= position 
 </span></span><span class="line"><span class="cl">    <span class="kd">super</span><span class="o">(</span><span class="n">buf</span><span class="o">,</span> <span class="n">mark</span><span class="o">,</span> <span class="n">pos</span><span class="o">,</span> <span class="n">lim</span><span class="o">,</span> <span class="n">cap</span><span class="o">,</span> <span class="n">off</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="o">.</span><span class="na">isReadOnly</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><p>可以看到在其构造方法中，除了直接调用父类的构造方法外，还会将<code>isReadOnly</code>标记修改为true，我们接着来看put操作有什么不同之处：</p>
+</span></span></code></pre></div><p>可以看到在其构造方法中，除了直接调用父类的构造方法外，还会将 <code>isReadOnly</code>标记修改为true，我们接着来看put操作有什么不同之处：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isReadOnly</span><span class="o">()</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
@@ -1949,7 +1949,7 @@ public abstract class Buffer { // 这四个变量的关系: mark &lt;= position 
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">final</span> <span class="kt">int</span> <span class="n">offset</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">    <span class="kt">boolean</span> <span class="n">isReadOnly</span><span class="o">;</span>                 <span class="c1">// Valid only for heap buffers
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>  	<span class="o">....</span>
-</span></span></code></pre></div><p>可以看到如果也是使用堆缓冲区子类实现，那么依然是一个<code>byte[]</code>的形式保存数据。我们来尝试使用一下：</p>
+</span></span></code></pre></div><p>可以看到如果也是使用堆缓冲区子类实现，那么依然是一个 <code>byte[]</code>的形式保存数据。我们来尝试使用一下：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">ByteBuffer</span> <span class="n">buffer</span> <span class="o">=</span> <span class="n">ByteBuffer</span><span class="o">.</span><span class="na">allocate</span><span class="o">(</span><span class="mi">10</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl">    <span class="c1">//除了直接丢byte进去之外，我们也可以丢其他的基本类型（注意容量消耗）
@@ -1976,11 +1976,11 @@ public abstract class Buffer { // 这四个变量的关系: mark &lt;= position 
 </p>
 <p>可以看到第一个byte为127、然后三个都是-1，我们来分析一下：</p>
 <ul>
-<li><code>127</code> 转换为二进制补码形式就是 <code>01111111</code>，而<code>-1</code>转换为二进制补码形式为<code>11111111</code></li>
+<li><code>127</code> 转换为二进制补码形式就是 <code>01111111</code>，而 <code>-1</code>转换为二进制补码形式为 <code>11111111</code></li>
 </ul>
 <p>那也就是说，第一个字节是01111111，而后续字节就是11111111，把它们拼接在一起：</p>
 <ul>
-<li>二进制补码表示<code>01111111 11111111 11111111 11111111</code> 转换为十进制就是<code>2147483647</code>，也就是int的最大值。</li>
+<li>二进制补码表示 <code>01111111 11111111 11111111 11111111</code> 转换为十进制就是 <code>2147483647</code>，也就是int的最大值。</li>
 </ul>
 <p>那么根据我们上面的推导，各位能否计算得到下面的结果呢？</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
@@ -2055,7 +2055,7 @@ public abstract class Buffer { // 这四个变量的关系: mark &lt;= position 
 </h3>
 <p>**注意：**推荐学习完成JVM篇再来学习这一部分。</p>
 <p>最后我们来看一下直接缓冲区，我们前面一直使用的都是堆缓冲区，也就是说实际上数据是保存在一个数组中的，如果你已经完成了JVM篇的学习，一定知道实际上占用的是堆内存，而我们也可以创建一个直接缓冲区，也就是申请堆外内存进行数据保存，采用操作系统本地的IO，相比堆缓冲区会快一些。</p>
-<p>那么怎么使用直接缓冲区呢？我们可以通过<code>allocateDirect</code>方法来创建：</p>
+<p>那么怎么使用直接缓冲区呢？我们可以通过 <code>allocateDirect</code>方法来创建：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="c1">//这里我们申请一个直接缓冲区
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">ByteBuffer</span> <span class="n">buffer</span> <span class="o">=</span> <span class="n">ByteBuffer</span><span class="o">.</span><span class="na">allocateDirect</span><span class="o">(</span><span class="mi">10</span><span class="o">);</span>
@@ -2064,7 +2064,7 @@ public abstract class Buffer { // 这四个变量的关系: mark &lt;= position 
 </span></span><span class="line"><span class="cl">    <span class="n">buffer</span><span class="o">.</span><span class="na">flip</span><span class="o">();</span>
 </span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">buffer</span><span class="o">.</span><span class="na">get</span><span class="o">());</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><p>我们来看看这个<code>allocateDirect</code>方法是如何创建一个直接缓冲区的：</p>
+</span></span></code></pre></div><p>我们来看看这个 <code>allocateDirect</code>方法是如何创建一个直接缓冲区的：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="n">ByteBuffer</span> <span class="nf">allocateDirect</span><span class="o">(</span><span class="kt">int</span> <span class="n">capacity</span><span class="o">)</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">new</span> <span class="n">DirectByteBuffer</span><span class="o">(</span><span class="n">capacity</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
@@ -2143,7 +2143,7 @@ public abstract class Buffer { // 这四个变量的关系: mark &lt;= position 
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl">    <span class="c1">//引用队列，PhantomReference构造方法需要
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">ReferenceQueue</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">&gt;</span> <span class="n">dummyQueue</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ReferenceQueue</span><span class="o">&lt;&gt;();</span>
-</span></span><span class="line"><span class="cl">  	
+</span></span><span class="line"><span class="cl">  
 </span></span><span class="line"><span class="cl">  	<span class="c1">//执行清理的具体流程
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">private</span> <span class="kd">final</span> <span class="n">Runnable</span> <span class="n">thunk</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">  
@@ -2223,7 +2223,7 @@ public abstract class Buffer { // 这四个变量的关系: mark &lt;= position 
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">ensureClassInitialized</span><span class="o">(</span><span class="n">InterruptedException</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl">            <span class="n">ensureClassInitialized</span><span class="o">(</span><span class="n">Cleaner</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl">		
+</span></span><span class="line"><span class="cl">	
 </span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">            <span class="n">tryHandlePending</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>   <span class="c1">//这里是一个无限循环调用tryHandlePending方法
@@ -2255,7 +2255,7 @@ public abstract class Buffer { // 这四个变量的关系: mark &lt;= position 
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl">    <span class="o">...</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><p>那么也就是说Reference Handler线程是在一开始就启动了，那么我们的关注点可以放在<code>tryHandlePending</code>方法上，看看这玩意到底在做个啥：</p>
+</span></span></code></pre></div><p>那么也就是说Reference Handler线程是在一开始就启动了，那么我们的关注点可以放在 <code>tryHandlePending</code>方法上，看看这玩意到底在做个啥：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">tryHandlePending</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">waitForNotify</span><span class="o">)</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">Reference</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">&gt;</span> <span class="n">r</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">Cleaner</span> <span class="n">c</span><span class="o">;</span>
@@ -2328,7 +2328,7 @@ public abstract class Buffer { // 这四个变量的关系: mark &lt;= position 
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">att</span> <span class="o">=</span> <span class="n">db</span><span class="o">;</span>   <span class="c1">//将att设定为此对象
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
 </span></span></code></pre></div><p>可以看到，如果是进行复制操作，那么会直接会继续使用执行复制操作的DirectByteBuffer申请的内存空间。不知道各位是否能够马上联想到一个问题，我们知道，如果执行复制操作的DirectByteBuffer对象失去了强引用被回收，那么就会触发Cleaner并进行内存释放，但是有个问题就是，这段内存空间可能复制出来的DirectByteBuffer对象还需要继续使用，这时肯定是不能进行回收的，所以说这里使用了att变量将之前的DirectByteBuffer对象进行引用，以防止其失去强引用被垃圾回收，所以只要不是原来的DirectByteBuffer对象和复制出来的DirectByteBuffer对象都失去强引用时，就不会导致这段内存空间被回收。</p>
-<p>这样，我们之前的未解之谜为啥有个<code>att</code>也就得到答案了，有关直接缓冲区的介绍，就到这里为止。</p>
+<p>这样，我们之前的未解之谜为啥有个 <code>att</code>也就得到答案了，有关直接缓冲区的介绍，就到这里为止。</p>
 <hr>
 <h2 class="relative group">通道 
     <div id="通道" class="anchor"></div>
@@ -2352,7 +2352,7 @@ public abstract class Buffer { // 这四个变量的关系: mark &lt;= position 
     </span>        
     
 </h3>
-<p>通道的根基接口是<code>Channel</code>，所以的派生接口和类都是从这里开始的，我们来看看它定义了哪些基本功能：</p>
+<p>通道的根基接口是 <code>Channel</code>，所有的派生接口和类都是从这里开始的，我们来看看它定义了哪些基本功能：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Channel</span> <span class="kd">extends</span> <span class="n">Closeable</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="c1">//通道是否处于开启状态
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isOpen</span><span class="o">();</span>
@@ -2441,7 +2441,7 @@ public abstract class Buffer { // 这四个变量的关系: mark &lt;= position 
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">protected</span> <span class="kd">final</span> <span class="kt">void</span> <span class="nf">end</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">completed</span><span class="o">)</span>
 </span></span><span class="line"><span class="cl">				<span class="o">...</span>
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl">		
+</span></span><span class="line"><span class="cl">	
 </span></span><span class="line"><span class="cl">		<span class="o">...</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>而之后的一些实现类，都是基于这些接口定义的方法去进行实现的，比如FileChannel：</p>
@@ -2594,7 +2594,7 @@ public abstract class Buffer { // 这四个变量的关系: mark &lt;= position 
 </span></span></span><span class="line"><span class="cl"><span class="cm">      rwd  每当进行写操作，同步的刷新到磁盘，刷新内容
 </span></span></span><span class="line"><span class="cl"><span class="cm">     */</span>
 </span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="o">(</span><span class="n">RandomAccessFile</span> <span class="n">f</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RandomAccessFile</span><span class="o">(</span><span class="s">&#34;test.txt&#34;</span><span class="o">,</span> <span class="s">&#34;&#34;</span><span class="o">)){</span>
-</span></span><span class="line"><span class="cl">				
+</span></span><span class="line"><span class="cl">			
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>现在我们来测试一下它的读写操作：</p>
@@ -2697,7 +2697,7 @@ public abstract class Buffer { // 这四个变量的关系: mark &lt;= position 
 </span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">()</span> <span class="o">+</span> <span class="s">&#34; 已获取到文件锁！&#34;</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl">    <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">5000</span><span class="o">);</span>   <span class="c1">//假设要处理5秒钟
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">()</span> <span class="o">+</span> <span class="s">&#34; 操作完毕，释放文件锁！&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">  	
+</span></span><span class="line"><span class="cl">  
 </span></span><span class="line"><span class="cl">  	<span class="c1">//操作完成之后使用release方法进行锁释放
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">lock</span><span class="o">.</span><span class="na">release</span><span class="o">();</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
@@ -2764,7 +2764,7 @@ public abstract class Buffer { // 这四个变量的关系: mark &lt;= position 
 </span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">()</span> <span class="o">+</span> <span class="s">&#34; 已获取到文件锁！&#34;</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl">  			<span class="c1">//进行写操作
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">channel</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">ByteBuffer</span><span class="o">.</span><span class="na">wrap</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">().</span><span class="na">toString</span><span class="o">().</span><span class="na">getBytes</span><span class="o">()));</span>
-</span></span><span class="line"><span class="cl">       
+</span></span><span class="line"><span class="cl">     
 </span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">()</span> <span class="o">+</span> <span class="s">&#34; 操作完毕，释放文件锁！&#34;</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl">        <span class="c1">//操作完成之后使用release方法进行锁释放
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">lock</span><span class="o">.</span><span class="na">release</span><span class="o">();</span>
@@ -2792,7 +2792,7 @@ public abstract class Buffer { // 这四个变量的关系: mark &lt;= position 
 </span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">()</span> <span class="o">+</span> <span class="s">&#34; 已获取到文件锁！&#34;</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl">    <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">5000</span><span class="o">);</span>   <span class="c1">//假设要处理5秒钟
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">()</span> <span class="o">+</span> <span class="s">&#34; 操作完毕，释放文件锁！&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">  
 </span></span><span class="line"><span class="cl">    <span class="n">lock</span><span class="o">.</span><span class="na">release</span><span class="o">();</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>可以看到结果是多个进程都能加共享锁：</p>
@@ -2807,7 +2807,7 @@ public abstract class Buffer { // 这四个变量的关系: mark &lt;= position 
   </figure>
 
 </p>
-<p>当然，除了直接使用<code>lock()</code>方法进行加锁之外，我们也可以使用<code>tryLock()</code>方法以非阻塞方式获取文件锁，但是如果获取锁失败会得到null：</p>
+<p>当然，除了直接使用 <code>lock()</code>方法进行加锁之外，我们也可以使用 <code>tryLock()</code>方法以非阻塞方式获取文件锁，但是如果获取锁失败会得到null：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">,</span> <span class="n">InterruptedException</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">RandomAccessFile</span> <span class="n">f</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RandomAccessFile</span><span class="o">(</span><span class="s">&#34;test.txt&#34;</span><span class="o">,</span> <span class="s">&#34;rw&#34;</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl">    <span class="n">FileChannel</span> <span class="n">channel</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="na">getChannel</span><span class="o">();</span>
@@ -2842,7 +2842,7 @@ public abstract class Buffer { // 这四个变量的关系: mark &lt;= position 
   </figure>
 
 </p>
-<p>第一个成功加锁的进程获得了对应的锁对象，而第二个进程直接得到的是<code>null</code>。</p>
+<p>第一个成功加锁的进程获得了对应的锁对象，而第二个进程直接得到的是 <code>null</code>。</p>
 <p>到这里，有关文件锁的相关内容就差不多了。</p>
 <hr>
 <h2 class="relative group">多路复用网络通信 
@@ -2971,7 +2971,7 @@ public abstract class Buffer { // 这四个变量的关系: mark &lt;= position 
   </figure>
 
 </p>
-<p>服务端不再是一个单纯通过<code>accept()</code>方法来创建连接的机制了，而是根据客户端不同的状态，Selector会不断轮询，只有客户端在对应的状态时，比如真正开始读写操作时，才会创建线程或进行处理（这样就不会一直阻塞等待某个客户端的IO操作了），而不是创建之后需要一直保持连接，即使没有任何的读写操作。这样就不会因为占着茅坑不拉屎导致线程无限制地创建下去了。</p>
+<p>服务端不再是一个单纯通过 <code>accept()</code>方法来创建连接的机制了，而是根据客户端不同的状态，Selector会不断轮询，只有客户端在对应的状态时，比如真正开始读写操作时，才会创建线程或进行处理（这样就不会一直阻塞等待某个客户端的IO操作了），而不是创建之后需要一直保持连接，即使没有任何的读写操作。这样就不会因为占着茅坑不拉屎导致线程无限制地创建下去了。</p>
 <p>通过这种方式，甚至单线程都能做到高效的复用，最典型的例子就是Redis了，因为内存的速度非常快，多线程上下文的开销就会显得有些拖后腿，还不如直接单线程简单高效，这也是为什么Redis单线程也能这么快的原因。</p>
 <p>因此，我们就从NIO框架的第三个核心内容：Selector，开始讲起。</p>
 <h3 class="relative group">选择器与I/O多路复用 
@@ -2987,9 +2987,9 @@ public abstract class Buffer { // 这四个变量的关系: mark &lt;= position 
 <p>前面我们大概了解了一下选择器，我们知道，选择器是当具体有某一个状态（比如读、写、请求）已经就绪时，才会进行处理，而不是让我们的程序主动地进行等待。</p>
 <p>既然我们现在需要实现IO多路复用，那么我们来看看常见的IO多路复用模型，也就是Selector的实现方案，比如现在有很多个用户连接到我们的服务器：</p>
 <ul>
-<li><strong>select</strong>：当这些连接出现具体的某个状态时，只是知道已经就绪了，但是不知道详具体是哪一个连接已经就绪，每次调用都进行线性遍历所有连接，时间复杂度为<code>O(n)</code>，并且存在最大连接数限制。</li>
+<li><strong>select</strong>：当这些连接出现具体的某个状态时，只是知道已经就绪了，但是不知道详具体是哪一个连接已经就绪，每次调用都进行线性遍历所有连接，时间复杂度为 <code>O(n)</code>，并且存在最大连接数限制。</li>
 <li><strong>poll</strong>：同上，但是由于底层采用链表，所以没有最大连接数限制。</li>
-<li><strong>epoll</strong>：采用事件通知方式，当某个连接就绪，能够直接进行精准通知（这是因为在内核实现中epoll是根据每个fd上面的callback函数实现的，只要就绪会会直接回调callback函数，实现精准通知，但是只有Linux支持这种方式），时间复杂度<code>O(1)</code>，Java在Linux环境下正是采用的这种模式进行实现的。</li>
+<li><strong>epoll</strong>：采用事件通知方式，当某个连接就绪，能够直接进行精准通知（这是因为在内核实现中epoll是根据每个fd上面的callback函数实现的，只要就绪会会直接回调callback函数，实现精准通知，但是只有Linux支持这种方式），时间复杂度 <code>O(1)</code>，Java在Linux环境下正是采用的这种模式进行实现的。</li>
 </ul>
 <p>好了，既然多路复用模型了解完毕了，那么我们就来看看如何让我们的网络通信实现多路复用：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
@@ -3162,7 +3162,7 @@ public abstract class Buffer { // 这四个变量的关系: mark &lt;= position 
 </span></span><span class="line"><span class="cl">        <span class="o">}</span>
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><p>这里我们在注册时丢了一个附加对象进去，这个附加对象会在选择器选择到此通道上时，可以通过<code>attachment()</code>方法进行获取，对于我们简化代码有大作用，一会展示，我们接着来看看Reactor：</p>
+</span></span></code></pre></div><p>这里我们在注册时丢了一个附加对象进去，这个附加对象会在选择器选择到此通道上时，可以通过 <code>attachment()</code>方法进行获取，对于我们简化代码有大作用，一会展示，我们接着来看看Reactor：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Reactor</span> <span class="kd">implements</span> <span class="n">Closeable</span><span class="o">,</span> <span class="n">Runnable</span><span class="o">{</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="n">ServerSocketChannel</span> <span class="n">serverChannel</span><span class="o">;</span>
@@ -3277,7 +3277,7 @@ public abstract class Buffer { // 这四个变量的关系: mark &lt;= position 
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SubReactor</span> <span class="kd">implements</span> <span class="n">Runnable</span><span class="o">,</span> <span class="n">Closeable</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">		<span class="c1">//每个从Reactor也有一个Selector
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">private</span> <span class="kd">final</span> <span class="n">Selector</span> <span class="n">selector</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  	<span class="c1">//创建一个4线程的线程池，也就是四个从Reactor工作
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">ExecutorService</span> <span class="n">POOL</span> <span class="o">=</span> <span class="n">Executors</span><span class="o">.</span><span class="na">newFixedThreadPool</span><span class="o">(</span><span class="mi">4</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">SubReactor</span><span class="o">[]</span> <span class="n">reactors</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SubReactor</span><span class="o">[</span><span class="mi">4</span><span class="o">];</span>
@@ -3585,7 +3585,7 @@ public abstract class Buffer { // 这四个变量的关系: mark &lt;= position 
       <div class="flex justify-between pt-3">
         <span>
           
-            <a class="flex group mr-3" href="/doc/design/%E5%88%9B%E5%BB%BA%E5%9E%8B/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%B3%BB%E5%88%97-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%BA%8C%E5%88%9B%E5%BB%BA%E5%9E%8B/">
+            <a class="flex group mr-3" href="/doc/rabbitmq/springcloud-%E8%BF%9B%E9%98%B6-springcloud%E7%AC%94%E8%AE%B0%E5%9B%9B%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">
               <span
                 class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
                 >&larr;</span
@@ -3597,7 +3597,7 @@ public abstract class Buffer { // 这四个变量的关系: mark &lt;= position 
               <span class="flex flex-col">
                 <span
                   class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
-                  >创建型</span
+                  >RabbitMq</span
                 >
                 <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
                   

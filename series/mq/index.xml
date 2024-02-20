@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>mq on 春江花朝秋月夜</title>
+    <link>/series/mq/</link>
+    <description>Recent content in mq on 春江花朝秋月夜</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright>© 2024 春江花朝秋月夜</copyright>
+    <atom:link href="/series/mq/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>RabbitMq</title>
+      <link>/doc/rabbitmq/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/doc/rabbitmq/</guid>
+      <description>消息队列 # 经过前面的学习，我们已经了解了我们之前的技术在分布式环境下的应用，接着我们来看最后一章的内容。
+那么，什么是消息队列呢？
+我们之前如果需要进行远程调用，那么一般可以通过发送HTTP请求来完成，而现在，我们可以使用第二种方式，就是消息队列，它能够将发送方发送的信息放入队列中，当新的消息入队时，会通知接收方进行处理，一般消息发送方称为生产者，接收方称为消费者。
+这样我们所有的请求，都可以直接丢到消息队列中，再由消费者取出，不再是直接连接消费者的形式了，而是加了一个中间商，这也是一种很好的解耦方案，并且在高并发的情况下，由于消费者能力有限，消息队列也能起到一个削峰填谷的作用，堆积一部分的请求，再由消费者来慢慢处理，而不会像直接调用那样请求蜂拥而至。
+那么，消息队列具体实现有哪些呢：
+RabbitMQ - 性能很强，吞吐量很高，支持多种协议，集群化，消息的可靠执行特性等优势，很适合企业的开发。 Kafka - 提供了超高的吞吐量，ms级别的延迟，极高的可用性以及可靠性，而且分布式可以任意扩展。 RocketMQ - 阿里巴巴推出的消息队列，经历过双十一的考验，单机吞吐量高，消息的高可靠性，扩展性强，支持事务等，但是功能不够完整，语言支持性较差。 我们这里，主要讲解的是RabbitMQ消息队列。
+RabbitMQ 消息队列 # 官方网站： https://www.rabbitmq.com
+RabbitMQ拥有数万计的用户，是最受欢迎的开源消息队列之一，从 T-Mobile到 Runtastic，RabbitMQ在全球范围内用于小型初创企业和大型企业。
+RabbitMQ轻量级，易于在本地和云端部署，它支持多种消息协议。RabbitMQ可以部署在分布式和联合配置中，以满足大规模、高可用性要求。
+RabbitMQ在许多操作系统和云环境中运行，并为 大多数流行语言提供了 广泛的开发者工具。</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/doc/rabbitmq/featured.jpg" />
+    </item>
+    
+  </channel>
+</rss>

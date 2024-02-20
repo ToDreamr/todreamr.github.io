@@ -10,10 +10,10 @@
     <atom:link href="/doc/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Docker</title>
-      <link>/doc/docker/%E5%85%B6%E4%BB%96%E4%B8%AD%E9%97%B4%E4%BB%B6%E7%AC%94%E8%AE%B0-docker-%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/</link>
+      <link>/doc/docker/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/doc/docker/%E5%85%B6%E4%BB%96%E4%B8%AD%E9%97%B4%E4%BB%B6%E7%AC%94%E8%AE%B0-docker-%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/</guid>
+      <guid>/doc/docker/</guid>
       <description>Docker容器技术 # Docker是一门平台级别的技术，涉及的范围很广，所以，在开始之前，请确保你完成：Java SpringBoot 篇（推荐完成SpringCloud篇再来）视频教程及之前全部路线，否则学习会非常吃力，另外推荐额外掌握：《计算机网络》、《操作系统》相关知识。学一样东西不能完全靠记忆来完成，而是需要结合自己所学的基础知识加以理解，一般来说，单凭记忆能够掌握的东西往往是最廉价的。
 **Docker官网：** https://www.docker.com
 **课前准备：**配置2C2G以上Linux服务器一台，云服务器、虚拟机均可。
@@ -24,37 +24,121 @@
 Ubuntu 22.04 操作系统 Docker分为免费的CE（Community Edition）社区版本和EE（Enterprise Edition）企业级付费版本，所以我们这里选择docker-ce进行安装。官方安装文档：https://docs.docker.com/engine/install/ubuntu/
 首先安装一些工具：
 sudo apt-get install ca-certificates curl gnupg lsb-release 不过在Ubuntu22.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/doc/docker/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Mysql</title>
+      <link>/doc/mysql/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
+      <guid>/doc/mysql/</guid>
+      <description>MySQL高级 # 在JavaWeb阶段，我们初步认识了MySQL数据库，包括一些基本操作，比如创建数据库、表、触发器，以及最基本的增删改查、事务等操作。而在此阶段，我们将继续深入学习MySQL，了解它的更多高级玩法，也相当于进行复习。
+函数 # 其实函数我们在之前已经接触到一部分了，在JavaWeb阶段，我们了解了聚集函数，聚集函数一般用作统计，包括：
+count([distinct]*) 统计所有的行数（distinct表示去重再统计，下同） count([distinct]列名) 统计某列的值总和 sum([distinct]列名) 求一列的和（注意必须是数字类型的） avg([distinct]列名) 求一列的平均值（注意必须是数字类型） max([distinct]列名) 求一列的最大值 min([distinct]列名) 求一列的最小值 比如我们需要计算某个表一共有多少行：
+SELECT COUNT(*) FROM student 通过使用COUNT聚集函数，就可以快速统计并得到结果，比如我们想计算某一列上所有数字的和：
+SELECT SUM(sid) FROM student 通过SUM聚集函数，就可以快速计算每一列的和，实际上这些函数都是由系统提供的函数，我们可以直接使用。
+本版块我们会详细介绍各类系统函数以及如何编写自定义函数。</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/doc/mysql/featured.jpg" />
     </item>
     
     <item>
       <title>Netty</title>
-      <link>/doc/netty/netty/java-nio-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B-nio-%E7%AC%94%E8%AE%B0%E4%BA%8Cnetty%E6%A1%86%E6%9E%B6%E4%B8%93%E9%A2%98/</link>
+      <link>/doc/netty/netty/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/doc/netty/netty/java-nio-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B-nio-%E7%AC%94%E8%AE%B0%E4%BA%8Cnetty%E6%A1%86%E6%9E%B6%E4%B8%93%E9%A2%98/</guid>
+      <guid>/doc/netty/netty/</guid>
       <description>Netty框架 # 前面我们学习了Java为我们提供的NIO框架，提供使用NIO提供的三大组件，我们就可以编写更加高性能的客户端/服务端网络程序了，甚至还可以自行规定一种通信协议进行通信。
 NIO框架存在的问题 # 但是之前我们在使用NIO框架的时候，还是发现了一些问题，我们先来盘点一下。
 客户端关闭导致服务端空轮询 # 可能在之前的实验中，你发现了这样一个问题：
 当我们的客户端主动与服务端断开连接时，会导致READ事件一直被触发，也就是说selector.select()会直接通过，并且是可读的状态，但是我们发现实际上读到是数据是一个空的（上面的图中在空轮询两次后抛出异常了，也有可能是无限的循环下去）所以这里我们得稍微处理一下：
 } else if(key.isReadable()) { SocketChannel channel = (SocketChannel) key.channel(); ByteBuffer buffer = ByteBuffer.allocate(128); //这里我们需要判断一下，如果read操作得到的结果是-1，那么说明服务端已经断开连接了 if(channel.read(buffer) &amp;lt; 0) { System.out.println(&amp;#34;客户端已经断开连接了：&amp;#34;+channel.getRemoteAddress()); channel.close(); //直接关闭此通道 continue; //继续进行选择 } buffer.</description>
-      
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/doc/netty/netty/featured.jpg" />
     </item>
     
     <item>
       <title>NIO</title>
-      <link>/doc/netty/nio/java-nio-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B-nio-%E7%AC%94%E8%AE%B0%E4%B8%80%E5%9F%BA%E7%A1%80%E5%86%85%E5%AE%B9/</link>
+      <link>/doc/netty/nio/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/doc/netty/nio/java-nio-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B-nio-%E7%AC%94%E8%AE%B0%E4%B8%80%E5%9F%BA%E7%A1%80%E5%86%85%E5%AE%B9/</guid>
+      <guid>/doc/netty/nio/</guid>
       <description>NIO基础 # **注意：**推荐完成JavaSE篇、JavaWeb篇的学习再开启这一部分的学习，如果在这之前完成了JVM篇，那么看起来就会比较轻松了。
 在JavaSE的学习中，我们了解了如何使用IO进行数据传输，Java IO是阻塞的，如果在一次读写数据调用时数据还没有准备好，或者目前不可写，那么读写操作就会被阻塞直到数据准备好或目标可写为止。Java NIO则是非阻塞的，每一次数据读写调用都会立即返回，并将目前可读（或可写）的内容写入缓冲区或者从缓冲区中输出，即使当前没有可用数据，调用仍然会立即返回并且不对缓冲区做任何操作。
 NIO框架是在JDK1.4推出的，它的出现就是为了解决传统IO的不足，这一期视频，我们就将围绕着NIO开始讲解。
 缓冲区 # 一切的一切还要从缓冲区开始讲起，包括源码在内，其实这个不是很难，只是需要理清思路。
 Buffer类及其实现 # Buffer类是缓冲区的实现，类似于Java中的数组，也是用于存放和获取数据的。但是Buffer相比Java中的数组，功能就非常强大了，它包含一系列对于数组的快捷操作。
 Buffer是一个抽象类，它的核心内容：
-public abstract class Buffer { // 这四个变量的关系: mark &amp;lt;= position &amp;lt;= limit &amp;lt;= capacity // 这些变量就是Buffer操作的核心了，之后我们学习的过程中可以看源码是如何操作这些变量的 private int mark = -1; private int position = 0; private int limit; private int capacity; // 直接缓冲区实现子类的数据内存地址（之后会讲解） long address; 我们来看看Buffer类的子类，包括我们认识到的所有基本类型（除了boolean类型之外）：</description>
+public abstract class Buffer { // 这四个变量的关系: mark &amp;lt;= position &amp;lt;= limit &amp;lt;= capacity // 这些变量就是Buffer操作的核心了，之后我们学习的过程中可以看源码是如何操作这些变量的 private int mark = -1; private int position = 0; private int limit; private int capacity; // 直接缓冲区实现子类的数据内存地址（之后会讲解） long address; 我们来看看Buffer类的子类，包括我们认识到的所有基本类型（除了 boolean类型之外）：</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/doc/netty/nio/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>RabbitMq</title>
+      <link>/doc/rabbitmq/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
+      <guid>/doc/rabbitmq/</guid>
+      <description>消息队列 # 经过前面的学习，我们已经了解了我们之前的技术在分布式环境下的应用，接着我们来看最后一章的内容。
+那么，什么是消息队列呢？
+我们之前如果需要进行远程调用，那么一般可以通过发送HTTP请求来完成，而现在，我们可以使用第二种方式，就是消息队列，它能够将发送方发送的信息放入队列中，当新的消息入队时，会通知接收方进行处理，一般消息发送方称为生产者，接收方称为消费者。
+这样我们所有的请求，都可以直接丢到消息队列中，再由消费者取出，不再是直接连接消费者的形式了，而是加了一个中间商，这也是一种很好的解耦方案，并且在高并发的情况下，由于消费者能力有限，消息队列也能起到一个削峰填谷的作用，堆积一部分的请求，再由消费者来慢慢处理，而不会像直接调用那样请求蜂拥而至。
+那么，消息队列具体实现有哪些呢：
+RabbitMQ - 性能很强，吞吐量很高，支持多种协议，集群化，消息的可靠执行特性等优势，很适合企业的开发。 Kafka - 提供了超高的吞吐量，ms级别的延迟，极高的可用性以及可靠性，而且分布式可以任意扩展。 RocketMQ - 阿里巴巴推出的消息队列，经历过双十一的考验，单机吞吐量高，消息的高可靠性，扩展性强，支持事务等，但是功能不够完整，语言支持性较差。 我们这里，主要讲解的是RabbitMQ消息队列。
+RabbitMQ 消息队列 # 官方网站： https://www.rabbitmq.com
+RabbitMQ拥有数万计的用户，是最受欢迎的开源消息队列之一，从 T-Mobile到 Runtastic，RabbitMQ在全球范围内用于小型初创企业和大型企业。
+RabbitMQ轻量级，易于在本地和云端部署，它支持多种消息协议。RabbitMQ可以部署在分布式和联合配置中，以满足大规模、高可用性要求。
+RabbitMQ在许多操作系统和云环境中运行，并为 大多数流行语言提供了 广泛的开发者工具。</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/doc/rabbitmq/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>SpringCloud 1</title>
+      <link>/doc/cloud/%E4%B8%80/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/doc/cloud/%E4%B8%80/</guid>
+      <description>微服务基础 # 注意： 此阶段学习推荐的电脑配置，至少配备4核心CPU（主频3.0Ghz以上）+16GB内存，否则卡到你怀疑人生。
+前面我们讲解了SpringBoot框架，通过使用SpringBoot框架，我们的项目开发速度可以说是得到了质的提升。同时，我们对于项目的维护和理解，也会更加的轻松。可见，SpringBoot为我们的开发带来了巨大便捷。而这一部分，我们将基于SpringBoot，继续深入到企业实际场景，探讨微服务架构下的SpringCloud。这个部分我们会更加注重于架构设计上的讲解，弱化实现原理方面的研究。
+传统项目转型 # 要说近几年最火热的话题，那还得是微服务，那么什么是微服务呢？
+我们可以先从技术的演变开始看起，在我们学习JavaWeb之后，一般的网站开发模式为Servlet+JSP，但是实际上我们在学习了SSM之后，会发现这种模式已经远远落后了，第一，一个公司不可能去招那么多同时会前端+后端的开发人员，就算招到，也并不一定能保证两个方面都比较擅长，相比前后端分开学习的开发人员，显然后者的学习成本更低，专注度更高。因此前后端分离成为了一种新的趋势。通过使用SpringBoot，我们几乎可以很快速地开发一个高性能的单体应用，只需要启动一个服务端，我们整个项目就开始运行了，各项功能融于一体，开发起来也更加轻松。
+但是随着我们项目的不断扩大，单体应用似乎显得有点乏力了。
+随着越来越多的功能不断地加入到一个SpringBoot项目中，随着接口不断增加，整个系统就要在同一时间内响应更多类型的请求，显然，这种扩展方式是不可能无限使用下去的，总有一天，这个SpringBoot项目会庞大到运行缓慢。并且所有的功能如果都集成在单端上，那么所有的请求都会全部汇集到一台服务器上，对此服务器造成巨大压力。
+可以试想一下，如果我们的电脑已经升级到i9-12900K，但是依然在运行项目的时候缓慢，无法同一时间响应成千上万的请求，那么这个问题就已经不是单纯升级机器配置可以解决的了。
+传统单体架构应用随着项目规模的扩大，实际上会暴露越来越多的问题，尤其是一台服务器无法承受庞大的单体应用部署，并且单体应用的维护也会越来越困难，我们得寻找一种新的开发架构来解决这些问题了。
+In short, the microservice architectural style is an approach to developing a single application as a suite of small services, each running in its own process and communicating with lightweight mechanisms, often an HTTP resource API.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/doc/cloud/%E4%B8%80/featured.jpeg" />
+    </item>
+    
+    <item>
+      <title>SpringCloud 2</title>
+      <link>/doc/cloud/%E4%B8%89/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/doc/cloud/%E4%B8%89/</guid>
+      <description>微服务进阶 # 前面我们了解了微服务的一套解决方案，但是它是基于Netflix的解决方案，实际上我们发现，很多框架都已经停止维护了，来看看目前我们所认识到的SpringCloud各大组件的维护情况：
+注册中心： Eureka（属于Netflix，2.x版本不再开源，1.x版本仍在更新） 服务调用： Ribbon（属于Netflix，停止更新，已经彻底被移除）、SpringCloud Loadbalancer（属于SpringCloud官方，目前的默认方案） 服务降级： Hystrix（属于Netflix，停止更新，已经彻底被移除） 路由网关： Zuul（属于Netflix，停止更新，已经彻底被移除）、Gateway（属于SpringCloud官方，推荐方案） 配置中心： Config（属于SpringCloud官方） 可见，我们之前使用的整套解决方案中，超过半数的组件都已经处于不可用状态，并且部分组件都是SpringCloud官方出手提供框架进行解决，因此，寻找一套更好的解决方案势在必行，也就引出了我们本章的主角：SpringCloud Alibaba
+阿里巴巴作为业界的互联网大厂，给出了一套全新的解决方案，官方网站（中文）：https://spring-cloud-alibaba-group.github.io/github-pages/2021/zh-cn/index.html
+Spring Cloud Alibaba 致力于提供微服务开发的一站式解决方案。此项目包含开发分布式应用服务的必需组件，方便开发者通过 Spring Cloud 编程模型轻松使用这些组件来开发分布式应用服务。
+依托 Spring Cloud Alibaba，您只需要添加一些注解和少量配置，就可以将 Spring Cloud 应用接入阿里分布式应用解决方案，通过阿里中间件来迅速搭建分布式应用系统。</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/doc/cloud/%E4%B8%89/featured.jpeg" />
+    </item>
+    
+    <item>
+      <title>SpringCloud 3</title>
+      <link>/doc/cloud/%E4%BA%8C/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/doc/cloud/%E4%BA%8C/</guid>
+      <description>微服务应用 # 前面我们已经完成了SpringCloudAlibaba的学习，我们对一个微服务项目的架构体系已经有了一定的了解，那么本章我们将在应用层面继续探讨微服务。
+分布式权限校验 # 虽然完成前面的部分，我们已经可以自己去编写一个比较中规中矩的微服务项目了，但是还有一个问题我们没有解决，登录问题。假如现在要求用户登录之后，才能进行图书的查询、借阅等操作，那么我们又该如何设计这个系统呢？
+回顾我们之前进行权限校验的原理，服务器是如何判定一个请求是来自哪个用户的呢？
+首先浏览器会向服务端发送请求，访问我们的网站。 服务端收到请求后，会创建一个SESSION ID，并暂时存储在服务端，然后会发送给浏览器作为Cookie保存。 之后浏览器会一直携带此Cookie访问服务器，这样在收到请求后，就能根据携带的Cookie中的SESSION ID判断是哪个用户了。 这样服务端和浏览器之间可以轻松地建立会话了。 但是我们想一下，我们现在采用的是分布式的系统，那么在用户服务进行登录之后，其他服务比如图书服务和借阅服务，它们会知道用户登录了吗？
+实际上我们登录到用户服务之后，Session中的用户数据只会在用户服务的应用中保存，而在其他服务中，并没有对应的信息，但是我们现在希望的是，所有的服务都能够同步这些Session信息，这样我们才能实现在用户服务登录之后其他服务都能知道，那么我们该如何实现Session的同步呢？
+我们可以在每台服务器上都复制一份Session，但是这样显然是很浪费时间的，并且用户验证数据占用的内存会成倍的增加。 将Session移出服务器，用统一存储来存放，比如我们可以直接在Redis或是MySQL中存放用户的Session信息，这样所有的服务器在需要获取Session信息时，统一访问Redis或是MySQL即可，这样就能保证所有服务都可以同步Session了（是不是越来越感觉只要有问题，没有什么是加一个中间件解决不了的） 那么，我们就着重来研究一下，然后实现2号方案，这里我们就使用Redis作为Session统一存储，我们把一开始的压缩包重新解压一次，又来从头开始编写吧。
+这里我们就只使用Nacos就行了，和之前一样，我们把Nacos的包导入一下，然后进行一些配置：
+现在我们需要为每个服务都添加验证机制，首先导入依赖：
+&amp;lt;!-- SpringSession Redis支持 --&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework.session&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-session-data-redis&amp;lt;/artifactId&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;!-- 添加Redis的Starter --&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/doc/cloud/%E4%BA%8C/featured.jpeg" />
     </item>
     
     <item>

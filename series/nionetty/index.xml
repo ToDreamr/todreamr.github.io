@@ -10,32 +10,32 @@
     <atom:link href="/series/nionetty/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Netty</title>
-      <link>/doc/netty/netty/java-nio-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B-nio-%E7%AC%94%E8%AE%B0%E4%BA%8Cnetty%E6%A1%86%E6%9E%B6%E4%B8%93%E9%A2%98/</link>
+      <link>/doc/netty/netty/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/doc/netty/netty/java-nio-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B-nio-%E7%AC%94%E8%AE%B0%E4%BA%8Cnetty%E6%A1%86%E6%9E%B6%E4%B8%93%E9%A2%98/</guid>
+      <guid>/doc/netty/netty/</guid>
       <description>Netty框架 # 前面我们学习了Java为我们提供的NIO框架，提供使用NIO提供的三大组件，我们就可以编写更加高性能的客户端/服务端网络程序了，甚至还可以自行规定一种通信协议进行通信。
 NIO框架存在的问题 # 但是之前我们在使用NIO框架的时候，还是发现了一些问题，我们先来盘点一下。
 客户端关闭导致服务端空轮询 # 可能在之前的实验中，你发现了这样一个问题：
 当我们的客户端主动与服务端断开连接时，会导致READ事件一直被触发，也就是说selector.select()会直接通过，并且是可读的状态，但是我们发现实际上读到是数据是一个空的（上面的图中在空轮询两次后抛出异常了，也有可能是无限的循环下去）所以这里我们得稍微处理一下：
 } else if(key.isReadable()) { SocketChannel channel = (SocketChannel) key.channel(); ByteBuffer buffer = ByteBuffer.allocate(128); //这里我们需要判断一下，如果read操作得到的结果是-1，那么说明服务端已经断开连接了 if(channel.read(buffer) &amp;lt; 0) { System.out.println(&amp;#34;客户端已经断开连接了：&amp;#34;+channel.getRemoteAddress()); channel.close(); //直接关闭此通道 continue; //继续进行选择 } buffer.</description>
-      
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/doc/netty/netty/featured.jpg" />
     </item>
     
     <item>
       <title>NIO</title>
-      <link>/doc/netty/nio/java-nio-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B-nio-%E7%AC%94%E8%AE%B0%E4%B8%80%E5%9F%BA%E7%A1%80%E5%86%85%E5%AE%B9/</link>
+      <link>/doc/netty/nio/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/doc/netty/nio/java-nio-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B-nio-%E7%AC%94%E8%AE%B0%E4%B8%80%E5%9F%BA%E7%A1%80%E5%86%85%E5%AE%B9/</guid>
+      <guid>/doc/netty/nio/</guid>
       <description>NIO基础 # **注意：**推荐完成JavaSE篇、JavaWeb篇的学习再开启这一部分的学习，如果在这之前完成了JVM篇，那么看起来就会比较轻松了。
 在JavaSE的学习中，我们了解了如何使用IO进行数据传输，Java IO是阻塞的，如果在一次读写数据调用时数据还没有准备好，或者目前不可写，那么读写操作就会被阻塞直到数据准备好或目标可写为止。Java NIO则是非阻塞的，每一次数据读写调用都会立即返回，并将目前可读（或可写）的内容写入缓冲区或者从缓冲区中输出，即使当前没有可用数据，调用仍然会立即返回并且不对缓冲区做任何操作。
 NIO框架是在JDK1.4推出的，它的出现就是为了解决传统IO的不足，这一期视频，我们就将围绕着NIO开始讲解。
 缓冲区 # 一切的一切还要从缓冲区开始讲起，包括源码在内，其实这个不是很难，只是需要理清思路。
 Buffer类及其实现 # Buffer类是缓冲区的实现，类似于Java中的数组，也是用于存放和获取数据的。但是Buffer相比Java中的数组，功能就非常强大了，它包含一系列对于数组的快捷操作。
 Buffer是一个抽象类，它的核心内容：
-public abstract class Buffer { // 这四个变量的关系: mark &amp;lt;= position &amp;lt;= limit &amp;lt;= capacity // 这些变量就是Buffer操作的核心了，之后我们学习的过程中可以看源码是如何操作这些变量的 private int mark = -1; private int position = 0; private int limit; private int capacity; // 直接缓冲区实现子类的数据内存地址（之后会讲解） long address; 我们来看看Buffer类的子类，包括我们认识到的所有基本类型（除了boolean类型之外）：</description>
-      
+public abstract class Buffer { // 这四个变量的关系: mark &amp;lt;= position &amp;lt;= limit &amp;lt;= capacity // 这些变量就是Buffer操作的核心了，之后我们学习的过程中可以看源码是如何操作这些变量的 private int mark = -1; private int position = 0; private int limit; private int capacity; // 直接缓冲区实现子类的数据内存地址（之后会讲解） long address; 我们来看看Buffer类的子类，包括我们认识到的所有基本类型（除了 boolean类型之外）：</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/doc/netty/nio/featured.jpg" />
     </item>
     
   </channel>

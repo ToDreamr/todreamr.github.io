@@ -1,0 +1,2362 @@
+<!DOCTYPE html>
+<html lang="zh-CN" dir="ltr" class="scroll-smooth" data-default-appearance="light"
+  data-auto-appearance="true"><head>
+
+  <meta charset="utf-8" />
+  
+  <meta http-equiv="content-language" content="zh-CN" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  
+  <title>Mysql &middot; 春江花朝秋月夜</title>
+  <meta name="title" content="Mysql &middot; 春江花朝秋月夜" />
+  
+  <meta name="description" content="A powerful, lightweight theme for Hugo built with Tailwind CSS." />
+  
+  
+  
+  <link rel="canonical" href="/doc/mysql/mysql%E8%BF%9B%E9%98%B6/" />
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.b0d4aeb65335611c810957fcff4af94f45bb796b37facd9be6f7287ee03ce57038918ff5d4ac7a6ea77914fde6d3942c0243d3d17f90926c454b4ea3499e973a.css"
+    integrity="sha512-sNSutlM1YRyBCVf8/0r5T0W7eWs3&#43;s2b5vcofuA85XA4kY/11Kx6bqd5FP3m05QsAkPT0X&#43;QkmxFS06jSZ6XOg==" />
+  
+  
+  <script type="text/javascript" src="/js/appearance.min.516a16745bea5a9bd011138d254cc0fd3973cd55ce6e15f3dec763e7c7c2c7448f8fe7b54cca811cb821b0c7e12cd161caace1dd794ac3d34d40937cbcc9ee12.js"
+    integrity="sha512-UWoWdFvqWpvQERONJUzA/TlzzVXObhXz3sdj58fCx0SPj&#43;e1TMqBHLghsMfhLNFhyqzh3XlKw9NNQJN8vMnuEg=="></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script defer type="text/javascript" id="script-bundle" src="/js/main.bundle.min.6c7ae15a14b4f78dc4f6e7f92e5a4e05d69a1eafe594e439255e5f72defe4531e8fda36f83cf9730e27868220649112476686eec9d28c582deaabe019c419dbd.js"
+    integrity="sha512-bHrhWhS0943E9uf5LlpOBdaaHq/llOQ5JV5fct7&#43;RTHo/aNvg8&#43;XMOJ4aCIGSREkdmhu7J0oxYLeqr4BnEGdvQ==" data-copy="" data-copied=""></script>
+  
+  
+  <script src="/js/zoom.min.js"></script>
+  
+  
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="Mysql" />
+<meta property="og:description" content="MySQL高级 # 在JavaWeb阶段，我们初步认识了MySQL数据库，包括一些基本操作，比如创建数据库、表、触发器，以及最基本的增删改查、事务等操作。而在此阶段，我们将继续深入学习MySQL，了解它的更多高级玩法，也相当于进行复习。
+函数 # 其实函数我们在之前已经接触到一部分了，在JavaWeb阶段，我们了解了聚集函数，聚集函数一般用作统计，包括：
+count([distinct]*) 统计所有的行数（distinct表示去重再统计，下同） count([distinct]列名) 统计某列的值总和 sum([distinct]列名) 求一列的和（注意必须是数字类型的） avg([distinct]列名) 求一列的平均值（注意必须是数字类型） max([distinct]列名) 求一列的最大值 min([distinct]列名) 求一列的最小值 比如我们需要计算某个表一共有多少行：
+SELECT COUNT(*) FROM student 通过使用COUNT聚集函数，就可以快速统计并得到结果，比如我们想计算某一列上所有数字的和：
+SELECT SUM(sid) FROM student 通过SUM聚集函数，就可以快速计算每一列的和，实际上这些函数都是由系统提供的函数，我们可以直接使用。
+本版块我们会详细介绍各类系统函数以及如何编写自定义函数。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/doc/mysql/mysql%E8%BF%9B%E9%98%B6/" /><meta property="article:section" content="doc" />
+
+
+
+
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Mysql"/>
+<meta name="twitter:description" content="MySQL高级 # 在JavaWeb阶段，我们初步认识了MySQL数据库，包括一些基本操作，比如创建数据库、表、触发器，以及最基本的增删改查、事务等操作。而在此阶段，我们将继续深入学习MySQL，了解它的更多高级玩法，也相当于进行复习。
+函数 # 其实函数我们在之前已经接触到一部分了，在JavaWeb阶段，我们了解了聚集函数，聚集函数一般用作统计，包括：
+count([distinct]*) 统计所有的行数（distinct表示去重再统计，下同） count([distinct]列名) 统计某列的值总和 sum([distinct]列名) 求一列的和（注意必须是数字类型的） avg([distinct]列名) 求一列的平均值（注意必须是数字类型） max([distinct]列名) 求一列的最大值 min([distinct]列名) 求一列的最小值 比如我们需要计算某个表一共有多少行：
+SELECT COUNT(*) FROM student 通过使用COUNT聚集函数，就可以快速统计并得到结果，比如我们想计算某一列上所有数字的和：
+SELECT SUM(sid) FROM student 通过SUM聚集函数，就可以快速计算每一列的和，实际上这些函数都是由系统提供的函数，我们可以直接使用。
+本版块我们会详细介绍各类系统函数以及如何编写自定义函数。"/>
+
+  
+  <script type="application/ld+json">
+  [{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Docs",
+    "name": "Mysql",
+    "headline": "Mysql",
+    
+    "abstract": "MySQL高级 # 在JavaWeb阶段，我们初步认识了MySQL数据库，包括一些基本操作，比如创建数据库、表、触发器，以及最基本的增删改查、事务等操作。而在此阶段，我们将继续深入学习MySQL，了解它的更多高级玩法，也相当于进行复习。\n函数 # 其实函数我们在之前已经接触到一部分了，在JavaWeb阶段，我们了解了聚集函数，聚集函数一般用作统计，包括：\ncount([distinct]*) 统计所有的行数（distinct表示去重再统计，下同） count([distinct]列名) 统计某列的值总和 sum([distinct]列名) 求一列的和（注意必须是数字类型的） avg([distinct]列名) 求一列的平均值（注意必须是数字类型） max([distinct]列名) 求一列的最大值 min([distinct]列名) 求一列的最小值 比如我们需要计算某个表一共有多少行：\nSELECT COUNT(*) FROM student 通过使用COUNT聚集函数，就可以快速统计并得到结果，比如我们想计算某一列上所有数字的和：\nSELECT SUM(sid) FROM student 通过SUM聚集函数，就可以快速计算每一列的和，实际上这些函数都是由系统提供的函数，我们可以直接使用。\n本版块我们会详细介绍各类系统函数以及如何编写自定义函数。",
+    "inLanguage": "zh-CN",
+    "url" : "\/doc\/mysql\/mysql%E8%BF%9B%E9%98%B6\/",
+    "author" : {
+      "@type": "Person",
+      "name": "春江花朝秋月夜"
+    },
+    
+    
+    
+    
+    
+    
+    
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "1241"
+  }]
+  </script>
+
+
+  
+  
+  <meta name="author" content="春江花朝秋月夜" />
+  
+  
+  
+  <link href="https://space.bilibili.com/159283119?spm_id_from=333.1007.0.0" rel="me" />
+  
+  
+  <link href="https://github.com/ToDreamr" rel="me" />
+  
+  
+  <link href="https://music.163.com/#/user/home?id=568083850" rel="me" />
+  
+  
+  <link href="https://gitee.com/rainyheights" rel="me" />
+  
+  
+  <link href="https://www.zhihu.com/people/san-qiu-luo-yue" rel="me" />
+  
+  
+  
+  
+
+<script src="/lib/jquery/jquery.slim.min.js" integrity=""></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PEDMYR1V0K"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PEDMYR1V0K');
+</script>
+
+
+  
+  
+  <meta name="theme-color"/>
+
+  
+  
+</head>
+<body
+  class="flex flex-col h-screen px-6 m-auto text-lg leading-7 max-w-7xl bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32">
+  <div id="the-top" class="absolute flex self-center">
+    <a class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 focus:translate-y-0 dark:bg-neutral-600"
+      href="#main-content"><span
+        class="font-bold text-primary-600 ltr:pr-2 rtl:pl-2 dark:text-primary-400">&darr;</span>跳到文章开头</a>
+  </div>
+  
+  
+  <div class="min-h-[148px]"></div>
+<div class="fixed inset-x-0 pl-[24px] pr-[24px]" style="z-index:100">
+  <div id="menu-blur" class="absolute opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl shadow-2xl"></div>
+  <div class="relative max-w-[64rem] ml-auto mr-auto">
+    <div style="padding-left:0;padding-right:0;padding-top:2px;padding-bottom:3px ;height: 70px;font-family: 华文中宋,serif"
+     class="main-menu flex items-center justify-between px-4 py-6 sm:px-6 md:justify-start space-x-3" >
+  
+  
+  
+  <div>
+    <a href="/" class="flex">
+    <span class="sr-only">春江花朝秋月夜</span>
+
+    <img src="/img/author.png" width="16" height="16"
+         class="logo max-h-[5rem] max-w-[5rem] object-scale-down object-left nozoom" alt="春江花朝秋月夜" />
+
+    </a>
+  </div>
+  
+
+  <div class="flex flex-1 items-center justify-between">
+
+    <nav class="flex space-x-3">
+
+      
+      <a href="/" class="text-base font-medium text-gray-500 hover:text-gray-900">春江花朝秋月夜</a>
+      
+
+    </nav>
+    <nav class="hidden md:flex items-center space-x-5 md:ml-12 h-12">
+
+      
+      
+      
+  <a href="/"  class="flex items-center">
+    
+    <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="">
+        首页
+    </p>
+</a>
+
+
+      
+      
+  <a href="/%E7%AC%94%E8%AE%B0/"  class="flex items-center">
+    
+    <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="如何通过hugo搭建自己的博客">
+        笔记
+    </p>
+</a>
+
+
+      
+      
+  <a href="/tasks/"  class="flex items-center">
+    
+    <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="学习计划">
+        事项
+    </p>
+</a>
+
+
+      
+      
+  <a href="/all/"  class="flex items-center">
+    
+    <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="全部">
+        全部
+    </p>
+</a>
+
+
+      
+      
+  <a href="/tags/"  class="flex items-center">
+    
+    <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="Tags">
+        系列文章
+    </p>
+</a>
+
+
+      
+      
+  <a href="/friend/"  class="flex items-center">
+    
+    <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="friend">
+        友链
+    </p>
+</a>
+
+
+      
+      
+  <a href="/doc/"  class="flex items-center">
+    
+    <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="Docs">
+        文档
+    </p>
+</a>
+
+
+      
+      
+
+      
+
+
+      
+      <button id="search-button" aria-label="Search" class="text-base hover:text-primary-600 dark:hover:text-primary-400 h-12"
+              title="">
+      
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+      </button>
+
+      
+
+
+      
+      
+      <div
+              class="ltr:mr-14 rtl:ml-14 cursor-pointer text-sm text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400">
+        <button id="appearance-switcher" aria-label="Dark mode switcher" type="button">
+          <div class="flex items-center justify-center h-12 dark:hidden">
+            
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+
+  </span>
+
+
+          </div>
+          <div class="items-center justify-center hidden h-12 dark:flex">
+            
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+
+  </span>
+
+
+          </div>
+        </button>
+
+      </div>
+      
+
+    </nav>
+    <div class="flex md:hidden items-center space-x-5 md:ml-12">
+
+      <span></span>
+
+      
+
+
+      
+      <button id="search-button-mobile" aria-label="Search" class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+              title="">
+      
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+      </button>
+      
+
+      
+      
+      <button id="appearance-switcher-mobile" aria-label="Dark mode switcher" type="button" style="margin-right:5px">
+        <div class="flex items-center justify-center h-12 dark:hidden">
+          
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+
+  </span>
+
+
+        </div>
+        <div class="items-center justify-center hidden h-12 dark:flex">
+          
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+
+  </span>
+
+
+        </div>
+      </button>
+      
+
+    </div>
+
+  </div>
+  <div class="-my-2 -mr-2 md:hidden">
+
+    <label id="menu-button" for="menu-controller" class="block">
+      <input type="checkbox" id="menu-controller" class="hidden" />
+      
+      <div class="cursor-pointer hover:text-primary-600 dark:hover:text-primary-400">
+        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 96C0 78.33 14.33 64 32 64H416C433.7 64 448 78.33 448 96C448 113.7 433.7 128 416 128H32C14.33 128 0 113.7 0 96zM0 256C0 238.3 14.33 224 32 224H416C433.7 224 448 238.3 448 256C448 273.7 433.7 288 416 288H32C14.33 288 0 273.7 0 256zM416 448H32C14.33 448 0 433.7 0 416C0 398.3 14.33 384 32 384H416C433.7 384 448 398.3 448 416C448 433.7 433.7 448 416 448z"/></svg>
+
+  </span>
+
+
+      </div>
+      <div id="menu-wrapper" style="padding-top:5px;"
+           class="fixed inset-0 z-30 invisible w-screen h-screen m-0 overflow-auto transition-opacity opacity-0 cursor-default bg-neutral-100/50 backdrop-blur-sm dark:bg-neutral-900/50">
+        <ul
+                class="flex space-y-2 mt-3 flex-col items-end w-full px-6 py-6 mx-auto overflow-visible list-none ltr:text-right rtl:text-left max-w-7xl">
+
+          <li>
+                        <span
+                                class="cursor-pointer inline-block align-text-bottom hover:text-primary-600 dark:hover:text-primary-400">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+  </span>
+
+</span>
+          </li>
+
+          
+
+          
+  <li class="mt-1">
+    <a href="/"  class="flex items-center">
+        
+        <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="">
+            首页
+        </p>
+    </a>
+</li>
+
+
+
+          
+
+          
+  <li class="mt-1">
+    <a href="/%E7%AC%94%E8%AE%B0/"  class="flex items-center">
+        
+        <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="如何通过hugo搭建自己的博客">
+            笔记
+        </p>
+    </a>
+</li>
+
+
+
+          
+
+          
+  <li class="mt-1">
+    <a href="/tasks/"  class="flex items-center">
+        
+        <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="学习计划">
+            事项
+        </p>
+    </a>
+</li>
+
+
+
+          
+
+          
+  <li class="mt-1">
+    <a href="/all/"  class="flex items-center">
+        
+        <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="全部">
+            全部
+        </p>
+    </a>
+</li>
+
+
+
+          
+
+          
+  <li class="mt-1">
+    <a href="/tags/"  class="flex items-center">
+        
+        <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="Tags">
+            系列文章
+        </p>
+    </a>
+</li>
+
+
+
+          
+
+          
+  <li class="mt-1">
+    <a href="/friend/"  class="flex items-center">
+        
+        <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="friend">
+            友链
+        </p>
+    </a>
+</li>
+
+
+
+          
+
+          
+  <li class="mt-1">
+    <a href="/doc/"  class="flex items-center">
+        
+        <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="Docs">
+            文档
+        </p>
+    </a>
+</li>
+
+
+
+          
+
+        </ul>
+        
+        
+
+      </div>
+    </label>
+  </div>
+
+  <div>
+    <iframe id="music" style="align-content: center;align-items: center" frameborder="no" border="0" marginwidth="0"
+            marginheight="0" width=200 height=86
+            src="//music.163.com/outchain/player?type=2&id=447925058&auto=1&height=66"></iframe>
+  </div>
+  <button class="change-music" onclick="getMusicList()">下一曲</button>
+  
+</div>
+<style>
+  .change-music{
+    margin-top: 20px;
+    width: 8%;
+    height: 50%;
+    font-family: 华文中宋,serif;
+     
+     
+     
+  }
+</style>
+<script>
+  
+  var MusicLists=[];
+  var musicUrl="";
+  function getMusicList()
+  {
+    
+    MusicLists.push
+    (29567192,1974443814,447926067,447925058,1974444808,
+            1974444807,29567187
+    );
+    var musicIndex=Math.floor(Math.random()*MusicLists.length+1);
+    console.log(musicIndex);
+    
+    musicUrl="https://music.163.com/outchain/player?type=2&id="+MusicLists[musicIndex]+"&auto=1&height=66";
+    var frame=document.getElementById("music");
+    var player=document.getElementsByName('player');
+    console.log(player);
+    frame.src=musicUrl;
+  }
+</script>
+
+
+
+
+<script>
+  (function () {
+    var $mainmenu = $('.main-menu');
+    var path = window.location.pathname;
+    $mainmenu.find('a[href="' + path + '"]').each(function (i, e) {
+      $(e).children('p').addClass('active');
+    });
+  })();
+</script>
+
+
+  </div>
+</div>
+<script>
+  window.addEventListener('scroll', function (e) {
+    var scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    var background_blur = document.getElementById('menu-blur');
+    background_blur.style.opacity = (scroll / 300);
+  });
+</script>
+
+  
+  <div class="relative flex flex-col grow">
+    <main id="main-content" class="grow">
+      
+
+
+<article>
+  
+  
+  
+  
+  
+  
+
+
+<div id="hero" class="h-[150px] md:h-[200px]"></div>
+
+
+    
+    <div class="fixed inset-x-0 top-0 h-[800px] single_hero_background nozoom"
+    style="background-image:url(/img/annimation/1677508154920_hu7abcaa5e0ae44b563635c1e97a6d7c3c_740393_1200x0_resize_q75_box.jpeg);">
+    
+
+
+    <div class="absolute inset-0 bg-gradient-to-t from-neutral dark:from-neutral-800 to-transparent mix-blend-normal">
+    </div>
+    <div
+        class="absolute inset-0 opacity-60 bg-gradient-to-t from-neutral dark:from-neutral-800 to-neutral-100 dark:to-neutral-800 mix-blend-normal">
+    </div>
+</div>
+
+<div id="background-blur" class="fixed opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl"></div>
+<script>
+    window.addEventListener('scroll', function (e) {
+        var scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        var background_blur = document.getElementById('background-blur');
+        background_blur.style.opacity = (scroll / 300)
+    });
+</script>
+
+  
+  
+
+  <header id="single_header" class="mt-5 max-w-prose">
+    
+    <ol class="text-sm text-neutral-500 dark:text-neutral-400 print:hidden">
+  
+  
+    
+  
+    
+  
+  <li class="inline hidden">
+    <a
+      class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
+      href="/"
+      ></a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+  
+  <li class="inline ">
+    <a
+      class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
+      href="/doc/"
+      >Docs</a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+  
+  <li class="inline hidden">
+    <a
+      class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
+      href="/doc/mysql/mysql%E8%BF%9B%E9%98%B6/"
+      >Mysql</a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+</ol>
+
+
+    
+    <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral" style="font-family: 华文中宋,serif">
+      Mysql
+    </h1>
+    <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+      
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="0001-01-01 00:00:00 &#43;0000 UTC">1 January 0001</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">6 分钟</span>
+  
+
+  
+  
+</div>
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+
+
+
+    </div>
+
+    
+    
+    
+    
+    
+
+    
+    
+    
+<div class="flex author">
+  
+  
+  
+  
+  
+  
+  <img class="!mt-0 !mb-0 h-24 w-24 rounded-full ltr:mr-4 rtl:ml-4" width="96" height="96"
+    alt="春江花朝秋月夜" src="/img/default_hud65e42c374bcd9580abb2944fca98866_909698_192x192_fill_box_center_3.png" />
+  
+  
+  <div class="place-self-center">
+    
+    <div class="text-[0.6rem] uppercase leading-3 text-neutral-500 dark:text-neutral-400">
+      作者
+    </div>
+    <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
+      春江花朝秋月夜
+    </div>
+    
+    
+    <div class="text-sm text-neutral-700 dark:text-neutral-400">重湖叠𪩘清嘉。有三秋桂子，十里荷花。羌管弄晴，菱歌泛夜，嬉嬉钓叟莲娃。千骑拥高牙。乘醉听箫鼓，吟赏烟霞。异日图将好景，归去凤池夸。</div>
+    
+    <div class="text-2xl sm:text-lg">
+  <div class="flex flex-wrap text-neutral-400 dark:text-neutral-500">
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://space.bilibili.com/159283119?spm_id_from=333.1007.0.0"
+          target="_blank"
+          aria-label="Bilibili"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1699377062375" class="icon" viewBox="0 0 1129 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4167" xmlns:xlink="http://www.w3.org/1999/xlink" width="220.5078125" height="200"><path d="M234.909 9.656a80.468 80.468 0 0 1 68.398 0 167.374 167.374 0 0 1 41.843 30.578l160.937 140.82h115.07l160.936-140.82a168.983 168.983 0 0 1 41.843-30.578A80.468 80.468 0 0 1 930.96 76.445a80.468 80.468 0 0 1-17.703 53.914 449.818 449.818 0 0 1-35.406 32.187 232.553 232.553 0 0 1-22.531 18.508h100.585a170.593 170.593 0 0 1 118.289 53.109 171.397 171.397 0 0 1 53.914 118.288v462.693a325.897 325.897 0 0 1-4.024 70.007 178.64 178.64 0 0 1-80.468 112.656 173.007 173.007 0 0 1-92.539 25.75h-738.7a341.186 341.186 0 0 1-72.421-4.024A177.835 177.835 0 0 1 28.91 939.065a172.202 172.202 0 0 1-27.36-92.539V388.662a360.498 360.498 0 0 1 0-66.789A177.03 177.03 0 0 1 162.487 178.64h105.414c-16.899-12.07-31.383-26.555-46.672-39.43a80.468 80.468 0 0 1-25.75-65.984 80.468 80.468 0 0 1 39.43-63.57M216.4 321.873a80.468 80.468 0 0 0-63.57 57.937 108.632 108.632 0 0 0 0 30.578v380.615a80.468 80.468 0 0 0 55.523 80.469 106.218 106.218 0 0 0 34.601 5.632h654.208a80.468 80.468 0 0 0 76.444-47.476 112.656 112.656 0 0 0 8.047-53.109v-354.06a135.187 135.187 0 0 0 0-38.625 80.468 80.468 0 0 0-52.304-54.719 129.554 129.554 0 0 0-49.89-7.242H254.22a268.764 268.764 0 0 0-37.82 0z m0 0" fill="#20B0E3" p-id="4168"></path><path d="M348.369 447.404a80.468 80.468 0 0 1 55.523 18.507 80.468 80.468 0 0 1 28.164 59.547v80.468a80.468 80.468 0 0 1-16.094 51.5 80.468 80.468 0 0 1-131.968-9.656 104.609 104.609 0 0 1-10.46-54.719v-80.468a80.468 80.468 0 0 1 70.007-67.593z m416.02 0a80.468 80.468 0 0 1 86.102 75.64v80.468a94.148 94.148 0 0 1-12.07 53.11 80.468 80.468 0 0 1-132.773 0 95.757 95.757 0 0 1-12.875-57.133V519.02a80.468 80.468 0 0 1 70.007-70.812z m0 0" fill="#20B0E3" p-id="4169"></path></svg>
+  </span>
+
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://github.com/ToDreamr"
+          target="_blank"
+          aria-label="Github"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+
+  </span>
+
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://music.163.com/#/user/home?id=568083850"
+          target="_blank"
+          aria-label="Wangyi"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1707154946293" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2586" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><path d="M0 0m184.32 0l655.36 0q184.32 0 184.32 184.32l0 655.36q0 184.32-184.32 184.32l-655.36 0q-184.32 0-184.32-184.32l0-655.36q0-184.32 184.32-184.32Z" fill="#EA3E3C" p-id="2587"></path><path d="M527.616 849.43872a373.6064 373.6064 0 0 1-162.54976-39.00416c-112.36352-55.16288-180.00896-176.29184-172.55424-308.67456 7.41376-130.34496 85.10464-237.4656 202.752-279.552a35.85024 35.85024 0 0 1 24.15616 67.51232c-107.66336 38.49216-150.81472 136.86784-155.29984 216.13568-5.86752 103.51616 46.08 197.79584 132.34176 240.13824 124.69248 60.30336 216.91392 22.35392 260.82304-5.64224 59.8016-38.16448 97.86368-100.01408 96.95232-157.55264-1.024-63.72352-24.064-120.99584-63.27296-157.14304a145.408 145.408 0 0 0-65.5872-35.28704q2.82624 9.76896 5.64224 19.32288c13.38368 45.63968 24.94464 85.05344 25.6 114.40128a134.26688 134.26688 0 0 1-37.69344 97.76128 139.1104 139.1104 0 0 1-100.6592 40.45824 140.10368 140.10368 0 0 1-100.47488-42.24 169.12384 169.12384 0 0 1-46.2848-122.76736c1.19808-85.12512 80.11776-153.28256 162.816-175.104a324.80256 324.80256 0 0 1-6.71744-67.05152 92.0576 92.0576 0 0 1 69.18144-91.81184c46.21312-12.53376 104.448 5.19168 124.66176 37.888a35.84 35.84 0 0 1-11.70432 49.31584 35.84 35.84 0 0 1-49.26464-11.65312 62.34112 62.34112 0 0 0-48.45568-5.21216c-4.32128 1.71008-12.35968 4.90496-12.76928 23.10144a270.87872 270.87872 0 0 0 6.73792 58.51136 217.4976 217.4976 0 0 1 133.56032 57.6512c53.57568 49.38752 85.0432 125.46048 86.35392 208.71168 1.29024 81.85856-49.7664 167.86432-130.048 219.136a310.14912 310.14912 0 0 1-168.2432 48.65024z m23.6544-457.55392c-56.77056 15.6672-107.4688 63.03744-108.07296 106.42432a98.304 98.304 0 0 0 25.6512 71.43424 68.0448 68.0448 0 0 0 49.36704 20.87936 67.24608 67.24608 0 0 0 49.44896-18.944 63.19104 63.19104 0 0 0 17.23392-46.08c-0.4096-19.79392-11.7248-58.368-22.67136-95.6928-3.61472-12.42112-7.35232-25.14944-10.9568-38.02112z" fill="#FFFFFF" p-id="2588"></path></svg>
+  </span>
+
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://gitee.com/rainyheights"
+          target="_blank"
+          aria-label="Gitee"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1707288792446" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="6333" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><path d="M512 1024C230.4 1024 0 793.6 0 512S230.4 0 512 0s512 230.4 512 512-230.4 512-512 512z m259.2-569.6H480c-12.8 0-25.6 12.8-25.6 25.6v64c0 12.8 12.8 25.6 25.6 25.6h176c12.8 0 25.6 12.8 25.6 25.6V608c0 41.6-35.2 76.8-76.8 76.8h-240c-12.8 0-25.6-12.8-25.6-25.6V416c0-41.6 35.2-76.8 76.8-76.8h355.2c12.8 0 25.6-12.8 25.6-25.6v-64c0-12.8-12.8-25.6-25.6-25.6H416c-105.6 0-188.8 86.4-188.8 188.8V768c0 12.8 12.8 25.6 25.6 25.6h374.4c92.8 0 169.6-76.8 169.6-169.6V480c0-12.8-12.8-25.6-25.6-25.6z" fill="#888888" p-id="6334"></path></svg>
+  </span>
+
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://www.zhihu.com/people/san-qiu-luo-yue"
+          target="_blank"
+          aria-label="Zhihu"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1707288662942" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5244" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><path d="M564.7 230.1V803h60l25.2 71.4L756.3 803h131.5V230.1H564.7z m247.7 497h-59.9l-75.1 50.4-17.8-50.4h-18V308.3h170.7v418.8zM526.1 486.9H393.3c2.1-44.9 4.3-104.3 6.6-172.9h130.9l-0.1-8.1c0-0.6-0.2-14.7-2.3-29.1-2.1-15-6.6-34.9-21-34.9H287.8c4.4-20.6 15.7-69.7 29.4-93.8l6.4-11.2-12.9-0.7c-0.8 0-19.6-0.9-41.4 10.6-35.7 19-51.7 56.4-58.7 84.4-18.4 73.1-44.6 123.9-55.7 145.6-3.3 6.4-5.3 10.2-6.2 12.8-1.8 4.9-0.8 9.8 2.8 13 10.5 9.5 38.2-2.9 38.5-3 0.6-0.3 1.3-0.6 2.2-1 13.9-6.3 55.1-25 69.8-84.5h56.7c0.7 32.2 3.1 138.4 2.9 172.9h-141l-2.1 1.5c-23.1 16.9-30.5 63.2-30.8 65.2l-1.4 9.2h167c-12.3 78.3-26.5 113.4-34 127.4-3.7 7-7.3 14-10.7 20.8-21.3 42.2-43.4 85.8-126.3 153.6-3.6 2.8-7 8-4.8 13.7 2.4 6.3 9.3 9.1 24.6 9.1 5.4 0 11.8-0.3 19.4-1 49.9-4.4 100.8-18 135.1-87.6 17-35.1 31.7-71.7 43.9-108.9L497 850l5-12c0.8-1.9 19-46.3 5.1-95.9l-0.5-1.8-108.1-123-22 16.6c6.4-26.1 10.6-49.9 12.5-71.1h158.7v-8c0-40.1-18.5-63.9-19.2-64.9l-2.4-3z" fill="#1296DB" p-id="5245"></path></svg>
+  </span>
+
+</span></a
+        >
+      
+    
+  </div>
+
+</div>
+  </div>
+</div>
+    
+
+    
+
+    
+
+    
+    <div class="mb-5"></div>
+    
+
+  </header>
+
+  <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row" style="font-family: 华文中宋,serif">
+
+    
+    <div style="width: 28%" class="order-first lg:ml-auto px-0 lg:order-last ltr:lg:pl-8 rtl:lg:pr-8">
+    <div class="toc ltr:pl-5 rtl:pr-5 print:hidden lg:sticky lg:top-[140px]">
+
+     <details open class="toc-right mt-0 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 hidden lg:block">
+  <summary
+    class="block py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    
+  </summary>
+  <div
+    class="min-w-[220px] py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#mysql高级">MySQL高级</a>
+      <ul>
+        <li><a href="#函数">函数</a>
+          <ul>
+            <li><a href="#系统函数">系统函数</a>
+              <ul>
+                <li><a href="#字符串函数">字符串函数</a></li>
+                <li><a href="#日期函数">日期函数</a></li>
+                <li><a href="#数学函数">数学函数</a></li>
+                <li><a href="#类型转换函数">类型转换函数</a></li>
+                <li><a href="#流程控制函数">流程控制函数</a></li>
+              </ul>
+            </li>
+            <li><a href="#自定义函数">自定义函数</a>
+              <ul>
+                <li><a href="#基本语法">基本语法</a></li>
+                <li><a href="#流程控制">流程控制</a></li>
+                <li><a href="#全局变量">全局变量</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#存储过程">存储过程</a></li>
+        <li><a href="#存储引擎">存储引擎</a></li>
+        <li><a href="#索引">索引</a>
+          <ul>
+            <li><a href="#单列索引">单列索引</a></li>
+            <li><a href="#组合索引">组合索引</a></li>
+            <li><a href="#索引底层原理">索引底层原理</a></li>
+          </ul>
+        </li>
+        <li><a href="#锁机制">锁机制</a>
+          <ul>
+            <li><a href="#读锁和写锁">读锁和写锁</a></li>
+            <li><a href="#全局锁表锁和行锁">全局锁、表锁和行锁</a>
+              <ul>
+                <li><a href="#全局锁">全局锁</a></li>
+                <li><a href="#表锁">表锁</a></li>
+                <li><a href="#行锁">行锁</a></li>
+              </ul>
+            </li>
+            <li><a href="#记录锁间隙锁和临键锁">记录锁、间隙锁和临键锁</a>
+              <ul>
+                <li><a href="#记录锁">记录锁</a></li>
+                <li><a href="#间隙锁">间隙锁</a></li>
+                <li><a href="#临键锁">临键锁</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</details>
+<details class="toc-inside mt-0 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 lg:hidden">
+  <summary
+    class="py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    
+  </summary>
+  <div
+    class="py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#mysql高级">MySQL高级</a>
+      <ul>
+        <li><a href="#函数">函数</a>
+          <ul>
+            <li><a href="#系统函数">系统函数</a>
+              <ul>
+                <li><a href="#字符串函数">字符串函数</a></li>
+                <li><a href="#日期函数">日期函数</a></li>
+                <li><a href="#数学函数">数学函数</a></li>
+                <li><a href="#类型转换函数">类型转换函数</a></li>
+                <li><a href="#流程控制函数">流程控制函数</a></li>
+              </ul>
+            </li>
+            <li><a href="#自定义函数">自定义函数</a>
+              <ul>
+                <li><a href="#基本语法">基本语法</a></li>
+                <li><a href="#流程控制">流程控制</a></li>
+                <li><a href="#全局变量">全局变量</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#存储过程">存储过程</a></li>
+        <li><a href="#存储引擎">存储引擎</a></li>
+        <li><a href="#索引">索引</a>
+          <ul>
+            <li><a href="#单列索引">单列索引</a></li>
+            <li><a href="#组合索引">组合索引</a></li>
+            <li><a href="#索引底层原理">索引底层原理</a></li>
+          </ul>
+        </li>
+        <li><a href="#锁机制">锁机制</a>
+          <ul>
+            <li><a href="#读锁和写锁">读锁和写锁</a></li>
+            <li><a href="#全局锁表锁和行锁">全局锁、表锁和行锁</a>
+              <ul>
+                <li><a href="#全局锁">全局锁</a></li>
+                <li><a href="#表锁">表锁</a></li>
+                <li><a href="#行锁">行锁</a></li>
+              </ul>
+            </li>
+            <li><a href="#记录锁间隙锁和临键锁">记录锁、间隙锁和临键锁</a>
+              <ul>
+                <li><a href="#记录锁">记录锁</a></li>
+                <li><a href="#间隙锁">间隙锁</a></li>
+                <li><a href="#临键锁">临键锁</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</details>
+
+ 
+<script>
+  (function () {
+    var $toc = $('#TableOfContents');
+    if ($toc.length > 0) {
+      var $window = $(window);
+
+      function onScroll() {
+        var currentScroll = $window.scrollTop();
+        var h = $('.anchor');
+        var id = "";
+        h.each(function (i, e) {
+          e = $(e);
+          if (e.offset().top - $(window).height()/3 <= currentScroll) {
+            id = e.attr('id');
+          }
+        });
+        var active = $toc.find('a.active');      
+        if (active.length == 1 && active.eq(0).attr('href') == '#' + id) return true;
+
+        active.each(function (i, e) {
+          
+            $(e).removeClass('active');
+          
+        });
+        $toc.find('a[href="#' + id + '"]').addClass('active')
+        $toc.find('a[href="#' + id + '"]').parentsUntil('#TableOfContents').each(function (i, e) {
+          $(e).children('a').parents('ul').show();          
+        });
+      }
+
+      $window.on('scroll', onScroll);
+      $(document).ready(function () {
+        
+        onScroll();
+      });
+    }
+  })();
+</script>
+  
+    </div>
+    </div>
+    
+
+
+    <div class="min-w-0 min-h-0 max-w-fit" style="width: 100%">
+      
+<details style="margin-left:0px" class="mt-2 mb-5 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5"  open >
+    <summary
+        class="py-1 text-lg font-semibold cursor-pointer bg-primary-200 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-primary-800 dark:text-neutral-100">
+        sql - 这是系列文章之一.
+    </summary>
+    
+    
+    
+    
+    <div
+        class="py-1 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+        部分 1: 本文
+    </div>
+    
+    
+
+</details>
+
+
+
+      <div class="article-content max-w-prose mb-20">
+        <h1 class="relative group">MySQL高级 
+    <div id="mysql高级" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#mysql%e9%ab%98%e7%ba%a7" aria-label="锚点">#</a>
+    </span>        
+    
+</h1>
+<p>在JavaWeb阶段，我们初步认识了MySQL数据库，包括一些基本操作，比如创建数据库、表、触发器，以及最基本的增删改查、事务等操作。而在此阶段，我们将继续深入学习MySQL，了解它的更多高级玩法，也相当于进行复习。</p>
+<h2 class="relative group">函数 
+    <div id="函数" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e5%87%bd%e6%95%b0" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<p>其实函数我们在之前已经接触到一部分了，在JavaWeb阶段，我们了解了聚集函数，聚集函数一般用作统计，包括：</p>
+<ul>
+<li>count([distinct]*)    统计所有的行数（distinct表示去重再统计，下同）</li>
+<li>count([distinct]列名)    统计某列的值总和</li>
+<li>sum([distinct]列名)    求一列的和（注意必须是数字类型的）</li>
+<li>avg([distinct]列名)    求一列的平均值（注意必须是数字类型）</li>
+<li>max([distinct]列名)    求一列的最大值</li>
+<li>min([distinct]列名)    求一列的最小值</li>
+</ul>
+<p>比如我们需要计算某个表一共有多少行：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">student</span><span class="w">
+</span></span></span></code></pre></div><p>通过使用COUNT聚集函数，就可以快速统计并得到结果，比如我们想计算某一列上所有数字的和：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">sid</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">student</span><span class="w">
+</span></span></span></code></pre></div><p>通过SUM聚集函数，就可以快速计算每一列的和，实际上这些函数都是由系统提供的函数，我们可以直接使用。</p>
+<p>本版块我们会详细介绍各类系统函数以及如何编写自定义函数。</p>
+<h3 class="relative group">系统函数 
+    <div id="系统函数" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e7%b3%bb%e7%bb%9f%e5%87%bd%e6%95%b0" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>系统为我们提供的函数也是非常实用的，我们将会分为几个类型进行讲解。</p>
+<h4 class="relative group">字符串函数 
+    <div id="字符串函数" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e5%ad%97%e7%ac%a6%e4%b8%b2%e5%87%bd%e6%95%b0" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>处理字符串是一个比较重要的内容，我们可以使用字符串函数来帮助我们快速处理字符串，其中常用比如用于字符串分割的函数有：</p>
+<ul>
+<li>substring(字符串, 起始位置, 结束位置)     同Java中String类的substring一致，但是注意下标是从1开始，下同</li>
+<li>left(字符串, 长度)     从最左边向右截取字符串</li>
+<li>right(字符串, 长度)     从最右边向左截取字符串</li>
+</ul>
+<p>比如我们只想获取所有学生姓名的第二个字，那么可以像这样写：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="k">SUBSTRING</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">student</span><span class="w">
+</span></span></span></code></pre></div><p>比如我们想获取所有学生姓名的第一个字，可以像这样写：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="k">LEFT</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">student</span><span class="w">
+</span></span></span></code></pre></div><p>我们还可以利用字符串函数来快速将所有的字母转换为大写字母或是快速转换为小写字母：</p>
+<ul>
+<li>upper(字符串)     字符串中的所有字母转换为大写字母</li>
+<li>lower(字符串)     字符串中的所有字母转换为小写字母</li>
+</ul>
+<p>比如我们希望将一个字符串所有字符专为大写：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="k">UPPER</span><span class="p">(</span><span class="s1">&#39;abcdefg&#39;</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></div><p>我们也可以像Java中那样直接对字符串中的内容进行替换：</p>
+<ul>
+<li>replace(字符串, 原文, 替换文)      同Java中String的replace效果</li>
+</ul>
+<p>比如现在我们希望将查询到的所有同学的名称中的<code>小</code>全部替换<code>大</code>：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="k">REPLACE</span><span class="p">(</span><span class="o">`</span><span class="n">name</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;小&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;大&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">student</span><span class="w">
+</span></span></span></code></pre></div><p>字符串也支持进行拼接，系统提供了字符串的拼接函数：</p>
+<ul>
+<li>concat(字符串1, 字符串2)   连接两个字符串</li>
+</ul>
+<p>比如我们希望将查询到的所有同学的名称最后都添加一个<code>子</code>字：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">concat</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;子&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">student</span><span class="w">
+</span></span></span></code></pre></div><p>最后就是计算字符串的长度：</p>
+<ul>
+<li>length(字符串)    获取字符串长度（注意如果使用的是UTF-8编码格式，那么一个汉字占3字节，数字和字母占一个字节）</li>
+</ul>
+<p>比如我们要获取所有人名字的长度：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="k">LENGTH</span><span class="p">(</span><span class="o">`</span><span class="n">name</span><span class="o">`</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">student</span><span class="w">
+</span></span></span></code></pre></div><h4 class="relative group">日期函数 
+    <div id="日期函数" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e6%97%a5%e6%9c%9f%e5%87%bd%e6%95%b0" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>MySQL提供的日期函数也非常实用，我们可以快速对日期进行操作，比如我们想要快速将日期添加N天，就可以使用：</p>
+<ul>
+<li>date_add(日期, interval 增量 单位)</li>
+</ul>
+<p>比如我们希望让2022-1-1向后5天：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">DATE_ADD</span><span class="p">(</span><span class="s1">&#39;2022-1-1&#39;</span><span class="p">,</span><span class="nb">INTERVAL</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="k">day</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></div><p>同理，向前1年：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">DATE_ADD</span><span class="p">(</span><span class="s1">&#39;2022-1-1&#39;</span><span class="p">,</span><span class="nb">INTERVAL</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="w"> </span><span class="k">year</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></div><p>单位有：year（年）、month（月）、day（日）、hour（小时）、minute（分钟）、second（秒）</p>
+<p>我们还可以快速计算日期的间隔天数：</p>
+<ul>
+<li>datediff(日期1, 日期2)</li>
+</ul>
+<p>比如我们想计算2022年的2月有多少天：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">DATEDIFF</span><span class="p">(</span><span class="s1">&#39;2022-3-1&#39;</span><span class="p">,</span><span class="s1">&#39;2022-2-1&#39;</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></div><p>如果我们想快速获取当前时间的话，可以使用这些：</p>
+<ul>
+<li>curdate()     当前的日期</li>
+<li>curtime()     当前的时间</li>
+<li>now()    当前的日期+时间</li>
+</ul>
+<p>此函数之前我们在编写实战项目的时候已经使用过了，这里就不演示了。我们也可以单独获取时间中的某个值：</p>
+<ul>
+<li>day(日期)    获取日期是几号</li>
+<li>month(日期)   获取日期是几月</li>
+<li>year(日期)      获取日期是哪一年</li>
+</ul>
+<p>比如我们想获取今天是几号：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="k">DAY</span><span class="p">(</span><span class="n">NOW</span><span class="p">())</span><span class="w">
+</span></span></span></code></pre></div><h4 class="relative group">数学函数 
+    <div id="数学函数" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e6%95%b0%e5%ad%a6%e5%87%bd%e6%95%b0" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>数学函数比较常规，基本与Java的Math工具类一致，这里列出即可，各位可以自行尝试：</p>
+<ul>
+<li>abs(x)   求x的绝对值</li>
+<li>ceiling(x)   x向上取整</li>
+<li>floor(x)  x向下取整</li>
+<li>round(x, 精度)  x取四舍五入，遵循小数点精度</li>
+<li>exp(x)   e的x次方</li>
+<li>rand()   0-1之间的随机数</li>
+<li>log(x)    x的对数</li>
+<li>pi()     π</li>
+<li>power(x, n)    x的n次方</li>
+<li>sqrt(x)     x的平方根</li>
+<li>sin(x)  cos(x)   tan(x)     三角函数（貌似没有arctan这类反函数？）</li>
+</ul>
+<h4 class="relative group">类型转换函数 
+    <div id="类型转换函数" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e7%b1%bb%e5%9e%8b%e8%bd%ac%e6%8d%a2%e5%87%bd%e6%95%b0" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>MySQL的类型转换也分为隐式类型转换和显示类型转换，首先我们来看看隐式类型转换：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="mi">1</span><span class="o">+</span><span class="s1">&#39;2&#39;</span><span class="w">
+</span></span></span></code></pre></div><p>虽然这句中既包含了数字和字符，但是字符串会被进行隐式转换（注意这里并不是按照字符的ASCII码转换，而是写的多少表示多少）所以最后得到的就是1+2的结果为3</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">CONCAT</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2&#39;</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></div><p>这里因为需要传入字符串类型的数据，但是我们给的是1这个数字，因此这里也会发生隐式类型转换，1会被直接转换为字符串的'1&rsquo;，所以这里得到的结果是'12'</p>
+<p>在某些情况下，我们可能需要使用强制类型转换来将得到的数据转换成我们需要的数据类型，这时就需要用到类型转换函数了，MySQL提供了：</p>
+<ul>
+<li>cast(数据   as 数据类型)</li>
+</ul>
+<p>数据类型有以下几种：</p>
+<ul>
+<li>BINARY[(N)] ：二进制字符串，转换后长度小于N个字节</li>
+<li>CHAR[(N)] ：字符串，转换后长度小于N个字符</li>
+<li>DATE ：日期</li>
+<li>DATETIME ：日期时间</li>
+<li>DECIMAL[(M[,N])] ：浮点数，M为数字总位数(包括整数部分和小数部分)，N为小数点后的位数</li>
+<li>SIGNED [INTEGER] ：有符号整数</li>
+<li>TIME ：时间</li>
+<li>UNSIGNED [INTEGER] ：无符号整数</li>
+</ul>
+<p>比如我们现在需要将一个浮点数转换为一个整数：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="k">CAST</span><span class="p">(</span><span class="n">pi</span><span class="p">()</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">SIGNED</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></div><p>我们还可以将字符串转换为数字，会自动进行扫描，值得注意的是一旦遇到非数字的字符，会停止扫描：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="k">CAST</span><span class="p">(</span><span class="s1">&#39;123abc456&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">SIGNED</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></div><p>除了cast以外还有convert函数，功能比较相似，这里就不做讲解了。</p>
+<h4 class="relative group">流程控制函数 
+    <div id="流程控制函数" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e6%b5%81%e7%a8%8b%e6%8e%a7%e5%88%b6%e5%87%bd%e6%95%b0" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>MySQL还为我们提供了很多的逻辑判断函数，比如：</p>
+<ul>
+<li>if(条件表达式, 结果1, 结果2)    与Java中的三目运算符一致 a &gt; b ? &ldquo;AAA&rdquo; : &ldquo;BBB&rdquo;</li>
+<li>ifnull(值1, 值2)     如果值1为NULL则返回值2，否则返回值1</li>
+<li>nullif(值1, 值2)     如果值1与值2相等，那么返回NULL</li>
+<li>isnull(值)      判断值是否为NULL</li>
+</ul>
+<p>比如现在我们想判断：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="k">IF</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;lbwnb&#39;</span><span class="p">,</span><span class="s1">&#39;yyds&#39;</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></div><p>通过判断函数，我们就可以很方便地进行一些条件判断操作。</p>
+<p>除了IF条件判断，我们还可以使用类似Switch一样的语句完成多分支结构：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">CASE</span><span class="w"> </span><span class="mi">2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">WHEN</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">THEN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="mi">10</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">ELSE</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="mi">5</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">END</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><p>我们也可以将自定义的判断条件放入When之后，它类似于else-if：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">CASE</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">WHEN</span><span class="w"> </span><span class="mi">3</span><span class="o">&gt;</span><span class="mi">5</span><span class="w"> </span><span class="k">THEN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="mi">10</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">WHEN</span><span class="w"> </span><span class="mi">0</span><span class="o">&lt;</span><span class="mi">1</span><span class="w"> </span><span class="k">THEN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="mi">11</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">ELSE</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="mi">5</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">END</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><p>还有一个类似于Java中的Thread.sleep的函数，以秒为单位：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></div><p>有关MySQL8.0新增的窗口函数这里暂时不做介绍。</p>
+<h3 class="relative group">自定义函数 
+    <div id="自定义函数" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e8%87%aa%e5%ae%9a%e4%b9%89%e5%87%bd%e6%95%b0" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>除了使用系统为我们提供的函数以外，我们也可以自定义函数，并使用我们自定义的函数进行数据处理，唯一比较麻烦的就是函数定义后不能修改，只能删了重新写。</p>
+<h4 class="relative group">基本语法 
+    <div id="基本语法" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e5%9f%ba%e6%9c%ac%e8%af%ad%e6%b3%95" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>MySQL的函数与Java中的方法类似，也可以添加参数和返回值，可以通过<code>CREATE FUNCTION</code>创建函数：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">FUNCTION</span><span class="w"> </span><span class="n">test</span><span class="p">()</span><span class="w"> </span><span class="k">RETURNS</span><span class="w"> </span><span class="nb">INT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">BEGIN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">RETURN</span><span class="w"> </span><span class="mi">666</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">END</span><span class="w">
+</span></span></span></code></pre></div><p>定义函数的格式为：</p>
+<ul>
+<li>create function 函数名称([参数列表]) returns 返回值类型</li>
+<li>begin 和 end 之间写函数的其他逻辑，begin和end就相当于Java中的花括号<code>{  ...  }</code></li>
+<li>return后紧跟返回的结果</li>
+</ul>
+<p>添加参数也很简单，我们只需要在函数名称括号中添加即可，注意类型需要写在参数名称后面：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">FUNCTION</span><span class="w"> </span><span class="n">test</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="nb">INT</span><span class="p">)</span><span class="w"> </span><span class="k">RETURNS</span><span class="w"> </span><span class="nb">INT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">BEGIN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">RETURN</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">END</span><span class="w">
+</span></span></span></code></pre></div><p>我们可以在BEGIN和RETURN之间编写一些其他的逻辑，比如我们想要定义一个局部变量，并为其赋值：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">BEGIN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">DECLARE</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="nb">INT</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SET</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">RETURN</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">END</span><span class="w">
+</span></span></span></code></pre></div><p>定义局部变量的格式为：</p>
+<ul>
+<li>declare 变量名称 变量类型 [, &hellip;]</li>
+<li>declare 变量名称 变量类型 default 默认值</li>
+</ul>
+<p>为变量赋值的格式为：</p>
+<ul>
+<li>set 变量名称 = 值</li>
+</ul>
+<p>我们还可以在函数内部使用<code>select</code>语句，它可以直接从表中读取数据，并可以结合into关键字将查询结果赋值给变量：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">BEGIN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">DECLARE</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="nb">INT</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- select into from 语句
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">student</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">RETURN</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">END</span><span class="w">
+</span></span></span></code></pre></div><h4 class="relative group">流程控制 
+    <div id="流程控制" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e6%b5%81%e7%a8%8b%e6%8e%a7%e5%88%b6" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>接着我们来看一下如何使用流程控制语句，其中最关键的就是IF判断语句：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">BEGIN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">DECLARE</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">IF</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="k">THEN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">RETURN</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ELSE</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">RETURN</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">END</span><span class="w"> </span><span class="k">IF</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">END</span><span class="w">
+</span></span></span></code></pre></div><p>IF分支语句的格式为：</p>
+<ul>
+<li>if 判断条件 then  &hellip; else if 判断条件 then &hellip;. else &hellip; end if;</li>
+</ul>
+<p>我们可以结合<code>exists</code>关键字来判断是否为NULL：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">BEGIN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">DECLARE</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- IF EXISTS(SELECT * FROM student WHERE sid = 100) THEN
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">sid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">SET</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">END</span><span class="w"> </span><span class="k">IF</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">RETURN</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">END</span><span class="w">
+</span></span></span></code></pre></div><p>我们也可以在函数中使用switch语句：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">BEGIN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">DECLARE</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">CASE</span><span class="w"> </span><span class="n">a</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">WHEN</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="k">THEN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">RETURN</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">ELSE</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">RETURN</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">END</span><span class="w"> </span><span class="k">CASE</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">END</span><span class="w">
+</span></span></span></code></pre></div><p>SWITCH分支语句的格式为：</p>
+<ul>
+<li>case 变量 when 具体值或是布尔表达式 then &hellip; when * then &hellip; else &hellip; end case;</li>
+</ul>
+<p>与Java不同的是，它支持使用布尔表达式：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">BEGIN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">DECLARE</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">CASE</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">WHEN</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="k">THEN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">SET</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">ELSE</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">SET</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">END</span><span class="w"> </span><span class="k">CASE</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">RETURN</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">END</span><span class="w">
+</span></span></span></code></pre></div><p>我们以类似于elseif的形式进行判断，其实和上面直接使用是一样的。</p>
+<p>我们接着来看循环语句，MySQL提供了三种循环语句，其中第一种是WHILE语句：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">BEGIN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">DECLARE</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">WHILE</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">11</span><span class="w"> </span><span class="k">DO</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">SET</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">END</span><span class="w"> </span><span class="n">WHILE</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">RETURN</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">END</span><span class="w">
+</span></span></span></code></pre></div><p>格式为：</p>
+<ul>
+<li>while 循环条件 do &hellip;  end while;</li>
+</ul>
+<p>我们接着来看第二种循环语句，LOOP循环：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">BEGIN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">DECLARE</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">lp1</span><span class="p">:</span><span class="w"> </span><span class="n">LOOP</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">SET</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">IF</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">THEN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="n">LEAVE</span><span class="w"> </span><span class="n">lp1</span><span class="p">;</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">END</span><span class="w"> </span><span class="k">IF</span><span class="p">;</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">END</span><span class="w"> </span><span class="n">LOOP</span><span class="w"> </span><span class="n">lp1</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">RETURN</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">END</span><span class="w">
+</span></span></span></code></pre></div><p>相比while语句，我们可以使用<code>LEAVE</code>精准控制结束哪个循环，有点类似于goto语句：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">BEGIN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">DECLARE</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">lp1</span><span class="p">:</span><span class="w"> </span><span class="n">LOOP</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">lp2</span><span class="p">:</span><span class="w"> </span><span class="n">LOOP</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">SET</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">IF</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="k">THEN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="n">LEAVE</span><span class="w"> </span><span class="n">lp1</span><span class="p">;</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">END</span><span class="w"> </span><span class="k">IF</span><span class="p">;</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">END</span><span class="w"> </span><span class="n">LOOP</span><span class="w"> </span><span class="n">lp2</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">END</span><span class="w"> </span><span class="n">LOOP</span><span class="w"> </span><span class="n">lp1</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">RETURN</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">END</span><span class="w">
+</span></span></span></code></pre></div><p>类似于Java中的goto写法（在JavaSE阶段已经讲解过）：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">lp1</span><span class="o">:</span> <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">lp2</span><span class="o">:</span> <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">a</span><span class="o">++;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span><span class="o">(</span><span class="n">a</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="o">)</span> <span class="k">break</span> <span class="n">lp1</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>它的语法格式如下：</p>
+<ul>
+<li>循环名称 loop &hellip;(可以插入leave语句结束) end loop 循环名称;</li>
+</ul>
+<p>接着我们来看最后一种循环语句，repeat语句：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">BEGIN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">DECLARE</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">REPEAT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">SET</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">UNTIL</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">END</span><span class="w"> </span><span class="n">REPEAT</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">RETURN</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">END</span><span class="w">
+</span></span></span></code></pre></div><p>它类似于Java中的do-while循环语句，它会先去执行里面的内容，再进行判断，格式为：</p>
+<ul>
+<li>repeat &hellip; until 结束循环条件 end repeat;</li>
+</ul>
+<h4 class="relative group">全局变量 
+    <div id="全局变量" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e5%85%a8%e5%b1%80%e5%8f%98%e9%87%8f" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>某些情况下，我们可以直接在一次会话中直接定义变量并使用，这时它并不是位于函数内的，这就是全局变量，它无需预先定义，直接使用即可：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">set</span><span class="w"> </span><span class="o">@</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><p>我们可以将全局变量作为参数传递给函数：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">test</span><span class="p">(</span><span class="o">@</span><span class="n">x</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></div><p>除了我们自己定义的全部变量以外，系统默认也有很多的变量，因此我们自己定义的变量称为用户变量，系统默认变量称为系统变量。查看系统变量的命令为：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">show</span><span class="w"> </span><span class="k">GLOBAL</span><span class="w"> </span><span class="n">VARIABLES</span><span class="w">
+</span></span></span></code></pre></div><hr>
+<h2 class="relative group">存储过程 
+    <div id="存储过程" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e5%ad%98%e5%82%a8%e8%bf%87%e7%a8%8b" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<p>存储过程是一个包括多条SQL语句的集合，专用于特定表的特定操作，比如我们之前实战项目中的创建用户，那么我们就需要一次性为两张表添加数据，但是如果不使用Java，而是每次都去使用SQL命令来完成，就需要手动敲两次命令，非常麻烦，因此我们可以提前将这些操作定义好，预留出需要填写数据的位置，下次输入参数直接调用即可。</p>
+<p>这里很容易与函数搞混淆，存储过程也是执行多条SQL语句，但是它们的出发点不一样，函数是专用于进行数据处理，并将结果返回给调用者，它更多情况下是一条SQL语句的参与者，无法直接运行，并且不涉及某个特定表：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">student</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><p>而存储过程是多条SQL语句的执行者，这是它们的本质区别。</p>
+<p>定义存储过程与定义函数极为相似，它也可以包含参数，函数中使用的语句这里也能使用，但是它没有返回值：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">PROCEDURE</span><span class="w"> </span><span class="n">lbwnb</span><span class="p">(</span><span class="o">`</span><span class="n">name</span><span class="o">`</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span><span class="w"> </span><span class="n">pwd</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">))</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">BEGIN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">users</span><span class="p">(</span><span class="n">username</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">password</span><span class="o">`</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="p">(</span><span class="o">`</span><span class="n">name</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="n">pwd</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">END</span><span class="w">
+</span></span></span></code></pre></div><p>我们可以在存储过程中编写多条SQL语句，但是注意，MySQL的存储过程不具有原子性，当出现错误时，并不会回滚之前的操作，因此需要我们自己来编写事务保证原子性。</p>
+<p>接着我们来看看如何执行存储过程：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CALL</span><span class="w"> </span><span class="n">lbwnb</span><span class="p">(</span><span class="s1">&#39;111&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2222&#39;</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></div><p>通过使用<code>call</code>来执行一个存储过程，如果存储过程有参数，那么还需要填写参数。</p>
+<p>比如现在我们想要实现查询用户表，如果包含用户<code>test</code>那么就删除用户，如果不包含，就添加用户：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">PROCEDURE</span><span class="w"> </span><span class="o">`</span><span class="n">lbwnb</span><span class="o">`</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">BEGIN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;test&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">users</span><span class="p">(</span><span class="n">username</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">password</span><span class="o">`</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;123456&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">ELSE</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;test&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">END</span><span class="w"> </span><span class="k">IF</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">END</span><span class="w">
+</span></span></span></code></pre></div><p>这里其实只需要一个简单的IF判断即可实现。</p>
+<p>那么如果我们希望遍历一个SELECT语句查询的结果呢？我们可以使用游标来完成：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">BEGIN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">DECLARE</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">DECLARE</span><span class="w"> </span><span class="o">`</span><span class="n">name</span><span class="o">`</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">DECLARE</span><span class="w"> </span><span class="n">sex</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">DECLARE</span><span class="w"> </span><span class="n">cur</span><span class="w"> </span><span class="k">CURSOR</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">student</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">OPEN</span><span class="w"> </span><span class="n">cur</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">WHILE</span><span class="w"> </span><span class="k">TRUE</span><span class="w"> </span><span class="k">DO</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">FETCH</span><span class="w"> </span><span class="n">cur</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">name</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="n">sex</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">SELECT</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">name</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="n">sex</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">END</span><span class="w"> </span><span class="n">WHILE</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">CLOSE</span><span class="w"> </span><span class="n">cur</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">END</span><span class="w">
+</span></span></span></code></pre></div><p>游标的使用分为4个步骤：</p>
+<ul>
+<li>DECLARE 游标名称 CURSOR FOR 查询结果   -  定义游标</li>
+<li>OPEN cur     -   开启游标</li>
+<li>FETCH 游标名称 INTO 存储结果的变量    -    从顶部开始，每执行一次，向下移动，如果已经在最底部，则触发异常</li>
+<li>CLOSE cur    -   关闭游标</li>
+</ul>
+<p>我们这里利用了一个while循环来多次通过游标获取查询结果，但是最后是因为出现异常才退出的，这样会导致之后的代码就无法继续正常运行了。</p>
+<p>我们接着来看如何处理异常：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">BEGIN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">DECLARE</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">DECLARE</span><span class="w"> </span><span class="o">`</span><span class="n">name</span><span class="o">`</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">DECLARE</span><span class="w"> </span><span class="n">sex</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">DECLARE</span><span class="w"> </span><span class="n">score</span><span class="w"> </span><span class="nb">INT</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">DECLARE</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">DECLARE</span><span class="w"> </span><span class="n">cur</span><span class="w"> </span><span class="k">CURSOR</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">student</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">-- 必须在游标定义之后编写
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">	</span><span class="k">DECLARE</span><span class="w"> </span><span class="k">CONTINUE</span><span class="w"> </span><span class="k">HANDLER</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="mi">1329</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">OPEN</span><span class="w"> </span><span class="n">cur</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">WHILE</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">DO</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">FETCH</span><span class="w"> </span><span class="n">cur</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">name</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="n">sex</span><span class="p">,</span><span class="w"> </span><span class="n">score</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">SELECT</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">name</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="n">sex</span><span class="p">,</span><span class="w"> </span><span class="n">score</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">END</span><span class="w"> </span><span class="n">WHILE</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">CLOSE</span><span class="w"> </span><span class="n">cur</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">SELECT</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">END</span><span class="w">
+</span></span></span></code></pre></div><p>我们可以声明一个异常处理器（句柄），格式如下：</p>
+<ul>
+<li>declear (continue/exit) handler for 异常名称(ID) 做点什么</li>
+</ul>
+<p>我们还可以限定存储过程的参数传递，比如我们只希望用户给我们一个参数用于接收数据，而不是值传递，我们可以将其设定为OUT类型：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">PROCEDURE</span><span class="w"> </span><span class="o">`</span><span class="n">lbwnb</span><span class="o">`</span><span class="p">(</span><span class="k">OUT</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="nb">INT</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">BEGIN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">SELECT</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">SET</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">END</span><span class="w">
+</span></span></span></code></pre></div><p>所有的参数默认为<code>IN</code>类型，也就是只能作为传入参数，无法为其赋值，而这里讲参数设定为<code>OUT</code>类型，那么参数无法将值传入，而只能被赋值。</p>
+<p>如果我们既希望参数可以传入也可以被重新赋值，我们可以将其修改为<code>INOUT</code>类型。</p>
+<hr>
+<h2 class="relative group">存储引擎 
+    <div id="存储引擎" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e5%ad%98%e5%82%a8%e5%bc%95%e6%93%8e" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<p>存储引擎就像我们电脑中的CPU，它是整个MySQL最核心的部分，数据库中的数据如何存储，数据库能够支持哪些功能，我们的增删改查请求如何执行，都是由存储引擎来决定的。</p>
+<p>我们可以大致了解一下以下三种存储引擎：</p>
+<ul>
+<li><strong>MyISAM：</strong> MySQL5.5之前的默认存储引擎，在插入和查询的情况下性能很高，但是它不支持事务，只能添加表级锁。</li>
+<li><strong>InnoDB：</strong> MySQL5.5之后的默认存储引擎，它支持ACID事务、行级锁、外键，但是性能比不过MyISAM，更加消耗资源。</li>
+<li><strong>Memory：</strong> 数据都存放在内存中，数据库重启或发生崩溃，表中的数据都将消失。</li>
+</ul>
+<p>我们可以使用下面的命令来查看MySQL支持的存储引擎：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">show</span><span class="w"> </span><span class="n">engines</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><p>在创建表时，我们也可以为表指定其存储引擎。</p>
+<p>我们还可以在配置文件中修改默认的存储引擎，在Windows 11系统下，MySQL的配置文件默认放在<code>C:\ProgramData\MySQL\MySQL Server 5.7</code>中，注意ProgramData是个隐藏文件夹。</p>
+<hr>
+<h2 class="relative group">索引 
+    <div id="索引" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e7%b4%a2%e5%bc%95" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<p><strong>注意：</strong> 本小节会涉及<code>数据结构与算法</code>相关知识。</p>
+<p>索引就好像我们书的目录，每本书都有一个目录用于我们快速定位我们想要的内容在哪一页，索引也是，通过建立索引，我们就可以根据索引来快速找到想要的一条记录，大大提高查询效率。</p>
+<p>本版块我们会详细介绍索引的几种类型，以及索引的底层存储原理。</p>
+<h3 class="relative group">单列索引 
+    <div id="单列索引" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e5%8d%95%e5%88%97%e7%b4%a2%e5%bc%95" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>单列索引只针对于某一列数据创建索引，单列索引有以下几种类型：</p>
+<ul>
+<li><strong>NORMAL：</strong> 普通的索引类型，完完全全相当于一本书的目录。</li>
+<li><strong>UNIQUE：</strong> 唯一索引，我们之前已经用过了，一旦建立唯一索引，那么整个列中将不允许出现重复数据。每个表的主键列，都有一个特殊的唯一索引，叫做Primary Key，它不仅仅要求不允许出现重复，还要求不能为NULL，它还可以自动递增。每张表可以有多个唯一索引，但是只能有一个Primary索引。</li>
+<li><strong>SPATIAL：</strong> 空间索引，空间索引是对空间数据类型的字段建立的索引，MYSQL中的空间数据类型有4种，分别是GEOMETRY、POINT、LINESTRING、POLYGON，不是很常用，这里不做介绍。</li>
+<li><strong>FULLTEXT：</strong> 全文索引（MySQL 5.6 之后InnoDB才支持），它是模糊匹配的一种更好的解决方案，它的效率要比使用<code>like %</code>更高，并且它还支持多种匹配方式，灵活性也更加强大。只有字段的数据类型为 char、varchar、text 及其系列才可以建全文索引。</li>
+</ul>
+<p>我们来看看如何使用全文索引，首先创建一张用于测试全文索引的表：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">articles</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="n">UNSIGNED</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">title</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">200</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">body</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">FULLTEXT</span><span class="w"> </span><span class="p">(</span><span class="n">body</span><span class="p">));</span><span class="w">
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">articles</span><span class="w"> </span><span class="k">VALUES</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">(</span><span class="k">NULL</span><span class="p">,</span><span class="s1">&#39;MySQL Tutorial&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;DBMS stands for DataBase ...&#39;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">(</span><span class="k">NULL</span><span class="p">,</span><span class="s1">&#39;How To Use MySQL Efficiently&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;After you went through a ...&#39;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">(</span><span class="k">NULL</span><span class="p">,</span><span class="s1">&#39;Optimising MySQL&#39;</span><span class="p">,</span><span class="s1">&#39;In this tutorial we will show ...&#39;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">(</span><span class="k">NULL</span><span class="p">,</span><span class="s1">&#39;1001 MySQL Tricks&#39;</span><span class="p">,</span><span class="s1">&#39;1. Never run mysqld as root. 2. ...&#39;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">(</span><span class="k">NULL</span><span class="p">,</span><span class="s1">&#39;MySQL vs. YourSQL&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;In the following database comparison ...&#39;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">(</span><span class="k">NULL</span><span class="p">,</span><span class="s1">&#39;MySQL Security&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;When configured properly, MySQL ...&#39;</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></div><p>最后我们使用全文索引进行模糊匹配：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">articles</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="k">MATCH</span><span class="w"> </span><span class="p">(</span><span class="n">body</span><span class="p">)</span><span class="w"> </span><span class="n">AGAINST</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;database&#39;</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></div><p>注意全文索引如何定义字段的，match中就必须是哪些字段，against中定义需要模糊匹配的字符串，我们用作查找的字符串实际上是被分词之后的结果，如果进行模糊匹配的不是一个词语，那么会查找失败，但是它的效率远高于以下这种写法：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">articles</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">body</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s1">&#39;%database%&#39;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><h3 class="relative group">组合索引 
+    <div id="组合索引" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e7%bb%84%e5%90%88%e7%b4%a2%e5%bc%95" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>组合索引实际上就是将多行捆绑在一起，作为一个索引，它同样支持以上几种索引类型，我们可以在Navicat中进行演示。</p>
+<p>注意组合索引在进行匹配时，遵循最左原则。</p>
+<p>我们可以使用<code>explain</code>语句（它可以用于分析select语句的执行计划，也就是MySQL到底是如何在执行某条select语句的）来分析查询语句到底有没有通过索引进行匹配。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">explain</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;小王&#39;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><p>得到的结果如下：</p>
+<ul>
+<li>select_type：查询类型，上面的就是简单查询（SIMPLE）</li>
+<li>table：查询的表</li>
+<li>type：MySQL决定如何查找对应的记录，效率从高到低：system &gt; const &gt; eq_ref &gt; ref &gt; range &gt; index &gt; all</li>
+<li>possible_keys：执行查询时可能会用到的索引</li>
+<li>key：实际使用的索引</li>
+<li>key_len：Mysql在索引里使用的字节数，字段的最大可能长度</li>
+<li>rows：扫描的行数</li>
+<li>extra：附加说明</li>
+</ul>
+<h3 class="relative group">索引底层原理 
+    <div id="索引底层原理" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e7%b4%a2%e5%bc%95%e5%ba%95%e5%b1%82%e5%8e%9f%e7%90%86" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>在了解完了索引的类型之后，我们接着来看看索引是如何实现的。</p>
+<p>既然我们要通过索引来快速查找内容，那么如何设计索引就是我们的重点内容，因为索引是存储在硬盘上的，跟我们之前使用的HashMap之类的不同，它们都是在内存中的，但是硬盘的读取速度远小于内存的速度，每一次IO操作都会耗费大量的时间，我们也不可能把整个磁盘上的索引全部导入内存，因此我们需要考虑尽可能多的减少IO次数，索引的实现可以依靠两种数据结构，一种是我们在JavaSE阶段已经学习过的Hash表，还有一种就是B-Tree。</p>
+<p>我们首先来看看哈希表，实际上就是计算Hash值来快速定位：</p>
+<p>
+
+
+
+
+  <figure>
+    <img class="my-0 rounded-md" src="https://s2.loli.net/2023/08/14/RLDXtxjmAhP5ZGY.jpg" alt="点击查看源网页" />
+    
+  </figure>
+
+</p>
+<p>通过对Key进行散列值计算，我们可以直接得到对应数据的存放位置，它的查询效率能够达到O(1)，但是它也存在一定的缺陷：</p>
+<ul>
+<li>Hash索引仅仅能满足“=”，“in”查询条件，不能使用范围查询。</li>
+<li>Hash碰撞问题。</li>
+<li>不能用部分索引键来搜索，因为组合索引在计算哈希值的时候是一起计算的。</li>
+</ul>
+<p>那么，既然要解决这些问题，我们还有一种方案就是使用类似于二叉树那样的数据结构来存储索引，但是这样相比使用Hash索引，会牺牲一定的读取速度。</p>
+<p>但是这里并没有使用二叉树，而是使用了BTree，它是专门为磁盘数据读取设计的一种度为n的查找树：</p>
+<ul>
+<li>
+<p>树中每个结点最多含有m个孩子（m &gt;= 2）</p>
+</li>
+<li>
+<p>除根结点和叶子结点外，其它每个结点至少有[ceil(m / 2)]个孩子。</p>
+</li>
+<li>
+<p>若根结点不是叶子结点，则至少有2个孩子。</p>
+</li>
+<li>
+<p>所有叶子结点都出现在同一层。</p>
+</li>
+<li>
+<p>每个非终端结点中包含有n个键值信息： (P1，K1，P2，K2，P3，&hellip;&hellip;，Kn，Pn+1)。其中：</p>
+<ol>
+<li>Ki (i=1&hellip;n)为键值，且键值按顺序升序排序K(i-1)&lt; Ki。</li>
+<li>Pi为指向子树根的结点，且指针P(i)指向的子树中所有结点的键值均小于Ki，但都大于K(i-1)。</li>
+<li>键值的个数n必须满足： [ceil(m / 2)-1] &lt;= n &lt;= m-1。</li>
+</ol>
+</li>
+</ul>
+<p>
+
+
+
+
+  <figure>
+    <img class="my-0 rounded-md" src="https://s2.loli.net/2023/08/14/9o2vKsAf1pdSRQh.webp" alt="img" />
+    
+  </figure>
+
+</p>
+<p>比如现在我们要对键值为<strong>10</strong>的记录进行查找，过程如下：</p>
+<ol>
+<li>读取根节点数据（目前进行了一次IO操作）</li>
+<li>根据根节点数据进行判断得到10&lt;17，因为P1指向的子树中所有值都是小于17的，所以这时我们将P1指向的节点读取（目前进行了两次IO操作）</li>
+<li>再次进行判断，得到8&lt;10&lt;12，因为P2指向的子树中所有的值都是小于12大于8的，所以这时读取P2指向的节点（目前进行了三次IO操作）</li>
+<li>成功找到。</li>
+</ol>
+<p>我们接着来看，虽然BTree能够很好地利用二叉查找树的思想大幅度减少查找次数，但是它的查找效率还是很低，因此它的优化版本B+Tree诞生了，它拥有更稳定的查询效率和更低的IO读取次数：</p>
+<p>
+
+
+
+
+  <figure>
+    <img class="my-0 rounded-md" src="https://s2.loli.net/2023/08/14/AmeW1GO8SpMjwPt.webp" alt="img" />
+    
+  </figure>
+
+</p>
+<p>我们可以发现，它和BTree有一定的区别：</p>
+<ul>
+<li>有n棵子树的结点中含有n个键值，BTree只有n-1个。</li>
+<li>所有的键值信息只在叶子节点中包含，非叶子节点仅仅保存子节点的最小（或最大）值，和指向叶子节点的指针，这样相比BTree每一个节点在硬盘中存放了更少的内容（没有键值信息了）</li>
+<li>所有叶子节点都有一个根据大小顺序指向下一个叶子节点的指针Q，本质上数据就是一个链表。</li>
+</ul>
+<p>这样，读取IO的时间相比BTree就减少了很多，并且查询任何键值信息都需要完整地走到叶子节点，保证了查询的IO读取次数一致。因此MySQL默认选择B+Tree作为索引的存储数据结构。</p>
+<p>这是MyISAM存储引擎下的B+Tree实现：</p>
+<p>
+
+
+
+
+  <figure>
+    <img class="my-0 rounded-md" src="https://s2.loli.net/2023/08/14/q346VZgTy9EO5HF.webp" alt="img" />
+    
+  </figure>
+
+</p>
+<p>这是InnoDB存储引擎下的B+Tree实现：</p>
+<p>
+
+
+
+
+  <figure>
+    <img class="my-0 rounded-md" src="https://s2.loli.net/2023/08/14/p6BTltjD7YE1K9s.webp" alt="img" />
+    
+  </figure>
+
+</p>
+<p>
+
+
+
+
+  <figure>
+    <img class="my-0 rounded-md" src="https://s2.loli.net/2023/08/14/Jpi1nPND3Wa4bHc.webp" alt="img" />
+    
+  </figure>
+
+</p>
+<p>InnoDB与MyISAM实现的不同之处：</p>
+<ul>
+<li>数据本身就是索引的一部分（所以这里建议主键使用自增）</li>
+<li>非主键索引的数据实际上存储的是对应记录的主键值（因此InnoDB必须有主键，若没有也会自动查找替代）</li>
+</ul>
+<hr>
+<h2 class="relative group">锁机制 
+    <div id="锁机制" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e9%94%81%e6%9c%ba%e5%88%b6" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<p>在JavaSE的学习中，我们在多线程板块首次用到了锁机制，当我们对某个方法或是某个代码块加锁后，除非锁的持有者释放当前的锁，否则其他线程无法进入此方法或是代码块，我们可以利用锁机制来保证多线程之间的安全性。</p>
+<p>在MySQL中，就很容易出现多线程同时操作表中数据的情况，如果要避免潜在的并发问题，那么我们可以使用之前讲解的事务隔离级别来处理，而事务隔离中利用了锁机制。</p>
+<ul>
+<li>读未提交(Read Uncommitted)：能够读取到其他事务中未提交的内容，存在脏读问题。</li>
+<li>读已提交(Read Committed RC)：只能读取其他事务已经提交的内容，存在不可重复读问题。</li>
+<li>可重复读(Repeated Read RR)：在读取某行后不允许其他事务操作此行，直到事务结束，但是依然存在幻读问题。</li>
+<li>串行读(Serializable)：一个事务的开始必须等待另一个事务的完成。</li>
+</ul>
+<p>我们可以切换隔离级别分别演示一下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">set</span><span class="w"> </span><span class="k">session</span><span class="w"> </span><span class="k">transaction</span><span class="w"> </span><span class="k">isolation</span><span class="w"> </span><span class="k">level</span><span class="w"> </span><span class="k">read</span><span class="w"> </span><span class="k">uncommitted</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><p>在RR级别下，MySQL在一定程度上解决了幻读问题：</p>
+<ul>
+<li>在快照读（不加锁）读情况下，mysql通过mvcc来避免幻读。</li>
+<li>在当前读（加锁）读情况下，mysql通过next-key来避免幻读。</li>
+</ul>
+<blockquote>
+<p><strong><code>MVCC</code></strong>，全称 <code>Multi-Version Concurrency Control</code> ，即多版本并发控制。MVCC 是一种并发控制的方法，一般在数据库管理系统中，实现对数据库的并发访问，在编程语言中实现事务内存。</p>
+</blockquote>
+<h3 class="relative group">读锁和写锁 
+    <div id="读锁和写锁" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e8%af%bb%e9%94%81%e5%92%8c%e5%86%99%e9%94%81" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>从对数据的操作类型上来说，锁分为读锁和写锁：</p>
+<ul>
+<li><strong>读锁：</strong> 也叫共享锁，当一个事务添加了读锁后，其他的事务也可以添加读锁或是读取数据，但是不能进行写操作，只能等到所有的读锁全部释放。</li>
+<li><strong>写锁：</strong> 也叫排他锁，当一个事务添加了写锁后，其他事务不能读不能写也不能添加任何锁，只能等待当前事务释放锁。</li>
+</ul>
+<h3 class="relative group">全局锁、表锁和行锁 
+    <div id="全局锁表锁和行锁" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e5%85%a8%e5%b1%80%e9%94%81%e8%a1%a8%e9%94%81%e5%92%8c%e8%a1%8c%e9%94%81" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>从锁的作用范围上划分，分为全局锁、表锁和行锁：</p>
+<ul>
+<li><strong>全局锁：</strong> 锁作用于全局，整个数据库的所有操作全部受到锁限制。</li>
+<li><strong>表锁：</strong> 锁作用于整个表，所有对表的操作都会收到锁限制。</li>
+<li><strong>行锁：</strong> 锁作用于表中的某一行，只会通过锁限制对某一行的操作（仅InnoDB支持）</li>
+</ul>
+<h4 class="relative group">全局锁 
+    <div id="全局锁" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e5%85%a8%e5%b1%80%e9%94%81" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>我们首先来看全局锁，它作用于整个数据库，我们可以使用以下命令来开启读全局锁：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="n">flush</span><span class="w"> </span><span class="n">tables</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="k">read</span><span class="w"> </span><span class="k">lock</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><p>开启后，整个数据库被上读锁，我们只能去读取数据，但是不允许进行写操作（包括更新、插入、删除等）一旦执行写操作，会被阻塞，直到锁被释放，我们可以使用以下命令来解锁：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="n">unlock</span><span class="w"> </span><span class="n">tables</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><p>除了手动释放锁之外，当我们的会话结束后，锁也会被自动释放。</p>
+<h4 class="relative group">表锁 
+    <div id="表锁" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e8%a1%a8%e9%94%81" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>表锁作用于某一张表，也是MyISAM和InnoDB存储引擎支持的方式，我们可以使用以下命令来为表添加锁：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">lock</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="err">表名称</span><span class="w"> </span><span class="k">read</span><span class="o">/</span><span class="k">write</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><p>在我们为表添加写锁后，我们发现其他地方是无法访问此表的，一律都被阻塞。</p>
+<h4 class="relative group">行锁 
+    <div id="行锁" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e8%a1%8c%e9%94%81" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>表锁的作用范围太广了，如果我们仅仅只是对某一行进行操作，那么大可不必对整个表进行加锁，因此<code>InnoDB</code>支持了行锁，我们可以使用以下命令来对某一行进行加锁：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="c1">-- 添加读锁（共享锁）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="k">lock</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">share</span><span class="w"> </span><span class="k">mode</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- 添加写锁（排他锁）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="k">update</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><p>使用InnoDB的情况下，在执行更新、删除、插入操作时，数据库也会自动为所涉及的行添加写锁（排他锁），直到事务提交时，才会释放锁，执行普通的查询操作时，不会添加任何锁。使用MyISAM的情况下，在执行更新、删除、插入操作时，数据库会对涉及的表添加写锁，在执行查询操作时，数据库会对涉及的表添加读锁。</p>
+<p><strong>提问：</strong> 当我们不使用id进行选择，行锁会发生什么变化？（行锁升级）</p>
+<h3 class="relative group">记录锁、间隙锁和临键锁 
+    <div id="记录锁间隙锁和临键锁" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e8%ae%b0%e5%bd%95%e9%94%81%e9%97%b4%e9%9a%99%e9%94%81%e5%92%8c%e4%b8%b4%e9%94%ae%e9%94%81" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>我们知道InnoDB支持使用行锁，但是行锁比较复杂，它可以继续分为多个类型。</p>
+<h4 class="relative group">记录锁 
+    <div id="记录锁" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e8%ae%b0%e5%bd%95%e9%94%81" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>（Record Locks）记录锁, 仅仅锁住索引记录的一行，在单条索引记录上加锁。Record lock锁住的永远是索引，而非记录本身，即使该表上没有任何索引，那么innodb会在后台创建一个隐藏的聚集主键索引，那么锁住的就是这个隐藏的聚集主键索引。所以说当一条sql没有走任何索引时，那么将会在每一条聚合索引后面加写锁，这个类似于表锁，但原理上和表锁应该是完全不同的。</p>
+<h4 class="relative group">间隙锁 
+    <div id="间隙锁" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e9%97%b4%e9%9a%99%e9%94%81" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>（Gap Locks）仅仅锁住一个索引区间（开区间，不包括双端端点）。在索引记录之间的间隙中加锁，或者是在某一条索引记录之前或者之后加锁，并不包括该索引记录本身。比如在 1、2中，间隙锁的可能值有 (-∞, 1)，(1, 2)，(2, +∞)，间隙锁可用于防止幻读，保证索引间的不会被插入数据。</p>
+<h4 class="relative group">临键锁 
+    <div id="临键锁" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e4%b8%b4%e9%94%ae%e9%94%81" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>（Next-Key Locks）Record lock + Gap lock，左开右闭区间。默认情况下，<code>InnoDB</code>正是使用Next-key Locks来锁定记录（如select … for update语句）它还会根据场景进行灵活变换：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">场景</th>
+<th>转换</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">使用唯一索引进行精确匹配，但表中不存在记录</td>
+<td>自动转换为 Gap Locks</td>
+</tr>
+<tr>
+<td style="text-align:left">使用唯一索引进行精确匹配，且表中存在记录</td>
+<td>自动转换为 Record Locks</td>
+</tr>
+<tr>
+<td style="text-align:left">使用非唯一索引进行精确匹配</td>
+<td>不转换</td>
+</tr>
+<tr>
+<td style="text-align:left">使用唯一索引进行范围匹配</td>
+<td>不转换，但是只锁上界，不锁下界</td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://zhuanlan.zhihu.com/p/48269420"   target="_blank">
+    https://zhuanlan.zhihu.com/p/48269420</a></p>
+<p>————————————————
+版权声明：本文为柏码知识库版权所有，禁止一切未经授权的转载、发布、出售等行为，违者将被追究法律责任。
+原文链接：https://www.itbaima.cn/document/vkpmw9wbej21nei6</p>
+
+      </div>
+
+
+
+
+    </div>
+
+    
+    <script>
+      var oid = "views_doc\\mysql\\MySQL进阶.md"
+      var oid_likes = "likes_doc\\mysql\\MySQL进阶.md"
+    </script>
+    
+    
+    
+    <script type="text/javascript" src="/js/page.min.5b1bad196a6075a1e11bae1dc95f24f67b610948a00525e347566c5a62338ea78f1c7224ab9a53873dcdb2a1a7d7d391b8a8ef45561297f68806c01315b0c4f6.js" integrity="sha512-WxutGWpgdaHhG64dyV8k9nthCUigBSXjR1ZsWmIzjqePHHIkq5pThz3NsqGn19ORuKjvRVYSl/aIBsATFbDE9g=="></script>
+
+  </section>
+
+  <footer style="width: 100%">
+          
+<details style="margin-left:0px" class="mt-2 mb-5 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5">
+    <summary
+        class="py-1 text-lg font-semibold cursor-pointer bg-primary-200 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-primary-800 dark:text-neutral-100">
+        sql - 这是系列文章之一.
+    </summary>
+    
+    
+    
+    
+    <div
+        class="py-1 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+        部分 1: 本文
+    </div>
+    
+    
+
+</details>
+
+
+          
+  
+  <section class="flex flex-row flex-wrap justify-center pt-4 text-xl">
+    
+      
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="https://twitter.com/intent/tweet/?url=/doc/mysql/mysql%E8%BF%9B%E9%98%B6/&amp;text=Mysql"
+      title="分享到 Twitter"
+      aria-label="分享到 Twitter"
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg>
+  </span>
+
+
+    </a>
+      
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="https://t.me/share/url?url=/doc/mysql/mysql%E8%BF%9B%E9%98%B6/&amp;resubmit=true&amp;title=Mysql"
+      title=""
+      aria-label=""
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M248,8C111.033,8,0,119.033,0,256S111.033,504,248,504,496,392.967,496,256,384.967,8,248,8ZM362.952,176.66c-3.732,39.215-19.881,134.378-28.1,178.3-3.476,18.584-10.322,24.816-16.948,25.425-14.4,1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25,5.342-39.5,3.652-3.793,67.107-61.51,68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608,69.142-14.845,10.194-26.894,9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7,18.45-13.7,108.446-47.248,144.628-62.3c68.872-28.647,83.183-33.623,92.511-33.789,2.052-.034,6.639.474,9.61,2.885a10.452,10.452,0,0,1,3.53,6.716A43.765,43.765,0,0,1,362.952,176.66Z"/></svg>
+
+  </span>
+
+
+    </a>
+      
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="mailto:?body=/doc/mysql/mysql%E8%BF%9B%E9%98%B6/&amp;subject=Mysql"
+      title="通过电子邮件发送"
+      aria-label="通过电子邮件发送"
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M207.8 20.73c-93.45 18.32-168.7 93.66-187 187.1c-27.64 140.9 68.65 266.2 199.1 285.1c19.01 2.888 36.17-12.26 36.17-31.49l.0001-.6631c0-15.74-11.44-28.88-26.84-31.24c-84.35-12.98-149.2-86.13-149.2-174.2c0-102.9 88.61-185.5 193.4-175.4c91.54 8.869 158.6 91.25 158.6 183.2l0 16.16c0 22.09-17.94 40.05-40 40.05s-40.01-17.96-40.01-40.05v-120.1c0-8.847-7.161-16.02-16.01-16.02l-31.98 .0036c-7.299 0-13.2 4.992-15.12 11.68c-24.85-12.15-54.24-16.38-86.06-5.106c-38.75 13.73-68.12 48.91-73.72 89.64c-9.483 69.01 43.81 128 110.9 128c26.44 0 50.43-9.544 69.59-24.88c24 31.3 65.23 48.69 109.4 37.49C465.2 369.3 496 324.1 495.1 277.2V256.3C495.1 107.1 361.2-9.332 207.8 20.73zM239.1 304.3c-26.47 0-48-21.56-48-48.05s21.53-48.05 48-48.05s48 21.56 48 48.05S266.5 304.3 239.1 304.3z"/></svg>
+
+  </span>
+
+
+    </a>
+      
+    
+  </section>
+
+
+          
+
+
+
+    
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="flex group mr-3" href="/doc/netty/netty/java-nio-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B-nio-%E7%AC%94%E8%AE%B0%E4%BA%8Cnetty%E6%A1%86%E6%9E%B6%E4%B8%93%E9%A2%98/">
+              <span
+                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
+                >&larr;</span
+              >
+              <span
+                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
+                >&rarr;</span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Netty</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="0001-01-01 00:00:00 &#43;0000 UTC">1 January 0001</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="flex text-right group ml-3" href="/doc/docker/%E5%85%B6%E4%BB%96%E4%B8%AD%E9%97%B4%E4%BB%B6%E7%AC%94%E8%AE%B0-docker-%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Docker</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="0001-01-01 00:00:00 &#43;0000 UTC">1 January 0001</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
+                >&rarr;</span
+              >
+              <span
+                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
+                >&larr;</span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+    
+    
+    <div class="pt-3">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="pt-3">
+        <script src="https://giscus.app/client.js"
+        data-repo="ToDreamr/todreamr.github.io"
+        data-repo-id="R_kgDOLG9zIQ"
+        data-category="Q&A"
+        data-category-id="DIC_kwDOLG9zIc4Cc-2K"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light_protanopia"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+</script>
+
+      </div>
+    </div>
+    
+    
+  </footer>
+</article>
+
+      <div id="top-scroller" class="pointer-events-none absolute top-[110vh] bottom-0 w-12 ltr:right-0 rtl:left-0">
+  <a href="#the-top"
+    class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 mb-16 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+    aria-label="回到顶部" title="回到顶部">
+    &uarr;
+  </a>
+</div>
+    </main><footer id="site-footer" class="py-10 print:hidden">
+  
+  
+    
+    <nav class="flex flex-row pb-4 text-base font-medium text-neutral-500 dark:text-neutral-400">
+      <ul class="flex flex-col list-none sm:flex-row">
+        
+        <li class="flex mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+          <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2" href="/tags/"
+            title="Tags">系列文章</a>
+        </li>
+        
+        <li class="flex mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+          <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2" href="/info/"
+            title="应该没人来这里吧">关于我</a>
+        </li>
+        
+        <li class="flex mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+          <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2" href="/doc/"
+            title="Docs">文档</a>
+        </li>
+        
+      </ul>
+    </nav>
+    
+  
+  <div class="flex items-center justify-between">
+
+    
+    
+    <p class="text-sm text-neutral-500 dark:text-neutral-400">
+      &copy;
+      2024
+      春江花朝秋月夜
+    </p>
+    
+
+    
+    
+    <p class="text-xs text-neutral-500 dark:text-neutral-400">
+      
+      
+      由 <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+        href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+        href="https://blowfish.page/" target="_blank" rel="noopener noreferrer">Blowfish</a> 强力驱动
+    </p>
+    
+
+  </div>
+  <script>
+    
+    mediumZoom(document.querySelectorAll("img:not(.nozoom)"), {
+      margin: 24,
+      background: 'rgba(0,0,0,0.5)',
+      scrollOffset: 0,
+    })
+    
+  </script>
+  
+  
+  <script type="text/javascript" src="/js/process.min.62060bb247f4de2b6dde45903668fefb68d792f365587605177b1227c0cf43588701edaca0cb40e2c8e2789bd5ce67c1d2a215b9fb258c3496a7cd25e7cb5fdf.js" integrity="sha512-YgYLskf03itt3kWQNmj&#43;&#43;2jXkvNlWHYFF3sSJ8DPQ1iHAe2soMtA4sjieJvVzmfB0qIVufsljDSWp80l58tf3w=="></script>
+  
+  
+</footer><div
+  id="search-wrapper"
+  class="invisible fixed inset-0 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]"
+  data-url="/"
+  style="z-index:500"
+>
+  <div
+    id="search-modal"
+    class="flex flex-col w-full max-w-3xl min-h-0 mx-auto border rounded-md shadow-lg top-20 border-neutral-200 bg-neutral dark:border-neutral-700 dark:bg-neutral-800"
+  >
+    <header class="relative z-10 flex items-center justify-between flex-none px-2">
+      <form class="flex items-center flex-auto min-w-0">
+        <div class="flex items-center justify-center w-8 h-8 text-neutral-400">
+          
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+        </div>
+        <input
+          type="search"
+          id="search-query"
+          class="flex flex-auto h-12 mx-1 bg-transparent appearance-none focus:outline-dotted focus:outline-2 focus:outline-transparent"
+          placeholder="搜索"
+          tabindex="0"
+        />
+      </form>
+      <button
+        id="close-search-button"
+        class="flex items-center justify-center w-8 h-8 text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+        title="关闭 (Esc)"
+      >
+        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+  </span>
+
+
+      </button>
+    </header>
+    <section class="flex-auto px-2 overflow-auto">
+      <ul id="search-results">
+        
+      </ul>
+    </section>
+  </div>
+</div>
+
+  </div>
+</body>
+
+</html>

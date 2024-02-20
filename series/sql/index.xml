@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>sql on 春江花朝秋月夜</title>
+    <link>/series/sql/</link>
+    <description>Recent content in sql on 春江花朝秋月夜</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright>© 2024 春江花朝秋月夜</copyright>
+    <atom:link href="/series/sql/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mysql</title>
+      <link>/doc/mysql/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/doc/mysql/</guid>
+      <description>MySQL高级 # 在JavaWeb阶段，我们初步认识了MySQL数据库，包括一些基本操作，比如创建数据库、表、触发器，以及最基本的增删改查、事务等操作。而在此阶段，我们将继续深入学习MySQL，了解它的更多高级玩法，也相当于进行复习。
+函数 # 其实函数我们在之前已经接触到一部分了，在JavaWeb阶段，我们了解了聚集函数，聚集函数一般用作统计，包括：
+count([distinct]*) 统计所有的行数（distinct表示去重再统计，下同） count([distinct]列名) 统计某列的值总和 sum([distinct]列名) 求一列的和（注意必须是数字类型的） avg([distinct]列名) 求一列的平均值（注意必须是数字类型） max([distinct]列名) 求一列的最大值 min([distinct]列名) 求一列的最小值 比如我们需要计算某个表一共有多少行：
+SELECT COUNT(*) FROM student 通过使用COUNT聚集函数，就可以快速统计并得到结果，比如我们想计算某一列上所有数字的和：
+SELECT SUM(sid) FROM student 通过SUM聚集函数，就可以快速计算每一列的和，实际上这些函数都是由系统提供的函数，我们可以直接使用。
+本版块我们会详细介绍各类系统函数以及如何编写自定义函数。</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/doc/mysql/featured.jpg" />
+    </item>
+    
+  </channel>
+</rss>
