@@ -7,7 +7,23 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>© 2024 春江花朝秋月夜</copyright>
-    <lastBuildDate>Fri, 03 Nov 2023 11:31:54 +0800</lastBuildDate><atom:link href="/tags/spring/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 23 Feb 2024 00:00:00 +0000</lastBuildDate><atom:link href="/tags/spring/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Spring-Security</title>
+      <link>/entire-note/security/</link>
+      <pubDate>Fri, 23 Feb 2024 00:00:00 +0000</pubDate>
+      
+      <guid>/entire-note/security/</guid>
+      <description>基于Spring6+JDK18的SpringSecurity环境的项目DEMO # 项目地址：
+ToDreamr/Rainy_SpringSecurity 基于Spring6+JDK18的SpringSecurity环境 Java 0 0 基本实现的功能 # Security通过数据库实现自定义登录 通过自己添加的过滤器链完成JWT+Token的请求权限认证 Token加入Redis做无状态无Session处理 邮箱验证码收发功能 注意事项 # sql执行脚本在项目doc文件目录下，Security在Spring6下已经废除
+通过WebSecurityAdaptor来实现HttpSecurity这个Bean的配置注入。
+目前只支持Lamda表达式。
+请在application.yml中自行配置自己的邮箱SMTP服务
+配置案例：
+@Bean public SecurityFilterChain filterChain(HttpSecurity http) throws Exception { return http .</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/security/featured.png" />
+    </item>
+    
     <item>
       <title>Spring事务传播机制</title>
       <link>/entire-note/%E4%BA%8B%E5%8A%A1/</link>
