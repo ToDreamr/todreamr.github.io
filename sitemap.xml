@@ -432,6 +432,11 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>/doc/nio/</loc>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>/series/nionetty/</loc>
     <changefreq>always</changefreq>
     <priority>0.5</priority>

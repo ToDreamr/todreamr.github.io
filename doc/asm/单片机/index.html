@@ -65,10 +65,14 @@
   
   
   <meta property="og:title" content="单片机" />
-<meta property="og:description" content="CPL 取反~ CLR 清零 SETB 置位为1 ANL 相与&amp; RL 左移一位 INC 加一 ORL 或
+<meta property="og:description" content="CPL 取反~ 🌟CPL取反，CLR清零 CLR 清零 SETB 置位为1
+RL 左移一位
+ANL 相与&amp; INC 加一 ORL 或
+XRL 逻辑异或，异或的操作是：相同取0，相反取1
+🌟 RL:左移一位 RLC ：左移一位同时CY左移一位
 CPL P1.3 对第三位取反
-JBC 为1跳转 程序存储器只读不写！
-例子 MOV A,#36H ;0011 0110 MOV R0,#9FH ;1001 1111 ANL A,R0; ;A=0001 0110=16H SETB C; C=1; ADDC A,RO; 0001 0110 &#43; 1 &#43; 1001 1111=&gt; A=B6H" />
+JBC 为1跳转 程序存储器只读不写！movc
+XCHD 指的是低四位 交换 SWAP 是高低四位自交换" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/doc/asm/%E5%8D%95%E7%89%87%E6%9C%BA/" /><meta property="article:section" content="doc" />
 
@@ -77,10 +81,14 @@ JBC 为1跳转 程序存储器只读不写！
 
   <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="单片机"/>
-<meta name="twitter:description" content="CPL 取反~ CLR 清零 SETB 置位为1 ANL 相与&amp; RL 左移一位 INC 加一 ORL 或
+<meta name="twitter:description" content="CPL 取反~ 🌟CPL取反，CLR清零 CLR 清零 SETB 置位为1
+RL 左移一位
+ANL 相与&amp; INC 加一 ORL 或
+XRL 逻辑异或，异或的操作是：相同取0，相反取1
+🌟 RL:左移一位 RLC ：左移一位同时CY左移一位
 CPL P1.3 对第三位取反
-JBC 为1跳转 程序存储器只读不写！
-例子 MOV A,#36H ;0011 0110 MOV R0,#9FH ;1001 1111 ANL A,R0; ;A=0001 0110=16H SETB C; C=1; ADDC A,RO; 0001 0110 &#43; 1 &#43; 1001 1111=&gt; A=B6H"/>
+JBC 为1跳转 程序存储器只读不写！movc
+XCHD 指的是低四位 交换 SWAP 是高低四位自交换"/>
 
   
   <script type="application/ld+json">
@@ -91,7 +99,7 @@ JBC 为1跳转 程序存储器只读不写！
     "name": "单片机",
     "headline": "单片机",
     
-    "abstract": "CPL 取反~ CLR 清零 SETB 置位为1 ANL 相与\u0026amp; RL 左移一位 INC 加一 ORL 或\nCPL P1.3 对第三位取反\nJBC 为1跳转 程序存储器只读不写！\n例子 MOV A,#36H ;0011 0110 MOV R0,#9FH ;1001 1111 ANL A,R0; ;A=0001 0110=16H SETB C; C=1; ADDC A,RO; 0001 0110 \u002b 1 \u002b 1001 1111=\u0026gt; A=B6H",
+    "abstract": "CPL 取反~ 🌟CPL取反，CLR清零 CLR 清零 SETB 置位为1\nRL 左移一位\nANL 相与\u0026amp; INC 加一 ORL 或\nXRL 逻辑异或，异或的操作是：相同取0，相反取1\n🌟 RL:左移一位 RLC ：左移一位同时CY左移一位\nCPL P1.3 对第三位取反\nJBC 为1跳转 程序存储器只读不写！movc\nXCHD 指的是低四位 交换 SWAP 是高低四位自交换",
     "inLanguage": "zh-CN",
     "url" : "\/doc\/asm\/%E5%8D%95%E7%89%87%E6%9C%BA\/",
     "author" : {
@@ -107,7 +115,7 @@ JBC 为1跳转 程序存储器只读不写！
     "keywords": [""],
     
     "mainEntityOfPage": "true",
-    "wordCount": "137"
+    "wordCount": "254"
   }]
   </script>
 
@@ -672,7 +680,7 @@ JBC 为1跳转 程序存储器只读不写！
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="0001-01-01 00:00:00 &#43;0000 UTC">1 January 0001</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
+  <time datetime="0001-01-01 00:00:00 &#43;0000 UTC">1 January 0001</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">2 分钟</span>
   
 
   
@@ -866,25 +874,87 @@ JBC 为1跳转 程序存储器只读不写！
 
 
       <div class="article-content max-w-prose mb-20">
-        <p>CPL 取反~
+        <p>CPL 取反~ 🌟CPL取反，CLR清零
 CLR 清零
-SETB 置位为1
-ANL 相与&amp;
-RL 左移一位
+SETB 置位为1</p>
+<p>RL 左移一位</p>
+<p>ANL 相与&amp;
 INC 加一
 ORL 或</p>
+<p>XRL 逻辑异或，异或的操作是：相同取0，相反取1</p>
+<p>🌟
+RL:左移一位
+RLC ：左移一位同时CY左移一位</p>
 <p>CPL P1.3 对第三位取反</p>
 <p>JBC 为1跳转
-程序存储器只读不写！</p>
-<p>例子
+程序存储器只读不写！movc</p>
+<p>XCHD 指的是低四位 交换
+SWAP 是高低四位自交换</p>
+<p>程序转移指令：</p>
+<p>无条件转移和有条件转移
+JZ A=0的时候转移
+DJNZ 减一不为0转移</p>
+<p>判断位转移
+JB bit
+JNB bit
+JBC bit
+🌟
+子程序返回RET和中断返回RETI
+RET指令作为子程序的最后一条指令，按调用时保存的地址返回，
+RETI作为中断程序的最后一条，除了按照中断保存的地址之外还要清除相应的中断寄存器
+指令，关键点在于最后一条和谁是谁。</p>
+<p>算数指令
+INC DEC</p>
+<p>寻址方式总结:</p>
+<p>立即寻址，寄存器寻址，直接寻址，寄存器间接寻址，基地址+变地址寻址</p>
+<p>🌟 高128字节采用寄存器间接寻址方式！！！，特殊功能寄存器采用
+直接寻址</p>
+<p>所有加减都有近位位的计算
+例子
 MOV A,#36H ;0011 0110
 MOV R0,#9FH ;1001 1111
-ANL A,R0; ;A=0001 0110=16H
+ANL A,R0; A=0001 0110=16H
 SETB C; C=1;
 ADDC  A,RO;  0001 0110 + 1 + 1001 1111=&gt; A=B6H</p>
 <p>JNZ REL 为两字节指令 从1308H-&gt;134AH 求相对偏移量REL</p>
 <p>134AH=1308H+02H+REL =&gt;REL=40H</p>
-<p>DA A才对</p>
+<p>目的地址=（PC）+2+REL</p>
+<p>DA A才对 必须是单个操作符</p>
+<p>DA感觉会考🌟
+对低四位加0110调整，注意进位位CY=1，当高四位有进位的时候</p>
+<p>6.</p>
+<p>CLR C ;C=0;
+ADDC A,#60H;0010 0101 +0110 0000-&gt;1010 0110 =C6H,CY=1;
+MOV 20H,@R0;(20H)=33H;
+ADDC A,20H;A+33H+CY=&gt;FAH;
+MOV 33H,A;=&gt;(33H)=FAH;</p>
+<p>扩展RAM2010H的内容送扩展RAM2020H</p>
+<p>ORG 0000H;
+MOV DPTR  2010H;
+MOVX A @DPTR;
+MOV DPTR 2020H;
+MOVX @DPTR A;
+END</p>
+<p>MOVC 采用基地址+变地址方法！</p>
+<p>将程序存储器数据2010H送入累加器A中
+ORG 2000H;
+MOV DPTR ,#2000H;
+MOV A ,#10H;
+MOVC A ,@A+DPTR</p>
+<p>列竖式运算：</p>
+<p>ORG 0000H;
+LJMP START;
+ORG 1000H;</p>
+<p>START:
+CLR C;清零操作
+MOV A,30H;
+SUBB A,40H;
+MOV 30H,A;
+MOV A,31H;
+SUBB A,41H;
+MOV 31H,A; 存放结果先低位再高位
+SJMP $;
+END;</p>
 <p>程序设计段</p>
 <p>转换为ASCII
 ORG 1000H
@@ -904,7 +974,7 @@ INC R0;</p>
 变量x作为补码形式存放进30H</p>
 <p>ORG  1000H;
 START:
-MOV A,30H
+MOV A,30H ；先将变量存入A中
 JZ NEXT; 如果x=0；转移，NEXT作为标号
 ANL A,#80H;通过判断最高位来判断正负
 JZ ED;  如果x&gt;0;转移
