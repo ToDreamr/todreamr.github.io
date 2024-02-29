@@ -9,14 +9,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   
-  <title>Spring-Security &middot; 春江花朝秋月夜</title>
-  <meta name="title" content="Spring-Security &middot; 春江花朝秋月夜" />
+  <title>Oauth2 &middot; 春江花朝秋月夜</title>
+  <meta name="title" content="Oauth2 &middot; 春江花朝秋月夜" />
   
-  <meta name="description" content="A powerful, lightweight theme for Hugo built with Tailwind CSS." />
-  <meta name="keywords" content="spring, " />
+  <meta name="description" content="OAuth2 单点登录" />
   
   
-  <link rel="canonical" href="/entire-note/security/" />
+  
+  <link rel="canonical" href="/entire-note/oauth2/" />
   
   
   
@@ -64,30 +64,17 @@
   
   
   
-  <meta property="og:title" content="Spring-Security" />
-<meta property="og:description" content="基于Spring6&#43;JDK18的SpringSecurity环境的项目DEMO # 项目地址：
-ToDreamr/Rainy_SpringSecurity 基于Spring6&#43;JDK18的SpringSecurity环境 Java 0 0 基本实现的功能 # Security通过数据库实现自定义登录 通过自己添加的过滤器链完成JWT&#43;Token的请求权限认证 Token加入Redis做无状态无Session处理 邮箱验证码收发功能 注意事项 # sql执行脚本在项目doc文件目录下，Security在Spring6下已经废除
-通过WebSecurityAdaptor来实现HttpSecurity这个Bean的配置注入。
-目前只支持Lamda表达式。
-请在application.yml中自行配置自己的邮箱SMTP服务
-配置案例：
-@Bean public SecurityFilterChain filterChain(HttpSecurity http) throws Exception { return http ." />
+  <meta property="og:title" content="Oauth2" />
+<meta property="og:description" content="OAuth2 单点登录" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/entire-note/security/" /><meta property="og:image" content="/entire-note/security/featured.png"/><meta property="article:section" content="entire-note" />
-<meta property="article:published_time" content="2024-02-23T00:00:00+00:00" />
-<meta property="article:modified_time" content="2024-02-23T00:00:00+00:00" />
+<meta property="og:url" content="/entire-note/oauth2/" /><meta property="article:section" content="entire-note" />
+<meta property="article:published_time" content="2024-02-29T17:52:31+08:00" />
+<meta property="article:modified_time" content="2024-02-29T17:52:31+08:00" />
 
 
-  <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="/entire-note/security/featured.png"/>
-<meta name="twitter:title" content="Spring-Security"/>
-<meta name="twitter:description" content="基于Spring6&#43;JDK18的SpringSecurity环境的项目DEMO # 项目地址：
-ToDreamr/Rainy_SpringSecurity 基于Spring6&#43;JDK18的SpringSecurity环境 Java 0 0 基本实现的功能 # Security通过数据库实现自定义登录 通过自己添加的过滤器链完成JWT&#43;Token的请求权限认证 Token加入Redis做无状态无Session处理 邮箱验证码收发功能 注意事项 # sql执行脚本在项目doc文件目录下，Security在Spring6下已经废除
-通过WebSecurityAdaptor来实现HttpSecurity这个Bean的配置注入。
-目前只支持Lamda表达式。
-请在application.yml中自行配置自己的邮箱SMTP服务
-配置案例：
-@Bean public SecurityFilterChain filterChain(HttpSecurity http) throws Exception { return http ."/>
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Oauth2"/>
+<meta name="twitter:description" content="OAuth2 单点登录"/>
 
   
   <script type="application/ld+json">
@@ -95,26 +82,26 @@ ToDreamr/Rainy_SpringSecurity 基于Spring6&#43;JDK18的SpringSecurity环境 Jav
     "@context": "https://schema.org",
     "@type": "Article",
     "articleSection": "Entire-notes",
-    "name": "Spring-Security",
-    "headline": "Spring-Security",
-    
-    "abstract": "基于Spring6\u002bJDK18的SpringSecurity环境的项目DEMO # 项目地址：\nToDreamr\/Rainy_SpringSecurity 基于Spring6\u002bJDK18的SpringSecurity环境 Java 0 0 基本实现的功能 # Security通过数据库实现自定义登录 通过自己添加的过滤器链完成JWT\u002bToken的请求权限认证 Token加入Redis做无状态无Session处理 邮箱验证码收发功能 注意事项 # sql执行脚本在项目doc文件目录下，Security在Spring6下已经废除\n通过WebSecurityAdaptor来实现HttpSecurity这个Bean的配置注入。\n目前只支持Lamda表达式。\n请在application.yml中自行配置自己的邮箱SMTP服务\n配置案例：\n@Bean public SecurityFilterChain filterChain(HttpSecurity http) throws Exception { return http .",
+    "name": "Oauth2",
+    "headline": "Oauth2",
+    "description": "OAuth2 单点登录",
+    "abstract": "参考文章： SpringSecurity-Oauth基于Spring3.x\n单点登录（SSO） # 名词解释（UA）：user account and authentication\n请求流程图：\n客户端模式：\n密码模式：\n隐式授权模式\n授权码模式（目前采用的主流方案）：\n第三方登录Oauth2示意图：\n使用jwt存储Token 官网：https:\/\/jwt.io\nJSON Web Token令牌（JWT）是一个开放标准（RFC 7519），它定义了一种紧凑和自成一体的方式，用于在各方之间作为JSON对象安全地传输信息。这些信息可以被验证和信任，因为它是数字签名的。JWT可以使用密钥（使用HMAC算法）或使用RSA或ECDSA进行公钥\/私钥对进行签名。\n实际上，我们之前都是携带Token向资源服务器发起请求后，资源服务器由于不知道我们Token的用户信息，所以需要向验证服务器询问此Token的认证信息，这样才能得到Token代表的用户信息，但是各位是否考虑过，如果每次用户请求都去查询用户信息，那么在大量请求下，验证服务器的压力可能会非常的大。而使用JWT之后，Token中会直接保存用户信息，这样资源服务器就不再需要询问验证服务器，自行就可以完成解析，我们的目标是不联系验证服务器就能直接完成验证。\n一个JWT令牌由3部分组成：标头(Header)、有效载荷(Payload)和签名(Signature)。在传输的时候，会将JWT的3部分分别进行Base64编码后用.进行连接形成最终需要传输的字符串。\n标头：包含一些元数据信息，比如JWT签名所使用的加密算法，还有类型，这里统一都是JWT。 有效载荷：包括用户名称、令牌发布时间、过期时间、JWT ID等，当然我们也可以自定义添加字段，我们的用户信息一般都在这里存放。 签名：首先需要指定一个密钥，该密钥仅仅保存在服务器中，保证不能让其他用户知道。然后使用Header中指定的算法对Header和Payload进行base64加密之后的结果通过密钥计算哈希值，然后就得出一个签名哈希。这个会用于之后验证内容是否被篡改。\nBase64（不是加密算法而是编码方式）： 就是包括小写字母a-z、大写字母A-Z、数字0-9、符号\u0026quot;\u002b\u0026quot;、\u0026quot;\/\u0026ldquo;一共64个字符的字符集（末尾还有1个或多个=用来凑够字节数），任何的符号都可以转换成这个字符集中的字符，这个转换过程就叫做Base64编码，编码之后会生成只包含上述64个字符的字符串。相反，如果需要原本的内容，我们也可以进行Base64解码，回到原有的样子。\n加密算法： 加密算法分为对称加密和非对称加密，其中**对称加密（Symmetric Cryptography）**比较好理解，就像一把锁配了两把钥匙一样，这两把钥匙你和别人都有一把，然后你们直接传递数据，都会把数据用锁给锁上，就算传递的途中有人把数据窃取了，也没办法解密，因为钥匙只有你和对方有，没有钥匙无法进行解密，但是这样有个问题，既然解密的关键在于钥匙本身，那么如果有人不仅窃取了数据，而且对方那边的治安也不好，于是顺手就偷走了钥匙，那你们之间发的数据不就凉凉了吗。",
     "inLanguage": "zh-CN",
-    "url" : "\/entire-note\/security\/",
+    "url" : "\/entire-note\/oauth2\/",
     "author" : {
       "@type": "Person",
       "name": "春江花朝秋月夜"
     },
     "copyrightYear": "2024",
-    "dateCreated": "2024-02-23T00:00:00\u002b00:00",
-    "datePublished": "2024-02-23T00:00:00\u002b00:00",
+    "dateCreated": "2024-02-29T17:52:31\u002b08:00",
+    "datePublished": "2024-02-29T17:52:31\u002b08:00",
     
-    "dateModified": "2024-02-23T00:00:00\u002b00:00",
+    "dateModified": "2024-02-29T17:52:31\u002b08:00",
     
-    "keywords": ["spring"],
+    
     
     "mainEntityOfPage": "true",
-    "wordCount": "136"
+    "wordCount": "45"
   }]
   </script>
 
@@ -159,18 +146,8 @@ ToDreamr/Rainy_SpringSecurity 基于Spring6&#43;JDK18的SpringSecurity环境 Jav
 
 
 
-    
-    <script defer src="/lib/packery/packery.pkgd.min.js" integrity=""></script>
-
-    
-    
-    <script type="text/javascript" src="/js/shortcodes/gallery.min.63ece45159cbf43055b3f74da8915296dad6452f94ba21226e75d06fdc09c5d6636268316cc218375fb294c265acf846df04f907c384e5bed1dfe03404bd2187.js" integrity="sha512-Y&#43;zkUVnL9DBVs/dNqJFSltrWRS&#43;UuiEibnXQb9wJxdZjYmgxbMIYN1&#43;ylMJlrPhG3wT5B8OE5b7R3&#43;A0BL0hhw=="></script>
 
 
-
-
-
-<script defer src="/lib/tw-elements/index.min.js" integrity=""></script>
 
   
   
@@ -583,7 +560,7 @@ ToDreamr/Rainy_SpringSecurity 基于Spring6&#43;JDK18的SpringSecurity环境 Jav
 
     
     <div class="fixed inset-x-0 top-0 h-[800px] single_hero_background nozoom"
-    style="background-image:url(/entire-note/security/featured_hu7bdaa060bafe0d8e7de19ca39d7608d3_644478_1200x0_resize_box_3.png);">
+    style="background-image:url(/img/%E4%BD%A0%E7%9A%84%E5%90%8D%E5%AD%97_hu58dd3bf4079e2d69ef87c0777d129691_1821305_1200x0_resize_box_3.png);">
     
 
 
@@ -636,8 +613,8 @@ ToDreamr/Rainy_SpringSecurity 基于Spring6&#43;JDK18的SpringSecurity环境 Jav
   <li class="inline hidden">
     <a
       class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
-      href="/entire-note/security/"
-      >Spring-Security</a
+      href="/entire-note/oauth2/"
+      >Oauth2</a
     ><span class="px-1 text-primary-500">/</span>
   </li>
 
@@ -646,7 +623,7 @@ ToDreamr/Rainy_SpringSecurity 基于Spring6&#43;JDK18的SpringSecurity环境 Jav
 
     
     <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral" style="font-family: 华文中宋,serif">
-      Spring-Security
+      Oauth2
     </h1>
     <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
       
@@ -689,7 +666,7 @@ ToDreamr/Rainy_SpringSecurity 基于Spring6&#43;JDK18的SpringSecurity环境 Jav
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2024-02-23 00:00:00 &#43;0000 UTC">23 February 2024</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
+  <time datetime="2024-02-29 17:52:31 &#43;0800 CST">29 February 2024</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
   
 
   
@@ -724,16 +701,6 @@ ToDreamr/Rainy_SpringSecurity 基于Spring6&#43;JDK18的SpringSecurity环境 Jav
   
   
   
-  
-  
-  
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/spring/&#34;,'_self');">
-    <span class="flex" style="cursor: pointer;">
-  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    spring
-  </span>
-</span>
-  </span>
   
   
   
@@ -898,21 +865,7 @@ ToDreamr/Rainy_SpringSecurity 基于Spring6&#43;JDK18的SpringSecurity环境 Jav
     class="min-w-[220px] py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#基于spring6jdk18的springsecurity环境的项目demo">基于Spring6+JDK18的SpringSecurity环境的项目DEMO</a>
-      <ul>
-        <li>
-          <ul>
-            <li>
-              <ul>
-                <li><a href="#基本实现的功能">基本实现的功能</a></li>
-                <li><a href="#注意事项">注意事项</a></li>
-                <li><a href="#搭建要点">搭建要点</a></li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </li>
+    <li><a href="#单点登录sso">单点登录（SSO）</a></li>
   </ul>
 </nav>
   </div>
@@ -926,21 +879,7 @@ ToDreamr/Rainy_SpringSecurity 基于Spring6&#43;JDK18的SpringSecurity环境 Jav
     class="py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#基于spring6jdk18的springsecurity环境的项目demo">基于Spring6+JDK18的SpringSecurity环境的项目DEMO</a>
-      <ul>
-        <li>
-          <ul>
-            <li>
-              <ul>
-                <li><a href="#基本实现的功能">基本实现的功能</a></li>
-                <li><a href="#注意事项">注意事项</a></li>
-                <li><a href="#搭建要点">搭建要点</a></li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </li>
+    <li><a href="#单点登录sso">单点登录（SSO）</a></li>
   </ul>
 </nav>
   </div>
@@ -996,181 +935,23 @@ ToDreamr/Rainy_SpringSecurity 基于Spring6&#43;JDK18的SpringSecurity环境 Jav
 
 
       <div class="article-content max-w-prose mb-20">
-        <h1 class="relative group">基于Spring6+JDK18的SpringSecurity环境的项目DEMO 
-    <div id="基于spring6jdk18的springsecurity环境的项目demo" class="anchor"></div>
+        <blockquote>
+<p>参考文章：<a href="https://blog.csdn.net/m0_64469199/article/details/130477346"   target="_blank">
+    SpringSecurity-Oauth基于Spring3.x</a></p>
+</blockquote>
+<h1 class="relative group">单点登录（SSO） 
+    <div id="单点登录sso" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%e5%9f%ba%e4%ba%8espring6jdk18%e7%9a%84springsecurity%e7%8e%af%e5%a2%83%e7%9a%84%e9%a1%b9%e7%9b%aedemo" aria-label="锚点">#</a>
+            style="text-decoration-line: none !important;" href="#%e5%8d%95%e7%82%b9%e7%99%bb%e5%bd%95sso" aria-label="锚点">#</a>
     </span>        
     
 </h1>
-<p>项目地址：</p>
-<a id="github-2074129d3e20c013cbbb19d5b7d7e25f" target="_blank" href="https://github.com/ToDreamr/Rainy_SpringSecurity" class="cursor-pointer">
-  <div
-    class="w-full md:w-auto pt-3 p-5 border border-neutral-200 dark:border-neutral-700 border rounded-md shadow-2xl">
-
-    <div class="flex items-center">
-      <span class="text-2xl text-neutral-800 dark:text-neutral" style="margin-right:10px;">
-        
-
-  <span class="relative block icon">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
-
-  </span>
-
-
-      </span>
-      <div
-        id="github-2074129d3e20c013cbbb19d5b7d7e25f-full_name"
-        class="m-0 font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral">
-        ToDreamr/Rainy_SpringSecurity
-      </div>
-    </div>
-
-    <p id="github-2074129d3e20c013cbbb19d5b7d7e25f-description" class="m-0 mt-2 text-md text-neutral-800 dark:text-neutral">
-      基于Spring6+JDK18的SpringSecurity环境
-    </p>
-
-    <div class="m-0 mt-2 flex items-center">
-
-      <span class="mr-1 inline-block h-3 w-3 rounded-full"
-        style="background-color: #b07219"></span>
-      <div class="m-0 mr-5 text-md text-neutral-800 dark:text-neutral">
-         Java 
-      </div>
-
-      <span class="text-md mr-1 text-neutral-800 dark:text-neutral">
-        
-
-  <span class="relative block icon">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M287.9 0C297.1 0 305.5 5.25 309.5 13.52L378.1 154.8L531.4 177.5C540.4 178.8 547.8 185.1 550.7 193.7C553.5 202.4 551.2 211.9 544.8 218.2L433.6 328.4L459.9 483.9C461.4 492.9 457.7 502.1 450.2 507.4C442.8 512.7 432.1 513.4 424.9 509.1L287.9 435.9L150.1 509.1C142.9 513.4 133.1 512.7 125.6 507.4C118.2 502.1 114.5 492.9 115.1 483.9L142.2 328.4L31.11 218.2C24.65 211.9 22.36 202.4 25.2 193.7C28.03 185.1 35.5 178.8 44.49 177.5L197.7 154.8L266.3 13.52C270.4 5.249 278.7 0 287.9 0L287.9 0zM287.9 78.95L235.4 187.2C231.9 194.3 225.1 199.3 217.3 200.5L98.98 217.9L184.9 303C190.4 308.5 192.9 316.4 191.6 324.1L171.4 443.7L276.6 387.5C283.7 383.7 292.2 383.7 299.2 387.5L404.4 443.7L384.2 324.1C382.9 316.4 385.5 308.5 391 303L476.9 217.9L358.6 200.5C350.7 199.3 343.9 194.3 340.5 187.2L287.9 78.95z"/></svg>
-  </span>
-
-
-      </span>
-      <div id="github-2074129d3e20c013cbbb19d5b7d7e25f-stargazers" class="m-0 mr-5 text-md text-neutral-800 dark:text-neutral">
-        0
-      </div>
-
-      <span class="text-md mr-1 text-neutral-800 dark:text-neutral">
-        
-
-  <span class="relative block icon">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M80 104c13.3 0 24-10.7 24-24s-10.7-24-24-24S56 66.7 56 80s10.7 24 24 24zm80-24c0 32.8-19.7 61-48 73.3V192c0 17.7 14.3 32 32 32H304c17.7 0 32-14.3 32-32V153.3C307.7 141 288 112.8 288 80c0-44.2 35.8-80 80-80s80 35.8 80 80c0 32.8-19.7 61-48 73.3V192c0 53-43 96-96 96H256v70.7c28.3 12.3 48 40.5 48 73.3c0 44.2-35.8 80-80 80s-80-35.8-80-80c0-32.8 19.7-61 48-73.3V288H144c-53 0-96-43-96-96V153.3C19.7 141 0 112.8 0 80C0 35.8 35.8 0 80 0s80 35.8 80 80zm208 24c13.3 0 24-10.7 24-24s-10.7-24-24-24s-24 10.7-24 24s10.7 24 24 24zM248 432c0-13.3-10.7-24-24-24s-24 10.7-24 24s10.7 24 24 24s24-10.7 24-24z"/></svg>
-  </span>
-
-
-      </span>
-      <div id="github-2074129d3e20c013cbbb19d5b7d7e25f-forks" class="m-0 mr-5 text-md text-neutral-800 dark:text-neutral">
-        0
-      </div>
-
-    </div>
-
-  </div>
-  <script>
-    fetch("https://api.github.com/repos/ToDreamr/Rainy_SpringSecurity", {
-      headers: new Headers({
-        'User-agent': 'Mozilla/4.0 Custom User Agent'
-      })
-    })
-      .then(response => response.json())
-      .then(data => {
-        document.getElementById('github-2074129d3e20c013cbbb19d5b7d7e25f-full_name').innerHTML = data.full_name;
-        document.getElementById('github-2074129d3e20c013cbbb19d5b7d7e25f-description').innerHTML = data.description;
-        document.getElementById('github-2074129d3e20c013cbbb19d5b7d7e25f-stargazers').innerHTML = data.stargazers_count;
-        document.getElementById('github-2074129d3e20c013cbbb19d5b7d7e25f-forks').innerHTML = data.forks;
-      })
-      .catch(error => console.error(error))
-  </script>
-</a>
-<h4 class="relative group">基本实现的功能 
-    <div id="基本实现的功能" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%e5%9f%ba%e6%9c%ac%e5%ae%9e%e7%8e%b0%e7%9a%84%e5%8a%9f%e8%83%bd" aria-label="锚点">#</a>
-    </span>        
-    
-</h4>
-<ul>
-<li>Security通过数据库实现自定义登录</li>
-<li>通过自己添加的过滤器链完成JWT+Token的请求权限认证</li>
-<li>Token加入Redis做无状态无Session处理</li>
-<li>邮箱验证码收发功能</li>
-</ul>
-<h4 class="relative group">注意事项 
-    <div id="注意事项" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a1%b9" aria-label="锚点">#</a>
-    </span>        
-    
-</h4>
-<p>sql执行脚本在项目doc文件目录下，Security在Spring6下已经废除</p>
-<p>通过WebSecurityAdaptor来实现HttpSecurity这个Bean的配置注入。</p>
-<p>目前只支持Lamda表达式。</p>
-<p>请在application.yml中自行配置自己的邮箱SMTP服务</p>
-<p>配置案例：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="nd">@Bean</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">SecurityFilterChain</span> <span class="nf">filterChain</span><span class="o">(</span><span class="n">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">http</span>
-</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">authorizeHttpRequests</span><span class="o">(</span><span class="n">conf</span><span class="o">-&gt;</span><span class="n">conf</span>
-</span></span><span class="line"><span class="cl">                        <span class="o">.</span><span class="na">requestMatchers</span><span class="o">(</span><span class="s">&#34;/**&#34;</span><span class="o">).</span><span class="na">permitAll</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">                <span class="o">)</span>
-</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">formLogin</span><span class="o">(</span><span class="n">conf</span> <span class="o">-&gt;</span> <span class="n">conf</span>
-</span></span><span class="line"><span class="cl">                        <span class="o">.</span><span class="na">loginProcessingUrl</span><span class="o">(</span><span class="s">&#34;/auth/login&#34;</span><span class="o">).</span><span class="na">permitAll</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">                        <span class="o">.</span><span class="na">successHandler</span><span class="o">(</span><span class="k">new</span> <span class="n">LoginSuccessHandler</span><span class="o">(</span><span class="n">accountService</span><span class="o">,</span><span class="n">jwtUtils</span><span class="o">,</span><span class="n">stringRedisTemplate</span><span class="o">))</span>
-</span></span><span class="line"><span class="cl">                        <span class="o">.</span><span class="na">failureHandler</span><span class="o">(</span><span class="k">new</span> <span class="n">LoginFailureHandler</span><span class="o">())</span>
-</span></span><span class="line"><span class="cl">                <span class="o">)</span>
-</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">addFilterBefore</span><span class="o">(</span><span class="n">jwtAuthenticationFilter</span><span class="o">,</span> <span class="n">UsernamePasswordAuthenticationFilter</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">csrf</span><span class="o">(</span><span class="n">AbstractHttpConfigurer</span><span class="o">::</span><span class="n">disable</span><span class="o">)</span><span class="c1">//关闭跨域漏洞防御配置
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="o">.</span><span class="na">logout</span><span class="o">(</span><span class="n">conf</span><span class="o">-&gt;</span><span class="n">conf</span>
-</span></span><span class="line"><span class="cl">                        <span class="o">.</span><span class="na">logoutUrl</span><span class="o">(</span><span class="s">&#34;/auth/logout&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">                        <span class="o">.</span><span class="na">logoutSuccessHandler</span><span class="o">(</span><span class="k">new</span> <span class="n">LogOutHandler</span><span class="o">(</span><span class="n">redisTemplate</span><span class="o">,</span><span class="n">jwtUtils</span><span class="o">)))</span>
-</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">exceptionHandling</span><span class="o">(</span><span class="n">conf</span><span class="o">-&gt;</span><span class="n">conf</span><span class="o">.</span><span class="na">accessDeniedHandler</span><span class="o">((</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">,</span> <span class="n">accessDeniedException</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">                        <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;当前异常的登录信息：&#34;</span><span class="o">+</span><span class="n">accessDeniedException</span><span class="o">)))</span>
-</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">build</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span></code></pre></div><h4 class="relative group">搭建要点 
-    <div id="搭建要点" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%e6%90%ad%e5%bb%ba%e8%a6%81%e7%82%b9" aria-label="锚点">#</a>
-    </span>        
-    
-</h4>
-<p>登录用户实体必须实现UserDetails接口，数据层，业务层（实际处理登录逻辑，俗称Impl）必须实现</p>
-<p>UserDetailsService接口，同时重写</p>
-<p>public UserDetails loadUserByUsername(String username) 方法；</p>
-<p>例如：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">   <span class="n">Impl</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="nd">@Resource</span>
-</span></span><span class="line"><span class="cl">    <span class="n">UserMapper</span> <span class="n">userMapper</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">UserDetails</span> <span class="nf">loadUserByUsername</span><span class="o">(</span><span class="n">String</span> <span class="n">username</span><span class="o">){</span>
-</span></span><span class="line"><span class="cl">        <span class="n">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userMapper</span><span class="o">.</span><span class="na">loadUserByUsername</span><span class="o">(</span><span class="n">username</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">user</span><span class="o">==</span><span class="kc">null</span><span class="o">){</span>
-</span></span><span class="line"><span class="cl">            <span class="k">throw</span> <span class="k">new</span> <span class="n">UsernameNotFoundException</span><span class="o">(</span><span class="s">&#34;用户名不存在！&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">        <span class="o">}</span>
-</span></span><span class="line"><span class="cl">        <span class="n">User</span> <span class="n">userDetails</span> <span class="o">=</span> <span class="k">new</span> <span class="n">User</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">        <span class="n">userDetails</span><span class="o">.</span><span class="na">setUsername</span><span class="o">(</span><span class="n">username</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">        <span class="n">userDetails</span><span class="o">.</span><span class="na">setPassword</span><span class="o">(</span><span class="n">user</span><span class="o">.</span><span class="na">getPassword</span><span class="o">());</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">userDetails</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span></code></pre></div><p>通过自定义的Filter同时继承 OncePerRequestFilter 类，类似于网关处理Request+Response</p>
-<p>控制非登录的资源请求权限认证。</p>
+<p>名词解释（UA）：user account and authentication</p>
+<p>请求流程图：</p>
+<p>客户端模式：</p>
 <p>
 
 
@@ -1186,12 +967,12 @@ ToDreamr/Rainy_SpringSecurity 基于Spring6&#43;JDK18的SpringSecurity环境 Jav
       <img
         class="my-0 rounded-md"
         srcset="
-        /entire-note/security/filter_hu82eca194efe560fa8edac43bdc2dca72_338760_330x0_resize_box_3.png 330w,
-        /entire-note/security/filter_hu82eca194efe560fa8edac43bdc2dca72_338760_660x0_resize_box_3.png 660w,
-        /entire-note/security/filter_hu82eca194efe560fa8edac43bdc2dca72_338760_1024x0_resize_box_3.png 1024w,
-        /entire-note/security/filter_hu82eca194efe560fa8edac43bdc2dca72_338760_1320x0_resize_box_3.png 2x"
-        src="/entire-note/security/filter_hu82eca194efe560fa8edac43bdc2dca72_338760_660x0_resize_box_3.png"
-        alt="拦截器"
+        /entire-note/oauth2/img/img_huaa878fef40c52a3677e3770fee145bf7_161874_330x0_resize_box_3.png 330w,
+        /entire-note/oauth2/img/img_huaa878fef40c52a3677e3770fee145bf7_161874_660x0_resize_box_3.png 660w,
+        /entire-note/oauth2/img/img_huaa878fef40c52a3677e3770fee145bf7_161874_1024x0_resize_box_3.png 1024w,
+        /entire-note/oauth2/img/img_huaa878fef40c52a3677e3770fee145bf7_161874_1320x0_resize_box_3.png 2x"
+        src="/entire-note/oauth2/img/img_huaa878fef40c52a3677e3770fee145bf7_161874_660x0_resize_box_3.png"
+        alt="img.png"
       />
       
       
@@ -1199,247 +980,131 @@ ToDreamr/Rainy_SpringSecurity 基于Spring6&#43;JDK18的SpringSecurity环境 Jav
   
 
 </p>
-<p>范围	描述</p>
-<p>icon	要在时间线视觉效果中使用的图标。</p>
-<p>header	每个条目的标题</p>
-<p>badge	放置在右上角徽章内的文本</p>
-<p>subheader	条目的副标题</p>
-<ol class="border-l-2 list-none border-primary-500 dark:border-primary-300">
+<p>密码模式：</p>
+<p>
 
 
 
 
-
-
-<li class="list-none">
-  <div class="flex flex-start">
-    <div class="bg-primary-500 dark:bg-primary-300 text-neutral-50 dark:text-neutral-700 min-w-[30px] h-8 text-2xl flex items-center justify-center rounded-full -ml-12 mt-5">
-      
-
-  <span class="relative block icon">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
-
-  </span>
-
-
-    </div>
-    <div class="block p-6 rounded-lg shadow-2xl min-w-full ml-6 mb-10 break-words">
-      <div class="flex justify-between">
-        
-        <h2 class="mt-0">
-          Todreamr 
-        </h2>
-        
-        
-        <h3 class="">
-          <span class="flex" style="cursor: pointer;">
-  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    Repo
-  </span>
-</span>
-        </h3>
-        
-      </div>
-      
-      <h4 class="mt-0">
-        我的代码仓库
-      </h4>
-      
-      <p class="text-gray-700 mb-6">
-<a id="github-3b2b39200fc910394740d3f1355f9b0d" target="_blank" href="https://github.com/ToDreamr/todreamr.github.io" class="cursor-pointer">
-  <div
-    class="w-full md:w-auto pt-3 p-5 border border-neutral-200 dark:border-neutral-700 border rounded-md shadow-2xl">
-
-    <div class="flex items-center">
-      <span class="text-2xl text-neutral-800 dark:text-neutral" style="margin-right:10px;">
-        
-
-  <span class="relative block icon">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
-
-  </span>
-
-
-      </span>
-      <div
-        id="github-3b2b39200fc910394740d3f1355f9b0d-full_name"
-        class="m-0 font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral">
-        ToDreamr/todreamr.github.io
-      </div>
-    </div>
-
-    <p id="github-3b2b39200fc910394740d3f1355f9b0d-description" class="m-0 mt-2 text-md text-neutral-800 dark:text-neutral">
-      
-    </p>
-
-    <div class="m-0 mt-2 flex items-center">
-
-      <span class="mr-1 inline-block h-3 w-3 rounded-full"
-        style="background-color: #e34c26"></span>
-      <div class="m-0 mr-5 text-md text-neutral-800 dark:text-neutral">
-         HTML 
-      </div>
-
-      <span class="text-md mr-1 text-neutral-800 dark:text-neutral">
-        
-
-  <span class="relative block icon">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M287.9 0C297.1 0 305.5 5.25 309.5 13.52L378.1 154.8L531.4 177.5C540.4 178.8 547.8 185.1 550.7 193.7C553.5 202.4 551.2 211.9 544.8 218.2L433.6 328.4L459.9 483.9C461.4 492.9 457.7 502.1 450.2 507.4C442.8 512.7 432.1 513.4 424.9 509.1L287.9 435.9L150.1 509.1C142.9 513.4 133.1 512.7 125.6 507.4C118.2 502.1 114.5 492.9 115.1 483.9L142.2 328.4L31.11 218.2C24.65 211.9 22.36 202.4 25.2 193.7C28.03 185.1 35.5 178.8 44.49 177.5L197.7 154.8L266.3 13.52C270.4 5.249 278.7 0 287.9 0L287.9 0zM287.9 78.95L235.4 187.2C231.9 194.3 225.1 199.3 217.3 200.5L98.98 217.9L184.9 303C190.4 308.5 192.9 316.4 191.6 324.1L171.4 443.7L276.6 387.5C283.7 383.7 292.2 383.7 299.2 387.5L404.4 443.7L384.2 324.1C382.9 316.4 385.5 308.5 391 303L476.9 217.9L358.6 200.5C350.7 199.3 343.9 194.3 340.5 187.2L287.9 78.95z"/></svg>
-  </span>
-
-
-      </span>
-      <div id="github-3b2b39200fc910394740d3f1355f9b0d-stargazers" class="m-0 mr-5 text-md text-neutral-800 dark:text-neutral">
-        0
-      </div>
-
-      <span class="text-md mr-1 text-neutral-800 dark:text-neutral">
-        
-
-  <span class="relative block icon">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M80 104c13.3 0 24-10.7 24-24s-10.7-24-24-24S56 66.7 56 80s10.7 24 24 24zm80-24c0 32.8-19.7 61-48 73.3V192c0 17.7 14.3 32 32 32H304c17.7 0 32-14.3 32-32V153.3C307.7 141 288 112.8 288 80c0-44.2 35.8-80 80-80s80 35.8 80 80c0 32.8-19.7 61-48 73.3V192c0 53-43 96-96 96H256v70.7c28.3 12.3 48 40.5 48 73.3c0 44.2-35.8 80-80 80s-80-35.8-80-80c0-32.8 19.7-61 48-73.3V288H144c-53 0-96-43-96-96V153.3C19.7 141 0 112.8 0 80C0 35.8 35.8 0 80 0s80 35.8 80 80zm208 24c13.3 0 24-10.7 24-24s-10.7-24-24-24s-24 10.7-24 24s10.7 24 24 24zM248 432c0-13.3-10.7-24-24-24s-24 10.7-24 24s10.7 24 24 24s24-10.7 24-24z"/></svg>
-  </span>
-
-
-      </span>
-      <div id="github-3b2b39200fc910394740d3f1355f9b0d-forks" class="m-0 mr-5 text-md text-neutral-800 dark:text-neutral">
-        0
-      </div>
-
-    </div>
-
-  </div>
-  <script>
-    fetch("https://api.github.com/repos/ToDreamr/todreamr.github.io", {
-      headers: new Headers({
-        'User-agent': 'Mozilla/4.0 Custom User Agent'
-      })
-    })
-      .then(response => response.json())
-      .then(data => {
-        document.getElementById('github-3b2b39200fc910394740d3f1355f9b0d-full_name').innerHTML = data.full_name;
-        document.getElementById('github-3b2b39200fc910394740d3f1355f9b0d-description').innerHTML = data.description;
-        document.getElementById('github-3b2b39200fc910394740d3f1355f9b0d-stargazers').innerHTML = data.stargazers_count;
-        document.getElementById('github-3b2b39200fc910394740d3f1355f9b0d-forks').innerHTML = data.forks;
-      })
-      .catch(error => console.error(error))
-  </script>
-</a>
-</p>
-    </div>
-  </div>
-</li>
-
-
-
-
-
-
-
-
-<li class="list-none">
-  <div class="flex flex-start">
-    <div class="bg-primary-500 dark:bg-primary-300 text-neutral-50 dark:text-neutral-700 min-w-[30px] h-8 text-2xl flex items-center justify-center rounded-full -ml-12 mt-5">
-      
-
-  <span class="relative block icon">
-    <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1707288662942" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5244" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><path d="M564.7 230.1V803h60l25.2 71.4L756.3 803h131.5V230.1H564.7z m247.7 497h-59.9l-75.1 50.4-17.8-50.4h-18V308.3h170.7v418.8zM526.1 486.9H393.3c2.1-44.9 4.3-104.3 6.6-172.9h130.9l-0.1-8.1c0-0.6-0.2-14.7-2.3-29.1-2.1-15-6.6-34.9-21-34.9H287.8c4.4-20.6 15.7-69.7 29.4-93.8l6.4-11.2-12.9-0.7c-0.8 0-19.6-0.9-41.4 10.6-35.7 19-51.7 56.4-58.7 84.4-18.4 73.1-44.6 123.9-55.7 145.6-3.3 6.4-5.3 10.2-6.2 12.8-1.8 4.9-0.8 9.8 2.8 13 10.5 9.5 38.2-2.9 38.5-3 0.6-0.3 1.3-0.6 2.2-1 13.9-6.3 55.1-25 69.8-84.5h56.7c0.7 32.2 3.1 138.4 2.9 172.9h-141l-2.1 1.5c-23.1 16.9-30.5 63.2-30.8 65.2l-1.4 9.2h167c-12.3 78.3-26.5 113.4-34 127.4-3.7 7-7.3 14-10.7 20.8-21.3 42.2-43.4 85.8-126.3 153.6-3.6 2.8-7 8-4.8 13.7 2.4 6.3 9.3 9.1 24.6 9.1 5.4 0 11.8-0.3 19.4-1 49.9-4.4 100.8-18 135.1-87.6 17-35.1 31.7-71.7 43.9-108.9L497 850l5-12c0.8-1.9 19-46.3 5.1-95.9l-0.5-1.8-108.1-123-22 16.6c6.4-26.1 10.6-49.9 12.5-71.1h158.7v-8c0-40.1-18.5-63.9-19.2-64.9l-2.4-3z" fill="#1296DB" p-id="5245"></path></svg>
-  </span>
-
-
-    </div>
-    <div class="block p-6 rounded-lg shadow-2xl min-w-full ml-6 mb-10 break-words">
-      <div class="flex justify-between">
-        
-        <h2 class="mt-0">
-          头部标题 
-        </h2>
-        
-        
-        <h3 class="">
-          <span class="flex" style="cursor: pointer;">
-  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    标签
-  </span>
-</span>
-        </h3>
-        
-      </div>
-      
-      <h4 class="mt-0">
-        副标题
-      </h4>
-      
-      <p class="text-gray-700 mb-6">
-样式测试
-<ul>
-  <li>Java</li>
-  <li>Python</li>
-  <li>Latex</li>
-</ul>
-</p>
-    </div>
-  </div>
-</li>
-
-
-
-
-
-
-
-<li class="list-none">
-  <div class="flex flex-start">
-    <div class="bg-primary-500 dark:bg-primary-300 text-neutral-50 dark:text-neutral-700 min-w-[30px] h-8 text-2xl flex items-center justify-center rounded-full -ml-12 mt-5">
-      
-
-  <span class="relative block icon">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M287.9 0C297.1 0 305.5 5.25 309.5 13.52L378.1 154.8L531.4 177.5C540.4 178.8 547.8 185.1 550.7 193.7C553.5 202.4 551.2 211.9 544.8 218.2L433.6 328.4L459.9 483.9C461.4 492.9 457.7 502.1 450.2 507.4C442.8 512.7 432.1 513.4 424.9 509.1L287.9 435.9L150.1 509.1C142.9 513.4 133.1 512.7 125.6 507.4C118.2 502.1 114.5 492.9 115.1 483.9L142.2 328.4L31.11 218.2C24.65 211.9 22.36 202.4 25.2 193.7C28.03 185.1 35.5 178.8 44.49 177.5L197.7 154.8L266.3 13.52C270.4 5.249 278.7 0 287.9 0L287.9 0zM287.9 78.95L235.4 187.2C231.9 194.3 225.1 199.3 217.3 200.5L98.98 217.9L184.9 303C190.4 308.5 192.9 316.4 191.6 324.1L171.4 443.7L276.6 387.5C283.7 383.7 292.2 383.7 299.2 387.5L404.4 443.7L384.2 324.1C382.9 316.4 385.5 308.5 391 303L476.9 217.9L358.6 200.5C350.7 199.3 343.9 194.3 340.5 187.2L287.9 78.95z"/></svg>
-  </span>
-
-
-    </div>
-    <div class="block p-6 rounded-lg shadow-2xl min-w-full ml-6 mb-10 break-words">
-      <div class="flex justify-between">
-        
-        <h2 class="mt-0">
-          图集 
-        </h2>
-        
-        
-        <h3 class="">
-          <span class="flex" style="cursor: pointer;">
-  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    二次元赛高
-  </span>
-</span>
-        </h3>
-        
-      </div>
-      
-      <p class="text-gray-700 mb-6">
-此生无悔二次元
-
-
-<div id="gallery-3d66178065a04e91a2f3e323f32f6c5c" class="gallery">
   
-<img src="/annimation/00c5d137d784bc3bfe3eff297b75fee3d0fd36ca_raw.jpg" class="grid-w50 md:grid-w33 xl:grid-w25" />
-<img src="/annimation/4bc6316e3c2b6e7d2430d8dea5c8a550d786b400_raw.jpg" class="grid-w50 md:grid-w33 xl:grid-w25" />
-<img src="/annimation/8249ab3773c37a879f751a96f360ba5becd446cf_raw.jpg" class="grid-w50 md:grid-w33 xl:grid-w25" />
-<img src="/annimation/4982480f018dd2a6a3c99d5028ae3dabdeafccde_raw.jpg" class="grid-w50 md:grid-w33 xl:grid-w25" />
-<img src="/annimation/1677508154920.jpeg" class="grid-w50 md:grid-w33 xl:grid-w25" />
-<img src="/annimation/f8f11ac5c8e256a2078ac9aefe9d84848a82f176_raw.jpg" class="grid-w50 md:grid-w33 xl:grid-w25" />
-<img src="/annimation/98933dea14584cf9e3261cc97340e922cdc25e1e_raw.jpg" class="grid-w50 md:grid-w33 xl:grid-w25" />
-<img src="/annimation/f87863096f3c39b5388202d6c910f951b98fc9a2_raw.jpg" class="grid-w50 md:grid-w33 xl:grid-w25" />
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/oauth2/img/img_1_hu6bfa1600147128292a85c480418e6f4b_255675_330x0_resize_box_3.png 330w,
+        /entire-note/oauth2/img/img_1_hu6bfa1600147128292a85c480418e6f4b_255675_660x0_resize_box_3.png 660w,
+        /entire-note/oauth2/img/img_1_hu6bfa1600147128292a85c480418e6f4b_255675_1024x0_resize_box_3.png 1024w,
+        /entire-note/oauth2/img/img_1_hu6bfa1600147128292a85c480418e6f4b_255675_1320x0_resize_box_3.png 2x"
+        src="/entire-note/oauth2/img/img_1_hu6bfa1600147128292a85c480418e6f4b_255675_660x0_resize_box_3.png"
+        alt="img_1.png"
+      />
+      
+      
+    </figure>
+  
 
-</div>
 </p>
-    </div>
-  </div>
-</li>
+<p>隐式授权模式</p>
+<p>
 
 
-</ol>
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/oauth2/img/img_2_hu128712e3fd359a284ce53e6bdaeaebe9_392986_330x0_resize_box_3.png 330w,
+        /entire-note/oauth2/img/img_2_hu128712e3fd359a284ce53e6bdaeaebe9_392986_660x0_resize_box_3.png 660w,
+        /entire-note/oauth2/img/img_2_hu128712e3fd359a284ce53e6bdaeaebe9_392986_1024x0_resize_box_3.png 1024w,
+        /entire-note/oauth2/img/img_2_hu128712e3fd359a284ce53e6bdaeaebe9_392986_1320x0_resize_box_3.png 2x"
+        src="/entire-note/oauth2/img/img_2_hu128712e3fd359a284ce53e6bdaeaebe9_392986_660x0_resize_box_3.png"
+        alt="img_2.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>授权码模式（目前采用的主流方案）：</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/oauth2/img/img_3_hubfd058de82aa96505b708dcb7c6aea4d_317830_330x0_resize_box_3.png 330w,
+        /entire-note/oauth2/img/img_3_hubfd058de82aa96505b708dcb7c6aea4d_317830_660x0_resize_box_3.png 660w,
+        /entire-note/oauth2/img/img_3_hubfd058de82aa96505b708dcb7c6aea4d_317830_1024x0_resize_box_3.png 1024w,
+        /entire-note/oauth2/img/img_3_hubfd058de82aa96505b708dcb7c6aea4d_317830_1320x0_resize_box_3.png 2x"
+        src="/entire-note/oauth2/img/img_3_hubfd058de82aa96505b708dcb7c6aea4d_317830_660x0_resize_box_3.png"
+        alt="img_3.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>第三方登录Oauth2示意图：</p>
+<p>
+
+
+
+
+  <figure>
+    <img class="my-0 rounded-md" src="https://res.wx.qq.com/op_res/D0wkkHSbtC6VUSHX4WsjP5ssg5mdnEmXO8NGVGF34dxS9N1WCcq6wvquR4K_Hcut" alt="微信Oauth2" />
+    
+  </figure>
+
+</p>
+<p>使用jwt存储Token
+官网：https://jwt.io</p>
+<p>JSON Web Token令牌（JWT）是一个开放标准（RFC 7519），它定义了一种紧凑和自成一体的方式，用于在各方之间作为JSON对象安全地传输信息。这些信息可以被验证和信任，因为它是数字签名的。JWT可以使用密钥（使用HMAC算法）或使用RSA或ECDSA进行公钥/私钥对进行签名。</p>
+<p>实际上，我们之前都是携带Token向资源服务器发起请求后，资源服务器由于不知道我们Token的用户信息，所以需要向验证服务器询问此Token的认证信息，这样才能得到Token代表的用户信息，但是各位是否考虑过，如果每次用户请求都去查询用户信息，那么在大量请求下，验证服务器的压力可能会非常的大。而使用JWT之后，Token中会直接保存用户信息，这样资源服务器就不再需要询问验证服务器，自行就可以完成解析，我们的目标是不联系验证服务器就能直接完成验证。</p>
+<p>一个JWT令牌由3部分组成：标头(Header)、有效载荷(Payload)和签名(Signature)。在传输的时候，会将JWT的3部分分别进行Base64编码后用.进行连接形成最终需要传输的字符串。</p>
+<p>标头：包含一些元数据信息，比如JWT签名所使用的加密算法，还有类型，这里统一都是JWT。
+有效载荷：包括用户名称、令牌发布时间、过期时间、JWT ID等，当然我们也可以自定义添加字段，我们的用户信息一般都在这里存放。
+签名：首先需要指定一个密钥，该密钥仅仅保存在服务器中，保证不能让其他用户知道。然后使用Header中指定的算法对Header和Payload进行base64加密之后的结果通过密钥计算哈希值，然后就得出一个签名哈希。这个会用于之后验证内容是否被篡改。</p>
+<p>Base64（不是加密算法而是编码方式）： 就是包括小写字母a-z、大写字母A-Z、数字0-9、符号&quot;+&quot;、&quot;/&ldquo;一共64个字符的字符集（末尾还有1个或多个=用来凑够字节数），任何的符号都可以转换成这个字符集中的字符，这个转换过程就叫做Base64编码，编码之后会生成只包含上述64个字符的字符串。相反，如果需要原本的内容，我们也可以进行Base64解码，回到原有的样子。</p>
+<p>加密算法： 加密算法分为对称加密和非对称加密，其中**对称加密（Symmetric Cryptography）**比较好理解，就像一把锁配了两把钥匙一样，这两把钥匙你和别人都有一把，然后你们直接传递数据，都会把数据用锁给锁上，就算传递的途中有人把数据窃取了，也没办法解密，因为钥匙只有你和对方有，没有钥匙无法进行解密，但是这样有个问题，既然解密的关键在于钥匙本身，那么如果有人不仅窃取了数据，而且对方那边的治安也不好，于是顺手就偷走了钥匙，那你们之间发的数据不就凉凉了吗。</p>
+<p>因此，**非对称加密（Asymmetric Cryptography）**算法出现了，它并不是直接生成一把钥匙，而是生成一个公钥和一个私钥，私钥只能由你保管，而公钥交给对方或是你要发送的任何人都行，现在你需要把数据传给对方，那么就需要使用私钥进行加密，但是，这个数据只能使用对应的公钥进行解密，相反，如果对方需要给你发送数据，那么就需要用公钥进行加密，而数据只能使用私钥进行解密，这样的话就算对方的公钥被窃取，那么别人发给你的数据也没办法解密出来，因为需要私钥才能解密，而只有你才有私钥。</p>
+<p>因此，非对称加密的安全性会更高一些，包括HTTPS的隐私信息正是使用非对称加密来保障传输数据的安全（当然HTTPS并不是单纯地使用非对称加密完成的，感兴趣的可以去了解一下）</p>
+<p>对称加密和非对称加密都有很多的算法，比如对称加密，就有：DES、IDEA、RC2，非对称加密有：RSA、DAS、ECC</p>
+<p>不可逆加密算法： 常见的不可逆加密算法有MD5, HMAC, SHA-1, SHA-224, SHA-256, SHA-384, 和SHA-512, 其中SHA-224、SHA-256、SHA-384，和SHA-512我们可以统称为SHA2加密算法，SHA加密算法的安全性要比MD5更高，而SHA2加密算法比SHA1的要高，其中SHA后面的数字表示的是加密后的字符串长度，SHA1默认会产生一个160位的信息摘要。经过不可逆加密算法得到的加密结果，是无法解密回去的，也就是说加密出来是什么就是什么了。本质上，其就是一种哈希函数，用于对一段信息产生摘要，以防止被篡改。</p>
+<p>实际上这种算法就常常被用作信息摘要计算，同样的数据通过同样的算法计算得到的结果肯定也一样，而如果数据被修改，那么计算的结果肯定就不一样了。</p>
+<p>
+
+
+
+
+  <figure>
+    <img class="my-0 rounded-md" src="https://image.itbaima.cn/markdown/2023/03/07/W95CFKAmd1wfgSJ.png" alt="jwt存储Token" />
+    
+  </figure>
+
+</p>
 
       </div>
 
@@ -1450,8 +1115,8 @@ ToDreamr/Rainy_SpringSecurity 基于Spring6&#43;JDK18的SpringSecurity环境 Jav
 
     
     <script>
-      var oid = "views_entire-note\\security\\index.md"
-      var oid_likes = "likes_entire-note\\security\\index.md"
+      var oid = "views_entire-note\\oauth2\\index.md"
+      var oid_likes = "likes_entire-note\\oauth2\\index.md"
     </script>
     
     
@@ -1473,7 +1138,7 @@ ToDreamr/Rainy_SpringSecurity 基于Spring6&#43;JDK18的SpringSecurity环境 Jav
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://twitter.com/intent/tweet/?url=/entire-note/security/&amp;text=Spring-Security"
+      href="https://twitter.com/intent/tweet/?url=/entire-note/oauth2/&amp;text=Oauth2"
       title="分享到 Twitter"
       aria-label="分享到 Twitter"
       >
@@ -1491,7 +1156,7 @@ ToDreamr/Rainy_SpringSecurity 基于Spring6&#43;JDK18的SpringSecurity环境 Jav
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://t.me/share/url?url=/entire-note/security/&amp;resubmit=true&amp;title=Spring-Security"
+      href="https://t.me/share/url?url=/entire-note/oauth2/&amp;resubmit=true&amp;title=Oauth2"
       title=""
       aria-label=""
       >
@@ -1510,7 +1175,7 @@ ToDreamr/Rainy_SpringSecurity 基于Spring6&#43;JDK18的SpringSecurity环境 Jav
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="mailto:?body=/entire-note/security/&amp;subject=Spring-Security"
+      href="mailto:?body=/entire-note/oauth2/&amp;subject=Oauth2"
       title="通过电子邮件发送"
       aria-label="通过电子邮件发送"
       >
@@ -1536,11 +1201,11 @@ ToDreamr/Rainy_SpringSecurity 基于Spring6&#43;JDK18的SpringSecurity环境 Jav
   
   
 
-  <a href="/entire-note/%E4%BA%8B%E5%8A%A1/" class="min-w-full">
+  <a href="/entire-note/security/" class="min-w-full">
     
     <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
         
-        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/entire-note/%E4%BA%8B%E5%8A%A1/featured_hu31948c41561504e15613ccd94ea537fc_122467_600x0_resize_box_3.png);"></div>
+        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/entire-note/security/featured_hu7bdaa060bafe0d8e7de19ca39d7608d3_644478_600x0_resize_box_3.png);"></div>
         
       
 
@@ -1548,7 +1213,7 @@ ToDreamr/Rainy_SpringSecurity 基于Spring6&#43;JDK18的SpringSecurity环境 Jav
 
         
         <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
-          href="/entire-note/%E4%BA%8B%E5%8A%A1/">Spring事务传播机制</div>
+          href="/entire-note/security/">Spring-Security</div>
         
 
         <div class="text-sm text-neutral-500 dark:text-neutral-400">
@@ -1589,7 +1254,7 @@ ToDreamr/Rainy_SpringSecurity 基于Spring6&#43;JDK18的SpringSecurity环境 Jav
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2023-11-03 11:31:54 &#43;0800 CST">3 November 2023</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
+  <time datetime="2024-02-23 00:00:00 &#43;0000 UTC">23 February 2024</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
   
 
   
@@ -1907,7 +1572,7 @@ ToDreamr/Rainy_SpringSecurity 基于Spring6&#43;JDK18的SpringSecurity环境 Jav
       <div class="flex justify-between pt-3">
         <span>
           
-            <a class="flex group mr-3" href="/entire-note/spring/music/">
+            <a class="flex group mr-3" href="/entire-note/security/">
               <span
                 class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
                 >&larr;</span
@@ -1919,11 +1584,11 @@ ToDreamr/Rainy_SpringSecurity 基于Spring6&#43;JDK18的SpringSecurity环境 Jav
               <span class="flex flex-col">
                 <span
                   class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
-                  >本站Music搭建相关</span
+                  >Spring-Security</span
                 >
                 <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
                   
-                    <time datetime="2024-02-07 19:22:59 &#43;0800 CST">7 February 2024</time>
+                    <time datetime="2024-02-23 00:00:00 &#43;0000 UTC">23 February 2024</time>
                   
                 </span>
               </span>
@@ -1931,28 +1596,6 @@ ToDreamr/Rainy_SpringSecurity 基于Spring6&#43;JDK18的SpringSecurity环境 Jav
           
         </span>
         <span>
-          
-            <a class="flex text-right group ml-3" href="/entire-note/oauth2/">
-              <span class="flex flex-col">
-                <span
-                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
-                  >Oauth2</span
-                >
-                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
-                  
-                    <time datetime="2024-02-29 17:52:31 &#43;0800 CST">29 February 2024</time>
-                  
-                </span>
-              </span>
-              <span
-                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
-                >&rarr;</span
-              >
-              <span
-                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
-                >&larr;</span
-              >
-            </a>
           
         </span>
       </div>
