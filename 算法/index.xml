@@ -32,5 +32,22 @@ class Main{ //两数之和 public static int[] twoSum(int[] nums, int target) { 
       
     </item>
     
+    <item>
+      <title></title>
+      <link>/%E7%AE%97%E6%B3%95/c/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/%E7%AE%97%E6%B3%95/c/</guid>
+      <description>master公式：
+在编程中，递归是非常常见的一种算法，由于代码简洁而应用广泛，但递归相比顺序执行或循环程序，时间复杂度难以计算，而master公式就是用于计算递归程序的时间复杂度。
+T(N) = a*T(N/b) + O(N^d);
+​ 下面对参数进行解释:
+b：子过程的样本量 a：子过程的计算次数 O(N^d)：子结果合并的时间复杂度 满足如上公式的程序都可以根据master公式计算时间复杂度：
+log(b，a) &amp;gt; d ：时间复杂度为O(N^log(b，a)) log(b，a) = d ：时间复杂度为O(N^d * logN) log(b，a) &amp;lt; d ：时间复杂度为O(N^d)
+在学习归并排序之前，我们先学习一个简单的算法:当我们求一个值的中值时，可以使用：
+int mid = L + ((R - L) &amp;raquo; 1); 注意使用位运算更好，之后采用这种方法来计算平均数</description>
+      
+    </item>
+    
   </channel>
 </rss>

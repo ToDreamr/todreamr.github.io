@@ -393,6 +393,11 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>/%E7%AE%97%E6%B3%95/c/</loc>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>/authors/</loc>
     <changefreq>always</changefreq>
     <priority>0.5</priority>

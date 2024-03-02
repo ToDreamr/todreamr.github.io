@@ -9,14 +9,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   
-  <title>单片机 &middot; 春江花朝秋月夜</title>
-  <meta name="title" content="单片机 &middot; 春江花朝秋月夜" />
+  <title> &middot; 春江花朝秋月夜</title>
+  <meta name="title" content=" &middot; 春江花朝秋月夜" />
   
   <meta name="description" content="A powerful, lightweight theme for Hugo built with Tailwind CSS." />
-  <meta name="keywords" content=", " />
   
   
-  <link rel="canonical" href="/doc/asm/%E5%8D%95%E7%89%87%E6%9C%BA/" />
+  
+  <link rel="canonical" href="/%E7%AE%97%E6%B3%95/c/" />
   
   
   
@@ -64,46 +64,44 @@
   
   
   
-  <meta property="og:title" content="单片机" />
-<meta property="og:description" content="参考复习
-CPL 取反~ 🌟CPL取反，CLR清零 CLR 清零 SETB 置位为1
-RL 左移一位
-ANL 相与&amp; INC 加一 ORL 或
-XRL 逻辑异或，异或的操作是：相同取0，相反取1
-🌟 RL:左移一位 RLC ：左移一位同时CY左移一位
-CPL P1.3 对第三位取反
-JBC 为1跳转 程序存储器只读不写！movc
-XCHD 指的是低四位 交换 SWAP 是高低四位自交换" />
+  <meta property="og:title" content="" />
+<meta property="og:description" content="master公式：
+在编程中，递归是非常常见的一种算法，由于代码简洁而应用广泛，但递归相比顺序执行或循环程序，时间复杂度难以计算，而master公式就是用于计算递归程序的时间复杂度。
+T(N) = a*T(N/b) &#43; O(N^d);
+​ 下面对参数进行解释:
+b：子过程的样本量 a：子过程的计算次数 O(N^d)：子结果合并的时间复杂度 满足如上公式的程序都可以根据master公式计算时间复杂度：
+log(b，a) &gt; d ：时间复杂度为O(N^log(b，a)) log(b，a) = d ：时间复杂度为O(N^d * logN) log(b，a) &lt; d ：时间复杂度为O(N^d)
+在学习归并排序之前，我们先学习一个简单的算法:当我们求一个值的中值时，可以使用：
+int mid = L &#43; ((R - L) &raquo; 1); 注意使用位运算更好，之后采用这种方法来计算平均数" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/doc/asm/%E5%8D%95%E7%89%87%E6%9C%BA/" /><meta property="article:section" content="doc" />
+<meta property="og:url" content="/%E7%AE%97%E6%B3%95/c/" /><meta property="article:section" content="算法" />
 
 
 
 
   <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="单片机"/>
-<meta name="twitter:description" content="参考复习
-CPL 取反~ 🌟CPL取反，CLR清零 CLR 清零 SETB 置位为1
-RL 左移一位
-ANL 相与&amp; INC 加一 ORL 或
-XRL 逻辑异或，异或的操作是：相同取0，相反取1
-🌟 RL:左移一位 RLC ：左移一位同时CY左移一位
-CPL P1.3 对第三位取反
-JBC 为1跳转 程序存储器只读不写！movc
-XCHD 指的是低四位 交换 SWAP 是高低四位自交换"/>
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="master公式：
+在编程中，递归是非常常见的一种算法，由于代码简洁而应用广泛，但递归相比顺序执行或循环程序，时间复杂度难以计算，而master公式就是用于计算递归程序的时间复杂度。
+T(N) = a*T(N/b) &#43; O(N^d);
+​ 下面对参数进行解释:
+b：子过程的样本量 a：子过程的计算次数 O(N^d)：子结果合并的时间复杂度 满足如上公式的程序都可以根据master公式计算时间复杂度：
+log(b，a) &gt; d ：时间复杂度为O(N^log(b，a)) log(b，a) = d ：时间复杂度为O(N^d * logN) log(b，a) &lt; d ：时间复杂度为O(N^d)
+在学习归并排序之前，我们先学习一个简单的算法:当我们求一个值的中值时，可以使用：
+int mid = L &#43; ((R - L) &raquo; 1); 注意使用位运算更好，之后采用这种方法来计算平均数"/>
 
   
   <script type="application/ld+json">
   [{
     "@context": "https://schema.org",
     "@type": "Article",
-    "articleSection": "Docs",
-    "name": "单片机",
-    "headline": "单片机",
+    "articleSection": "算法s",
+    "name": "",
+    "headline": "",
     
-    "abstract": "参考复习\nCPL 取反~ 🌟CPL取反，CLR清零 CLR 清零 SETB 置位为1\nRL 左移一位\nANL 相与\u0026amp; INC 加一 ORL 或\nXRL 逻辑异或，异或的操作是：相同取0，相反取1\n🌟 RL:左移一位 RLC ：左移一位同时CY左移一位\nCPL P1.3 对第三位取反\nJBC 为1跳转 程序存储器只读不写！movc\nXCHD 指的是低四位 交换 SWAP 是高低四位自交换",
+    "abstract": "master公式：\n在编程中，递归是非常常见的一种算法，由于代码简洁而应用广泛，但递归相比顺序执行或循环程序，时间复杂度难以计算，而master公式就是用于计算递归程序的时间复杂度。\nT(N) = a*T(N\/b) \u002b O(N^d);\n​ 下面对参数进行解释:\nb：子过程的样本量 a：子过程的计算次数 O(N^d)：子结果合并的时间复杂度 满足如上公式的程序都可以根据master公式计算时间复杂度：\nlog(b，a) \u0026gt; d ：时间复杂度为O(N^log(b，a)) log(b，a) = d ：时间复杂度为O(N^d * logN) log(b，a) \u0026lt; d ：时间复杂度为O(N^d)\n在学习归并排序之前，我们先学习一个简单的算法:当我们求一个值的中值时，可以使用：\nint mid = L \u002b ((R - L) \u0026raquo; 1); 注意使用位运算更好，之后采用这种方法来计算平均数",
     "inLanguage": "zh-CN",
-    "url" : "\/doc\/asm\/%E5%8D%95%E7%89%87%E6%9C%BA\/",
+    "url" : "\/%E7%AE%97%E6%B3%95\/c\/",
     "author" : {
       "@type": "Person",
       "name": "春江花朝秋月夜"
@@ -114,10 +112,10 @@ XCHD 指的是低四位 交换 SWAP 是高低四位自交换"/>
     
     
     
-    "keywords": [""],
+    
     
     "mainEntityOfPage": "true",
-    "wordCount": "339"
+    "wordCount": "43"
   }]
   </script>
 
@@ -620,8 +618,8 @@ XCHD 指的是低四位 交换 SWAP 是高低四位自交换"/>
   <li class="inline ">
     <a
       class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
-      href="/doc/"
-      >Docs</a
+      href="/%E7%AE%97%E6%B3%95/"
+      >算法s</a
     ><span class="px-1 text-primary-500">/</span>
   </li>
 
@@ -629,8 +627,8 @@ XCHD 指的是低四位 交换 SWAP 是高低四位自交换"/>
   <li class="inline hidden">
     <a
       class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
-      href="/doc/asm/%E5%8D%95%E7%89%87%E6%9C%BA/"
-      >单片机</a
+      href="/%E7%AE%97%E6%B3%95/c/"
+      >算法</a
     ><span class="px-1 text-primary-500">/</span>
   </li>
 
@@ -639,7 +637,7 @@ XCHD 指的是低四位 交换 SWAP 是高低四位自交换"/>
 
     
     <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral" style="font-family: 华文中宋,serif">
-      单片机
+      
     </h1>
     <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
       
@@ -682,7 +680,7 @@ XCHD 指的是低四位 交换 SWAP 是高低四位自交换"/>
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="0001-01-01 00:00:00 &#43;0000 UTC">1 January 0001</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">2 分钟</span>
+  <time datetime="0001-01-01 00:00:00 &#43;0000 UTC">1 January 0001</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
   
 
   
@@ -876,179 +874,22 @@ XCHD 指的是低四位 交换 SWAP 是高低四位自交换"/>
 
 
       <div class="article-content max-w-prose mb-20">
-        <p><a href="https://zyxbeyourself.blog.csdn.net/article/details/134352350?spm=1001.2014.3001.5502"   target="_blank">
-    参考复习</a></p>
-<p>CPL 取反~ 🌟CPL取反，CLR清零
-CLR 清零
-SETB 置位为1</p>
-<p>RL 左移一位</p>
-<p>ANL 相与&amp;
-INC 加一
-ORL 或</p>
-<p>XRL 逻辑异或，异或的操作是：相同取0，相反取1</p>
-<p>🌟
-RL:左移一位
-RLC ：左移一位同时CY左移一位</p>
-<p>CPL P1.3 对第三位取反</p>
-<p>JBC 为1跳转
-程序存储器只读不写！movc</p>
-<p>XCHD 指的是低四位 交换
-SWAP 是高低四位自交换</p>
-<p>程序转移指令：</p>
-<p>无条件转移和有条件转移
-JZ A=0的时候转移
-DJNZ 减一不为0转移</p>
-<p>判断位转移
-JB bit
-JNB bit
-JBC bit
-🌟
-子程序返回RET和中断返回RETI
-RET指令作为子程序的最后一条指令，按调用时保存的地址返回，
-RETI作为中断程序的最后一条，除了按照中断保存的地址之外还要清除相应的中断寄存器
-指令，关键点在于最后一条和谁是谁。</p>
-<p>算数指令
-INC DEC</p>
-<p>寻址方式总结:</p>
-<p>立即寻址，寄存器寻址，直接寻址，寄存器间接寻址，基地址+变地址寻址</p>
-<p>🌟 高128字节采用寄存器间接寻址方式！！！，特殊功能寄存器采用
-直接寻址</p>
-<p>所有加减都有近位位的计算
-例子
-MOV A,#36H ;0011 0110
-MOV R0,#9FH ;1001 1111
-ANL A,R0; A=0001 0110=16H
-SETB C; C=1;
-ADDC  A,RO;  0001 0110 + 1 + 1001 1111=&gt; A=B6H</p>
-<p>JNZ REL 为两字节指令 从1308H-&gt;134AH 求相对偏移量REL</p>
-<p>134AH=1308H+02H+REL =&gt;REL=40H</p>
-<p>目的地址=（PC）+2+REL</p>
-<p>DA A才对 必须是单个操作符</p>
-<p>DA感觉会考🌟
-对低四位加0110调整，注意进位位CY=1，当高四位有进位的时候</p>
-<p>6.</p>
-<p>CLR C ;C=0;
-ADDC A,#60H;0010 0101 +0110 0000-&gt;1010 0110 =C6H,CY=1;
-MOV 20H,@R0;(20H)=33H;
-ADDC A,20H;A+33H+CY=&gt;FAH;
-MOV 33H,A;=&gt;(33H)=FAH;</p>
-<p>扩展RAM2010H的内容送扩展RAM2020H</p>
-<p>ORG 0000H;
-MOV DPTR  2010H;
-MOVX A @DPTR;
-MOV DPTR 2020H;
-MOVX @DPTR A;
-END</p>
-<p>MOVC 采用基地址+变地址方法！</p>
-<p>将程序存储器数据2010H送入累加器A中
-ORG 2000H;
-MOV DPTR ,#2000H;
-MOV A ,#10H;
-MOVC A ,@A+DPTR</p>
-<p>列竖式运算：</p>
-<p>ORG 0000H;
-LJMP START;
-ORG 1000H;</p>
-<p>START:
-CLR C;清零操作
-MOV A,30H;
-SUBB A,40H;
-MOV 30H,A;
-MOV A,31H;
-SUBB A,41H;
-MOV 31H,A; 存放结果先低位再高位
-SJMP $;
-END;</p>
-<p>程序设计段</p>
-<p>转换为ASCII
-ORG 1000H
-ADDR DATA 0040H;
-ADDR2 EQU 60H;
-MOV DPTR ,#ADDR1;
-MOV R0,#ADDR2;
-MOV @R0,#00H;
-MOVX A,@DPTR;
-MOV R7,A;
-ANL A ,#0FH;
-CLR C;
-ADDC A,#30H;
-MOV @R0,A;
-INC R0;</p>
-<p>分段函数
-变量x作为补码形式存放进30H</p>
-<p>ORG  1000H;
-START:
-MOV A,30H ；先将变量存入A中
-JZ NEXT; 如果x=0；转移，NEXT作为标号
-ANL A,#80H;通过判断最高位来判断正负
-JZ ED;  如果x&gt;0;转移
-MOV A,#05H;否则不转移
-ADD A,30H;
-MOV 30H,A;
-SJMP ED; 处理结束，跳出循环
-NEXT:
-MOV 30H,#20H
-ED:
-SJMP $;</p>
-<p>循环问题,循环减一加一,送出数据
-MOV R7,#16
-MOV DPTR,#1000H;
-MOV R0,#20H;
-NRXT:
-MOVX A,@DPTR;
-MOV @RO,A;
-INC RO;
-INC DPTR;
-DJNZ R7,NEXT
-SJMP $;</p>
-<p>DB存储字节
-DW存储字
-DS存储空间</p>
-<p>外部中断0控制位：P3.2
-外部中断1控制位：P3.3</p>
-<p>CPU面向I/O的服务有：查询，中断，DMA</p>
-<p>串行口中断包含串行发送和串行接收两种，不会自动清零</p>
-<p>定时器/计数器：</p>
-<p>设计流水灯，时间间隔500ms，程序：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="nf">ORG</span> <span class="mi">0000</span><span class="no">H</span>
-</span></span><span class="line"><span class="cl"><span class="nf">LJMP</span> <span class="no">MAIN</span>
-</span></span><span class="line"><span class="cl"><span class="nf">ORG</span> <span class="mi">001</span><span class="no">BH</span>
-</span></span><span class="line"><span class="cl"><span class="nf">LJMP</span> <span class="no">TIMER_ISR</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nl">MAIN:</span>
-</span></span><span class="line"><span class="cl">   <span class="nf">MOV</span> <span class="no">R3</span><span class="p">,</span><span class="c1">#10;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="nf">MOV</span> <span class="no">TOMD</span><span class="p">,</span><span class="c1">#00H;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="nf">MOV</span> <span class="no">TH1</span><span class="p">,</span><span class="c1">#3CH;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="nf">MOV</span> <span class="no">TL1</span><span class="p">,</span><span class="c1">#0B0H;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="nf">MOV</span> <span class="no">R2</span><span class="p">,</span><span class="c1">#07H;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="nf">MOV</span> <span class="no">P1</span><span class="p">,</span><span class="c1">#0FEH;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="nf">MOV</span> <span class="no">A</span><span class="p">,</span><span class="c1">#0FEH;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="nf">CLR</span> <span class="mi">00</span><span class="no">H</span><span class="c1">;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="nf">SETB</span> <span class="no">TR1</span><span class="c1">;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="nf">SJMP</span> <span class="no">$</span><span class="c1">;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nl">TIMER_ISR:</span>
-</span></span><span class="line"><span class="cl">   <span class="nf">DJNZ</span> <span class="no">R3</span><span class="p">,</span><span class="no">EXIT_ISR</span>
-</span></span><span class="line"><span class="cl">   <span class="nf">MOV</span> <span class="no">R3</span><span class="p">,</span><span class="c1">#10;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="nf">JB</span> <span class="mi">00</span><span class="no">H</span><span class="p">,</span><span class="no">RIGHT_SHIFT</span>
-</span></span><span class="line"><span class="cl">   <span class="nf">RL</span> <span class="no">A</span><span class="c1">;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="nf">MOV</span> <span class="no">P1</span><span class="p">,</span><span class="no">A</span><span class="c1">;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="nf">DJNZ</span> <span class="no">R2</span> <span class="no">EXIT_ISR</span>
-</span></span><span class="line"><span class="cl">   <span class="nf">SETB</span> <span class="mi">00</span><span class="no">H</span><span class="c1">;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="nf">MOV</span> <span class="no">R2</span><span class="p">,</span><span class="mi">07</span><span class="no">H</span><span class="c1">;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="nf">SJMP</span> <span class="no">EXIT_ISR</span>
-</span></span><span class="line"><span class="cl"><span class="nl">RIGHT_SHIFT:</span>
-</span></span><span class="line"><span class="cl">   <span class="nf">RR</span> <span class="no">A</span><span class="c1">;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="nf">MOV</span> <span class="no">P1</span><span class="p">,</span><span class="no">A</span><span class="c1">;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="nf">DJNZ</span> <span class="no">R2</span><span class="p">,</span><span class="no">Exit_T1_ISR</span><span class="c1">;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nf">CLR</span> <span class="mi">00</span><span class="no">H</span><span class="c1">;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nf">MOV</span> <span class="no">R2</span><span class="p">,</span><span class="c1">#07H;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nl">Exit_T1_ISR:</span>
-</span></span><span class="line"><span class="cl">	<span class="nf">RET1</span>
-</span></span><span class="line"><span class="cl">	<span class="nf">END</span>
-</span></span></code></pre></div><p>简述 STC15F2K60S2 单片机串行口 1 方式 2、方式3 的相同点与不同点。
-（1） 相同点：字符帧格式是一样的。
-（2） 不同点：波特率发生器不同。</p>
-<p>双机通信时必须保持波特率一致。</p>
+        <p>master公式：</p>
+<p>在编程中，递归是非常常见的一种算法，由于代码简洁而应用广泛，但递归相比顺序执行或循环程序，时间复杂度难以计算，而master公式就是用于计算递归程序的时间复杂度。</p>
+<p>T(N) = a*T(N/b) + O(N^d);</p>
+<p>​ 下面对参数进行解释:</p>
+<p>b：子过程的样本量
+a：子过程的计算次数
+O(N^d)：子结果合并的时间复杂度
+满足如上公式的程序都可以根据master公式计算时间复杂度：</p>
+<p>log(b，a) &gt; d ：时间复杂度为O(N^log(b，a))
+log(b，a) = d ：时间复杂度为O(N^d * logN)
+log(b，a) &lt; d ：时间复杂度为O(N^d)</p>
+<p>在学习归并排序之前，我们先学习一个简单的算法:当我们求一个值的中值时，可以使用：</p>
+<p>int mid = L + ((R - L) &raquo; 1); 注意使用位运算更好，之后采用这种方法来计算平均数</p>
+<p>​ 这样可以避免内存泄露。</p>
+<p>归并排序：</p>
+<p>思想很简单，写一个临时数组，比较需要传入的对应元素，小的先放好，大的后放。</p>
 
       </div>
 
@@ -1059,8 +900,8 @@ DS存储空间</p>
 
     
     <script>
-      var oid = "views_doc\\asm\\单片机.md"
-      var oid_likes = "likes_doc\\asm\\单片机.md"
+      var oid = "views_算法\\C\\index.md"
+      var oid_likes = "likes_算法\\C\\index.md"
     </script>
     
     
@@ -1082,7 +923,7 @@ DS存储空间</p>
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://twitter.com/intent/tweet/?url=/doc/asm/%E5%8D%95%E7%89%87%E6%9C%BA/&amp;text=%e5%8d%95%e7%89%87%e6%9c%ba"
+      href="https://twitter.com/intent/tweet/?url=/%E7%AE%97%E6%B3%95/c/&amp;text="
       title="分享到 Twitter"
       aria-label="分享到 Twitter"
       >
@@ -1100,7 +941,7 @@ DS存储空间</p>
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://t.me/share/url?url=/doc/asm/%E5%8D%95%E7%89%87%E6%9C%BA/&amp;resubmit=true&amp;title=%e5%8d%95%e7%89%87%e6%9c%ba"
+      href="https://t.me/share/url?url=/%E7%AE%97%E6%B3%95/c/&amp;resubmit=true&amp;title="
       title=""
       aria-label=""
       >
@@ -1119,7 +960,7 @@ DS存储空间</p>
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="mailto:?body=/doc/asm/%E5%8D%95%E7%89%87%E6%9C%BA/&amp;subject=%e5%8d%95%e7%89%87%e6%9c%ba"
+      href="mailto:?body=/%E7%AE%97%E6%B3%95/c/&amp;subject="
       title="通过电子邮件发送"
       aria-label="通过电子邮件发送"
       >
@@ -1151,40 +992,18 @@ DS存储空间</p>
       <div class="flex justify-between pt-3">
         <span>
           
-            <a class="flex group mr-3" href="/doc/design/%E7%BB%93%E6%9E%84%E5%9E%8B/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%B3%BB%E5%88%97-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%89%E7%BB%93%E6%9E%84%E5%9E%8B/">
-              <span
-                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
-                >&larr;</span
-              >
-              <span
-                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
-                >&rarr;</span
-              >
-              <span class="flex flex-col">
-                <span
-                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
-                  >结构型</span
-                >
-                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
-                  
-                    <time datetime="0001-01-01 00:00:00 &#43;0000 UTC">1 January 0001</time>
-                  
-                </span>
-              </span>
-            </a>
-          
         </span>
         <span>
           
-            <a class="flex text-right group ml-3" href="/doc/design/%E5%88%9B%E5%BB%BA%E5%9E%8B/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%B3%BB%E5%88%97-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%BA%8C%E5%88%9B%E5%BB%BA%E5%9E%8B/">
+            <a class="flex text-right group ml-3" href="/%E7%AE%97%E6%B3%95/%E6%95%B0%E4%B9%8B%E5%92%8C/">
               <span class="flex flex-col">
                 <span
                   class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
-                  >创建型</span
+                  >数之和</span
                 >
                 <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
                   
-                    <time datetime="0001-01-01 00:00:00 &#43;0000 UTC">1 January 0001</time>
+                    <time datetime="2023-11-14 13:47:44 &#43;0800 CST">14 November 2023</time>
                   
                 </span>
               </span>
