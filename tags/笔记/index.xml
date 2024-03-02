@@ -7,7 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>© 2024 春江花朝秋月夜</copyright>
-    <lastBuildDate>Thu, 08 Feb 2024 14:22:59 +0800</lastBuildDate><atom:link href="/tags/%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 02 Mar 2024 13:22:59 +0800</lastBuildDate><atom:link href="/tags/%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>自用的Vscode个人觉得还算耐看的主题和字体以及编码习惯</title>
+      <link>/entire-note/vscode/</link>
+      <pubDate>Sat, 02 Mar 2024 13:22:59 +0800</pubDate>
+      
+      <guid>/entire-note/vscode/</guid>
+      <description>贴一下json：
+这里我选择了本地的Maven和用于日语的字体(MS UI Gothic)，主题选用的是：βui - Ayu Dark，目前看起来还行，当选择编写Spring应用程序时可选用Idea主题，较为接近Jetbrains家族的Idea。
+{ &amp;#34;markdown-image.github.repository&amp;#34;: &amp;#34;https://github.com/ToDreamr/img-cloud.git&amp;#34;, &amp;#34;markdown-image.github.cdn&amp;#34;: &amp;#34;https://cdn.jsdelivr.net/gh/Todreamr/img-cloud&amp;#34;, &amp;#34;markdown-image.github.token&amp;#34;: &amp;#34;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&amp;#34;, &amp;#34;RainbowBrackets.depreciation-notice&amp;#34;: false, &amp;#34;java.configuration.maven.userSettings&amp;#34;: &amp;#34;D://Program Files//apache-maven-3.9.4//conf//settings.xml&amp;#34;, &amp;#34;java.configuration.maven.globalSettings&amp;#34;: &amp;#34;D://Program Files//apache-maven-3.9.4//conf//settings.xml&amp;#34;, &amp;#34;maven.executable.path&amp;#34;: &amp;#34;D://Program Files//apache-maven-3.9.4//bin//mvn&amp;#34;, &amp;#34;workbench.iconTheme&amp;#34;: &amp;#34;eq-material-theme-icons-ocean&amp;#34;, &amp;#34;editor.mouseWheelZoom&amp;#34;: true, &amp;#34;editor.fontLigatures&amp;#34;: false, &amp;#34;editor.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/vscode/featured.png" />
+    </item>
+    
     <item>
       <title>Docker</title>
       <link>/docker/</link>

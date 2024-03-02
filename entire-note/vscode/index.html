@@ -9,14 +9,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   
-  <title>Oauth2 &middot; 春江花朝秋月夜</title>
-  <meta name="title" content="Oauth2 &middot; 春江花朝秋月夜" />
+  <title>自用的Vscode个人觉得还算耐看的主题和字体以及编码习惯 &middot; 春江花朝秋月夜</title>
+  <meta name="title" content="自用的Vscode个人觉得还算耐看的主题和字体以及编码习惯 &middot; 春江花朝秋月夜" />
   
-  <meta name="description" content="OAuth2 单点登录" />
+  <meta name="description" content="自用的Vscode个人觉得还算耐看的主题和字体以及编码习惯" />
+  <meta name="keywords" content="笔记, " />
   
   
-  
-  <link rel="canonical" href="/entire-note/oauth2/" />
+  <link rel="canonical" href="/entire-note/vscode/" />
   
   
   
@@ -64,17 +64,18 @@
   
   
   
-  <meta property="og:title" content="Oauth2" />
-<meta property="og:description" content="OAuth2 单点登录" />
+  <meta property="og:title" content="自用的Vscode个人觉得还算耐看的主题和字体以及编码习惯" />
+<meta property="og:description" content="自用的Vscode个人觉得还算耐看的主题和字体以及编码习惯" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/entire-note/oauth2/" /><meta property="article:section" content="entire-note" />
-<meta property="article:published_time" content="2024-02-29T17:52:31+08:00" />
-<meta property="article:modified_time" content="2024-02-29T17:52:31+08:00" />
+<meta property="og:url" content="/entire-note/vscode/" /><meta property="og:image" content="/entire-note/vscode/featured.png"/><meta property="article:section" content="entire-note" />
+<meta property="article:published_time" content="2024-03-02T13:22:59+08:00" />
+<meta property="article:modified_time" content="2024-03-02T13:22:59+08:00" />
 
 
-  <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Oauth2"/>
-<meta name="twitter:description" content="OAuth2 单点登录"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/entire-note/vscode/featured.png"/>
+<meta name="twitter:title" content="自用的Vscode个人觉得还算耐看的主题和字体以及编码习惯"/>
+<meta name="twitter:description" content="自用的Vscode个人觉得还算耐看的主题和字体以及编码习惯"/>
 
   
   <script type="application/ld+json">
@@ -82,26 +83,26 @@
     "@context": "https://schema.org",
     "@type": "Article",
     "articleSection": "Entire-notes",
-    "name": "Oauth2",
-    "headline": "Oauth2",
-    "description": "OAuth2 单点登录",
-    "abstract": "参考文章： SpringSecurity-Oauth基于Spring3.x\n单点登录（SSO） # 名词解释（UA）：user account and authentication\n请求流程图：\n客户端模式：\n密码模式：\n隐式授权模式\n授权码模式（目前采用的主流方案）：\n第三方登录Oauth2示意图：\n使用jwt存储Token 官网：https:\/\/jwt.io\nJSON Web Token令牌（JWT）是一个开放标准（RFC 7519），它定义了一种紧凑和自成一体的方式，用于在各方之间作为JSON对象安全地传输信息。这些信息可以被验证和信任，因为它是数字签名的。JWT可以使用密钥（使用HMAC算法）或使用RSA或ECDSA进行公钥\/私钥对进行签名。\n实际上，我们之前都是携带Token向资源服务器发起请求后，资源服务器由于不知道我们Token的用户信息，所以需要向验证服务器询问此Token的认证信息，这样才能得到Token代表的用户信息，但是各位是否考虑过，如果每次用户请求都去查询用户信息，那么在大量请求下，验证服务器的压力可能会非常的大。而使用JWT之后，Token中会直接保存用户信息，这样资源服务器就不再需要询问验证服务器，自行就可以完成解析，我们的目标是不联系验证服务器就能直接完成验证。\n一个JWT令牌由3部分组成：标头(Header)、有效载荷(Payload)和签名(Signature)。在传输的时候，会将JWT的3部分分别进行Base64编码后用.进行连接形成最终需要传输的字符串。\n标头：包含一些元数据信息，比如JWT签名所使用的加密算法，还有类型，这里统一都是JWT。 有效载荷：包括用户名称、令牌发布时间、过期时间、JWT ID等，当然我们也可以自定义添加字段，我们的用户信息一般都在这里存放。 签名：首先需要指定一个密钥，该密钥仅仅保存在服务器中，保证不能让其他用户知道。然后使用Header中指定的算法对Header和Payload进行base64加密之后的结果通过密钥计算哈希值，然后就得出一个签名哈希。这个会用于之后验证内容是否被篡改。\nBase64（不是加密算法而是编码方式）： 就是包括小写字母a-z、大写字母A-Z、数字0-9、符号\u0026quot;\u002b\u0026quot;、\u0026quot;\/\u0026ldquo;一共64个字符的字符集（末尾还有1个或多个=用来凑够字节数），任何的符号都可以转换成这个字符集中的字符，这个转换过程就叫做Base64编码，编码之后会生成只包含上述64个字符的字符串。相反，如果需要原本的内容，我们也可以进行Base64解码，回到原有的样子。\n加密算法： 加密算法分为对称加密和非对称加密，其中**对称加密（Symmetric Cryptography）**比较好理解，就像一把锁配了两把钥匙一样，这两把钥匙你和别人都有一把，然后你们直接传递数据，都会把数据用锁给锁上，就算传递的途中有人把数据窃取了，也没办法解密，因为钥匙只有你和对方有，没有钥匙无法进行解密，但是这样有个问题，既然解密的关键在于钥匙本身，那么如果有人不仅窃取了数据，而且对方那边的治安也不好，于是顺手就偷走了钥匙，那你们之间发的数据不就凉凉了吗。",
+    "name": "自用的Vscode个人觉得还算耐看的主题和字体以及编码习惯",
+    "headline": "自用的Vscode个人觉得还算耐看的主题和字体以及编码习惯",
+    "description": "自用的Vscode个人觉得还算耐看的主题和字体以及编码习惯",
+    "abstract": "贴一下json：\n这里我选择了本地的Maven和用于日语的字体(MS UI Gothic)，主题选用的是：βui - Ayu Dark，目前看起来还行，当选择编写Spring应用程序时可选用Idea主题，较为接近Jetbrains家族的Idea。\n{ \u0026#34;markdown-image.github.repository\u0026#34;: \u0026#34;https:\/\/github.com\/ToDreamr\/img-cloud.git\u0026#34;, \u0026#34;markdown-image.github.cdn\u0026#34;: \u0026#34;https:\/\/cdn.jsdelivr.net\/gh\/Todreamr\/img-cloud\u0026#34;, \u0026#34;markdown-image.github.token\u0026#34;: \u0026#34;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\u0026#34;, \u0026#34;RainbowBrackets.depreciation-notice\u0026#34;: false, \u0026#34;java.configuration.maven.userSettings\u0026#34;: \u0026#34;D:\/\/Program Files\/\/apache-maven-3.9.4\/\/conf\/\/settings.xml\u0026#34;, \u0026#34;java.configuration.maven.globalSettings\u0026#34;: \u0026#34;D:\/\/Program Files\/\/apache-maven-3.9.4\/\/conf\/\/settings.xml\u0026#34;, \u0026#34;maven.executable.path\u0026#34;: \u0026#34;D:\/\/Program Files\/\/apache-maven-3.9.4\/\/bin\/\/mvn\u0026#34;, \u0026#34;workbench.iconTheme\u0026#34;: \u0026#34;eq-material-theme-icons-ocean\u0026#34;, \u0026#34;editor.mouseWheelZoom\u0026#34;: true, \u0026#34;editor.fontLigatures\u0026#34;: false, \u0026#34;editor.",
     "inLanguage": "zh-CN",
-    "url" : "\/entire-note\/oauth2\/",
+    "url" : "\/entire-note\/vscode\/",
     "author" : {
       "@type": "Person",
       "name": "春江花朝秋月夜"
     },
     "copyrightYear": "2024",
-    "dateCreated": "2024-02-29T17:52:31\u002b08:00",
-    "datePublished": "2024-02-29T17:52:31\u002b08:00",
+    "dateCreated": "2024-03-02T13:22:59\u002b08:00",
+    "datePublished": "2024-03-02T13:22:59\u002b08:00",
     
-    "dateModified": "2024-02-29T17:52:31\u002b08:00",
+    "dateModified": "2024-03-02T13:22:59\u002b08:00",
     
-    
+    "keywords": ["笔记"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "45"
+    "wordCount": "71"
   }]
   </script>
 
@@ -560,7 +561,7 @@
 
     
     <div class="fixed inset-x-0 top-0 h-[800px] single_hero_background nozoom"
-    style="background-image:url(/img/%E4%BD%A0%E7%9A%84%E5%90%8D%E5%AD%97_hu58dd3bf4079e2d69ef87c0777d129691_1821305_1200x0_resize_box_3.png);">
+    style="background-image:url(/entire-note/vscode/featured_hu3aa94b14fec9606ab65b9d1a457af63a_536862_1200x0_resize_box_3.png);">
     
 
 
@@ -613,8 +614,8 @@
   <li class="inline hidden">
     <a
       class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
-      href="/entire-note/oauth2/"
-      >Oauth2</a
+      href="/entire-note/vscode/"
+      >自用的Vscode个人觉得还算耐看的主题和字体以及编码习惯</a
     ><span class="px-1 text-primary-500">/</span>
   </li>
 
@@ -623,7 +624,7 @@
 
     
     <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral" style="font-family: 华文中宋,serif">
-      Oauth2
+      自用的Vscode个人觉得还算耐看的主题和字体以及编码习惯
     </h1>
     <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
       
@@ -666,7 +667,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2024-02-29 17:52:31 &#43;0800 CST">29 February 2024</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
+  <time datetime="2024-03-02 13:22:59 &#43;0800 CST">2 March 2024</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
   
 
   
@@ -701,6 +702,16 @@
   
   
   
+  
+  
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/%E7%AC%94%E8%AE%B0/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    笔记
+  </span>
+</span>
+  </span>
   
   
   
@@ -853,81 +864,6 @@
   <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row" style="font-family: 华文中宋,serif">
 
     
-    <div style="width: 28%" class="order-first lg:ml-auto px-0 lg:order-last ltr:lg:pl-8 rtl:lg:pr-8">
-    <div class="toc ltr:pl-5 rtl:pr-5 print:hidden lg:sticky lg:top-[140px]">
-
-     <details open class="toc-right mt-0 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 hidden lg:block">
-  <summary
-    class="block py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
-    
-  </summary>
-  <div
-    class="min-w-[220px] py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#单点登录sso">单点登录（SSO）</a></li>
-  </ul>
-</nav>
-  </div>
-</details>
-<details class="toc-inside mt-0 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 lg:hidden">
-  <summary
-    class="py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
-    
-  </summary>
-  <div
-    class="py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#单点登录sso">单点登录（SSO）</a></li>
-  </ul>
-</nav>
-  </div>
-</details>
-
- 
-<script>
-  (function () {
-    var $toc = $('#TableOfContents');
-    if ($toc.length > 0) {
-      var $window = $(window);
-
-      function onScroll() {
-        var currentScroll = $window.scrollTop();
-        var h = $('.anchor');
-        var id = "";
-        h.each(function (i, e) {
-          e = $(e);
-          if (e.offset().top - $(window).height()/3 <= currentScroll) {
-            id = e.attr('id');
-          }
-        });
-        var active = $toc.find('a.active');      
-        if (active.length == 1 && active.eq(0).attr('href') == '#' + id) return true;
-
-        active.each(function (i, e) {
-          
-            $(e).removeClass('active');
-          
-        });
-        $toc.find('a[href="#' + id + '"]').addClass('active')
-        $toc.find('a[href="#' + id + '"]').parentsUntil('#TableOfContents').each(function (i, e) {
-          $(e).children('a').parents('ul').show();          
-        });
-      }
-
-      $window.on('scroll', onScroll);
-      $(document).ready(function () {
-        
-        onScroll();
-      });
-    }
-  })();
-</script>
-  
-    </div>
-    </div>
-    
 
 
     <div class="min-w-0 min-h-0 max-w-fit" style="width: 100%">
@@ -935,23 +871,39 @@
 
 
       <div class="article-content max-w-prose mb-20">
-        <blockquote>
-<p>参考文章：<a href="https://blog.csdn.net/m0_64469199/article/details/130477346"   target="_blank">
-    SpringSecurity-Oauth基于Spring3.x</a></p>
-</blockquote>
-<h1 class="relative group">单点登录（SSO） 
-    <div id="单点登录sso" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%e5%8d%95%e7%82%b9%e7%99%bb%e5%bd%95sso" aria-label="锚点">#</a>
-    </span>        
-    
-</h1>
-<p>名词解释（UA）：user account and authentication</p>
-<p>请求流程图：</p>
-<p>客户端模式：</p>
+        <p>贴一下json：</p>
+<p>这里我选择了本地的Maven和用于日语的字体(MS UI Gothic)，主题选用的是：βui - Ayu Dark，目前看起来还行，当选择编写Spring应用程序时可选用Idea主题，较为接近Jetbrains家族的Idea。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;markdown-image.github.repository&#34;</span><span class="p">:</span> <span class="s2">&#34;https://github.com/ToDreamr/img-cloud.git&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;markdown-image.github.cdn&#34;</span><span class="p">:</span> <span class="s2">&#34;https://cdn.jsdelivr.net/gh/Todreamr/img-cloud&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;markdown-image.github.token&#34;</span><span class="p">:</span> <span class="s2">&#34;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&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;RainbowBrackets.depreciation-notice&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;java.configuration.maven.userSettings&#34;</span><span class="p">:</span> <span class="s2">&#34;D://Program Files//apache-maven-3.9.4//conf//settings.xml&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;java.configuration.maven.globalSettings&#34;</span><span class="p">:</span> <span class="s2">&#34;D://Program Files//apache-maven-3.9.4//conf//settings.xml&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;maven.executable.path&#34;</span><span class="p">:</span> <span class="s2">&#34;D://Program Files//apache-maven-3.9.4//bin//mvn&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;workbench.iconTheme&#34;</span><span class="p">:</span> <span class="s2">&#34;eq-material-theme-icons-ocean&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;editor.mouseWheelZoom&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;editor.fontLigatures&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;editor.fontFamily&#34;</span><span class="p">:</span> <span class="s2">&#34;&#39;MS UI Gothic&#39;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;terminal.integrated.fontFamily&#34;</span><span class="p">:</span> <span class="s2">&#34;monospace&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;files.trimTrailingWhitespace&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;vue.format.script.initialIndent&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;vue.format.style.initialIndent&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;editor.formatOnSave&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;workbench.settings.useSplitJSON&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;rest-client.fontWeight&#34;</span><span class="p">:</span> <span class="s2">&#34;normal&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;editor.fontWeight&#34;</span><span class="p">:</span> <span class="s2">&#34;normal&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;terminal.integrated.fontWeight&#34;</span><span class="p">:</span> <span class="s2">&#34;normal&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;workbench.colorTheme&#34;</span><span class="p">:</span> <span class="s2">&#34;βui - Ayu Dark&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;files.autoSave&#34;</span><span class="p">:</span> <span class="s2">&#34;onFocusChange&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;workbench.editor.doubleClickTabToToggleEditorGroupSizes&#34;</span><span class="p">:</span> <span class="s2">&#34;off&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;latex-workshop.view.pdf.tab.editorGroup&#34;</span><span class="p">:</span> <span class="s2">&#34;current&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;editor.renderWhitespace&#34;</span><span class="p">:</span> <span class="s2">&#34;none&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;editor.codeActionsOnSave&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>maven一切正常：</p>
 <p>
 
 
@@ -967,142 +919,17 @@
       <img
         class="my-0 rounded-md"
         srcset="
-        /entire-note/oauth2/img/img_huaa878fef40c52a3677e3770fee145bf7_161874_330x0_resize_box_3.png 330w,
-        /entire-note/oauth2/img/img_huaa878fef40c52a3677e3770fee145bf7_161874_660x0_resize_box_3.png 660w,
-        /entire-note/oauth2/img/img_huaa878fef40c52a3677e3770fee145bf7_161874_1024x0_resize_box_3.png 1024w,
-        /entire-note/oauth2/img/img_huaa878fef40c52a3677e3770fee145bf7_161874_1320x0_resize_box_3.png 2x"
-        src="/entire-note/oauth2/img/img_huaa878fef40c52a3677e3770fee145bf7_161874_660x0_resize_box_3.png"
-        alt="img.png"
+        /entire-note/vscode/image-1_hu17618842da4d9701d141961cdc60fee0_74005_330x0_resize_box_3.png 330w,
+        /entire-note/vscode/image-1_hu17618842da4d9701d141961cdc60fee0_74005_660x0_resize_box_3.png 660w,
+        /entire-note/vscode/image-1_hu17618842da4d9701d141961cdc60fee0_74005_1024x0_resize_box_3.png 1024w,
+        /entire-note/vscode/image-1_hu17618842da4d9701d141961cdc60fee0_74005_1320x0_resize_box_3.png 2x"
+        src="/entire-note/vscode/image-1_hu17618842da4d9701d141961cdc60fee0_74005_660x0_resize_box_3.png"
+        alt="alt text"
       />
       
       
     </figure>
   
-
-</p>
-<p>密码模式：</p>
-<p>
-
-
-
-
-  
-  
-    
-  
-  
-    <figure>
-      
-      <img
-        class="my-0 rounded-md"
-        srcset="
-        /entire-note/oauth2/img/img_1_hu6bfa1600147128292a85c480418e6f4b_255675_330x0_resize_box_3.png 330w,
-        /entire-note/oauth2/img/img_1_hu6bfa1600147128292a85c480418e6f4b_255675_660x0_resize_box_3.png 660w,
-        /entire-note/oauth2/img/img_1_hu6bfa1600147128292a85c480418e6f4b_255675_1024x0_resize_box_3.png 1024w,
-        /entire-note/oauth2/img/img_1_hu6bfa1600147128292a85c480418e6f4b_255675_1320x0_resize_box_3.png 2x"
-        src="/entire-note/oauth2/img/img_1_hu6bfa1600147128292a85c480418e6f4b_255675_660x0_resize_box_3.png"
-        alt="img_1.png"
-      />
-      
-      
-    </figure>
-  
-
-</p>
-<p>隐式授权模式</p>
-<p>
-
-
-
-
-  
-  
-    
-  
-  
-    <figure>
-      
-      <img
-        class="my-0 rounded-md"
-        srcset="
-        /entire-note/oauth2/img/img_2_hu128712e3fd359a284ce53e6bdaeaebe9_392986_330x0_resize_box_3.png 330w,
-        /entire-note/oauth2/img/img_2_hu128712e3fd359a284ce53e6bdaeaebe9_392986_660x0_resize_box_3.png 660w,
-        /entire-note/oauth2/img/img_2_hu128712e3fd359a284ce53e6bdaeaebe9_392986_1024x0_resize_box_3.png 1024w,
-        /entire-note/oauth2/img/img_2_hu128712e3fd359a284ce53e6bdaeaebe9_392986_1320x0_resize_box_3.png 2x"
-        src="/entire-note/oauth2/img/img_2_hu128712e3fd359a284ce53e6bdaeaebe9_392986_660x0_resize_box_3.png"
-        alt="img_2.png"
-      />
-      
-      
-    </figure>
-  
-
-</p>
-<p>授权码模式（目前采用的主流方案）：</p>
-<p>
-
-
-
-
-  
-  
-    
-  
-  
-    <figure>
-      
-      <img
-        class="my-0 rounded-md"
-        srcset="
-        /entire-note/oauth2/img/img_3_hubfd058de82aa96505b708dcb7c6aea4d_317830_330x0_resize_box_3.png 330w,
-        /entire-note/oauth2/img/img_3_hubfd058de82aa96505b708dcb7c6aea4d_317830_660x0_resize_box_3.png 660w,
-        /entire-note/oauth2/img/img_3_hubfd058de82aa96505b708dcb7c6aea4d_317830_1024x0_resize_box_3.png 1024w,
-        /entire-note/oauth2/img/img_3_hubfd058de82aa96505b708dcb7c6aea4d_317830_1320x0_resize_box_3.png 2x"
-        src="/entire-note/oauth2/img/img_3_hubfd058de82aa96505b708dcb7c6aea4d_317830_660x0_resize_box_3.png"
-        alt="img_3.png"
-      />
-      
-      
-    </figure>
-  
-
-</p>
-<p>第三方登录Oauth2示意图：</p>
-<p>
-
-
-
-
-  <figure>
-    <img class="my-0 rounded-md" src="https://res.wx.qq.com/op_res/D0wkkHSbtC6VUSHX4WsjP5ssg5mdnEmXO8NGVGF34dxS9N1WCcq6wvquR4K_Hcut" alt="微信Oauth2" />
-    
-  </figure>
-
-</p>
-<p>使用jwt存储Token
-官网：https://jwt.io</p>
-<p>JSON Web Token令牌（JWT）是一个开放标准（RFC 7519），它定义了一种紧凑和自成一体的方式，用于在各方之间作为JSON对象安全地传输信息。这些信息可以被验证和信任，因为它是数字签名的。JWT可以使用密钥（使用HMAC算法）或使用RSA或ECDSA进行公钥/私钥对进行签名。</p>
-<p>实际上，我们之前都是携带Token向资源服务器发起请求后，资源服务器由于不知道我们Token的用户信息，所以需要向验证服务器询问此Token的认证信息，这样才能得到Token代表的用户信息，但是各位是否考虑过，如果每次用户请求都去查询用户信息，那么在大量请求下，验证服务器的压力可能会非常的大。而使用JWT之后，Token中会直接保存用户信息，这样资源服务器就不再需要询问验证服务器，自行就可以完成解析，我们的目标是不联系验证服务器就能直接完成验证。</p>
-<p>一个JWT令牌由3部分组成：标头(Header)、有效载荷(Payload)和签名(Signature)。在传输的时候，会将JWT的3部分分别进行Base64编码后用.进行连接形成最终需要传输的字符串。</p>
-<p>标头：包含一些元数据信息，比如JWT签名所使用的加密算法，还有类型，这里统一都是JWT。
-有效载荷：包括用户名称、令牌发布时间、过期时间、JWT ID等，当然我们也可以自定义添加字段，我们的用户信息一般都在这里存放。
-签名：首先需要指定一个密钥，该密钥仅仅保存在服务器中，保证不能让其他用户知道。然后使用Header中指定的算法对Header和Payload进行base64加密之后的结果通过密钥计算哈希值，然后就得出一个签名哈希。这个会用于之后验证内容是否被篡改。</p>
-<p>Base64（不是加密算法而是编码方式）： 就是包括小写字母a-z、大写字母A-Z、数字0-9、符号&quot;+&quot;、&quot;/&ldquo;一共64个字符的字符集（末尾还有1个或多个=用来凑够字节数），任何的符号都可以转换成这个字符集中的字符，这个转换过程就叫做Base64编码，编码之后会生成只包含上述64个字符的字符串。相反，如果需要原本的内容，我们也可以进行Base64解码，回到原有的样子。</p>
-<p>加密算法： 加密算法分为对称加密和非对称加密，其中**对称加密（Symmetric Cryptography）**比较好理解，就像一把锁配了两把钥匙一样，这两把钥匙你和别人都有一把，然后你们直接传递数据，都会把数据用锁给锁上，就算传递的途中有人把数据窃取了，也没办法解密，因为钥匙只有你和对方有，没有钥匙无法进行解密，但是这样有个问题，既然解密的关键在于钥匙本身，那么如果有人不仅窃取了数据，而且对方那边的治安也不好，于是顺手就偷走了钥匙，那你们之间发的数据不就凉凉了吗。</p>
-<p>因此，**非对称加密（Asymmetric Cryptography）**算法出现了，它并不是直接生成一把钥匙，而是生成一个公钥和一个私钥，私钥只能由你保管，而公钥交给对方或是你要发送的任何人都行，现在你需要把数据传给对方，那么就需要使用私钥进行加密，但是，这个数据只能使用对应的公钥进行解密，相反，如果对方需要给你发送数据，那么就需要用公钥进行加密，而数据只能使用私钥进行解密，这样的话就算对方的公钥被窃取，那么别人发给你的数据也没办法解密出来，因为需要私钥才能解密，而只有你才有私钥。</p>
-<p>因此，非对称加密的安全性会更高一些，包括HTTPS的隐私信息正是使用非对称加密来保障传输数据的安全（当然HTTPS并不是单纯地使用非对称加密完成的，感兴趣的可以去了解一下）</p>
-<p>对称加密和非对称加密都有很多的算法，比如对称加密，就有：DES、IDEA、RC2，非对称加密有：RSA、DAS、ECC</p>
-<p>不可逆加密算法： 常见的不可逆加密算法有MD5, HMAC, SHA-1, SHA-224, SHA-256, SHA-384, 和SHA-512, 其中SHA-224、SHA-256、SHA-384，和SHA-512我们可以统称为SHA2加密算法，SHA加密算法的安全性要比MD5更高，而SHA2加密算法比SHA1的要高，其中SHA后面的数字表示的是加密后的字符串长度，SHA1默认会产生一个160位的信息摘要。经过不可逆加密算法得到的加密结果，是无法解密回去的，也就是说加密出来是什么就是什么了。本质上，其就是一种哈希函数，用于对一段信息产生摘要，以防止被篡改。</p>
-<p>实际上这种算法就常常被用作信息摘要计算，同样的数据通过同样的算法计算得到的结果肯定也一样，而如果数据被修改，那么计算的结果肯定就不一样了。</p>
-<p>
-
-
-
-
-  <figure>
-    <img class="my-0 rounded-md" src="https://image.itbaima.cn/markdown/2023/03/07/W95CFKAmd1wfgSJ.png" alt="jwt存储Token" />
-    
-  </figure>
 
 </p>
 
@@ -1115,8 +942,8 @@
 
     
     <script>
-      var oid = "views_entire-note\\oauth2\\index.md"
-      var oid_likes = "likes_entire-note\\oauth2\\index.md"
+      var oid = "views_entire-note\\Vscode\\index.md"
+      var oid_likes = "likes_entire-note\\Vscode\\index.md"
     </script>
     
     
@@ -1138,7 +965,7 @@
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://twitter.com/intent/tweet/?url=/entire-note/oauth2/&amp;text=Oauth2"
+      href="https://twitter.com/intent/tweet/?url=/entire-note/vscode/&amp;text=%e8%87%aa%e7%94%a8%e7%9a%84Vscode%e4%b8%aa%e4%ba%ba%e8%a7%89%e5%be%97%e8%bf%98%e7%ae%97%e8%80%90%e7%9c%8b%e7%9a%84%e4%b8%bb%e9%a2%98%e5%92%8c%e5%ad%97%e4%bd%93%e4%bb%a5%e5%8f%8a%e7%bc%96%e7%a0%81%e4%b9%a0%e6%83%af"
       title="分享到 Twitter"
       aria-label="分享到 Twitter"
       >
@@ -1156,7 +983,7 @@
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://t.me/share/url?url=/entire-note/oauth2/&amp;resubmit=true&amp;title=Oauth2"
+      href="https://t.me/share/url?url=/entire-note/vscode/&amp;resubmit=true&amp;title=%e8%87%aa%e7%94%a8%e7%9a%84Vscode%e4%b8%aa%e4%ba%ba%e8%a7%89%e5%be%97%e8%bf%98%e7%ae%97%e8%80%90%e7%9c%8b%e7%9a%84%e4%b8%bb%e9%a2%98%e5%92%8c%e5%ad%97%e4%bd%93%e4%bb%a5%e5%8f%8a%e7%bc%96%e7%a0%81%e4%b9%a0%e6%83%af"
       title=""
       aria-label=""
       >
@@ -1175,7 +1002,7 @@
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="mailto:?body=/entire-note/oauth2/&amp;subject=Oauth2"
+      href="mailto:?body=/entire-note/vscode/&amp;subject=%e8%87%aa%e7%94%a8%e7%9a%84Vscode%e4%b8%aa%e4%ba%ba%e8%a7%89%e5%be%97%e8%bf%98%e7%ae%97%e8%80%90%e7%9c%8b%e7%9a%84%e4%b8%bb%e9%a2%98%e5%92%8c%e5%ad%97%e4%bd%93%e4%bb%a5%e5%8f%8a%e7%bc%96%e7%a0%81%e4%b9%a0%e6%83%af"
       title="通过电子邮件发送"
       aria-label="通过电子邮件发送"
       >
@@ -1198,126 +1025,6 @@
 
 <h2 class="mt-8 text-2xl font-extrabold mb-10">相关文章</h2>
 <section class="w-full grid gap-4 sm:grid-cols-2 md:grid-cols-3">
-  
-  
-
-  <a href="/entire-note/security/" class="min-w-full">
-    
-    <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
-        
-        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/entire-note/security/featured_hu7bdaa060bafe0d8e7de19ca39d7608d3_644478_600x0_resize_box_3.png);"></div>
-        
-      
-
-      <div class="px-6 py-4">
-
-        
-        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
-          href="/entire-note/security/">Spring-Security</div>
-        
-
-        <div class="text-sm text-neutral-500 dark:text-neutral-400">
-          
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="flex flex-row flex-wrap items-center">
-  
-  
-  <time datetime="2024-02-23 00:00:00 &#43;0000 UTC">23 February 2024</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
-  
-
-  
-  
-</div>
-
-
-<div class="flex flex-row flex-wrap items-center">
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-</div>
-
-
-
-
-<div class="flex flex-row flex-wrap items-center">
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/spring/&#34;,'_self');">
-    <span class="flex" style="cursor: pointer;">
-  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    spring
-  </span>
-</span>
-  </span>
-  
-  
-  
-  
-</div>
-
-
-
-
-        </div>
-
-        
-      </div>
-      <div class="px-6 pt-4 pb-2">
-
-      </div>
-    </div>
-  </a>
-
   
   
 
@@ -1559,6 +1266,126 @@
   </a>
 
   
+  
+
+  <a href="/entire-note/spring/music/" class="min-w-full">
+    
+    <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
+        
+        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/img/annimation/4c758d7c82292f81f99d63ff1072aa9adb5c3536_raw_hu9b60894d5013d728985af7ffc2fcbbdd_675352_600x0_resize_q75_box.jpg);"></div>
+        
+      
+
+      <div class="px-6 py-4">
+
+        
+        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
+          href="/entire-note/spring/music/">本站Music搭建相关</div>
+        
+
+        <div class="text-sm text-neutral-500 dark:text-neutral-400">
+          
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2024-02-07 19:22:59 &#43;0800 CST">7 February 2024</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
+  
+
+  
+  
+</div>
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/%E7%AC%94%E8%AE%B0/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    笔记
+  </span>
+</span>
+  </span>
+  
+  
+  
+  
+</div>
+
+
+
+
+        </div>
+
+        
+      </div>
+      <div class="px-6 pt-4 pb-2">
+
+      </div>
+    </div>
+  </a>
+
+  
 </section>
 
 
@@ -1572,7 +1399,7 @@
       <div class="flex justify-between pt-3">
         <span>
           
-            <a class="flex group mr-3" href="/entire-note/security/">
+            <a class="flex group mr-3" href="/entire-note/oauth2/">
               <span
                 class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
                 >&larr;</span
@@ -1584,11 +1411,11 @@
               <span class="flex flex-col">
                 <span
                   class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
-                  >Spring-Security</span
+                  >Oauth2</span
                 >
                 <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
                   
-                    <time datetime="2024-02-23 00:00:00 &#43;0000 UTC">23 February 2024</time>
+                    <time datetime="2024-02-29 17:52:31 &#43;0800 CST">29 February 2024</time>
                   
                 </span>
               </span>
@@ -1596,28 +1423,6 @@
           
         </span>
         <span>
-          
-            <a class="flex text-right group ml-3" href="/entire-note/vscode/">
-              <span class="flex flex-col">
-                <span
-                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
-                  >自用的Vscode个人觉得还算耐看的主题和字体以及编码习惯</span
-                >
-                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
-                  
-                    <time datetime="2024-03-02 13:22:59 &#43;0800 CST">2 March 2024</time>
-                  
-                </span>
-              </span>
-              <span
-                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
-                >&rarr;</span
-              >
-              <span
-                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
-                >&larr;</span
-              >
-            </a>
           
         </span>
       </div>
