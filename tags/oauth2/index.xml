@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Oauth2 on 春江花朝秋月夜</title>
+    <link>/tags/oauth2/</link>
+    <description>Recent content in Oauth2 on 春江花朝秋月夜</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright>© 2024 春江花朝秋月夜</copyright>
+    <lastBuildDate>Sat, 02 Mar 2024 13:22:59 +0800</lastBuildDate><atom:link href="/tags/oauth2/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>微信登录</title>
+      <link>/entire-note/wexin-oauth/</link>
+      <pubDate>Sat, 02 Mar 2024 13:22:59 +0800</pubDate>
+      
+      <guid>/entire-note/wexin-oauth/</guid>
+      <description>微信登录 # 参考文章：
+Vue生成二维码
+构建微信登录服务器 验证后端
+微信开发公众平台
+效果展示： # 通过前端生成的二维码：
+前端部分（使用Dom来创建script节点）：
+createWxLoginQrCode(){ const script=document.createElement(&amp;#39;script&amp;#39;); script.type=&amp;#39;text/javascript&amp;#39;; script.src=&amp;#39;https://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js&amp;#39;; const wxElement = document.body.appendChild(script) wxElement.onload = function () { var obj = new WxLogin({ id: &amp;#39;wxLoginCode&amp;#39;, // 需要显示的容器id appid: &amp;#39;wxd10c3f9e60b4e00b&amp;#39;,// 公众号appid wx******* scope: &amp;#39;snsapi_login&amp;#39;, // 网页默认即可 redirect_uri: encodeURIComponent(&amp;#39;http://70b0a3fa.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/wexin-oauth/featured.png" />
+    </item>
+    
+    <item>
+      <title>Oauth2</title>
+      <link>/entire-note/oauth2/</link>
+      <pubDate>Thu, 29 Feb 2024 17:52:31 +0800</pubDate>
+      
+      <guid>/entire-note/oauth2/</guid>
+      <description>参考文章： SpringSecurity-Oauth基于Spring3.x
+单点登录（SSO） # 名词解释（UA）：user account and authentication
+请求流程图：
+客户端模式：
+密码模式：
+隐式授权模式
+授权码模式（目前采用的主流方案）：
+第三方登录Oauth2示意图：
+使用jwt存储Token 官网：https://jwt.io
+JSON Web Token令牌（JWT）是一个开放标准（RFC 7519），它定义了一种紧凑和自成一体的方式，用于在各方之间作为JSON对象安全地传输信息。这些信息可以被验证和信任，因为它是数字签名的。JWT可以使用密钥（使用HMAC算法）或使用RSA或ECDSA进行公钥/私钥对进行签名。
+实际上，我们之前都是携带Token向资源服务器发起请求后，资源服务器由于不知道我们Token的用户信息，所以需要向验证服务器询问此Token的认证信息，这样才能得到Token代表的用户信息，但是各位是否考虑过，如果每次用户请求都去查询用户信息，那么在大量请求下，验证服务器的压力可能会非常的大。而使用JWT之后，Token中会直接保存用户信息，这样资源服务器就不再需要询问验证服务器，自行就可以完成解析，我们的目标是不联系验证服务器就能直接完成验证。
+一个JWT令牌由3部分组成：标头(Header)、有效载荷(Payload)和签名(Signature)。在传输的时候，会将JWT的3部分分别进行Base64编码后用.进行连接形成最终需要传输的字符串。
+标头：包含一些元数据信息，比如JWT签名所使用的加密算法，还有类型，这里统一都是JWT。 有效载荷：包括用户名称、令牌发布时间、过期时间、JWT ID等，当然我们也可以自定义添加字段，我们的用户信息一般都在这里存放。 签名：首先需要指定一个密钥，该密钥仅仅保存在服务器中，保证不能让其他用户知道。然后使用Header中指定的算法对Header和Payload进行base64加密之后的结果通过密钥计算哈希值，然后就得出一个签名哈希。这个会用于之后验证内容是否被篡改。
+Base64（不是加密算法而是编码方式）： 就是包括小写字母a-z、大写字母A-Z、数字0-9、符号&amp;quot;+&amp;quot;、&amp;quot;/&amp;ldquo;一共64个字符的字符集（末尾还有1个或多个=用来凑够字节数），任何的符号都可以转换成这个字符集中的字符，这个转换过程就叫做Base64编码，编码之后会生成只包含上述64个字符的字符串。相反，如果需要原本的内容，我们也可以进行Base64解码，回到原有的样子。
+加密算法： 加密算法分为对称加密和非对称加密，其中**对称加密（Symmetric Cryptography）**比较好理解，就像一把锁配了两把钥匙一样，这两把钥匙你和别人都有一把，然后你们直接传递数据，都会把数据用锁给锁上，就算传递的途中有人把数据窃取了，也没办法解密，因为钥匙只有你和对方有，没有钥匙无法进行解密，但是这样有个问题，既然解密的关键在于钥匙本身，那么如果有人不仅窃取了数据，而且对方那边的治安也不好，于是顺手就偷走了钥匙，那你们之间发的数据不就凉凉了吗。</description>
+      
+    </item>
+    
+  </channel>
+</rss>

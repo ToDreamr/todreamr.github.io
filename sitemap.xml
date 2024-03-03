@@ -15,6 +15,12 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>/tags/oauth2/</loc>
+    <lastmod>2024-03-02T13:22:59+08:00</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>/tags/</loc>
     <lastmod>2024-03-02T13:22:59+08:00</lastmod>
     <changefreq>always</changefreq>
@@ -22,6 +28,12 @@
   </url>
   <url>
     <loc>/tags/%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2024-03-02T13:22:59+08:00</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>/entire-note/wexin-oauth/</loc>
     <lastmod>2024-03-02T13:22:59+08:00</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
