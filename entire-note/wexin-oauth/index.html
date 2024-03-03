@@ -86,7 +86,7 @@
     "name": "微信登录",
     "headline": "微信登录",
     "description": "微信登录",
-    "abstract": "微信登录 # 参考文章：\nVue生成二维码\n构建微信登录服务器 验证后端\n微信开发公众平台\n效果展示： # 通过前端生成的二维码：\n前端部分（使用Dom来创建script节点）： # createWxLoginQrCode(){ const script=document.createElement(\u0026#39;script\u0026#39;); script.type=\u0026#39;text\/javascript\u0026#39;; script.src=\u0026#39;https:\/\/res.wx.qq.com\/connect\/zh_CN\/htmledition\/js\/wxLogin.js\u0026#39;; const wxElement = document.body.appendChild(script) wxElement.onload = function () { var obj = new WxLogin({ id: \u0026#39;wxLoginCode\u0026#39;, \/\/ 需要显示的容器id appid: \u0026#39;wxd10c3f9e60b4e00b\u0026#39;,\/\/ 公众号appid wx******* scope: \u0026#39;snsapi_login\u0026#39;, \/\/ 网页默认即可 redirect_uri: encodeURIComponent(\u0026#39;http:\/\/70b0a3fa.",
+    "abstract": "微信登录 # 参考文章：\nVue生成二维码\n构建微信登录服务器 验证后端\n微信开发公众平台\n效果展示： # 通过前端生成的二维码：\n前端部分（使用Dom来创建script节点）： # createWxLoginQrCode(){ const script=document.createElement(\u0026#39;script\u0026#39;); script.type=\u0026#39;text\/javascript\u0026#39;; script.src=\u0026#39;https:\/\/res.wx.qq.com\/connect\/zh_CN\/htmledition\/js\/wxLogin.js\u0026#39;; const wxElement = document.body.appendChild(script) wxElement.onload = function () { var obj = new WxLogin({ id: \u0026#39;wxLoginCode\u0026#39;, \/\/ 需要显示的容器id appid: \u0026#39;\u0026#39;,\/\/ 公众号appid wx******* scope: \u0026#39;snsapi_login\u0026#39;, \/\/ 网页默认即可 redirect_uri: encodeURIComponent(\u0026#39; \u0026#39;), \/\/ 授权成功后回调的url state: Math.",
     "inLanguage": "zh-CN",
     "url" : "\/entire-note\/wexin-oauth\/",
     "author" : {
@@ -102,7 +102,7 @@
     "keywords": ["Oauth2"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "644"
+    "wordCount": "645"
   }]
   </script>
 
@@ -1042,9 +1042,9 @@
 </span></span><span class="line"><span class="cl">            <span class="nx">wxElement</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">                <span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WxLogin</span><span class="p">({</span>
 </span></span><span class="line"><span class="cl">                <span class="nx">id</span><span class="o">:</span> <span class="s1">&#39;wxLoginCode&#39;</span><span class="p">,</span> <span class="c1">// 需要显示的容器id
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="nx">appid</span><span class="o">:</span> <span class="s1">&#39;wxd10c3f9e60b4e00b&#39;</span><span class="p">,</span><span class="c1">// 公众号appid wx*******
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="nx">appid</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span><span class="c1">// 公众号appid wx*******
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="nx">scope</span><span class="o">:</span> <span class="s1">&#39;snsapi_login&#39;</span><span class="p">,</span> <span class="c1">// 网页默认即可
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="nx">redirect_uri</span><span class="o">:</span> <span class="nb">encodeURIComponent</span><span class="p">(</span><span class="s1">&#39;http://70b0a3fa.r6.cpolar.top/weixin/wxCallBack&#39;</span><span class="p">),</span> <span class="c1">// 授权成功后回调的url
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="nx">redirect_uri</span><span class="o">:</span> <span class="nb">encodeURIComponent</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">),</span> <span class="c1">// 授权成功后回调的url
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="nx">state</span><span class="o">:</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">ceil</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">),</span> <span class="c1">// 可设置为简单的随机数加session用来校验
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="nx">style</span><span class="o">:</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="c1">// 提供&#34;black&#34;、&#34;white&#34;可选。二维码的样式
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="nx">href</span><span class="o">:</span> <span class="s1">&#39;&#39;</span> <span class="c1">// 外部css文件url，需要https
