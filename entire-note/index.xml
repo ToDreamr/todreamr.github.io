@@ -29,9 +29,11 @@ Vue生成二维码
       <pubDate>Sat, 02 Mar 2024 13:22:59 +0800</pubDate>
       
       <guid>/entire-note/vscode/</guid>
-      <description>贴一下json：
-这里我选择了本地的Maven和用于日语的字体()，主题选用的是：βui - Ayu Dark，目前看起来还行，当选择编写Spring应用程序时可选用Idea主题，较为接近Jetbrains家族的Idea。
-{ &amp;#34;markdown-image.github.repository&amp;#34;: &amp;#34;https://github.com/ToDreamr/img-cloud.git&amp;#34;, &amp;#34;markdown-image.github.cdn&amp;#34;: &amp;#34;https://cdn.jsdelivr.net/gh/Todreamr/img-cloud&amp;#34;, &amp;#34;markdown-image.github.token&amp;#34;: &amp;#34;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&amp;#34;, &amp;#34;RainbowBrackets.depreciation-notice&amp;#34;: false, &amp;#34;java.configuration.maven.userSettings&amp;#34;: &amp;#34;D://Program Files//apache-maven-3.9.4//conf//settings.xml&amp;#34;, &amp;#34;java.configuration.maven.globalSettings&amp;#34;: &amp;#34;D://Program Files//apache-maven-3.9.4//conf//settings.xml&amp;#34;, &amp;#34;maven.executable.path&amp;#34;: &amp;#34;D://Program Files//apache-maven-3.9.4//bin//mvn&amp;#34;, &amp;#34;workbench.iconTheme&amp;#34;: &amp;#34;eq-material-theme-icons-ocean&amp;#34;, &amp;#34;editor.mouseWheelZoom&amp;#34;: true, &amp;#34;editor.fontLigatures&amp;#34;: false, &amp;#34;editor.fontFamily&amp;#34;: &amp;#34;&amp;#39;MS UI Gothic&amp;#39;&amp;#34;, &amp;#34;terminal.</description>
+      <description>Java 选手为什么用 Vscode 了？
+答：苦于 IDEA 的启动速度，本人的电脑带不动了很多了，就算改了索引和 Maven，经常还是要编辑 js，vue，html 文件，小全栈辣鸡吧，故而转战 Vscode。并不完全弃坑 IDEA
+目前调教 Vscode 还算挺好哒哈哈，好用呀！！！
+这里我选择了本地的 Maven 和用于日语的字体()，主题选用的是：Default Dark Modern，目前看起来还行，经典就是好，配合我的背景图片很搭!
+当选择编写 Spring 应用程序时可选用 Idea 主题，较为接近 Jetbrains 家族的 Idea,字体选用的是 JetBrains 家族的 JetBrains Mono，normal 版；</description>
       <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/vscode/featured.png" />
     </item>
     
