@@ -236,10 +236,10 @@ NEVER# # NEVER传播机制表示当前方法不应该在事务中运行，如果
       <pubDate>Fri, 27 Oct 2023 20:52:20 +0800</pubDate>
       
       <guid>/entire-note/c&#43;&#43;/</guid>
-      <description>C++实现数据结构和初步的认识 # 鉴于未来数据结构和算法的实现我想通过C++来实现，现在简要总结下C++的常用方法和数据结构类型
-头文件和方法声明 # 等同于C语言
+      <description>C++实现数据结构和初步的认识 # 鉴于未来数据结构和算法的实现我想通过 C++来实现，现在简要总结下 C++的常用方法和数据结构类型
+头文件和方法声明 # 等同于 C 语言
 标准输入输出函数 # std::cout &amp;lt;&amp;lt; &amp;#34;Hello, World!&amp;#34; &amp;lt;&amp;lt; std::endl; 引入 using namespace std;这可以避免函数要不断的添加前缀
-using namespace std; ... int input; cout&amp;lt;&amp;lt;&amp;#34;Hello world&amp;#34;&amp;lt;&amp;lt;endl;//输出函数 cin&amp;gt;&amp;gt;input; printf(&amp;#34;%d&amp;#34;,input); ... 传递函数的不同方式 # const修饰指针 # 修饰常量 修饰指针 修饰常量和指针 int main() { int a = 10; int b = 10; //const修饰的是指针，指针指向可以改，指针指向的值不可以更改 const int * p1 = &amp;amp;a; p1 = &amp;amp;b; //正确 //*p1 = 100; 报错 //const修饰的是常量，指针指向不可以改，指针指向的值可以更改 int * const p2 = &amp;amp;a; //p2 = &amp;amp;b; //错误 *p2 = 100; //正确 //const既修饰指针又修饰常量 const int * const p3 = &amp;amp;a; //p3 = &amp;amp;b; //错误 //*p3 = 100; //错误 system(&amp;#34;pause&amp;#34;); return 0; } 空指针和野指针 # NUll Point # int main() { //指针变量p指向内存地址编号为0的空间 int * p = NULL; //访问空指针报错 //内存编号0 ~255为系统占用内存，不允许用户访问 cout &amp;lt;&amp;lt; *p &amp;lt;&amp;lt; endl; system(&amp;#34;pause&amp;#34;); return 0; } Wild Point # int main() { //指针变量p指向内存地址编号为0x1100的空间 int * p = (int *)0x1100; //访问野指针报错 cout &amp;lt;&amp;lt; *p &amp;lt;&amp;lt; endl; system(&amp;#34;pause&amp;#34;); return 0; } 数组作为函数展示： # void array_print(int arr[],int len){ for (int i = 0; i &amp;lt; len; ++i) { cout&amp;lt;&amp;lt;arr[i]&amp;lt;&amp;lt;endl; } } void bubble_sort_(int * arr,int len){ for (int i = 0; i &amp;lt; len; ++i) { for (int j = i; j &amp;lt; len; ++j) { if (arr[i]&amp;gt;=arr[j]){ int tmp=arr[j]; arr[j]=arr[i]; arr[i]=tmp; } } } } int main(){ int arr[]={10,2,4,4,3,5,9,1,3}; bubble_sort_(arr,8); array_print(arr,8); } 当数组名传入到函数作为参数时，被退化为指向首元素的指针</description>
+using namespace std; ... int input; cout&amp;lt;&amp;lt;&amp;#34;Hello world&amp;#34;&amp;lt;&amp;lt;endl;//输出函数 cin&amp;gt;&amp;gt;input; printf(&amp;#34;%d&amp;#34;,input); .</description>
       
     </item>
     
@@ -305,17 +305,12 @@ ReferenceQueue&amp;lt;Object&amp;gt; queue = new ReferenceQueue&amp;lt;&amp;gt;(
       <pubDate>Thu, 12 Oct 2023 23:51:04 +0800</pubDate>
       
       <guid>/entire-note/%E8%99%9A%E6%8B%9F%E6%9C%BA/jvm/</guid>
-      <description>概述 # JVM是模拟物理机实现的将javac编译为.class文件，jvm支持平台无关性。 class文件通过类加载器-》解释器-》硬件沟通
-Jvm基于HotSpot虚拟机架构同时也是基于栈实现的。与C语言不同，不同架构的操作系统编译输出的文件不同，jvm编译后产生的 文件完全相同。
-由于执行一段程序需要不断地编译和反编译，将热点执行的代买柜内为热点代码再转换为机器码提高执行效率。同时jdk1.2之后支持使用JNI来 调用C/C++代码提升代码执行效率
+      <description>概述 # JVM 是模拟物理机实现的将 javac 编译为.class 文件，jvm 支持平台无关性。 class 文件通过类加载器-》解释器-》硬件沟通
+Jvm 基于 HotSpot 虚拟机架构同时也是基于栈实现的。与 C 语言不同，不同架构的操作系统编译输出的文件不同，jvm 编译后产生的 文件完全相同。
+由于执行一段程序需要不断地编译和反编译，将热点执行的代买柜内为热点代码再转换为机器码提高执行效率。同时 jdk1.2 之后支持使用 JNI 来 调用 C/C++代码提升代码执行效率
 指令 # 基本数据结构：堆栈+队列
 常见的编译命令：
-javap -g :vars xxx.java
-反编译： javap -v .class文件地址
-反编译后的代码栈顶元素作为操作数，当需要保存变量的时候，进入队列
-部分变量某些关键字无法保存将会保存到常量池里面。例如bipush只支持单字节数据
-环境部署 # Linux下下载相关依赖
-sudo yum install build-essential libxrender-dev xorg-dev libasound2-dev libcups2-dev gawk zip libxtst-dev libxi-dev libxt-dev gobjc gcc 环境：</description>
+javap -g :vars xxx.</description>
       <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/%E8%99%9A%E6%8B%9F%E6%9C%BA/jvm/featured.png" />
     </item>
     

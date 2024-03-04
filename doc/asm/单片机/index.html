@@ -117,7 +117,7 @@ XCHD 指的是低四位 交换 SWAP 是高低四位自交换"/>
     "keywords": [""],
     
     "mainEntityOfPage": "true",
-    "wordCount": "339"
+    "wordCount": "357"
   }]
   </script>
 
@@ -1049,6 +1049,39 @@ DS存储空间</p>
 （1） 相同点：字符帧格式是一样的。
 （2） 不同点：波特率发生器不同。</p>
 <p>双机通信时必须保持波特率一致。</p>
+<p>微处理器与外部设备的数据传输方式：</p>
+<p>查询方式，DMA（直接存储器访问模式：数据传输时无需CPU进行参与），中断方式</p>
+<p>作业：中断处理的各个流程（图片）</p>
+<p>嵌入式系统不止是单片机，主要分为嵌入式微处理器，嵌入式微控制器，嵌入式DSP</p>
+<p>🌟AD转换的步骤：</p>
+<p>1：打开ADC电源
+2：设置延时等待ADC内部稳定
+3：设置P1口中相应的口线作为模拟量输入通道
+4：选择ADC通道，CHS2-CHS0
+5：根据需要设置转换存储格式
+6：启动AD转换
+7：查询AD转换结束标志ADC_FLAG，完成则保存AD转换结果
+8：若采用中断方式需要设置中断读取结果</p>
+<p>P1ASF不能位寻址，1：ADC输入，0：IO口</p>
+<p>35H：0011 0101</p>
+<p>ADC_CONTR：</p>
+<p>
+
+
+
+
+  
+  
+  
+    <figure>
+      <img class="my-0 rounded-md" src="image.png" alt="alt text" />
+      
+    </figure>
+  
+
+</p>
+<p><a href="https://www.zhihu.com/search?type=content&amp;q=%E7%94%B5%E8%84%91%E5%8A%A8%E6%BC%AB%E5%A3%81%E7%BA%B8"   target="_blank">
+    好看的壁纸</a></p>
 
       </div>
 

@@ -42,17 +42,12 @@ ReferenceQueue&amp;lt;Object&amp;gt; queue = new ReferenceQueue&amp;lt;&amp;gt;(
       <pubDate>Thu, 12 Oct 2023 23:51:04 +0800</pubDate>
       
       <guid>/entire-note/%E8%99%9A%E6%8B%9F%E6%9C%BA/jvm/</guid>
-      <description>概述 # JVM是模拟物理机实现的将javac编译为.class文件，jvm支持平台无关性。 class文件通过类加载器-》解释器-》硬件沟通
-Jvm基于HotSpot虚拟机架构同时也是基于栈实现的。与C语言不同，不同架构的操作系统编译输出的文件不同，jvm编译后产生的 文件完全相同。
-由于执行一段程序需要不断地编译和反编译，将热点执行的代买柜内为热点代码再转换为机器码提高执行效率。同时jdk1.2之后支持使用JNI来 调用C/C++代码提升代码执行效率
+      <description>概述 # JVM 是模拟物理机实现的将 javac 编译为.class 文件，jvm 支持平台无关性。 class 文件通过类加载器-》解释器-》硬件沟通
+Jvm 基于 HotSpot 虚拟机架构同时也是基于栈实现的。与 C 语言不同，不同架构的操作系统编译输出的文件不同，jvm 编译后产生的 文件完全相同。
+由于执行一段程序需要不断地编译和反编译，将热点执行的代买柜内为热点代码再转换为机器码提高执行效率。同时 jdk1.2 之后支持使用 JNI 来 调用 C/C++代码提升代码执行效率
 指令 # 基本数据结构：堆栈+队列
 常见的编译命令：
-javap -g :vars xxx.java
-反编译： javap -v .class文件地址
-反编译后的代码栈顶元素作为操作数，当需要保存变量的时候，进入队列
-部分变量某些关键字无法保存将会保存到常量池里面。例如bipush只支持单字节数据
-环境部署 # Linux下下载相关依赖
-sudo yum install build-essential libxrender-dev xorg-dev libasound2-dev libcups2-dev gawk zip libxtst-dev libxi-dev libxt-dev gobjc gcc 环境：</description>
+javap -g :vars xxx.</description>
       <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/%E8%99%9A%E6%8B%9F%E6%9C%BA/jvm/featured.png" />
     </item>
     

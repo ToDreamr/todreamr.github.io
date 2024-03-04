@@ -85,7 +85,7 @@
     "name": "C\u002b\u002b",
     "headline": "C\u002b\u002b",
     "description": "鉴于未来数据结构和算法的实现我想通过C\u002b\u002b来实现，现在简要总结下C\u002b\u002b的常用方法和数据结构类型",
-    "abstract": "C\u002b\u002b实现数据结构和初步的认识 # 鉴于未来数据结构和算法的实现我想通过C\u002b\u002b来实现，现在简要总结下C\u002b\u002b的常用方法和数据结构类型\n头文件和方法声明 # 等同于C语言\n标准输入输出函数 # std::cout \u0026lt;\u0026lt; \u0026#34;Hello, World!\u0026#34; \u0026lt;\u0026lt; std::endl; 引入 using namespace std;这可以避免函数要不断的添加前缀\nusing namespace std; ... int input; cout\u0026lt;\u0026lt;\u0026#34;Hello world\u0026#34;\u0026lt;\u0026lt;endl;\/\/输出函数 cin\u0026gt;\u0026gt;input; printf(\u0026#34;%d\u0026#34;,input); ... 传递函数的不同方式 # const修饰指针 # 修饰常量 修饰指针 修饰常量和指针 int main() { int a = 10; int b = 10; \/\/const修饰的是指针，指针指向可以改，指针指向的值不可以更改 const int * p1 = \u0026amp;a; p1 = \u0026amp;b; \/\/正确 \/\/*p1 = 100; 报错 \/\/const修饰的是常量，指针指向不可以改，指针指向的值可以更改 int * const p2 = \u0026amp;a; \/\/p2 = \u0026amp;b; \/\/错误 *p2 = 100; \/\/正确 \/\/const既修饰指针又修饰常量 const int * const p3 = \u0026amp;a; \/\/p3 = \u0026amp;b; \/\/错误 \/\/*p3 = 100; \/\/错误 system(\u0026#34;pause\u0026#34;); return 0; } 空指针和野指针 # NUll Point # int main() { \/\/指针变量p指向内存地址编号为0的空间 int * p = NULL; \/\/访问空指针报错 \/\/内存编号0 ~255为系统占用内存，不允许用户访问 cout \u0026lt;\u0026lt; *p \u0026lt;\u0026lt; endl; system(\u0026#34;pause\u0026#34;); return 0; } Wild Point # int main() { \/\/指针变量p指向内存地址编号为0x1100的空间 int * p = (int *)0x1100; \/\/访问野指针报错 cout \u0026lt;\u0026lt; *p \u0026lt;\u0026lt; endl; system(\u0026#34;pause\u0026#34;); return 0; } 数组作为函数展示： # void array_print(int arr[],int len){ for (int i = 0; i \u0026lt; len; \u002b\u002bi) { cout\u0026lt;\u0026lt;arr[i]\u0026lt;\u0026lt;endl; } } void bubble_sort_(int * arr,int len){ for (int i = 0; i \u0026lt; len; \u002b\u002bi) { for (int j = i; j \u0026lt; len; \u002b\u002bj) { if (arr[i]\u0026gt;=arr[j]){ int tmp=arr[j]; arr[j]=arr[i]; arr[i]=tmp; } } } } int main(){ int arr[]={10,2,4,4,3,5,9,1,3}; bubble_sort_(arr,8); array_print(arr,8); } 当数组名传入到函数作为参数时，被退化为指向首元素的指针",
+    "abstract": "C\u002b\u002b实现数据结构和初步的认识 # 鉴于未来数据结构和算法的实现我想通过 C\u002b\u002b来实现，现在简要总结下 C\u002b\u002b的常用方法和数据结构类型\n头文件和方法声明 # 等同于 C 语言\n标准输入输出函数 # std::cout \u0026lt;\u0026lt; \u0026#34;Hello, World!\u0026#34; \u0026lt;\u0026lt; std::endl; 引入 using namespace std;这可以避免函数要不断的添加前缀\nusing namespace std; ... int input; cout\u0026lt;\u0026lt;\u0026#34;Hello world\u0026#34;\u0026lt;\u0026lt;endl;\/\/输出函数 cin\u0026gt;\u0026gt;input; printf(\u0026#34;%d\u0026#34;,input); .",
     "inLanguage": "zh-CN",
     "url" : "\/entire-note\/c\u002b\u002b\/",
     "author" : {
@@ -101,7 +101,7 @@
     "keywords": ["语言"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "1126"
+    "wordCount": "1168"
   }]
   </script>
 
@@ -886,7 +886,7 @@
             </li>
             <li><a href="#传递函数的不同方式">传递函数的不同方式</a>
               <ul>
-                <li><a href="#const修饰指针">const修饰指针</a></li>
+                <li><a href="#const-修饰指针">const 修饰指针</a></li>
               </ul>
             </li>
             <li><a href="#空指针和野指针">空指针和野指针</a>
@@ -908,14 +908,14 @@
                 <li><a href="#静态变量和成员变量">静态变量和成员变量</a></li>
                 <li><a href="#构造函数constructor">构造函数（Constructor）</a></li>
                 <li><a href="#拷贝构造函数">拷贝构造函数</a></li>
-                <li><a href="#this指针">this指针</a></li>
+                <li><a href="#this-指针">this 指针</a></li>
               </ul>
             </li>
             <li><a href="#友元">友元</a>
               <ul>
                 <li><a href="#运算符重载">运算符重载：</a></li>
                 <li><a href="#实现自己的数据类型">实现自己的数据类型</a></li>
-                <li><a href="#内联函数inline">内联函数inline</a></li>
+                <li><a href="#内联函数-inline">内联函数 inline</a></li>
               </ul>
             </li>
             <li><a href="#继承">继承</a>
@@ -935,7 +935,7 @@
                 <li><a href="#函数模板">函数模板</a></li>
               </ul>
             </li>
-            <li><a href="#stl基本认识">STL基本认识</a>
+            <li><a href="#stl-基本认识">STL 基本认识</a>
               <ul>
                 <li><a href="#常见的容器">常见的容器</a></li>
               </ul>
@@ -968,7 +968,7 @@
             </li>
             <li><a href="#传递函数的不同方式">传递函数的不同方式</a>
               <ul>
-                <li><a href="#const修饰指针">const修饰指针</a></li>
+                <li><a href="#const-修饰指针">const 修饰指针</a></li>
               </ul>
             </li>
             <li><a href="#空指针和野指针">空指针和野指针</a>
@@ -990,14 +990,14 @@
                 <li><a href="#静态变量和成员变量">静态变量和成员变量</a></li>
                 <li><a href="#构造函数constructor">构造函数（Constructor）</a></li>
                 <li><a href="#拷贝构造函数">拷贝构造函数</a></li>
-                <li><a href="#this指针">this指针</a></li>
+                <li><a href="#this-指针">this 指针</a></li>
               </ul>
             </li>
             <li><a href="#友元">友元</a>
               <ul>
                 <li><a href="#运算符重载">运算符重载：</a></li>
                 <li><a href="#实现自己的数据类型">实现自己的数据类型</a></li>
-                <li><a href="#内联函数inline">内联函数inline</a></li>
+                <li><a href="#内联函数-inline">内联函数 inline</a></li>
               </ul>
             </li>
             <li><a href="#继承">继承</a>
@@ -1017,7 +1017,7 @@
                 <li><a href="#函数模板">函数模板</a></li>
               </ul>
             </li>
-            <li><a href="#stl基本认识">STL基本认识</a>
+            <li><a href="#stl-基本认识">STL 基本认识</a>
               <ul>
                 <li><a href="#常见的容器">常见的容器</a></li>
               </ul>
@@ -1092,7 +1092,7 @@
     
 </h1>
 <blockquote>
-<p>鉴于未来数据结构和算法的实现我想通过C++来实现，现在简要总结下C++的常用方法和数据结构类型</p>
+<p>鉴于未来数据结构和算法的实现我想通过 C++来实现，现在简要总结下 C++的常用方法和数据结构类型</p>
 </blockquote>
 <h3 class="relative group">头文件和方法声明 
     <div id="头文件和方法声明" class="anchor"></div>
@@ -1104,7 +1104,7 @@
     </span>        
     
 </h3>
-<p>等同于C语言</p>
+<p>等同于 C 语言</p>
 <h4 class="relative group">标准输入输出函数 
     <div id="标准输入输出函数" class="anchor"></div>
     
@@ -1192,13 +1192,13 @@
   
 
 </p>
-<h4 class="relative group">const修饰指针 
-    <div id="const修饰指针" class="anchor"></div>
+<h4 class="relative group">const 修饰指针 
+    <div id="const-修饰指针" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#const%e4%bf%ae%e9%a5%b0%e6%8c%87%e9%92%88" aria-label="锚点">#</a>
+            style="text-decoration-line: none !important;" href="#const-%e4%bf%ae%e9%a5%b0%e6%8c%87%e9%92%88" aria-label="锚点">#</a>
     </span>        
     
 </h4>
@@ -1213,10 +1213,10 @@
 </span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">	<span class="c1">//const修饰的是指针，指针指向可以改，指针指向的值不可以更改
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">const</span> <span class="kt">int</span> <span class="o">*</span> <span class="n">p1</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">;</span> 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">const</span> <span class="kt">int</span> <span class="o">*</span> <span class="n">p1</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">	<span class="n">p1</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">b</span><span class="p">;</span> <span class="c1">//正确
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">//*p1 = 100;  报错
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">	<span class="c1">//const修饰的是常量，指针指向不可以改，指针指向的值可以更改
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kt">int</span> <span class="o">*</span> <span class="k">const</span> <span class="n">p2</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">;</span>
@@ -1257,7 +1257,7 @@
 </span></span><span class="line"><span class="cl">	<span class="c1">//指针变量p指向内存地址编号为0的空间
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kt">int</span> <span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="c1">//访问空指针报错 
+</span></span><span class="line"><span class="cl">	<span class="c1">//访问空指针报错
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">//内存编号0 ~255为系统占用内存，不允许用户访问
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">p</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
@@ -1280,7 +1280,7 @@
 </span></span><span class="line"><span class="cl">	<span class="c1">//指针变量p指向内存地址编号为0x1100的空间
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kt">int</span> <span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="mh">0x1100</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="c1">//访问野指针报错 
+</span></span><span class="line"><span class="cl">	<span class="c1">//访问野指针报错
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">p</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">	<span class="n">system</span><span class="p">(</span><span class="s">&#34;pause&#34;</span><span class="p">);</span>
@@ -1332,9 +1332,9 @@
     </span>        
     
 </h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">arr</span><span class="p">[]</span> <span class="o">=</span> <span class="k">new</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl"><span class="k">delete</span><span class="p">[]</span> <span class="n">arr</span><span class="p">;</span>
-</span></span></code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">arr</span><span class="p">[]</span> <span class="o">=</span> <span class="k">new</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span><span class="c1">//声明数组
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">delete</span><span class="p">[]</span> <span class="n">arr</span><span class="p">;</span><span class="c1">//释放数组空间
+</span></span></span></code></pre></div><blockquote>
 <p>内存发生取消和回收：</p>
 </blockquote>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span>  <span class="o">*</span><span class="n">a</span><span class="o">=</span><span class="k">new</span> <span class="kt">int</span> <span class="p">[</span><span class="mi">10</span><span class="p">];</span>
@@ -1430,10 +1430,10 @@
     
 </h4>
 <blockquote>
-<p>在C++中实例化一个类不需要用new。也可以用new，但是区别是：不使用new，开辟栈空间，使用new开辟的空间为堆空间。这显然是因为程序员只操作堆空间的原因使然</p>
+<p>在 C++中实例化一个类不需要用 new。也可以用 new，但是区别是：不使用 new，开辟栈空间，使用 new 开辟的空间为堆空间。这显然是因为程序员只操作堆空间的原因使然</p>
 </blockquote>
-<p><strong>与C语言结构体的区别</strong></p>
-<p>访问控制符是唯一区别，所有的结构体默认public，但是类则是private</p>
+<p><strong>与 C 语言结构体的区别</strong></p>
+<p>访问控制符是唯一区别，所有的结构体默认 public，但是类则是 private</p>
 <p><strong>类的构造函数，析构函数和拷贝构造函数</strong></p>
 <h4 class="relative group">静态变量和成员变量 
     <div id="静态变量和成员变量" class="anchor"></div>
@@ -1474,7 +1474,7 @@
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">People</span><span class="p">.</span><span class="n">cpp</span>
 </span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;People.h&#34;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="c1">//静态变脸
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="c1">//静态变量
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">string</span> <span class="n">People</span><span class="o">::</span><span class="n">defaultName</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">People</span><span class="o">::</span><span class="n">defaultFunc</span><span class="p">()</span> <span class="p">{</span>
@@ -1492,10 +1492,10 @@
 </h4>
 <p>构造函数语法：类名(){}</p>
 <p>在定义有参构造函数后，不再提供无参构造函数</p>
-<p>#####析构函数（Destructor），通Java,可重载，释放内存时使用</p>
+<p>#####析构函数（Destructor），通 Java,可重载，释放内存时使用</p>
 <p>析构函数语法：~类名(){}</p>
 <ul>
-<li>构造函数，没有返回值也不写void</li>
+<li>构造函数，没有返回值也不写 void</li>
 <li>函数名称与类名相同</li>
 <li>构造函数可以有参数，因此可以发生重载</li>
 <li>程序在调用对象时候会自动调用构造，无须手动调用,而且只会调用一次</li>
@@ -1554,18 +1554,18 @@
 <p>==如果用户定义有参构造函数，c++不在提供默认无参构造==，但是会提供默认拷贝构造</p>
 <p>==如果用户定义拷贝构造函数，c++不会再提供其他构造函数==</p>
 </blockquote>
-<h4 class="relative group">this指针 
-    <div id="this指针" class="anchor"></div>
+<h4 class="relative group">this 指针 
+    <div id="this-指针" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#this%e6%8c%87%e9%92%88" aria-label="锚点">#</a>
+            style="text-decoration-line: none !important;" href="#this-%e6%8c%87%e9%92%88" aria-label="锚点">#</a>
     </span>        
     
 </h4>
-<p>成员函数访问时候的隐形的this指针变量</p>
-<p>this对于类来说就是自己的地址</p>
+<p>成员函数访问时候的隐形的 this 指针变量</p>
+<p>this 对于类来说就是自己的地址</p>
 <p>例如：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">RainyInteger</span> <span class="o">*</span> <span class="nf">getAddr</span><span class="p">(){</span>
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
@@ -1580,16 +1580,16 @@
     </span>        
     
 </h3>
-<p>相当于内部标志为friend即可访问私有成员</p>
+<p>相当于内部标志为 friend 即可访问私有成员</p>
 <ul>
 <li>全局函数作为友元：</li>
 </ul>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">StrictBoy</span><span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">friend</span> <span class="kt">void</span> <span class="nf">func</span><span class="p">(</span><span class="n">Student</span> <span class="o">*</span><span class="n">student</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">friend</span> <span class="kt">void</span> <span class="nf">func</span><span class="p">(</span><span class="n">StrictBoy</span> <span class="o">*</span> <span class="n">strictBoy</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
 </span></span><span class="line"><span class="cl">    <span class="n">StrictBoy</span><span class="p">(){</span>
 </span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">-&gt;</span><span class="n">girlFriend</span><span class="o">=</span><span class="s">&#34;女朋友&#34;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">-&gt;</span><span class="n">money</span><span class="o">=</span><span class="mi">100</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">-&gt;</span><span class="n">money</span><span class="o">=</span><span class="mi">520</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
 </span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">girlFriend</span><span class="p">;</span>
@@ -1597,7 +1597,7 @@
 </span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">money</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">func</span><span class="p">(</span><span class="n">StrictBoy</span> <span class="o">*</span> <span class="n">strictBoy</span><span class="p">){</span>
 </span></span><span class="line"><span class="cl">    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">strictBoy</span><span class="p">.</span><span class="n">girlFriend</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span><span class="c1">//可以访问私有的变量了，牛头人既视感
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>    
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span></code></pre></div><ul>
 <li>类作为友元</li>
@@ -1670,7 +1670,7 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">	<span class="n">goodGay</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">	<span class="kt">void</span> <span class="nf">visit</span><span class="p">();</span> <span class="c1">//只让visit函数作为Building的好朋友，可以发访问Building中私有内容
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kt">void</span> <span class="nf">visit2</span><span class="p">();</span> 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kt">void</span> <span class="nf">visit2</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
 </span></span><span class="line"><span class="cl">	<span class="n">Building</span> <span class="o">*</span><span class="n">building</span><span class="p">;</span>
@@ -1722,7 +1722,7 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
-</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">	<span class="n">test01</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">	<span class="n">system</span><span class="p">(</span><span class="s">&#34;pause&#34;</span><span class="p">);</span>
@@ -1790,18 +1790,18 @@
 </span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
 </span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">rainy_num</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span></code></pre></div><h4 class="relative group">内联函数inline 
-    <div id="内联函数inline" class="anchor"></div>
+</span></span></code></pre></div><h4 class="relative group">内联函数 inline 
+    <div id="内联函数-inline" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%e5%86%85%e8%81%94%e5%87%bd%e6%95%b0inline" aria-label="锚点">#</a>
+            style="text-decoration-line: none !important;" href="#%e5%86%85%e8%81%94%e5%87%bd%e6%95%b0-inline" aria-label="锚点">#</a>
     </span>        
     
 </h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"> <span class="kr">inline</span> <span class="kt">int</span> <span class="nf">max</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span><span class="kt">int</span> <span class="n">b</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"> <span class="p">}</span>
 </span></span></code></pre></div><h3 class="relative group">继承 
     <div id="继承" class="anchor"></div>
@@ -1817,7 +1817,7 @@
 <p>语法：class 子类 : 继承方式 父类</p>
 </blockquote>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Father</span><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Child1</span><span class="o">:</span> <span class="k">public</span> <span class="n">Father</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Child2</span><span class="o">:</span> <span class="k">private</span> <span class="n">Father</span><span class="p">;</span>
@@ -1843,7 +1843,7 @@
     </span>        
     
 </h4>
-<p>简而言之就是父类被多个子类继承，多个子类被某一个孙子类同时继承</p>
+<p>简而言之就是父类被多个子类继承，多个子类被某一个孙子类同时继承，导致得问题是使得当孙子类继承两个子类中含有相同变量或者字段时造成二义</p>
 <p>示意图：</p>
 <p>
 
@@ -1874,7 +1874,7 @@
 
 </p>
 <p>解决办法-&gt;虚继承 关键字：<strong>virtural</strong></p>
-<p>在基类的两个子类中继承基类时，使用virtual 关键字。虚继承基类。使得基类的属性成员只有一份。</p>
+<p>在基类的两个子类中继承基类时，使用 virtual 关键字。虚继承基类。使得基类的属性成员只有一份。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Animal</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
@@ -1958,7 +1958,7 @@
 </span></span><span class="line"><span class="cl">	<span class="n">animal</span><span class="p">.</span><span class="n">speak</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="c1">//
-</span></span></span><span class="line"><span class="cl"><span class="c1">//多态满足条件： 
+</span></span></span><span class="line"><span class="cl"><span class="c1">//多态满足条件：
 </span></span></span><span class="line"><span class="cl"><span class="c1">//1、有继承关系
 </span></span></span><span class="line"><span class="cl"><span class="c1">//2、子类重写父类中的虚函数
 </span></span></span><span class="line"><span class="cl"><span class="c1">//多态使用：
@@ -2007,10 +2007,10 @@
     </span>        
     
 </h4>
+<p>-</p>
 <ul>
-<li></li>
 <li>基类，派生类拥有原型相同的成员函数</li>
-<li>virtual关键字</li>
+<li>virtual 关键字</li>
 </ul>
 <h4 class="relative group">虚析构函数 
     <div id="虚析构函数" class="anchor"></div>
@@ -2079,16 +2079,16 @@
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="err">函数声明或定义</span>
 </span></span></code></pre></div><p>template — 声明创建模板</p>
-<p>typename — 表面其后面的符号是一种数据类型，可以用class代替</p>
+<p>typename — 表面其后面的符号是一种数据类型，可以用 class 代替</p>
 <p>T — 通用的数据类型，名称可以替换，通常为大写字母</p>
-<p>看起来和java里面的泛型比较像</p>
+<p>看起来和 java 里面的泛型比较像</p>
 <p>注意事项：</p>
 <ul>
-<li>自动类型推导，必须推导出一致的数据类型T,才可以使用</li>
-<li>模板必须要确定出T的数据类型，才可以使用</li>
+<li>自动类型推导，必须推导出一致的数据类型 T,才可以使用</li>
+<li>模板必须要确定出 T 的数据类型，才可以使用</li>
 </ul>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">//1、指定传入的类型
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">printPerson1</span><span class="p">(</span><span class="n">Person</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">p</span><span class="p">)</span> 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">printPerson1</span><span class="p">(</span><span class="n">Person</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">p</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">	<span class="n">p</span><span class="p">.</span><span class="n">showPerson</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
@@ -2125,13 +2125,13 @@
 </span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">Person</span><span class="o">&lt;</span><span class="n">T1</span><span class="p">,</span> <span class="n">T2</span><span class="o">&gt;::</span><span class="n">showPerson</span><span class="p">()</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;姓名: &#34;</span> <span class="o">&lt;&lt;</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">m_Name</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; 年龄:&#34;</span> <span class="o">&lt;&lt;</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">m_Age</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h3 class="relative group">STL基本认识 
-    <div id="stl基本认识" class="anchor"></div>
+</span></span></code></pre></div><h3 class="relative group">STL 基本认识 
+    <div id="stl-基本认识" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#stl%e5%9f%ba%e6%9c%ac%e8%ae%a4%e8%af%86" aria-label="锚点">#</a>
+            style="text-decoration-line: none !important;" href="#stl-%e5%9f%ba%e6%9c%ac%e8%ae%a4%e8%af%86" aria-label="锚点">#</a>
     </span>        
     
 </h3>
@@ -2141,17 +2141,17 @@
 <li>容器和算法之间通过迭代器进行无缝连接。</li>
 <li>STL 几乎所有的代码都采用了模板类或者模板函数</li>
 </ul>
-<p>STL大体分为六大组件，分别是:容器、算法、迭代器、仿函数、适配器（配接器）、空间配置器</p>
+<p>STL 大体分为六大组件，分别是:容器、算法、迭代器、仿函数、适配器（配接器）、空间配置器</p>
 <ul>
-<li>容器：各种数据结构，如vector、list、deque、set、map等,用来存放数据。</li>
-<li>算法：各种常用的算法，如sort、find、copy、for_each等</li>
+<li>容器：各种数据结构，如 vector、list、deque、set、map 等,用来存放数据。</li>
+<li>算法：各种常用的算法，如 sort、find、copy、for_each 等</li>
 <li>迭代器：扮演了容器与算法之间的胶合剂。</li>
 <li>仿函数：行为类似函数，可作为算法的某种策略。</li>
 <li>适配器：一种用来修饰容器或者仿函数或迭代器接口的东西。</li>
 <li>空间配置器：负责空间的配置与管理。</li>
 </ul>
 <p>容器：置物之所也</p>
-<p>STL容器就是将运用最广泛的一些数据结构实现出来</p>
+<p>STL 容器就是将运用最广泛的一些数据结构实现出来</p>
 <p>常用的数据结构：数组, 链表,树, 栈, 队列, 集合, 映射表 等</p>
 <p>这些容器分为序列式容器和关联式容器两种:</p>
 <p>序列式容器:强调值的排序，序列式容器中的每个元素均有固定的位置。

@@ -86,7 +86,7 @@
     "name": "Jvm",
     "headline": "Jvm",
     "description": "介绍了JVM的前置基础知识",
-    "abstract": "概述 # JVM是模拟物理机实现的将javac编译为.class文件，jvm支持平台无关性。 class文件通过类加载器-》解释器-》硬件沟通\nJvm基于HotSpot虚拟机架构同时也是基于栈实现的。与C语言不同，不同架构的操作系统编译输出的文件不同，jvm编译后产生的 文件完全相同。\n由于执行一段程序需要不断地编译和反编译，将热点执行的代买柜内为热点代码再转换为机器码提高执行效率。同时jdk1.2之后支持使用JNI来 调用C\/C\u002b\u002b代码提升代码执行效率\n指令 # 基本数据结构：堆栈\u002b队列\n常见的编译命令：\njavap -g :vars xxx.java\n反编译： javap -v .class文件地址\n反编译后的代码栈顶元素作为操作数，当需要保存变量的时候，进入队列\n部分变量某些关键字无法保存将会保存到常量池里面。例如bipush只支持单字节数据\n环境部署 # Linux下下载相关依赖\nsudo yum install build-essential libxrender-dev xorg-dev libasound2-dev libcups2-dev gawk zip libxtst-dev libxi-dev libxt-dev gobjc gcc 环境：",
+    "abstract": "概述 # JVM 是模拟物理机实现的将 javac 编译为.class 文件，jvm 支持平台无关性。 class 文件通过类加载器-》解释器-》硬件沟通\nJvm 基于 HotSpot 虚拟机架构同时也是基于栈实现的。与 C 语言不同，不同架构的操作系统编译输出的文件不同，jvm 编译后产生的 文件完全相同。\n由于执行一段程序需要不断地编译和反编译，将热点执行的代买柜内为热点代码再转换为机器码提高执行效率。同时 jdk1.2 之后支持使用 JNI 来 调用 C\/C\u002b\u002b代码提升代码执行效率\n指令 # 基本数据结构：堆栈\u002b队列\n常见的编译命令：\njavap -g :vars xxx.",
     "inLanguage": "zh-CN",
     "url" : "\/entire-note\/%E8%99%9A%E6%8B%9F%E6%9C%BA\/jvm\/",
     "author" : {
@@ -102,7 +102,7 @@
     "keywords": ["虚拟机"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "326"
+    "wordCount": "394"
   }]
   </script>
 
@@ -881,10 +881,10 @@
         <li><a href="#指令">指令</a></li>
         <li><a href="#环境部署">环境部署</a>
           <ul>
-            <li><a href="#手动编译jdk8部分">手动编译jdk8部分</a></li>
+            <li><a href="#手动编译-jdk8-部分">手动编译 jdk8 部分</a></li>
           </ul>
         </li>
-        <li><a href="#jvm内存管理">JVM内存管理</a>
+        <li><a href="#jvm-内存管理">JVM 内存管理</a>
           <ul>
             <li>
               <ul>
@@ -895,9 +895,9 @@
             <li><a href="#堆">堆</a></li>
             <li><a href="#方法区重点">方法区（重点）</a>
               <ul>
-                <li><a href="#new方式">new方式</a></li>
+                <li><a href="#new-方式">new 方式</a></li>
                 <li><a href="#直接方式">直接方式</a></li>
-                <li><a href="#intern方法native方法底层实现是c">intern方法(native方法。底层实现是C++)</a></li>
+                <li><a href="#intern-方法native-方法底层实现是-c">intern 方法(native 方法。底层实现是 C++)</a></li>
               </ul>
             </li>
             <li><a href="#内存爆炸和爆栈">内存爆炸和爆栈</a>
@@ -928,10 +928,10 @@
         <li><a href="#指令">指令</a></li>
         <li><a href="#环境部署">环境部署</a>
           <ul>
-            <li><a href="#手动编译jdk8部分">手动编译jdk8部分</a></li>
+            <li><a href="#手动编译-jdk8-部分">手动编译 jdk8 部分</a></li>
           </ul>
         </li>
-        <li><a href="#jvm内存管理">JVM内存管理</a>
+        <li><a href="#jvm-内存管理">JVM 内存管理</a>
           <ul>
             <li>
               <ul>
@@ -942,9 +942,9 @@
             <li><a href="#堆">堆</a></li>
             <li><a href="#方法区重点">方法区（重点）</a>
               <ul>
-                <li><a href="#new方式">new方式</a></li>
+                <li><a href="#new-方式">new 方式</a></li>
                 <li><a href="#直接方式">直接方式</a></li>
-                <li><a href="#intern方法native方法底层实现是c">intern方法(native方法。底层实现是C++)</a></li>
+                <li><a href="#intern-方法native-方法底层实现是-c">intern 方法(native 方法。底层实现是 C++)</a></li>
               </ul>
             </li>
             <li><a href="#内存爆炸和爆栈">内存爆炸和爆栈</a>
@@ -1022,12 +1022,12 @@
     </span>        
     
 </h1>
-<p>JVM是模拟物理机实现的将javac编译为.class文件，jvm支持平台无关性。
-class文件通过类加载器-》解释器-》硬件沟通</p>
-<p>Jvm基于HotSpot虚拟机架构同时也是基于栈实现的。与C语言不同，不同架构的操作系统编译输出的文件不同，jvm编译后产生的
+<p>JVM 是模拟物理机实现的将 javac 编译为.class 文件，jvm 支持平台无关性。
+class 文件通过类加载器-》解释器-》硬件沟通</p>
+<p>Jvm 基于 HotSpot 虚拟机架构同时也是基于栈实现的。与 C 语言不同，不同架构的操作系统编译输出的文件不同，jvm 编译后产生的
 文件完全相同。</p>
-<p>由于执行一段程序需要不断地编译和反编译，将热点执行的代买柜内为热点代码再转换为机器码提高执行效率。同时jdk1.2之后支持使用JNI来
-调用C/C++代码提升代码执行效率</p>
+<p>由于执行一段程序需要不断地编译和反编译，将热点执行的代买柜内为热点代码再转换为机器码提高执行效率。同时 jdk1.2 之后支持使用 JNI 来
+调用 C/C++代码提升代码执行效率</p>
 <h2 class="relative group">指令 
     <div id="指令" class="anchor"></div>
     
@@ -1045,7 +1045,7 @@ class文件通过类加载器-》解释器-》硬件沟通</p>
 <blockquote>
 <p>javap -g :vars xxx.java</p>
 <p>反编译：
-javap -v .class文件地址</p>
+javap -v .class 文件地址</p>
 </blockquote>
 <p>
 
@@ -1063,7 +1063,7 @@ javap -v .class文件地址</p>
 
 </p>
 <p>反编译后的代码栈顶元素作为操作数，当需要保存变量的时候，进入队列</p>
-<p>部分变量某些关键字无法保存将会保存到常量池里面。例如bipush只支持单字节数据</p>
+<p>部分变量某些关键字无法保存将会保存到常量池里面。例如 bipush 只支持单字节数据</p>
 <h2 class="relative group">环境部署 
     <div id="环境部署" class="anchor"></div>
     
@@ -1074,7 +1074,7 @@ javap -v .class文件地址</p>
     </span>        
     
 </h2>
-<p>Linux下下载相关依赖</p>
+<p>Linux 下下载相关依赖</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo yum install build-essential libxrender-dev xorg-dev libasound2-dev libcups2-dev gawk zip libxtst-dev libxi-dev libxt-dev gobjc
 </span></span></code></pre></div><p>gcc 环境：</p>
 <p>
@@ -1108,8 +1108,8 @@ javap -v .class文件地址</p>
   
 
 </p>
-<p>jdk环境：open-jdk8</p>
-<p>Linux下编译结果：</p>
+<p>jdk 环境：open-jdk8</p>
+<p>Linux 下编译结果：</p>
 <p>
 
 
@@ -1125,7 +1125,7 @@ javap -v .class文件地址</p>
   
 
 </p>
-<p>编译Hello World：</p>
+<p>编译 Hello World：</p>
 <p>
 
 
@@ -1141,13 +1141,13 @@ javap -v .class文件地址</p>
   
 
 </p>
-<h3 class="relative group">手动编译jdk8部分 
-    <div id="手动编译jdk8部分" class="anchor"></div>
+<h3 class="relative group">手动编译 jdk8 部分 
+    <div id="手动编译-jdk8-部分" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%e6%89%8b%e5%8a%a8%e7%bc%96%e8%af%91jdk8%e9%83%a8%e5%88%86" aria-label="锚点">#</a>
+            style="text-decoration-line: none !important;" href="#%e6%89%8b%e5%8a%a8%e7%bc%96%e8%af%91-jdk8-%e9%83%a8%e5%88%86" aria-label="锚点">#</a>
     </span>        
     
 </h3>
@@ -1164,18 +1164,18 @@ javap -v .class文件地址</p>
     </iframe>
 </div>
 
-<h2 class="relative group">JVM内存管理 
-    <div id="jvm内存管理" class="anchor"></div>
+<h2 class="relative group">JVM 内存管理 
+    <div id="jvm-内存管理" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#jvm%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86" aria-label="锚点">#</a>
+            style="text-decoration-line: none !important;" href="#jvm-%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86" aria-label="锚点">#</a>
     </span>        
     
 </h2>
 <blockquote>
-<p>C/C++开发中，我们经常通过使用申请内存的方式来创建对象或是存放某些数据，但是这样也带来了一些额外的问题，我们要在何时释放这些内存，怎么才能使得内存的使用最高效，因此，内存管
+<p>C/C++开发中，我们经常通过使用申请内存的方式来创建对象或是存放某些数据，但是这样也带来了一些额外的问题，我们要在何时释放这些内存，怎么才能使得内存的使用最高效，&gt; 因此，内存管
 理是一个非常严肃的问题。</p>
 </blockquote>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
@@ -1198,7 +1198,7 @@ javap -v .class文件地址</p>
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">memory</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><blockquote>
-<p>一旦出现内存问题，我们就无法像C/C++那样对所管理的内存进行合理地处理，因为所有的内存操作都是由JVM在进行，只有了解了JVM的内存管理机制，我们才能够在出现内存相关问题时找到解决方案。</p>
+<p>一旦出现内存问题，我们就无法像 C/C++那样对所管理的内存进行合理地处理，因为所有的内存操作都是由 JVM 在进行，只有了解了 JVM 的内存管理机制，我们才能够在出现内存相关问题时找到解决方案。</p>
 </blockquote>
 <h4 class="relative group">JNI 
     <div id="jni" class="anchor"></div>
@@ -1210,7 +1210,7 @@ javap -v .class文件地址</p>
     </span>        
     
 </h4>
-<p>调用本地方法，调用C语言，关键字native,通过静态代码块调用C/C++的实现部分</p>
+<p>调用本地方法，调用 C 语言，关键字 native,通过静态代码块调用 C/C++的实现部分</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-latex" data-lang="latex"><span class="line"><span class="cl">    public static void main(String[] args) <span class="nb">{</span>
 </span></span><span class="line"><span class="cl">        System.out.println(sum(1,2));
 </span></span><span class="line"><span class="cl">    <span class="nb">}</span>
@@ -1234,19 +1234,20 @@ javap -v .class文件地址</p>
 </p>
 <ul>
 <li>内存区域划分为：方法区（线程共享），堆（线程共享），虚拟机栈，本地方法栈，程序计数器</li>
-<li>方法区和堆栈随JVM生消，虚拟机栈，本地方法栈，程序计数器不共享彼此</li>
+<li>方法区和堆栈随 JVM 生消，虚拟机栈，本地方法栈，程序计数器不共享彼此</li>
 </ul>
-<p>创新作业：40页创新计划书，电子档2份，纸质档1份
-商业模式和团队，按照第8章和第7章模式，12周周五交-&gt;老师办公室</p>
+<p>创新作业：40 页创新计划书，电子档 2 份，纸质档 1 份
+商业模式和团队，按照第 8 章和第 7 章模式，12 周周五交-&gt;老师办公室</p>
 <ul>
 <li>
-<p>程序计数器 ：作为内存地址，每个地址指向下一条即将指令执行，自动更新，在jvm字节码解释器工作时改变时改变值确定指令位置    public static void main(String[] args) {
+<p>程序计数器 ：作为内存地址，每个地址指向下一条即将指令执行，自动更新，在 jvm 字节码解释器工作时改变时改变值确定指令位置
+public static void main(String[] args) {
 System.out.println(sum(1,2));
 }</p>
 <p>private static native int sum(int a, int b);//原生的方法不可以具有函数实现</p>
 </li>
 <li>
-<p>虚拟机栈 （关键部分），内次当java虚拟机创建的时候即可同步一个栈帧（栈里面的元素），栈帧包含了当前方法的一些元素信息：（局部变量表，操作数栈，动态链接，方法出口）</p>
+<p>虚拟机栈 （关键部分），内次当 java 虚拟机创建的时候即可同步一个栈帧（栈里面的元素），栈帧包含了当前方法的一些元素信息：（局部变量表，操作数栈，动态链接，方法出口）</p>
 </li>
 </ul>
 <h3 class="relative group">虚拟机栈 
@@ -1274,7 +1275,7 @@ System.out.println(sum(1,2));
   
 
 </p>
-<p>每个栈帧保存一个可以<strong>指向当前方法所在类 的常量池</strong>，目的是：当前方法8中如果需要调用其他方法的时候，能够从运行时常量池中找到对应的符号引用，然后将符号引用转换为直接引用，
+<p>每个栈帧保存一个可以<strong>指向当前方法所在类 的常量池</strong>，目的是：当前方法 8 中如果需要调用其他方法的时候，能够从运行时常量池中找到对应的符号引用，然后将符号引用转换为直接引用，
 然后就能直接调用对应方法，这就是动态链接</p>
 <p>
 
@@ -1290,8 +1291,8 @@ System.out.println(sum(1,2));
     </figure>
   
 
-
-在虚拟机栈里面执行的行为就是对方法不断压栈出栈的过程，只有当所有方法出栈之后才可以执行主函数栈</p>
+</p>
+<p>在虚拟机栈里面执行的行为就是对方法不断压栈出栈的过程，只有当所有方法出栈之后才可以执行主函数栈</p>
 <h3 class="relative group">堆 
     <div id="堆" class="anchor"></div>
     
@@ -1326,8 +1327,8 @@ System.out.println(sum(1,2));
     </span>        
     
 </h3>
-<p>所有程序共享区域，存储类信息，静态变量，动态编译缓存部分，分为两大部分：类信息表+运行时常量池
-
+<p>所有程序共享区域，存储类信息，静态变量，动态编译缓存部分，分为两大部分：类信息表+运行时常量池</p>
+<p>
 
 
 
@@ -1344,25 +1345,27 @@ System.out.println(sum(1,2));
 </p>
 <p>编译生成的常量也可以加入常量池里面。</p>
 <blockquote>
-<p>面试题：String的常量池，常量池优化</p>
+<p>面试题：String 的常量池，常量池优化</p>
 </blockquote>
 <blockquote>
 </blockquote>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-latex" data-lang="latex"><span class="line"><span class="cl">String a=&#34;I am a student&#34;;
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-latex" data-lang="latex"><span class="line"><span class="cl">//String a=&#34;I am a student&#34;;
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">//        String b=&#34;I am a student&#34;;
 </span></span><span class="line"><span class="cl">//        String a=new String(&#34;I am a student&#34;);
 </span></span><span class="line"><span class="cl">//        String b=new String(&#34;I am a student&#34;);
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">String a=new String(&#34;I am &#34;)+new String(&#34;a student&#34;);
 </span></span><span class="line"><span class="cl">String b=new String(&#34;I am &#34;)+new String(&#34;a student&#34;);
 </span></span><span class="line"><span class="cl">System.out.println(a.intern()==b.intern());
 </span></span><span class="line"><span class="cl">System.out.println(a.equals(b));
-</span></span></code></pre></div><h4 class="relative group">new方式 
-    <div id="new方式" class="anchor"></div>
+</span></span></code></pre></div><h4 class="relative group">new 方式 
+    <div id="new-方式" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#new%e6%96%b9%e5%bc%8f" aria-label="锚点">#</a>
+            style="text-decoration-line: none !important;" href="#new-%e6%96%b9%e5%bc%8f" aria-label="锚点">#</a>
     </span>        
     
 </h4>
@@ -1410,13 +1413,13 @@ System.out.println(sum(1,2));
   
 
 </p>
-<h4 class="relative group">intern方法(native方法。底层实现是C++) 
-    <div id="intern方法native方法底层实现是c" class="anchor"></div>
+<h4 class="relative group">intern 方法(native 方法。底层实现是 C++) 
+    <div id="intern-方法native-方法底层实现是-c" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#intern%e6%96%b9%e6%b3%95native%e6%96%b9%e6%b3%95%e5%ba%95%e5%b1%82%e5%ae%9e%e7%8e%b0%e6%98%afc" aria-label="锚点">#</a>
+            style="text-decoration-line: none !important;" href="#intern-%e6%96%b9%e6%b3%95native-%e6%96%b9%e6%b3%95%e5%ba%95%e5%b1%82%e5%ae%9e%e7%8e%b0%e6%98%af-c" aria-label="锚点">#</a>
     </span>        
     
 </h4>
@@ -1445,8 +1448,7 @@ System.out.println(sum(1,2));
 </p>
 <ul>
 <li>（线程独有）程序计数器：保存当前程序的执行位置。</li>
-<li>（线程独有）虚拟机栈：通过栈帧，多线程里面的markword就维护在这里，
-来维持方法调用顺序，帮助控制程序有序运行。</li>
+<li>（线程独有）虚拟机栈：通过栈帧，多线程里面的 markword 就维护在这里，来维持方法调用顺序，帮助控制程序有序运行。</li>
 <li>（线程独有）本地方法栈：同上，作用与本地方法。</li>
 <li>堆：所有的对象和数组都在这里保存。</li>
 <li>方法区：类信息、即时编译器的代码缓存、运行时常量池。</li>
@@ -1462,7 +1464,7 @@ System.out.println(sum(1,2));
     
 </h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-latex" data-lang="latex"><span class="line"><span class="cl"> int[]arr=new int[Integer.MAX<span class="nb">_</span>VALUE];
-</span></span></code></pre></div><p>下面来个重磅的哈哈，直接爆栈4个G</p>
+</span></span></code></pre></div><p>下面来个重磅的哈哈，直接爆栈 4 个 G</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-latex" data-lang="latex"><span class="line"><span class="cl">   static class Test<span class="nb">{</span> <span class="nb">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">        public static void main(String[] args) <span class="nb">{</span>
@@ -1487,7 +1489,7 @@ System.out.println(sum(1,2));
   
 
 </p>
-<p>好家伙，我这里直接new了一亿个Test对象
+<p>好家伙，我这里直接 new 了一亿个 Test 对象
 
 
 
