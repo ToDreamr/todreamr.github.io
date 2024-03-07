@@ -73,22 +73,6 @@ public abstract class Buffer { // 这四个变量的关系: mark &amp;lt;= posit
     </item>
     
     <item>
-      <title>NIO</title>
-      <link>/doc/nio/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/doc/nio/</guid>
-      <description>NIO基础 # **注意：**推荐完成JavaSE篇、JavaWeb篇的学习再开启这一部分的学习，如果在这之前完成了JVM篇，那么看起来就会比较轻松了。
-在JavaSE的学习中，我们了解了如何使用IO进行数据传输，Java IO是阻塞的，如果在一次读写数据调用时数据还没有准备好，或者目前不可写，那么读写操作就会被阻塞直到数据准备好或目标可写为止。Java NIO则是非阻塞的，每一次数据读写调用都会立即返回，并将目前可读（或可写）的内容写入缓冲区或者从缓冲区中输出，即使当前没有可用数据，调用仍然会立即返回并且不对缓冲区做任何操作。
-NIO框架是在JDK1.4推出的，它的出现就是为了解决传统IO的不足，这一期视频，我们就将围绕着NIO开始讲解。
-缓冲区 # 一切的一切还要从缓冲区开始讲起，包括源码在内，其实这个不是很难，只是需要理清思路。
-Buffer类及其实现 # Buffer类是缓冲区的实现，类似于Java中的数组，也是用于存放和获取数据的。但是Buffer相比Java中的数组，功能就非常强大了，它包含一系列对于数组的快捷操作。
-Buffer是一个抽象类，它的核心内容：
-public abstract class Buffer { // 这四个变量的关系: mark &amp;lt;= position &amp;lt;= limit &amp;lt;= capacity // 这些变量就是Buffer操作的核心了，之后我们学习的过程中可以看源码是如何操作这些变量的 private int mark = -1; private int position = 0; private int limit; private int capacity; // 直接缓冲区实现子类的数据内存地址（之后会讲解） long address; 我们来看看Buffer类的子类，包括我们认识到的所有基本类型（除了 boolean类型之外）：</description>
-      
-    </item>
-    
-    <item>
       <title>RabbitMq</title>
       <link>/doc/rabbitmq/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

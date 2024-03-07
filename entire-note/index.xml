@@ -7,7 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>© 2024 春江花朝秋月夜</copyright>
-    <lastBuildDate>Sat, 02 Mar 2024 13:22:59 +0800</lastBuildDate><atom:link href="/entire-note/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 06 Mar 2024 21:21:06 +0800</lastBuildDate><atom:link href="/entire-note/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用主从模式搭建一个Socket网络通信模型</title>
+      <link>/entire-note/netty/</link>
+      <pubDate>Wed, 06 Mar 2024 21:21:06 +0800</pubDate>
+      
+      <guid>/entire-note/netty/</guid>
+      <description>通过NIO非阻塞式模型我们可以搭建一个Reactor-SubReactor-Handler的消息服务器 # 主要目的是利用Selector选择器实现IO多路复用
+先来编写一下客户端，简单起见，只需要建立一个SocketChannel获取管道流传输数据
+/* * Copyright (c) 2024. 禁止抄袭和不经同意的商用行为 * Author: 春江花朝秋月夜 */ /** * @author 春江花朝秋月夜 */ public class ClientReactor { public static void main(String[] args) { // 创建一个新的SocketChannel，一会通过通道进行通信 try (SocketChannel channel =SocketChannel.</description>
+      
+    </item>
+    
     <item>
       <title>微信登录</title>
       <link>/entire-note/wexin-oauth/</link>

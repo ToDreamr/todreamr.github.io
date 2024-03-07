@@ -9,14 +9,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   
-  <title>NetFlix和SpringCloudAlibaba &middot; 春江花朝秋月夜</title>
-  <meta name="title" content="NetFlix和SpringCloudAlibaba &middot; 春江花朝秋月夜" />
+  <title>使用主从模式搭建一个Socket网络通信模型 &middot; 春江花朝秋月夜</title>
+  <meta name="title" content="使用主从模式搭建一个Socket网络通信模型 &middot; 春江花朝秋月夜" />
   
-  <meta name="description" content="A powerful, lightweight theme for Hugo built with Tailwind CSS." />
-  <meta name="keywords" content="微服务, " />
+  <meta name="description" content="netty课程交作业" />
   
   
-  <link rel="canonical" href="/entire-note/spring/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%BC%94%E8%BF%9B/" />
+  
+  <link rel="canonical" href="/entire-note/netty/" />
   
   
   
@@ -64,28 +64,17 @@
   
   
   
-  <meta property="og:title" content="NetFlix和SpringCloudAlibaba" />
-<meta property="og:description" content="Spring Cloud Netflix 介绍Netflix套件中有Eureka、Ribbon、Hystrix、Zuul、Feign五个非常知名的开源项目，分别被用于服务治理、负载均衡、服务容错、服务网关、服务通信。
-2018年，Netflix套件中的开源项目陆续进入了维护模式。
-2020年12月22日，Spring Cloud 2020.0.0版本发布，该版本中移除了Netflix套件中的相关依赖。
-Spring Cloud Alibaba 介绍2018年7月，Spring Cloud Alibaba正式开源，进入Spring Cloud孵化器。2018年10月，Spring Cloud Alibaba发布开源后的第一个版本。
-Spring Cloud Alibaba提供的组件如下：
-Sentinel：阿里巴巴开源产品，不仅仅可以作为断路器，也支持流量控制和服务降级。Nacos：阿里巴巴开源产品，服务注册与服务发现，同时也可以作为配置中心。RocketMQ：阿里巴巴开源的分布式消息和流计算平台。Dubbo：阿里巴巴开源产品，高性能Java RPC框架，服务通信组件。Seata：阿里巴巴开源产品，一个易于使用的高性能微服务分布式事务解决方案。Alibaba Cloud ACM：其前身为淘宝内部配置中心Diamond，是一款应用配置中心产品，需付费。Alibaba Cloud OSS：阿里云对象存储OSS是一款海量、安全、低成本、高可靠的云存储服务，需付费。Alibaba Cloud SMS：阿里云短信服务，需付费。Alibaba Cloud SchedulerX：阿里中间件自研的基于Akka架构的新一代分布式任务调度平台，需付费。spring-cloud 和 spring-cloud-alibaba 的区别Spring Cloud：Spring 官方提供的分布式应用开发的一套共用模式，也可以理解成一套微服务开发的统一的抽象编程模型。Spring Cloud Netflix：基于 Spring Cloud 编程模型实现的微服务框架，是最早期的微服务框架。近年来，Netflix 宣布大多数组件停止维护。Spring Cloud Alibaba：Alibaba 提供的基于 Spring Cloud 编程模型实现的微服务框架，其所有组件都来自于阿里巴巴微服务技术，无论是解决方案完整性、技术成熟度、社区还是文档资料等都对国内开发者非常友好。spring-cloud是Spring官方提供的微服务开发工具。它基于Spring Boot构建，提供了一系列框架和工具帮助我们快速构建分布式系统中的微服务架构。spring-cloud主要包含以下组件:" />
+  <meta property="og:title" content="使用主从模式搭建一个Socket网络通信模型" />
+<meta property="og:description" content="netty课程交作业" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/entire-note/spring/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%BC%94%E8%BF%9B/" /><meta property="og:image" content="/entire-note/spring/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%BC%94%E8%BF%9B/featured.png"/><meta property="article:section" content="entire-note" />
-<meta property="article:published_time" content="2024-01-26T13:56:23+00:00" />
-<meta property="article:modified_time" content="2024-01-26T13:56:23+00:00" />
+<meta property="og:url" content="/entire-note/netty/" /><meta property="article:section" content="entire-note" />
+<meta property="article:published_time" content="2024-03-06T21:21:06+08:00" />
+<meta property="article:modified_time" content="2024-03-06T21:21:06+08:00" />
 
 
-  <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="/entire-note/spring/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%BC%94%E8%BF%9B/featured.png"/>
-<meta name="twitter:title" content="NetFlix和SpringCloudAlibaba"/>
-<meta name="twitter:description" content="Spring Cloud Netflix 介绍Netflix套件中有Eureka、Ribbon、Hystrix、Zuul、Feign五个非常知名的开源项目，分别被用于服务治理、负载均衡、服务容错、服务网关、服务通信。
-2018年，Netflix套件中的开源项目陆续进入了维护模式。
-2020年12月22日，Spring Cloud 2020.0.0版本发布，该版本中移除了Netflix套件中的相关依赖。
-Spring Cloud Alibaba 介绍2018年7月，Spring Cloud Alibaba正式开源，进入Spring Cloud孵化器。2018年10月，Spring Cloud Alibaba发布开源后的第一个版本。
-Spring Cloud Alibaba提供的组件如下：
-Sentinel：阿里巴巴开源产品，不仅仅可以作为断路器，也支持流量控制和服务降级。Nacos：阿里巴巴开源产品，服务注册与服务发现，同时也可以作为配置中心。RocketMQ：阿里巴巴开源的分布式消息和流计算平台。Dubbo：阿里巴巴开源产品，高性能Java RPC框架，服务通信组件。Seata：阿里巴巴开源产品，一个易于使用的高性能微服务分布式事务解决方案。Alibaba Cloud ACM：其前身为淘宝内部配置中心Diamond，是一款应用配置中心产品，需付费。Alibaba Cloud OSS：阿里云对象存储OSS是一款海量、安全、低成本、高可靠的云存储服务，需付费。Alibaba Cloud SMS：阿里云短信服务，需付费。Alibaba Cloud SchedulerX：阿里中间件自研的基于Akka架构的新一代分布式任务调度平台，需付费。spring-cloud 和 spring-cloud-alibaba 的区别Spring Cloud：Spring 官方提供的分布式应用开发的一套共用模式，也可以理解成一套微服务开发的统一的抽象编程模型。Spring Cloud Netflix：基于 Spring Cloud 编程模型实现的微服务框架，是最早期的微服务框架。近年来，Netflix 宣布大多数组件停止维护。Spring Cloud Alibaba：Alibaba 提供的基于 Spring Cloud 编程模型实现的微服务框架，其所有组件都来自于阿里巴巴微服务技术，无论是解决方案完整性、技术成熟度、社区还是文档资料等都对国内开发者非常友好。spring-cloud是Spring官方提供的微服务开发工具。它基于Spring Boot构建，提供了一系列框架和工具帮助我们快速构建分布式系统中的微服务架构。spring-cloud主要包含以下组件:"/>
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="使用主从模式搭建一个Socket网络通信模型"/>
+<meta name="twitter:description" content="netty课程交作业"/>
 
   
   <script type="application/ld+json">
@@ -93,26 +82,26 @@ Sentinel：阿里巴巴开源产品，不仅仅可以作为断路器，也支持
     "@context": "https://schema.org",
     "@type": "Article",
     "articleSection": "Entire-notes",
-    "name": "NetFlix和SpringCloudAlibaba",
-    "headline": "NetFlix和SpringCloudAlibaba",
-    
-    "abstract": "Spring Cloud Netflix 介绍\rNetflix套件中有Eureka、Ribbon、Hystrix、Zuul、Feign五个非常知名的开源项目，分别被用于服务治理、负载均衡、服务容错、服务网关、服务通信。\n2018年，Netflix套件中的开源项目陆续进入了维护模式。\n2020年12月22日，Spring Cloud 2020.0.0版本发布，该版本中移除了Netflix套件中的相关依赖。\nSpring Cloud Alibaba 介绍\r2018年7月，Spring Cloud Alibaba正式开源，进入Spring Cloud孵化器。2018年10月，Spring Cloud Alibaba发布开源后的第一个版本。\nSpring Cloud Alibaba提供的组件如下：\nSentinel：阿里巴巴开源产品，不仅仅可以作为断路器，也支持流量控制和服务降级。\rNacos：阿里巴巴开源产品，服务注册与服务发现，同时也可以作为配置中心。\rRocketMQ：阿里巴巴开源的分布式消息和流计算平台。\rDubbo：阿里巴巴开源产品，高性能Java RPC框架，服务通信组件。\rSeata：阿里巴巴开源产品，一个易于使用的高性能微服务分布式事务解决方案。\rAlibaba Cloud ACM：其前身为淘宝内部配置中心Diamond，是一款应用配置中心产品，需付费。\rAlibaba Cloud OSS：阿里云对象存储OSS是一款海量、安全、低成本、高可靠的云存储服务，需付费。\rAlibaba Cloud SMS：阿里云短信服务，需付费。\rAlibaba Cloud SchedulerX：阿里中间件自研的基于Akka架构的新一代分布式任务调度平台，需付费。\rspring-cloud 和 spring-cloud-alibaba 的区别\rSpring Cloud：Spring 官方提供的分布式应用开发的一套共用模式，也可以理解成一套微服务开发的统一的抽象编程模型。\rSpring Cloud Netflix：基于 Spring Cloud 编程模型实现的微服务框架，是最早期的微服务框架。近年来，Netflix 宣布大多数组件停止维护。\rSpring Cloud Alibaba：Alibaba 提供的基于 Spring Cloud 编程模型实现的微服务框架，其所有组件都来自于阿里巴巴微服务技术，无论是解决方案完整性、技术成熟度、社区还是文档资料等都对国内开发者非常友好。\rspring-cloud是Spring官方提供的微服务开发工具。它基于Spring Boot构建，提供了一系列框架和工具帮助我们快速构建分布式系统中的微服务架构。spring-cloud主要包含以下组件:",
+    "name": "使用主从模式搭建一个Socket网络通信模型",
+    "headline": "使用主从模式搭建一个Socket网络通信模型",
+    "description": "netty课程交作业",
+    "abstract": "通过NIO非阻塞式模型我们可以搭建一个Reactor-SubReactor-Handler的消息服务器 # 主要目的是利用Selector选择器实现IO多路复用\n先来编写一下客户端，简单起见，只需要建立一个SocketChannel获取管道流传输数据\n\/* * Copyright (c) 2024. 禁止抄袭和不经同意的商用行为 * Author: 春江花朝秋月夜 *\/ \/** * @author 春江花朝秋月夜 *\/ public class ClientReactor { public static void main(String[] args) { \/\/ 创建一个新的SocketChannel，一会通过通道进行通信 try (SocketChannel channel =SocketChannel.",
     "inLanguage": "zh-CN",
-    "url" : "\/entire-note\/spring\/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%BC%94%E8%BF%9B\/",
+    "url" : "\/entire-note\/netty\/",
     "author" : {
       "@type": "Person",
       "name": "春江花朝秋月夜"
     },
     "copyrightYear": "2024",
-    "dateCreated": "2024-01-26T13:56:23\u002b00:00",
-    "datePublished": "2024-01-26T13:56:23\u002b00:00",
+    "dateCreated": "2024-03-06T21:21:06\u002b08:00",
+    "datePublished": "2024-03-06T21:21:06\u002b08:00",
     
-    "dateModified": "2024-01-26T13:56:23\u002b00:00",
+    "dateModified": "2024-03-06T21:21:06\u002b08:00",
     
-    "keywords": ["微服务"],
+    
     
     "mainEntityOfPage": "true",
-    "wordCount": "128"
+    "wordCount": "85"
   }]
   </script>
 
@@ -571,7 +560,7 @@ Sentinel：阿里巴巴开源产品，不仅仅可以作为断路器，也支持
 
     
     <div class="fixed inset-x-0 top-0 h-[800px] single_hero_background nozoom"
-    style="background-image:url(/entire-note/spring/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%BC%94%E8%BF%9B/featured_huf488c235e70420de0eed210e1a5b8844_1291088_1200x0_resize_box_3.png);">
+    style="background-image:url(/img/%E4%BD%A0%E7%9A%84%E5%90%8D%E5%AD%97_hu58dd3bf4079e2d69ef87c0777d129691_1821305_1200x0_resize_box_3.png);">
     
 
 
@@ -624,8 +613,8 @@ Sentinel：阿里巴巴开源产品，不仅仅可以作为断路器，也支持
   <li class="inline hidden">
     <a
       class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
-      href="/entire-note/spring/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%BC%94%E8%BF%9B/"
-      >NetFlix和SpringCloudAlibaba</a
+      href="/entire-note/netty/"
+      >使用主从模式搭建一个Socket网络通信模型</a
     ><span class="px-1 text-primary-500">/</span>
   </li>
 
@@ -634,7 +623,7 @@ Sentinel：阿里巴巴开源产品，不仅仅可以作为断路器，也支持
 
     
     <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral" style="font-family: 华文中宋,serif">
-      NetFlix和SpringCloudAlibaba
+      使用主从模式搭建一个Socket网络通信模型
     </h1>
     <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
       
@@ -677,7 +666,7 @@ Sentinel：阿里巴巴开源产品，不仅仅可以作为断路器，也支持
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2024-01-26 13:56:23 &#43;0000 UTC">26 January 2024</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
+  <time datetime="2024-03-06 21:21:06 &#43;0800 CST">6 March 2024</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
   
 
   
@@ -712,16 +701,6 @@ Sentinel：阿里巴巴开源产品，不仅仅可以作为断路器，也支持
   
   
   
-  
-  
-  
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/&#34;,'_self');">
-    <span class="flex" style="cursor: pointer;">
-  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    微服务
-  </span>
-</span>
-  </span>
   
   
   
@@ -874,6 +853,89 @@ Sentinel：阿里巴巴开源产品，不仅仅可以作为断路器，也支持
   <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row" style="font-family: 华文中宋,serif">
 
     
+    <div style="width: 28%" class="order-first lg:ml-auto px-0 lg:order-last ltr:lg:pl-8 rtl:lg:pr-8">
+    <div class="toc ltr:pl-5 rtl:pr-5 print:hidden lg:sticky lg:top-[140px]">
+
+     <details open class="toc-right mt-0 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 hidden lg:block">
+  <summary
+    class="block py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    
+  </summary>
+  <div
+    class="min-w-[220px] py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#通过nio非阻塞式模型我们可以搭建一个reactor-subreactor-handler的消息服务器">通过NIO非阻塞式模型我们可以搭建一个Reactor-SubReactor-Handler的消息服务器</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</details>
+<details class="toc-inside mt-0 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 lg:hidden">
+  <summary
+    class="py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    
+  </summary>
+  <div
+    class="py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#通过nio非阻塞式模型我们可以搭建一个reactor-subreactor-handler的消息服务器">通过NIO非阻塞式模型我们可以搭建一个Reactor-SubReactor-Handler的消息服务器</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</details>
+
+ 
+<script>
+  (function () {
+    var $toc = $('#TableOfContents');
+    if ($toc.length > 0) {
+      var $window = $(window);
+
+      function onScroll() {
+        var currentScroll = $window.scrollTop();
+        var h = $('.anchor');
+        var id = "";
+        h.each(function (i, e) {
+          e = $(e);
+          if (e.offset().top - $(window).height()/3 <= currentScroll) {
+            id = e.attr('id');
+          }
+        });
+        var active = $toc.find('a.active');      
+        if (active.length == 1 && active.eq(0).attr('href') == '#' + id) return true;
+
+        active.each(function (i, e) {
+          
+            $(e).removeClass('active');
+          
+        });
+        $toc.find('a[href="#' + id + '"]').addClass('active')
+        $toc.find('a[href="#' + id + '"]').parentsUntil('#TableOfContents').each(function (i, e) {
+          $(e).children('a').parents('ul').show();          
+        });
+      }
+
+      $window.on('scroll', onScroll);
+      $(document).ready(function () {
+        
+        onScroll();
+      });
+    }
+  })();
+</script>
+  
+    </div>
+    </div>
+    
 
 
     <div class="min-w-0 min-h-0 max-w-fit" style="width: 100%">
@@ -881,70 +943,80 @@ Sentinel：阿里巴巴开源产品，不仅仅可以作为断路器，也支持
 
 
       <div class="article-content max-w-prose mb-20">
-        <h3>Spring Cloud Netflix 介绍</h3>
-<p>Netflix套件中有<code>Eureka</code>、<code>Ribbon</code>、<code>Hystrix</code>、<code>Zuul</code>、<code>Feign</code>五个非常知名的开源项目，分别被用于<code>服务治理</code>、<code>负载均衡</code>、<code>服务容错</code>、<code>服务网关</code>、<code>服务通信</code>。</p>
-<p>2018年，Netflix套件中的开源项目陆续进入了维护模式。</p>
-<p>2020年12月22日，Spring Cloud 2020.0.0版本发布，该版本中移除了Netflix套件中的相关依赖。</p>
-<h3 id="toc-1">Spring Cloud Alibaba 介绍</h3>
-<p>2018年7月，Spring Cloud Alibaba正式开源，进入Spring Cloud孵化器。2018年10月，Spring Cloud Alibaba发布开源后的第一个版本。</p>
-<p>Spring Cloud Alibaba提供的组件如下：</p>
-<ul>
-<li><code>Sentinel</code>：阿里巴巴开源产品，不仅仅可以作为断路器，也支持流量控制和服务降级。</li>
-<li><code>Nacos</code>：阿里巴巴开源产品，服务注册与服务发现，同时也可以作为配置中心。</li>
-<li><code>RocketMQ</code>：阿里巴巴开源的分布式消息和流计算平台。</li>
-<li><code>Dubbo</code>：阿里巴巴开源产品，高性能Java RPC框架，服务通信组件。</li>
-<li><code>Seata</code>：阿里巴巴开源产品，一个易于使用的高性能微服务分布式事务解决方案。</li>
-<li><code>Alibaba Cloud ACM</code>：其前身为淘宝内部配置中心Diamond，是一款应用配置中心产品，需付费。</li>
-<li><code>Alibaba Cloud OSS</code>：阿里云对象存储OSS是一款海量、安全、低成本、高可靠的云存储服务，需付费。</li>
-<li><code>Alibaba Cloud SMS</code>：阿里云短信服务，需付费。</li>
-<li><code>Alibaba Cloud SchedulerX</code>：阿里中间件自研的基于Akka架构的新一代分布式任务调度平台，需付费。</li>
-</ul>
-<h3 id="toc-2">spring-cloud 和 spring-cloud-alibaba 的区别</h3>
-<ul>
-<li><code>Spring Cloud</code>：Spring 官方提供的分布式应用开发的一套共用模式，也可以理解成一套微服务开发的统一的抽象编程模型。</li>
-<li><code>Spring Cloud Netflix</code>：基于 Spring Cloud 编程模型实现的微服务框架，是最早期的微服务框架。近年来，Netflix 宣布大多数组件停止维护。</li>
-<li><code>Spring Cloud Alibaba</code>：Alibaba 提供的基于 Spring Cloud 编程模型实现的微服务框架，其所有组件都来自于阿里巴巴微服务技术，无论是解决方案完整性、技术成熟度、社区还是文档资料等都对国内开发者非常友好。</li>
-</ul>
-<p><code>spring-cloud</code>是<code>Spring</code>官方提供的微服务开发工具。它基于<code>Spring Boot</code>构建，提供了一系列框架和工具帮助我们快速构建分布式系统中的微服务架构。<code>spring-cloud</code>主要包含以下组件:</p>
-<ul>
-<li><code>Eureka</code>:服务注册中心,用于服务注册与发现。</li>
-<li><code>Ribbon</code>:负载均衡器,在服务调用方进行负载均衡。</li>
-<li><code>Feign</code>:声明式 REST 客户端,简化 RESTful API 的调用。</li>
-<li><code>Hystrix</code>:熔断器,容错管理工具,防止分布式系统中级联故障。</li>
-<li><code>Config</code>:配置中心,通过 Git 仓库统一管理应用配置。</li>
-<li><code>Bus</code>:事件总线,用于广播配置文件变更事件。</li>
-<li><code>Sleuth</code>:调用链监控系统,用于跟踪微服务中的调用链信息。</li>
-<li><code>Stream</code>:消息驱动微服务,简化消息系统的使用。</li>
-<li><code>Zuul</code>:API 网关,用于认证、监控和路由转发等功能。</li>
-<li><code>Gateway</code>:新的 API 网关,取代 Zuul。</li>
-</ul>
-<p>除此之外，<code>spring-cloud</code>还支持与第三方组件的整合，如:</p>
-<ul>
-<li><code>Kubernetes</code>:容器编排平台的整合。</li>
-<li><code>Netflix组件</code>:Ribbon、Hystrix、Zuul 等。</li>
-<li><code>Zookeeper</code>:服务注册发现与配置中心的支持。</li>
-<li><code>Consul</code>:服务注册发现与配置中心的支持。</li>
-</ul>
-<p><code>spring-cloud-alibaba</code>是阿里巴巴开源的组件，主要包含了阿里巴巴在微服务方面的若干开源产品，<code>spring-cloud-alibaba</code>中的主要组件有:</p>
-<ul>
-<li><code>Nacos</code>:一个更易于构建云原生应用的动态服务发现、配置管理和服务管理平台。</li>
-<li><code>Dubbo</code>:阿里巴巴开源的一个高性能 Java RPC 框架。</li>
-<li><code>RocketMQ</code>:一款开源的分布式消息系统,基于高可用分布式集群技术,提供低延时的、高可靠的消息发布与订阅服务。</li>
-<li><code>Seata</code>:阿里巴巴开源产品,一个易于使用的高性能微服务分布式事务解决方案。</li>
-<li><code>Sentinel</code>:阿里巴巴开源产品,一个控制微服务流量的开源框架。</li>
-</ul>
-<p>除此之外，<code>spring-cloud-alibaba</code>还整合了<code>Spring Cloud</code>与上述组件，提供了更加完善的微服务解决方案，主要包含:</p>
-<ul>
-<li><code>Service Discovery</code>:包含 Nacos 与 Eureka 的发现组件。</li>
-<li><code>Configuration</code>:Nacos 配置中心组件。</li>
-<li><code>Messaging</code>:RocketMQ 消息中间件的整合。</li>
-<li><code>Distributed Transaction</code>:Seata 的分布式事务支持。</li>
-<li><code>Circuit Breaker</code>:Sentinel 的熔断与限流支持。</li>
-<li><code>Gateway</code>:与 Spring Cloud Gateway 的整合。</li>
-</ul>
+        <h2 class="relative group">通过NIO非阻塞式模型我们可以搭建一个Reactor-SubReactor-Handler的消息服务器 
+    <div id="通过nio非阻塞式模型我们可以搭建一个reactor-subreactor-handler的消息服务器" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e9%80%9a%e8%bf%87nio%e9%9d%9e%e9%98%bb%e5%a1%9e%e5%bc%8f%e6%a8%a1%e5%9e%8b%e6%88%91%e4%bb%ac%e5%8f%af%e4%bb%a5%e6%90%ad%e5%bb%ba%e4%b8%80%e4%b8%aareactor-subreactor-handler%e7%9a%84%e6%b6%88%e6%81%af%e6%9c%8d%e5%8a%a1%e5%99%a8" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
 <blockquote>
-<p>Spring Cloud Dubbo 从 2021.0.1.0 起已被移除出主干，不再随主干演进。</p>
+<p>主要目的是利用Selector选择器实现IO多路复用</p>
 </blockquote>
+<p>先来编写一下客户端，简单起见，只需要建立一个SocketChannel获取管道流传输数据</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Copyright (c) 2024. 禁止抄袭和不经同意的商用行为
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Author: 春江花朝秋月夜
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @author 春江花朝秋月夜
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ClientReactor</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 创建一个新的SocketChannel，一会通过通道进行通信
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">try</span> <span class="o">(</span><span class="n">SocketChannel</span> <span class="n">channel</span> <span class="o">=</span><span class="n">SocketChannel</span><span class="o">.</span><span class="na">open</span><span class="o">(</span><span class="n">newInetSocketAddress</span><span class="o">(</span><span class="s">&#34;localhost&#34;</span><span class="o">,</span> <span class="mi">9000</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">                <span class="n">Scanner</span> <span class="n">scanner</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Scanner</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">in</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;已连接到服务端！&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// 咱给它套个无限循环，这样就能一直发消息了
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;请输入要发送给服务端的内容：&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">String</span> <span class="n">text</span> <span class="o">=</span> <span class="n">scanner</span><span class="o">.</span><span class="na">nextLine</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">// 直接向通道中写入数据
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="n">channel</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">ByteBuffer</span><span class="o">.</span><span class="na">wrap</span><span class="o">(</span><span class="n">text</span><span class="o">.</span><span class="na">getBytes</span><span class="o">(</span><span class="n">StandardCharsets</span><span class="o">.</span><span class="na">UTF_8</span><span class="o">)));</span>
+</span></span><span class="line"><span class="cl">                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;已发送！&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">ByteBuffer</span> <span class="n">buffer</span> <span class="o">=</span> <span class="n">ByteBuffer</span><span class="o">.</span><span class="na">allocate</span><span class="o">(</span><span class="mi">128</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">channel</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">buffer</span><span class="o">);</span> <span class="c1">// 直接从通道中读取数据
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="n">buffer</span><span class="o">.</span><span class="na">flip</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;收到服务器返回：&#34;</span> <span class="o">+</span> <span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="n">buffer</span><span class="o">.</span><span class="na">array</span><span class="o">(),</span> <span class="mi">0</span><span class="o">,</span> <span class="n">buffer</span><span class="o">.</span><span class="na">remaining</span><span class="o">()));</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">throw</span> <span class="k">new</span> <span class="n">RuntimeException</span><span class="o">(</span><span class="n">e</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>现在来考虑一下服务端模型</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/netty/image_hu30fc0675800aff03ca53b986a2e179ec_172110_330x0_resize_box_3.png 330w,
+        /entire-note/netty/image_hu30fc0675800aff03ca53b986a2e179ec_172110_660x0_resize_box_3.png 660w,
+        /entire-note/netty/image_hu30fc0675800aff03ca53b986a2e179ec_172110_1024x0_resize_box_3.png 1024w,
+        /entire-note/netty/image_hu30fc0675800aff03ca53b986a2e179ec_172110_1320x0_resize_box_3.png 2x"
+        src="/entire-note/netty/image_hu30fc0675800aff03ca53b986a2e179ec_172110_660x0_resize_box_3.png"
+        alt="设计"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>由于是主从模式，先是有一个主Reactor作为请求接收器件，然后将任务代理给Sub-Reactor</p>
 
       </div>
 
@@ -955,8 +1027,8 @@ Sentinel：阿里巴巴开源产品，不仅仅可以作为断路器，也支持
 
     
     <script>
-      var oid = "views_entire-note\\spring\\微服务演进\\index.md"
-      var oid_likes = "likes_entire-note\\spring\\微服务演进\\index.md"
+      var oid = "views_entire-note\\netty\\index.md"
+      var oid_likes = "likes_entire-note\\netty\\index.md"
     </script>
     
     
@@ -978,7 +1050,7 @@ Sentinel：阿里巴巴开源产品，不仅仅可以作为断路器，也支持
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://twitter.com/intent/tweet/?url=/entire-note/spring/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%BC%94%E8%BF%9B/&amp;text=NetFlix%e5%92%8cSpringCloudAlibaba"
+      href="https://twitter.com/intent/tweet/?url=/entire-note/netty/&amp;text=%e4%bd%bf%e7%94%a8%e4%b8%bb%e4%bb%8e%e6%a8%a1%e5%bc%8f%e6%90%ad%e5%bb%ba%e4%b8%80%e4%b8%aaSocket%e7%bd%91%e7%bb%9c%e9%80%9a%e4%bf%a1%e6%a8%a1%e5%9e%8b"
       title="分享到 Twitter"
       aria-label="分享到 Twitter"
       >
@@ -996,7 +1068,7 @@ Sentinel：阿里巴巴开源产品，不仅仅可以作为断路器，也支持
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://t.me/share/url?url=/entire-note/spring/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%BC%94%E8%BF%9B/&amp;resubmit=true&amp;title=NetFlix%e5%92%8cSpringCloudAlibaba"
+      href="https://t.me/share/url?url=/entire-note/netty/&amp;resubmit=true&amp;title=%e4%bd%bf%e7%94%a8%e4%b8%bb%e4%bb%8e%e6%a8%a1%e5%bc%8f%e6%90%ad%e5%bb%ba%e4%b8%80%e4%b8%aaSocket%e7%bd%91%e7%bb%9c%e9%80%9a%e4%bf%a1%e6%a8%a1%e5%9e%8b"
       title=""
       aria-label=""
       >
@@ -1015,7 +1087,7 @@ Sentinel：阿里巴巴开源产品，不仅仅可以作为断路器，也支持
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="mailto:?body=/entire-note/spring/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%BC%94%E8%BF%9B/&amp;subject=NetFlix%e5%92%8cSpringCloudAlibaba"
+      href="mailto:?body=/entire-note/netty/&amp;subject=%e4%bd%bf%e7%94%a8%e4%b8%bb%e4%bb%8e%e6%a8%a1%e5%bc%8f%e6%90%ad%e5%bb%ba%e4%b8%80%e4%b8%aaSocket%e7%bd%91%e7%bb%9c%e9%80%9a%e4%bf%a1%e6%a8%a1%e5%9e%8b"
       title="通过电子邮件发送"
       aria-label="通过电子邮件发送"
       >
@@ -1041,11 +1113,11 @@ Sentinel：阿里巴巴开源产品，不仅仅可以作为断路器，也支持
   
   
 
-  <a href="/entire-note/spring/eureka/" class="min-w-full">
+  <a href="/entire-note/wexin-oauth/" class="min-w-full">
     
     <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
         
-        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/img/annimation/4c758d7c82292f81f99d63ff1072aa9adb5c3536_raw_hu9b60894d5013d728985af7ffc2fcbbdd_675352_600x0_resize_q75_box.jpg);"></div>
+        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/entire-note/wexin-oauth/featured_hua929311aba409892f4dc6f3c74e11c1f_564137_600x0_resize_box_3.png);"></div>
         
       
 
@@ -1053,7 +1125,7 @@ Sentinel：阿里巴巴开源产品，不仅仅可以作为断路器，也支持
 
         
         <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
-          href="/entire-note/spring/eureka/">Eureka</div>
+          href="/entire-note/wexin-oauth/">微信登录</div>
         
 
         <div class="text-sm text-neutral-500 dark:text-neutral-400">
@@ -1094,7 +1166,7 @@ Sentinel：阿里巴巴开源产品，不仅仅可以作为断路器，也支持
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2023-11-11 23:55:26 &#43;0800 CST">11 November 2023</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
+  <time datetime="2024-03-02 13:22:59 &#43;0800 CST">2 March 2024</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">4 分钟</span>
   
 
   
@@ -1132,10 +1204,10 @@ Sentinel：阿里巴巴开源产品，不仅仅可以作为断路器，也支持
   
   
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/oauth2/&#34;,'_self');">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    微服务
+    Oauth2
   </span>
 </span>
   </span>
@@ -1161,11 +1233,11 @@ Sentinel：阿里巴巴开源产品，不仅仅可以作为断路器，也支持
   
   
 
-  <a href="/entire-note/spring/cloud/" class="min-w-full">
+  <a href="/entire-note/vscode/" class="min-w-full">
     
     <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
         
-        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/entire-note/spring/cloud/featured_huf488c235e70420de0eed210e1a5b8844_1291088_600x0_resize_box_3.png);"></div>
+        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/entire-note/vscode/featured_hu3c50a8fc52c7107f84f0551d809b0ab9_1202012_600x0_resize_box_3.png);"></div>
         
       
 
@@ -1173,7 +1245,7 @@ Sentinel：阿里巴巴开源产品，不仅仅可以作为断路器，也支持
 
         
         <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
-          href="/entire-note/spring/cloud/">SpringCloud</div>
+          href="/entire-note/vscode/">自用的Vscode个人觉得还算耐看的主题和字体以及编码习惯</div>
         
 
         <div class="text-sm text-neutral-500 dark:text-neutral-400">
@@ -1214,7 +1286,7 @@ Sentinel：阿里巴巴开源产品，不仅仅可以作为断路器，也支持
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2023-11-11 15:08:23 &#43;0000 UTC">11 November 2023</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">2 分钟</span>
+  <time datetime="2024-03-02 13:22:59 &#43;0800 CST">2 March 2024</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
   
 
   
@@ -1252,10 +1324,130 @@ Sentinel：阿里巴巴开源产品，不仅仅可以作为断路器，也支持
   
   
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/%E7%AC%94%E8%AE%B0/&#34;,'_self');">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    微服务
+    笔记
+  </span>
+</span>
+  </span>
+  
+  
+  
+  
+</div>
+
+
+
+
+        </div>
+
+        
+      </div>
+      <div class="px-6 pt-4 pb-2">
+
+      </div>
+    </div>
+  </a>
+
+  
+  
+
+  <a href="/entire-note/oauth2/" class="min-w-full">
+    
+    <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
+        
+        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/img/annimation/4c758d7c82292f81f99d63ff1072aa9adb5c3536_raw_hu9b60894d5013d728985af7ffc2fcbbdd_675352_600x0_resize_q75_box.jpg);"></div>
+        
+      
+
+      <div class="px-6 py-4">
+
+        
+        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
+          href="/entire-note/oauth2/">Oauth2</div>
+        
+
+        <div class="text-sm text-neutral-500 dark:text-neutral-400">
+          
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2024-02-29 17:52:31 &#43;0800 CST">29 February 2024</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
+  
+
+  
+  
+</div>
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/oauth2/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Oauth2
   </span>
 </span>
   </span>
@@ -1292,7 +1484,7 @@ Sentinel：阿里巴巴开源产品，不仅仅可以作为断路器，也支持
       <div class="flex justify-between pt-3">
         <span>
           
-            <a class="flex group mr-3" href="/entire-note/spring/eureka/">
+            <a class="flex group mr-3" href="/entire-note/wexin-oauth/">
               <span
                 class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
                 >&larr;</span
@@ -1304,11 +1496,11 @@ Sentinel：阿里巴巴开源产品，不仅仅可以作为断路器，也支持
               <span class="flex flex-col">
                 <span
                   class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
-                  >Eureka</span
+                  >微信登录</span
                 >
                 <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
                   
-                    <time datetime="2023-11-11 23:55:26 &#43;0800 CST">11 November 2023</time>
+                    <time datetime="2024-03-02 13:22:59 &#43;0800 CST">2 March 2024</time>
                   
                 </span>
               </span>
@@ -1316,28 +1508,6 @@ Sentinel：阿里巴巴开源产品，不仅仅可以作为断路器，也支持
           
         </span>
         <span>
-          
-            <a class="flex text-right group ml-3" href="/entire-note/music/">
-              <span class="flex flex-col">
-                <span
-                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
-                  >音乐</span
-                >
-                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
-                  
-                    <time datetime="2024-01-29 18:23:23 &#43;0800 CST">29 January 2024</time>
-                  
-                </span>
-              </span>
-              <span
-                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
-                >&rarr;</span
-              >
-              <span
-                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
-                >&larr;</span
-              >
-            </a>
           
         </span>
       </div>
