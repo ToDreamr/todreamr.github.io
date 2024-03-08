@@ -507,11 +507,6 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>/doc/asm/%E5%8D%95%E7%89%87%E6%9C%BA/</loc>
-    <changefreq>always</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
     <loc>/featured/</loc>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
