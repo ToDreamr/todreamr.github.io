@@ -1,0 +1,1766 @@
+<!DOCTYPE html>
+<html lang="zh-CN" dir="ltr" class="scroll-smooth" data-default-appearance="light"
+  data-auto-appearance="true"><head>
+
+  <meta charset="utf-8" />
+  
+  <meta http-equiv="content-language" content="zh-CN" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  
+  <title> &middot; 春江花朝秋月夜</title>
+  <meta name="title" content=" &middot; 春江花朝秋月夜" />
+  
+  <meta name="description" content="A powerful, lightweight theme for Hugo built with Tailwind CSS." />
+  
+  
+  
+  <link rel="canonical" href="/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/%E4%BD%AC%E7%9A%84/" />
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.b0d4aeb65335611c810957fcff4af94f45bb796b37facd9be6f7287ee03ce57038918ff5d4ac7a6ea77914fde6d3942c0243d3d17f90926c454b4ea3499e973a.css"
+    integrity="sha512-sNSutlM1YRyBCVf8/0r5T0W7eWs3&#43;s2b5vcofuA85XA4kY/11Kx6bqd5FP3m05QsAkPT0X&#43;QkmxFS06jSZ6XOg==" />
+  
+  
+  <script type="text/javascript" src="/js/appearance.min.516a16745bea5a9bd011138d254cc0fd3973cd55ce6e15f3dec763e7c7c2c7448f8fe7b54cca811cb821b0c7e12cd161caace1dd794ac3d34d40937cbcc9ee12.js"
+    integrity="sha512-UWoWdFvqWpvQERONJUzA/TlzzVXObhXz3sdj58fCx0SPj&#43;e1TMqBHLghsMfhLNFhyqzh3XlKw9NNQJN8vMnuEg=="></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script defer type="text/javascript" id="script-bundle" src="/js/main.bundle.min.6c7ae15a14b4f78dc4f6e7f92e5a4e05d69a1eafe594e439255e5f72defe4531e8fda36f83cf9730e27868220649112476686eec9d28c582deaabe019c419dbd.js"
+    integrity="sha512-bHrhWhS0943E9uf5LlpOBdaaHq/llOQ5JV5fct7&#43;RTHo/aNvg8&#43;XMOJ4aCIGSREkdmhu7J0oxYLeqr4BnEGdvQ==" data-copy="" data-copied=""></script>
+  
+  
+  <script src="/js/zoom.min.js"></script>
+  
+  
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="" />
+<meta property="og:description" content="C&#43;&#43;和C # C&#43;&#43;保留了C语言原有的所有优点，增加了面向对象的机制
+虽然可以使用C实现面向对象，但是也是重复制造C&#43;&#43;，虽然我没有在C&#43;&#43;中实现过面向对象，但是在lua中实现面向对象，lua中有一个非常重要的概念mateTable因为lua中所有东西都是table，table中可以通过修改mateTable，在访问该table时所没有的方法和变量时指向他的mateTable，由此可以实现newextendvirtual等。
+在C&#43;&#43;中，函数原型必不可少，但是在C中是可选的
+int (*pfunc)();在C中，这玩意竟然可以代表所有返回值为int的pfunc函数无论他的参数是什么，我好像有一段时间在找这个玩意怎么在C#里实现，在C&#43;&#43;中这个与int (*pfunc)(void);没有区别。
+联合体、结构体、类的区别
+结构体和类 在C&#43;&#43;中结构体和类没有很大的区别，结构体中默认成员是public而类中是private，结构体是值类型，类是引用类型，结构体存在栈中，类存在堆中。 在C#中结构体默认是private，不允许定义无参构造函数。
+说一说多态 # 重载 同一作用域下，同名函数不同参数，
+重写 派生类对基类作用域下同名(参数、返回值)虚函数函数进行覆盖
+重定义 派生类对基类作用域下同名(参数、返回值)函数进行隐藏 在C#中用new关键字重定义
+虚函数的用法 # 当一个类有一个以上虚函数时，那么这个类便会包含一张虚函数表。而当一个子类继承并重载了基类的虚函数时，它也会有自己的一张虚函数表，虚函数表中存的是函数指针。
+函数重载后，会在自己的虚函数表中的指针指向重载过后的函数，而未重载的函数虚函数表中的指针与基类相同。
+纯虚函数，（抽象函数）在C#中有abstract关键字,在C&#43;&#43;中在函数后加上 = 0表示,例如:int pfun() = 0,没有函数体。 在C&#43;&#43;中纯虚函数用overrid重写，虚函数用virtual重写。在C#中都用overrid。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/%E4%BD%AC%E7%9A%84/" /><meta property="article:section" content="entire-note" />
+
+
+
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="C&#43;&#43;和C # C&#43;&#43;保留了C语言原有的所有优点，增加了面向对象的机制
+虽然可以使用C实现面向对象，但是也是重复制造C&#43;&#43;，虽然我没有在C&#43;&#43;中实现过面向对象，但是在lua中实现面向对象，lua中有一个非常重要的概念mateTable因为lua中所有东西都是table，table中可以通过修改mateTable，在访问该table时所没有的方法和变量时指向他的mateTable，由此可以实现newextendvirtual等。
+在C&#43;&#43;中，函数原型必不可少，但是在C中是可选的
+int (*pfunc)();在C中，这玩意竟然可以代表所有返回值为int的pfunc函数无论他的参数是什么，我好像有一段时间在找这个玩意怎么在C#里实现，在C&#43;&#43;中这个与int (*pfunc)(void);没有区别。
+联合体、结构体、类的区别
+结构体和类 在C&#43;&#43;中结构体和类没有很大的区别，结构体中默认成员是public而类中是private，结构体是值类型，类是引用类型，结构体存在栈中，类存在堆中。 在C#中结构体默认是private，不允许定义无参构造函数。
+说一说多态 # 重载 同一作用域下，同名函数不同参数，
+重写 派生类对基类作用域下同名(参数、返回值)虚函数函数进行覆盖
+重定义 派生类对基类作用域下同名(参数、返回值)函数进行隐藏 在C#中用new关键字重定义
+虚函数的用法 # 当一个类有一个以上虚函数时，那么这个类便会包含一张虚函数表。而当一个子类继承并重载了基类的虚函数时，它也会有自己的一张虚函数表，虚函数表中存的是函数指针。
+函数重载后，会在自己的虚函数表中的指针指向重载过后的函数，而未重载的函数虚函数表中的指针与基类相同。
+纯虚函数，（抽象函数）在C#中有abstract关键字,在C&#43;&#43;中在函数后加上 = 0表示,例如:int pfun() = 0,没有函数体。 在C&#43;&#43;中纯虚函数用overrid重写，虚函数用virtual重写。在C#中都用overrid。"/>
+
+  
+  <script type="application/ld+json">
+  [{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Entire-notes",
+    "name": "",
+    "headline": "",
+    
+    "abstract": "C\u002b\u002b和C # C\u002b\u002b保留了C语言原有的所有优点，增加了面向对象的机制\n虽然可以使用C实现面向对象，但是也是重复制造C\u002b\u002b，虽然我没有在C\u002b\u002b中实现过面向对象，但是在lua中实现面向对象，lua中有一个非常重要的概念mateTable因为lua中所有东西都是table，table中可以通过修改mateTable，在访问该table时所没有的方法和变量时指向他的mateTable，由此可以实现newextendvirtual等。\n在C\u002b\u002b中，函数原型必不可少，但是在C中是可选的\nint (*pfunc)();在C中，这玩意竟然可以代表所有返回值为int的pfunc函数无论他的参数是什么，我好像有一段时间在找这个玩意怎么在C#里实现，在C\u002b\u002b中这个与int (*pfunc)(void);没有区别。\n联合体、结构体、类的区别\n结构体和类 在C\u002b\u002b中结构体和类没有很大的区别，结构体中默认成员是public而类中是private，结构体是值类型，类是引用类型，结构体存在栈中，类存在堆中。 在C#中结构体默认是private，不允许定义无参构造函数。\n说一说多态 # 重载 同一作用域下，同名函数不同参数，\n重写 派生类对基类作用域下同名(参数、返回值)虚函数函数进行覆盖\n重定义 派生类对基类作用域下同名(参数、返回值)函数进行隐藏 在C#中用new关键字重定义\n虚函数的用法 # 当一个类有一个以上虚函数时，那么这个类便会包含一张虚函数表。而当一个子类继承并重载了基类的虚函数时，它也会有自己的一张虚函数表，虚函数表中存的是函数指针。\n函数重载后，会在自己的虚函数表中的指针指向重载过后的函数，而未重载的函数虚函数表中的指针与基类相同。\n纯虚函数，（抽象函数）在C#中有abstract关键字,在C\u002b\u002b中在函数后加上 = 0表示,例如:int pfun() = 0,没有函数体。 在C\u002b\u002b中纯虚函数用overrid重写，虚函数用virtual重写。在C#中都用overrid。",
+    "inLanguage": "zh-CN",
+    "url" : "\/entire-note\/%E9%9D%A2%E8%AF%95%E9%A2%98\/%E4%BD%AC%E7%9A%84\/",
+    "author" : {
+      "@type": "Person",
+      "name": "春江花朝秋月夜"
+    },
+    
+    
+    
+    
+    
+    
+    
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "496"
+  }]
+  </script>
+
+
+  
+  
+  <meta name="author" content="春江花朝秋月夜" />
+  
+  
+  
+  <link href="https://space.bilibili.com/159283119?spm_id_from=333.1007.0.0" rel="me" />
+  
+  
+  <link href="https://github.com/ToDreamr" rel="me" />
+  
+  
+  <link href="https://music.163.com/#/user/home?id=568083850" rel="me" />
+  
+  
+  <link href="https://gitee.com/rainyheights" rel="me" />
+  
+  
+  <link href="https://www.zhihu.com/people/san-qiu-luo-yue" rel="me" />
+  
+  
+  
+  
+
+<script src="/lib/jquery/jquery.slim.min.js" integrity=""></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PEDMYR1V0K"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PEDMYR1V0K');
+</script>
+
+
+  
+  
+  <meta name="theme-color"/>
+
+  
+  
+</head>
+<body
+  class="flex flex-col h-screen px-6 m-auto text-lg leading-7 max-w-7xl bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32">
+  <div id="the-top" class="absolute flex self-center">
+    <a class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 focus:translate-y-0 dark:bg-neutral-600"
+      href="#main-content"><span
+        class="font-bold text-primary-600 ltr:pr-2 rtl:pl-2 dark:text-primary-400">&darr;</span>跳到文章开头</a>
+  </div>
+  
+  
+  <div class="min-h-[148px]"></div>
+<div class="fixed inset-x-0 pl-[24px] pr-[24px]" style="z-index:100">
+  <div id="menu-blur" class="absolute opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl shadow-2xl"></div>
+  <div class="relative max-w-[64rem] ml-auto mr-auto">
+    <div style="padding-left:0;padding-right:0;padding-top:2px;padding-bottom:3px ;height: 70px;font-family: 华文中宋,serif;"
+     class="main-menu flex items-center justify-between px-4 py-6 sm:px-6 md:justify-start space-x-3" >
+  
+  
+  
+  <div>
+    <a href="/" class="flex">
+    <span class="sr-only">春江花朝秋月夜</span>
+
+    <img src="/img/author.png" width="16" height="16"
+         class="logo max-h-[5rem] max-w-[5rem] object-scale-down object-left nozoom" alt="春江花朝秋月夜" />
+
+    </a>
+  </div>
+  
+
+  <div class="flex flex-1 items-center justify-between">
+
+    <nav class="flex space-x-3">
+
+      
+      <a href="/" class="text-base font-medium text-gray-500 hover:text-gray-900">春江花朝秋月夜</a>
+      
+
+    </nav>
+    <nav class="hidden md:flex items-center space-x-5 md:ml-12 h-12">
+
+      
+      
+      
+  <a href="/"  class="flex items-center">
+    
+    <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="">
+        首页
+    </p>
+</a>
+
+
+      
+      
+  <a href="/all/"  class="flex items-center">
+    
+    <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="全部">
+        全部✅
+    </p>
+</a>
+
+
+      
+      
+  <a href="/tags/"  class="flex items-center">
+    
+    <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="Tags">
+        系列文章🐾
+    </p>
+</a>
+
+
+      
+      
+  <a href="/friend/"  class="flex items-center">
+    
+    <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="friend">
+        友链🧑‍🤝‍🧑
+    </p>
+</a>
+
+
+      
+      
+  <a href="/doc/"  class="flex items-center">
+    
+    <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="Docs">
+        帮助文档😺
+    </p>
+</a>
+
+
+      
+      
+
+      
+
+
+      
+      <button id="search-button" aria-label="Search" class="text-base hover:text-primary-600 dark:hover:text-primary-400 h-12"
+              title="">
+      
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+      </button>
+
+      
+
+
+      
+      
+      <div
+              class="ltr:mr-14 rtl:ml-14 cursor-pointer text-sm text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400">
+        <button id="appearance-switcher" aria-label="Dark mode switcher" type="button">
+          <div class="flex items-center justify-center h-12 dark:hidden">
+            
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+
+  </span>
+
+
+          </div>
+          <div class="items-center justify-center hidden h-12 dark:flex">
+            
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+
+  </span>
+
+
+          </div>
+        </button>
+
+      </div>
+      
+
+    </nav>
+    <div class="flex md:hidden items-center space-x-5 md:ml-12">
+
+      <span></span>
+
+      
+
+
+      
+      <button id="search-button-mobile" aria-label="Search" class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+              title="">
+      
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+      </button>
+      
+
+      
+      
+      <button id="appearance-switcher-mobile" aria-label="Dark mode switcher" type="button" style="margin-right:5px">
+        <div class="flex items-center justify-center h-12 dark:hidden">
+          
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+
+  </span>
+
+
+        </div>
+        <div class="items-center justify-center hidden h-12 dark:flex">
+          
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+
+  </span>
+
+
+        </div>
+      </button>
+      
+
+    </div>
+
+  </div>
+  <div class="-my-2 -mr-2 md:hidden">
+
+    <label id="menu-button" for="menu-controller" class="block">
+      <input type="checkbox" id="menu-controller" class="hidden" />
+      
+      <div class="cursor-pointer hover:text-primary-600 dark:hover:text-primary-400">
+        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 96C0 78.33 14.33 64 32 64H416C433.7 64 448 78.33 448 96C448 113.7 433.7 128 416 128H32C14.33 128 0 113.7 0 96zM0 256C0 238.3 14.33 224 32 224H416C433.7 224 448 238.3 448 256C448 273.7 433.7 288 416 288H32C14.33 288 0 273.7 0 256zM416 448H32C14.33 448 0 433.7 0 416C0 398.3 14.33 384 32 384H416C433.7 384 448 398.3 448 416C448 433.7 433.7 448 416 448z"/></svg>
+
+  </span>
+
+
+      </div>
+      <div id="menu-wrapper" style="padding-top:5px;"
+           class="fixed inset-0 z-30 invisible w-screen h-screen m-0 overflow-auto transition-opacity opacity-0 cursor-default bg-neutral-100/50 backdrop-blur-sm dark:bg-neutral-900/50">
+        <ul
+                class="flex space-y-2 mt-3 flex-col items-end w-full px-6 py-6 mx-auto overflow-visible list-none ltr:text-right rtl:text-left max-w-7xl">
+
+          <li>
+                        <span
+                                class="cursor-pointer inline-block align-text-bottom hover:text-primary-600 dark:hover:text-primary-400">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+  </span>
+
+</span>
+          </li>
+
+          
+
+          
+  <li class="mt-1">
+    <a href="/"  class="flex items-center">
+        
+        <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="">
+            首页
+        </p>
+    </a>
+</li>
+
+
+
+          
+
+          
+  <li class="mt-1">
+    <a href="/all/"  class="flex items-center">
+        
+        <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="全部">
+            全部✅
+        </p>
+    </a>
+</li>
+
+
+
+          
+
+          
+  <li class="mt-1">
+    <a href="/tags/"  class="flex items-center">
+        
+        <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="Tags">
+            系列文章🐾
+        </p>
+    </a>
+</li>
+
+
+
+          
+
+          
+  <li class="mt-1">
+    <a href="/friend/"  class="flex items-center">
+        
+        <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="friend">
+            友链🧑‍🤝‍🧑
+        </p>
+    </a>
+</li>
+
+
+
+          
+
+          
+  <li class="mt-1">
+    <a href="/doc/"  class="flex items-center">
+        
+        <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="Docs">
+            帮助文档😺
+        </p>
+    </a>
+</li>
+
+
+
+          
+
+        </ul>
+        
+        
+
+      </div>
+    </label>
+  </div>
+
+  <div>
+    <iframe id="music" style="align-content: center;align-items: center" frameborder="no" border="0" marginwidth="0"
+            marginheight="0" width=200 height=86
+            src="//music.163.com/outchain/player?type=2&id=447925058&auto=1&height=66"></iframe>
+  </div>
+  <button class="change-music" onclick="getMusicList()">下一曲</button>
+  
+</div>
+<style>
+  .change-music{
+    margin-top: 20px;
+    width: 8%;
+    height: 50%;
+    font-family: 华文中宋,serif;
+     
+     
+     
+  }
+</style>
+<script>
+  
+  var MusicLists=[];
+  var musicUrl="";
+  function getMusicList()
+  {
+    
+    MusicLists.push
+    (29567192,1974443814,447926067,447925058,1974444808,
+            1974444807,29567187
+    );
+    var musicIndex=Math.floor(Math.random()*MusicLists.length+1);
+    console.log(musicIndex);
+    
+    musicUrl="https://music.163.com/outchain/player?type=2&id="+MusicLists[musicIndex]+"&auto=1&height=66";
+    var frame=document.getElementById("music");
+    var player=document.getElementsByName('player');
+    console.log(player);
+    frame.src=musicUrl;
+  }
+</script>
+
+
+
+
+<script>
+  (function () {
+    var $mainmenu = $('.main-menu');
+    var path = window.location.pathname;
+    $mainmenu.find('a[href="' + path + '"]').each(function (i, e) {
+      $(e).children('p').addClass('active');
+    });
+  })();
+</script>
+
+
+  </div>
+</div>
+<script>
+  window.addEventListener('scroll', function (e) {
+    var scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    var background_blur = document.getElementById('menu-blur');
+    background_blur.style.opacity = (scroll / 300);
+  });
+</script>
+
+  
+  <div class="relative flex flex-col grow">
+    <main id="main-content" class="grow">
+      
+
+
+<article>
+  
+  
+  
+  
+  
+  
+
+
+<div id="hero" class="h-[150px] md:h-[200px]"></div>
+
+
+    
+    <div class="fixed inset-x-0 top-0 h-[800px] single_hero_background nozoom"
+    style="background-image:url(/img/%E4%BD%A0%E7%9A%84%E5%90%8D%E5%AD%97_hu58dd3bf4079e2d69ef87c0777d129691_1821305_1200x0_resize_box_3.png);">
+    
+
+
+    <div class="absolute inset-0 bg-gradient-to-t from-neutral dark:from-neutral-800 to-transparent mix-blend-normal">
+    </div>
+    <div
+        class="absolute inset-0 opacity-60 bg-gradient-to-t from-neutral dark:from-neutral-800 to-neutral-100 dark:to-neutral-800 mix-blend-normal">
+    </div>
+</div>
+
+<div id="background-blur" class="fixed opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl"></div>
+<script>
+    window.addEventListener('scroll', function (e) {
+        var scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        var background_blur = document.getElementById('background-blur');
+        background_blur.style.opacity = (scroll / 300)
+    });
+</script>
+
+  
+  
+
+  <header id="single_header" class="mt-5 max-w-prose">
+    
+    <ol class="text-sm text-neutral-500 dark:text-neutral-400 print:hidden">
+  
+  
+    
+  
+    
+  
+  <li class="inline hidden">
+    <a
+      class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
+      href="/"
+      ></a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+  
+  <li class="inline ">
+    <a
+      class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
+      href="/entire-note/"
+      >Entire-notes</a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+  
+  <li class="inline hidden">
+    <a
+      class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
+      href="/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/%E4%BD%AC%E7%9A%84/"
+      >entire-note</a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+</ol>
+
+
+    
+    <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral" style="font-family: 华文中宋,serif">
+      
+    </h1>
+    <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+      
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="0001-01-01 00:00:00 &#43;0000 UTC">1 January 0001</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">3 分钟</span>
+  
+
+  
+  
+</div>
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+
+
+
+    </div>
+
+    
+    
+    
+    
+    
+
+    
+    
+    
+<div class="flex author">
+  
+  
+  
+  
+  
+  
+  <img class="!mt-0 !mb-0 h-24 w-24 rounded-full ltr:mr-4 rtl:ml-4" width="96" height="96"
+    alt="春江花朝秋月夜" src="/img/%E4%B8%89%E5%8F%B6_huefd8a5d2e6c0b8ff3aa6580d0e50af5a_1328716_192x192_fill_box_center_3.png" />
+  
+  
+  <div class="place-self-center">
+    
+    <div class="text-[0.6rem] uppercase leading-3 text-neutral-500 dark:text-neutral-400">
+      作者
+    </div>
+    <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
+      春江花朝秋月夜
+    </div>
+    
+    
+    <div class="text-sm text-neutral-700 dark:text-neutral-400">重湖叠𪩘清嘉。有三秋桂子，十里荷花。羌管弄晴，菱歌泛夜，嬉嬉钓叟莲娃。千骑拥高牙。乘醉听箫鼓，吟赏烟霞。异日图将好景，归去凤池夸。</div>
+    
+    <div class="text-2xl sm:text-lg">
+  <div class="flex flex-wrap text-neutral-400 dark:text-neutral-500">
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://space.bilibili.com/159283119?spm_id_from=333.1007.0.0"
+          target="_blank"
+          aria-label="Bilibili"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1699377062375" class="icon" viewBox="0 0 1129 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4167" xmlns:xlink="http://www.w3.org/1999/xlink" width="220.5078125" height="200"><path d="M234.909 9.656a80.468 80.468 0 0 1 68.398 0 167.374 167.374 0 0 1 41.843 30.578l160.937 140.82h115.07l160.936-140.82a168.983 168.983 0 0 1 41.843-30.578A80.468 80.468 0 0 1 930.96 76.445a80.468 80.468 0 0 1-17.703 53.914 449.818 449.818 0 0 1-35.406 32.187 232.553 232.553 0 0 1-22.531 18.508h100.585a170.593 170.593 0 0 1 118.289 53.109 171.397 171.397 0 0 1 53.914 118.288v462.693a325.897 325.897 0 0 1-4.024 70.007 178.64 178.64 0 0 1-80.468 112.656 173.007 173.007 0 0 1-92.539 25.75h-738.7a341.186 341.186 0 0 1-72.421-4.024A177.835 177.835 0 0 1 28.91 939.065a172.202 172.202 0 0 1-27.36-92.539V388.662a360.498 360.498 0 0 1 0-66.789A177.03 177.03 0 0 1 162.487 178.64h105.414c-16.899-12.07-31.383-26.555-46.672-39.43a80.468 80.468 0 0 1-25.75-65.984 80.468 80.468 0 0 1 39.43-63.57M216.4 321.873a80.468 80.468 0 0 0-63.57 57.937 108.632 108.632 0 0 0 0 30.578v380.615a80.468 80.468 0 0 0 55.523 80.469 106.218 106.218 0 0 0 34.601 5.632h654.208a80.468 80.468 0 0 0 76.444-47.476 112.656 112.656 0 0 0 8.047-53.109v-354.06a135.187 135.187 0 0 0 0-38.625 80.468 80.468 0 0 0-52.304-54.719 129.554 129.554 0 0 0-49.89-7.242H254.22a268.764 268.764 0 0 0-37.82 0z m0 0" fill="#20B0E3" p-id="4168"></path><path d="M348.369 447.404a80.468 80.468 0 0 1 55.523 18.507 80.468 80.468 0 0 1 28.164 59.547v80.468a80.468 80.468 0 0 1-16.094 51.5 80.468 80.468 0 0 1-131.968-9.656 104.609 104.609 0 0 1-10.46-54.719v-80.468a80.468 80.468 0 0 1 70.007-67.593z m416.02 0a80.468 80.468 0 0 1 86.102 75.64v80.468a94.148 94.148 0 0 1-12.07 53.11 80.468 80.468 0 0 1-132.773 0 95.757 95.757 0 0 1-12.875-57.133V519.02a80.468 80.468 0 0 1 70.007-70.812z m0 0" fill="#20B0E3" p-id="4169"></path></svg>
+  </span>
+
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://github.com/ToDreamr"
+          target="_blank"
+          aria-label="Github"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+
+  </span>
+
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://music.163.com/#/user/home?id=568083850"
+          target="_blank"
+          aria-label="Wangyi"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1707154946293" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2586" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><path d="M0 0m184.32 0l655.36 0q184.32 0 184.32 184.32l0 655.36q0 184.32-184.32 184.32l-655.36 0q-184.32 0-184.32-184.32l0-655.36q0-184.32 184.32-184.32Z" fill="#EA3E3C" p-id="2587"></path><path d="M527.616 849.43872a373.6064 373.6064 0 0 1-162.54976-39.00416c-112.36352-55.16288-180.00896-176.29184-172.55424-308.67456 7.41376-130.34496 85.10464-237.4656 202.752-279.552a35.85024 35.85024 0 0 1 24.15616 67.51232c-107.66336 38.49216-150.81472 136.86784-155.29984 216.13568-5.86752 103.51616 46.08 197.79584 132.34176 240.13824 124.69248 60.30336 216.91392 22.35392 260.82304-5.64224 59.8016-38.16448 97.86368-100.01408 96.95232-157.55264-1.024-63.72352-24.064-120.99584-63.27296-157.14304a145.408 145.408 0 0 0-65.5872-35.28704q2.82624 9.76896 5.64224 19.32288c13.38368 45.63968 24.94464 85.05344 25.6 114.40128a134.26688 134.26688 0 0 1-37.69344 97.76128 139.1104 139.1104 0 0 1-100.6592 40.45824 140.10368 140.10368 0 0 1-100.47488-42.24 169.12384 169.12384 0 0 1-46.2848-122.76736c1.19808-85.12512 80.11776-153.28256 162.816-175.104a324.80256 324.80256 0 0 1-6.71744-67.05152 92.0576 92.0576 0 0 1 69.18144-91.81184c46.21312-12.53376 104.448 5.19168 124.66176 37.888a35.84 35.84 0 0 1-11.70432 49.31584 35.84 35.84 0 0 1-49.26464-11.65312 62.34112 62.34112 0 0 0-48.45568-5.21216c-4.32128 1.71008-12.35968 4.90496-12.76928 23.10144a270.87872 270.87872 0 0 0 6.73792 58.51136 217.4976 217.4976 0 0 1 133.56032 57.6512c53.57568 49.38752 85.0432 125.46048 86.35392 208.71168 1.29024 81.85856-49.7664 167.86432-130.048 219.136a310.14912 310.14912 0 0 1-168.2432 48.65024z m23.6544-457.55392c-56.77056 15.6672-107.4688 63.03744-108.07296 106.42432a98.304 98.304 0 0 0 25.6512 71.43424 68.0448 68.0448 0 0 0 49.36704 20.87936 67.24608 67.24608 0 0 0 49.44896-18.944 63.19104 63.19104 0 0 0 17.23392-46.08c-0.4096-19.79392-11.7248-58.368-22.67136-95.6928-3.61472-12.42112-7.35232-25.14944-10.9568-38.02112z" fill="#FFFFFF" p-id="2588"></path></svg>
+  </span>
+
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://gitee.com/rainyheights"
+          target="_blank"
+          aria-label="Gitee"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1707288792446" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="6333" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><path d="M512 1024C230.4 1024 0 793.6 0 512S230.4 0 512 0s512 230.4 512 512-230.4 512-512 512z m259.2-569.6H480c-12.8 0-25.6 12.8-25.6 25.6v64c0 12.8 12.8 25.6 25.6 25.6h176c12.8 0 25.6 12.8 25.6 25.6V608c0 41.6-35.2 76.8-76.8 76.8h-240c-12.8 0-25.6-12.8-25.6-25.6V416c0-41.6 35.2-76.8 76.8-76.8h355.2c12.8 0 25.6-12.8 25.6-25.6v-64c0-12.8-12.8-25.6-25.6-25.6H416c-105.6 0-188.8 86.4-188.8 188.8V768c0 12.8 12.8 25.6 25.6 25.6h374.4c92.8 0 169.6-76.8 169.6-169.6V480c0-12.8-12.8-25.6-25.6-25.6z" fill="#888888" p-id="6334"></path></svg>
+  </span>
+
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://www.zhihu.com/people/san-qiu-luo-yue"
+          target="_blank"
+          aria-label="Zhihu"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1707288662942" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5244" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><path d="M564.7 230.1V803h60l25.2 71.4L756.3 803h131.5V230.1H564.7z m247.7 497h-59.9l-75.1 50.4-17.8-50.4h-18V308.3h170.7v418.8zM526.1 486.9H393.3c2.1-44.9 4.3-104.3 6.6-172.9h130.9l-0.1-8.1c0-0.6-0.2-14.7-2.3-29.1-2.1-15-6.6-34.9-21-34.9H287.8c4.4-20.6 15.7-69.7 29.4-93.8l6.4-11.2-12.9-0.7c-0.8 0-19.6-0.9-41.4 10.6-35.7 19-51.7 56.4-58.7 84.4-18.4 73.1-44.6 123.9-55.7 145.6-3.3 6.4-5.3 10.2-6.2 12.8-1.8 4.9-0.8 9.8 2.8 13 10.5 9.5 38.2-2.9 38.5-3 0.6-0.3 1.3-0.6 2.2-1 13.9-6.3 55.1-25 69.8-84.5h56.7c0.7 32.2 3.1 138.4 2.9 172.9h-141l-2.1 1.5c-23.1 16.9-30.5 63.2-30.8 65.2l-1.4 9.2h167c-12.3 78.3-26.5 113.4-34 127.4-3.7 7-7.3 14-10.7 20.8-21.3 42.2-43.4 85.8-126.3 153.6-3.6 2.8-7 8-4.8 13.7 2.4 6.3 9.3 9.1 24.6 9.1 5.4 0 11.8-0.3 19.4-1 49.9-4.4 100.8-18 135.1-87.6 17-35.1 31.7-71.7 43.9-108.9L497 850l5-12c0.8-1.9 19-46.3 5.1-95.9l-0.5-1.8-108.1-123-22 16.6c6.4-26.1 10.6-49.9 12.5-71.1h158.7v-8c0-40.1-18.5-63.9-19.2-64.9l-2.4-3z" fill="#1296DB" p-id="5245"></path></svg>
+  </span>
+
+</span></a
+        >
+      
+    
+  </div>
+
+</div>
+  </div>
+</div>
+    
+
+    
+
+    
+
+    
+    <div class="mb-5"></div>
+    
+
+  </header>
+
+  <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row" style="font-family: 华文中宋,serif">
+
+    
+    <div style="width: 28%" class="order-first lg:ml-auto px-0 lg:order-last ltr:lg:pl-8 rtl:lg:pr-8">
+    <div class="toc ltr:pl-5 rtl:pr-5 print:hidden lg:sticky lg:top-[140px]">
+
+     <details open class="toc-right mt-0 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 hidden lg:block">
+  <summary
+    class="block py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    
+  </summary>
+  <div
+    class="min-w-[220px] py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#c和c">C++和C</a>
+          <ul>
+            <li>
+              <ul>
+                <li><a href="#说一说多态">说一说多态</a></li>
+                <li><a href="#虚函数的用法">虚函数的用法</a></li>
+                <li><a href="#stl">STL</a></li>
+                <li><a href="#简述数组与指针的区别">简述数组与指针的区别</a></li>
+                <li><a href="#对于数组的处理">对于数组的处理</a></li>
+                <li><a href="#map的实现原理">⭐map的实现原理</a></li>
+                <li><a href="#红黑树">红黑树</a></li>
+                <li><a href="#哈希表">哈希表</a></li>
+                <li><a href="#dfs和bfs">DFS和BFS</a></li>
+                <li><a href="#内存五大区">⭐内存五大区</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#计算机">计算机</a>
+          <ul>
+            <li>
+              <ul>
+                <li><a href="#udp和tcp区别">UDP和TCP区别</a></li>
+                <li><a href="#线程和进程的区别">线程和进程的区别</a></li>
+                <li><a href="#进程间线程间的通讯方式">进程间、线程间的通讯方式</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</details>
+<details class="toc-inside mt-0 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 lg:hidden">
+  <summary
+    class="py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    
+  </summary>
+  <div
+    class="py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#c和c">C++和C</a>
+          <ul>
+            <li>
+              <ul>
+                <li><a href="#说一说多态">说一说多态</a></li>
+                <li><a href="#虚函数的用法">虚函数的用法</a></li>
+                <li><a href="#stl">STL</a></li>
+                <li><a href="#简述数组与指针的区别">简述数组与指针的区别</a></li>
+                <li><a href="#对于数组的处理">对于数组的处理</a></li>
+                <li><a href="#map的实现原理">⭐map的实现原理</a></li>
+                <li><a href="#红黑树">红黑树</a></li>
+                <li><a href="#哈希表">哈希表</a></li>
+                <li><a href="#dfs和bfs">DFS和BFS</a></li>
+                <li><a href="#内存五大区">⭐内存五大区</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#计算机">计算机</a>
+          <ul>
+            <li>
+              <ul>
+                <li><a href="#udp和tcp区别">UDP和TCP区别</a></li>
+                <li><a href="#线程和进程的区别">线程和进程的区别</a></li>
+                <li><a href="#进程间线程间的通讯方式">进程间、线程间的通讯方式</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</details>
+
+ 
+<script>
+  (function () {
+    var $toc = $('#TableOfContents');
+    if ($toc.length > 0) {
+      var $window = $(window);
+
+      function onScroll() {
+        var currentScroll = $window.scrollTop();
+        var h = $('.anchor');
+        var id = "";
+        h.each(function (i, e) {
+          e = $(e);
+          if (e.offset().top - $(window).height()/3 <= currentScroll) {
+            id = e.attr('id');
+          }
+        });
+        var active = $toc.find('a.active');      
+        if (active.length == 1 && active.eq(0).attr('href') == '#' + id) return true;
+
+        active.each(function (i, e) {
+          
+            $(e).removeClass('active');
+          
+        });
+        $toc.find('a[href="#' + id + '"]').addClass('active')
+        $toc.find('a[href="#' + id + '"]').parentsUntil('#TableOfContents').each(function (i, e) {
+          $(e).children('a').parents('ul').show();          
+        });
+      }
+
+      $window.on('scroll', onScroll);
+      $(document).ready(function () {
+        
+        onScroll();
+      });
+    }
+  })();
+</script>
+  
+    </div>
+    </div>
+    
+
+
+    <div class="min-w-0 min-h-0 max-w-fit" style="width: 100%">
+      
+
+
+      <div class="article-content max-w-prose mb-20">
+        <h2 class="relative group">C++和C 
+    <div id="c和c" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#c%e5%92%8cc" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<p>C++保留了C语言原有的所有优点，增加了面向对象的机制</p>
+<p>虽然可以使用C实现面向对象，但是也是重复制造C++，虽然我没有在C++中实现过面向对象，但是在lua中实现面向对象，lua中有一个非常重要的概念mateTable因为lua中所有东西都是table，table中可以通过修改mateTable，在访问该table时所没有的方法和变量时指向他的mateTable，由此可以实现new<code>extend</code>virtual等。</p>
+<p>在C++中，函数原型必不可少，但是在C中是可选的</p>
+<p>int (*pfunc)();在C中，这玩意竟然可以代表所有返回值为int的pfunc函数无论他的参数是什么，我好像有一段时间在找这个玩意怎么在C#里实现，在C++中这个与int (*pfunc)(void);没有区别。</p>
+<p>联合体、结构体、类的区别</p>
+<ol>
+<li>结构体和类
+在C++中结构体和类没有很大的区别，结构体中默认成员是public而类中是private，结构体是值类型，类是引用类型，结构体存在栈中，类存在堆中。</li>
+</ol>
+<p>在C#中结构体默认是private，不允许定义无参构造函数。</p>
+<h4 class="relative group">说一说多态 
+    <div id="说一说多态" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e8%af%b4%e4%b8%80%e8%af%b4%e5%a4%9a%e6%80%81" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<ol>
+<li>
+<p>重载
+同一作用域下，同名函数不同参数，</p>
+</li>
+<li>
+<p>重写
+派生类对基类作用域下同名(参数、返回值)虚函数函数进行覆盖</p>
+</li>
+<li>
+<p>重定义
+派生类对基类作用域下同名(参数、返回值)函数进行隐藏
+在C#中用new关键字重定义</p>
+</li>
+</ol>
+<h4 class="relative group">虚函数的用法 
+    <div id="虚函数的用法" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e8%99%9a%e5%87%bd%e6%95%b0%e7%9a%84%e7%94%a8%e6%b3%95" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>当一个类有一个以上虚函数时，那么这个类便会包含一张虚函数表。而当一个子类继承并重载了基类的虚函数时，它也会有自己的一张虚函数表，虚函数表中存的是函数指针。</p>
+<p>函数重载后，会在自己的虚函数表中的指针指向重载过后的函数，而未重载的函数虚函数表中的指针与基类相同。</p>
+<p>纯虚函数，（抽象函数）在C#中有abstract关键字,在C++中在函数后加上 = 0表示,例如:int pfun() = 0,没有函数体。
+在C++中纯虚函数用overrid重写，虚函数用virtual重写。在C#中都用overrid。</p>
+<p>纯虚函数的类也称为抽象类，是为了让使用者必须override整个类，从而无法被实例化，从编译器层面禁止了无实际意义的class对象的创建。C#一样。</p>
+<h4 class="relative group">STL 
+    <div id="stl" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#stl" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<ol>
+<li>模板类和模板方法（泛型）
+通过模板实现泛型编程，实现运行时多态，</li>
+</ol>
+<p>建立一个通用函数，其函数返回值类型和形参类型可以不具体制定，用一个虚拟的类型来代表。</p>
+<p>建立一个通用类，类中的成员数据类型可以不具体制定，用一个虚拟的类型来代表。</p>
+<p>比如，资源加载中有许多类型的资源进行加载，我拿到资源需要进行判空，类型转化等操作，可以封装一个函数，传入资源的类型在函数里就进行判空和类型转化，直接可以拿到资源进行使用。</p>
+<ol start="2">
+<li>容器</li>
+</ol>
+<ul>
+<li>⭐
+std::vector<T>
+，对对应C#中
+List<T>
+vector容器的迭代器是支持随机访问的迭代器。
+vector数据结构和数组非常相似，也称为单端数组。
+vector与普通数组区别：数组是静态空间，而vector可以动态扩展。
+并不是在原空间之后续接新空间，而是找更大的内存空间，然后将原数据拷贝新空间，释放原空间。
+应该合理的分配初始空间，防止进行较大的拷贝。</li>
+</ul>
+<h4 class="relative group">简述数组与指针的区别 
+    <div id="简述数组与指针的区别" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e7%ae%80%e8%bf%b0%e6%95%b0%e7%bb%84%e4%b8%8e%e6%8c%87%e9%92%88%e7%9a%84%e5%8c%ba%e5%88%ab" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>数组是直接访问数据的。
+指针是间接访问数据的。</p>
+<p>定义:
+数组是类型相同、数目固定的若干个变量的有限集合，它存放的是数据。
+指针是变量的地址，存放的是变量的地址。</p>
+<p>存储方式：
+数组通常存储在静态存储区或栈上。
+指针可以随时随地地指向任意类型的内存块。</p>
+<p>内存容量：
+用运算符sizeof可以计算出数组的容量(字节数)。
+sizeof(p)，p为指针得到的是一个指针变量的字节数，而不是p多指的内存容量。</p>
+<p>new和malloc区别
+申请内存的位置不同：</p>
+<p>new 操作符从自由存储区（free store）上为对象动态分配内存空间，自由存储区是 C++ 基于 new 操作符的一个抽象概念，凡是通过 new 操作符进行内存申请，该内存即为自由存储区。自由存储区不仅可以是堆，还可以是静态存储区或线程局部存储区，这取决于 operator new 在哪里为对象分配内存。需要注意的是，使用 new 申请的内存空间，需要使用对应的 delete 释放内存，否则会出现内存泄漏问题。</p>
+<p>malloc 函数从堆上动态分配内存。需要注意的是，使用 malloc 申请的内存空间，需要使用对应的 free 释放内存，否则会出现内存泄漏问题。</p>
+<p>返回类型的安全性</p>
+<p>new 操作符内存分配成功时，返回的是对象类型的指针，类型严格与对象匹配，无须进行类型转换，故 new 是符合类型安全性的操作符。
+malloc 内存分配成功则是返回 void 指针，需要通过强制类型转换将 void 指针转换成我们需要的类型，这可能会带来类型安全性的问题。</p>
+<p>内存分配失败时的返回值</p>
+<p>new 内存分配失败时，会抛出 std::bad_alloc 异常，这个异常可以通过异常处理机制捕获处理。
+malloc 分配失败时返回 NULL，需要手动进行错误处理。</p>
+<p>分配内存大小
+使用 new 操作符申请内存分配时无须指定内存块的大小，编译器会根据类型信息自行计算。需要注意的是，对于数组类型的内存申请，需要使用 new[] 操作符。malloc 则需要明确指出所需内存的尺寸。</p>
+<p>是否调用构造函数/析构函数</p>
+<p>使用 new 操作符来分配对象内存时会经历三个步骤：
+调用 operator new 函数（对于数组是 operator new[]）分配一块足够大的，原始的，未命名的内存空间以便存储特定类型的对象。</p>
+<p>编译器运行相应的构造函数以构造对象，并为其传入初值。
+对象构造完成后，返回一个指向该对象的指针。</p>
+<p>使用 delete 操作符来释放对象内存时会经历两个步骤：
+调用对象的析构函数。</p>
+<p>编译器调用operator delete(或operator delete[])函数释放内存空间。
+malloc不会调用构造函数，free也不会调用析构函数。</p>
+<h4 class="relative group">对于数组的处理 
+    <div id="对于数组的处理" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e5%af%b9%e4%ba%8e%e6%95%b0%e7%bb%84%e7%9a%84%e5%a4%84%e7%90%86" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>C++ 提供了 new[] 与 delete[] 来专门处理数组类型的分配。new 对数组的支持体现在它会分别调用构造函数函数初始化每一个数组元素，释放对象时为每个对象调用析构函数。
+注意 delete[] 要与 new[] 配套使用，不然会找出数组对象部分释放的现象，造成内存泄漏。
+malloc 并知道你在这块内存上要放的数组还是啥别的东西，反正它就给你一块原始的内存，在给你个内存的地址就完事。所以如果要动态分配一个数组的内存，还需要我们手动自定数组的大小</p>
+<p>是否可以被重载
+opeartor new /operator delete 可以被重载。注意，new 表达式和 operator new 是不同的，前者调用后者，严格来说，我们区分的是 new 表达式和 malloc 表达式，所以应该都不支持重载。</p>
+<p>是否支持内存扩充</p>
+<p>new 不支持内存扩充
+malloc 在分配内存后，如果内存不足，可以使用 realloc 进行内存重新分配，实现扩充。
+计算机基础篇</p>
+<h4 class="relative group">⭐map的实现原理 
+    <div id="map的实现原理" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#map%e7%9a%84%e5%ae%9e%e7%8e%b0%e5%8e%9f%e7%90%86" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>C#中使用Dictionary&lt;TKey,TValue&gt;，C++使用std::map&lt;TK,TV&gt;。</p>
+<p>map的内部实现是红黑树，Dictionary的实现是哈希表。</p>
+<p>map实现
+二叉排序树
+要了解红黑树先了解二叉排序树（二叉查找树）</p>
+<p>其实这就是二分的思想，与二分查找的思想一致。
+但是，其增删查改的效率与树的形态有关。
+增删查改最好时间复杂为O(lg(n))</p>
+<p>由于二叉树多次插入新节点的不平衡，带来查找效率大打折扣，于是使用一种方法使得二叉树搜索树能够自平衡。</p>
+<p>平衡二叉树和2-3树
+于是有了红黑树：</p>
+<p>红黑树提出前有平衡二叉树和2-3树，这里大概讲一下：</p>
+<p>平衡二叉树
+平衡二叉树的规则很简单：
+1.保持是一个二叉树
+2.每个节点的左子树和右子树的平衡因子的绝对值小于等于1，也就是左子树的高度减去右子树的高度的值为-1，0，1。</p>
+<p>当插入一个节点时，如果某个节点的平衡因子被破坏，需要进行旋转操作，有LL，LR，RR，RL四种不平衡情况。只要遵循二叉树的原则来旋转，并且降低树的高度。</p>
+<h4 class="relative group">红黑树 
+    <div id="红黑树" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e7%ba%a2%e9%bb%91%e6%a0%91" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>1.节点是红色或黑色。</p>
+<p>2.根节点是黑色。</p>
+<p>3.每个叶子节点都是黑色的空节点（NIL节点）。</p>
+<p>4 每个红色节点的两个子节点都是黑色。(从每个叶子到根的所有路径上不能有两个连续的红色节点)</p>
+<p>5.从任一节点到其每个叶子的所有路径都包含相同数目的黑色节点。</p>
+<p>其实看起来规则多多，只要对照平衡二叉树其实规则一致。都是为了保持平衡，也就是保持平衡因子。</p>
+<p>红黑树相比与平衡二叉树可能某些时候出现不平衡的现象，因为有时候红黑树只需要通过染色，就可以达到目的。</p>
+<p>具体看红黑树比 AVL 树具体更高效在哪里？ - 知乎 (zhihu.com)</p>
+<h4 class="relative group">哈希表 
+    <div id="哈希表" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e5%93%88%e5%b8%8c%e8%a1%a8" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>先看24散列表(哈希表)的查找这个复习一下</p>
+<p>可以这样理解，哈希表就是将其关键数据（key）转换成储存其的地址，通过hash函数从关键数据（key）得到地址从而直接访问数据。</p>
+<p>构造方法
+直接定址发和除留余数法
+用于简单的数据，但是有时候会有冲突。</p>
+<p>例如处理10，20，30，40，50</p>
+<p>直接取其十位，或者用一个取模函数得到他们余数不相等的模</p>
+<p>处理冲突的方法</p>
+<p>线性探测法
+如果有冲突就找下一个位置</p>
+<p>二次探测</p>
+<p>伪随机探测</p>
+<p>链地址法</p>
+<p>其实Dictionary就是使用链地址法的哈希表。其容量是大于当前容量的最小质数。当其容量不足的时候会进行扩容。</p>
+<h4 class="relative group">DFS和BFS 
+    <div id="dfs和bfs" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#dfs%e5%92%8cbfs" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>先复习一下图这个结构
+图,一般用于表示多对多的数据结构</p>
+<p>数组表示法: 临界矩阵
+用一个顶点表表示顶点数据,再用一个二维数组临接矩阵表示顶点的连接关系。</p>
+<p>在有向图中只行表示出度</p>
+<p>有权网，并且图中的顶点可以带有权值。</p>
+<p>临界表： 链表表示法</p>
+<p>图的遍历
+遍历的实质就是找到邻接点</p>
+<p>深度优先
+一条道走到黑直到所有的邻接点都被访问过了。再退回到上一步。直到所有的顶点都被访问过。</p>
+<p>有点像先序遍历</p>
+<p>广度优先
+简而言之就是一个先进先出的队列</p>
+<p>广度优先搜索算法（英语：Breadth-First Search，缩写BFS），又译作宽度优先搜索，或横向优先搜索，是一种图形搜索方法。简单的说，BFS是从根节点开始，沿着树德宽度遍历树德节点。如果所有节点均被访问，则算法终止。广度优先搜索的实现一般采用open-closed表。</p>
+<p>BFS是一种盲目搜索法，目的是系统的展开并检查图中的所有节点，以寻找结果。换句话说，它并不考虑结果的可能地址，彻底的搜索整张图，直到找到结果为止。</p>
+<p>从算法的观点，所有因为展开节点而得到的子节点都会被加入一个先进先出的队列中。一般在实现过程中，其邻居节点尚未被检验过的节点会被放置在一个被称为open的容器中（例如队列或者链表），而被检验过的节点则被放置在被称为closed的容器中。（open-closed表)</p>
+<p>广度优先搜索（BFS），实现的方法：
+首先将根节点放入队列中；</p>
+<p>从队列中取出第一个节点，并检验它是否为目标：</p>
+<p>·如果找到目标，结束搜索并回传结果；</p>
+<p>·否则将它所有尚未检验过的直接子节点加入队列中。</p>
+<p>若队列为空，表示整张图都检查过了–也就代表图中没有要搜索的目标。结束搜索并回传“找不到目标”；</p>
+<p>重复步骤2。</p>
+<h4 class="relative group">⭐内存五大区 
+    <div id="内存五大区" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e5%86%85%e5%ad%98%e4%ba%94%e5%a4%a7%e5%8c%ba" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>栈区（stack）:存放函数形参和局部变量（auto类型），由编译器自动分配和释放。
+堆区（heap）:该区由程序员申请后使用，需要手动释放否则会造成内存泄漏。如果程序员没有手动释放，那么程序结束时可能由OS回收。
+全局/静态存储区：存放全局变量和静态变量（包括静态全局变量与静态局部变量），初始化的全局变量和静态局部变量放在一块，未初始化的放在另一块。
+文字常量区：常量在统一运行被创建，常量区的内存是只读的，程序结束后由系统释放。
+程序代码区：存放程序的二进制代码，内存由系统管理
+⭐栈和堆区别
+摘自堆和栈的区别 - 知乎 (zhihu.com)</p>
+<p>申请方式
+stack:
+由系统自动分配。 例如，声明在函数中一个局部变量 int b; 系统自动在栈中为b开辟空
+间</p>
+<p>heap
+需要程序员自己申请，并指明大小，在c中malloc函数
+如p1 = (char *)malloc(10);</p>
+<p>在C++中用new运算符
+如p2 = new char[10];</p>
+<p>但是注意p1、p2本身是在栈中的。</p>
+<p>申请后系统的响应
+栈：只要栈的剩余空间大于所申请空间，系统将为程序提供内存，否则将报异常提示栈溢出。</p>
+<p>堆：首先应该知道操作系统有一个记录空闲内存地址的链表，当系统收到程序的申请时，
+会遍历该链表，寻找第一个空间大于所申请空间的堆结点，然后将该结点从空闲结点链表
+中删除，并将该结点的空间分配给程序。</p>
+<p>另外，对于大多数系统，会在这块内存空间中的首地址处记录本次分配的大小，这样，代码中的delete语句才能正确的释放本内存空间。
+另外，由于找到的堆结点的大小不一定正好等于申请的大小，系统会自动的将多余的那部
+分重新放入空闲链表中。</p>
+<h2 class="relative group">计算机 
+    <div id="计算机" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e8%ae%a1%e7%ae%97%e6%9c%ba" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<h4 class="relative group">UDP和TCP区别 
+    <div id="udp和tcp区别" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#udp%e5%92%8ctcp%e5%8c%ba%e5%88%ab" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>TCP/IP协议是一个协议簇。里面包括很多协议的，UDP只是其中的一个， 之所以命名为TCP/IP协议，因为TCP、IP协议是两个很重要的协议，就用他两命名了。</p>
+<p>TCP/IP协议集包括应用层,传输层，网络层，网络访问层。</p>
+<p>其中应用层包括:
+1、超文本传输协议（HTTP）:万维网的基本协议；
+2、文件传输（TFTP简单文件传输协议）；
+3、远程登录（Telnet），提供远程访问其它主机功能, 它允许用户登录internet主机，并在这台主机上执行命令；
+4、网络管理（SNMP简单网络管理协议），该协议提供了监控网络设备的方法， 以及配置管理,统计信息收集,性能管理及安全管理等；
+5、域名系统（DNS），该系统用于在internet中将域名及其公共广播的网络节点转换成IP地址。</p>
+<p>其次网络层包括:
+1、Internet协议（IP）；
+2、Internet控制信息协议（ICMP）；
+3、地址解析协议（ARP）；
+4、反向地址解析协议（RARP）。</p>
+<p>最后说网络访问层:
+网络访问层又称作主机到网络层（host-to-network），网络访问层的功能包括IP地址与物理地址硬件的映射， 以及将IP封装成帧。基于不同硬件类型的网络接口，网络访问层定义了和物理介质的连接。当然我这里说得不够完善，TCP/IP协议本来就是一门学问，每一个分支都是一个很复杂的流程， 但我相信每位学习软件开发的同学都有必要去仔细了解一番。</p>
+<p>下面着重讲解一下TCP协议和UDP协议的区别
+TCP（Transmission Control Protocol，传输控制协议）是面向连接的协议，也就是说，在收发数据前，必须和对方建立可靠的连接。 一个TCP连接必须要经过三次对话才能建立起来，其中的过程非常复杂， 只简单的描述下这三次对话的简单过程：</p>
+<p>1）主机A向主机B发出连接请求数据包：“我想给你发数据，可以吗？”，这是第一次对话；</p>
+<p>2）主机B向主机A发送同意连接和要求同步 （同步就是两台主机一个在发送，一个在接收，协调工作）的数据包 ：“可以，你什么时候发？”，这是第二次对话；</p>
+<p>3）主机A再发出一个数据包确认主机B的要求同步：“我现在就发，你接着吧！”， 这是第三次对话。</p>
+<p>三次“对话”的目的是使数据包的发送和接收同步， 经过三次“对话”之后，主机A才向主机B正式发送数据。</p>
+<p>TCP三次握手过程
+第一次握手：主机A通过向主机B发送一个含有同步序列号的标志位的数据段给主机B，向主机B 请求建立连接，通过这个数据段， 主机A告诉主机B 两件事：我想要和你通信；你可以用哪个序列号作为起始数据段来回应我。</p>
+<p>有点帧同步的味道了</p>
+<p>第二次握手：主机B 收到主机A的请求后，用一个带有 确认应答（ACK） 和 同步序列号（SYN） 标志位的数据段响应主机A，也告诉主机A两件事：我已经收到你的请求了，你可以传输数据了；你要用那个序列号作为起始数据段来回应我</p>
+<p>第三次握手：主机A收到这个数据段后，再发送一个确认应答，确认已收到主机B 的数据段：”我已收到回复，我现在要开始传输实际数据了，这样3次握手就完成了，主机A和主机B 就可以传输数据了。</p>
+<p>3次握手的特点
+没有应用层的数据 ,SYN这个标志位只有在TCP建立连接时才会被置1 ,握手完成后SYN标志位被置0。</p>
+<p>断开连接要进行4次
+第一次： 当主机A完成数据传输后,将控制位FIN置1，提出停止TCP连接的请求 ；</p>
+<p>第二次： 主机B收到FIN后对其作出响应，确认这一方向上的TCP连接将关闭,将ACK置1；</p>
+<p>第三次： 由B端再提出反方向的关闭请求,将FIN置1；</p>
+<p>第四次： 主机A对主机B的请求进行确认，将ACK置1，双方向的关闭结束。</p>
+<p>由TCP的三次握手和四次断开可以看出，TCP使用面向连接的通信方式， 大大提高了数据通信的可靠性，使发送数据端和接收端在数据正式传输前就有了交互， 为数据正式传输打下了可靠的基础。</p>
+<p>UDP（User Data Protocol，用户数据报协议）
+1、UDP是一个非连接的协议，传输数据之前源端和终端不建立连接， 当它想传送时就简单地去抓取来自应用程序的数据，并尽可能快地把它扔到网络上。 在发送端，UDP传送数据的速度仅仅是受应用程序生成数据的速度、 计算机的能力和传输带宽的限制； 在接收端，UDP把每个消息段放在队列中，应用程序每次从队列中读一个消息段。</p>
+<p>2、 由于传输数据不建立连接，因此也就不需要维护连接状态，包括收发状态等， 因此一台服务机可同时向多个客户机传输相同的消息。</p>
+<p>3、UDP信息包的标题很短，只有8个字节，相对于TCP的20个字节信息包的额外开销很小。</p>
+<p>4、吞吐量不受拥挤控制算法的调节，只受应用软件生成数据的速率、传输带宽、 源端和终端主机性能的限制。</p>
+<p>5、UDP使用尽最大努力交付，即不保证可靠交付， 因此主机不需要维持复杂的链接状态表（这里面有许多参数）。</p>
+<p>6、UDP是面向报文的。发送方的UDP对应用程序交下来的报文， 在添加首部后就向下交付给IP层。既不拆分，也不合并，而是保留这些报文的边界， 因此，应用程序需要选择合适的报文大小。</p>
+<p>用“ping”命令来测试两台主机之间TCP/IP通信是否正常， 其实“ping”命令的原理就是向对方主机发送UDP数据包，然后对方主机确认收到数据包， 如果数据包是否到达的消息及时反馈回来，那么网络就是通的。</p>
+<p>ping命令是用来探测主机到主机之间是否可通信，如果不能ping到某台主机，表明不能和这台主机建立连接。ping命令是使用 IP 和网络控制信息协议 (ICMP)，因而没有涉及到任何传输协议(UDP/TCP) 和应用程序。它发送icmp回送请求消息给目的主机。</p>
+<p>ICMP协议规定：目的主机必须返回ICMP回送应答消息给源主机。如果源主机在一定时间内收到应答，则认为主机可达。</p>
+<p>小结TCP与UDP的区别：
+1、基于连接与无连接；</p>
+<p>2、对系统资源的要求（TCP较多，UDP少）；</p>
+<p>3、UDP程序结构较简单；</p>
+<p>4、流模式与数据报模式 ；</p>
+<p>5、TCP保证数据正确性，UDP可能丢包；</p>
+<p>6、TCP保证数据顺序，UDP不保证。</p>
+<h4 class="relative group">线程和进程的区别 
+    <div id="线程和进程的区别" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e7%ba%bf%e7%a8%8b%e5%92%8c%e8%bf%9b%e7%a8%8b%e7%9a%84%e5%8c%ba%e5%88%ab" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>线程和进程的区别 • Worktile社区
+一文读懂什么是进程、线程、协程 - 回首笑人间 - 博客园 (cnblogs.com)</p>
+<p>什么是进程？
+进程（Process）是计算机中的程序关于某数据集合上的一次运行活动，是系统进行资源分配和调度的基本单位，是操作系统结构的基础。在早期面向进程设计的计算机结构中，进程是程序的基本执行实体；在当代面向线程设计的计算机结构中，进程是线程的容器。程序是指令、数据及其组织形式的描述，进程是程序的实体。</p>
+<p>进程是60年代初首先由麻省理工学院的MULTICS系统和IBM公司的CTSS/360系统引入的。</p>
+<p>进程是一个具有独立功能的程序关于某个数据集合的一次运行活动。它可以申请和拥有系统资源，是一个动态的概念，是一个活动的实体。它不只是程序的代码，还包括当前的活动，通过程序计数器的值和处理寄存器的内容来表示。</p>
+<p>进程的概念主要有两点：名列前茅，进程是一个实体。每一个进程都有它自己的地址空间，一般情况下，包括文本区域（text region）、数据区域（data region）和堆栈（stack region）。文本区域存储处理器执行的代码；数据区域存储变量和进程执行期间使用的动态分配的内存；堆栈区域存储着活动过程调用的指令和本地变量。第二，进程是一个“执行中的程序”。程序是一个没有生命的实体，只有处理器赋予程序生命时（操作系统执行之），它才能成为一个活动的实体，我们称其为进程。</p>
+<p>线程
+在早期的操作系统中并没有线程的概念，进程是能拥有资源和独立运行的最小单位，也是程序执行的最小单位。任务调度采用的是时间片轮转的抢占式调度方式，而进程是任务调度的最小单位，每个进程有各自独立的一块内存，使得各个进程之间内存地址相互隔离。</p>
+<p>后来，随着计算机的发展，对CPU的要求越来越高，进程之间的切换开销较大，已经无法满足越来越复杂的程序的要求了。于是就发明了线程。</p>
+<p>线程是程序执行中一个单一的顺序控制流程，是程序执行流的最小单元，是处理器调度和分派的基本单位。一个进程可以有一个或多个线程，各个线程之间共享程序的内存空间(也就是所在进程的内存空间)。一个标准的线程由线程ID、当前指令指针(PC)、寄存器和堆栈组成。而进程由内存空间(代码、数据、进程空间、打开的文件)和一个或多个线程组成。</p>
+<p>（读到这里可能有的读者迷糊，感觉这和Java的内存空间模型不太一样，但如果你深入的读过深入理解Java虚拟机这本书的话你就会恍然大悟）</p>
+<p>1、根本区别
+进程是操作系统进行资源分配的最小单元，线程是操作系统进行运算调度的最小单元。进程（Process）是计算机中的程序关于某数据集合上的一次运行活动，是系统进行资源分配和调度的基本单位，是操作系统结构的基础。线程是操作系统能够进行运算调度的最小单位。它被包含在进程之中，是进程中的实际运作单位。</p>
+<p>2、从属关系不同
+进程中包含了线程，线程属于进程。一个进程可以有很多线程，每条线程并行执行不同的任务。一条线程指的是进程中一个单一顺序的控制流，一个进程中可以并发多个线程，每条线程并行执行不同的任务。</p>
+<p>3、开销不同
+进程的创建、销毁和切换的开销都远大于线程。由于线程比进程更小，基本上不拥有系统资源，故对它的调度所付出的开销就会小得多，能更高效的提高系统内多个程序间并发执行的程度，从而显著提高系统资源的利用率和吞吐量。</p>
+<p>4、拥有资源不同
+每个进程有自己的内存和资源，一个进程中的线程会共享这些内存和资源。进程是资源分配的基本单位。所有与该进程有关的资源，都被记录在进程控制块PCB中。以表示该进程拥有这些资源或正在使用它们。另外，进程也是抢占处理机的调度单位，它拥有一个完整的虚拟地址空间。当进程发生调度时，不同的进程拥有不同的虚拟地址空间，而同一进程内的不同线程共享同一地址空间。</p>
+<p>5、控制和影响能力不同
+子进程无法影响父进程，而子线程可以影响父线程，如果主线程发生异常会影响其所在进程和子线程。与进程相对应，线程与资源分配无关，它属于某一个进程，并与进程内的其他线程一起共享进程的资源。</p>
+<p>6、CPU利用率不同
+进程的CPU利用率较低，因为上下文切换开销较大，而线程的CPU的利用率较高，上下文的切换速度快。在多核或多CPU，或支持Hyper-threading的CPU上使用多线程程序设计的好处是显而易见，即提高了程序的执行吞吐率。在单CPU单核的计算机上，使用多线程技术，也可以把进程中负责I/O处理、人机交互而常被阻塞的部分与密集计算的部分分开来执行，编写专门的workhorse线程执行密集计算，从而提高了程序的执行效率。</p>
+<h4 class="relative group">进程间、线程间的通讯方式 
+    <div id="进程间线程间的通讯方式" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e8%bf%9b%e7%a8%8b%e9%97%b4%e7%ba%bf%e7%a8%8b%e9%97%b4%e7%9a%84%e9%80%9a%e8%ae%af%e6%96%b9%e5%bc%8f" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>进程间通信和线程间通信的几种方式 - 反光的小鱼儿 - 博客园 (cnblogs.com)</p>
+<p>进程通信
+管道(pipe)
+管道是一种半双工的通信方式，数据只能单向流动，而且只能在具有亲缘关系的进程间使用。进程的亲缘关系通常是指父子进程关系。</p>
+<p>有名管道 (namedpipe)
+有名管道也是半双工的通信方式，但是它允许无亲缘关系进程间的通信。</p>
+<p>信号量(semaphore)
+信号量是一个计数器，可以用来控制多个进程对共享资源的访问。它常作为一种锁机制，防止某进程正在访问共享资源时，其他进程也访问该资源。因此，主要作为进程间以及同一进程内不同线程之间的同步手段。</p>
+<p>消息队列(messagequeue)
+消息队列是由消息的链表，存放在内核中并由消息队列标识符标识。消息队列克服了信号传递信息少、管道只能承载无格式字节流以及缓冲区大小受限等缺点。</p>
+<p>信号 (sinal)
+信号是一种比较复杂的通信方式，用于通知接收进程某个事件已经发生。</p>
+<p>共享内存(shared memory)
+共享内存就是映射一段能被其他进程所访问的内存，这段共享内存由一个进程创建，但多个进程都可以访问。共享内存是最快的 IPC 方式，它是针对其他进程间通信方式运行效率低而专门设计的。它往往与其他通信机制，如信号量，配合使用，来实现进程间的同步和通信。</p>
+<p>套接字(socket)
+套接口也是一种进程间通信机制，与其他通信机制不同的是，它可用于不同设备及其间的进程通信。、</p>
+<p>线程间的通信方式
+锁机制：包括互斥锁、条件变量、读写锁
+互斥锁提供了以排他方式防止数据结构被并发修改的方法。
+读写锁允许多个线程同时读共享数据，而对写操作是互斥的。
+条件变量可以以原子的方式阻塞进程，直到某个特定条件为真为止。对条件的测试是在互斥锁的保护下进行的。条件变量始终与互斥锁一起使用。</p>
+<p>wait/notify 等待</p>
+<p>Volatile 内存共享</p>
+<p>CountDownLatch 并发工具</p>
+<p>CyclicBarrier 并发工具</p>
+<p>信号量机制(Semaphore)
+包括无名线程信号量和命名线程信号量。</p>
+<p>信号机制(Signal)
+类似进程间的信号处理。</p>
+<p>线程间的通信目的主要是用于线程同步，所以线程没有像进程通信中的用于数据交换的通信机制。</p>
+<p>什么是协程
+为什么需要协程？
+哈哈
+线程因进程切换而生
+协程因进程开销而生</p>
+<p>我们都知道多线程，当需要同时执行多项任务的时候，就会采用多线程并发执行。拿手机支付举例子，当收到付款信息的时候，需要查询数据库来判断余额是否充足，然后再进行付款。</p>
+<p>假设最开始我们只有可怜的10个用户，收到10条付款消息之后，我们开启启动10个线程去查询数据库，由于用户量很少，结果马上就返回了。第2天用户增加到了100人，你选择增加100个线程去查询数据库，等到第三天，你们加大了优惠力度，这时候有1000人同时在线付款，你按照之前的方法，继续采用1000个线程去查询数据库，并且隐隐觉察到有什么不对。</p>
+<p>不断增长的线程</p>
+<p>几天之后，见势头大好，运营部门开始不停的补贴消费券，展开了史无前例的大促销，你们的用户开始爆炸增长，这时候有10000人同时在线付款，你打算启动10000个线程来处理任务。等等，问题来了，因为每个线程至少会占用4M的内存空间，10000个线程会消耗39G的内存，而服务器的内存配置只有区区8G，这时候你有2种选择，一是选择增加服务器，二是选择提高代码效率。那么是否有方法能够提高效率呢？</p>
+<p>我们知道操作系统在线程等待IO的时候，会阻塞当前线程，切换到其它线程，这样在当前线程等待IO的过程中，其它线程可以继续执行。当系统线程较少的时候没有什么问题，但是当线程数量非常多的时候，却产生了问题。一是系统线程会占用非常多的内存空间，二是过多的线程切换会占用大量的系统时间。</p>
+<p>栈内存增长顺序
+windows linux 系统的大小端</p>
+<p>图形学
+渲染管线
+深度测试</p>
+
+      </div>
+
+
+
+
+    </div>
+
+    
+    <script>
+      var oid = "views_entire-note\\面试题\\佬的\\index.md"
+      var oid_likes = "likes_entire-note\\面试题\\佬的\\index.md"
+    </script>
+    
+    
+    
+    <script type="text/javascript" src="/js/page.min.5b1bad196a6075a1e11bae1dc95f24f67b610948a00525e347566c5a62338ea78f1c7224ab9a53873dcdb2a1a7d7d391b8a8ef45561297f68806c01315b0c4f6.js" integrity="sha512-WxutGWpgdaHhG64dyV8k9nthCUigBSXjR1ZsWmIzjqePHHIkq5pThz3NsqGn19ORuKjvRVYSl/aIBsATFbDE9g=="></script>
+
+  </section>
+
+  <footer style="width: 100%">
+          
+
+          
+  
+  <section class="flex flex-row flex-wrap justify-center pt-4 text-xl">
+    
+      
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="https://twitter.com/intent/tweet/?url=/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/%E4%BD%AC%E7%9A%84/&amp;text="
+      title="分享到 Twitter"
+      aria-label="分享到 Twitter"
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg>
+  </span>
+
+
+    </a>
+      
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="https://t.me/share/url?url=/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/%E4%BD%AC%E7%9A%84/&amp;resubmit=true&amp;title="
+      title=""
+      aria-label=""
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M248,8C111.033,8,0,119.033,0,256S111.033,504,248,504,496,392.967,496,256,384.967,8,248,8ZM362.952,176.66c-3.732,39.215-19.881,134.378-28.1,178.3-3.476,18.584-10.322,24.816-16.948,25.425-14.4,1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25,5.342-39.5,3.652-3.793,67.107-61.51,68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608,69.142-14.845,10.194-26.894,9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7,18.45-13.7,108.446-47.248,144.628-62.3c68.872-28.647,83.183-33.623,92.511-33.789,2.052-.034,6.639.474,9.61,2.885a10.452,10.452,0,0,1,3.53,6.716A43.765,43.765,0,0,1,362.952,176.66Z"/></svg>
+
+  </span>
+
+
+    </a>
+      
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="mailto:?body=/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/%E4%BD%AC%E7%9A%84/&amp;subject="
+      title="通过电子邮件发送"
+      aria-label="通过电子邮件发送"
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M207.8 20.73c-93.45 18.32-168.7 93.66-187 187.1c-27.64 140.9 68.65 266.2 199.1 285.1c19.01 2.888 36.17-12.26 36.17-31.49l.0001-.6631c0-15.74-11.44-28.88-26.84-31.24c-84.35-12.98-149.2-86.13-149.2-174.2c0-102.9 88.61-185.5 193.4-175.4c91.54 8.869 158.6 91.25 158.6 183.2l0 16.16c0 22.09-17.94 40.05-40 40.05s-40.01-17.96-40.01-40.05v-120.1c0-8.847-7.161-16.02-16.01-16.02l-31.98 .0036c-7.299 0-13.2 4.992-15.12 11.68c-24.85-12.15-54.24-16.38-86.06-5.106c-38.75 13.73-68.12 48.91-73.72 89.64c-9.483 69.01 43.81 128 110.9 128c26.44 0 50.43-9.544 69.59-24.88c24 31.3 65.23 48.69 109.4 37.49C465.2 369.3 496 324.1 495.1 277.2V256.3C495.1 107.1 361.2-9.332 207.8 20.73zM239.1 304.3c-26.47 0-48-21.56-48-48.05s21.53-48.05 48-48.05s48 21.56 48 48.05S266.5 304.3 239.1 304.3z"/></svg>
+
+  </span>
+
+
+    </a>
+      
+    
+  </section>
+
+
+          
+
+
+
+    
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+        </span>
+        <span>
+          
+            <a class="flex text-right group ml-3" href="/entire-note/post/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Hello Friend</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2003-10-03 00:00:00 &#43;0000 UTC">3 October 2003</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
+                >&rarr;</span
+              >
+              <span
+                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
+                >&larr;</span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+    
+    
+    <div class="pt-3">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="pt-3">
+        <script src="https://giscus.app/client.js"
+        data-repo="ToDreamr/todreamr.github.io"
+        data-repo-id="R_kgDOLG9zIQ"
+        data-category="Q&A"
+        data-category-id="DIC_kwDOLG9zIc4Cc-2K"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light_protanopia"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+</script>
+
+      </div>
+    </div>
+    
+    
+  </footer>
+</article>
+
+      <div id="top-scroller" class="pointer-events-none absolute top-[110vh] bottom-0 w-12 ltr:right-0 rtl:left-0">
+  <a href="#the-top"
+    class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 mb-16 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+    aria-label="回到顶部" title="回到顶部">
+    &uarr;
+  </a>
+</div>
+    </main><footer id="site-footer" class="py-10 print:hidden">
+  
+  
+    
+    <nav class="flex flex-row pb-4 text-base font-medium text-neutral-500 dark:text-neutral-400">
+      <ul class="flex flex-col list-none sm:flex-row">
+        
+        <li class="flex mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+          <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2" href="/tags/"
+            title="Tags">系列文章</a>
+        </li>
+        
+        <li class="flex mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+          <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2" href="/tasks/"
+            title="学习计划">事项</a>
+        </li>
+        
+        <li class="flex mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+          <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2" href="/info/"
+            title="应该没人来这里吧">关于我</a>
+        </li>
+        
+        <li class="flex mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+          <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2" href="/doc/"
+            title="Docs">帮助文档</a>
+        </li>
+        
+      </ul>
+    </nav>
+    
+  
+  <div class="flex items-center justify-between">
+
+    
+    
+    <p class="text-sm text-neutral-500 dark:text-neutral-400">
+      &copy;
+      2024
+      春江花朝秋月夜
+    </p>
+    
+
+    
+    
+    <p class="text-xs text-neutral-500 dark:text-neutral-400">
+      
+      
+      由 <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+        href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+        href="https://blowfish.page/" target="_blank" rel="noopener noreferrer">Blowfish</a> 强力驱动
+    </p>
+    
+
+  </div>
+  <script>
+    
+    mediumZoom(document.querySelectorAll("img:not(.nozoom)"), {
+      margin: 24,
+      background: 'rgba(0,0,0,0.5)',
+      scrollOffset: 0,
+    })
+    
+  </script>
+  
+  
+  <script type="text/javascript" src="/js/process.min.62060bb247f4de2b6dde45903668fefb68d792f365587605177b1227c0cf43588701edaca0cb40e2c8e2789bd5ce67c1d2a215b9fb258c3496a7cd25e7cb5fdf.js" integrity="sha512-YgYLskf03itt3kWQNmj&#43;&#43;2jXkvNlWHYFF3sSJ8DPQ1iHAe2soMtA4sjieJvVzmfB0qIVufsljDSWp80l58tf3w=="></script>
+  
+  
+</footer><div
+  id="search-wrapper"
+  class="invisible fixed inset-0 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]"
+  data-url="/"
+  style="z-index:500"
+>
+  <div
+    id="search-modal"
+    class="flex flex-col w-full max-w-3xl min-h-0 mx-auto border rounded-md shadow-lg top-20 border-neutral-200 bg-neutral dark:border-neutral-700 dark:bg-neutral-800"
+  >
+    <header class="relative z-10 flex items-center justify-between flex-none px-2">
+      <form class="flex items-center flex-auto min-w-0">
+        <div class="flex items-center justify-center w-8 h-8 text-neutral-400">
+          
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+        </div>
+        <input
+          type="search"
+          id="search-query"
+          class="flex flex-auto h-12 mx-1 bg-transparent appearance-none focus:outline-dotted focus:outline-2 focus:outline-transparent"
+          placeholder="搜索"
+          tabindex="0"
+        />
+      </form>
+      <button
+        id="close-search-button"
+        class="flex items-center justify-center w-8 h-8 text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+        title="关闭 (Esc)"
+      >
+        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+  </span>
+
+
+      </button>
+    </header>
+    <section class="flex-auto px-2 overflow-auto">
+      <ul id="search-results">
+        
+      </ul>
+    </section>
+  </div>
+</div>
+
+  </div>
+</body>
+
+</html>
