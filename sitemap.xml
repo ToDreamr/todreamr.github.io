@@ -422,11 +422,6 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>/asm/</loc>
-    <changefreq>always</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
     <loc>/authors/</loc>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
@@ -512,17 +507,12 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>/asm/%E5%8D%95%E7%89%87%E6%9C%BA/</loc>
+    <loc>/doc/asm/%E5%8D%95%E7%89%87%E6%9C%BA/</loc>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>/featured/</loc>
-    <changefreq>always</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>/tags/%E5%A4%8D%E4%B9%A0/</loc>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
   </url>
