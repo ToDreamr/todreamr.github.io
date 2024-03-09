@@ -7,7 +7,27 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>© 2024 春江花朝秋月夜</copyright>
-    <lastBuildDate>Wed, 06 Mar 2024 21:21:06 +0800</lastBuildDate><atom:link href="/entire-note/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 09 Mar 2024 18:23:23 +0800</lastBuildDate><atom:link href="/entire-note/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>常规面试题</title>
+      <link>/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/%E9%9D%A2%E8%AF%95/</link>
+      <pubDate>Sat, 09 Mar 2024 18:23:23 +0800</pubDate>
+      
+      <guid>/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/%E9%9D%A2%E8%AF%95/</guid>
+      <description>八股 # 为什么要重写hashcode和equals方法 # 回答：因为类本省的这两个方法调用时都只是去比较对象的内存地址，当我们new两个相同内容的对象，本来是要比较返回true的但是不重写的话比较 内存返回false，造成错误，故而需要重写这两个方法
+ArrayList和LinkedList区别 # 回答都实现了List接口作为数据存储管理的容器，场景上Arraylist内部通过动态数组实现，实现快速的随机访问，适用于频繁的读取操作，移动操作性能低， 不支持同步，线程不安全。LinkedList内部双向链表实现，适合插入删除操作，支持作为队列使用（因为实现了Deque接口），同样线程不安全，单线程性能较好。
+HashMap缺点 # 在JDK1.7和JDK1.8中的HashMap的默认初始容量为16，loadFactor均为0.75。
+参考文章
+回答线程不安全，没有内置读写锁，头插产生死循环，put会覆盖，并发情况put/get可能为空
+头插法/尾插法 # （jdk1.7）头插在尾部追加元素，（jdk1.8）尾插法，链表长度大于等于8转化红黑树，判断Map键值对数量超过64
+HashTable为什么线程安全 # 回答remove，put，get都是同步的方法（synchronized关键字），底层通过数组+链表实现，只允许允许一个线程对其进行某种操作，所以并发性比ConcurrnetHashMap差
+ConcurrentHashMap线程安全原因 # jdk1.7对每个segment（段）加分段锁（ReentrantLock）实现段隔离保证并发安全 ，最多存在16个段
+jdk1.8不再使用段，使用结点（Node）和CAS，Synchronized保证线程安全
+ConcurrentHashMap能保证多个线程同时进行put操作后数据不会错乱，而HashMap在多个线程同时进行put操作后数据会错乱结果无法预知。但是多线程同时操作get方法和put方式时，就无法保证并发线程安全。
+token无感刷新 # 用户登录成功后，服务器会生成一个Token，并将其颁发给客户端。 前端会保存这个Token，并在每次请求时将其添加到请求头中，通常是Authorization字段。 后端服务器使用密钥对Token进行签名，以确保其真实性和完整性。 如果Token即将过期，后端服务器会在响应中返回一个新的Token，并将其作为响应头的一部分。 前端的拦截器会检查响应中是否存在新的Token，并将它保存在本地。 在后续的请求中，前端会继续使用最新的Token进行身份验证 双Token机制 # Access Token：用于获取访问资源或执行操作的授权，有效期短。客户端发送请求时，在请求头携带此accessToken。 Refresh Token：用来验证用户的身份，刷新accessToken，有效期长。当accessToken过期时，向服务端传递refreshToken来刷新accessToken。 布隆过滤器 # 名叫 Bloom 的人提出了一种来检索元素是否在给定大集合中的数据结构，这种数据结构是高效且性能很好的，但缺点是具有一定的错误识别率和删除难度。并且，理论情况下，添加到集合中的元素越多，误报的可能性就越大。</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/%E9%9D%A2%E8%AF%95/featured.png" />
+    </item>
+    
     <item>
       <title>使用主从模式搭建一个Socket网络通信模型</title>
       <link>/entire-note/netty/</link>
@@ -99,25 +119,6 @@ ToDreamr/Rainy_SpringSecurity 基于Spring6+JDK18的SpringSecurity环境 Java 0 
 Meting Js参数, 官方文档
 &amp;lt;!--MetingJS参数详情--&amp;gt; &amp;lt;!-- id=&amp;#39;外链播放器id&amp;#39;,必须参数 type=[song=单曲, playlist=歌单, album=专辑, search=搜索结果, artist=艺术家],必须参数 server=[netease=网易云音乐, tencent=QQ音乐, kugou=酷狗音乐, xiami=虾米音乐, baidu=百度音乐],必须参数 fixed=启用固定模式，固定在左下角,默认false mini=启用迷你模式,默认false preload=[none,metadata,auto] mutex=[互斥锁，默认true],默认false order=[random=随机播放,list=列表播放] loop=[all=全部循环, one=循环一次 ,none=不循环] volume=[音量，默认0.7] lrc-type=[歌词类型，默认0] list-folded=[列表是否折叠，默认false] list-max-height=列表最大高度,默认340px storage-name=本地存储存储密钥，用于存储播放器设置,默认metingjs --&amp;gt; 网站搭建主题为Blowfish，在blog/layouts/shortcodes文件夹下添加album.</description>
       
-    </item>
-    
-    <item>
-      <title>常规面试题</title>
-      <link>/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/%E5%B0%8F%E7%BA%A2%E4%B9%A6/</link>
-      <pubDate>Mon, 29 Jan 2024 18:23:23 +0800</pubDate>
-      
-      <guid>/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/%E5%B0%8F%E7%BA%A2%E4%B9%A6/</guid>
-      <description>八股 # ArrayList和LinkedList区别 # 回答都实现了List接口作为数据存储管理的容器，场景上Arraylist内部通过动态数组实现，实现快速的随机访问，适用于频繁的读取操作，移动操作性能低， 不支持同步，线程不安全。LinkedList内部双向链表实现，适合插入删除操作，支持作为队列使用（因为实现了Deque接口），同样线程不安全，单线程性能较好。
-HashMap缺点 # 在JDK1.7和JDK1.8中的HashMap的默认初始容量为16，loadFactor均为0.75。
-参考文章
-回答线程不安全，没有内置读写锁，头插产生死循环，put会覆盖，并发情况put/get可能为空
-头插法/尾插法 # （jdk1.7）头插在尾部追加元素，（jdk1.8）尾插法，链表长度大于等于8转化红黑树，判断Map键值对数量超过64
-HashTable为什么线程安全 # 回答remove，put，get都是同步的方法（synchronized关键字），底层通过数组+链表实现，只允许允许一个线程对其进行某种操作，所以并发性比ConcurrnetHashMap差
-ConcurrentHashMap线程安全原因 # jdk1.7对每个segment（段）加分段锁（ReentrantLock）实现段隔离保证并发安全 ，最多存在16个段
-jdk1.8不再使用段，使用结点（Node）和CAS，Synchronized保证线程安全
-ConcurrentHashMap能保证多个线程同时进行put操作后数据不会错乱，而HashMap在多个线程同时进行put操作后数据会错乱结果无法预知。但是多线程同时操作get方法和put方式时，就无法保证并发线程安全。
-token无感刷新 # 用户登录成功后，服务器会生成一个Token，并将其颁发给客户端。 前端会保存这个Token，并在每次请求时将其添加到请求头中，通常是Authorization字段。 后端服务器使用密钥对Token进行签名，以确保其真实性和完整性。 如果Token即将过期，后端服务器会在响应中返回一个新的Token，并将其作为响应头的一部分。 前端的拦截器会检查响应中是否存在新的Token，并将它保存在本地。 在后续的请求中，前端会继续使用最新的Token进行身份验证 双Token机制 # Access Token：用于获取访问资源或执行操作的授权，有效期短。客户端发送请求时，在请求头携带此accessToken。 Refresh Token：用来验证用户的身份，刷新accessToken，有效期长。当accessToken过期时，向服务端传递refreshToken来刷新accessToken。 布隆过滤器 # 名叫 Bloom 的人提出了一种来检索元素是否在给定大集合中的数据结构，这种数据结构是高效且性能很好的，但缺点是具有一定的错误识别率和删除难度。并且，理论情况下，添加到集合中的元素越多，误报的可能性就越大。</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/%E5%B0%8F%E7%BA%A2%E4%B9%A6/featured.png" />
     </item>
     
     <item>
