@@ -102,7 +102,7 @@
     "keywords": ["要求熟记"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "141"
+    "wordCount": "161"
   }]
   </script>
 
@@ -897,6 +897,8 @@
                     <li><a href="#算法">算法</a></li>
                     <li><a href="#volatile-关键字-保证变量的可见性">volatile 关键字 保证变量的可见性</a></li>
                     <li><a href="#线程池">线程池：</a></li>
+                    <li><a href="#如何实现定时任务">如何实现定时任务？</a></li>
+                    <li><a href="#如何使用线程并发工具类countdownlatch">如何使用线程并发工具类CountDownLatch？</a></li>
                   </ul>
                 </li>
               </ul>
@@ -939,6 +941,8 @@
                     <li><a href="#算法">算法</a></li>
                     <li><a href="#volatile-关键字-保证变量的可见性">volatile 关键字 保证变量的可见性</a></li>
                     <li><a href="#线程池">线程池：</a></li>
+                    <li><a href="#如何实现定时任务">如何实现定时任务？</a></li>
+                    <li><a href="#如何使用线程并发工具类countdownlatch">如何使用线程并发工具类CountDownLatch？</a></li>
                   </ul>
                 </li>
               </ul>
@@ -1208,7 +1212,8 @@
 
 </p>
 <blockquote>
-<p>原文链接：https://www.itbaima.cn/document/5tr1sm4ho6ygpt9q</p>
+<p><a href="https://www.itbaima.cn/document/5tr1sm4ho6ygpt9q"   target="_blank">
+    原文链接</a></p>
 </blockquote>
 <h5 class="relative group">volatile 关键字 保证变量的可见性 
     <div id="volatile-关键字-保证变量的可见性" class="anchor"></div>
@@ -1228,9 +1233,14 @@
 由于编译器和处理器都能执行指令重排的优化，如果在指令间插入一条Memory Barrier则会告诉编译器和CPU，不管什么指令都不能和这条Memory Barrier指令重排序。</p>
 <p>所以volatile能够保证，之前的指令一定全部执行，之后的指令一定都没有执行，并且前面语句的结果对后面的语句可见。</p>
 <p>最后我们来总结一下volatile关键字的三个特性：</p>
-<p>保证可见性
-不保证原子性
-防止指令重排</p>
+<p>原子性：其实之前讲过很多次了，就是要做什么事情要么做完，要么就不做，不存在做一半的情况。
+可见性：指当多个线程访问同一个变量时，一个线程修改了这个变量的值，其他线程能够立即看得到修改的值。
+有序性：即程序执行的顺序按照代码的先后顺序执行。</p>
+<ol>
+<li>保证可见性</li>
+<li>不保证原子性</li>
+<li>防止指令重排</li>
+</ol>
 <p>最容易理解：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">volatile</span> <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">
@@ -1244,11 +1254,7 @@
 </span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;正在修改a的值...&#34;</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl">        <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span></code></pre></div><p>更具JMM内存模型，多线程访问同一个变量，那么这个变量会被线程拷贝到自己的工作内存中进行操作，而不是直接对主内存中的变量本体进行操作</p>
-<p>原子性：其实之前讲过很多次了，就是要做什么事情要么做完，要么就不做，不存在做一半的情况。
-可见性：指当多个线程访问同一个变量时，一个线程修改了这个变量的值，其他线程能够立即看得到修改的值。
-有序性：即程序执行的顺序按照代码的先后顺序执行。</p>
-<h5 class="relative group">线程池： 
+</span></span></code></pre></div><h5 class="relative group">线程池： 
     <div id="线程池" class="anchor"></div>
     
     <span
@@ -1267,13 +1273,43 @@
 </span></span><span class="line"><span class="cl">                              <span class="n">ThreadFactory</span> <span class="n">threadFactory</span><span class="o">,</span>
 </span></span><span class="line"><span class="cl">                              <span class="n">RejectedExecutionHandler</span> <span class="n">handler</span><span class="o">)</span>
 </span></span></code></pre></div><p>七个参数的实际意义：</p>
-<p>corePoolSize：核心线程池大小，我们每向线程池提交一个多线程任务时，都会创建一个新的核心线程，无论是否存在其他空闲线程，直到到达核心线程池大小为止，之后会尝试复用线程资源。当然也可以在一开始就全部初始化好，调用prestartAllCoreThreads()即可。
-maximumPoolSize：最大线程池大小，当目前线程池中所有的线程都处于运行状态，并且等待队列已满，那么就会直接尝试继续创建新的非核心线程运行，但是不能超过最大线程池大小。
-keepAliveTime：线程最大空闲时间，当一个非核心线程空闲超过一定时间，会自动销毁。
-unit：线程最大空闲时间的时间单位
-workQueue：线程等待队列，当线程池中核心线程数已满时，就会将任务暂时存到等待队列中，直到有线程资源可用为止，这里可以使用我们上一章学到的阻塞队列。
-threadFactory：线程创建工厂，我们可以干涉线程池中线程的创建过程，进行自定义。
-handler：拒绝策略，当等待队列和线程池都没有空间了，真的不能再来新的任务时，来了个新的多线程任务，那么只能拒绝了，这时就会根据当前设定的拒绝策略进行处理。</p>
+<ol>
+<li>corePoolSize：核心线程池大小，我们每向线程池提交一个多线程任务时，都会创建一个新的核心线程，无论是否存在其他空闲线程，直到到达核心线程池大小为止，之后会尝试复用线程资源。当然也可以在一开始就全部初始化好，调用prestartAllCoreThreads()即可。</li>
+<li>maximumPoolSize：最大线程池大小，当目前线程池中所有的线程都处于运行状态，并且等待队列已满，那么就会直接尝试继续创建新的非核心线程运行，但是不能超过最大线程池大小。</li>
+<li>keepAliveTime：线程最大空闲时间，当一个非核心线程空闲超过一定时间，会自动销毁。</li>
+<li>unit：线程最大空闲时间的时间单位</li>
+<li>workQueue：线程等待队列，当线程池中核心线程数已满时，就会将任务暂时存到等待队列中，直到有线程资源可用为止，这里可以使用我们上一章学到的阻塞队列。</li>
+<li>threadFactory：线程创建工厂，我们可以干涉线程池中线程的创建过程，进行自定义。</li>
+<li>handler：拒绝策略，当等待队列和线程池都没有空间了，真的不能再来新的任务时，来了个新的多线程任务，那么只能拒绝了，这时就会根据当前设定的拒绝策略进行处理。</li>
+</ol>
+<p>比如我们可以自定也这样的一个线程：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">ThreadPoolExecutor</span> <span class="n">executor</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">            <span class="k">new</span> <span class="n">ThreadPoolExecutor</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span>   <span class="c1">//2个核心线程，最大线程数为4个
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                    <span class="mi">3</span><span class="o">,</span> <span class="n">TimeUnit</span><span class="o">.</span><span class="na">SECONDS</span><span class="o">,</span>        <span class="c1">//最大空闲时间为3秒钟
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                    <span class="k">new</span> <span class="n">ArrayBlockingQueue</span><span class="o">&lt;&gt;(</span><span class="mi">2</span><span class="o">));</span>     <span class="c1">//这里使用容量为2的ArrayBlockingQueue队列
+</span></span></span></code></pre></div><h5 class="relative group">如何实现定时任务？ 
+    <div id="如何实现定时任务" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e5%a6%82%e4%bd%95%e5%ae%9e%e7%8e%b0%e5%ae%9a%e6%97%b6%e4%bb%bb%e5%8a%a1" aria-label="锚点">#</a>
+    </span>        
+    
+</h5>
+<p>回答可以通过Spring自带的Scheduled定时计划和juc里面的Timertask</p>
+<p>线程池能不能执行定时任务呢？我们之前如果需要执行一个定时任务，那么肯定会用到Timer和TimerTask，但是它只会创建一个线程处理我们的定时任务，无法实现多线程调度，并且它无法处理异常情况一旦抛出未捕获异常那么会直接终止，显然我们需要一个更加强大的定时器。</p>
+<p>JDK5之后，我们可以使用ScheduledThreadPoolExecutor来提交定时任务，它继承自ThreadPoolExecutor，并且所有的构造方法都必须要求最大线程池容量为Integer.MAX_VALUE，并且都是采用的DelayedWorkQueue作为等待队列。</p>
+<h5 class="relative group">如何使用线程并发工具类CountDownLatch？ 
+    <div id="如何使用线程并发工具类countdownlatch" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e5%a6%82%e4%bd%95%e4%bd%bf%e7%94%a8%e7%ba%bf%e7%a8%8b%e5%b9%b6%e5%8f%91%e5%b7%a5%e5%85%b7%e7%b1%bbcountdownlatch" aria-label="锚点">#</a>
+    </span>        
+    
+</h5>
 
       </div>
 
