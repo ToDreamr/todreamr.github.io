@@ -215,7 +215,7 @@ SELECT SUM(sid) FROM student 通过SUM聚集函数，就可以快速计算每一
     <nav class="flex space-x-3">
 
       
-      <a href="/" class="text-base font-medium text-gray-500 hover:text-gray-900">春江花朝秋月夜</a>
+      <a id="title-href" href="/" class="text-base font-medium text-gray-500 hover:text-gray-900">春江花朝秋月夜</a>
       
 
     </nav>
@@ -486,12 +486,12 @@ SELECT SUM(sid) FROM student 通过SUM聚集函数，就可以快速计算每一
       </div>
     </label>
   </div>
-
-
-
-
-
-
+  <div>
+    <iframe id="music" style="align-content: center;align-items: center" frameborder="no" border="0" marginwidth="0"
+            marginheight="0" width=200 height=86
+            src="//music.163.com/outchain/player?type=2&id=447925058&auto=1&height=66"></iframe>
+  </div>
+  <button id="music-button" class="change-music" onclick="getMusicList()">下一曲</button>
 </div>
 <style>
   .change-music{
@@ -536,6 +536,21 @@ SELECT SUM(sid) FROM student 通过SUM聚集函数，就可以快速计算每一
     $mainmenu.find('a[href="' + path + '"]').each(function (i, e) {
       $(e).children('p').addClass('active');
     });
+  })();
+  (function (){
+    var title=document.getElementById('title-href');
+    var music=document.getElementById('music');
+    var button=document.getElementById('music-button');
+    var width=window.innerWidth;
+    var height=window.innerHeight;
+    if (width<420||height<820){
+      title.innerText=''
+      button.innerText='';
+      music.style.width=0;
+      music.style.height=0;
+      button.style.height=0;
+      button.style.height=0;
+    }
   })();
 </script>
 
