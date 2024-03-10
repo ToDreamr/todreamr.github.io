@@ -9,6 +9,23 @@
     <copyright>© 2024 春江花朝秋月夜</copyright>
     <atom:link href="/doc/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title></title>
+      <link>/doc/cpp/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/doc/cpp/</guid>
+      <description>C++提高编程 # 本阶段主要针对C++==泛型编程==和==STL==技术做详细讲解，探讨C++更深层的使用 1 模板 # 1.1 模板的概念 # 模板就是建立通用的模具，大大提高复用性
+模板的特点：
+模板不可以直接使用，它只是一个框架 模板的通用并不是万能的 1.2 函数模板 # C++另一种编程思想称为 ==泛型编程== ，主要利用的技术就是模板
+C++提供两种模板机制:函数模板和类模板
+1.2.1 函数模板语法 # 函数模板作用：
+建立一个通用函数，其函数返回值类型和形参类型可以不具体制定，用一个虚拟的类型来代表。
+语法：
+template&amp;lt;typename T&amp;gt; 函数声明或定义 解释：</description>
+      
+    </item>
+    
+    <item>
       <title>Docker</title>
       <link>/doc/docker/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

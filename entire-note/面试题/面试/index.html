@@ -86,7 +86,7 @@
     "name": "常规面试题",
     "headline": "常规面试题",
     "description": "实习面试",
-    "abstract": "八股 # 为什么要重写hashcode和equals方法 # 回答：因为类本省的这两个方法调用时都只是去比较对象的内存地址，当我们new两个相同内容的对象，本来是要比较返回true的但是不重写的话比较 内存返回false，造成错误，故而需要重写这两个方法\nArrayList和LinkedList区别 # 回答都实现了List接口作为数据存储管理的容器，场景上Arraylist内部通过动态数组实现，实现快速的随机访问，适用于频繁的读取操作，移动操作性能低， 不支持同步，线程不安全。LinkedList内部双向链表实现，适合插入删除操作，支持作为队列使用（因为实现了Deque接口），同样线程不安全，单线程性能较好。\nHashMap缺点 # 在JDK1.7和JDK1.8中的HashMap的默认初始容量为16，loadFactor均为0.75。\n参考文章\n回答线程不安全，没有内置读写锁，头插产生死循环，put会覆盖，并发情况put\/get可能为空\n头插法\/尾插法 # （jdk1.7）头插在尾部追加元素，（jdk1.8）尾插法，链表长度大于等于8转化红黑树，判断Map键值对数量超过64\nHashTable为什么线程安全 # 回答remove，put，get都是同步的方法（synchronized关键字），底层通过数组\u002b链表实现，只允许允许一个线程对其进行某种操作，所以并发性比ConcurrnetHashMap差\nConcurrentHashMap线程安全原因 # jdk1.7对每个segment（段）加分段锁（ReentrantLock）实现段隔离保证并发安全 ，最多存在16个段\njdk1.8不再使用段，使用结点（Node）和CAS，Synchronized保证线程安全\nConcurrentHashMap能保证多个线程同时进行put操作后数据不会错乱，而HashMap在多个线程同时进行put操作后数据会错乱结果无法预知。但是多线程同时操作get方法和put方式时，就无法保证并发线程安全。\ntoken无感刷新 # 用户登录成功后，服务器会生成一个Token，并将其颁发给客户端。 前端会保存这个Token，并在每次请求时将其添加到请求头中，通常是Authorization字段。 后端服务器使用密钥对Token进行签名，以确保其真实性和完整性。 如果Token即将过期，后端服务器会在响应中返回一个新的Token，并将其作为响应头的一部分。 前端的拦截器会检查响应中是否存在新的Token，并将它保存在本地。 在后续的请求中，前端会继续使用最新的Token进行身份验证 双Token机制 # Access Token：用于获取访问资源或执行操作的授权，有效期短。客户端发送请求时，在请求头携带此accessToken。 Refresh Token：用来验证用户的身份，刷新accessToken，有效期长。当accessToken过期时，向服务端传递refreshToken来刷新accessToken。 布隆过滤器 # 名叫 Bloom 的人提出了一种来检索元素是否在给定大集合中的数据结构，这种数据结构是高效且性能很好的，但缺点是具有一定的错误识别率和删除难度。并且，理论情况下，添加到集合中的元素越多，误报的可能性就越大。",
+    "abstract": "八股 # 为什么要重写hashcode和equals方法 # 回答：因为类本省的这两个方法调用时都只是去比较对象的内存地址，当我们new两个相同内容的对象，本来是要比较返回true的但是不重写的话比较 内存返回false，造成错误，故而需要重写这两个方法\n什么是深拷贝和浅拷贝 # 浅拷贝：简单的赋值拷贝操作\n深拷贝：在堆区重新申请空间，进行拷贝操作\nArrayList和LinkedList区别 # 回答都实现了List接口作为数据存储管理的容器，场景上Arraylist内部通过动态数组实现，实现快速的随机访问，适用于频繁的读取操作，移动操作性能低， 不支持同步，线程不安全。LinkedList内部双向链表实现，适合插入删除操作，支持作为队列使用（因为实现了Deque接口），同样线程不安全，单线程性能较好。\nHashMap缺点 # 在JDK1.7和JDK1.8中的HashMap的默认初始容量为16，loadFactor均为0.75。\n参考文章\n回答线程不安全，没有内置读写锁，头插产生死循环，put会覆盖，并发情况put\/get可能为空\n头插法\/尾插法 # （jdk1.7）头插在尾部追加元素，（jdk1.8）尾插法，链表长度大于等于8转化红黑树，判断Map键值对数量超过64\nHashTable为什么线程安全 # 回答remove，put，get都是同步的方法（synchronized关键字），底层通过数组\u002b链表实现，只允许允许一个线程对其进行某种操作，所以并发性比ConcurrnetHashMap差\nConcurrentHashMap线程安全原因 # jdk1.7对每个segment（段）加分段锁（ReentrantLock）实现段隔离保证并发安全 ，最多存在16个段\njdk1.8不再使用段，使用结点（Node）和CAS，Synchronized保证线程安全",
     "inLanguage": "zh-CN",
     "url" : "\/entire-note\/%E9%9D%A2%E8%AF%95%E9%A2%98\/%E9%9D%A2%E8%AF%95\/",
     "author" : {
@@ -102,7 +102,7 @@
     "keywords": ["要求熟记"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "162"
+    "wordCount": "166"
   }]
   </script>
 
@@ -882,9 +882,10 @@
           <ul>
             <li>
               <ul>
-                <li><a href="#八股">八股</a></li>
-                <li><a href="#为什么要重写hashcode和equals方法">为什么要重写hashcode和equals方法</a>
+                <li><a href="#八股">八股</a>
                   <ul>
+                    <li><a href="#为什么要重写hashcode和equals方法">为什么要重写hashcode和equals方法</a></li>
+                    <li><a href="#什么是深拷贝和浅拷贝">什么是深拷贝和浅拷贝</a></li>
                     <li><a href="#arraylist和linkedlist区别">ArrayList和LinkedList区别</a></li>
                     <li><a href="#hashmap缺点">HashMap缺点</a></li>
                     <li><a href="#头插法尾插法">头插法/尾插法</a></li>
@@ -926,9 +927,10 @@
           <ul>
             <li>
               <ul>
-                <li><a href="#八股">八股</a></li>
-                <li><a href="#为什么要重写hashcode和equals方法">为什么要重写hashcode和equals方法</a>
+                <li><a href="#八股">八股</a>
                   <ul>
+                    <li><a href="#为什么要重写hashcode和equals方法">为什么要重写hashcode和equals方法</a></li>
+                    <li><a href="#什么是深拷贝和浅拷贝">什么是深拷贝和浅拷贝</a></li>
                     <li><a href="#arraylist和linkedlist区别">ArrayList和LinkedList区别</a></li>
                     <li><a href="#hashmap缺点">HashMap缺点</a></li>
                     <li><a href="#头插法尾插法">头插法/尾插法</a></li>
@@ -1016,7 +1018,7 @@
     </span>        
     
 </h4>
-<h4 class="relative group">为什么要重写hashcode和equals方法 
+<h5 class="relative group">为什么要重写hashcode和equals方法 
     <div id="为什么要重写hashcode和equals方法" class="anchor"></div>
     
     <span
@@ -1025,9 +1027,21 @@
             style="text-decoration-line: none !important;" href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e8%a6%81%e9%87%8d%e5%86%99hashcode%e5%92%8cequals%e6%96%b9%e6%b3%95" aria-label="锚点">#</a>
     </span>        
     
-</h4>
+</h5>
 <p>回答：因为类本省的这两个方法调用时都只是去比较对象的内存地址，当我们new两个相同内容的对象，本来是要比较返回true的但是不重写的话比较
 内存返回false，造成错误，故而需要重写这两个方法</p>
+<h5 class="relative group">什么是深拷贝和浅拷贝 
+    <div id="什么是深拷贝和浅拷贝" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e4%bb%80%e4%b9%88%e6%98%af%e6%b7%b1%e6%8b%b7%e8%b4%9d%e5%92%8c%e6%b5%85%e6%8b%b7%e8%b4%9d" aria-label="锚点">#</a>
+    </span>        
+    
+</h5>
+<p>浅拷贝：简单的赋值拷贝操作</p>
+<p>深拷贝：在堆区重新申请空间，进行拷贝操作</p>
 <h5 class="relative group">ArrayList和LinkedList区别 
     <div id="arraylist和linkedlist区别" class="anchor"></div>
     
