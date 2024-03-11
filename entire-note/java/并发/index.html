@@ -2363,7 +2363,7 @@ volatile关键字会禁止指令重排序。</p>
     if (""=="zh-CN") {
         Waline.init({
             el: '#vcomments',
-            serverURL: 'https://todreamr-github-io.vercel.app',
+            serverURL: 'https://comment-eosin.vercel.app/',
             emoji: ['https://valine-emoji.bili33.top/bilibilitv','https://valine-emoji.bili33.top/bilibiliHotKey','https://valine-emoji.bili33.top/Tieba-New','https://valine-emoji.bili33.top/weibo',],
             meta:['nick', 'mail', 'link'],
             pageview: true,
@@ -2384,12 +2384,22 @@ volatile关键字会禁止指令重排序。</p>
     else {
         Waline.init({
             el: '#vcomments',
-            serverURL: 'https://todreamr-github-io.vercel.app',
+            serverURL: 'https://comment-eosin.vercel.app/',
             emoji: ['https://valine-emoji.bili33.top/bilibilitv','https://valine-emoji.bili33.top/bilibiliHotKey','https://valine-emoji.bili33.top/Tieba-New','https://valine-emoji.bili33.top/weibo',],
             meta:['nick', 'mail'],
             pageview: true,
             reaction: true,
-            lang:"",
+            
+            lang: "zh-CN",
+            locale: {
+                reactionTitle: '•畅所欲言——这里是开放区•',
+                comment: '留言板',
+                placeholder: '点击下方登录后再评论，会有惊喜哦~',
+                gifSearchPlaceholder: '搜索表情包...',
+                admin: '作者',
+                sofa: '还没有人评论，快来抢沙发吧',
+                anonymous: '匿名者'
+            }
     });
 
     }
