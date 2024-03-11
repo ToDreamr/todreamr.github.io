@@ -66,7 +66,7 @@
   
   <meta property="og:title" content="Spring-Security" />
 <meta property="og:description" content="基于Spring6&#43;JDK18的SpringSecurity环境的项目DEMO # 项目地址：
-ToDreamr/Rainy_SpringSecurity 基于Spring6&#43;JDK18的SpringSecurity环境 Java 0 0 基本实现的功能 # Security通过数据库实现自定义登录 通过自己添加的过滤器链完成JWT&#43;Token的请求权限认证 Token加入Redis做无状态无Session处理 邮箱验证码收发功能 注意事项 # sql执行脚本在项目doc文件目录下，Security在Spring6下已经废除
+ToDreamr/backend-base 基于 Spring6&#43;Vue&#43;Jwt&#43;JDK18环境的SecurityDemo Java 0 0 基本实现的功能 # Security通过数据库实现自定义登录 通过自己添加的过滤器链完成JWT&#43;Token的请求权限认证 Token加入Redis做无状态无Session处理 邮箱验证码收发功能 注意事项 # sql执行脚本在项目doc文件目录下，Security在Spring6下已经废除
 通过WebSecurityAdaptor来实现HttpSecurity这个Bean的配置注入。
 目前只支持Lamda表达式。
 请在application.yml中自行配置自己的邮箱SMTP服务
@@ -82,7 +82,7 @@ ToDreamr/Rainy_SpringSecurity 基于Spring6&#43;JDK18的SpringSecurity环境 Jav
 <meta name="twitter:image" content="/entire-note/security/featured.png"/>
 <meta name="twitter:title" content="Spring-Security"/>
 <meta name="twitter:description" content="基于Spring6&#43;JDK18的SpringSecurity环境的项目DEMO # 项目地址：
-ToDreamr/Rainy_SpringSecurity 基于Spring6&#43;JDK18的SpringSecurity环境 Java 0 0 基本实现的功能 # Security通过数据库实现自定义登录 通过自己添加的过滤器链完成JWT&#43;Token的请求权限认证 Token加入Redis做无状态无Session处理 邮箱验证码收发功能 注意事项 # sql执行脚本在项目doc文件目录下，Security在Spring6下已经废除
+ToDreamr/backend-base 基于 Spring6&#43;Vue&#43;Jwt&#43;JDK18环境的SecurityDemo Java 0 0 基本实现的功能 # Security通过数据库实现自定义登录 通过自己添加的过滤器链完成JWT&#43;Token的请求权限认证 Token加入Redis做无状态无Session处理 邮箱验证码收发功能 注意事项 # sql执行脚本在项目doc文件目录下，Security在Spring6下已经废除
 通过WebSecurityAdaptor来实现HttpSecurity这个Bean的配置注入。
 目前只支持Lamda表达式。
 请在application.yml中自行配置自己的邮箱SMTP服务
@@ -98,7 +98,7 @@ ToDreamr/Rainy_SpringSecurity 基于Spring6&#43;JDK18的SpringSecurity环境 Jav
     "name": "Spring-Security",
     "headline": "Spring-Security",
     
-    "abstract": "基于Spring6\u002bJDK18的SpringSecurity环境的项目DEMO # 项目地址：\nToDreamr\/Rainy_SpringSecurity 基于Spring6\u002bJDK18的SpringSecurity环境 Java 0 0 基本实现的功能 # Security通过数据库实现自定义登录 通过自己添加的过滤器链完成JWT\u002bToken的请求权限认证 Token加入Redis做无状态无Session处理 邮箱验证码收发功能 注意事项 # sql执行脚本在项目doc文件目录下，Security在Spring6下已经废除\n通过WebSecurityAdaptor来实现HttpSecurity这个Bean的配置注入。\n目前只支持Lamda表达式。\n请在application.yml中自行配置自己的邮箱SMTP服务\n配置案例：\n@Bean public SecurityFilterChain filterChain(HttpSecurity http) throws Exception { return http .",
+    "abstract": "基于Spring6\u002bJDK18的SpringSecurity环境的项目DEMO # 项目地址：\nToDreamr\/backend-base 基于 Spring6\u002bVue\u002bJwt\u002bJDK18环境的SecurityDemo Java 0 0 基本实现的功能 # Security通过数据库实现自定义登录 通过自己添加的过滤器链完成JWT\u002bToken的请求权限认证 Token加入Redis做无状态无Session处理 邮箱验证码收发功能 注意事项 # sql执行脚本在项目doc文件目录下，Security在Spring6下已经废除\n通过WebSecurityAdaptor来实现HttpSecurity这个Bean的配置注入。\n目前只支持Lamda表达式。\n请在application.yml中自行配置自己的邮箱SMTP服务\n配置案例：\n@Bean public SecurityFilterChain filterChain(HttpSecurity http) throws Exception { return http .",
     "inLanguage": "zh-CN",
     "url" : "\/entire-note\/security\/",
     "author" : {
@@ -114,7 +114,7 @@ ToDreamr/Rainy_SpringSecurity 基于Spring6&#43;JDK18的SpringSecurity环境 Jav
     "keywords": ["spring"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "136"
+    "wordCount": "137"
   }]
   </script>
 
@@ -210,7 +210,7 @@ ToDreamr/Rainy_SpringSecurity 基于Spring6&#43;JDK18的SpringSecurity环境 Jav
 <div class="fixed inset-x-0 pl-[24px] pr-[24px]" style="z-index:100">
   <div id="menu-blur" class="absolute opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl shadow-2xl"></div>
   <div class="relative max-w-[64rem] ml-auto mr-auto">
-    <div style="padding-left:0;padding-right:0;padding-top:2px;padding-bottom:3px ;height: 70px;font-family: 华文中宋,serif;"
+    <div id="top-menu" style="padding-left:0;padding-right:0;padding-top:2px;padding-bottom:3px ;height: 70px;font-family: 华文中宋,serif;"
      class="main-menu flex items-center justify-between px-4 py-6 sm:px-6 md:justify-start space-x-3" >
   
   
@@ -283,7 +283,7 @@ ToDreamr/Rainy_SpringSecurity 基于Spring6&#43;JDK18的SpringSecurity环境 Jav
   <a href="/doc/"  class="flex items-center">
     
     <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="Docs">
-        帮助文档😺
+        文档😺
     </p>
 </a>
 
@@ -486,7 +486,7 @@ ToDreamr/Rainy_SpringSecurity 基于Spring6&#43;JDK18的SpringSecurity环境 Jav
     <a href="/doc/"  class="flex items-center">
         
         <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="Docs">
-            帮助文档😺
+            文档😺
         </p>
     </a>
 </li>
@@ -502,13 +502,13 @@ ToDreamr/Rainy_SpringSecurity 基于Spring6&#43;JDK18的SpringSecurity环境 Jav
       </div>
     </label>
   </div>
-  <div>
-    <iframe id="music" style="align-content: center;align-items: center" frameborder="no" border="0" marginwidth="0"
-            marginheight="0" width=200 height=86
-            src="//music.163.com/outchain/player?type=2&id=447925058&auto=1&height=66"></iframe>
+  <div id="music-div">
+      <iframe id="music" style="align-content: center;align-items: center" frameborder="no" border="0" marginwidth="0"
+              marginheight="0" width=200 height=86
+              src="//music.163.com/outchain/player?type=2&id=447925058&auto=1&height=66"></iframe>
+    </div>
+    <button id="music-button" class="change-music" onclick="getMusicList()">下一曲</button>
   </div>
-  <button id="music-button" class="change-music" onclick="getMusicList()">下一曲</button>
-</div>
 <style>
   .change-music{
     margin-top: 20px;
@@ -563,12 +563,16 @@ ToDreamr/Rainy_SpringSecurity 基于Spring6&#43;JDK18的SpringSecurity环境 Jav
     var width=window.innerWidth;
     var height=window.innerHeight;
     if (width<420||height<820){
-      title.innerText=''
+      title.innerText='Rainy-Heights'
       button.innerText='';
       music.style.width=0;
       music.style.height=0;
       button.style.height=0;
       button.style.height=0;
+      var child = document.getElementById('music-div');
+      var father = document.getElementById('top-menu');
+      father.removeChild(child)
+      father.removeChild(button)
     }
   })();
 </script>
@@ -1035,7 +1039,7 @@ ToDreamr/Rainy_SpringSecurity 基于Spring6&#43;JDK18的SpringSecurity环境 Jav
     
 </h1>
 <p>项目地址：</p>
-<a id="github-2074129d3e20c013cbbb19d5b7d7e25f" target="_blank" href="https://github.com/ToDreamr/Rainy_SpringSecurity" class="cursor-pointer">
+<a id="github-2074129d3e20c013cbbb19d5b7d7e25f" target="_blank" href="https://github.com/ToDreamr/backend-base" class="cursor-pointer">
   <div
     class="w-full md:w-auto pt-3 p-5 border border-neutral-200 dark:border-neutral-700 border rounded-md shadow-2xl">
 
@@ -1053,12 +1057,12 @@ ToDreamr/Rainy_SpringSecurity 基于Spring6&#43;JDK18的SpringSecurity环境 Jav
       <div
         id="github-2074129d3e20c013cbbb19d5b7d7e25f-full_name"
         class="m-0 font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral">
-        ToDreamr/Rainy_SpringSecurity
+        ToDreamr/backend-base
       </div>
     </div>
 
     <p id="github-2074129d3e20c013cbbb19d5b7d7e25f-description" class="m-0 mt-2 text-md text-neutral-800 dark:text-neutral">
-      基于Spring6+JDK18的SpringSecurity环境
+      基于 Spring6+Vue+Jwt+JDK18环境的SecurityDemo
     </p>
 
     <div class="m-0 mt-2 flex items-center">
@@ -1099,7 +1103,7 @@ ToDreamr/Rainy_SpringSecurity 基于Spring6&#43;JDK18的SpringSecurity环境 Jav
 
   </div>
   <script>
-    fetch("https://api.github.com/repos/ToDreamr/Rainy_SpringSecurity", {
+    fetch("https://api.github.com/repos/ToDreamr/backend-base", {
       headers: new Headers({
         'User-agent': 'Mozilla/4.0 Custom User Agent'
       })
@@ -1994,20 +1998,111 @@ ToDreamr/Rainy_SpringSecurity 基于Spring6&#43;JDK18的SpringSecurity环境 Jav
     <div class="pt-3">
       <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
       <div class="pt-3">
-        <script src="https://giscus.app/client.js"
-        data-repo="ToDreamr/todreamr.github.io"
-        data-repo-id="R_kgDOLG9zIQ"
-        data-category="Q&A"
-        data-category-id="DIC_kwDOLG9zIc4Cc-2K"
-        data-mapping="pathname"
-        data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="light_protanopia"
-        data-lang="zh-CN"
-        crossorigin="anonymous"
-        async>
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br/>
+<span style="color:rgba(var(--color-neutral-400),var(--tw-text-opacity));">
+    <span class="post-meta-item-text" >&nbsp;&nbsp;:  </span>
+    <span class="waline-pageview-count">⏳</span><div></div><br/>
+</span>
+<script type="text/javascript">
+    document.getElementByClassName("aline-pageview-count")[0].data-path = window.location.pathname;
+</script>
+
+
+
+<script src='/waline/waline.js'></script>
+<link href='/waline/waline.css' rel='stylesheet' />
+<div id="vcomments"></div>
+<script>
+    if (""=="zh-CN") {
+        Waline.init({
+            el: '#vcomments',
+            serverURL: 'https://todreamr-github-io.vercel.app',
+            emoji: ['https://valine-emoji.bili33.top/bilibilitv','https://valine-emoji.bili33.top/bilibiliHotKey','https://valine-emoji.bili33.top/Tieba-New','https://valine-emoji.bili33.top/weibo',],
+            meta:['nick', 'mail', 'link'],
+            pageview: true,
+            reaction: true,
+            lang: "zh-CN",
+            locale: {
+                reactionTitle: '•畅所欲言——这里是开放区•',
+                comment: '留言板',
+                placeholder: '点击下方登录后再评论，会有惊喜哦~',
+                gifSearchPlaceholder: '搜索表情包...',
+                admin: '作者',
+                sofa: '还没有人评论，快来抢沙发吧',
+                anonymous: '匿名者'
+            }
+        });
+
+    }
+    else {
+        Waline.init({
+            el: '#vcomments',
+            serverURL: 'https://todreamr-github-io.vercel.app',
+            emoji: ['https://valine-emoji.bili33.top/bilibilitv','https://valine-emoji.bili33.top/bilibiliHotKey','https://valine-emoji.bili33.top/Tieba-New','https://valine-emoji.bili33.top/weibo',],
+            meta:['nick', 'mail'],
+            pageview: true,
+            reaction: true,
+            lang:"",
+    });
+
+    }
+    document.getElementsByClassName('wl-power')[0].style.display = 'none';
+    document.querySelector(".wl-actions a").style.display = 'none'
+</script>
+<style type="text/css">
+    :root{
+        --waline-color: var(--tw-prose-quotes);
+        --waline-info-color: var(--tw-prose-quotes);
+        --waline-info-bgcolor: var(--tw-ring-color);
+        --waline-theme-color: rgba(var(--color-primary-400));
+        --waline-bgcolor: transparent;
+        --waline-border-color: #747474;
+    }
+    .wl-editor:focus, .wl-input:focus {
+        background: transparent;
+    }
+    .wl-editor,.wl-input{
+        max-width:88%;
+    }
+    .wl-reaction-item.active .wl-reaction-votes {
+        color: white;
+    }
+</style>
+
+<script type="text/javascript">
+    var pagect = document.getElementById('pagec');
+    var observer = new MutationObserver(function(){
+        var itl,itll;
+        var element = document.getElementById("pagec");
+        observer.disconnect();
+        itl  = element.innerText;
+        itll = Number(itl).toLocaleString();
+        document.getElementById('pagec').innerHTML = itll;
+    });
+    var article = document.getElementById('pagec');
+
+    var options = {
+        'childList': true,
+        'subtree': true
+    };
+
+    observer.observe(article, options);
 </script>
 
       </div>
@@ -2058,7 +2153,7 @@ ToDreamr/Rainy_SpringSecurity 基于Spring6&#43;JDK18的SpringSecurity环境 Jav
         
         <li class="flex mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
           <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2" href="/doc/"
-            title="Docs">帮助文档</a>
+            title="Docs">文档</a>
         </li>
         
       </ul>

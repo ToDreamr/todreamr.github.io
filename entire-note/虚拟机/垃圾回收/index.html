@@ -188,7 +188,7 @@
 <div class="fixed inset-x-0 pl-[24px] pr-[24px]" style="z-index:100">
   <div id="menu-blur" class="absolute opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl shadow-2xl"></div>
   <div class="relative max-w-[64rem] ml-auto mr-auto">
-    <div style="padding-left:0;padding-right:0;padding-top:2px;padding-bottom:3px ;height: 70px;font-family: 华文中宋,serif;"
+    <div id="top-menu" style="padding-left:0;padding-right:0;padding-top:2px;padding-bottom:3px ;height: 70px;font-family: 华文中宋,serif;"
      class="main-menu flex items-center justify-between px-4 py-6 sm:px-6 md:justify-start space-x-3" >
   
   
@@ -261,7 +261,7 @@
   <a href="/doc/"  class="flex items-center">
     
     <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="Docs">
-        帮助文档😺
+        文档😺
     </p>
 </a>
 
@@ -464,7 +464,7 @@
     <a href="/doc/"  class="flex items-center">
         
         <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="Docs">
-            帮助文档😺
+            文档😺
         </p>
     </a>
 </li>
@@ -480,13 +480,13 @@
       </div>
     </label>
   </div>
-  <div>
-    <iframe id="music" style="align-content: center;align-items: center" frameborder="no" border="0" marginwidth="0"
-            marginheight="0" width=200 height=86
-            src="//music.163.com/outchain/player?type=2&id=447925058&auto=1&height=66"></iframe>
+  <div id="music-div">
+      <iframe id="music" style="align-content: center;align-items: center" frameborder="no" border="0" marginwidth="0"
+              marginheight="0" width=200 height=86
+              src="//music.163.com/outchain/player?type=2&id=447925058&auto=1&height=66"></iframe>
+    </div>
+    <button id="music-button" class="change-music" onclick="getMusicList()">下一曲</button>
   </div>
-  <button id="music-button" class="change-music" onclick="getMusicList()">下一曲</button>
-</div>
 <style>
   .change-music{
     margin-top: 20px;
@@ -541,12 +541,16 @@
     var width=window.innerWidth;
     var height=window.innerHeight;
     if (width<420||height<820){
-      title.innerText=''
+      title.innerText='Rainy-Heights'
       button.innerText='';
       music.style.width=0;
       music.style.height=0;
       button.style.height=0;
       button.style.height=0;
+      var child = document.getElementById('music-div');
+      var father = document.getElementById('top-menu');
+      father.removeChild(child)
+      father.removeChild(button)
     }
   })();
 </script>
@@ -2049,20 +2053,111 @@ Minor GC - 次要垃圾回收，主要进行新生代区域的垃圾收集。</p
     <div class="pt-3">
       <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
       <div class="pt-3">
-        <script src="https://giscus.app/client.js"
-        data-repo="ToDreamr/todreamr.github.io"
-        data-repo-id="R_kgDOLG9zIQ"
-        data-category="Q&A"
-        data-category-id="DIC_kwDOLG9zIc4Cc-2K"
-        data-mapping="pathname"
-        data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="light_protanopia"
-        data-lang="zh-CN"
-        crossorigin="anonymous"
-        async>
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br/>
+<span style="color:rgba(var(--color-neutral-400),var(--tw-text-opacity));">
+    <span class="post-meta-item-text" >&nbsp;&nbsp;:  </span>
+    <span class="waline-pageview-count">⏳</span><div></div><br/>
+</span>
+<script type="text/javascript">
+    document.getElementByClassName("aline-pageview-count")[0].data-path = window.location.pathname;
+</script>
+
+
+
+<script src='/waline/waline.js'></script>
+<link href='/waline/waline.css' rel='stylesheet' />
+<div id="vcomments"></div>
+<script>
+    if (""=="zh-CN") {
+        Waline.init({
+            el: '#vcomments',
+            serverURL: 'https://todreamr-github-io.vercel.app',
+            emoji: ['https://valine-emoji.bili33.top/bilibilitv','https://valine-emoji.bili33.top/bilibiliHotKey','https://valine-emoji.bili33.top/Tieba-New','https://valine-emoji.bili33.top/weibo',],
+            meta:['nick', 'mail', 'link'],
+            pageview: true,
+            reaction: true,
+            lang: "zh-CN",
+            locale: {
+                reactionTitle: '•畅所欲言——这里是开放区•',
+                comment: '留言板',
+                placeholder: '点击下方登录后再评论，会有惊喜哦~',
+                gifSearchPlaceholder: '搜索表情包...',
+                admin: '作者',
+                sofa: '还没有人评论，快来抢沙发吧',
+                anonymous: '匿名者'
+            }
+        });
+
+    }
+    else {
+        Waline.init({
+            el: '#vcomments',
+            serverURL: 'https://todreamr-github-io.vercel.app',
+            emoji: ['https://valine-emoji.bili33.top/bilibilitv','https://valine-emoji.bili33.top/bilibiliHotKey','https://valine-emoji.bili33.top/Tieba-New','https://valine-emoji.bili33.top/weibo',],
+            meta:['nick', 'mail'],
+            pageview: true,
+            reaction: true,
+            lang:"",
+    });
+
+    }
+    document.getElementsByClassName('wl-power')[0].style.display = 'none';
+    document.querySelector(".wl-actions a").style.display = 'none'
+</script>
+<style type="text/css">
+    :root{
+        --waline-color: var(--tw-prose-quotes);
+        --waline-info-color: var(--tw-prose-quotes);
+        --waline-info-bgcolor: var(--tw-ring-color);
+        --waline-theme-color: rgba(var(--color-primary-400));
+        --waline-bgcolor: transparent;
+        --waline-border-color: #747474;
+    }
+    .wl-editor:focus, .wl-input:focus {
+        background: transparent;
+    }
+    .wl-editor,.wl-input{
+        max-width:88%;
+    }
+    .wl-reaction-item.active .wl-reaction-votes {
+        color: white;
+    }
+</style>
+
+<script type="text/javascript">
+    var pagect = document.getElementById('pagec');
+    var observer = new MutationObserver(function(){
+        var itl,itll;
+        var element = document.getElementById("pagec");
+        observer.disconnect();
+        itl  = element.innerText;
+        itll = Number(itl).toLocaleString();
+        document.getElementById('pagec').innerHTML = itll;
+    });
+    var article = document.getElementById('pagec');
+
+    var options = {
+        'childList': true,
+        'subtree': true
+    };
+
+    observer.observe(article, options);
 </script>
 
       </div>
@@ -2113,7 +2208,7 @@ Minor GC - 次要垃圾回收，主要进行新生代区域的垃圾收集。</p
         
         <li class="flex mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
           <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2" href="/doc/"
-            title="Docs">帮助文档</a>
+            title="Docs">文档</a>
         </li>
         
       </ul>

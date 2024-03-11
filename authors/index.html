@@ -160,7 +160,7 @@
 <div class="fixed inset-x-0 pl-[24px] pr-[24px]" style="z-index:100">
   <div id="menu-blur" class="absolute opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl shadow-2xl"></div>
   <div class="relative max-w-[64rem] ml-auto mr-auto">
-    <div style="padding-left:0;padding-right:0;padding-top:2px;padding-bottom:3px ;height: 70px;font-family: 华文中宋,serif;"
+    <div id="top-menu" style="padding-left:0;padding-right:0;padding-top:2px;padding-bottom:3px ;height: 70px;font-family: 华文中宋,serif;"
      class="main-menu flex items-center justify-between px-4 py-6 sm:px-6 md:justify-start space-x-3" >
   
   
@@ -233,7 +233,7 @@
   <a href="/doc/"  class="flex items-center">
     
     <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="Docs">
-        帮助文档😺
+        文档😺
     </p>
 </a>
 
@@ -436,7 +436,7 @@
     <a href="/doc/"  class="flex items-center">
         
         <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="Docs">
-            帮助文档😺
+            文档😺
         </p>
     </a>
 </li>
@@ -452,13 +452,13 @@
       </div>
     </label>
   </div>
-  <div>
-    <iframe id="music" style="align-content: center;align-items: center" frameborder="no" border="0" marginwidth="0"
-            marginheight="0" width=200 height=86
-            src="//music.163.com/outchain/player?type=2&id=447925058&auto=1&height=66"></iframe>
+  <div id="music-div">
+      <iframe id="music" style="align-content: center;align-items: center" frameborder="no" border="0" marginwidth="0"
+              marginheight="0" width=200 height=86
+              src="//music.163.com/outchain/player?type=2&id=447925058&auto=1&height=66"></iframe>
+    </div>
+    <button id="music-button" class="change-music" onclick="getMusicList()">下一曲</button>
   </div>
-  <button id="music-button" class="change-music" onclick="getMusicList()">下一曲</button>
-</div>
 <style>
   .change-music{
     margin-top: 20px;
@@ -513,12 +513,16 @@
     var width=window.innerWidth;
     var height=window.innerHeight;
     if (width<420||height<820){
-      title.innerText=''
+      title.innerText='Rainy-Heights'
       button.innerText='';
       music.style.width=0;
       music.style.height=0;
       button.style.height=0;
       button.style.height=0;
+      var child = document.getElementById('music-div');
+      var father = document.getElementById('top-menu');
+      father.removeChild(child)
+      father.removeChild(button)
     }
   })();
 </script>
@@ -659,7 +663,7 @@
         
         <li class="flex mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
           <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2" href="/doc/"
-            title="Docs">帮助文档</a>
+            title="Docs">文档</a>
         </li>
         
       </ul>
