@@ -7,7 +7,27 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>© 2024 春江花朝秋月夜</copyright>
-    <lastBuildDate>Sat, 09 Mar 2024 18:23:23 +0800</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 11 Mar 2024 18:23:23 +0800</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Waline评论系统</title>
+      <link>/entire-note/%E6%80%8E%E4%B9%88%E8%AF%84%E8%AE%BA/</link>
+      <pubDate>Mon, 11 Mar 2024 18:23:23 +0800</pubDate>
+      
+      <guid>/entire-note/%E6%80%8E%E4%B9%88%E8%AF%84%E8%AE%BA/</guid>
+      <description>Waline博客网站评论 # 注册账号 # 注册账号✈️
+创建应用✈️
+创建仓库-》用于存放评论
+创建好之后，去到settings里面修改Environment三个参数
+LEAN_ID：AppId LEAN_KEY：App_key LEAN_MASTER_KEY：Master_KEY
+添加好之后，刷新工作流
+通过HTML部署
+导入样式文件和js脚本文件
+通过Waline的配置键添加自定义的东西
+注： 借鉴自金圣浩
+&amp;lt;br/&amp;gt; &amp;lt;span style=&amp;#34;color:rgba(var(--color-neutral-400),var(--tw-text-opacity));&amp;#34;&amp;gt; &amp;lt;span class=&amp;#34;post-meta-item-text&amp;#34; &amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;{{i18n &amp;#34;article.page_views&amp;#34;}}: &amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;waline-pageview-count&amp;#34;&amp;gt;⏳&amp;lt;/span&amp;gt;&amp;lt;div&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;br/&amp;gt; &amp;lt;/span&amp;gt; &amp;lt;script type=&amp;#34;text/javascript&amp;#34;&amp;gt; document.</description>
+      
+    </item>
+    
     <item>
       <title>常规面试题</title>
       <link>/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/%E9%9D%A2%E8%AF%95/</link>
@@ -392,7 +412,7 @@ ReferenceQueue&amp;lt;Object&amp;gt; queue = new ReferenceQueue&amp;lt;&amp;gt;(
       <pubDate>Sat, 21 Oct 2023 20:52:20 +0800</pubDate>
       
       <guid>/all/</guid>
-      <description> 全部文章 常规面试题9 March 2024&amp;middot;1 分钟 要求熟记 使用主从模式搭建一个Socket网络通信模型6 March 2024&amp;middot;1 分钟 微信登录2 March 2024&amp;middot;4 分钟 Oauth2 自用的Vscode个人觉得还算耐看的主题和字体以及编码习惯2 March 2024&amp;middot;1 分钟 笔记 Oauth229 February 2024&amp;middot;1 分钟 Oauth2 Spring-Security23 February 2024&amp;middot;1 分钟 spring Docker8 February 2024&amp;middot;1 分钟 笔记 Music7 February 2024&amp;middot;1 分钟 笔记 本站Music搭建相关7 February 2024&amp;middot;1 分钟 笔记 音乐29 January 2024 NetFlix和SpringCloudAlibaba26 January 2024&amp;middot;1 分钟 微服务 我的生日15 November 2023&amp;middot;1 分钟 生活 区间个位和14 November 2023&amp;middot;1 分钟 leetcode 数之和14 November 2023&amp;middot;1 分钟 leetcode Eureka11 November 2023&amp;middot;1 分钟 微服务 SpringCloud11 November 2023&amp;middot;2 分钟 微服务 没备份笔记的后果11 November 2023&amp;middot;1 分钟 随记 RabbitMq7 November 2023&amp;middot;2 分钟 消息队列 Vue3 响应式Api开发笔记4 November 2023&amp;middot;2 分钟 vue 搭建图床3 November 2023&amp;middot;1 分钟 杂记 Spring事务传播机制3 November 2023&amp;middot;1 分钟 spring C++27 October 2023&amp;middot;6 分钟 语言 friend27 October 2023&amp;middot;1 分钟 朋友们 面试题25 October 2023&amp;middot;1 分钟 面试题 类加载24 October 2023&amp;middot;1 分钟 虚拟机 元空间和引用方式24 October 2023&amp;middot;1 分钟 虚拟机 Latex语法19 October 2023&amp;middot;1 分钟 latex Jvm12 October 2023&amp;middot;2 分钟 虚拟机 垃圾回收机制12 October 2023&amp;middot;1 分钟 虚拟机 学习计划10 October 2023&amp;middot;1 分钟 规划 并发进阶9 October 2023&amp;middot;4 分钟 并发编程 Java-Concurrent9 October 2023&amp;middot;3 分钟 并发编程 如何通过hugo搭建自己的博客3 October 2023&amp;middot;1 分钟 杂记 对象间的关系3 October 2023&amp;middot;1 分钟 Java SE 关键字3 October 2023&amp;middot;5 分钟 Java SE 实例化Node3 October 2023&amp;middot;1 分钟 Java SE 数据结构篇3 October 2023&amp;middot;1 分钟 算法 应该没人来这里吧3 October 2023&amp;middot;1 分钟 ThreadLocal3 October 2023&amp;middot;2 分钟 Java SE Redis3 October 2023&amp;middot;2 分钟 缓存 Hello Friend3 October 2003&amp;middot;1 分钟 post 1 January 0001&amp;middot;52 分钟 1 January 0001&amp;middot;1 分钟 Docker1 January 0001&amp;middot;7 分钟 Mysql1 January 0001&amp;middot;6 分钟 Netty1 January 0001&amp;middot;17 分钟 NIO1 January 0001&amp;middot;22 分钟 RabbitMq1 January 0001&amp;middot;7 分钟 SpringCloud 11 January 0001&amp;middot;9 分钟 SpringCloud 21 January 0001&amp;middot;11 分钟 SpringCloud 31 January 0001&amp;middot;10 分钟 创建型1 January 0001&amp;middot;4 分钟 封面测试1 January 0001 结构型1 January 0001&amp;middot;5 分钟 面向对象设计原则1 January 0001&amp;middot;4 分钟 行为型1 January 0001&amp;middot;7 分钟 </description>
+      <description> 全部文章 Waline评论系统11 March 2024&amp;middot;1 分钟 笔记 常规面试题9 March 2024&amp;middot;1 分钟 要求熟记 使用主从模式搭建一个Socket网络通信模型6 March 2024&amp;middot;1 分钟 微信登录2 March 2024&amp;middot;4 分钟 Oauth2 自用的Vscode个人觉得还算耐看的主题和字体以及编码习惯2 March 2024&amp;middot;1 分钟 笔记 Oauth229 February 2024&amp;middot;1 分钟 Oauth2 Spring-Security23 February 2024&amp;middot;1 分钟 spring Docker8 February 2024&amp;middot;1 分钟 笔记 Music7 February 2024&amp;middot;1 分钟 笔记 本站Music搭建相关7 February 2024&amp;middot;1 分钟 笔记 音乐29 January 2024 NetFlix和SpringCloudAlibaba26 January 2024&amp;middot;1 分钟 微服务 我的生日15 November 2023&amp;middot;1 分钟 生活 区间个位和14 November 2023&amp;middot;1 分钟 leetcode 数之和14 November 2023&amp;middot;1 分钟 leetcode Eureka11 November 2023&amp;middot;1 分钟 微服务 SpringCloud11 November 2023&amp;middot;2 分钟 微服务 没备份笔记的后果11 November 2023&amp;middot;1 分钟 随记 RabbitMq7 November 2023&amp;middot;2 分钟 消息队列 Vue3 响应式Api开发笔记4 November 2023&amp;middot;2 分钟 vue 搭建图床3 November 2023&amp;middot;1 分钟 杂记 Spring事务传播机制3 November 2023&amp;middot;1 分钟 spring C++27 October 2023&amp;middot;6 分钟 语言 friend27 October 2023&amp;middot;1 分钟 朋友们 面试题25 October 2023&amp;middot;1 分钟 面试题 类加载24 October 2023&amp;middot;1 分钟 虚拟机 元空间和引用方式24 October 2023&amp;middot;1 分钟 虚拟机 Latex语法19 October 2023&amp;middot;1 分钟 latex Jvm12 October 2023&amp;middot;2 分钟 虚拟机 垃圾回收机制12 October 2023&amp;middot;1 分钟 虚拟机 学习计划10 October 2023&amp;middot;1 分钟 规划 并发进阶9 October 2023&amp;middot;4 分钟 并发编程 Java-Concurrent9 October 2023&amp;middot;3 分钟 并发编程 如何通过hugo搭建自己的博客3 October 2023&amp;middot;1 分钟 杂记 对象间的关系3 October 2023&amp;middot;1 分钟 Java SE 关键字3 October 2023&amp;middot;5 分钟 Java SE 实例化Node3 October 2023&amp;middot;1 分钟 Java SE 数据结构篇3 October 2023&amp;middot;1 分钟 算法 应该没人来这里吧3 October 2023&amp;middot;1 分钟 ThreadLocal3 October 2023&amp;middot;2 分钟 Java SE Redis3 October 2023&amp;middot;2 分钟 缓存 Hello Friend3 October 2003&amp;middot;1 分钟 post 1 January 0001&amp;middot;52 分钟 1 January 0001&amp;middot;2 分钟 1 January 0001&amp;middot;1 分钟 Docker1 January 0001&amp;middot;7 分钟 Mysql1 January 0001&amp;middot;6 分钟 Netty1 January 0001&amp;middot;17 分钟 NIO1 January 0001&amp;middot;22 分钟 RabbitMq1 January 0001&amp;middot;7 分钟 SpringCloud 11 January 0001&amp;middot;9 分钟 SpringCloud 21 January 0001&amp;middot;11 分钟 SpringCloud 31 January 0001&amp;middot;10 分钟 创建型1 January 0001&amp;middot;4 分钟 封面测试1 January 0001 结构型1 January 0001&amp;middot;5 分钟 面向对象设计原则1 January 0001&amp;middot;4 分钟 行为型1 January 0001&amp;middot;7 分钟 </description>
       
     </item>
     
@@ -623,6 +643,16 @@ C++提供两种模板机制:函数模板和类模板
 建立一个通用函数，其函数返回值类型和形参类型可以不具体制定，用一个虚拟的类型来代表。
 语法：
 template&amp;lt;typename T&amp;gt; 函数声明或定义 解释：</description>
+      
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/entire-note/%E9%93%BE%E8%A1%A8%E9%98%9F%E5%88%97%E5%92%8C%E6%A0%91/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/entire-note/%E9%93%BE%E8%A1%A8%E9%98%9F%E5%88%97%E5%92%8C%E6%A0%91/</guid>
+      <description>链表 ，队列和二叉树 # 尝试使用cpp实现二叉树，下面是粗劣的代码： # #include &amp;#34;stdio.h&amp;#34; #include &amp;#34;stdlib.h&amp;#34; #include &amp;#34;iostream&amp;#34; using namespace std; // 定义一个链表 typedef struct list { int item; bool isEmpty; // 是否空链表 int node_count; // 节点数 list *next; // 下一节点 } List; // 定义一个二叉树ADT typedef struct tree { list node; tree *tree; } Tree; void List_Init(List &amp;amp;list) { // 防止访问空指针 if (list.</description>
       
     </item>
     

@@ -7,7 +7,27 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>© 2024 春江花朝秋月夜</copyright>
-    <lastBuildDate>Sat, 02 Mar 2024 13:22:59 +0800</lastBuildDate><atom:link href="/tags/%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 11 Mar 2024 18:23:23 +0800</lastBuildDate><atom:link href="/tags/%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Waline评论系统</title>
+      <link>/entire-note/%E6%80%8E%E4%B9%88%E8%AF%84%E8%AE%BA/</link>
+      <pubDate>Mon, 11 Mar 2024 18:23:23 +0800</pubDate>
+      
+      <guid>/entire-note/%E6%80%8E%E4%B9%88%E8%AF%84%E8%AE%BA/</guid>
+      <description>Waline博客网站评论 # 注册账号 # 注册账号✈️
+创建应用✈️
+创建仓库-》用于存放评论
+创建好之后，去到settings里面修改Environment三个参数
+LEAN_ID：AppId LEAN_KEY：App_key LEAN_MASTER_KEY：Master_KEY
+添加好之后，刷新工作流
+通过HTML部署
+导入样式文件和js脚本文件
+通过Waline的配置键添加自定义的东西
+注： 借鉴自金圣浩
+&amp;lt;br/&amp;gt; &amp;lt;span style=&amp;#34;color:rgba(var(--color-neutral-400),var(--tw-text-opacity));&amp;#34;&amp;gt; &amp;lt;span class=&amp;#34;post-meta-item-text&amp;#34; &amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;{{i18n &amp;#34;article.page_views&amp;#34;}}: &amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;waline-pageview-count&amp;#34;&amp;gt;⏳&amp;lt;/span&amp;gt;&amp;lt;div&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;br/&amp;gt; &amp;lt;/span&amp;gt; &amp;lt;script type=&amp;#34;text/javascript&amp;#34;&amp;gt; document.</description>
+      
+    </item>
+    
     <item>
       <title>自用的Vscode个人觉得还算耐看的主题和字体以及编码习惯</title>
       <link>/entire-note/vscode/</link>
