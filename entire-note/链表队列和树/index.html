@@ -65,7 +65,8 @@
   
   
   <meta property="og:title" content="" />
-<meta property="og:description" content="链表 ，队列和二叉树 # 尝试使用cpp实现二叉树，下面是粗劣的代码： # #include &#34;stdio.h&#34; #include &#34;stdlib.h&#34; #include &#34;iostream&#34; using namespace std; // 定义一个链表 typedef struct list { int item; bool isEmpty; // 是否空链表 int node_count; // 节点数 list *next; // 下一节点 } List; // 定义一个二叉树ADT typedef struct tree { list node; tree *tree; } Tree; void List_Init(List &amp;list) { // 防止访问空指针 if (list." />
+<meta property="og:description" content="链表 ，队列和二叉树 # 尝试使用cpp实现二叉树，下面是粗劣的代码： # 指针和引用传递的区别：
+//如果传递引用： void List_Init(List &amp;list) { // 防止访问空指针 if (list.next != NULL) { list.next = NULL; list.node_count = 0; } } //如果传递指针： void List_Init(List *list) { // 防止访问空指针 if (list-&gt;next !" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/entire-note/%E9%93%BE%E8%A1%A8%E9%98%9F%E5%88%97%E5%92%8C%E6%A0%91/" /><meta property="article:section" content="entire-note" />
 
@@ -74,7 +75,8 @@
 
   <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content=""/>
-<meta name="twitter:description" content="链表 ，队列和二叉树 # 尝试使用cpp实现二叉树，下面是粗劣的代码： # #include &#34;stdio.h&#34; #include &#34;stdlib.h&#34; #include &#34;iostream&#34; using namespace std; // 定义一个链表 typedef struct list { int item; bool isEmpty; // 是否空链表 int node_count; // 节点数 list *next; // 下一节点 } List; // 定义一个二叉树ADT typedef struct tree { list node; tree *tree; } Tree; void List_Init(List &amp;list) { // 防止访问空指针 if (list."/>
+<meta name="twitter:description" content="链表 ，队列和二叉树 # 尝试使用cpp实现二叉树，下面是粗劣的代码： # 指针和引用传递的区别：
+//如果传递引用： void List_Init(List &amp;list) { // 防止访问空指针 if (list.next != NULL) { list.next = NULL; list.node_count = 0; } } //如果传递指针： void List_Init(List *list) { // 防止访问空指针 if (list-&gt;next !"/>
 
   
   <script type="application/ld+json">
@@ -85,7 +87,7 @@
     "name": "",
     "headline": "",
     
-    "abstract": "链表 ，队列和二叉树 # 尝试使用cpp实现二叉树，下面是粗劣的代码： # #include \u0026#34;stdio.h\u0026#34; #include \u0026#34;stdlib.h\u0026#34; #include \u0026#34;iostream\u0026#34; using namespace std; \/\/ 定义一个链表 typedef struct list { int item; bool isEmpty; \/\/ 是否空链表 int node_count; \/\/ 节点数 list *next; \/\/ 下一节点 } List; \/\/ 定义一个二叉树ADT typedef struct tree { list node; tree *tree; } Tree; void List_Init(List \u0026amp;list) { \/\/ 防止访问空指针 if (list.",
+    "abstract": "链表 ，队列和二叉树 # 尝试使用cpp实现二叉树，下面是粗劣的代码： # 指针和引用传递的区别：\n\/\/如果传递引用： void List_Init(List \u0026amp;list) { \/\/ 防止访问空指针 if (list.next != NULL) { list.next = NULL; list.node_count = 0; } } \/\/如果传递指针： void List_Init(List *list) { \/\/ 防止访问空指针 if (list-\u0026gt;next !",
     "inLanguage": "zh-CN",
     "url" : "\/entire-note\/%E9%93%BE%E8%A1%A8%E9%98%9F%E5%88%97%E5%92%8C%E6%A0%91\/",
     "author" : {
@@ -101,7 +103,7 @@
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "258"
+    "wordCount": "309"
   }]
   </script>
 
@@ -1027,7 +1029,36 @@
     </span>        
     
 </h3>
+<p>指针和引用传递的区别：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//如果传递引用：
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">List_Init</span><span class="p">(</span><span class="n">List</span> <span class="o">&amp;</span><span class="n">list</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 防止访问空指针
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="n">list</span><span class="p">.</span><span class="n">next</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">list</span><span class="p">.</span><span class="n">next</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">list</span><span class="p">.</span><span class="n">node_count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//如果传递指针：
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">List_Init</span><span class="p">(</span><span class="n">List</span> <span class="o">*</span><span class="n">list</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 防止访问空指针
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="n">list</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">list</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">list</span><span class="o">-&gt;</span><span class="n">node_count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//如果不想用指针，想用引用：
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span> <span class="n">List</span> <span class="o">&amp;</span><span class="n">tmp</span> <span class="o">=</span> <span class="o">*</span><span class="n">list</span><span class="p">;</span>
+</span></span></code></pre></div><p>使用类模板：</p>
+<p>类模板使用只能用显示指定类型方式
+类模板中的模板参数列表可以有默认参数</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">NameType</span><span class="o">&gt;</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;stdio.h&#34;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;stdlib.h&#34;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;iostream&#34;</span><span class="cp">

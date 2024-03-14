@@ -7,7 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>© 2024 春江花朝秋月夜</copyright>
-    <lastBuildDate>Mon, 11 Mar 2024 18:23:23 +0800</lastBuildDate><atom:link href="/tags/%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 13 Mar 2024 18:23:23 +0800</lastBuildDate><atom:link href="/tags/%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>爬虫浅记</title>
+      <link>/entire-note/%E7%88%AC%E8%99%AB/</link>
+      <pubDate>Wed, 13 Mar 2024 18:23:23 +0800</pubDate>
+      
+      <guid>/entire-note/%E7%88%AC%E8%99%AB/</guid>
+      <description>目的：使用爬虫爬取都应指定视频下方的所有评论 # 接电商小公司的面试需求
+参考视频
+知道了爬虫的基本原理是模仿正常用户的操作获取相关信息，下面是实际操作的记录
+过程：
+先是去抖音网站获取评论的api接口，拉取下来后使用ApiPost测试发现返回&amp;quot;block&amp;quot;阻塞信息 而后添加了相关请求头，发现加入User-Agent是关键信息 然而每次获取不同的视频发现有更改的参数：XBogus，这个参数是网站后台通过函数循环调用自己生成的（反爬） 遂通过浏览器断点调试最终追踪堆栈到生成函数： function _0x5a8f25(_0x48914f, _0xa771aa) { return (&amp;#39;undefined&amp;#39; == typeof window ? global : window)[&amp;#39;_$webrt_1668687510&amp;#39;](args) } 于是通过Node调试js文件，模拟循环过程生成参数 window = global; document = { refferer:&amp;#39;https://www.</description>
+      
+    </item>
+    
     <item>
       <title>Waline评论系统</title>
       <link>/entire-note/%E6%80%8E%E4%B9%88%E8%AF%84%E8%AE%BA/</link>

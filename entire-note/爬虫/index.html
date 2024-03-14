@@ -9,14 +9,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   
-  <title>Waline评论系统 &middot; 春江花朝秋月夜</title>
-  <meta name="title" content="Waline评论系统 &middot; 春江花朝秋月夜" />
+  <title>爬虫浅记 &middot; 春江花朝秋月夜</title>
+  <meta name="title" content="爬虫浅记 &middot; 春江花朝秋月夜" />
   
-  <meta name="description" content="Waline博客网站评论" />
+  <meta name="description" content="随便写的" />
   <meta name="keywords" content="笔记, " />
   
   
-  <link rel="canonical" href="/entire-note/%E6%80%8E%E4%B9%88%E8%AF%84%E8%AE%BA/" />
+  <link rel="canonical" href="/entire-note/%E7%88%AC%E8%99%AB/" />
   
   
   
@@ -64,17 +64,17 @@
   
   
   
-  <meta property="og:title" content="Waline评论系统" />
-<meta property="og:description" content="Waline博客网站评论" />
+  <meta property="og:title" content="爬虫浅记" />
+<meta property="og:description" content="随便写的" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/entire-note/%E6%80%8E%E4%B9%88%E8%AF%84%E8%AE%BA/" /><meta property="article:section" content="entire-note" />
-<meta property="article:published_time" content="2024-03-11T18:23:23+08:00" />
-<meta property="article:modified_time" content="2024-03-11T18:23:23+08:00" />
+<meta property="og:url" content="/entire-note/%E7%88%AC%E8%99%AB/" /><meta property="article:section" content="entire-note" />
+<meta property="article:published_time" content="2024-03-13T18:23:23+08:00" />
+<meta property="article:modified_time" content="2024-03-13T18:23:23+08:00" />
 
 
   <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Waline评论系统"/>
-<meta name="twitter:description" content="Waline博客网站评论"/>
+<meta name="twitter:title" content="爬虫浅记"/>
+<meta name="twitter:description" content="随便写的"/>
 
   
   <script type="application/ld+json">
@@ -82,26 +82,26 @@
     "@context": "https://schema.org",
     "@type": "Article",
     "articleSection": "Entire-notes",
-    "name": "Waline评论系统",
-    "headline": "Waline评论系统",
-    "description": "Waline博客网站评论",
-    "abstract": "Waline博客网站评论 # 注册账号 # 注册账号✈️\n创建应用✈️\n创建仓库-》用于存放评论\n创建好之后，去到settings里面修改Environment三个参数\nLEAN_ID：AppId LEAN_KEY：App_key LEAN_MASTER_KEY：Master_KEY\n添加好之后，刷新工作流\n通过HTML部署\n导入样式文件和js脚本文件\n通过Waline的配置键添加自定义的东西\n注： 借鉴自金圣浩\n\u0026lt;br\/\u0026gt; \u0026lt;span style=\u0026#34;color:rgba(var(--color-neutral-400),var(--tw-text-opacity));\u0026#34;\u0026gt; \u0026lt;span class=\u0026#34;post-meta-item-text\u0026#34; \u0026gt;\u0026amp;nbsp;\u0026amp;nbsp;{{i18n \u0026#34;article.page_views\u0026#34;}}: \u0026lt;\/span\u0026gt; \u0026lt;span class=\u0026#34;waline-pageview-count\u0026#34;\u0026gt;⏳\u0026lt;\/span\u0026gt;\u0026lt;div\u0026gt;\u0026lt;\/div\u0026gt;\u0026lt;br\/\u0026gt; \u0026lt;\/span\u0026gt; \u0026lt;script type=\u0026#34;text\/javascript\u0026#34;\u0026gt; document.",
+    "name": "爬虫浅记",
+    "headline": "爬虫浅记",
+    "description": "随便写的",
+    "abstract": "目的：使用爬虫爬取都应指定视频下方的所有评论 # 接电商小公司的面试需求\n参考视频\n知道了爬虫的基本原理是模仿正常用户的操作获取相关信息，下面是实际操作的记录\n过程：\n先是去抖音网站获取评论的api接口，拉取下来后使用ApiPost测试发现返回\u0026quot;block\u0026quot;阻塞信息 而后添加了相关请求头，发现加入User-Agent是关键信息 然而每次获取不同的视频发现有更改的参数：XBogus，这个参数是网站后台通过函数循环调用自己生成的（反爬） 遂通过浏览器断点调试最终追踪堆栈到生成函数： function _0x5a8f25(_0x48914f, _0xa771aa) { return (\u0026#39;undefined\u0026#39; == typeof window ? global : window)[\u0026#39;_$webrt_1668687510\u0026#39;](args) } 于是通过Node调试js文件，模拟循环过程生成参数 window = global; document = { refferer:\u0026#39;https:\/\/www.",
     "inLanguage": "zh-CN",
-    "url" : "\/entire-note\/%E6%80%8E%E4%B9%88%E8%AF%84%E8%AE%BA\/",
+    "url" : "\/entire-note\/%E7%88%AC%E8%99%AB\/",
     "author" : {
       "@type": "Person",
       "name": "春江花朝秋月夜"
     },
     "copyrightYear": "2024",
-    "dateCreated": "2024-03-11T18:23:23\u002b08:00",
-    "datePublished": "2024-03-11T18:23:23\u002b08:00",
+    "dateCreated": "2024-03-13T18:23:23\u002b08:00",
+    "datePublished": "2024-03-13T18:23:23\u002b08:00",
     
-    "dateModified": "2024-03-11T18:23:23\u002b08:00",
+    "dateModified": "2024-03-13T18:23:23\u002b08:00",
     
     "keywords": ["笔记"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "210"
+    "wordCount": "224"
   }]
   </script>
 
@@ -638,8 +638,8 @@
   <li class="inline hidden">
     <a
       class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
-      href="/entire-note/%E6%80%8E%E4%B9%88%E8%AF%84%E8%AE%BA/"
-      >Waline评论系统</a
+      href="/entire-note/%E7%88%AC%E8%99%AB/"
+      >爬虫浅记</a
     ><span class="px-1 text-primary-500">/</span>
   </li>
 
@@ -648,7 +648,7 @@
 
     
     <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral" style="font-family: 华文中宋,serif">
-      Waline评论系统
+      爬虫浅记
     </h1>
     <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
       
@@ -691,7 +691,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2024-03-11 18:23:23 &#43;0800 CST">11 March 2024</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
+  <time datetime="2024-03-13 18:23:23 &#43;0800 CST">13 March 2024</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">2 分钟</span>
   
 
   
@@ -909,15 +909,8 @@
   <ul>
     <li>
       <ul>
-        <li><a href="#waline博客网站评论">Waline博客网站评论</a>
-          <ul>
-            <li>
-              <ul>
-                <li><a href="#注册账号">注册账号</a></li>
-              </ul>
-            </li>
-          </ul>
-        </li>
+        <li><a href="#目的使用爬虫爬取都应指定视频下方的所有评论">目的：使用爬虫爬取都应指定视频下方的所有评论</a></li>
+        <li><a href="#这种方式的爬取效率太低遂尝试github项目httpsgithubcomnanmicodermediacrawlergit爬取">这种方式的爬取效率太低，遂尝试<a href="https://github.com/NanmiCoder/MediaCrawler.git">github项目</a>爬取</a></li>
       </ul>
     </li>
   </ul>
@@ -935,15 +928,8 @@
   <ul>
     <li>
       <ul>
-        <li><a href="#waline博客网站评论">Waline博客网站评论</a>
-          <ul>
-            <li>
-              <ul>
-                <li><a href="#注册账号">注册账号</a></li>
-              </ul>
-            </li>
-          </ul>
-        </li>
+        <li><a href="#目的使用爬虫爬取都应指定视频下方的所有评论">目的：使用爬虫爬取都应指定视频下方的所有评论</a></li>
+        <li><a href="#这种方式的爬取效率太低遂尝试github项目httpsgithubcomnanmicodermediacrawlergit爬取">这种方式的爬取效率太低，遂尝试<a href="https://github.com/NanmiCoder/MediaCrawler.git">github项目</a>爬取</a></li>
       </ul>
     </li>
   </ul>
@@ -1001,143 +987,284 @@
 
 
       <div class="article-content max-w-prose mb-20">
-        <h2 class="relative group">Waline博客网站评论 
-    <div id="waline博客网站评论" class="anchor"></div>
+        <h2 class="relative group">目的：使用爬虫爬取都应指定视频下方的所有评论 
+    <div id="目的使用爬虫爬取都应指定视频下方的所有评论" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#waline%e5%8d%9a%e5%ae%a2%e7%bd%91%e7%ab%99%e8%af%84%e8%ae%ba" aria-label="锚点">#</a>
+            style="text-decoration-line: none !important;" href="#%e7%9b%ae%e7%9a%84%e4%bd%bf%e7%94%a8%e7%88%ac%e8%99%ab%e7%88%ac%e5%8f%96%e9%83%bd%e5%ba%94%e6%8c%87%e5%ae%9a%e8%a7%86%e9%a2%91%e4%b8%8b%e6%96%b9%e7%9a%84%e6%89%80%e6%9c%89%e8%af%84%e8%ae%ba" aria-label="锚点">#</a>
     </span>        
     
 </h2>
-<h4 class="relative group">注册账号 
-    <div id="注册账号" class="anchor"></div>
+<p>接电商小公司的面试需求</p>
+<p><a href="https://www.bilibili.com/video/BV1Qu411w7Gr/?spm_id_from=333.880.my_history.page.click"   target="_blank">
+    参考视频</a></p>
+<p>知道了爬虫的基本原理是模仿正常用户的操作获取相关信息，下面是实际操作的记录</p>
+<p>过程：</p>
+<ul>
+<li>先是去抖音网站获取评论的api接口，拉取下来后使用ApiPost测试发现返回&quot;block&quot;阻塞信息</li>
+<li>而后添加了相关请求头，发现加入User-Agent是关键信息</li>
+<li>然而每次获取不同的视频发现有更改的参数：XBogus，这个参数是网站后台通过函数循环调用自己生成的（反爬）</li>
+<li>遂通过浏览器断点调试最终追踪堆栈到生成函数：</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">_0x5a8f25</span><span class="p">(</span><span class="nx">_0x48914f</span><span class="p">,</span>  <span class="nx">_0xa771aa</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="p">(</span><span class="s1">&#39;undefined&#39;</span> <span class="o">==</span> <span class="k">typeof</span> <span class="nb">window</span> <span class="o">?</span> <span class="nx">global</span> <span class="o">:</span> <span class="nb">window</span><span class="p">)[</span><span class="s1">&#39;_$webrt_1668687510&#39;</span><span class="p">](</span><span class="nx">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><ul>
+<li>于是通过Node调试js文件，模拟循环过程生成参数</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nb">window</span> <span class="o">=</span> <span class="nx">global</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">document</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">refferer</span><span class="o">:</span><span class="s1">&#39;https://www.baidu.com/&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="o">=</span><span class="kd">function</span> <span class="p">(){}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">navigator</span><span class="o">=</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">userAgent</span><span class="o">:</span><span class="s1">&#39;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="o">=</span><span class="kd">function</span> <span class="p">(){}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="nb">window</span><span class="p">.</span><span class="nx">rainy</span><span class="o">=</span><span class="nx">_0x5a8f25</span><span class="p">;</span>
+</span></span></code></pre></div><ul>
+<li>其实这里就已经涉及到js逆向的知识了，当时不知道</li>
+<li>于是在python中编写代码如下</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">csv</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">execjs</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 执行js脚本</span>
+</span></span><span class="line"><span class="cl"><span class="n">ctx</span> <span class="o">=</span> <span class="n">execjs</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;js/Run.js&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;gbk&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 2个必须加入的参数</span>
+</span></span><span class="line"><span class="cl"><span class="n">header</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;User-Agent&#39;</span><span class="p">:</span> <span class="s1">&#39;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 &#39;</span>
+</span></span><span class="line"><span class="cl">                  <span class="s1">&#39;Safari/537.36&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;Referer&#39;</span><span class="p">:</span> <span class="s1">&#39;https://www.douyin.com/&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 测试发现最多只能查询50页</span>
+</span></span><span class="line"><span class="cl"><span class="n">cursor</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&#34;输入起始查询分页数&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">count</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&#34;输入终止查询分页数&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">url</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;https://www.douyin.com/aweme/v1/web/comment/list/?&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 比较发现三个参数 需要单独分析</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># x-bos,token,cursor</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># aweme_id为作品id</span>
+</span></span><span class="line"><span class="cl"><span class="n">arg1</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;device_platform=webapp&amp;aid=6383&amp;channel=channel_pc_web&amp;aweme_id=7331940186147933474cursor=&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">cursor</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;&amp;count=&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">count</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;&amp;item_type=0&amp;insert_ids=&amp;whale_cut_token=&amp;cut_version=1&amp;rcFT=&amp;pc_client_type=1&amp;version_code=170400&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;&amp;version_name=17.4.0&amp;cookie_enabled=true&amp;screen_width=1707&amp;screen_height=1067&amp;browser_language=zh-CN&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;&amp;browser_platform=Win32&amp;browser_name=Chrome&amp;browser_version=122.0.0.0&amp;browser_online=true&amp;engine_name=Blink&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;&amp;engine_version=122.0.0.0&amp;os_name=Windows&amp;os_version=10&amp;cpu_core_num=8&amp;device_memory=8&amp;platform=PC&amp;downlink&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;=1.35&amp;effective_type=3g&amp;round_trip_time=550&amp;webid=7331622910048732683&amp;msToken=hqxyFiEvhisE9d09ik0BsoXlpZs49u8r&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;-WVP6f7rWmZs8QtFKXsKT2V7jPuo0x3IgvGbFDdvE6gAb1VCZWFYN_0qL_8qP8jSFGVaBJKqbC8noxhnjfdXLDQ1ofFR&amp;&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">xb</span> <span class="o">=</span> <span class="n">arg1</span> <span class="o">+</span> <span class="s1">&#39;&amp;XBogus=&#39;</span> <span class="o">+</span> <span class="n">ctx</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="s1">&#39;window.rainy&#39;</span><span class="p">,</span> <span class="n">arg1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">url</span> <span class="o">+=</span> <span class="n">xb</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">header</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">json_data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>   <span class="c1"># 获取json数据</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">text</span> <span class="o">=</span> <span class="n">json_data</span><span class="p">[</span><span class="s1">&#39;comments&#39;</span><span class="p">]</span> <span class="c1">#类型为list</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># print(type(text))</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 遍历 list集合</span>
+</span></span><span class="line"><span class="cl"><span class="n">user</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;用户&#39;</span><span class="p">,</span> <span class="s1">&#39;评论&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;用户&#39;</span><span class="p">:</span> <span class="p">[],</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;评论&#39;</span><span class="p">:</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;results/comment.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 写入标题行，只包含指定的列</span>
+</span></span><span class="line"><span class="cl">    <span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">text</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">data</span><span class="p">[</span><span class="s1">&#39;评论&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 获取评论用户</span>
+</span></span><span class="line"><span class="cl">        <span class="n">user</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;user&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">user</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">data</span><span class="p">[</span><span class="s1">&#39;用户&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;nickname&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;nickname&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+</span></span></code></pre></div><p>测试结果：</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/%E7%88%AC%E8%99%AB/image_huad27b7ee34b2094c1f4172bbec173ff4_98392_330x0_resize_box_3.png 330w,
+        /entire-note/%E7%88%AC%E8%99%AB/image_huad27b7ee34b2094c1f4172bbec173ff4_98392_660x0_resize_box_3.png 660w,
+        /entire-note/%E7%88%AC%E8%99%AB/image_huad27b7ee34b2094c1f4172bbec173ff4_98392_1024x0_resize_box_3.png 1024w,
+        /entire-note/%E7%88%AC%E8%99%AB/image_huad27b7ee34b2094c1f4172bbec173ff4_98392_1320x0_resize_box_3.png 2x"
+        src="/entire-note/%E7%88%AC%E8%99%AB/image_huad27b7ee34b2094c1f4172bbec173ff4_98392_660x0_resize_box_3.png"
+        alt="初次"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>其他调试过程：</p>
+<p><a href="https://www.douyin.com/video/7344577217386548492?modeFrom="   target="_blank">
+    测试视频</a></p>
+<p>爬取测试对象：</p>
+<p><a href="https://www.douyin.com/aweme/v1/web/comment/list/?device_platform=webapp&amp;aid=6383&amp;channel=channel_pc_web&amp;aweme_id=7331940186147933474&amp;cursor=0&amp;count=20&amp;item_type=0&amp;insert_ids=&amp;whale_cut_token=&amp;cut_version=1&amp;rcFT=&amp;pc_client_type=1&amp;version_code=170400&amp;version_name=17.4.0&amp;cookie_enabled=true&amp;screen_width=1707&amp;screen_height=1067&amp;browser_language=zh-CN&amp;browser_platform=Win32&amp;browser_name=Chrome&amp;browser_version=122.0.0.0&amp;browser_online=true&amp;engine_name=Blink&amp;engine_version=122.0.0.0&amp;os_name=Windows&amp;os_version=10&amp;cpu_core_num=8&amp;device_memory=8&amp;platform=PC&amp;downlink=10&amp;effective_type=4g&amp;round_trip_time=100&amp;webid=7331622910048732683&amp;msToken=qG-hyrgeVnU31Bm0u88O-EFec0d6ZVnGbLGuERwWipjsOk9d6BEgYmIcJPzZK5fZxQLShRLGfs8uyaYeTWziAPh54zR9aG1ttUdqM58GZZqxyDNjoJi93R5nKg==&amp;X-Bogus=DFSzKwGLaxkANxA/tL1B5z6G9UMX"   target="_blank">
+    测试链接</a></p>
+<p>发现在断点处生成了xbox</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/%E7%88%AC%E8%99%AB/img_hu767e8b2fb6c9dfd86e880ef45c9d8cab_24723_330x0_resize_box_3.png 330w,
+        /entire-note/%E7%88%AC%E8%99%AB/img_hu767e8b2fb6c9dfd86e880ef45c9d8cab_24723_660x0_resize_box_3.png 660w,
+        /entire-note/%E7%88%AC%E8%99%AB/img_hu767e8b2fb6c9dfd86e880ef45c9d8cab_24723_1024x0_resize_box_3.png 1024w,
+        /entire-note/%E7%88%AC%E8%99%AB/img_hu767e8b2fb6c9dfd86e880ef45c9d8cab_24723_1320x0_resize_box_3.png 2x"
+        src="/entire-note/%E7%88%AC%E8%99%AB/img_hu767e8b2fb6c9dfd86e880ef45c9d8cab_24723_660x0_resize_box_3.png"
+        alt="img.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>日志断点打印找到了xbogs</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/%E7%88%AC%E8%99%AB/img_1_huefb3afb973bdfd55de1b345eb7f49984_8428_330x0_resize_box_3.png 330w,
+        /entire-note/%E7%88%AC%E8%99%AB/img_1_huefb3afb973bdfd55de1b345eb7f49984_8428_660x0_resize_box_3.png 660w,
+        /entire-note/%E7%88%AC%E8%99%AB/img_1_huefb3afb973bdfd55de1b345eb7f49984_8428_1024x0_resize_box_3.png 1024w,
+        /entire-note/%E7%88%AC%E8%99%AB/img_1_huefb3afb973bdfd55de1b345eb7f49984_8428_1320x0_resize_box_3.png 2x"
+        src="/entire-note/%E7%88%AC%E8%99%AB/img_1_huefb3afb973bdfd55de1b345eb7f49984_8428_660x0_resize_box_3.png"
+        alt="img_1.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>获取成功：</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/%E7%88%AC%E8%99%AB/img_2_hu6398d3ee8f649b75a54434135c8fab52_125030_330x0_resize_box_3.png 330w,
+        /entire-note/%E7%88%AC%E8%99%AB/img_2_hu6398d3ee8f649b75a54434135c8fab52_125030_660x0_resize_box_3.png 660w,
+        /entire-note/%E7%88%AC%E8%99%AB/img_2_hu6398d3ee8f649b75a54434135c8fab52_125030_1024x0_resize_box_3.png 1024w,
+        /entire-note/%E7%88%AC%E8%99%AB/img_2_hu6398d3ee8f649b75a54434135c8fab52_125030_1320x0_resize_box_3.png 2x"
+        src="/entire-note/%E7%88%AC%E8%99%AB/img_2_hu6398d3ee8f649b75a54434135c8fab52_125030_660x0_resize_box_3.png"
+        alt="img_2.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<h2 class="relative group">这种方式的爬取效率太低，遂尝试<a href="https://github.com/NanmiCoder/MediaCrawler.git"   target="_blank">
+    github项目</a>爬取 
+    <div id="这种方式的爬取效率太低遂尝试github项目httpsgithubcomnanmicodermediacrawlergit爬取" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%e6%b3%a8%e5%86%8c%e8%b4%a6%e5%8f%b7" aria-label="锚点">#</a>
+            style="text-decoration-line: none !important;" href="#%e8%bf%99%e7%a7%8d%e6%96%b9%e5%bc%8f%e7%9a%84%e7%88%ac%e5%8f%96%e6%95%88%e7%8e%87%e5%a4%aa%e4%bd%8e%e9%81%82%e5%b0%9d%e8%af%95github%e9%a1%b9%e7%9b%aehttpsgithubcomnanmicodermediacrawlergit%e7%88%ac%e5%8f%96" aria-label="锚点">#</a>
     </span>        
     
-</h4>
-<p><a href="https://console.leancloud.app/register"   target="_blank">
-    注册账号✈️</a></p>
-<p><a href="https://console.leancloud.app/apps"   target="_blank">
-    创建应用✈️</a></p>
-<p>创建仓库-》用于存放评论</p>
-<p>创建好之后，去到settings里面修改Environment三个参数</p>
-<p>LEAN_ID：AppId
-LEAN_KEY：App_key
-LEAN_MASTER_KEY：Master_KEY</p>
-<p>添加好之后，刷新工作流</p>
-<p>通过HTML部署</p>
-<p>导入样式文件和js脚本文件</p>
-<p>通过Waline的配置键添加自定义的东西</p>
-<p>注：<a href="https://www.karlukle.site/"   target="_blank">
-    借鉴自金圣浩</a></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">span</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;color:rgba(var(--color-neutral-400),var(--tw-text-opacity));&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;post-meta-item-text&#34;</span> <span class="p">&gt;</span><span class="ni">&amp;nbsp;&amp;nbsp;</span>{{i18n &#34;article.page_views&#34;}}:  <span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;waline-pageview-count&#34;</span><span class="p">&gt;</span>⏳<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;&lt;</span><span class="nt">div</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementByClassName</span><span class="p">(</span><span class="s2">&#34;aline-pageview-count&#34;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">data</span><span class="o">-</span><span class="nx">path</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">pathname</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#39;/waline/waline.js&#39;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span><span class="c">&lt;!-- @v2.18 --&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">link</span> <span class="na">href</span><span class="o">=</span><span class="s">&#39;/waline/waline.css&#39;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#39;stylesheet&#39;</span> <span class="p">/&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;vcomments&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">({{</span><span class="nx">i18n</span> <span class="s2">&#34;lanString&#34;</span><span class="p">}}</span><span class="o">==</span><span class="s2">&#34;zh-CN&#34;</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">Waline</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
-</span></span><span class="line"><span class="cl">            <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#vcomments&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nx">serverURL</span><span class="o">:</span> <span class="s1">&#39;你的评论网站服务器&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nx">emoji</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;https://valine-emoji.bili33.top/bilibilitv&#39;</span><span class="p">,</span><span class="s1">&#39;https://valine-emoji.bili33.top/bilibiliHotKey&#39;</span><span class="p">,</span><span class="s1">&#39;https://valine-emoji.bili33.top/Tieba-New&#39;</span><span class="p">,</span><span class="s1">&#39;https://valine-emoji.bili33.top/weibo&#39;</span><span class="p">,],</span>
-</span></span><span class="line"><span class="cl">            <span class="nx">meta</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;nick&#39;</span><span class="p">,</span> <span class="s1">&#39;mail&#39;</span><span class="p">,</span> <span class="s1">&#39;link&#39;</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">            <span class="nx">pageview</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nx">reaction</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nx">lang</span><span class="o">:</span> <span class="s2">&#34;zh-CN&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="cm">/* 下面的可以自定义 */</span>
-</span></span><span class="line"><span class="cl">            <span class="nx">locale</span><span class="o">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">                <span class="nx">reactionTitle</span><span class="o">:</span> <span class="s1">&#39;•畅所欲言——这里是开放区•&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                <span class="nx">comment</span><span class="o">:</span> <span class="s1">&#39;留言板&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                <span class="nx">placeholder</span><span class="o">:</span> <span class="s1">&#39;点击下方登录后再评论，会有惊喜哦~&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                <span class="nx">gifSearchPlaceholder</span><span class="o">:</span> <span class="s1">&#39;搜索表情包...&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                <span class="nx">admin</span><span class="o">:</span> <span class="s1">&#39;作者&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                <span class="nx">sofa</span><span class="o">:</span> <span class="s1">&#39;还没有人评论，快来抢沙发吧&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                <span class="nx">anonymous</span><span class="o">:</span> <span class="s1">&#39;匿名者&#39;</span>
-</span></span><span class="line"><span class="cl">            <span class="p">}</span>
-</span></span><span class="line"><span class="cl">        <span class="p">});</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="k">else</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">Waline</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
-</span></span><span class="line"><span class="cl">            <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#vcomments&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nx">serverURL</span><span class="o">:</span> <span class="s1">&#39;你的评论网站服务器&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nx">emoji</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;https://valine-emoji.bili33.top/bilibilitv&#39;</span><span class="p">,</span><span class="s1">&#39;https://valine-emoji.bili33.top/bilibiliHotKey&#39;</span><span class="p">,</span><span class="s1">&#39;https://valine-emoji.bili33.top/Tieba-New&#39;</span><span class="p">,</span><span class="s1">&#39;https://valine-emoji.bili33.top/weibo&#39;</span><span class="p">,],</span>
-</span></span><span class="line"><span class="cl">            <span class="nx">meta</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;nick&#39;</span><span class="p">,</span> <span class="s1">&#39;mail&#39;</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">            <span class="nx">pageview</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nx">reaction</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="c1">// lang:{{i18n &#34;lanString&#34;}},
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="nx">lang</span><span class="o">:</span> <span class="s2">&#34;zh-CN&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nx">locale</span><span class="o">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">                <span class="nx">reactionTitle</span><span class="o">:</span> <span class="s1">&#39;•畅所欲言——这里是开放区•&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                <span class="nx">comment</span><span class="o">:</span> <span class="s1">&#39;留言板&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                <span class="nx">placeholder</span><span class="o">:</span> <span class="s1">&#39;点击下方登录后再评论，会有惊喜哦~&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                <span class="nx">gifSearchPlaceholder</span><span class="o">:</span> <span class="s1">&#39;搜索表情包...&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                <span class="nx">admin</span><span class="o">:</span> <span class="s1">&#39;作者&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                <span class="nx">sofa</span><span class="o">:</span> <span class="s1">&#39;还没有人评论，快来抢沙发吧&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                <span class="nx">anonymous</span><span class="o">:</span> <span class="s1">&#39;匿名者&#39;</span>
-</span></span><span class="line"><span class="cl">            <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="p">});</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByClassName</span><span class="p">(</span><span class="s1">&#39;wl-power&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">&#39;none&#39;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&#34;.wl-actions a&#34;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">&#39;none&#39;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">style</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/css&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">:</span><span class="nd">root</span><span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nv">--waline-color</span><span class="p">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">tw</span><span class="o">-</span><span class="n">prose</span><span class="o">-</span><span class="n">quotes</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="nv">--waline-info-color</span><span class="p">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">tw</span><span class="o">-</span><span class="n">prose</span><span class="o">-</span><span class="n">quotes</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="nv">--waline-info-bgcolor</span><span class="p">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">tw</span><span class="o">-</span><span class="n">ring</span><span class="o">-</span><span class="kc">color</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="nv">--waline-theme-color</span><span class="p">:</span> <span class="nb">rgba</span><span class="p">(</span><span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="kc">color</span><span class="o">-</span><span class="n">primary</span><span class="mi">-400</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl">        <span class="nv">--waline-bgcolor</span><span class="p">:</span> <span class="kc">transparent</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="nv">--waline-border-color</span><span class="p">:</span> <span class="mh">#747474</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nc">wl-editor</span><span class="p">:</span><span class="nd">focus</span><span class="o">,</span> <span class="p">.</span><span class="nc">wl-input</span><span class="p">:</span><span class="nd">focus</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">background</span><span class="p">:</span> <span class="kc">transparent</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nc">wl-editor</span><span class="o">,</span><span class="p">.</span><span class="nc">wl-input</span><span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">max-width</span><span class="p">:</span><span class="mi">88</span><span class="kt">%</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nc">wl-reaction-item</span><span class="p">.</span><span class="nc">active</span> <span class="p">.</span><span class="nc">wl-reaction-votes</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">color</span><span class="p">:</span> <span class="kc">white</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">pagect</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;pagec&#39;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">observer</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MutationObserver</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-</span></span><span class="line"><span class="cl">        <span class="kd">var</span> <span class="nx">itl</span><span class="p">,</span><span class="nx">itll</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="kd">var</span> <span class="nx">element</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;pagec&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">observer</span><span class="p">.</span><span class="nx">disconnect</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">itl</span>  <span class="o">=</span> <span class="nx">element</span><span class="p">.</span><span class="nx">innerText</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">itll</span> <span class="o">=</span> <span class="nb">Number</span><span class="p">(</span><span class="nx">itl</span><span class="p">).</span><span class="nx">toLocaleString</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;pagec&#39;</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">itll</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">});</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">article</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;pagec&#39;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="s1">&#39;childList&#39;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">        <span class="s1">&#39;subtree&#39;</span><span class="o">:</span> <span class="kc">true</span>
-</span></span><span class="line"><span class="cl">    <span class="p">};</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="nx">observer</span><span class="p">.</span><span class="nx">observe</span><span class="p">(</span><span class="nx">article</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-</span></span></code></pre></div>
+</h2>
+<p>负责人要求爬取推荐关键词的爬取，同时提到了代理这个说法，貌似是一个加大爬取量的东西，恰好这个项目里面有</p>
+<p>发现效果非常好：</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/%E7%88%AC%E8%99%AB/image-2_hu68a4210efb44d8808782af961c8bc7a3_265013_330x0_resize_box_3.png 330w,
+        /entire-note/%E7%88%AC%E8%99%AB/image-2_hu68a4210efb44d8808782af961c8bc7a3_265013_660x0_resize_box_3.png 660w,
+        /entire-note/%E7%88%AC%E8%99%AB/image-2_hu68a4210efb44d8808782af961c8bc7a3_265013_1024x0_resize_box_3.png 1024w,
+        /entire-note/%E7%88%AC%E8%99%AB/image-2_hu68a4210efb44d8808782af961c8bc7a3_265013_1320x0_resize_box_3.png 2x"
+        src="/entire-note/%E7%88%AC%E8%99%AB/image-2_hu68a4210efb44d8808782af961c8bc7a3_265013_660x0_resize_box_3.png"
+        alt="开源的效果"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>甚至模拟了扫码登陆这样的功能，不过看原理应该是使用python的内置浏览器模拟方法。后续有时间继续研究代理方法（不过需要付费看起来）</p>
+
       </div>
 
 
@@ -1147,8 +1274,8 @@ LEAN_MASTER_KEY：Master_KEY</p>
 
     
     <script>
-      var oid = "views_entire-note\\怎么评论？\\index.md"
-      var oid_likes = "likes_entire-note\\怎么评论？\\index.md"
+      var oid = "views_entire-note\\爬虫\\index.md"
+      var oid_likes = "likes_entire-note\\爬虫\\index.md"
     </script>
     
     
@@ -1171,7 +1298,7 @@ LEAN_MASTER_KEY：Master_KEY</p>
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://twitter.com/intent/tweet/?url=/entire-note/%E6%80%8E%E4%B9%88%E8%AF%84%E8%AE%BA/&amp;text=Waline%e8%af%84%e8%ae%ba%e7%b3%bb%e7%bb%9f"
+      href="https://twitter.com/intent/tweet/?url=/entire-note/%E7%88%AC%E8%99%AB/&amp;text=%e7%88%ac%e8%99%ab%e6%b5%85%e8%ae%b0"
       title="分享到 Twitter"
       aria-label="分享到 Twitter"
       >
@@ -1189,7 +1316,7 @@ LEAN_MASTER_KEY：Master_KEY</p>
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://t.me/share/url?url=/entire-note/%E6%80%8E%E4%B9%88%E8%AF%84%E8%AE%BA/&amp;resubmit=true&amp;title=Waline%e8%af%84%e8%ae%ba%e7%b3%bb%e7%bb%9f"
+      href="https://t.me/share/url?url=/entire-note/%E7%88%AC%E8%99%AB/&amp;resubmit=true&amp;title=%e7%88%ac%e8%99%ab%e6%b5%85%e8%ae%b0"
       title=""
       aria-label=""
       >
@@ -1208,7 +1335,7 @@ LEAN_MASTER_KEY：Master_KEY</p>
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="mailto:?body=/entire-note/%E6%80%8E%E4%B9%88%E8%AF%84%E8%AE%BA/&amp;subject=Waline%e8%af%84%e8%ae%ba%e7%b3%bb%e7%bb%9f"
+      href="mailto:?body=/entire-note/%E7%88%AC%E8%99%AB/&amp;subject=%e7%88%ac%e8%99%ab%e6%b5%85%e8%ae%b0"
       title="通过电子邮件发送"
       aria-label="通过电子邮件发送"
       >
@@ -1231,6 +1358,126 @@ LEAN_MASTER_KEY：Master_KEY</p>
 
 <h2 class="mt-8 text-2xl font-extrabold mb-10">相关文章</h2>
 <section class="w-full grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+  
+  
+
+  <a href="/entire-note/%E6%80%8E%E4%B9%88%E8%AF%84%E8%AE%BA/" class="min-w-full">
+    
+    <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
+        
+        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/img/annimation/4c758d7c82292f81f99d63ff1072aa9adb5c3536_raw_hu9b60894d5013d728985af7ffc2fcbbdd_675352_600x0_resize_q75_box.jpg);"></div>
+        
+      
+
+      <div class="px-6 py-4">
+
+        
+        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
+          href="/entire-note/%E6%80%8E%E4%B9%88%E8%AF%84%E8%AE%BA/">Waline评论系统</div>
+        
+
+        <div class="text-sm text-neutral-500 dark:text-neutral-400">
+          
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2024-03-11 18:23:23 &#43;0800 CST">11 March 2024</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
+  
+
+  
+  
+</div>
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/%E7%AC%94%E8%AE%B0/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    笔记
+  </span>
+</span>
+  </span>
+  
+  
+  
+  
+</div>
+
+
+
+
+        </div>
+
+        
+      </div>
+      <div class="px-6 pt-4 pb-2">
+
+      </div>
+    </div>
+  </a>
+
   
   
 
@@ -1472,126 +1719,6 @@ LEAN_MASTER_KEY：Master_KEY</p>
   </a>
 
   
-  
-
-  <a href="/music/" class="min-w-full">
-    
-    <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
-        
-        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/img/annimation/4c758d7c82292f81f99d63ff1072aa9adb5c3536_raw_hu9b60894d5013d728985af7ffc2fcbbdd_675352_600x0_resize_q75_box.jpg);"></div>
-        
-      
-
-      <div class="px-6 py-4">
-
-        
-        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
-          href="/music/">Music</div>
-        
-
-        <div class="text-sm text-neutral-500 dark:text-neutral-400">
-          
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="flex flex-row flex-wrap items-center">
-  
-  
-  <time datetime="2024-02-07 19:22:59 &#43;0800 CST">7 February 2024</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
-  
-
-  
-  
-</div>
-
-
-<div class="flex flex-row flex-wrap items-center">
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-</div>
-
-
-
-
-<div class="flex flex-row flex-wrap items-center">
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/%E7%AC%94%E8%AE%B0/&#34;,'_self');">
-    <span class="flex" style="cursor: pointer;">
-  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    笔记
-  </span>
-</span>
-  </span>
-  
-  
-  
-  
-</div>
-
-
-
-
-        </div>
-
-        
-      </div>
-      <div class="px-6 pt-4 pb-2">
-
-      </div>
-    </div>
-  </a>
-
-  
 </section>
 
 
@@ -1605,7 +1732,7 @@ LEAN_MASTER_KEY：Master_KEY</p>
       <div class="flex justify-between pt-3">
         <span>
           
-            <a class="flex group mr-3" href="/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/%E9%9D%A2%E8%AF%95/">
+            <a class="flex group mr-3" href="/entire-note/%E6%80%8E%E4%B9%88%E8%AF%84%E8%AE%BA/">
               <span
                 class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
                 >&larr;</span
@@ -1617,11 +1744,11 @@ LEAN_MASTER_KEY：Master_KEY</p>
               <span class="flex flex-col">
                 <span
                   class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
-                  >常规面试题</span
+                  >Waline评论系统</span
                 >
                 <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
                   
-                    <time datetime="2024-03-09 18:23:23 &#43;0800 CST">9 March 2024</time>
+                    <time datetime="2024-03-11 18:23:23 &#43;0800 CST">11 March 2024</time>
                   
                 </span>
               </span>
@@ -1629,28 +1756,6 @@ LEAN_MASTER_KEY：Master_KEY</p>
           
         </span>
         <span>
-          
-            <a class="flex text-right group ml-3" href="/entire-note/%E7%88%AC%E8%99%AB/">
-              <span class="flex flex-col">
-                <span
-                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
-                  >爬虫浅记</span
-                >
-                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
-                  
-                    <time datetime="2024-03-13 18:23:23 &#43;0800 CST">13 March 2024</time>
-                  
-                </span>
-              </span>
-              <span
-                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
-                >&rarr;</span
-              >
-              <span
-                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
-                >&larr;</span
-              >
-            </a>
           
         </span>
       </div>
