@@ -18,21 +18,7 @@
 参考笔记 参考视频 # 目前看起来还行：
 不得不说这个文件夹样式效果真好：
 偶尔出现卡顿，之后记录</description>
-      
-    </item>
-    
-    <item>
-      <title>爬虫浅记</title>
-      <link>/entire-note/%E7%88%AC%E8%99%AB/</link>
-      <pubDate>Wed, 13 Mar 2024 18:23:23 +0800</pubDate>
-      
-      <guid>/entire-note/%E7%88%AC%E8%99%AB/</guid>
-      <description>目的：使用爬虫爬取都应指定视频下方的所有评论 # 接电商小公司的面试需求
-参考视频
-知道了爬虫的基本原理是模仿正常用户的操作获取相关信息，下面是实际操作的记录
-过程：
-先是去抖音网站获取评论的api接口，拉取下来后使用ApiPost测试发现返回&amp;quot;block&amp;quot;阻塞信息 而后添加了相关请求头，发现加入User-Agent是关键信息 然而每次获取不同的视频发现有更改的参数：XBogus，这个参数是网站后台通过函数循环调用自己生成的（反爬） 遂通过浏览器断点调试最终追踪堆栈到生成函数： function _0x5a8f25(_0x48914f, _0xa771aa) { return (&amp;#39;undefined&amp;#39; == typeof window ? global : window)[&amp;#39;_$webrt_1668687510&amp;#39;](args) } 于是通过Node调试js文件，模拟循环过程生成参数 window = global; document = { refferer:&amp;#39;https://www.</description>
-      
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/mac%E4%BD%93%E9%AA%8C%E7%89%88bushi/featured.png" />
     </item>
     
     <item>
@@ -52,7 +38,7 @@ LEAN_ID：AppId LEAN_KEY：App_key LEAN_MASTER_KEY：Master_KEY
 通过Waline的配置键添加自定义的东西
 注： 借鉴自金圣浩
 &amp;lt;br/&amp;gt; &amp;lt;span style=&amp;#34;color:rgba(var(--color-neutral-400),var(--tw-text-opacity));&amp;#34;&amp;gt; &amp;lt;span class=&amp;#34;post-meta-item-text&amp;#34; &amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;{{i18n &amp;#34;article.page_views&amp;#34;}}: &amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;waline-pageview-count&amp;#34;&amp;gt;⏳&amp;lt;/span&amp;gt;&amp;lt;div&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;br/&amp;gt; &amp;lt;/span&amp;gt; &amp;lt;script type=&amp;#34;text/javascript&amp;#34;&amp;gt; document.</description>
-      
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/%E6%80%8E%E4%B9%88%E8%AF%84%E8%AE%BA/featured.png" />
     </item>
     
     <item>
