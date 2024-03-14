@@ -381,6 +381,12 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>/info/</loc>
+    <lastmod>2023-10-03T20:52:20+08:00</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>/entire-note/java/javase/datastruct/</loc>
     <lastmod>2023-10-03T20:52:20+08:00</lastmod>
     <changefreq>always</changefreq>
@@ -393,7 +399,7 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>/info/</loc>
+    <loc>/info/info/</loc>
     <lastmod>2023-10-03T20:52:20+08:00</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
@@ -430,6 +436,11 @@
   </url>
   <url>
     <loc>/doc/cpp/</loc>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>/entire-note/%E5%BF%83%E8%B7%AF%E5%8E%86%E7%A8%8B/</loc>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
   </url>
