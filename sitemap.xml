@@ -4,25 +4,31 @@
 
   <url>
     <loc>/</loc>
-    <lastmod>2024-03-13T18:23:23+08:00</lastmod>
+    <lastmod>2024-03-14T18:23:23+08:00</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>/entire-note/</loc>
-    <lastmod>2024-03-13T18:23:23+08:00</lastmod>
+    <lastmod>2024-03-14T18:23:23+08:00</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>/entire-note/mac%E4%BD%93%E9%AA%8C%E7%89%88bushi/</loc>
+    <lastmod>2024-03-14T18:23:23+08:00</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>/tags/</loc>
-    <lastmod>2024-03-13T18:23:23+08:00</lastmod>
+    <lastmod>2024-03-14T18:23:23+08:00</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>/tags/%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2024-03-13T18:23:23+08:00</lastmod>
+    <lastmod>2024-03-14T18:23:23+08:00</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
   </url>
