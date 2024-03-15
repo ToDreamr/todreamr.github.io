@@ -65,17 +65,8 @@ LEAN_ID：AppId LEAN_KEY：App_key LEAN_MASTER_KEY：Master_KEY
       <pubDate>Sat, 09 Mar 2024 18:23:23 +0800</pubDate>
       
       <guid>/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/%E9%9D%A2%E8%AF%95/</guid>
-      <description>八股 # 为什么要重写hashcode和equals方法 # 回答：因为类本省的这两个方法调用时都只是去比较对象的内存地址，当我们new两个相同内容的对象，本来是要比较返回true的但是不重写的话比较 内存返回false，造成错误，故而需要重写这两个方法
-什么是深拷贝和浅拷贝 # 浅拷贝：简单的赋值拷贝操作
-深拷贝：在堆区重新申请空间，进行拷贝操作
-ArrayList和LinkedList区别 # 回答都实现了List接口作为数据存储管理的容器，场景上Arraylist内部通过动态数组实现，实现快速的随机访问，适用于频繁的读取操作，移动操作性能低， 不支持同步，线程不安全。LinkedList内部双向链表实现，适合插入删除操作，支持作为队列使用（因为实现了Deque接口），同样线程不安全，单线程性能较好。
-HashMap缺点 # 在JDK1.7和JDK1.8中的HashMap的默认初始容量为16，loadFactor均为0.75。
-参考文章
-回答线程不安全，没有内置读写锁，头插产生死循环，put会覆盖，并发情况put/get可能为空
-头插法/尾插法 # （jdk1.7）头插在尾部追加元素，（jdk1.8）尾插法，链表长度大于等于8转化红黑树，判断Map键值对数量超过64
-HashTable为什么线程安全 # 回答remove，put，get都是同步的方法（synchronized关键字），底层通过数组+链表实现，只允许允许一个线程对其进行某种操作，所以并发性比ConcurrnetHashMap差
-ConcurrentHashMap线程安全原因 # jdk1.7对每个segment（段）加分段锁（ReentrantLock）实现段隔离保证并发安全 ，最多存在16个段
-jdk1.8不再使用段，使用结点（Node）和CAS，Synchronized保证线程安全</description>
+      <description>八股 # Hash是什么，有哪些常见的hash定址法 # 散列表算法希望能尽量做到不经过任何比较，通过一次存取就能得到所查找的数据元素 ，因而必 须要在数据元素的存储位置和它的关键字（可用 key 表示）之间建立一个确定的对应关系，使每个 关键字和散列表中一个唯一的存储位置相对应。因此在查找时，只要根据这个对应关系找到给定 关键字在散列表中的位置即可。这种对应关系被称为散列函数(可用 h(key)表示)。
+1）直接定址法： 取关键字或关键字的某个线性函数值为散列地址。 即：h(key) = key 或 h(key) = a * key + b，其中 a 和 b 为常数。 （2）数字分析法 （3）平方取值法： 取关键字平方后的中间几位为散列地址。 （4）折叠法：将关键字分割成位数相同的几部分，然后取这几部分的叠加和作为散列地址。 （5）除留余数法：取关键字被某个不大于散列表表长 m 的数 p 除后所得的余数为散列地址， 即：h(key) = key MOD p p ≤ m （6）随机数法：选择一个随机函数，取关键字的随机函数值为它的散列地址， 即：h(key) = random(key) 什么是排序二叉树 # 首先如果普通二叉树每个节点满足：左子树所有节点值小于它的根节点值，且右子树所有节点值 大于它的根节点值，则这样的二叉树就是排序二叉树</description>
       <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/%E9%9D%A2%E8%AF%95/featured.png" />
     </item>
     
