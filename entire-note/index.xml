@@ -7,7 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>© 2024 春江花朝秋月夜</copyright>
-    <lastBuildDate>Thu, 14 Mar 2024 18:23:23 +0800</lastBuildDate><atom:link href="/entire-note/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 15 Mar 2024 17:06:00 +0800</lastBuildDate><atom:link href="/entire-note/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Zset</title>
+      <link>/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/zset/</link>
+      <pubDate>Fri, 15 Mar 2024 17:06:00 +0800</pubDate>
+      
+      <guid>/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/zset/</guid>
+      <description>认识 # 有序集合和普通集合set很相似，是一个没有重复元素的字符串集合。
+每个成员都关联了一个评分（score），这个评分被用来按照最低分到最高分的方式排序集合种的成员。集合的成员是唯一的，但是分数可以重复
+底层： # Redis提供的一个非常特别的数据结构，一方面它等价于java的数据结构Map&amp;lt;String, double&amp;gt;，可以给每一个元素value赋予一个权重score， 另一方面它又类似于TreeSet，内部的元素会按照权重进行排序，可以得到每个元素的名次，还可以通过score的范围来获取元素的列表
+实现：
+hash；hash的作用就是关联元素value和权重score，保障元素value的唯一性，可以通过元素value找到score 跳跃表，跳跃表的目的在于给元素value排序，根据score的范围获取元素列表
+相同分数的时候
+有序集合里面的成员是不能重复的都是唯一的，但是，不同成员间有可能有相同的分数。当多个成员有相同的分数时，他们将是有序的字典（ordered lexicographically）（仍由分数作为第一排序条件，然后，相同分数的成员按照字典规则相对排序）。
+字典顺序排序用的是二进制，它比较的是字符串的字节数组。
+命令 # </description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/zset/featured.png" />
+    </item>
+    
     <item>
       <title>Mac体验版</title>
       <link>/entire-note/mac%E4%BD%93%E9%AA%8C%E7%89%88bushi/</link>
