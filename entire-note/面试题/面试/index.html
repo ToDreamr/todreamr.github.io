@@ -102,7 +102,7 @@
     "keywords": ["要求熟记"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "218"
+    "wordCount": "276"
   }]
   </script>
 
@@ -934,6 +934,9 @@
                     <li><a href="#线程池">线程池：</a></li>
                     <li><a href="#如何实现定时任务">如何实现定时任务？</a></li>
                     <li><a href="#如何使用线程并发工具类countdownlatch">如何使用线程并发工具类CountDownLatch？</a></li>
+                    <li><a href="#说一下双亲委派机制">说一下双亲委派机制</a></li>
+                    <li><a href="#线程的生命周期">线程的生命周期</a></li>
+                    <li><a href="#说一下java里面你认识的锁">说一下Java里面你认识的锁</a></li>
                   </ul>
                 </li>
               </ul>
@@ -981,6 +984,9 @@
                     <li><a href="#线程池">线程池：</a></li>
                     <li><a href="#如何实现定时任务">如何实现定时任务？</a></li>
                     <li><a href="#如何使用线程并发工具类countdownlatch">如何使用线程并发工具类CountDownLatch？</a></li>
+                    <li><a href="#说一下双亲委派机制">说一下双亲委派机制</a></li>
+                    <li><a href="#线程的生命周期">线程的生命周期</a></li>
+                    <li><a href="#说一下java里面你认识的锁">说一下Java里面你认识的锁</a></li>
                   </ul>
                 </li>
               </ul>
@@ -1395,6 +1401,108 @@
     </span>        
     
 </h5>
+<h5 class="relative group">说一下双亲委派机制 
+    <div id="说一下双亲委派机制" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e8%af%b4%e4%b8%80%e4%b8%8b%e5%8f%8c%e4%ba%b2%e5%a7%94%e6%b4%be%e6%9c%ba%e5%88%b6" aria-label="锚点">#</a>
+    </span>        
+    
+</h5>
+<p>当一个类收到了类加载请求，他首先不会尝试自己去加载这个类，而是把这个请求委派给父
+类去完成，每一个层次类加载器都是如此，因此所有的加载请求都应该传送到启动类加载其中，
+只有当父类加载器反馈自己无法完成这个请求的时候（在它的加载路径下没有找到所需加载的
+Class），子类加载器才会尝试自己去加载。
+采用双亲委派的一个好处是比如加载位于 rt.jar 包中的类 java.lang.Object，不管是哪个加载
+器加载这个类，最终都是委托给顶层的启动类加载器进行加载，这样就保证了使用不同的类加载
+器最终得到的都是同样一个 Object 对象。</p>
+<h5 class="relative group">线程的生命周期 
+    <div id="线程的生命周期" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e7%ba%bf%e7%a8%8b%e7%9a%84%e7%94%9f%e5%91%bd%e5%91%a8%e6%9c%9f" aria-label="锚点">#</a>
+    </span>        
+    
+</h5>
+<p>线程经历五个生命周期：创建，就绪，运行，阻塞，消亡</p>
+<p>创建：线程的new方法</p>
+<p>就绪：调用start方法之后，将被JVM进行初始化</p>
+<p>运行：调用run方法</p>
+<p>阻塞：线程主动放弃对线程资源的掌控</p>
+<p>消亡：直接调用该线程的 stop()方法来结束该线程—该方法通常容易导致死锁，不推荐使用</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/%E9%9D%A2%E8%AF%95/image_hue63b3c30e90c31d10a5d9b95a91bee8a_185799_330x0_resize_box_3.png 330w,
+        /entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/%E9%9D%A2%E8%AF%95/image_hue63b3c30e90c31d10a5d9b95a91bee8a_185799_660x0_resize_box_3.png 660w,
+        /entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/%E9%9D%A2%E8%AF%95/image_hue63b3c30e90c31d10a5d9b95a91bee8a_185799_1024x0_resize_box_3.png 1024w,
+        /entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/%E9%9D%A2%E8%AF%95/image_hue63b3c30e90c31d10a5d9b95a91bee8a_185799_1320x0_resize_box_3.png 2x"
+        src="/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/%E9%9D%A2%E8%AF%95/image_hue63b3c30e90c31d10a5d9b95a91bee8a_185799_660x0_resize_box_3.png"
+        alt="thread-life"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>线程操作的基本方法：线程相关的基本方法有 wait，notify，notifyAll，sleep，join，yield 等</p>
+<h5 class="relative group">说一下Java里面你认识的锁 
+    <div id="说一下java里面你认识的锁" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e8%af%b4%e4%b8%80%e4%b8%8bjava%e9%87%8c%e9%9d%a2%e4%bd%a0%e8%ae%a4%e8%af%86%e7%9a%84%e9%94%81" aria-label="锚点">#</a>
+    </span>        
+    
+</h5>
+<p><strong>乐观锁：</strong></p>
+<blockquote>
+</blockquote>
+<p>乐观锁是一种乐观思想，即认为读多写少，遇到并发写的可能性低，每次去拿数据的时候都认为
+别人不会修改，所以不会上锁，但是在更新的时候会判断一下在此期间别人有没有去更新这个数
+据，采取在写时先读出当前版本号，然后加锁操作（比较跟上一次的版本号，如果一样则更新），
+如果失败则要重复读-比较-写的操作。
+java 中的乐观锁基本都是通过 CAS 操作实现的，CAS 是一种更新的原子操作，比较当前值跟传入
+值是否一样，一样则更新，否则失败</p>
+<blockquote>
+</blockquote>
+<p><strong>悲观锁：</strong></p>
+<blockquote>
+</blockquote>
+<p>悲观锁是就是悲观思想，即认为写多，遇到并发写的可能性高，每次去拿数据的时候都认为别人
+会修改，所以每次在读写数据的时候都会上锁，这样别人想读写这个数据就会 block 直到拿到锁。
+java 中的悲观锁就是 Synchronized,AQS 框架下的锁则是先尝试 cas 乐观锁去获取锁，获取不到，
+才会转换为悲观锁，如 RetreenLock。</p>
+<blockquote>
+</blockquote>
+<p><strong>自旋锁：</strong></p>
+<blockquote>
+</blockquote>
+<p>如果持有锁的线程能在很短时间内释放锁资源，那么那些等待竞争锁
+的线程就不需要做内核态和用户态之间的切换进入阻塞挂起状态，它们只需要等一等（自旋），
+等持有锁的线程释放锁后即可立即获取锁，这样就避免用户线程和内核的切换的消耗。</p>
+<p>优点：一定程度上减少了线程阻塞拥堵的情况</p>
+<p>缺点：cpu无用功</p>
+<blockquote>
+</blockquote>
 
       </div>
 

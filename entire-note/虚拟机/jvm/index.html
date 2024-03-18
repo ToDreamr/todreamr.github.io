@@ -102,7 +102,7 @@
     "keywords": ["虚拟机"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "394"
+    "wordCount": "382"
   }]
   </script>
 
@@ -923,9 +923,9 @@
                 <li><a href="#jni">JNI</a></li>
               </ul>
             </li>
-            <li><a href="#虚拟机栈">虚拟机栈</a></li>
-            <li><a href="#堆">堆</a></li>
-            <li><a href="#方法区重点">方法区（重点）</a>
+            <li><a href="#虚拟机栈线程私有">虚拟机栈（线程私有）</a></li>
+            <li><a href="#堆线程共享">堆（线程共享）</a></li>
+            <li><a href="#方法区线程共享重点">方法区（线程共享）（重点）</a>
               <ul>
                 <li><a href="#new-方式">new 方式</a></li>
                 <li><a href="#直接方式">直接方式</a></li>
@@ -970,9 +970,9 @@
                 <li><a href="#jni">JNI</a></li>
               </ul>
             </li>
-            <li><a href="#虚拟机栈">虚拟机栈</a></li>
-            <li><a href="#堆">堆</a></li>
-            <li><a href="#方法区重点">方法区（重点）</a>
+            <li><a href="#虚拟机栈线程私有">虚拟机栈（线程私有）</a></li>
+            <li><a href="#堆线程共享">堆（线程共享）</a></li>
+            <li><a href="#方法区线程共享重点">方法区（线程共享）（重点）</a>
               <ul>
                 <li><a href="#new-方式">new 方式</a></li>
                 <li><a href="#直接方式">直接方式</a></li>
@@ -1265,12 +1265,12 @@ javap -v .class 文件地址</p>
 
 </p>
 <ul>
-<li>内存区域划分为：方法区（线程共享），堆（线程共享），虚拟机栈，本地方法栈，程序计数器</li>
-<li>方法区和堆栈随 JVM 生消，虚拟机栈，本地方法栈，程序计数器不共享彼此</li>
-</ul>
-<p>创新作业：40 页创新计划书，电子档 2 份，纸质档 1 份
-商业模式和团队，按照第 8 章和第 7 章模式，12 周周五交-&gt;老师办公室</p>
-<ul>
+<li>
+<p>内存区域划分为：方法区（线程共享），堆（线程共享），虚拟机栈，本地方法栈，程序计数器</p>
+</li>
+<li>
+<p>方法区和堆栈随 JVM 生消，虚拟机栈，本地方法栈，程序计数器不共享彼此</p>
+</li>
 <li>
 <p>程序计数器 ：作为内存地址，每个地址指向下一条即将指令执行，自动更新，在 jvm 字节码解释器工作时改变时改变值确定指令位置
 public static void main(String[] args) {
@@ -1282,13 +1282,13 @@ System.out.println(sum(1,2));
 <p>虚拟机栈 （关键部分），内次当 java 虚拟机创建的时候即可同步一个栈帧（栈里面的元素），栈帧包含了当前方法的一些元素信息：（局部变量表，操作数栈，动态链接，方法出口）</p>
 </li>
 </ul>
-<h3 class="relative group">虚拟机栈 
-    <div id="虚拟机栈" class="anchor"></div>
+<h3 class="relative group">虚拟机栈（线程私有） 
+    <div id="虚拟机栈线程私有" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%e8%99%9a%e6%8b%9f%e6%9c%ba%e6%a0%88" aria-label="锚点">#</a>
+            style="text-decoration-line: none !important;" href="#%e8%99%9a%e6%8b%9f%e6%9c%ba%e6%a0%88%e7%ba%bf%e7%a8%8b%e7%a7%81%e6%9c%89" aria-label="锚点">#</a>
     </span>        
     
 </h3>
@@ -1325,13 +1325,13 @@ System.out.println(sum(1,2));
 
 </p>
 <p>在虚拟机栈里面执行的行为就是对方法不断压栈出栈的过程，只有当所有方法出栈之后才可以执行主函数栈</p>
-<h3 class="relative group">堆 
-    <div id="堆" class="anchor"></div>
+<h3 class="relative group">堆（线程共享） 
+    <div id="堆线程共享" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%e5%a0%86" aria-label="锚点">#</a>
+            style="text-decoration-line: none !important;" href="#%e5%a0%86%e7%ba%bf%e7%a8%8b%e5%85%b1%e4%ba%ab" aria-label="锚点">#</a>
     </span>        
     
 </h3>
@@ -1349,13 +1349,13 @@ System.out.println(sum(1,2));
     </iframe>
 </div>
 
-<h3 class="relative group">方法区（重点） 
-    <div id="方法区重点" class="anchor"></div>
+<h3 class="relative group">方法区（线程共享）（重点） 
+    <div id="方法区线程共享重点" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%e6%96%b9%e6%b3%95%e5%8c%ba%e9%87%8d%e7%82%b9" aria-label="锚点">#</a>
+            style="text-decoration-line: none !important;" href="#%e6%96%b9%e6%b3%95%e5%8c%ba%e7%ba%bf%e7%a8%8b%e5%85%b1%e4%ba%ab%e9%87%8d%e7%82%b9" aria-label="锚点">#</a>
     </span>        
     
 </h3>
@@ -1378,8 +1378,6 @@ System.out.println(sum(1,2));
 <p>编译生成的常量也可以加入常量池里面。</p>
 <blockquote>
 <p>面试题：String 的常量池，常量池优化</p>
-</blockquote>
-<blockquote>
 </blockquote>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-latex" data-lang="latex"><span class="line"><span class="cl">//String a=&#34;I am a student&#34;;
 </span></span><span class="line"><span class="cl">
@@ -1424,7 +1422,7 @@ System.out.println(sum(1,2));
 </span></span><span class="line"><span class="cl">    String str1 = &#34;abc&#34;;
 </span></span><span class="line"><span class="cl">    String str2 = &#34;abc&#34;;
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    System.out.println(str1 == str2);
+</span></span><span class="line"><span class="cl">    System.out.println(str1 == str2);//注意这里不是通过new的方式，所以为了性能JVM会通过常量池指向这一块
 </span></span><span class="line"><span class="cl">    System.out.println(str1.equals(str2));
 </span></span><span class="line"><span class="cl"><span class="nb">}</span>
 </span></span><span class="line"><span class="cl"><span class="c">%是因为我们直接使用双引号赋值

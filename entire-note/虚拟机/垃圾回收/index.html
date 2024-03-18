@@ -102,7 +102,7 @@
     "keywords": ["虚拟机"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "55"
+    "wordCount": "70"
   }]
   </script>
 
@@ -1230,6 +1230,14 @@ Minor GC - 次要垃圾回收，主要进行新生代区域的垃圾收集。</p
 <p>触发条件2：Minor GC后存活的对象超过了老年代剩余空间</p>
 <p>触发条件3：永久代内存不足（JDK8之前）</p>
 <p>触发条件4：手动调用System.gc()方法</p>
+</blockquote>
+<p>在JDK8之前，使用 永久代保存类和元数据 （meta）信息，类加载时产生同时全程JVM不会主动进行清除，最终将会导致OOM异常；</p>
+<blockquote>
+<p>Java8 中，永久代已经被移除，被一个称为“元数据区”（元空间）的区域所取代。元空间
+的本质和永久代类似，元空间与永久代之间最大的区别在于：元空间并不在虚拟机中，而是使用
+本地内存。因此，默认情况下，元空间的大小仅受本地内存限制。类的元数据放入 native
+memory, 字符串池和类的静态变量放入 java 堆中，这样可以加载多少类的元数据就不再由
+MaxPermSize 控制, 而由系统的实际可用空间来控制</p>
 </blockquote>
 <p>打印GC日志</p>
 <p>VM选项: -XX:PrintGCDetails</p>
