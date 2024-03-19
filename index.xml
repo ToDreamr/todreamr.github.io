@@ -7,7 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>© 2024 春江花朝秋月夜</copyright>
-    <lastBuildDate>Fri, 15 Mar 2024 17:06:00 +0800</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 19 Mar 2024 17:31:54 +0800</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>代码随想录算法合辑</title>
+      <link>/entire-note/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95-%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Tue, 19 Mar 2024 17:31:54 +0800</pubDate>
+      
+      <guid>/entire-note/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95-%E7%AE%97%E6%B3%95/</guid>
+      <description>算法合辑✈️✈️去到算法目录✈️✈️2024年3月19日· 12:01</description>
+      
+    </item>
+    
     <item>
       <title>Zset</title>
       <link>/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/zset/</link>
@@ -434,7 +444,7 @@ ReferenceQueue&amp;lt;Object&amp;gt; queue = new ReferenceQueue&amp;lt;&amp;gt;(
       <pubDate>Sat, 21 Oct 2023 20:52:20 +0800</pubDate>
       
       <guid>/all/</guid>
-      <description> 全部文章 Zset15 March 2024&amp;middot;1 分钟 Mac体验版14 March 2024&amp;middot;1 分钟 笔记 Waline评论系统11 March 2024&amp;middot;1 分钟 笔记 常规面试题9 March 2024&amp;middot;2 分钟 要求熟记 使用主从模式搭建一个Socket网络通信模型6 March 2024&amp;middot;1 分钟 微信登录2 March 2024&amp;middot;4 分钟 Oauth2 自用的Vscode个人觉得还算耐看的主题和字体以及编码习惯2 March 2024&amp;middot;1 分钟 笔记 Oauth229 February 2024&amp;middot;1 分钟 Oauth2 Spring-Security23 February 2024&amp;middot;1 分钟 spring Docker8 February 2024&amp;middot;1 分钟 笔记 Music7 February 2024&amp;middot;1 分钟 笔记 本站Music搭建相关7 February 2024&amp;middot;1 分钟 笔记 音乐29 January 2024 NetFlix和SpringCloudAlibaba26 January 2024&amp;middot;1 分钟 微服务 我的生日15 November 2023&amp;middot;1 分钟 生活 区间个位和14 November 2023&amp;middot;1 分钟 leetcode 数之和14 November 2023&amp;middot;1 分钟 leetcode Eureka11 November 2023&amp;middot;1 分钟 微服务 SpringCloud11 November 2023&amp;middot;2 分钟 微服务 没备份笔记的后果11 November 2023&amp;middot;1 分钟 随记 RabbitMq7 November 2023&amp;middot;2 分钟 消息队列 Vue3 响应式Api开发笔记4 November 2023&amp;middot;2 分钟 vue 搭建图床3 November 2023&amp;middot;1 分钟 杂记 Spring事务传播机制3 November 2023&amp;middot;1 分钟 spring C++27 October 2023&amp;middot;6 分钟 语言 friend27 October 2023&amp;middot;1 分钟 朋友们 面试题25 October 2023&amp;middot;1 分钟 面试题 类加载24 October 2023&amp;middot;1 分钟 虚拟机 元空间和引用方式24 October 2023&amp;middot;1 分钟 虚拟机 Latex语法19 October 2023&amp;middot;1 分钟 latex Jvm12 October 2023&amp;middot;2 分钟 虚拟机 垃圾回收机制12 October 2023&amp;middot;1 分钟 虚拟机 学习计划10 October 2023&amp;middot;1 分钟 规划 并发进阶9 October 2023&amp;middot;4 分钟 并发编程 Java-Concurrent9 October 2023&amp;middot;3 分钟 并发编程 如何通过hugo搭建自己的博客3 October 2023&amp;middot;1 分钟 杂记 对象间的关系3 October 2023&amp;middot;1 分钟 Java SE 关键字3 October 2023&amp;middot;5 分钟 Java SE 实例化Node3 October 2023&amp;middot;1 分钟 Java SE 数据结构篇3 October 2023&amp;middot;1 分钟 算法 应该没人来这里吧3 October 2023&amp;middot;1 分钟 ThreadLocal3 October 2023&amp;middot;2 分钟 Java SE Redis3 October 2023&amp;middot;2 分钟 缓存 Hello Friend3 October 2003&amp;middot;1 分钟 post 1 January 0001&amp;middot;52 分钟 1 January 0001&amp;middot;1 分钟 1 January 0001&amp;middot;2 分钟 1 January 0001&amp;middot;1 分钟 Docker1 January 0001&amp;middot;7 分钟 Mysql1 January 0001&amp;middot;6 分钟 Netty1 January 0001&amp;middot;17 分钟 NIO1 January 0001&amp;middot;22 分钟 RabbitMq1 January 0001&amp;middot;7 分钟 SpringCloud 11 January 0001&amp;middot;9 分钟 SpringCloud 21 January 0001&amp;middot;11 分钟 SpringCloud 31 January 0001&amp;middot;10 分钟 创建型1 January 0001&amp;middot;4 分钟 封面测试1 January 0001 结构型1 January 0001&amp;middot;5 分钟 面向对象设计原则1 January 0001&amp;middot;4 分钟 行为型1 January 0001&amp;middot;7 分钟 </description>
+      <description> 全部文章 代码随想录算法合辑19 March 2024&amp;middot;1 分钟 算法 Zset15 March 2024&amp;middot;1 分钟 Mac体验版14 March 2024&amp;middot;1 分钟 笔记 Waline评论系统11 March 2024&amp;middot;1 分钟 笔记 常规面试题9 March 2024&amp;middot;2 分钟 要求熟记 使用主从模式搭建一个Socket网络通信模型6 March 2024&amp;middot;1 分钟 微信登录2 March 2024&amp;middot;4 分钟 Oauth2 自用的Vscode个人觉得还算耐看的主题和字体以及编码习惯2 March 2024&amp;middot;1 分钟 笔记 Oauth229 February 2024&amp;middot;1 分钟 Oauth2 Spring-Security23 February 2024&amp;middot;1 分钟 spring Docker8 February 2024&amp;middot;1 分钟 笔记 Music7 February 2024&amp;middot;1 分钟 笔记 本站Music搭建相关7 February 2024&amp;middot;1 分钟 笔记 音乐29 January 2024 NetFlix和SpringCloudAlibaba26 January 2024&amp;middot;1 分钟 微服务 我的生日15 November 2023&amp;middot;1 分钟 生活 区间个位和14 November 2023&amp;middot;1 分钟 leetcode 数之和14 November 2023&amp;middot;1 分钟 leetcode Eureka11 November 2023&amp;middot;1 分钟 微服务 SpringCloud11 November 2023&amp;middot;2 分钟 微服务 没备份笔记的后果11 November 2023&amp;middot;1 分钟 随记 RabbitMq7 November 2023&amp;middot;2 分钟 消息队列 Vue3 响应式Api开发笔记4 November 2023&amp;middot;2 分钟 vue 搭建图床3 November 2023&amp;middot;1 分钟 杂记 Spring事务传播机制3 November 2023&amp;middot;1 分钟 spring C++27 October 2023&amp;middot;6 分钟 语言 friend27 October 2023&amp;middot;1 分钟 朋友们 面试题25 October 2023&amp;middot;1 分钟 面试题 类加载24 October 2023&amp;middot;1 分钟 虚拟机 元空间和引用方式24 October 2023&amp;middot;1 分钟 虚拟机 Latex语法19 October 2023&amp;middot;1 分钟 latex Jvm12 October 2023&amp;middot;2 分钟 虚拟机 垃圾回收机制12 October 2023&amp;middot;1 分钟 虚拟机 学习计划10 October 2023&amp;middot;1 分钟 规划 并发进阶9 October 2023&amp;middot;4 分钟 并发编程 Java-Concurrent9 October 2023&amp;middot;3 分钟 并发编程 如何通过hugo搭建自己的博客3 October 2023&amp;middot;1 分钟 杂记 对象间的关系3 October 2023&amp;middot;1 分钟 Java SE 关键字3 October 2023&amp;middot;5 分钟 Java SE 实例化Node3 October 2023&amp;middot;1 分钟 Java SE 数据结构篇3 October 2023&amp;middot;1 分钟 算法 应该没人来这里吧3 October 2023&amp;middot;1 分钟 ThreadLocal3 October 2023&amp;middot;2 分钟 Java SE Redis3 October 2023&amp;middot;2 分钟 缓存 Hello Friend3 October 2003&amp;middot;1 分钟 post 1 January 0001&amp;middot;1 分钟 1 January 0001&amp;middot;1 分钟 1 January 0001&amp;middot;1 分钟 1 January 0001&amp;middot;52 分钟 1 January 0001&amp;middot;1 分钟 1 January 0001&amp;middot;2 分钟 1 January 0001&amp;middot;1 分钟 Docker1 January 0001&amp;middot;7 分钟 Mysql1 January 0001&amp;middot;6 分钟 Netty1 January 0001&amp;middot;17 分钟 NIO1 January 0001&amp;middot;22 分钟 RabbitMq1 January 0001&amp;middot;7 分钟 SpringCloud 11 January 0001&amp;middot;9 分钟 SpringCloud 21 January 0001&amp;middot;11 分钟 SpringCloud 31 January 0001&amp;middot;10 分钟 创建型1 January 0001&amp;middot;4 分钟 封面测试1 January 0001 结构型1 January 0001&amp;middot;5 分钟 面向对象设计原则1 January 0001&amp;middot;4 分钟 行为型1 January 0001&amp;middot;7 分钟 </description>
       
     </item>
     
@@ -649,6 +659,44 @@ Mset 批量 添加key-value</description>
       <description>我的名字是春江花朝秋月夜，我是这个博客的作者。我这样做是为了记录之前学习的笔记，这样很有成就感。 我们都知道在网络上开始做一些事情有多难，尤其是现在。但是，为了自己的头发没有白掉，加油吧，大家！
 — 春江花朝秋月夜 S01E01</description>
       <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/post/featured.png" />
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/algorithm/%E4%BA%8C%E5%88%86%E6%B3%95/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/algorithm/%E4%BA%8C%E5%88%86%E6%B3%95/</guid>
+      <description>确定区间
+左闭右闭
+left = 0; right = nums.size() - 1; while(left &amp;lt;= right){ // 区间为空 结束循环 ： (l &amp;gt; r) //左右相等是合法区间，比如【1，1】只有 元素1 mid = left + (right-left)&amp;gt;&amp;gt;2; if(nums[mid]&amp;gt;target){ right = mid -1;//为了不包含原来的nums[mid],所以减一 }else if(nums[mid]&amp;lt;target){ left = mid +1; }else return mid; } return -1; class Solution { public int search(int[] nums, int target) { int left = 0; int right = nums.</description>
+      
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/algorithm/%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/algorithm/%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9/</guid>
+      <description>977
+有序数组的平方
+输入：nums = [-4,-1,0,3,10] 输出：[0,1,9,16,100] 解释：平方后，数组变为 [16,1,0,9,100] 排序后，数组变为 [0,1,9,16,100] 最大元素在两边，使用两个指针从两边到中间合拢
+更新方法从大到小
+vector&amp;lt;int&amp;gt;result(nums.size(),0); int k=nums.size()-1;//新数组的下标 int i=0,j=nums.size()-1; //分别从两边往中间取 while(i&amp;lt;=j){ if(nums[i]*nums[i]&amp;lt;nums[j]*nums[j]){ result[k--]=nums[j]*nums[j]; j--; } //num[i]*nums[i] &amp;gt;= nums[j]*nums[j] else { result[k--]=nums[i]*nums[i]; i++; } } return result; class Solution { public int[] sortedSquares(int[] nums) { int []res = new int [nums.</description>
+      
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/algorithm/%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E6%95%B0%E7%BB%84/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/algorithm/%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E6%95%B0%E7%BB%84/</guid>
+      <description>给定一个含有 n 个正整数的数组和一个正整数 target 。
+找出该数组中满足其总和大于等于 target 的长度最小的 连续 子数组 [numsl, numsl+1, &amp;hellip;, numsr-1, numsr] ，并返回其长度。如果不存在符合条件的子数组，返回 0 。
+输入：target = 7, nums = [2,3,1,2,4,3] 输出：2 解释：子数组 [4,3] 是该条件下的长度最小的子数组。 #include &amp;lt;iostream&amp;gt; #include &amp;lt;cstdio&amp;gt; #include &amp;lt;iostream&amp;gt; #include &amp;lt;vector&amp;gt; using namespace std; class Solution { public: int minSubArrayLen(int target, vector&amp;lt;int&amp;gt;&amp;amp; nums) { int right = nums.</description>
+      
     </item>
     
     <item>
