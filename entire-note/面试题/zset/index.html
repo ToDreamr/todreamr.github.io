@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" dir="ltr" class="scroll-smooth" data-default-appearance="light"
+<html lang="zh-CN" dir="ltr" class="scroll-smooth" data-default-appearance="dark"
   data-auto-appearance="true"><head>
 
   <meta charset="utf-8" />
@@ -9,11 +9,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   
-  <title>Zset &middot; 春江花朝秋月夜</title>
-  <meta name="title" content="Zset &middot; 春江花朝秋月夜" />
+  <title>Mysql-Redis &middot; 春江花朝秋月夜</title>
+  <meta name="title" content="Mysql-Redis &middot; 春江花朝秋月夜" />
   
-  <meta name="description" content="复习Zset" />
-  
+  <meta name="description" content="复习Redis和Mysql" />
+  <meta name="keywords" content="主从部分, " />
   
   
   <link rel="canonical" href="/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/zset/" />
@@ -64,8 +64,8 @@
   
   
   
-  <meta property="og:title" content="Zset" />
-<meta property="og:description" content="复习Zset" />
+  <meta property="og:title" content="Mysql-Redis" />
+<meta property="og:description" content="复习Redis和Mysql" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/zset/" /><meta property="og:image" content="/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/zset/featured.png"/><meta property="article:section" content="entire-note" />
 <meta property="article:published_time" content="2024-03-15T17:06:00+08:00" />
@@ -74,8 +74,8 @@
 
   <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/zset/featured.png"/>
-<meta name="twitter:title" content="Zset"/>
-<meta name="twitter:description" content="复习Zset"/>
+<meta name="twitter:title" content="Mysql-Redis"/>
+<meta name="twitter:description" content="复习Redis和Mysql"/>
 
   
   <script type="application/ld+json">
@@ -83,9 +83,9 @@
     "@context": "https://schema.org",
     "@type": "Article",
     "articleSection": "Entire-notes",
-    "name": "Zset",
-    "headline": "Zset",
-    "description": "复习Zset",
+    "name": "Mysql-Redis",
+    "headline": "Mysql-Redis",
+    "description": "复习Redis和Mysql",
     "abstract": "认识 # 有序集合和普通集合set很相似，是一个没有重复元素的字符串集合。\n每个成员都关联了一个评分（score），这个评分被用来按照最低分到最高分的方式排序集合种的成员。集合的成员是唯一的，但是分数可以重复\n底层： # Redis提供的一个非常特别的数据结构，一方面它等价于java的数据结构Map\u0026lt;String, double\u0026gt;，可以给每一个元素value赋予一个权重score， 另一方面它又类似于TreeSet，内部的元素会按照权重进行排序，可以得到每个元素的名次，还可以通过score的范围来获取元素的列表\n实现：\nhash；hash的作用就是关联元素value和权重score，保障元素value的唯一性，可以通过元素value找到score 跳跃表，跳跃表的目的在于给元素value排序，根据score的范围获取元素列表\n相同分数的时候\n有序集合里面的成员是不能重复的都是唯一的，但是，不同成员间有可能有相同的分数。当多个成员有相同的分数时，他们将是有序的字典（ordered lexicographically）（仍由分数作为第一排序条件，然后，相同分数的成员按照字典规则相对排序）。\n字典顺序排序用的是二进制，它比较的是字符串的字节数组。\n命令 # ",
     "inLanguage": "zh-CN",
     "url" : "\/entire-note\/%E9%9D%A2%E8%AF%95%E9%A2%98\/zset\/",
@@ -99,7 +99,7 @@
     
     "dateModified": "2024-03-15T17:06:00\u002b08:00",
     
-    
+    "keywords": ["主从部分"],
     
     "mainEntityOfPage": "true",
     "wordCount": "18"
@@ -242,6 +242,16 @@
     
     <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="Algorithms">
         算法🐾
+    </p>
+</a>
+
+
+      
+      
+  <a href="/tags/"  class="flex items-center">
+    
+    <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="Tags">
+        归类✈️
     </p>
 </a>
 
@@ -447,6 +457,20 @@
 
           
   <li class="mt-1">
+    <a href="/tags/"  class="flex items-center">
+        
+        <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="Tags">
+            归类✈️
+        </p>
+    </a>
+</li>
+
+
+
+          
+
+          
+  <li class="mt-1">
     <a href="/friend/"  class="flex items-center">
         
         <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="friend">
@@ -640,7 +664,7 @@
     <a
       class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
       href="/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/zset/"
-      >Zset</a
+      >Mysql-Redis</a
     ><span class="px-1 text-primary-500">/</span>
   </li>
 
@@ -649,7 +673,7 @@
 
     
     <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral" style="font-family: 华文中宋,serif">
-      Zset
+      Mysql-Redis
     </h1>
     <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
       
@@ -727,6 +751,16 @@
   
   
   
+  
+  
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/%E4%B8%BB%E4%BB%8E%E9%83%A8%E5%88%86/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    主从部分
+  </span>
+</span>
+  </span>
   
   
   
@@ -1068,7 +1102,7 @@
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://twitter.com/intent/tweet/?url=/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/zset/&amp;text=Zset"
+      href="https://twitter.com/intent/tweet/?url=/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/zset/&amp;text=Mysql-Redis"
       title="分享到 Twitter"
       aria-label="分享到 Twitter"
       >
@@ -1086,7 +1120,7 @@
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://t.me/share/url?url=/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/zset/&amp;resubmit=true&amp;title=Zset"
+      href="https://t.me/share/url?url=/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/zset/&amp;resubmit=true&amp;title=Mysql-Redis"
       title=""
       aria-label=""
       >
@@ -1105,7 +1139,7 @@
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="mailto:?body=/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/zset/&amp;subject=Zset"
+      href="mailto:?body=/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/zset/&amp;subject=Mysql-Redis"
       title="通过电子邮件发送"
       aria-label="通过电子邮件发送"
       >
@@ -1251,11 +1285,11 @@
   
   
 
-  <a href="/entire-note/mac%E4%BD%93%E9%AA%8C%E7%89%88bushi/" class="min-w-full">
+  <a href="/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/%E9%9D%A2%E8%AF%95/" class="min-w-full">
     
     <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
         
-        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/entire-note/mac%E4%BD%93%E9%AA%8C%E7%89%88bushi/featured_hub67f8dfa321f7d46a9800ef50a63a34d_39335_600x0_resize_box_3.png);"></div>
+        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/%E9%9D%A2%E8%AF%95/featured_hudb063fd96b0863c8427eb25f55b23049_1428542_600x0_resize_box_3.png);"></div>
         
       
 
@@ -1263,7 +1297,7 @@
 
         
         <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
-          href="/entire-note/mac%E4%BD%93%E9%AA%8C%E7%89%88bushi/">Mac体验版</div>
+          href="/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/%E9%9D%A2%E8%AF%95/">计算机科学基础</div>
         
 
         <div class="text-sm text-neutral-500 dark:text-neutral-400">
@@ -1304,7 +1338,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2024-03-14 18:23:23 &#43;0800 CST">14 March 2024</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
+  <time datetime="2024-03-09 18:23:23 &#43;0800 CST">9 March 2024</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">2 分钟</span>
   
 
   
@@ -1342,10 +1376,10 @@
   
   
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/%E7%AC%94%E8%AE%B0/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/%E8%A6%81%E6%B1%82%E7%86%9F%E8%AE%B0/&#34;,'_self');">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    笔记
+    要求熟记
   </span>
 </span>
   </span>
@@ -1371,11 +1405,11 @@
   
   
 
-  <a href="/entire-note/%E6%80%8E%E4%B9%88%E8%AF%84%E8%AE%BA/" class="min-w-full">
+  <a href="/entire-note/netty/" class="min-w-full">
     
     <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
         
-        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/entire-note/%E6%80%8E%E4%B9%88%E8%AF%84%E8%AE%BA/featured_huf2e79378bfe201ee46a6ec22034ea68f_838906_600x0_resize_box_3.png);"></div>
+        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/img/annimation/4c758d7c82292f81f99d63ff1072aa9adb5c3536_raw_hu9b60894d5013d728985af7ffc2fcbbdd_675352_600x0_resize_q75_box.jpg);"></div>
         
       
 
@@ -1383,7 +1417,7 @@
 
         
         <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
-          href="/entire-note/%E6%80%8E%E4%B9%88%E8%AF%84%E8%AE%BA/">Waline评论系统</div>
+          href="/entire-note/netty/">使用主从模式搭建一个Socket网络通信模型</div>
         
 
         <div class="text-sm text-neutral-500 dark:text-neutral-400">
@@ -1424,7 +1458,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2024-03-11 18:23:23 &#43;0800 CST">11 March 2024</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
+  <time datetime="2024-03-06 21:21:06 &#43;0800 CST">6 March 2024</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
   
 
   
@@ -1462,10 +1496,10 @@
   
   
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/%E7%AC%94%E8%AE%B0/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/nio/&#34;,'_self');">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    笔记
+    nio
   </span>
 </span>
   </span>
@@ -1502,7 +1536,7 @@
       <div class="flex justify-between pt-3">
         <span>
           
-            <a class="flex group mr-3" href="/entire-note/mac%E4%BD%93%E9%AA%8C%E7%89%88bushi/">
+            <a class="flex group mr-3" href="/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/%E9%9D%A2%E8%AF%95/">
               <span
                 class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
                 >&larr;</span
@@ -1514,11 +1548,11 @@
               <span class="flex flex-col">
                 <span
                   class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
-                  >Mac体验版</span
+                  >计算机科学基础</span
                 >
                 <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
                   
-                    <time datetime="2024-03-14 18:23:23 &#43;0800 CST">14 March 2024</time>
+                    <time datetime="2024-03-09 18:23:23 &#43;0800 CST">9 March 2024</time>
                   
                 </span>
               </span>
@@ -1527,15 +1561,15 @@
         </span>
         <span>
           
-            <a class="flex text-right group ml-3" href="/entire-note/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95-%E7%AE%97%E6%B3%95/">
+            <a class="flex text-right group ml-3" href="/entire-note/%E9%93%BE%E8%A1%A8%E9%98%9F%E5%88%97%E5%92%8C%E6%A0%91/">
               <span class="flex flex-col">
                 <span
                   class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
-                  >代码随想录算法合辑</span
+                  >抽象数据类型ADT</span
                 >
                 <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
                   
-                    <time datetime="2024-03-19 17:31:54 &#43;0800 CST">19 March 2024</time>
+                    <time datetime="2024-03-18 18:23:23 &#43;0800 CST">18 March 2024</time>
                   
                 </span>
               </span>

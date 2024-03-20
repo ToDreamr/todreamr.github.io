@@ -1,0 +1,2808 @@
+<!DOCTYPE html>
+<html lang="zh-CN" dir="ltr" class="scroll-smooth" data-default-appearance="dark"
+  data-auto-appearance="true"><head>
+
+  <meta charset="utf-8" />
+  
+  <meta http-equiv="content-language" content="zh-CN" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  
+  <title>微服务基础知识 &middot; 春江花朝秋月夜</title>
+  <meta name="title" content="微服务基础知识 &middot; 春江花朝秋月夜" />
+  
+  <meta name="description" content="A powerful, lightweight theme for Hugo built with Tailwind CSS." />
+  <meta name="keywords" content="微服务, " />
+  
+  
+  <link rel="canonical" href="/entire-note/spring/" />
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.b0d4aeb65335611c810957fcff4af94f45bb796b37facd9be6f7287ee03ce57038918ff5d4ac7a6ea77914fde6d3942c0243d3d17f90926c454b4ea3499e973a.css"
+    integrity="sha512-sNSutlM1YRyBCVf8/0r5T0W7eWs3&#43;s2b5vcofuA85XA4kY/11Kx6bqd5FP3m05QsAkPT0X&#43;QkmxFS06jSZ6XOg==" />
+  
+  
+  <script type="text/javascript" src="/js/appearance.min.516a16745bea5a9bd011138d254cc0fd3973cd55ce6e15f3dec763e7c7c2c7448f8fe7b54cca811cb821b0c7e12cd161caace1dd794ac3d34d40937cbcc9ee12.js"
+    integrity="sha512-UWoWdFvqWpvQERONJUzA/TlzzVXObhXz3sdj58fCx0SPj&#43;e1TMqBHLghsMfhLNFhyqzh3XlKw9NNQJN8vMnuEg=="></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script defer type="text/javascript" id="script-bundle" src="/js/main.bundle.min.6c7ae15a14b4f78dc4f6e7f92e5a4e05d69a1eafe594e439255e5f72defe4531e8fda36f83cf9730e27868220649112476686eec9d28c582deaabe019c419dbd.js"
+    integrity="sha512-bHrhWhS0943E9uf5LlpOBdaaHq/llOQ5JV5fct7&#43;RTHo/aNvg8&#43;XMOJ4aCIGSREkdmhu7J0oxYLeqr4BnEGdvQ==" data-copy="" data-copied=""></script>
+  
+  
+  <script src="/js/zoom.min.js"></script>
+  
+  
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="微服务基础知识" />
+<meta property="og:description" content="基于SpringCloudAlibaba&#43;Nacos&#43;Feign&#43;Seata&#43;Sentinel作为微服务路线叙述 # 前言：本次SpringCloud微服务学习涉及NetFlix和Alibaba两不同版本，主要对应关系为：
+微服务原则：所有的服务都需要保证职责的单一原则
+SpringCloud作为一系列框架的有序集合，是SOA的延续
+SpringCloud Alibaba 是遵循SpringCloud来开发的套件，Nacos亦然
+服务注册和发现 # Eureka # Eureka能够自动注册并发现微服务，然后对服务的状态、信息进行集中管理，这样当我们需要获取其他服务的信息时，我们只需要向Eureka进行查询就可以了。
+通过Eureka服务器进行服务注册与发现，那么现在我们来看看，它的负载均衡到底是如何实现的，实际上之前演示的负载均衡是依靠LoadBalancer实现的。
+在2020年前的SpringCloud版本是采用Ribbon作为负载均衡实现，但是2020年的版本之后SpringCloud把Ribbon移除了，进而用自己编写的LoadBalancer替代。
+如何找到服务？
+Nacos # Nacos注册中心 # 功能：
+服务注册发现 配置中心 服务元数据/实例元数据：可以用于流量控制（在实例的metadata（元数据）中加上标签信息。通过IRule获取Server列表并根据这些Server中元数据的标签信息决定路由情况） 局域网内服务信息传输快 服务集群分级模式
+服务-集群-实例
+修改yml：
+spring: cloud: nacos: server-addr: localhost:8848 discovery: cluster-name: ClUSTER-01 对指定服务进行配置" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/entire-note/spring/" /><meta property="og:image" content="/entire-note/spring/featured.jpg"/><meta property="article:section" content="entire-note" />
+<meta property="article:published_time" content="2024-03-05T15:08:23+00:00" />
+<meta property="article:modified_time" content="2024-03-05T15:08:23+00:00" />
+
+
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/entire-note/spring/featured.jpg"/>
+<meta name="twitter:title" content="微服务基础知识"/>
+<meta name="twitter:description" content="基于SpringCloudAlibaba&#43;Nacos&#43;Feign&#43;Seata&#43;Sentinel作为微服务路线叙述 # 前言：本次SpringCloud微服务学习涉及NetFlix和Alibaba两不同版本，主要对应关系为：
+微服务原则：所有的服务都需要保证职责的单一原则
+SpringCloud作为一系列框架的有序集合，是SOA的延续
+SpringCloud Alibaba 是遵循SpringCloud来开发的套件，Nacos亦然
+服务注册和发现 # Eureka # Eureka能够自动注册并发现微服务，然后对服务的状态、信息进行集中管理，这样当我们需要获取其他服务的信息时，我们只需要向Eureka进行查询就可以了。
+通过Eureka服务器进行服务注册与发现，那么现在我们来看看，它的负载均衡到底是如何实现的，实际上之前演示的负载均衡是依靠LoadBalancer实现的。
+在2020年前的SpringCloud版本是采用Ribbon作为负载均衡实现，但是2020年的版本之后SpringCloud把Ribbon移除了，进而用自己编写的LoadBalancer替代。
+如何找到服务？
+Nacos # Nacos注册中心 # 功能：
+服务注册发现 配置中心 服务元数据/实例元数据：可以用于流量控制（在实例的metadata（元数据）中加上标签信息。通过IRule获取Server列表并根据这些Server中元数据的标签信息决定路由情况） 局域网内服务信息传输快 服务集群分级模式
+服务-集群-实例
+修改yml：
+spring: cloud: nacos: server-addr: localhost:8848 discovery: cluster-name: ClUSTER-01 对指定服务进行配置"/>
+
+  
+  <script type="application/ld+json">
+  [{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Entire-notes",
+    "name": "微服务基础知识",
+    "headline": "微服务基础知识",
+    
+    "abstract": "基于SpringCloudAlibaba\u002bNacos\u002bFeign\u002bSeata\u002bSentinel作为微服务路线叙述 # 前言：本次SpringCloud微服务学习涉及NetFlix和Alibaba两不同版本，主要对应关系为：\n微服务原则：所有的服务都需要保证职责的单一原则\nSpringCloud作为一系列框架的有序集合，是SOA的延续\nSpringCloud Alibaba 是遵循SpringCloud来开发的套件，Nacos亦然\n服务注册和发现 # Eureka # Eureka能够自动注册并发现微服务，然后对服务的状态、信息进行集中管理，这样当我们需要获取其他服务的信息时，我们只需要向Eureka进行查询就可以了。\n通过Eureka服务器进行服务注册与发现，那么现在我们来看看，它的负载均衡到底是如何实现的，实际上之前演示的负载均衡是依靠LoadBalancer实现的。\n在2020年前的SpringCloud版本是采用Ribbon作为负载均衡实现，但是2020年的版本之后SpringCloud把Ribbon移除了，进而用自己编写的LoadBalancer替代。\n如何找到服务？\nNacos # Nacos注册中心 # 功能：\n服务注册发现 配置中心 服务元数据\/实例元数据：可以用于流量控制（在实例的metadata（元数据）中加上标签信息。通过IRule获取Server列表并根据这些Server中元数据的标签信息决定路由情况） 局域网内服务信息传输快 服务集群分级模式\n服务-集群-实例\n修改yml：\nspring: cloud: nacos: server-addr: localhost:8848 discovery: cluster-name: ClUSTER-01 对指定服务进行配置",
+    "inLanguage": "zh-CN",
+    "url" : "\/entire-note\/spring\/",
+    "author" : {
+      "@type": "Person",
+      "name": "春江花朝秋月夜"
+    },
+    "copyrightYear": "2024",
+    "dateCreated": "2024-03-05T15:08:23\u002b00:00",
+    "datePublished": "2024-03-05T15:08:23\u002b00:00",
+    
+    "dateModified": "2024-03-05T15:08:23\u002b00:00",
+    
+    "keywords": ["微服务"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "309"
+  }]
+  </script>
+
+
+  
+  
+  <meta name="author" content="春江花朝秋月夜" />
+  
+  
+  
+  <link href="https://space.bilibili.com/159283119?spm_id_from=333.1007.0.0" rel="me" />
+  
+  
+  <link href="https://github.com/ToDreamr" rel="me" />
+  
+  
+  <link href="https://music.163.com/#/user/home?id=568083850" rel="me" />
+  
+  
+  <link href="https://gitee.com/rainyheights" rel="me" />
+  
+  
+  <link href="https://www.zhihu.com/people/san-qiu-luo-yue" rel="me" />
+  
+  
+  
+  
+
+<script src="/lib/jquery/jquery.slim.min.js" integrity=""></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PEDMYR1V0K"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PEDMYR1V0K');
+</script>
+
+
+  
+  
+  <meta name="theme-color"/>
+
+  
+  
+
+  
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <meta name="referrer" content="no-referrer-when-downgrade"></head>
+
+
+<body
+  class="flex flex-col h-screen px-6 m-auto text-lg leading-7 max-w-7xl bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32">
+  <div id="the-top" class="absolute flex self-center">
+    <a class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 focus:translate-y-0 dark:bg-neutral-600"
+      href="#main-content"><span
+        class="font-bold text-primary-600 ltr:pr-2 rtl:pl-2 dark:text-primary-400">&darr;</span>跳到文章开头</a>
+  </div>
+  
+  
+  <div class="min-h-[148px]"></div>
+<div class="fixed inset-x-0 pl-[24px] pr-[24px]" style="z-index:100">
+  <div id="menu-blur" class="absolute opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl shadow-2xl"></div>
+  <div class="relative max-w-[64rem] ml-auto mr-auto">
+    <div id="top-menu" style="padding-left:0;padding-right:0;padding-top:2px;padding-bottom:3px ;height: 70px;font-family: 华文中宋,serif;"
+     class="main-menu flex items-center justify-between px-4 py-6 sm:px-6 md:justify-start space-x-3" >
+  
+  
+  
+  <div>
+    <a href="/" class="flex">
+    <span class="sr-only">春江花朝秋月夜</span>
+
+    <img src="/img/author.png" width="16" height="16"
+         class="logo max-h-[5rem] max-w-[5rem] object-scale-down object-left nozoom" alt="春江花朝秋月夜" />
+
+    </a>
+  </div>
+  
+
+  <div class="flex flex-1 items-center justify-between">
+
+    <nav class="flex space-x-3">
+
+      
+      <a id="title-href" href="/" class="text-base font-medium text-gray-500 hover:text-gray-900">春江花朝秋月夜</a>
+      
+
+    </nav>
+    <nav class="hidden md:flex items-center space-x-5 md:ml-12 h-12">
+
+      
+      
+      
+  <a href="/"  class="flex items-center">
+    
+    <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="">
+        首页
+    </p>
+</a>
+
+
+      
+      
+  <a href="/all/"  class="flex items-center">
+    
+    <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="全部">
+        全部✅
+    </p>
+</a>
+
+
+      
+      
+  <a href="/algorithm/"  class="flex items-center">
+    
+    <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="Algorithms">
+        算法🐾
+    </p>
+</a>
+
+
+      
+      
+  <a href="/tags/"  class="flex items-center">
+    
+    <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="Tags">
+        归类✈️
+    </p>
+</a>
+
+
+      
+      
+  <a href="/friend/"  class="flex items-center">
+    
+    <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="friend">
+        友链🧑‍🤝‍🧑
+    </p>
+</a>
+
+
+      
+      
+  <a href="/doc/"  class="flex items-center">
+    
+    <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="Docs">
+        文档😺
+    </p>
+</a>
+
+
+      
+      
+
+      
+
+
+      
+      <button id="search-button" aria-label="Search" class="text-base hover:text-primary-600 dark:hover:text-primary-400 h-12"
+              title="">
+      
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+      </button>
+
+      
+
+
+      
+      
+      <div
+              class="ltr:mr-14 rtl:ml-14 cursor-pointer text-sm text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400">
+        <button id="appearance-switcher" aria-label="Dark mode switcher" type="button">
+          <div class="flex items-center justify-center h-12 dark:hidden">
+            
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+
+  </span>
+
+
+          </div>
+          <div class="items-center justify-center hidden h-12 dark:flex">
+            
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+
+  </span>
+
+
+          </div>
+        </button>
+
+      </div>
+      
+
+    </nav>
+    <div class="flex md:hidden items-center space-x-5 md:ml-12">
+
+      <span></span>
+
+      
+
+
+      
+      <button id="search-button-mobile" aria-label="Search" class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+              title="">
+      
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+      </button>
+      
+
+      
+      
+      <button id="appearance-switcher-mobile" aria-label="Dark mode switcher" type="button" style="margin-right:5px">
+        <div class="flex items-center justify-center h-12 dark:hidden">
+          
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+
+  </span>
+
+
+        </div>
+        <div class="items-center justify-center hidden h-12 dark:flex">
+          
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+
+  </span>
+
+
+        </div>
+      </button>
+      
+
+    </div>
+
+  </div>
+  <div class="-my-2 -mr-2 md:hidden">
+
+    <label id="menu-button" for="menu-controller" class="block">
+      <input type="checkbox" id="menu-controller" class="hidden" />
+      
+      <div class="cursor-pointer hover:text-primary-600 dark:hover:text-primary-400">
+        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 96C0 78.33 14.33 64 32 64H416C433.7 64 448 78.33 448 96C448 113.7 433.7 128 416 128H32C14.33 128 0 113.7 0 96zM0 256C0 238.3 14.33 224 32 224H416C433.7 224 448 238.3 448 256C448 273.7 433.7 288 416 288H32C14.33 288 0 273.7 0 256zM416 448H32C14.33 448 0 433.7 0 416C0 398.3 14.33 384 32 384H416C433.7 384 448 398.3 448 416C448 433.7 433.7 448 416 448z"/></svg>
+
+  </span>
+
+
+      </div>
+      <div id="menu-wrapper" style="padding-top:5px;"
+           class="fixed inset-0 z-30 invisible w-screen h-screen m-0 overflow-auto transition-opacity opacity-0 cursor-default bg-neutral-100/50 backdrop-blur-sm dark:bg-neutral-900/50">
+        <ul
+                class="flex space-y-2 mt-3 flex-col items-end w-full px-6 py-6 mx-auto overflow-visible list-none ltr:text-right rtl:text-left max-w-7xl">
+
+          <li>
+                        <span
+                                class="cursor-pointer inline-block align-text-bottom hover:text-primary-600 dark:hover:text-primary-400">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+  </span>
+
+</span>
+          </li>
+
+          
+
+          
+  <li class="mt-1">
+    <a href="/"  class="flex items-center">
+        
+        <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="">
+            首页
+        </p>
+    </a>
+</li>
+
+
+
+          
+
+          
+  <li class="mt-1">
+    <a href="/all/"  class="flex items-center">
+        
+        <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="全部">
+            全部✅
+        </p>
+    </a>
+</li>
+
+
+
+          
+
+          
+  <li class="mt-1">
+    <a href="/algorithm/"  class="flex items-center">
+        
+        <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="Algorithms">
+            算法🐾
+        </p>
+    </a>
+</li>
+
+
+
+          
+
+          
+  <li class="mt-1">
+    <a href="/tags/"  class="flex items-center">
+        
+        <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="Tags">
+            归类✈️
+        </p>
+    </a>
+</li>
+
+
+
+          
+
+          
+  <li class="mt-1">
+    <a href="/friend/"  class="flex items-center">
+        
+        <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="friend">
+            友链🧑‍🤝‍🧑
+        </p>
+    </a>
+</li>
+
+
+
+          
+
+          
+  <li class="mt-1">
+    <a href="/doc/"  class="flex items-center">
+        
+        <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="Docs">
+            文档😺
+        </p>
+    </a>
+</li>
+
+
+
+          
+
+        </ul>
+        
+        
+
+      </div>
+    </label>
+  </div>
+
+
+
+
+
+
+  </div>
+<style>
+  .change-music{
+    margin-top: 20px;
+    width: 8%;
+    height: 50%;
+    font-family: 华文中宋,serif;
+     
+     
+     
+  }
+</style>
+<script>
+  
+  var MusicLists=[];
+  var musicUrl="";
+  function getMusicList()
+  {
+    
+    MusicLists.push
+    (29567192,1974443814,447926067,447925058,1974444808,
+            1974444807,29567187
+    );
+    var musicIndex=Math.floor(Math.random()*MusicLists.length+1);
+    console.log(musicIndex);
+    
+    musicUrl="https://music.163.com/outchain/player?type=2&id="+MusicLists[musicIndex]+"&auto=1&height=66";
+    var frame=document.getElementById("music");
+    var player=document.getElementsByName('player');
+    console.log(player);
+    frame.src=musicUrl;
+  }
+</script>
+
+
+
+
+
+
+<script>
+  (function () {
+    var $mainmenu = $('.main-menu');
+    var path = window.location.pathname;
+    $mainmenu.find('a[href="' + path + '"]').each(function (i, e) {
+      $(e).children('p').addClass('active');
+    });
+  })();
+  
+  (function (){
+    var title=document.getElementById('title-href');
+    var music=document.getElementById('music');
+    var button=document.getElementById('music-button');
+    var width=window.innerWidth;
+    var height=window.innerHeight;
+    if (width<420||height<820){
+      title.innerText='Rainy-Heights'
+      button.innerText='';
+      music.style.width=0;
+      music.style.height=0;
+      button.style.height=0;
+      button.style.height=0;
+      var child = document.getElementById('music-div');
+      var father = document.getElementById('top-menu');
+      father.removeChild(child)
+      father.removeChild(button)
+    }
+  })();
+</script>
+
+
+  </div>
+</div>
+<script>
+  window.addEventListener('scroll', function (e) {
+    var scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    var background_blur = document.getElementById('menu-blur');
+    background_blur.style.opacity = (scroll / 300);
+  });
+</script>
+
+  
+  <div class="relative flex flex-col grow">
+    <main id="main-content" class="grow">
+      
+
+
+<article>
+  
+  
+  
+  
+  
+  
+
+
+<div id="hero" class="h-[150px] md:h-[200px]"></div>
+
+
+    
+    <div class="fixed inset-x-0 top-0 h-[800px] single_hero_background nozoom"
+    style="background-image:url(/entire-note/spring/featured_hu6534542605d56a7187ca4a5d252cd4c4_1422640_1200x0_resize_q75_box.jpg);">
+    
+
+
+    <div class="absolute inset-0 bg-gradient-to-t from-neutral dark:from-neutral-800 to-transparent mix-blend-normal">
+    </div>
+    <div
+        class="absolute inset-0 opacity-60 bg-gradient-to-t from-neutral dark:from-neutral-800 to-neutral-100 dark:to-neutral-800 mix-blend-normal">
+    </div>
+</div>
+
+<div id="background-blur" class="fixed opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl"></div>
+<script>
+    window.addEventListener('scroll', function (e) {
+        var scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        var background_blur = document.getElementById('background-blur');
+        background_blur.style.opacity = (scroll / 300)
+    });
+</script>
+
+  
+  
+
+  <header id="single_header" class="mt-5 max-w-prose">
+    
+    <ol class="text-sm text-neutral-500 dark:text-neutral-400 print:hidden">
+  
+  
+    
+  
+    
+  
+  <li class="inline hidden">
+    <a
+      class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
+      href="/"
+      ></a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+  
+  <li class="inline ">
+    <a
+      class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
+      href="/entire-note/"
+      >Entire-notes</a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+  
+  <li class="inline hidden">
+    <a
+      class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
+      href="/entire-note/spring/"
+      >微服务基础知识</a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+</ol>
+
+
+    
+    <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral" style="font-family: 华文中宋,serif">
+      微服务基础知识
+    </h1>
+    <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+      
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2024-03-05 15:08:23 &#43;0000 UTC">5 March 2024</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">2 分钟</span>
+  
+
+  
+  
+</div>
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    微服务
+  </span>
+</span>
+  </span>
+  
+  
+  
+  
+</div>
+
+
+
+
+    </div>
+
+    
+    
+    
+    
+    
+
+    
+    
+    
+<div class="flex author">
+  
+  
+  
+  
+  
+  
+  <img class="!mt-0 !mb-0 h-24 w-24 rounded-full ltr:mr-4 rtl:ml-4" width="96" height="96"
+    alt="春江花朝秋月夜" src="/img/%E4%B8%89%E5%8F%B6_huefd8a5d2e6c0b8ff3aa6580d0e50af5a_1328716_192x192_fill_box_center_3.png" />
+  
+  
+  <div class="place-self-center">
+    
+    <div class="text-[0.6rem] uppercase leading-3 text-neutral-500 dark:text-neutral-400">
+      作者
+    </div>
+    <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
+      春江花朝秋月夜
+    </div>
+    
+    
+    <div class="text-sm text-neutral-700 dark:text-neutral-400">重湖叠𪩘清嘉。有三秋桂子，十里荷花。羌管弄晴，菱歌泛夜，嬉嬉钓叟莲娃。千骑拥高牙。乘醉听箫鼓，吟赏烟霞。异日图将好景，归去凤池夸。</div>
+    
+    <div class="text-2xl sm:text-lg">
+  <div class="flex flex-wrap text-neutral-400 dark:text-neutral-500">
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://space.bilibili.com/159283119?spm_id_from=333.1007.0.0"
+          target="_blank"
+          aria-label="Bilibili"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1699377062375" class="icon" viewBox="0 0 1129 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4167" xmlns:xlink="http://www.w3.org/1999/xlink" width="220.5078125" height="200"><path d="M234.909 9.656a80.468 80.468 0 0 1 68.398 0 167.374 167.374 0 0 1 41.843 30.578l160.937 140.82h115.07l160.936-140.82a168.983 168.983 0 0 1 41.843-30.578A80.468 80.468 0 0 1 930.96 76.445a80.468 80.468 0 0 1-17.703 53.914 449.818 449.818 0 0 1-35.406 32.187 232.553 232.553 0 0 1-22.531 18.508h100.585a170.593 170.593 0 0 1 118.289 53.109 171.397 171.397 0 0 1 53.914 118.288v462.693a325.897 325.897 0 0 1-4.024 70.007 178.64 178.64 0 0 1-80.468 112.656 173.007 173.007 0 0 1-92.539 25.75h-738.7a341.186 341.186 0 0 1-72.421-4.024A177.835 177.835 0 0 1 28.91 939.065a172.202 172.202 0 0 1-27.36-92.539V388.662a360.498 360.498 0 0 1 0-66.789A177.03 177.03 0 0 1 162.487 178.64h105.414c-16.899-12.07-31.383-26.555-46.672-39.43a80.468 80.468 0 0 1-25.75-65.984 80.468 80.468 0 0 1 39.43-63.57M216.4 321.873a80.468 80.468 0 0 0-63.57 57.937 108.632 108.632 0 0 0 0 30.578v380.615a80.468 80.468 0 0 0 55.523 80.469 106.218 106.218 0 0 0 34.601 5.632h654.208a80.468 80.468 0 0 0 76.444-47.476 112.656 112.656 0 0 0 8.047-53.109v-354.06a135.187 135.187 0 0 0 0-38.625 80.468 80.468 0 0 0-52.304-54.719 129.554 129.554 0 0 0-49.89-7.242H254.22a268.764 268.764 0 0 0-37.82 0z m0 0" fill="#20B0E3" p-id="4168"></path><path d="M348.369 447.404a80.468 80.468 0 0 1 55.523 18.507 80.468 80.468 0 0 1 28.164 59.547v80.468a80.468 80.468 0 0 1-16.094 51.5 80.468 80.468 0 0 1-131.968-9.656 104.609 104.609 0 0 1-10.46-54.719v-80.468a80.468 80.468 0 0 1 70.007-67.593z m416.02 0a80.468 80.468 0 0 1 86.102 75.64v80.468a94.148 94.148 0 0 1-12.07 53.11 80.468 80.468 0 0 1-132.773 0 95.757 95.757 0 0 1-12.875-57.133V519.02a80.468 80.468 0 0 1 70.007-70.812z m0 0" fill="#20B0E3" p-id="4169"></path></svg>
+  </span>
+
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://github.com/ToDreamr"
+          target="_blank"
+          aria-label="Github"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+
+  </span>
+
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://music.163.com/#/user/home?id=568083850"
+          target="_blank"
+          aria-label="Wangyi"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1707154946293" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2586" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><path d="M0 0m184.32 0l655.36 0q184.32 0 184.32 184.32l0 655.36q0 184.32-184.32 184.32l-655.36 0q-184.32 0-184.32-184.32l0-655.36q0-184.32 184.32-184.32Z" fill="#EA3E3C" p-id="2587"></path><path d="M527.616 849.43872a373.6064 373.6064 0 0 1-162.54976-39.00416c-112.36352-55.16288-180.00896-176.29184-172.55424-308.67456 7.41376-130.34496 85.10464-237.4656 202.752-279.552a35.85024 35.85024 0 0 1 24.15616 67.51232c-107.66336 38.49216-150.81472 136.86784-155.29984 216.13568-5.86752 103.51616 46.08 197.79584 132.34176 240.13824 124.69248 60.30336 216.91392 22.35392 260.82304-5.64224 59.8016-38.16448 97.86368-100.01408 96.95232-157.55264-1.024-63.72352-24.064-120.99584-63.27296-157.14304a145.408 145.408 0 0 0-65.5872-35.28704q2.82624 9.76896 5.64224 19.32288c13.38368 45.63968 24.94464 85.05344 25.6 114.40128a134.26688 134.26688 0 0 1-37.69344 97.76128 139.1104 139.1104 0 0 1-100.6592 40.45824 140.10368 140.10368 0 0 1-100.47488-42.24 169.12384 169.12384 0 0 1-46.2848-122.76736c1.19808-85.12512 80.11776-153.28256 162.816-175.104a324.80256 324.80256 0 0 1-6.71744-67.05152 92.0576 92.0576 0 0 1 69.18144-91.81184c46.21312-12.53376 104.448 5.19168 124.66176 37.888a35.84 35.84 0 0 1-11.70432 49.31584 35.84 35.84 0 0 1-49.26464-11.65312 62.34112 62.34112 0 0 0-48.45568-5.21216c-4.32128 1.71008-12.35968 4.90496-12.76928 23.10144a270.87872 270.87872 0 0 0 6.73792 58.51136 217.4976 217.4976 0 0 1 133.56032 57.6512c53.57568 49.38752 85.0432 125.46048 86.35392 208.71168 1.29024 81.85856-49.7664 167.86432-130.048 219.136a310.14912 310.14912 0 0 1-168.2432 48.65024z m23.6544-457.55392c-56.77056 15.6672-107.4688 63.03744-108.07296 106.42432a98.304 98.304 0 0 0 25.6512 71.43424 68.0448 68.0448 0 0 0 49.36704 20.87936 67.24608 67.24608 0 0 0 49.44896-18.944 63.19104 63.19104 0 0 0 17.23392-46.08c-0.4096-19.79392-11.7248-58.368-22.67136-95.6928-3.61472-12.42112-7.35232-25.14944-10.9568-38.02112z" fill="#FFFFFF" p-id="2588"></path></svg>
+  </span>
+
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://gitee.com/rainyheights"
+          target="_blank"
+          aria-label="Gitee"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1707288792446" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="6333" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><path d="M512 1024C230.4 1024 0 793.6 0 512S230.4 0 512 0s512 230.4 512 512-230.4 512-512 512z m259.2-569.6H480c-12.8 0-25.6 12.8-25.6 25.6v64c0 12.8 12.8 25.6 25.6 25.6h176c12.8 0 25.6 12.8 25.6 25.6V608c0 41.6-35.2 76.8-76.8 76.8h-240c-12.8 0-25.6-12.8-25.6-25.6V416c0-41.6 35.2-76.8 76.8-76.8h355.2c12.8 0 25.6-12.8 25.6-25.6v-64c0-12.8-12.8-25.6-25.6-25.6H416c-105.6 0-188.8 86.4-188.8 188.8V768c0 12.8 12.8 25.6 25.6 25.6h374.4c92.8 0 169.6-76.8 169.6-169.6V480c0-12.8-12.8-25.6-25.6-25.6z" fill="#888888" p-id="6334"></path></svg>
+  </span>
+
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://www.zhihu.com/people/san-qiu-luo-yue"
+          target="_blank"
+          aria-label="Zhihu"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1707288662942" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5244" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><path d="M564.7 230.1V803h60l25.2 71.4L756.3 803h131.5V230.1H564.7z m247.7 497h-59.9l-75.1 50.4-17.8-50.4h-18V308.3h170.7v418.8zM526.1 486.9H393.3c2.1-44.9 4.3-104.3 6.6-172.9h130.9l-0.1-8.1c0-0.6-0.2-14.7-2.3-29.1-2.1-15-6.6-34.9-21-34.9H287.8c4.4-20.6 15.7-69.7 29.4-93.8l6.4-11.2-12.9-0.7c-0.8 0-19.6-0.9-41.4 10.6-35.7 19-51.7 56.4-58.7 84.4-18.4 73.1-44.6 123.9-55.7 145.6-3.3 6.4-5.3 10.2-6.2 12.8-1.8 4.9-0.8 9.8 2.8 13 10.5 9.5 38.2-2.9 38.5-3 0.6-0.3 1.3-0.6 2.2-1 13.9-6.3 55.1-25 69.8-84.5h56.7c0.7 32.2 3.1 138.4 2.9 172.9h-141l-2.1 1.5c-23.1 16.9-30.5 63.2-30.8 65.2l-1.4 9.2h167c-12.3 78.3-26.5 113.4-34 127.4-3.7 7-7.3 14-10.7 20.8-21.3 42.2-43.4 85.8-126.3 153.6-3.6 2.8-7 8-4.8 13.7 2.4 6.3 9.3 9.1 24.6 9.1 5.4 0 11.8-0.3 19.4-1 49.9-4.4 100.8-18 135.1-87.6 17-35.1 31.7-71.7 43.9-108.9L497 850l5-12c0.8-1.9 19-46.3 5.1-95.9l-0.5-1.8-108.1-123-22 16.6c6.4-26.1 10.6-49.9 12.5-71.1h158.7v-8c0-40.1-18.5-63.9-19.2-64.9l-2.4-3z" fill="#1296DB" p-id="5245"></path></svg>
+  </span>
+
+</span></a
+        >
+      
+    
+  </div>
+
+</div>
+  </div>
+</div>
+    
+
+    
+
+    
+
+    
+    <div class="mb-5"></div>
+    
+
+  </header>
+
+  
+  
+  <div  class="meta-item">&nbsp·&nbsp
+    <span id="busuanzi_container_page_pv">页面点击量:<span id="busuanzi_value_page_pv"></span>次</span>
+  </div>
+
+
+  <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row" style="font-family: 华文中宋,serif">
+
+    
+    <div style="width: 28%" class="order-first lg:ml-auto px-0 lg:order-last ltr:lg:pl-8 rtl:lg:pr-8">
+    <div class="toc ltr:pl-5 rtl:pr-5 print:hidden lg:sticky lg:top-[140px]">
+
+     <details open class="toc-right mt-0 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 hidden lg:block">
+  <summary
+    class="block py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    
+  </summary>
+  <div
+    class="min-w-[220px] py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#基于springcloudalibabanacosfeignseatasentinel作为微服务路线叙述">基于SpringCloudAlibaba+Nacos+Feign+Seata+Sentinel作为微服务路线叙述</a>
+          <ul>
+            <li><a href="#服务注册和发现">服务注册和发现</a>
+              <ul>
+                <li><a href="#eureka">Eureka</a></li>
+                <li><a href="#nacos">Nacos</a>
+                  <ul>
+                    <li><a href="#nacos注册中心">Nacos注册中心</a></li>
+                    <li><a href="#nacos配置管理">Nacos配置管理</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#负载均衡">负载均衡</a></li>
+            <li><a href="#rpc远程调用">RPC远程调用</a></li>
+            <li><a href="#服务网关">服务网关</a></li>
+            <li><a href="#断路器">断路器</a></li>
+            <li><a href="#分布式事务">分布式事务</a></li>
+            <li><a href="#单点登录">单点登录</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</details>
+<details class="toc-inside mt-0 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 lg:hidden">
+  <summary
+    class="py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    
+  </summary>
+  <div
+    class="py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#基于springcloudalibabanacosfeignseatasentinel作为微服务路线叙述">基于SpringCloudAlibaba+Nacos+Feign+Seata+Sentinel作为微服务路线叙述</a>
+          <ul>
+            <li><a href="#服务注册和发现">服务注册和发现</a>
+              <ul>
+                <li><a href="#eureka">Eureka</a></li>
+                <li><a href="#nacos">Nacos</a>
+                  <ul>
+                    <li><a href="#nacos注册中心">Nacos注册中心</a></li>
+                    <li><a href="#nacos配置管理">Nacos配置管理</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#负载均衡">负载均衡</a></li>
+            <li><a href="#rpc远程调用">RPC远程调用</a></li>
+            <li><a href="#服务网关">服务网关</a></li>
+            <li><a href="#断路器">断路器</a></li>
+            <li><a href="#分布式事务">分布式事务</a></li>
+            <li><a href="#单点登录">单点登录</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</details>
+
+ 
+<script>
+  (function () {
+    var $toc = $('#TableOfContents');
+    if ($toc.length > 0) {
+      var $window = $(window);
+
+      function onScroll() {
+        var currentScroll = $window.scrollTop();
+        var h = $('.anchor');
+        var id = "";
+        h.each(function (i, e) {
+          e = $(e);
+          if (e.offset().top - $(window).height()/3 <= currentScroll) {
+            id = e.attr('id');
+          }
+        });
+        var active = $toc.find('a.active');      
+        if (active.length == 1 && active.eq(0).attr('href') == '#' + id) return true;
+
+        active.each(function (i, e) {
+          
+            $(e).removeClass('active');
+          
+        });
+        $toc.find('a[href="#' + id + '"]').addClass('active')
+        $toc.find('a[href="#' + id + '"]').parentsUntil('#TableOfContents').each(function (i, e) {
+          $(e).children('a').parents('ul').show();          
+        });
+      }
+
+      $window.on('scroll', onScroll);
+      $(document).ready(function () {
+        
+        onScroll();
+      });
+    }
+  })();
+</script>
+  
+    </div>
+    </div>
+    
+
+
+    <div class="min-w-0 min-h-0 max-w-fit" style="width: 100%">
+      
+
+
+      <div class="article-content max-w-prose mb-20">
+        <h2 class="relative group">基于SpringCloudAlibaba+Nacos+Feign+Seata+Sentinel作为微服务路线叙述 
+    <div id="基于springcloudalibabanacosfeignseatasentinel作为微服务路线叙述" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e5%9f%ba%e4%ba%8espringcloudalibabanacosfeignseatasentinel%e4%bd%9c%e4%b8%ba%e5%be%ae%e6%9c%8d%e5%8a%a1%e8%b7%af%e7%ba%bf%e5%8f%99%e8%bf%b0" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<blockquote>
+<p>前言：本次SpringCloud微服务学习涉及NetFlix和Alibaba两不同版本，主要对应关系为：</p>
+</blockquote>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/spring/cloud/img_15_huceef66d65487fc54551de39e067dd2b8_104397_330x0_resize_box_3.png 330w,
+        /entire-note/spring/cloud/img_15_huceef66d65487fc54551de39e067dd2b8_104397_660x0_resize_box_3.png 660w,
+        /entire-note/spring/cloud/img_15_huceef66d65487fc54551de39e067dd2b8_104397_1024x0_resize_box_3.png 1024w,
+        /entire-note/spring/cloud/img_15_huceef66d65487fc54551de39e067dd2b8_104397_1320x0_resize_box_3.png 2x"
+        src="/entire-note/spring/cloud/img_15_huceef66d65487fc54551de39e067dd2b8_104397_660x0_resize_box_3.png"
+        alt="img_15.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>微服务原则：所有的服务都需要保证职责的单一原则</p>
+<p><strong>SpringCloud作为一系列框架的有序集合，是SOA的延续</strong></p>
+<p>SpringCloud Alibaba 是遵循SpringCloud来开发的套件，Nacos亦然</p>
+<h3 class="relative group">服务注册和发现 
+    <div id="服务注册和发现" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e6%9c%8d%e5%8a%a1%e6%b3%a8%e5%86%8c%e5%92%8c%e5%8f%91%e7%8e%b0" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<h4 class="relative group">Eureka 
+    <div id="eureka" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#eureka" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>Eureka能够自动注册并发现微服务，然后对服务的状态、信息进行集中管理，这样当我们需要获取其他服务的信息时，我们只需要向Eureka进行查询就可以了。</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/spring/cloud/img_hu71931d34e2e3dc1ad43960757015f8a8_246984_330x0_resize_box_3.png 330w,
+        /entire-note/spring/cloud/img_hu71931d34e2e3dc1ad43960757015f8a8_246984_660x0_resize_box_3.png 660w,
+        /entire-note/spring/cloud/img_hu71931d34e2e3dc1ad43960757015f8a8_246984_1024x0_resize_box_3.png 1024w,
+        /entire-note/spring/cloud/img_hu71931d34e2e3dc1ad43960757015f8a8_246984_1320x0_resize_box_3.png 2x"
+        src="/entire-note/spring/cloud/img_hu71931d34e2e3dc1ad43960757015f8a8_246984_660x0_resize_box_3.png"
+        alt="img.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<blockquote>
+<p>通过Eureka服务器进行服务注册与发现，那么现在我们来看看，它的负载均衡到底是如何实现的，实际上之前演示的负载均衡是依靠LoadBalancer实现的。</p>
+</blockquote>
+<blockquote>
+<p>在2020年前的SpringCloud版本是采用Ribbon作为负载均衡实现，但是2020年的版本之后SpringCloud把Ribbon移除了，进而用自己编写的LoadBalancer替代。</p>
+</blockquote>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/spring/cloud/img_2_huc17b82d7c76a827e5aac856500585fae_71038_330x0_resize_box_3.png 330w,
+        /entire-note/spring/cloud/img_2_huc17b82d7c76a827e5aac856500585fae_71038_660x0_resize_box_3.png 660w,
+        /entire-note/spring/cloud/img_2_huc17b82d7c76a827e5aac856500585fae_71038_1024x0_resize_box_3.png 1024w,
+        /entire-note/spring/cloud/img_2_huc17b82d7c76a827e5aac856500585fae_71038_1320x0_resize_box_3.png 2x"
+        src="/entire-note/spring/cloud/img_2_huc17b82d7c76a827e5aac856500585fae_71038_660x0_resize_box_3.png"
+        alt="img_2.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>如何找到服务？</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/spring/cloud/img_6_hua9c201cef465d46f28ef0cc219789006_110614_330x0_resize_box_3.png 330w,
+        /entire-note/spring/cloud/img_6_hua9c201cef465d46f28ef0cc219789006_110614_660x0_resize_box_3.png 660w,
+        /entire-note/spring/cloud/img_6_hua9c201cef465d46f28ef0cc219789006_110614_1024x0_resize_box_3.png 1024w,
+        /entire-note/spring/cloud/img_6_hua9c201cef465d46f28ef0cc219789006_110614_1320x0_resize_box_3.png 2x"
+        src="/entire-note/spring/cloud/img_6_hua9c201cef465d46f28ef0cc219789006_110614_660x0_resize_box_3.png"
+        alt="img_6.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<h4 class="relative group">Nacos 
+    <div id="nacos" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#nacos" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<h5 class="relative group">Nacos注册中心 
+    <div id="nacos注册中心" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#nacos%e6%b3%a8%e5%86%8c%e4%b8%ad%e5%bf%83" aria-label="锚点">#</a>
+    </span>        
+    
+</h5>
+<p>功能：</p>
+<ul>
+<li>服务注册发现</li>
+<li>配置中心</li>
+<li>服务元数据/实例元数据：可以用于流量控制（在实例的metadata（元数据）中加上标签信息。通过IRule获取Server列表并根据这些Server中元数据的标签信息决定路由情况）</li>
+<li>局域网内服务信息传输快</li>
+</ul>
+<p>服务集群分级模式</p>
+<p>服务-集群-实例</p>
+<p>修改yml：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">cloud</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">nacos</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">server-addr</span><span class="p">:</span><span class="w"> </span><span class="l">localhost:8848</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">discovery</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">cluster-name</span><span class="p">:</span><span class="w"> </span><span class="l">ClUSTER-01</span><span class="w">
+</span></span></span></code></pre></div><p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/spring/cloud/img_3_hu8b8320ad28da67968bdd66a1296f7da0_88811_330x0_resize_box_3.png 330w,
+        /entire-note/spring/cloud/img_3_hu8b8320ad28da67968bdd66a1296f7da0_88811_660x0_resize_box_3.png 660w,
+        /entire-note/spring/cloud/img_3_hu8b8320ad28da67968bdd66a1296f7da0_88811_1024x0_resize_box_3.png 1024w,
+        /entire-note/spring/cloud/img_3_hu8b8320ad28da67968bdd66a1296f7da0_88811_1320x0_resize_box_3.png 2x"
+        src="/entire-note/spring/cloud/img_3_hu8b8320ad28da67968bdd66a1296f7da0_88811_660x0_resize_box_3.png"
+        alt="img_3.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p><strong>对指定服务进行配置</strong></p>
+<p>必须重写负载均衡的轮询规则才可以改变负载均衡规则（实现方式为注入Bean或yml配置）</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Configuration</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@LoadBalancerClient</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">&#34;userservice&#34;</span><span class="o">,</span>      <span class="c1">//指定为 userservice 服务，只要是调用此服务都会使用我们指定的策略
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                    <span class="n">configuration</span> <span class="o">=</span> <span class="n">LoadBalancerConfig</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>   <span class="c1">//指定我们刚刚定义好的配置类
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">BeanConfig</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Bean</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@LoadBalanced</span>
+</span></span><span class="line"><span class="cl">    <span class="n">RestTemplate</span> <span class="nf">template</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">new</span> <span class="n">RestTemplate</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>这样子就实现了对服务的指定负载均衡策略配置</p>
+<p><strong>集群优先</strong></p>
+<p>Nacos优先访问本地集群，当本地集群宕机时，会发生跨集群访问，确定实例之后，会在本地实例中随机轮询</p>
+<p><strong>权重负载均衡</strong></p>
+<p>和Nginx差不多，通过更改集群中实例权重改变负载策略</p>
+<p>利用：将服务实例权重调为0~0.01,放入少量请求实现服务升级</p>
+<p><strong>环境隔离</strong></p>
+<p>namespace</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/spring/cloud/img_8_huc1c42e043cc5604c00e607ad4c2a48a6_257913_330x0_resize_box_3.png 330w,
+        /entire-note/spring/cloud/img_8_huc1c42e043cc5604c00e607ad4c2a48a6_257913_660x0_resize_box_3.png 660w,
+        /entire-note/spring/cloud/img_8_huc1c42e043cc5604c00e607ad4c2a48a6_257913_1024x0_resize_box_3.png 1024w,
+        /entire-note/spring/cloud/img_8_huc1c42e043cc5604c00e607ad4c2a48a6_257913_1320x0_resize_box_3.png 2x"
+        src="/entire-note/spring/cloud/img_8_huc1c42e043cc5604c00e607ad4c2a48a6_257913_660x0_resize_box_3.png"
+        alt="img_8.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>相关度高时可以放入同一组</p>
+<p>不同namespace之间不可通过RPC相互调用！</p>
+<p><strong>心跳检测</strong></p>
+<p>临时实例挂掉直接剔除，非临时实例（主动检测）挂掉时，Nacos将会询问健康状况，同时挂起直到实例重启，同时主动发送服务实例变更消息
+给服务调用方。Nacos采用CP，Eureka采用AP</p>
+<h5 class="relative group">Nacos配置管理 
+    <div id="nacos配置管理" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#nacos%e9%85%8d%e7%bd%ae%e7%ae%a1%e7%90%86" aria-label="锚点">#</a>
+    </span>        
+    
+</h5>
+<p>Data-ID：ServiceName-dev/pro.yaml</p>
+<p>依赖：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;groupId&gt;</span>com.alibaba.cloud<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;artifactId&gt;</span>spring-cloud-starter-alibaba-nacos-config<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/dependency&gt;</span>
+</span></span></code></pre></div><p>一般只在有热更新需求的配置加入 Nacos配置中心</p>
+<p><strong>统一配置管理</strong></p>
+<p>添加bootstrap.yml</p>
+<p>实现热更新</p>
+<p>注解@Refreshed</p>
+<p>配置文件根据不同环境，具有共享配置和dev/test配置文件等，配置优先级为远端&gt;服务名&gt;本地环境</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/spring/cloud/img_9_hucb845a3c337ccbcb9af7dab9d35c8f06_48804_330x0_resize_box_3.png 330w,
+        /entire-note/spring/cloud/img_9_hucb845a3c337ccbcb9af7dab9d35c8f06_48804_660x0_resize_box_3.png 660w,
+        /entire-note/spring/cloud/img_9_hucb845a3c337ccbcb9af7dab9d35c8f06_48804_1024x0_resize_box_3.png 1024w,
+        /entire-note/spring/cloud/img_9_hucb845a3c337ccbcb9af7dab9d35c8f06_48804_1320x0_resize_box_3.png 2x"
+        src="/entire-note/spring/cloud/img_9_hucb845a3c337ccbcb9af7dab9d35c8f06_48804_660x0_resize_box_3.png"
+        alt="img_9.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p><strong>统一配置中心</strong></p>
+<p>作为远端配置统一管理，本地可以直接fetch然后使用，提高维护性</p>
+<p>依赖：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;dependencies&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;groupId&gt;</span>org.springframework.cloud<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;artifactId&gt;</span>spring-cloud-starter-config<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;groupId&gt;</span>org.springframework.cloud<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;artifactId&gt;</span>spring-cloud-starter-bootstrap<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/dependencies&gt;</span>
+</span></span></code></pre></div><h3 class="relative group">负载均衡 
+    <div id="负载均衡" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e8%b4%9f%e8%bd%bd%e5%9d%87%e8%a1%a1" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>Spring实现了一套自己的负载均衡LoadBalancer.
+实际上在进行负载均衡的时候，会向Eureka发起请求，选择一个可用的对应服务，然后会返回此服务的主机地址等信息,然后才进行实际的服务调用。</p>
+<p><strong>负载均衡策略</strong></p>
+<ul>
+<li>轮询策略</li>
+<li>权重策略</li>
+<li>随机策略</li>
+<li>最小连接数策略（选择连接数最小的的服务实例）</li>
+<li>重试策略（当服务实例尝试失败之后，尝试继续获取，若多次失败返回null）</li>
+<li>可用性敏感策略（随机轮询，判断是否可用）</li>
+<li>区域敏感策略（可用和不可用相互的分区中选取可用分区中的实例）</li>
+</ul>
+<p><strong>限流方案</strong></p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/spring/cloud/img_16_hu14cd2acc3a90bacab99df43dc3625cb0_96084_330x0_resize_box_3.png 330w,
+        /entire-note/spring/cloud/img_16_hu14cd2acc3a90bacab99df43dc3625cb0_96084_660x0_resize_box_3.png 660w,
+        /entire-note/spring/cloud/img_16_hu14cd2acc3a90bacab99df43dc3625cb0_96084_1024x0_resize_box_3.png 1024w,
+        /entire-note/spring/cloud/img_16_hu14cd2acc3a90bacab99df43dc3625cb0_96084_1320x0_resize_box_3.png 2x"
+        src="/entire-note/spring/cloud/img_16_hu14cd2acc3a90bacab99df43dc3625cb0_96084_660x0_resize_box_3.png"
+        alt="img_16.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<ul>
+<li>Guava RateLimiter：基于令牌桶算法限流，单机的。</li>
+<li>Sentinel：基于滑动窗口、漏桶、令牌桶限流，支持单机，也支持集群。</li>
+<li>Redission RateLimiter：令牌桶，支持单机，也支持集群。</li>
+</ul>
+<p>添加依赖：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;groupId&gt;</span>org.springframework.cloud<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;artifactId&gt;</span>spring-cloud-loadbalancer<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/dependency&gt;</span>
+</span></span></code></pre></div><p><strong>自定义负载均衡策略</strong>
+LoadBalancer默认提供了两种负载均衡策略：</p>
+<p>RandomLoadBalancer - 随机分配策略
+(默认) RoundRobinLoadBalancer - 轮询分配策略</p>
+<p>服务名称-》 LoadBalancerInterceptor-&gt; execute -》 通过轮询规则选择服务 -》返回服务名称以供调用</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/spring/cloud/img_7_hu2818a3ae364e32d672ef7cd6f8aff5ef_487755_330x0_resize_box_3.png 330w,
+        /entire-note/spring/cloud/img_7_hu2818a3ae364e32d672ef7cd6f8aff5ef_487755_660x0_resize_box_3.png 660w,
+        /entire-note/spring/cloud/img_7_hu2818a3ae364e32d672ef7cd6f8aff5ef_487755_1024x0_resize_box_3.png 1024w,
+        /entire-note/spring/cloud/img_7_hu2818a3ae364e32d672ef7cd6f8aff5ef_487755_1320x0_resize_box_3.png 2x"
+        src="/entire-note/spring/cloud/img_7_hu2818a3ae364e32d672ef7cd6f8aff5ef_487755_660x0_resize_box_3.png"
+        alt="img_7.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>Ribbion懒加载&amp;饥饿加载</p>
+<p>第一次加载耗时很长，然后将数据缓存</p>
+<p>配置饥饿加载</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="nt">ribbon</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="nt">eager-load</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">clients</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>-<span class="l">service1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>-<span class="l">service2</span><span class="w">
+</span></span></span></code></pre></div><h3 class="relative group">RPC远程调用 
+    <div id="rpc远程调用" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#rpc%e8%bf%9c%e7%a8%8b%e8%b0%83%e7%94%a8" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>Feign和RestTemplate一样，也是HTTP客户端请求工具，但是它的使用方式更加便捷。首先是依赖：</p>
+<p>不同于RestTemplate,Feign是自动集成Ribbon的，同时默认不重试</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;groupId&gt;</span>org.springframework.cloud<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;artifactId&gt;</span>spring-cloud-starter-openfeign<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/dependency&gt;</span>
+</span></span></code></pre></div><p>feign配置部分：</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/spring/cloud/img_10_hu4d39821789908ed3669d4e710609e725_144894_330x0_resize_box_3.png 330w,
+        /entire-note/spring/cloud/img_10_hu4d39821789908ed3669d4e710609e725_144894_660x0_resize_box_3.png 660w,
+        /entire-note/spring/cloud/img_10_hu4d39821789908ed3669d4e710609e725_144894_1024x0_resize_box_3.png 1024w,
+        /entire-note/spring/cloud/img_10_hu4d39821789908ed3669d4e710609e725_144894_1320x0_resize_box_3.png 2x"
+        src="/entire-note/spring/cloud/img_10_hu4d39821789908ed3669d4e710609e725_144894_660x0_resize_box_3.png"
+        alt="img_10.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>添加接口：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@FeignClient</span><span class="o">(</span><span class="s">&#34;cloud_service&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">RoleClient</span>
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//        List&lt;Role&gt; listRole=restTemplate.getForObject(&#34;http://localhost:8066/cache/role/list?key=&#34;+key,List.class);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nd">@GetMapping</span>
+</span></span><span class="line"><span class="cl">    <span class="n">List</span><span class="o">&lt;</span><span class="n">Role</span><span class="o">&gt;</span> <span class="nf">getRoleCache</span><span class="o">(</span><span class="nd">@RequestParam</span>  <span class="n">String</span> <span class="n">key</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p><strong>性能优化解决方案</strong></p>
+<ul>
+<li>使用HTTP连接池</li>
+<li>关闭日志</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@FeignClient</span><span class="o">(</span><span class="s">&#34;cloud_service&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">RoleClient</span>
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@GetMapping</span>
+</span></span><span class="line"><span class="cl">    <span class="n">List</span><span class="o">&lt;</span><span class="n">Role</span><span class="o">&gt;</span> <span class="nf">getRoleCache</span><span class="o">(</span><span class="nd">@RequestParam</span>  <span class="n">String</span> <span class="n">key</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p><strong>Feign的最佳实践方式</strong></p>
+<ul>
+<li>继承方式</li>
+</ul>
+<p>RPC到达controller，声明方式和controller必须一样，注意实际开发在Feign调用中可能会对请求头中加入相关的鉴权信息</p>
+<p>一般不推荐继承方式，因为定义了同一接口，造成了紧耦合</p>
+<ul>
+<li>抽取Feign</li>
+</ul>
+<p>独立出feign-api，模块 负责实体，配置等服务</p>
+<h3 class="relative group">服务网关 
+    <div id="服务网关" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e6%9c%8d%e5%8a%a1%e7%bd%91%e5%85%b3" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>统一网关GateWay(基于WebFlux实现，有响应式编程的优势)</p>
+<blockquote>
+<p>服务网关是微服务架构中一个非常关键的角色，作为后端服务的统一入口，负责统筹和管理后端服务。能够提供的功能有路由功能、负载均衡、安全认证、流量染色、灰度发布、限流熔断、协议转换、日志收集等</p>
+</blockquote>
+<p>基本作用：认证，校验，路由微服务请求，负载均衡，限流,路由过滤器</p>
+<p>工作原理：</p>
+<p>客户端向Spring Cloud Gateway发出请求。然后在Gateway Handler Mapping中找到与请求相匹配的路由，
+将其发送到Gateway Web Handler。Gateway Web Handler再通过指定的过滤器链来将请求发送到我们实际的服务执行业务逻辑，然后返回。</p>
+<p>配置方法：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">&lt;!-- 引入Gateway --&gt;
+</span></span><span class="line"><span class="cl">&lt;dependency&gt;
+</span></span><span class="line"><span class="cl">  &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+</span></span><span class="line"><span class="cl">  &lt;artifactId&gt;spring-cloud-starter-gateway&lt;/artifactId&gt;
+</span></span><span class="line"><span class="cl">&lt;/dependency&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">spring:
+</span></span><span class="line"><span class="cl">  cloud:
+</span></span><span class="line"><span class="cl">    gateway:
+</span></span><span class="line"><span class="cl">      routes:
+</span></span><span class="line"><span class="cl">        - id: auth-center
+</span></span><span class="line"><span class="cl">          uri: lb://auth-center
+</span></span><span class="line"><span class="cl">          predicates:
+</span></span><span class="line"><span class="cl">            - Path=/oauth
+</span></span></code></pre></div><ol>
+<li>lb：固定格式，指的是从Nacos中按照名称获取微服务，并遵循负载均衡策略</li>
+<li>service-name：Nacos注册中心的服务名称</li>
+</ol>
+<p>通过重写过滤器实现自定义GateWay过滤器</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/spring/cloud/img_17_hu4f51908008fc59989235205571a2c21a_176438_330x0_resize_box_3.png 330w,
+        /entire-note/spring/cloud/img_17_hu4f51908008fc59989235205571a2c21a_176438_660x0_resize_box_3.png 660w,
+        /entire-note/spring/cloud/img_17_hu4f51908008fc59989235205571a2c21a_176438_1024x0_resize_box_3.png 1024w,
+        /entire-note/spring/cloud/img_17_hu4f51908008fc59989235205571a2c21a_176438_1320x0_resize_box_3.png 2x"
+        src="/entire-note/spring/cloud/img_17_hu4f51908008fc59989235205571a2c21a_176438_660x0_resize_box_3.png"
+        alt="img_17.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>断言：</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/spring/cloud/img_12_hu1d5bf0e2ac938b2ad11584d71be111a8_198079_330x0_resize_box_3.png 330w,
+        /entire-note/spring/cloud/img_12_hu1d5bf0e2ac938b2ad11584d71be111a8_198079_660x0_resize_box_3.png 660w,
+        /entire-note/spring/cloud/img_12_hu1d5bf0e2ac938b2ad11584d71be111a8_198079_1024x0_resize_box_3.png 1024w,
+        /entire-note/spring/cloud/img_12_hu1d5bf0e2ac938b2ad11584d71be111a8_198079_1320x0_resize_box_3.png 2x"
+        src="/entire-note/spring/cloud/img_12_hu1d5bf0e2ac938b2ad11584d71be111a8_198079_660x0_resize_box_3.png"
+        alt="img_12.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>简单架构：</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/spring/cloud/img_11_hu0b871134b350a1ff18a33cd3402e5cb0_213717_330x0_resize_box_3.png 330w,
+        /entire-note/spring/cloud/img_11_hu0b871134b350a1ff18a33cd3402e5cb0_213717_660x0_resize_box_3.png 660w,
+        /entire-note/spring/cloud/img_11_hu0b871134b350a1ff18a33cd3402e5cb0_213717_1024x0_resize_box_3.png 1024w,
+        /entire-note/spring/cloud/img_11_hu0b871134b350a1ff18a33cd3402e5cb0_213717_1320x0_resize_box_3.png 2x"
+        src="/entire-note/spring/cloud/img_11_hu0b871134b350a1ff18a33cd3402e5cb0_213717_660x0_resize_box_3.png"
+        alt="img_11.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>搭建网关</p>
+<p>适配器模式：将多个不同的接口实现顶级，变成希望的类或者属性</p>
+<p>过滤器执行顺序：</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/spring/cloud/img_13_hu7b9bad761a1e2f9381f7c4fdfa05b415_212638_330x0_resize_box_3.png 330w,
+        /entire-note/spring/cloud/img_13_hu7b9bad761a1e2f9381f7c4fdfa05b415_212638_660x0_resize_box_3.png 660w,
+        /entire-note/spring/cloud/img_13_hu7b9bad761a1e2f9381f7c4fdfa05b415_212638_1024x0_resize_box_3.png 1024w,
+        /entire-note/spring/cloud/img_13_hu7b9bad761a1e2f9381f7c4fdfa05b415_212638_1320x0_resize_box_3.png 2x"
+        src="/entire-note/spring/cloud/img_13_hu7b9bad761a1e2f9381f7c4fdfa05b415_212638_660x0_resize_box_3.png"
+        alt="img_13.png"
+      />
+      
+      
+    </figure>
+  
+
+ 装饰者模式</p>
+<p>网关跨域问题：</p>
+<p>实际上就是RPC的codec层面</p>
+<h3 class="relative group">断路器 
+    <div id="断路器" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e6%96%ad%e8%b7%af%e5%99%a8" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>依赖：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;groupId&gt;</span>org.springframework.cloud<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;artifactId&gt;</span>spring-cloud-starter-netflix-hystrix<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">     		<span class="nt">&lt;version&gt;</span>2.2.10.RELEASE<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/dependency&gt;</span>
+</span></span></code></pre></div><p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/spring/cloud/img_4_hu659f4b058fde5cdd75ae46a3290c821d_403992_330x0_resize_box_3.png 330w,
+        /entire-note/spring/cloud/img_4_hu659f4b058fde5cdd75ae46a3290c821d_403992_660x0_resize_box_3.png 660w,
+        /entire-note/spring/cloud/img_4_hu659f4b058fde5cdd75ae46a3290c821d_403992_1024x0_resize_box_3.png 1024w,
+        /entire-note/spring/cloud/img_4_hu659f4b058fde5cdd75ae46a3290c821d_403992_1320x0_resize_box_3.png 2x"
+        src="/entire-note/spring/cloud/img_4_hu659f4b058fde5cdd75ae46a3290c821d_403992_660x0_resize_box_3.png"
+        alt="img_4.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>服务失败转为服务降级，而后当服务多次调用失败后，将会发生服务熔断</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/spring/cloud/img_14_hud4f6c6bfc753763970bf9fc3d8447ca1_153366_330x0_resize_box_3.png 330w,
+        /entire-note/spring/cloud/img_14_hud4f6c6bfc753763970bf9fc3d8447ca1_153366_660x0_resize_box_3.png 660w,
+        /entire-note/spring/cloud/img_14_hud4f6c6bfc753763970bf9fc3d8447ca1_153366_1024x0_resize_box_3.png 1024w,
+        /entire-note/spring/cloud/img_14_hud4f6c6bfc753763970bf9fc3d8447ca1_153366_1320x0_resize_box_3.png 2x"
+        src="/entire-note/spring/cloud/img_14_hud4f6c6bfc753763970bf9fc3d8447ca1_153366_660x0_resize_box_3.png"
+        alt="img_14.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<h3 class="relative group">分布式事务 
+    <div id="分布式事务" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e5%88%86%e5%b8%83%e5%bc%8f%e4%ba%8b%e5%8a%a1" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<h3 class="relative group">单点登录 
+    <div id="单点登录" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e5%8d%95%e7%82%b9%e7%99%bb%e5%bd%95" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<blockquote>
+<p>参考文章：<a href="https://blog.csdn.net/m0_64469199/article/details/130477346"   target="_blank">
+    SpringSecurity-Oauth基于Spring3.x</a></p>
+</blockquote>
+<p>名词解释（UA）：user account and authentication</p>
+<p>请求流程图：</p>
+<p>客户端模式：</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/spring/img/img_huaa878fef40c52a3677e3770fee145bf7_161874_330x0_resize_box_3.png 330w,
+        /entire-note/spring/img/img_huaa878fef40c52a3677e3770fee145bf7_161874_660x0_resize_box_3.png 660w,
+        /entire-note/spring/img/img_huaa878fef40c52a3677e3770fee145bf7_161874_1024x0_resize_box_3.png 1024w,
+        /entire-note/spring/img/img_huaa878fef40c52a3677e3770fee145bf7_161874_1320x0_resize_box_3.png 2x"
+        src="/entire-note/spring/img/img_huaa878fef40c52a3677e3770fee145bf7_161874_660x0_resize_box_3.png"
+        alt="img.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>密码模式：</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/spring/img/img_1_hu6bfa1600147128292a85c480418e6f4b_255675_330x0_resize_box_3.png 330w,
+        /entire-note/spring/img/img_1_hu6bfa1600147128292a85c480418e6f4b_255675_660x0_resize_box_3.png 660w,
+        /entire-note/spring/img/img_1_hu6bfa1600147128292a85c480418e6f4b_255675_1024x0_resize_box_3.png 1024w,
+        /entire-note/spring/img/img_1_hu6bfa1600147128292a85c480418e6f4b_255675_1320x0_resize_box_3.png 2x"
+        src="/entire-note/spring/img/img_1_hu6bfa1600147128292a85c480418e6f4b_255675_660x0_resize_box_3.png"
+        alt="img_1.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>隐式授权模式</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/spring/img/img_2_hu128712e3fd359a284ce53e6bdaeaebe9_392986_330x0_resize_box_3.png 330w,
+        /entire-note/spring/img/img_2_hu128712e3fd359a284ce53e6bdaeaebe9_392986_660x0_resize_box_3.png 660w,
+        /entire-note/spring/img/img_2_hu128712e3fd359a284ce53e6bdaeaebe9_392986_1024x0_resize_box_3.png 1024w,
+        /entire-note/spring/img/img_2_hu128712e3fd359a284ce53e6bdaeaebe9_392986_1320x0_resize_box_3.png 2x"
+        src="/entire-note/spring/img/img_2_hu128712e3fd359a284ce53e6bdaeaebe9_392986_660x0_resize_box_3.png"
+        alt="img_2.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>授权码模式（目前采用的主流方案）：</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/spring/img/img_3_hubfd058de82aa96505b708dcb7c6aea4d_317830_330x0_resize_box_3.png 330w,
+        /entire-note/spring/img/img_3_hubfd058de82aa96505b708dcb7c6aea4d_317830_660x0_resize_box_3.png 660w,
+        /entire-note/spring/img/img_3_hubfd058de82aa96505b708dcb7c6aea4d_317830_1024x0_resize_box_3.png 1024w,
+        /entire-note/spring/img/img_3_hubfd058de82aa96505b708dcb7c6aea4d_317830_1320x0_resize_box_3.png 2x"
+        src="/entire-note/spring/img/img_3_hubfd058de82aa96505b708dcb7c6aea4d_317830_660x0_resize_box_3.png"
+        alt="img_3.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>第三方登录Oauth2示意图：</p>
+<p>
+
+
+
+
+  <figure>
+    <img class="my-0 rounded-md" src="https://res.wx.qq.com/op_res/D0wkkHSbtC6VUSHX4WsjP5ssg5mdnEmXO8NGVGF34dxS9N1WCcq6wvquR4K_Hcut" alt="微信Oauth2" />
+    
+  </figure>
+
+</p>
+<p>使用jwt存储Token</p>
+<p>官网：https://jwt.io</p>
+<blockquote>
+</blockquote>
+<pre><code>JSON Web Token令牌（JWT）是一个开放标准（RFC 7519），它定义了一种紧凑和自成一体的方式，用于在各方之间作为JSON对象安全地传输信息。这些信息可以被验证和信任，因为它是数字签名的。
+
+JWT可以使用密钥（使用HMAC算法）或使用RSA或ECDSA进行公钥/私钥对进行签名。
+
+实际上，我们之前都是携带Token向资源服务器发起请求后，资源服务器由于不知道我们Token的用户信息，所以需要向验证服务器询问此Token的认证信息，
+
+这样才能得到Token代表的用户信息，但是各位是否考虑过，如果每次用户请求都去查询用户信息，那么在大量请求下，验证服务器的压力可能会非常的大。而使用JWT之后，Token中会直接保存用户信息，
+这样资源服务器就不再需要询问验证服务器，自行就可以完成解析，我们的目标是不联系验证服务器就能直接完成验证。
+
+一个JWT令牌由3部分组成：标头(Header)、有效载荷(Payload)和签名(Signature)。在传输的时候，会将JWT的3部分分别进行Base64编码后用.进行连接形成最终需要传输的字符串。
+
+标头：包含一些元数据信息，比如JWT签名所使用的加密算法，还有类型，这里统一都是JWT。
+有效载荷：包括用户名称、令牌发布时间、过期时间、JWT ID等，当然我们也可以自定义添加字段，我们的用户信息一般都在这里存放。
+签名：首先需要指定一个密钥，该密钥仅仅保存在服务器中，保证不能让其他用户知道。然后使用Header中指定的算法对Header和Payload进行base64加密之后的结果通过密钥计算哈希值，然后就得出一个签名哈希。这个会用于之后验证内容是否被篡改。
+
+	Base64（不是加密算法而是编码方式）： 就是包括小写字母a-z、大写字母A-Z、数字0-9、符号&quot;+&quot;、&quot;/&quot;一共64个字符的字符集（末尾还有1个或多个=用来凑够字节数），任何的符号都可以转换成这个字符集中的字符，
+这个转换过程就叫做Base64编码，编码之后会生成只包含上述64个字符的字符串。相反，如果需要原本的内容，我们也可以进行Base64解码，回到原有的样子。
+	
+	加密算法： 加密算法分为对称加密和非对称加密，其中**对称加密（Symmetric Cryptography）**比较好理解，就像一把锁配了两把钥匙一样，这两把钥匙你和别人都有一把，然后你们直接传递数据，都会把数据用锁给锁上，
+就算传递的途中有人把数据窃取了，也没办法解密，因为钥匙只有你和对方有，没有钥匙无法进行解密，但是这样有个问题，既然解密的关键在于钥匙本身，那么如果有人不仅窃取了数据，而且对方那边的治安也不好，
+于是顺手就偷走了钥匙，那你们之间发的数据不就凉凉了吗。
+	
+	因此，**非对称加密（Asymmetric Cryptography）**算法出现了，它并不是直接生成一把钥匙，而是生成一个公钥和一个私钥，私钥只能由你保管，而公钥交给对方或是你要发送的任何人都行，现在你需要把数据传给对方，
+那么就需要使用私钥进行加密，但是，这个数据只能使用对应的公钥进行解密，相反，如果对方需要给你发送数据，那么就需要用公钥进行加密，而数据只能使用私钥进行解密，这样的话就算对方的公钥被窃取，那么别人发给你的数据也没办法解密出来，
+因为需要私钥才能解密，而只有你才有私钥。
+	
+	因此，非对称加密的安全性会更高一些，包括HTTPS的隐私信息正是使用非对称加密来保障传输数据的安全（当然HTTPS并不是单纯地使用非对称加密完成的，感兴趣的可以去了解一下）
+	
+	对称加密和非对称加密都有很多的算法，比如对称加密，就有：DES、IDEA、RC2，非对称加密有：RSA、DAS、ECC
+	
+	不可逆加密算法： 常见的不可逆加密算法有MD5, HMAC, SHA-1, SHA-224, SHA-256, SHA-384, 和SHA-512, 其中SHA-224、SHA-256、SHA-384，和SHA-512我们可以统称为SHA2加密算法，
+SHA加密算法的安全性要比MD5更高，而SHA2加密算法比SHA1的要高，其中SHA后面的数字表示的是加密后的字符串长度，SHA1默认会产生一个160位的信息摘要。经过不可逆加密算法得到的加密结果，是无法解密回去的，
+也就是说加密出来是什么就是什么了。本质上，其就是一种哈希函数，用于对一段信息产生摘要，以防止被篡改。
+	
+实际上这种算法就常常被用作信息摘要计算，同样的数据通过同样的算法计算得到的结果肯定也一样，而如果数据被修改，那么计算的结果肯定就不一样了。
+</code></pre>
+<blockquote>
+</blockquote>
+<p>
+
+
+
+
+  <figure>
+    <img class="my-0 rounded-md" src="https://image.itbaima.cn/markdown/2023/03/07/W95CFKAmd1wfgSJ.png" alt="jwt存储Token" />
+    
+  </figure>
+
+</p>
+
+      </div>
+
+
+
+
+    </div>
+
+    
+    <script>
+      var oid = "views_entire-note\\spring\\index.md"
+      var oid_likes = "likes_entire-note\\spring\\index.md"
+    </script>
+    
+    
+    
+    <script type="text/javascript" src="/js/page.min.5b1bad196a6075a1e11bae1dc95f24f67b610948a00525e347566c5a62338ea78f1c7224ab9a53873dcdb2a1a7d7d391b8a8ef45561297f68806c01315b0c4f6.js" integrity="sha512-WxutGWpgdaHhG64dyV8k9nthCUigBSXjR1ZsWmIzjqePHHIkq5pThz3NsqGn19ORuKjvRVYSl/aIBsATFbDE9g=="></script>
+
+  </section>
+
+
+  <footer style="width: 100%">
+          
+
+          
+  
+  <section class="flex flex-row flex-wrap justify-center pt-4 text-xl">
+    
+      
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="https://twitter.com/intent/tweet/?url=/entire-note/spring/&amp;text=%e5%be%ae%e6%9c%8d%e5%8a%a1%e5%9f%ba%e7%a1%80%e7%9f%a5%e8%af%86"
+      title="分享到 Twitter"
+      aria-label="分享到 Twitter"
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg>
+  </span>
+
+
+    </a>
+      
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="https://t.me/share/url?url=/entire-note/spring/&amp;resubmit=true&amp;title=%e5%be%ae%e6%9c%8d%e5%8a%a1%e5%9f%ba%e7%a1%80%e7%9f%a5%e8%af%86"
+      title=""
+      aria-label=""
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M248,8C111.033,8,0,119.033,0,256S111.033,504,248,504,496,392.967,496,256,384.967,8,248,8ZM362.952,176.66c-3.732,39.215-19.881,134.378-28.1,178.3-3.476,18.584-10.322,24.816-16.948,25.425-14.4,1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25,5.342-39.5,3.652-3.793,67.107-61.51,68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608,69.142-14.845,10.194-26.894,9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7,18.45-13.7,108.446-47.248,144.628-62.3c68.872-28.647,83.183-33.623,92.511-33.789,2.052-.034,6.639.474,9.61,2.885a10.452,10.452,0,0,1,3.53,6.716A43.765,43.765,0,0,1,362.952,176.66Z"/></svg>
+
+  </span>
+
+
+    </a>
+      
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="mailto:?body=/entire-note/spring/&amp;subject=%e5%be%ae%e6%9c%8d%e5%8a%a1%e5%9f%ba%e7%a1%80%e7%9f%a5%e8%af%86"
+      title="通过电子邮件发送"
+      aria-label="通过电子邮件发送"
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M207.8 20.73c-93.45 18.32-168.7 93.66-187 187.1c-27.64 140.9 68.65 266.2 199.1 285.1c19.01 2.888 36.17-12.26 36.17-31.49l.0001-.6631c0-15.74-11.44-28.88-26.84-31.24c-84.35-12.98-149.2-86.13-149.2-174.2c0-102.9 88.61-185.5 193.4-175.4c91.54 8.869 158.6 91.25 158.6 183.2l0 16.16c0 22.09-17.94 40.05-40 40.05s-40.01-17.96-40.01-40.05v-120.1c0-8.847-7.161-16.02-16.01-16.02l-31.98 .0036c-7.299 0-13.2 4.992-15.12 11.68c-24.85-12.15-54.24-16.38-86.06-5.106c-38.75 13.73-68.12 48.91-73.72 89.64c-9.483 69.01 43.81 128 110.9 128c26.44 0 50.43-9.544 69.59-24.88c24 31.3 65.23 48.69 109.4 37.49C465.2 369.3 496 324.1 495.1 277.2V256.3C495.1 107.1 361.2-9.332 207.8 20.73zM239.1 304.3c-26.47 0-48-21.56-48-48.05s21.53-48.05 48-48.05s48 21.56 48 48.05S266.5 304.3 239.1 304.3z"/></svg>
+
+  </span>
+
+
+    </a>
+      
+    
+  </section>
+
+
+          
+
+
+<h2 class="mt-8 text-2xl font-extrabold mb-10">相关文章</h2>
+<section class="w-full grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+  
+  
+
+  <a href="/docker/" class="min-w-full">
+    
+    <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
+        
+        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/img/annimation/4c758d7c82292f81f99d63ff1072aa9adb5c3536_raw_hu9b60894d5013d728985af7ffc2fcbbdd_675352_600x0_resize_q75_box.jpg);"></div>
+        
+      
+
+      <div class="px-6 py-4">
+
+        
+        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
+          href="/docker/">Docker</div>
+        
+
+        <div class="text-sm text-neutral-500 dark:text-neutral-400">
+          
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2024-02-08 14:22:59 &#43;0800 CST">8 February 2024</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
+  
+
+  
+  
+</div>
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/%E7%AC%94%E8%AE%B0/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    笔记
+  </span>
+</span>
+  </span>
+  
+  
+  
+  
+</div>
+
+
+
+
+        </div>
+
+        
+      </div>
+      <div class="px-6 pt-4 pb-2">
+
+      </div>
+    </div>
+  </a>
+
+  
+  
+
+  <a href="/music/" class="min-w-full">
+    
+    <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
+        
+        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/img/annimation/4c758d7c82292f81f99d63ff1072aa9adb5c3536_raw_hu9b60894d5013d728985af7ffc2fcbbdd_675352_600x0_resize_q75_box.jpg);"></div>
+        
+      
+
+      <div class="px-6 py-4">
+
+        
+        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
+          href="/music/">Music</div>
+        
+
+        <div class="text-sm text-neutral-500 dark:text-neutral-400">
+          
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2024-02-07 19:22:59 &#43;0800 CST">7 February 2024</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
+  
+
+  
+  
+</div>
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/%E7%AC%94%E8%AE%B0/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    笔记
+  </span>
+</span>
+  </span>
+  
+  
+  
+  
+</div>
+
+
+
+
+        </div>
+
+        
+      </div>
+      <div class="px-6 pt-4 pb-2">
+
+      </div>
+    </div>
+  </a>
+
+  
+  
+
+  <a href="/entire-note/music/" class="min-w-full">
+    
+    <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
+        
+        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/img/annimation/4c758d7c82292f81f99d63ff1072aa9adb5c3536_raw_hu9b60894d5013d728985af7ffc2fcbbdd_675352_600x0_resize_q75_box.jpg);"></div>
+        
+      
+
+      <div class="px-6 py-4">
+
+        
+        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
+          href="/entire-note/music/">音乐</div>
+        
+
+        <div class="text-sm text-neutral-500 dark:text-neutral-400">
+          
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2024-01-29 18:23:23 &#43;0800 CST">29 January 2024</time>
+  
+
+  
+  
+</div>
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+
+
+
+        </div>
+
+        
+      </div>
+      <div class="px-6 pt-4 pb-2">
+
+      </div>
+    </div>
+  </a>
+
+  
+</section>
+
+
+    
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="flex group mr-3" href="/entire-note/music/">
+              <span
+                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
+                >&larr;</span
+              >
+              <span
+                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
+                >&rarr;</span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >音乐</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2024-01-29 18:23:23 &#43;0800 CST">29 January 2024</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="flex text-right group ml-3" href="/entire-note/netty/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >使用主从模式搭建一个Socket网络通信模型</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2024-03-06 21:21:06 &#43;0800 CST">6 March 2024</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
+                >&rarr;</span
+              >
+              <span
+                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
+                >&larr;</span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+    
+    
+    <div class="pt-3">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="pt-3">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br/>
+<span style="color:rgba(var(--color-neutral-400),var(--tw-text-opacity));">
+    <span class="post-meta-item-text" >&nbsp;&nbsp;:  </span>
+    <span class="waline-pageview-count">⏳</span><div></div><br/>
+</span>
+<script type="text/javascript">
+    document.getElementByClassName("aline-pageview-count")[0].data-path = window.location.pathname;
+</script>
+
+
+
+<script src='/waline/waline.js'></script>
+<link href='/waline/waline.css' rel='stylesheet' />
+<div id="vcomments"></div>
+<script>
+    if (""=="zh-CN") {
+        Waline.init({
+            el: '#vcomments',
+            serverURL: 'https://comment-eosin.vercel.app/',
+            emoji: ['https://valine-emoji.bili33.top/bilibilitv','https://valine-emoji.bili33.top/bilibiliHotKey','https://valine-emoji.bili33.top/Tieba-New','https://valine-emoji.bili33.top/weibo',],
+            meta:['nick', 'mail', 'link'],
+            pageview: true,
+            reaction: true,
+            lang: "zh-CN",
+            locale: {
+                reactionTitle: '•畅所欲言——这里是开放区•',
+                comment: '留言板',
+                placeholder: '点击下方登录后再评论，会有惊喜哦~',
+                gifSearchPlaceholder: '搜索表情包...',
+                admin: '作者',
+                sofa: '还没有人评论，快来抢沙发吧',
+                anonymous: '匿名者'
+            }
+        });
+
+    }
+    else {
+        Waline.init({
+            el: '#vcomments',
+            serverURL: 'https://comment-eosin.vercel.app/',
+            emoji: ['https://valine-emoji.bili33.top/bilibilitv','https://valine-emoji.bili33.top/bilibiliHotKey','https://valine-emoji.bili33.top/Tieba-New','https://valine-emoji.bili33.top/weibo',],
+            meta:['nick', 'mail'],
+            pageview: true,
+            reaction: true,
+            
+            lang: "zh-CN",
+            locale: {
+                reactionTitle: '•畅所欲言——这里是开放区•',
+                comment: '留言板',
+                placeholder: '点击下方登录后再评论，会有惊喜哦~',
+                gifSearchPlaceholder: '搜索表情包...',
+                admin: '作者',
+                sofa: '还没有人评论，快来抢沙发吧',
+                anonymous: '匿名者'
+            }
+    });
+
+    }
+    document.getElementsByClassName('wl-power')[0].style.display = 'none';
+    document.querySelector(".wl-actions a").style.display = 'none'
+</script>
+<style type="text/css">
+    :root{
+        --waline-color: var(--tw-prose-quotes);
+        --waline-info-color: var(--tw-prose-quotes);
+        --waline-info-bgcolor: var(--tw-ring-color);
+        --waline-theme-color: rgba(var(--color-primary-400));
+        --waline-bgcolor: transparent;
+        --waline-border-color: #747474;
+    }
+    .wl-editor:focus, .wl-input:focus {
+        background: transparent;
+    }
+    .wl-editor,.wl-input{
+        max-width:88%;
+    }
+    .wl-reaction-item.active .wl-reaction-votes {
+        color: white;
+    }
+</style>
+
+<script type="text/javascript">
+    var pagect = document.getElementById('pagec');
+    var observer = new MutationObserver(function(){
+        var itl,itll;
+        var element = document.getElementById("pagec");
+        observer.disconnect();
+        itl  = element.innerText;
+        itll = Number(itl).toLocaleString();
+        document.getElementById('pagec').innerHTML = itll;
+    });
+    var article = document.getElementById('pagec');
+
+    var options = {
+        'childList': true,
+        'subtree': true
+    };
+
+    observer.observe(article, options);
+</script>
+
+      </div>
+    </div>
+    
+    
+  </footer>
+
+</article>
+
+      <div id="top-scroller" class="pointer-events-none absolute top-[110vh] bottom-0 w-12 ltr:right-0 rtl:left-0">
+  <a href="#the-top"
+    class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 mb-16 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+    aria-label="回到顶部" title="回到顶部">
+    &uarr;
+  </a>
+</div>
+    </main>
+
+<div class="busuanzi-footer" style="margin-top: 40px">
+  <span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+  </span>
+  <span id="busuanzi_container_site_uv">
+    本站访客数<span id="busuanzi_value_site_uv"></span>人次
+  </span>
+</div><footer id="site-footer" class="py-10 print:hidden">
+  
+  
+    
+    <nav class="flex flex-row pb-4 text-base font-medium text-neutral-500 dark:text-neutral-400">
+      <ul class="flex flex-col list-none sm:flex-row">
+        
+        <li class="flex mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+          <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2" href="/tags/"
+            title="Tags">系列文章</a>
+        </li>
+        
+        <li class="flex mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+          <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2" href="/tasks/"
+            title="学习计划">事项</a>
+        </li>
+        
+        <li class="flex mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+          <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2" href="/info/"
+            title="应该没人来这里吧">关于我</a>
+        </li>
+        
+        <li class="flex mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+          <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2" href="/doc/"
+            title="Docs">文档</a>
+        </li>
+        
+      </ul>
+    </nav>
+    
+  
+  <div class="flex items-center justify-between">
+
+    
+    
+    <p class="text-sm text-neutral-500 dark:text-neutral-400">
+      &copy;
+      2024
+      春江花朝秋月夜
+    </p>
+    
+
+    
+    
+    <p class="text-xs text-neutral-500 dark:text-neutral-400">
+      
+      
+      由 <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+        href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+        href="https://blowfish.page/" target="_blank" rel="noopener noreferrer">Blowfish</a> 强力驱动
+    </p>
+    
+
+  </div>
+  <script>
+    
+    mediumZoom(document.querySelectorAll("img:not(.nozoom)"), {
+      margin: 24,
+      background: 'rgba(0,0,0,0.5)',
+      scrollOffset: 0,
+    })
+    
+  </script>
+  
+  
+  <script type="text/javascript" src="/js/process.min.62060bb247f4de2b6dde45903668fefb68d792f365587605177b1227c0cf43588701edaca0cb40e2c8e2789bd5ce67c1d2a215b9fb258c3496a7cd25e7cb5fdf.js" integrity="sha512-YgYLskf03itt3kWQNmj&#43;&#43;2jXkvNlWHYFF3sSJ8DPQ1iHAe2soMtA4sjieJvVzmfB0qIVufsljDSWp80l58tf3w=="></script>
+  
+  
+</footer>
+<div
+  id="search-wrapper"
+  class="invisible fixed inset-0 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]"
+  data-url="/"
+  style="z-index:500"
+>
+  <div
+    id="search-modal"
+    class="flex flex-col w-full max-w-3xl min-h-0 mx-auto border rounded-md shadow-lg top-20 border-neutral-200 bg-neutral dark:border-neutral-700 dark:bg-neutral-800"
+  >
+    <header class="relative z-10 flex items-center justify-between flex-none px-2">
+      <form class="flex items-center flex-auto min-w-0">
+        <div class="flex items-center justify-center w-8 h-8 text-neutral-400">
+          
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+        </div>
+        <input
+          type="search"
+          id="search-query"
+          class="flex flex-auto h-12 mx-1 bg-transparent appearance-none focus:outline-dotted focus:outline-2 focus:outline-transparent"
+          placeholder="搜索"
+          tabindex="0"
+        />
+      </form>
+      <button
+        id="close-search-button"
+        class="flex items-center justify-center w-8 h-8 text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+        title="关闭 (Esc)"
+      >
+        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+  </span>
+
+
+      </button>
+    </header>
+    <section class="flex-auto px-2 overflow-auto">
+      <ul id="search-results">
+        
+      </ul>
+    </section>
+  </div>
+</div>
+
+  </div>
+</body>
+
+</html>

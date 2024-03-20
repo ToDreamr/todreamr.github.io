@@ -7,7 +7,31 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>© 2024 春江花朝秋月夜</copyright>
-    <atom:link href="/algorithm/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 14 Nov 2023 13:47:44 +0800</lastBuildDate><atom:link href="/algorithm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>区间个位和</title>
+      <link>/algorithm/%E7%AE%97%E6%B3%95/%E6%95%B0%E5%AD%A6/</link>
+      <pubDate>Tue, 14 Nov 2023 13:47:44 +0800</pubDate>
+      
+      <guid>/algorithm/%E7%AE%97%E6%B3%95/%E6%95%B0%E5%AD%A6/</guid>
+      <description>计算区间之间的所有数的个位数之和 # 思路： 总体用数学办法，45循环，补齐不全的区间
+#include &amp;#34;class/head.h&amp;#34; //导入万能依赖 long long Sum(long long left,long long right,long long len) { long long left_sum=0,right_sum=0; long long left_len,right_len; left_len=right_len=0; if(left!=0)//计算左补齐 { left_sum=((left-1)*left)/2.0; left_len=left; } if(right!=9)//计算右补齐 { right_sum=((right+10)*(9-right))/2.</description>
+      
+    </item>
+    
+    <item>
+      <title>数之和</title>
+      <link>/algorithm/%E7%AE%97%E6%B3%95/%E6%95%B0%E4%B9%8B%E5%92%8C/</link>
+      <pubDate>Tue, 14 Nov 2023 13:47:44 +0800</pubDate>
+      
+      <guid>/algorithm/%E7%AE%97%E6%B3%95/%E6%95%B0%E4%B9%8B%E5%92%8C/</guid>
+      <description>题目：
+两数之和
+三数之和
+class Main{ //两数之和 public static int[] twoSum(int[] nums, int target) { //找出和为target的数组中元素的下标： HashMap&amp;lt;Integer,Integer&amp;gt; dic=new HashMap&amp;lt;&amp;gt;();//和 int index=0; int dicIndex=0; int len=nums.length; Set&amp;lt;Integer&amp;gt; list=new HashSet&amp;lt;&amp;gt;(); for (int i=0;i&amp;lt;len;i++){ dic.</description>
+      
+    </item>
+    
     <item>
       <title></title>
       <link>/algorithm/%E4%BA%8C%E5%88%86%E6%B3%95/</link>
@@ -31,6 +55,23 @@ left = 0; right = nums.size() - 1; while(left &amp;lt;= right){ // 区间为空 
 输入：nums = [-4,-1,0,3,10] 输出：[0,1,9,16,100] 解释：平方后，数组变为 [16,1,0,9,100] 排序后，数组变为 [0,1,9,16,100] 最大元素在两边，使用两个指针从两边到中间合拢
 更新方法从大到小
 vector&amp;lt;int&amp;gt;result(nums.size(),0); int k=nums.size()-1;//新数组的下标 int i=0,j=nums.size()-1; //分别从两边往中间取 while(i&amp;lt;=j){ if(nums[i]*nums[i]&amp;lt;nums[j]*nums[j]){ result[k--]=nums[j]*nums[j]; j--; } //num[i]*nums[i] &amp;gt;= nums[j]*nums[j] else { result[k--]=nums[i]*nums[i]; i++; } } return result; class Solution { public int[] sortedSquares(int[] nums) { int []res = new int [nums.</description>
+      
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/algorithm/%E7%AE%97%E6%B3%95/c/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/algorithm/%E7%AE%97%E6%B3%95/c/</guid>
+      <description>master公式：
+在编程中，递归是非常常见的一种算法，由于代码简洁而应用广泛，但递归相比顺序执行或循环程序，时间复杂度难以计算，而master公式就是用于计算递归程序的时间复杂度。
+T(N) = a*T(N/b) + O(N^d);
+​ 下面对参数进行解释:
+b：子过程的样本量 a：子过程的计算次数 O(N^d)：子结果合并的时间复杂度 满足如上公式的程序都可以根据master公式计算时间复杂度：
+log(b，a) &amp;gt; d ：时间复杂度为O(N^log(b，a)) log(b，a) = d ：时间复杂度为O(N^d * logN) log(b，a) &amp;lt; d ：时间复杂度为O(N^d)
+在学习归并排序之前，我们先学习一个简单的算法:当我们求一个值的中值时，可以使用：
+int mid = L + ((R - L) &amp;raquo; 1); 注意使用位运算更好，之后采用这种方法来计算平均数</description>
       
     </item>
     

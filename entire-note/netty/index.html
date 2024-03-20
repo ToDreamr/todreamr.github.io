@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" dir="ltr" class="scroll-smooth" data-default-appearance="light"
+<html lang="zh-CN" dir="ltr" class="scroll-smooth" data-default-appearance="dark"
   data-auto-appearance="true"><head>
 
   <meta charset="utf-8" />
@@ -13,7 +13,7 @@
   <meta name="title" content="使用主从模式搭建一个Socket网络通信模型 &middot; 春江花朝秋月夜" />
   
   <meta name="description" content="netty课程交作业" />
-  
+  <meta name="keywords" content="nio, " />
   
   
   <link rel="canonical" href="/entire-note/netty/" />
@@ -85,7 +85,7 @@
     "name": "使用主从模式搭建一个Socket网络通信模型",
     "headline": "使用主从模式搭建一个Socket网络通信模型",
     "description": "netty课程交作业",
-    "abstract": "通过NIO非阻塞式模型我们可以搭建一个Reactor-SubReactor-Handler的消息服务器 # 主要目的是利用Selector选择器实现IO多路复用\n先来编写一下客户端，简单起见，只需要建立一个SocketChannel获取管道流传输数据\n\/* * Copyright (c) 2024. 禁止抄袭和不经同意的商用行为 * Author: 春江花朝秋月夜 *\/ \/** * @author 春江花朝秋月夜 *\/ public class ClientReactor { public static void main(String[] args) { \/\/ 创建一个新的SocketChannel，一会通过通道进行通信 try (SocketChannel channel =SocketChannel.",
+    "abstract": "通过NIO非阻塞式模型我们可以搭建一个Reactor-SubReactor-Handler的消息服务器 # netty的三大基本组件是：buffer，channel，selector\n目的：\n主要目的是利用Selector选择器实现IO多路复用\n先来编写一下客户端，简单起见，只需要建立一个SocketChannel获取管道流传输数据\n\/** * @author 春江花朝秋月夜 *\/ public class ClientReactor { public static void main(String[] args) { \/\/ 创建一个新的SocketChannel，一会通过通道进行通信 try (SocketChannel channel =SocketChannel.open(newInetSocketAddress(\u0026#34;localhost\u0026#34;, 9000)); Scanner scanner = new Scanner(System.",
     "inLanguage": "zh-CN",
     "url" : "\/entire-note\/netty\/",
     "author" : {
@@ -98,10 +98,10 @@
     
     "dateModified": "2024-03-06T21:21:06\u002b08:00",
     
-    
+    "keywords": ["nio"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "85"
+    "wordCount": "77"
   }]
   </script>
 
@@ -241,6 +241,16 @@
     
     <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="Algorithms">
         算法🐾
+    </p>
+</a>
+
+
+      
+      
+  <a href="/tags/"  class="flex items-center">
+    
+    <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="Tags">
+        归类✈️
     </p>
 </a>
 
@@ -436,6 +446,20 @@
         
         <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="Algorithms">
             算法🐾
+        </p>
+    </a>
+</li>
+
+
+
+          
+
+          
+  <li class="mt-1">
+    <a href="/tags/"  class="flex items-center">
+        
+        <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="Tags">
+            归类✈️
         </p>
     </a>
 </li>
@@ -729,6 +753,16 @@
   
   
   
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/nio/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    nio
+  </span>
+</span>
+  </span>
+  
+  
+  
   
 </div>
 
@@ -985,15 +1019,13 @@
     </span>        
     
 </h2>
+<p>netty的三大基本组件是：buffer，channel，selector</p>
+<p>目的：</p>
 <blockquote>
 <p>主要目的是利用Selector选择器实现IO多路复用</p>
 </blockquote>
 <p>先来编写一下客户端，简单起见，只需要建立一个SocketChannel获取管道流传输数据</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="cm">/*
-</span></span></span><span class="line"><span class="cl"><span class="cm"> * Copyright (c) 2024. 禁止抄袭和不经同意的商用行为
-</span></span></span><span class="line"><span class="cl"><span class="cm"> * Author: 春江花朝秋月夜
-</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
-</span></span><span class="line"><span class="cl">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="cm">/**
 </span></span></span><span class="line"><span class="cl"><span class="cm"> * @author 春江花朝秋月夜
 </span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
@@ -1146,11 +1178,11 @@
   
   
 
-  <a href="/entire-note/wexin-oauth/" class="min-w-full">
+  <a href="/entire-note/spring/" class="min-w-full">
     
     <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
         
-        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/entire-note/wexin-oauth/featured_hu0594b1e14ec878915c843b7c68066c8c_1563772_600x0_resize_box_3.png);"></div>
+        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/entire-note/spring/featured_hu6534542605d56a7187ca4a5d252cd4c4_1422640_600x0_resize_q75_box.jpg);"></div>
         
       
 
@@ -1158,7 +1190,7 @@
 
         
         <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
-          href="/entire-note/wexin-oauth/">微信登录</div>
+          href="/entire-note/spring/">微服务基础知识</div>
         
 
         <div class="text-sm text-neutral-500 dark:text-neutral-400">
@@ -1199,7 +1231,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2024-03-02 13:22:59 &#43;0800 CST">2 March 2024</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">4 分钟</span>
+  <time datetime="2024-03-05 15:08:23 &#43;0000 UTC">5 March 2024</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">2 分钟</span>
   
 
   
@@ -1237,10 +1269,10 @@
   
   
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/oauth2/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/&#34;,'_self');">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    Oauth2
+    微服务
   </span>
 </span>
   </span>
@@ -1266,11 +1298,11 @@
   
   
 
-  <a href="/entire-note/vscode/" class="min-w-full">
+  <a href="/docker/" class="min-w-full">
     
     <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
         
-        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/entire-note/vscode/featured_hu3c50a8fc52c7107f84f0551d809b0ab9_1202012_600x0_resize_box_3.png);"></div>
+        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/img/annimation/4c758d7c82292f81f99d63ff1072aa9adb5c3536_raw_hu9b60894d5013d728985af7ffc2fcbbdd_675352_600x0_resize_q75_box.jpg);"></div>
         
       
 
@@ -1278,7 +1310,7 @@
 
         
         <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
-          href="/entire-note/vscode/">自用的Vscode个人觉得还算耐看的主题和字体以及编码习惯</div>
+          href="/docker/">Docker</div>
         
 
         <div class="text-sm text-neutral-500 dark:text-neutral-400">
@@ -1319,7 +1351,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2024-03-02 13:22:59 &#43;0800 CST">2 March 2024</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
+  <time datetime="2024-02-08 14:22:59 &#43;0800 CST">8 February 2024</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
   
 
   
@@ -1386,7 +1418,7 @@
   
   
 
-  <a href="/entire-note/oauth2/" class="min-w-full">
+  <a href="/music/" class="min-w-full">
     
     <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
         
@@ -1398,7 +1430,7 @@
 
         
         <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
-          href="/entire-note/oauth2/">Oauth2</div>
+          href="/music/">Music</div>
         
 
         <div class="text-sm text-neutral-500 dark:text-neutral-400">
@@ -1439,7 +1471,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2024-02-29 17:52:31 &#43;0800 CST">29 February 2024</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
+  <time datetime="2024-02-07 19:22:59 &#43;0800 CST">7 February 2024</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
   
 
   
@@ -1477,10 +1509,10 @@
   
   
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/oauth2/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/%E7%AC%94%E8%AE%B0/&#34;,'_self');">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    Oauth2
+    笔记
   </span>
 </span>
   </span>
@@ -1517,7 +1549,7 @@
       <div class="flex justify-between pt-3">
         <span>
           
-            <a class="flex group mr-3" href="/entire-note/wexin-oauth/">
+            <a class="flex group mr-3" href="/entire-note/spring/">
               <span
                 class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
                 >&larr;</span
@@ -1529,11 +1561,11 @@
               <span class="flex flex-col">
                 <span
                   class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
-                  >微信登录</span
+                  >微服务基础知识</span
                 >
                 <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
                   
-                    <time datetime="2024-03-02 13:22:59 &#43;0800 CST">2 March 2024</time>
+                    <time datetime="2024-03-05 15:08:23 &#43;0000 UTC">5 March 2024</time>
                   
                 </span>
               </span>
@@ -1546,7 +1578,7 @@
               <span class="flex flex-col">
                 <span
                   class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
-                  >常规面试题</span
+                  >计算机科学基础</span
                 >
                 <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
                   

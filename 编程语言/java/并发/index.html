@@ -1,0 +1,2622 @@
+<!DOCTYPE html>
+<html lang="zh-CN" dir="ltr" class="scroll-smooth" data-default-appearance="dark"
+  data-auto-appearance="true"><head>
+
+  <meta charset="utf-8" />
+  
+  <meta http-equiv="content-language" content="zh-CN" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  
+  <title>Java-Concurrent &middot; 春江花朝秋月夜</title>
+  <meta name="title" content="Java-Concurrent &middot; 春江花朝秋月夜" />
+  
+  <meta name="description" content="并发编程基础" />
+  <meta name="keywords" content="并发编程, " />
+  
+  
+  <link rel="canonical" href="/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/%E5%B9%B6%E5%8F%91/" />
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.b0d4aeb65335611c810957fcff4af94f45bb796b37facd9be6f7287ee03ce57038918ff5d4ac7a6ea77914fde6d3942c0243d3d17f90926c454b4ea3499e973a.css"
+    integrity="sha512-sNSutlM1YRyBCVf8/0r5T0W7eWs3&#43;s2b5vcofuA85XA4kY/11Kx6bqd5FP3m05QsAkPT0X&#43;QkmxFS06jSZ6XOg==" />
+  
+  
+  <script type="text/javascript" src="/js/appearance.min.516a16745bea5a9bd011138d254cc0fd3973cd55ce6e15f3dec763e7c7c2c7448f8fe7b54cca811cb821b0c7e12cd161caace1dd794ac3d34d40937cbcc9ee12.js"
+    integrity="sha512-UWoWdFvqWpvQERONJUzA/TlzzVXObhXz3sdj58fCx0SPj&#43;e1TMqBHLghsMfhLNFhyqzh3XlKw9NNQJN8vMnuEg=="></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script defer type="text/javascript" id="script-bundle" src="/js/main.bundle.min.6c7ae15a14b4f78dc4f6e7f92e5a4e05d69a1eafe594e439255e5f72defe4531e8fda36f83cf9730e27868220649112476686eec9d28c582deaabe019c419dbd.js"
+    integrity="sha512-bHrhWhS0943E9uf5LlpOBdaaHq/llOQ5JV5fct7&#43;RTHo/aNvg8&#43;XMOJ4aCIGSREkdmhu7J0oxYLeqr4BnEGdvQ==" data-copy="" data-copied=""></script>
+  
+  
+  <script src="/js/zoom.min.js"></script>
+  
+  
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="Java-Concurrent" />
+<meta property="og:description" content="并发编程基础" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/%E5%B9%B6%E5%8F%91/" /><meta property="og:image" content="/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/%E5%B9%B6%E5%8F%91/featured.png"/><meta property="article:section" content="编程语言" />
+<meta property="article:published_time" content="2023-10-09T19:49:34+08:00" />
+<meta property="article:modified_time" content="2023-10-09T19:49:34+08:00" />
+
+
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/%E5%B9%B6%E5%8F%91/featured.png"/>
+<meta name="twitter:title" content="Java-Concurrent"/>
+<meta name="twitter:description" content="并发编程基础"/>
+
+  
+  <script type="application/ld+json">
+  [{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "编程语言s",
+    "name": "Java-Concurrent",
+    "headline": "Java-Concurrent",
+    "description": "并发编程基础",
+    "abstract": "Java 并发编程 # 轻量级锁： # 检查当前对象的mark word是否有被其他线程占用，假如没有就会在当前栈帧里面建立一个 锁记录，复制并存储当前对象的mark word 信息。\n不像重量级锁需要向系统申请互斥量，\nCAS（无锁算法） # 显然，当cas失败的时候，说明有线程进入了这个同步代码块，这个时候，虚拟机将会检查 当前对象的mark word是否指向当前对象的栈帧，是的话就说明当前已经获得锁，否则不是-》退化为重量级锁(不可逆) 解锁时，同样使用CAS算法操作，同时唤醒挂起的线程\n偏向锁 # 当某个锁频繁的被同一个线程获取，对轻量级锁进行优化，所以偏向锁专门为单个线程服务，此时，无须再进行CAS操作，当其他线程 又开始抢锁，偏向锁可能退化为轻量级锁。注意当调用对象的hashCode（）方法，由于mark word 数据结构无法 保存hash值，偏向锁直接退化为轻量级锁。\n锁的退化不可逆\n锁消除和锁优化 # 代码块中有可能不会总是出现请求锁和释放锁的问题，（比如循环中加锁），此时锁为了优化出现锁消除和锁优化\nJava内存模型（JMM） # 主内存： 存放对象实例的部分 工作内存：虚拟机栈的部分，放入cpu的高速缓存里面。 自增操作不是由一个指令实现的！！！包括获取，修改和保存",
+    "inLanguage": "zh-CN",
+    "url" : "\/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80\/java\/%E5%B9%B6%E5%8F%91\/",
+    "author" : {
+      "@type": "Person",
+      "name": "春江花朝秋月夜"
+    },
+    "copyrightYear": "2023",
+    "dateCreated": "2023-10-09T19:49:34\u002b08:00",
+    "datePublished": "2023-10-09T19:49:34\u002b08:00",
+    
+    "dateModified": "2023-10-09T19:49:34\u002b08:00",
+    
+    "keywords": ["并发编程"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "577"
+  }]
+  </script>
+
+
+  
+  
+  <meta name="author" content="春江花朝秋月夜" />
+  
+  
+  
+  <link href="https://space.bilibili.com/159283119?spm_id_from=333.1007.0.0" rel="me" />
+  
+  
+  <link href="https://github.com/ToDreamr" rel="me" />
+  
+  
+  <link href="https://music.163.com/#/user/home?id=568083850" rel="me" />
+  
+  
+  <link href="https://gitee.com/rainyheights" rel="me" />
+  
+  
+  <link href="https://www.zhihu.com/people/san-qiu-luo-yue" rel="me" />
+  
+  
+  
+  
+
+<script src="/lib/jquery/jquery.slim.min.js" integrity=""></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PEDMYR1V0K"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PEDMYR1V0K');
+</script>
+
+
+  
+  
+  <meta name="theme-color"/>
+
+  
+  
+
+  
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <meta name="referrer" content="no-referrer-when-downgrade"></head>
+
+
+<body
+  class="flex flex-col h-screen px-6 m-auto text-lg leading-7 max-w-7xl bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32">
+  <div id="the-top" class="absolute flex self-center">
+    <a class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 focus:translate-y-0 dark:bg-neutral-600"
+      href="#main-content"><span
+        class="font-bold text-primary-600 ltr:pr-2 rtl:pl-2 dark:text-primary-400">&darr;</span>跳到文章开头</a>
+  </div>
+  
+  
+  <div class="min-h-[148px]"></div>
+<div class="fixed inset-x-0 pl-[24px] pr-[24px]" style="z-index:100">
+  <div id="menu-blur" class="absolute opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl shadow-2xl"></div>
+  <div class="relative max-w-[64rem] ml-auto mr-auto">
+    <div id="top-menu" style="padding-left:0;padding-right:0;padding-top:2px;padding-bottom:3px ;height: 70px;font-family: 华文中宋,serif;"
+     class="main-menu flex items-center justify-between px-4 py-6 sm:px-6 md:justify-start space-x-3" >
+  
+  
+  
+  <div>
+    <a href="/" class="flex">
+    <span class="sr-only">春江花朝秋月夜</span>
+
+    <img src="/img/author.png" width="16" height="16"
+         class="logo max-h-[5rem] max-w-[5rem] object-scale-down object-left nozoom" alt="春江花朝秋月夜" />
+
+    </a>
+  </div>
+  
+
+  <div class="flex flex-1 items-center justify-between">
+
+    <nav class="flex space-x-3">
+
+      
+      <a id="title-href" href="/" class="text-base font-medium text-gray-500 hover:text-gray-900">春江花朝秋月夜</a>
+      
+
+    </nav>
+    <nav class="hidden md:flex items-center space-x-5 md:ml-12 h-12">
+
+      
+      
+      
+  <a href="/"  class="flex items-center">
+    
+    <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="">
+        首页
+    </p>
+</a>
+
+
+      
+      
+  <a href="/all/"  class="flex items-center">
+    
+    <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="全部">
+        全部✅
+    </p>
+</a>
+
+
+      
+      
+  <a href="/algorithm/"  class="flex items-center">
+    
+    <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="Algorithms">
+        算法🐾
+    </p>
+</a>
+
+
+      
+      
+  <a href="/tags/"  class="flex items-center">
+    
+    <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="Tags">
+        归类✈️
+    </p>
+</a>
+
+
+      
+      
+  <a href="/friend/"  class="flex items-center">
+    
+    <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="friend">
+        友链🧑‍🤝‍🧑
+    </p>
+</a>
+
+
+      
+      
+  <a href="/doc/"  class="flex items-center">
+    
+    <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="Docs">
+        文档😺
+    </p>
+</a>
+
+
+      
+      
+
+      
+
+
+      
+      <button id="search-button" aria-label="Search" class="text-base hover:text-primary-600 dark:hover:text-primary-400 h-12"
+              title="">
+      
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+      </button>
+
+      
+
+
+      
+      
+      <div
+              class="ltr:mr-14 rtl:ml-14 cursor-pointer text-sm text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400">
+        <button id="appearance-switcher" aria-label="Dark mode switcher" type="button">
+          <div class="flex items-center justify-center h-12 dark:hidden">
+            
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+
+  </span>
+
+
+          </div>
+          <div class="items-center justify-center hidden h-12 dark:flex">
+            
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+
+  </span>
+
+
+          </div>
+        </button>
+
+      </div>
+      
+
+    </nav>
+    <div class="flex md:hidden items-center space-x-5 md:ml-12">
+
+      <span></span>
+
+      
+
+
+      
+      <button id="search-button-mobile" aria-label="Search" class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+              title="">
+      
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+      </button>
+      
+
+      
+      
+      <button id="appearance-switcher-mobile" aria-label="Dark mode switcher" type="button" style="margin-right:5px">
+        <div class="flex items-center justify-center h-12 dark:hidden">
+          
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+
+  </span>
+
+
+        </div>
+        <div class="items-center justify-center hidden h-12 dark:flex">
+          
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+
+  </span>
+
+
+        </div>
+      </button>
+      
+
+    </div>
+
+  </div>
+  <div class="-my-2 -mr-2 md:hidden">
+
+    <label id="menu-button" for="menu-controller" class="block">
+      <input type="checkbox" id="menu-controller" class="hidden" />
+      
+      <div class="cursor-pointer hover:text-primary-600 dark:hover:text-primary-400">
+        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 96C0 78.33 14.33 64 32 64H416C433.7 64 448 78.33 448 96C448 113.7 433.7 128 416 128H32C14.33 128 0 113.7 0 96zM0 256C0 238.3 14.33 224 32 224H416C433.7 224 448 238.3 448 256C448 273.7 433.7 288 416 288H32C14.33 288 0 273.7 0 256zM416 448H32C14.33 448 0 433.7 0 416C0 398.3 14.33 384 32 384H416C433.7 384 448 398.3 448 416C448 433.7 433.7 448 416 448z"/></svg>
+
+  </span>
+
+
+      </div>
+      <div id="menu-wrapper" style="padding-top:5px;"
+           class="fixed inset-0 z-30 invisible w-screen h-screen m-0 overflow-auto transition-opacity opacity-0 cursor-default bg-neutral-100/50 backdrop-blur-sm dark:bg-neutral-900/50">
+        <ul
+                class="flex space-y-2 mt-3 flex-col items-end w-full px-6 py-6 mx-auto overflow-visible list-none ltr:text-right rtl:text-left max-w-7xl">
+
+          <li>
+                        <span
+                                class="cursor-pointer inline-block align-text-bottom hover:text-primary-600 dark:hover:text-primary-400">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+  </span>
+
+</span>
+          </li>
+
+          
+
+          
+  <li class="mt-1">
+    <a href="/"  class="flex items-center">
+        
+        <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="">
+            首页
+        </p>
+    </a>
+</li>
+
+
+
+          
+
+          
+  <li class="mt-1">
+    <a href="/all/"  class="flex items-center">
+        
+        <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="全部">
+            全部✅
+        </p>
+    </a>
+</li>
+
+
+
+          
+
+          
+  <li class="mt-1">
+    <a href="/algorithm/"  class="flex items-center">
+        
+        <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="Algorithms">
+            算法🐾
+        </p>
+    </a>
+</li>
+
+
+
+          
+
+          
+  <li class="mt-1">
+    <a href="/tags/"  class="flex items-center">
+        
+        <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="Tags">
+            归类✈️
+        </p>
+    </a>
+</li>
+
+
+
+          
+
+          
+  <li class="mt-1">
+    <a href="/friend/"  class="flex items-center">
+        
+        <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="friend">
+            友链🧑‍🤝‍🧑
+        </p>
+    </a>
+</li>
+
+
+
+          
+
+          
+  <li class="mt-1">
+    <a href="/doc/"  class="flex items-center">
+        
+        <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="Docs">
+            文档😺
+        </p>
+    </a>
+</li>
+
+
+
+          
+
+        </ul>
+        
+        
+
+      </div>
+    </label>
+  </div>
+
+
+
+
+
+
+  </div>
+<style>
+  .change-music{
+    margin-top: 20px;
+    width: 8%;
+    height: 50%;
+    font-family: 华文中宋,serif;
+     
+     
+     
+  }
+</style>
+<script>
+  
+  var MusicLists=[];
+  var musicUrl="";
+  function getMusicList()
+  {
+    
+    MusicLists.push
+    (29567192,1974443814,447926067,447925058,1974444808,
+            1974444807,29567187
+    );
+    var musicIndex=Math.floor(Math.random()*MusicLists.length+1);
+    console.log(musicIndex);
+    
+    musicUrl="https://music.163.com/outchain/player?type=2&id="+MusicLists[musicIndex]+"&auto=1&height=66";
+    var frame=document.getElementById("music");
+    var player=document.getElementsByName('player');
+    console.log(player);
+    frame.src=musicUrl;
+  }
+</script>
+
+
+
+
+
+
+<script>
+  (function () {
+    var $mainmenu = $('.main-menu');
+    var path = window.location.pathname;
+    $mainmenu.find('a[href="' + path + '"]').each(function (i, e) {
+      $(e).children('p').addClass('active');
+    });
+  })();
+  
+  (function (){
+    var title=document.getElementById('title-href');
+    var music=document.getElementById('music');
+    var button=document.getElementById('music-button');
+    var width=window.innerWidth;
+    var height=window.innerHeight;
+    if (width<420||height<820){
+      title.innerText='Rainy-Heights'
+      button.innerText='';
+      music.style.width=0;
+      music.style.height=0;
+      button.style.height=0;
+      button.style.height=0;
+      var child = document.getElementById('music-div');
+      var father = document.getElementById('top-menu');
+      father.removeChild(child)
+      father.removeChild(button)
+    }
+  })();
+</script>
+
+
+  </div>
+</div>
+<script>
+  window.addEventListener('scroll', function (e) {
+    var scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    var background_blur = document.getElementById('menu-blur');
+    background_blur.style.opacity = (scroll / 300);
+  });
+</script>
+
+  
+  <div class="relative flex flex-col grow">
+    <main id="main-content" class="grow">
+      
+
+
+<article>
+  
+  
+  
+  
+  
+  
+
+
+<div id="hero" class="h-[150px] md:h-[200px]"></div>
+
+
+    
+    <div class="fixed inset-x-0 top-0 h-[800px] single_hero_background nozoom"
+    style="background-image:url(/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/%E5%B9%B6%E5%8F%91/featured_hu3e7e74c96e2302dbb7efe3ef6dc6d535_112382_1200x0_resize_box_3.png);">
+    
+
+
+    <div class="absolute inset-0 bg-gradient-to-t from-neutral dark:from-neutral-800 to-transparent mix-blend-normal">
+    </div>
+    <div
+        class="absolute inset-0 opacity-60 bg-gradient-to-t from-neutral dark:from-neutral-800 to-neutral-100 dark:to-neutral-800 mix-blend-normal">
+    </div>
+</div>
+
+<div id="background-blur" class="fixed opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl"></div>
+<script>
+    window.addEventListener('scroll', function (e) {
+        var scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        var background_blur = document.getElementById('background-blur');
+        background_blur.style.opacity = (scroll / 300)
+    });
+</script>
+
+  
+  
+
+  <header id="single_header" class="mt-5 max-w-prose">
+    
+    <ol class="text-sm text-neutral-500 dark:text-neutral-400 print:hidden">
+  
+  
+    
+  
+    
+  
+  <li class="inline hidden">
+    <a
+      class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
+      href="/"
+      ></a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+  
+  <li class="inline ">
+    <a
+      class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
+      href="/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"
+      >编程语言s</a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+  
+  <li class="inline hidden">
+    <a
+      class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
+      href="/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/%E5%B9%B6%E5%8F%91/"
+      >Java-Concurrent</a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+</ol>
+
+
+    
+    <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral" style="font-family: 华文中宋,serif">
+      Java-Concurrent
+    </h1>
+    <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+      
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2023-10-09 19:49:34 &#43;0800 CST">9 October 2023</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">3 分钟</span>
+  
+
+  
+  
+</div>
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    并发编程
+  </span>
+</span>
+  </span>
+  
+  
+  
+  
+</div>
+
+
+
+
+    </div>
+
+    
+    
+    
+    
+    
+
+    
+    
+    
+<div class="flex author">
+  
+  
+  
+  
+  
+  
+  <img class="!mt-0 !mb-0 h-24 w-24 rounded-full ltr:mr-4 rtl:ml-4" width="96" height="96"
+    alt="春江花朝秋月夜" src="/img/%E4%B8%89%E5%8F%B6_huefd8a5d2e6c0b8ff3aa6580d0e50af5a_1328716_192x192_fill_box_center_3.png" />
+  
+  
+  <div class="place-self-center">
+    
+    <div class="text-[0.6rem] uppercase leading-3 text-neutral-500 dark:text-neutral-400">
+      作者
+    </div>
+    <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
+      春江花朝秋月夜
+    </div>
+    
+    
+    <div class="text-sm text-neutral-700 dark:text-neutral-400">重湖叠𪩘清嘉。有三秋桂子，十里荷花。羌管弄晴，菱歌泛夜，嬉嬉钓叟莲娃。千骑拥高牙。乘醉听箫鼓，吟赏烟霞。异日图将好景，归去凤池夸。</div>
+    
+    <div class="text-2xl sm:text-lg">
+  <div class="flex flex-wrap text-neutral-400 dark:text-neutral-500">
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://space.bilibili.com/159283119?spm_id_from=333.1007.0.0"
+          target="_blank"
+          aria-label="Bilibili"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1699377062375" class="icon" viewBox="0 0 1129 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4167" xmlns:xlink="http://www.w3.org/1999/xlink" width="220.5078125" height="200"><path d="M234.909 9.656a80.468 80.468 0 0 1 68.398 0 167.374 167.374 0 0 1 41.843 30.578l160.937 140.82h115.07l160.936-140.82a168.983 168.983 0 0 1 41.843-30.578A80.468 80.468 0 0 1 930.96 76.445a80.468 80.468 0 0 1-17.703 53.914 449.818 449.818 0 0 1-35.406 32.187 232.553 232.553 0 0 1-22.531 18.508h100.585a170.593 170.593 0 0 1 118.289 53.109 171.397 171.397 0 0 1 53.914 118.288v462.693a325.897 325.897 0 0 1-4.024 70.007 178.64 178.64 0 0 1-80.468 112.656 173.007 173.007 0 0 1-92.539 25.75h-738.7a341.186 341.186 0 0 1-72.421-4.024A177.835 177.835 0 0 1 28.91 939.065a172.202 172.202 0 0 1-27.36-92.539V388.662a360.498 360.498 0 0 1 0-66.789A177.03 177.03 0 0 1 162.487 178.64h105.414c-16.899-12.07-31.383-26.555-46.672-39.43a80.468 80.468 0 0 1-25.75-65.984 80.468 80.468 0 0 1 39.43-63.57M216.4 321.873a80.468 80.468 0 0 0-63.57 57.937 108.632 108.632 0 0 0 0 30.578v380.615a80.468 80.468 0 0 0 55.523 80.469 106.218 106.218 0 0 0 34.601 5.632h654.208a80.468 80.468 0 0 0 76.444-47.476 112.656 112.656 0 0 0 8.047-53.109v-354.06a135.187 135.187 0 0 0 0-38.625 80.468 80.468 0 0 0-52.304-54.719 129.554 129.554 0 0 0-49.89-7.242H254.22a268.764 268.764 0 0 0-37.82 0z m0 0" fill="#20B0E3" p-id="4168"></path><path d="M348.369 447.404a80.468 80.468 0 0 1 55.523 18.507 80.468 80.468 0 0 1 28.164 59.547v80.468a80.468 80.468 0 0 1-16.094 51.5 80.468 80.468 0 0 1-131.968-9.656 104.609 104.609 0 0 1-10.46-54.719v-80.468a80.468 80.468 0 0 1 70.007-67.593z m416.02 0a80.468 80.468 0 0 1 86.102 75.64v80.468a94.148 94.148 0 0 1-12.07 53.11 80.468 80.468 0 0 1-132.773 0 95.757 95.757 0 0 1-12.875-57.133V519.02a80.468 80.468 0 0 1 70.007-70.812z m0 0" fill="#20B0E3" p-id="4169"></path></svg>
+  </span>
+
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://github.com/ToDreamr"
+          target="_blank"
+          aria-label="Github"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+
+  </span>
+
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://music.163.com/#/user/home?id=568083850"
+          target="_blank"
+          aria-label="Wangyi"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1707154946293" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2586" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><path d="M0 0m184.32 0l655.36 0q184.32 0 184.32 184.32l0 655.36q0 184.32-184.32 184.32l-655.36 0q-184.32 0-184.32-184.32l0-655.36q0-184.32 184.32-184.32Z" fill="#EA3E3C" p-id="2587"></path><path d="M527.616 849.43872a373.6064 373.6064 0 0 1-162.54976-39.00416c-112.36352-55.16288-180.00896-176.29184-172.55424-308.67456 7.41376-130.34496 85.10464-237.4656 202.752-279.552a35.85024 35.85024 0 0 1 24.15616 67.51232c-107.66336 38.49216-150.81472 136.86784-155.29984 216.13568-5.86752 103.51616 46.08 197.79584 132.34176 240.13824 124.69248 60.30336 216.91392 22.35392 260.82304-5.64224 59.8016-38.16448 97.86368-100.01408 96.95232-157.55264-1.024-63.72352-24.064-120.99584-63.27296-157.14304a145.408 145.408 0 0 0-65.5872-35.28704q2.82624 9.76896 5.64224 19.32288c13.38368 45.63968 24.94464 85.05344 25.6 114.40128a134.26688 134.26688 0 0 1-37.69344 97.76128 139.1104 139.1104 0 0 1-100.6592 40.45824 140.10368 140.10368 0 0 1-100.47488-42.24 169.12384 169.12384 0 0 1-46.2848-122.76736c1.19808-85.12512 80.11776-153.28256 162.816-175.104a324.80256 324.80256 0 0 1-6.71744-67.05152 92.0576 92.0576 0 0 1 69.18144-91.81184c46.21312-12.53376 104.448 5.19168 124.66176 37.888a35.84 35.84 0 0 1-11.70432 49.31584 35.84 35.84 0 0 1-49.26464-11.65312 62.34112 62.34112 0 0 0-48.45568-5.21216c-4.32128 1.71008-12.35968 4.90496-12.76928 23.10144a270.87872 270.87872 0 0 0 6.73792 58.51136 217.4976 217.4976 0 0 1 133.56032 57.6512c53.57568 49.38752 85.0432 125.46048 86.35392 208.71168 1.29024 81.85856-49.7664 167.86432-130.048 219.136a310.14912 310.14912 0 0 1-168.2432 48.65024z m23.6544-457.55392c-56.77056 15.6672-107.4688 63.03744-108.07296 106.42432a98.304 98.304 0 0 0 25.6512 71.43424 68.0448 68.0448 0 0 0 49.36704 20.87936 67.24608 67.24608 0 0 0 49.44896-18.944 63.19104 63.19104 0 0 0 17.23392-46.08c-0.4096-19.79392-11.7248-58.368-22.67136-95.6928-3.61472-12.42112-7.35232-25.14944-10.9568-38.02112z" fill="#FFFFFF" p-id="2588"></path></svg>
+  </span>
+
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://gitee.com/rainyheights"
+          target="_blank"
+          aria-label="Gitee"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1707288792446" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="6333" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><path d="M512 1024C230.4 1024 0 793.6 0 512S230.4 0 512 0s512 230.4 512 512-230.4 512-512 512z m259.2-569.6H480c-12.8 0-25.6 12.8-25.6 25.6v64c0 12.8 12.8 25.6 25.6 25.6h176c12.8 0 25.6 12.8 25.6 25.6V608c0 41.6-35.2 76.8-76.8 76.8h-240c-12.8 0-25.6-12.8-25.6-25.6V416c0-41.6 35.2-76.8 76.8-76.8h355.2c12.8 0 25.6-12.8 25.6-25.6v-64c0-12.8-12.8-25.6-25.6-25.6H416c-105.6 0-188.8 86.4-188.8 188.8V768c0 12.8 12.8 25.6 25.6 25.6h374.4c92.8 0 169.6-76.8 169.6-169.6V480c0-12.8-12.8-25.6-25.6-25.6z" fill="#888888" p-id="6334"></path></svg>
+  </span>
+
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://www.zhihu.com/people/san-qiu-luo-yue"
+          target="_blank"
+          aria-label="Zhihu"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1707288662942" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5244" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><path d="M564.7 230.1V803h60l25.2 71.4L756.3 803h131.5V230.1H564.7z m247.7 497h-59.9l-75.1 50.4-17.8-50.4h-18V308.3h170.7v418.8zM526.1 486.9H393.3c2.1-44.9 4.3-104.3 6.6-172.9h130.9l-0.1-8.1c0-0.6-0.2-14.7-2.3-29.1-2.1-15-6.6-34.9-21-34.9H287.8c4.4-20.6 15.7-69.7 29.4-93.8l6.4-11.2-12.9-0.7c-0.8 0-19.6-0.9-41.4 10.6-35.7 19-51.7 56.4-58.7 84.4-18.4 73.1-44.6 123.9-55.7 145.6-3.3 6.4-5.3 10.2-6.2 12.8-1.8 4.9-0.8 9.8 2.8 13 10.5 9.5 38.2-2.9 38.5-3 0.6-0.3 1.3-0.6 2.2-1 13.9-6.3 55.1-25 69.8-84.5h56.7c0.7 32.2 3.1 138.4 2.9 172.9h-141l-2.1 1.5c-23.1 16.9-30.5 63.2-30.8 65.2l-1.4 9.2h167c-12.3 78.3-26.5 113.4-34 127.4-3.7 7-7.3 14-10.7 20.8-21.3 42.2-43.4 85.8-126.3 153.6-3.6 2.8-7 8-4.8 13.7 2.4 6.3 9.3 9.1 24.6 9.1 5.4 0 11.8-0.3 19.4-1 49.9-4.4 100.8-18 135.1-87.6 17-35.1 31.7-71.7 43.9-108.9L497 850l5-12c0.8-1.9 19-46.3 5.1-95.9l-0.5-1.8-108.1-123-22 16.6c6.4-26.1 10.6-49.9 12.5-71.1h158.7v-8c0-40.1-18.5-63.9-19.2-64.9l-2.4-3z" fill="#1296DB" p-id="5245"></path></svg>
+  </span>
+
+</span></a
+        >
+      
+    
+  </div>
+
+</div>
+  </div>
+</div>
+    
+
+    
+
+    
+
+    
+    <div class="mb-5"></div>
+    
+
+  </header>
+
+  
+  
+  <div  class="meta-item">&nbsp·&nbsp
+    <span id="busuanzi_container_page_pv">页面点击量:<span id="busuanzi_value_page_pv"></span>次</span>
+  </div>
+
+
+  <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row" style="font-family: 华文中宋,serif">
+
+    
+    <div style="width: 28%" class="order-first lg:ml-auto px-0 lg:order-last ltr:lg:pl-8 rtl:lg:pr-8">
+    <div class="toc ltr:pl-5 rtl:pr-5 print:hidden lg:sticky lg:top-[140px]">
+
+     <details open class="toc-right mt-0 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 hidden lg:block">
+  <summary
+    class="block py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    
+  </summary>
+  <div
+    class="min-w-[220px] py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#java-并发编程">Java 并发编程</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#轻量级锁">轻量级锁：</a></li>
+            <li><a href="#cas无锁算法">CAS（无锁算法）</a></li>
+            <li><a href="#偏向锁">偏向锁</a></li>
+            <li><a href="#锁消除和锁优化">锁消除和锁优化</a></li>
+          </ul>
+        </li>
+        <li><a href="#java内存模型jmm">Java内存模型（JMM）</a>
+          <ul>
+            <li><a href="#重排序">重排序</a></li>
+            <li><a href="#volatile关键字无法保证原子性但能保证可见性">volatile关键字（无法保证原子性，但能保证可见性）</a></li>
+            <li><a href="#happens-before-原则之前的对之后的可见">Happens Before 原则（之前的对之后的可见）</a>
+              <ul>
+                <li><a href="#start线程启动规则">start(线程启动规则)</a></li>
+                <li><a href="#join线程加入规则">join线程加入规则</a></li>
+                <li><a href="#程和线程的区别">程和线程的区别</a></li>
+              </ul>
+            </li>
+            <li><a href="#锁的框lock">锁的框：Lock</a></li>
+          </ul>
+        </li>
+        <li><a href="#可重入锁排他锁">可重入锁（排他锁）</a>
+          <ul>
+            <li><a href="#公平锁和非公平锁aqs">公平锁和非公平锁（AQS）</a></li>
+            <li><a href="#读写锁">读写锁：</a></li>
+            <li><a href="#队列同步器aqsabstractqueuedsynchronizer">队列同步器AQS（AbstractQueuedSynchronizer）</a></li>
+            <li><a href="#多线程并发环境下的aba问题">多线程并发环境下的ABA问题</a></li>
+          </ul>
+        </li>
+        <li><a href="#并发容器">并发容器</a>
+          <ul>
+            <li><a href="#阻塞队列blokingqueue">阻塞队列（BlokingQueue）</a>
+              <ul>
+                <li><a href="#synchronousqueue没有任何容量插入和取出是一一对应的">SynchronousQueue(没有任何容量，插入和取出是一一对应的)</a>
+                  <ul>
+                    <li><a href="#priorityblockingqueue优先队列">PriorityBlockingQueue优先队列</a></li>
+                  </ul>
+                </li>
+                <li><a href="#delayqueue延时队列">DelayQueue延时队列</a></li>
+                <li><a href="#主要常见的阻塞队列总结如下">主要常见的阻塞队列总结如下：</a></li>
+              </ul>
+            </li>
+            <li><a href="#数据字典">数据字典</a></li>
+            <li><a href="#线程池">线程池</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</details>
+<details class="toc-inside mt-0 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 lg:hidden">
+  <summary
+    class="py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    
+  </summary>
+  <div
+    class="py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#java-并发编程">Java 并发编程</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#轻量级锁">轻量级锁：</a></li>
+            <li><a href="#cas无锁算法">CAS（无锁算法）</a></li>
+            <li><a href="#偏向锁">偏向锁</a></li>
+            <li><a href="#锁消除和锁优化">锁消除和锁优化</a></li>
+          </ul>
+        </li>
+        <li><a href="#java内存模型jmm">Java内存模型（JMM）</a>
+          <ul>
+            <li><a href="#重排序">重排序</a></li>
+            <li><a href="#volatile关键字无法保证原子性但能保证可见性">volatile关键字（无法保证原子性，但能保证可见性）</a></li>
+            <li><a href="#happens-before-原则之前的对之后的可见">Happens Before 原则（之前的对之后的可见）</a>
+              <ul>
+                <li><a href="#start线程启动规则">start(线程启动规则)</a></li>
+                <li><a href="#join线程加入规则">join线程加入规则</a></li>
+                <li><a href="#程和线程的区别">程和线程的区别</a></li>
+              </ul>
+            </li>
+            <li><a href="#锁的框lock">锁的框：Lock</a></li>
+          </ul>
+        </li>
+        <li><a href="#可重入锁排他锁">可重入锁（排他锁）</a>
+          <ul>
+            <li><a href="#公平锁和非公平锁aqs">公平锁和非公平锁（AQS）</a></li>
+            <li><a href="#读写锁">读写锁：</a></li>
+            <li><a href="#队列同步器aqsabstractqueuedsynchronizer">队列同步器AQS（AbstractQueuedSynchronizer）</a></li>
+            <li><a href="#多线程并发环境下的aba问题">多线程并发环境下的ABA问题</a></li>
+          </ul>
+        </li>
+        <li><a href="#并发容器">并发容器</a>
+          <ul>
+            <li><a href="#阻塞队列blokingqueue">阻塞队列（BlokingQueue）</a>
+              <ul>
+                <li><a href="#synchronousqueue没有任何容量插入和取出是一一对应的">SynchronousQueue(没有任何容量，插入和取出是一一对应的)</a>
+                  <ul>
+                    <li><a href="#priorityblockingqueue优先队列">PriorityBlockingQueue优先队列</a></li>
+                  </ul>
+                </li>
+                <li><a href="#delayqueue延时队列">DelayQueue延时队列</a></li>
+                <li><a href="#主要常见的阻塞队列总结如下">主要常见的阻塞队列总结如下：</a></li>
+              </ul>
+            </li>
+            <li><a href="#数据字典">数据字典</a></li>
+            <li><a href="#线程池">线程池</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</details>
+
+ 
+<script>
+  (function () {
+    var $toc = $('#TableOfContents');
+    if ($toc.length > 0) {
+      var $window = $(window);
+
+      function onScroll() {
+        var currentScroll = $window.scrollTop();
+        var h = $('.anchor');
+        var id = "";
+        h.each(function (i, e) {
+          e = $(e);
+          if (e.offset().top - $(window).height()/3 <= currentScroll) {
+            id = e.attr('id');
+          }
+        });
+        var active = $toc.find('a.active');      
+        if (active.length == 1 && active.eq(0).attr('href') == '#' + id) return true;
+
+        active.each(function (i, e) {
+          
+            $(e).removeClass('active');
+          
+        });
+        $toc.find('a[href="#' + id + '"]').addClass('active')
+        $toc.find('a[href="#' + id + '"]').parentsUntil('#TableOfContents').each(function (i, e) {
+          $(e).children('a').parents('ul').show();          
+        });
+      }
+
+      $window.on('scroll', onScroll);
+      $(document).ready(function () {
+        
+        onScroll();
+      });
+    }
+  })();
+</script>
+  
+    </div>
+    </div>
+    
+
+
+    <div class="min-w-0 min-h-0 max-w-fit" style="width: 100%">
+      
+
+
+      <div class="article-content max-w-prose mb-20">
+        <h1 class="relative group">Java 并发编程 
+    <div id="java-并发编程" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#java-%e5%b9%b6%e5%8f%91%e7%bc%96%e7%a8%8b" aria-label="锚点">#</a>
+    </span>        
+    
+</h1>
+<h3 class="relative group">轻量级锁： 
+    <div id="轻量级锁" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e8%bd%bb%e9%87%8f%e7%ba%a7%e9%94%81" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>检查当前对象的mark word是否有被其他线程占用，假如没有就会在当前栈帧里面建立一个
+锁记录，复制并存储当前对象的mark word 信息。</p>
+<p>不像重量级锁需要向系统申请互斥量，</p>
+<h3 class="relative group">CAS（无锁算法） 
+    <div id="cas无锁算法" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#cas%e6%97%a0%e9%94%81%e7%ae%97%e6%b3%95" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/%E5%B9%B6%E5%8F%91/juc/img_3_hu4f600960aa6b835bf1bd641eac7eacc9_124361_330x0_resize_box_3.png 330w,
+        /%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/%E5%B9%B6%E5%8F%91/juc/img_3_hu4f600960aa6b835bf1bd641eac7eacc9_124361_660x0_resize_box_3.png 660w,
+        /%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/%E5%B9%B6%E5%8F%91/juc/img_3_hu4f600960aa6b835bf1bd641eac7eacc9_124361_1024x0_resize_box_3.png 1024w,
+        /%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/%E5%B9%B6%E5%8F%91/juc/img_3_hu4f600960aa6b835bf1bd641eac7eacc9_124361_1320x0_resize_box_3.png 2x"
+        src="/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/%E5%B9%B6%E5%8F%91/juc/img_3_hu4f600960aa6b835bf1bd641eac7eacc9_124361_660x0_resize_box_3.png"
+        alt="img_3.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>显然，当cas失败的时候，说明有线程进入了这个同步代码块，这个时候，虚拟机将会检查
+当前对象的mark word是否指向当前对象的栈帧，是的话就说明当前已经获得锁，否则不是-》退化为重量级锁(不可逆)
+解锁时，同样使用CAS算法操作，同时唤醒挂起的线程</p>
+<h3 class="relative group">偏向锁 
+    <div id="偏向锁" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e5%81%8f%e5%90%91%e9%94%81" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>当某个锁频繁的被同一个线程获取，对轻量级锁进行优化，所以偏向锁专门为单个线程服务，此时，无须再进行CAS操作，当其他线程
+又开始抢锁，偏向锁可能退化为轻量级锁。注意当调用对象的hashCode（）方法，由于mark word 数据结构无法
+保存hash值，偏向锁直接退化为轻量级锁。</p>
+<p><b> 锁的退化不可逆</b></p>
+<h3 class="relative group">锁消除和锁优化 
+    <div id="锁消除和锁优化" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e9%94%81%e6%b6%88%e9%99%a4%e5%92%8c%e9%94%81%e4%bc%98%e5%8c%96" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>代码块中有可能不会总是出现请求锁和释放锁的问题，（比如循环中加锁），此时锁为了优化出现锁消除和锁优化</p>
+<h2 class="relative group">Java内存模型（JMM） 
+    <div id="java内存模型jmm" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#java%e5%86%85%e5%ad%98%e6%a8%a1%e5%9e%8bjmm" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/%E5%B9%B6%E5%8F%91/juc/img_6_hu04a7c9d9a95ff24a7656eedbba5cd5cf_430272_330x0_resize_box_3.png 330w,
+        /%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/%E5%B9%B6%E5%8F%91/juc/img_6_hu04a7c9d9a95ff24a7656eedbba5cd5cf_430272_660x0_resize_box_3.png 660w,
+        /%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/%E5%B9%B6%E5%8F%91/juc/img_6_hu04a7c9d9a95ff24a7656eedbba5cd5cf_430272_1024x0_resize_box_3.png 1024w,
+        /%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/%E5%B9%B6%E5%8F%91/juc/img_6_hu04a7c9d9a95ff24a7656eedbba5cd5cf_430272_1320x0_resize_box_3.png 2x"
+        src="/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/%E5%B9%B6%E5%8F%91/juc/img_6_hu04a7c9d9a95ff24a7656eedbba5cd5cf_430272_660x0_resize_box_3.png"
+        alt="img_6.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>主内存： 存放对象实例的部分
+工作内存：虚拟机栈的部分，放入cpu的高速缓存里面。 自增操作不是由一个指令实现的！！！包括获取，修改和保存</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Test</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">private</span> <span class="kd">static</span> <span class="kd">volatile</span> <span class="kt">int</span> <span class="n">sum</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="c1">//成员变量,这样的变量必须是当前的对象所拥有的
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">//加入了volatile关键字之后，线程之间可以感知彼此的值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">void</span> <span class="nf">LockTestAdd</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">InterruptedException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//没有加锁的时候，由于线程之间不能感知对方的值，最终结构可能不会是200
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Thread</span> <span class="n">th1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sum</span><span class="o">++;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">Thread</span> <span class="n">th2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sum</span><span class="o">++;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">});</span>
+</span></span><span class="line"><span class="cl">    <span class="n">th1</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">th2</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">100</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">sum</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><h3 class="relative group">重排序 
+    <div id="重排序" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e9%87%8d%e6%8e%92%e5%ba%8f" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>由于JVM虚拟机和编译器的优化，指令可能出现重排序，在这种情况下可能出现不符合预期的情况</p>
+<h3 class="relative group">volatile关键字（无法保证原子性，但能保证可见性） 
+    <div id="volatile关键字无法保证原子性但能保证可见性" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#volatile%e5%85%b3%e9%94%ae%e5%ad%97%e6%97%a0%e6%b3%95%e4%bf%9d%e8%af%81%e5%8e%9f%e5%ad%90%e6%80%a7%e4%bd%86%e8%83%bd%e4%bf%9d%e8%af%81%e5%8f%af%e8%a7%81%e6%80%a7" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/%E5%B9%B6%E5%8F%91/juc/img_7_hu77df02dbbc1bd33e2b12b2440022cf8f_127736_330x0_resize_box_3.png 330w,
+        /%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/%E5%B9%B6%E5%8F%91/juc/img_7_hu77df02dbbc1bd33e2b12b2440022cf8f_127736_660x0_resize_box_3.png 660w,
+        /%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/%E5%B9%B6%E5%8F%91/juc/img_7_hu77df02dbbc1bd33e2b12b2440022cf8f_127736_1024x0_resize_box_3.png 1024w,
+        /%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/%E5%B9%B6%E5%8F%91/juc/img_7_hu77df02dbbc1bd33e2b12b2440022cf8f_127736_1320x0_resize_box_3.png 2x"
+        src="/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/%E5%B9%B6%E5%8F%91/juc/img_7_hu77df02dbbc1bd33e2b12b2440022cf8f_127736_660x0_resize_box_3.png"
+        alt="img_7.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>load和save操作，将主内存中的变量拷贝到本地，只对本地变量进行操作。</p>
+<p>volatile实现原理就是改变成员变量时，save的工作区的变量无效。重新更新主内存中的变量值，
+volatile关键字会禁止指令重排序。</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/%E5%B9%B6%E5%8F%91/juc/img_8_hud178044b2cbe1bce928b1592eaea9efc_310999_330x0_resize_box_3.png 330w,
+        /%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/%E5%B9%B6%E5%8F%91/juc/img_8_hud178044b2cbe1bce928b1592eaea9efc_310999_660x0_resize_box_3.png 660w,
+        /%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/%E5%B9%B6%E5%8F%91/juc/img_8_hud178044b2cbe1bce928b1592eaea9efc_310999_1024x0_resize_box_3.png 1024w,
+        /%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/%E5%B9%B6%E5%8F%91/juc/img_8_hud178044b2cbe1bce928b1592eaea9efc_310999_1320x0_resize_box_3.png 2x"
+        src="/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/%E5%B9%B6%E5%8F%91/juc/img_8_hud178044b2cbe1bce928b1592eaea9efc_310999_660x0_resize_box_3.png"
+        alt="img_8.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">VolatileTest</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="kd">private</span> <span class="kd">static</span> <span class="kd">volatile</span> <span class="kt">int</span> <span class="n">sum</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="c1">//成员变量,这样的变量必须是当前的对象所拥有的
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//加入了volatile关键字之后，线程之间可以感知彼此的值,但还是无法保证原子性操作，不能达到预期效果
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">LockTestAdd</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">InterruptedException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//没有加锁的时候，由于线程之间不能感知对方的值，最终结构可能不会是200
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">Thread</span> <span class="n">th1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">sum</span><span class="o">++;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">});</span>
+</span></span><span class="line"><span class="cl">       <span class="n">Thread</span> <span class="n">th2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">sum</span><span class="o">++;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">});</span>
+</span></span><span class="line"><span class="cl">        <span class="n">th1</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">th2</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">100</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">sum</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>JVM编译器下面的顺序执行：</p>
+<h3 class="relative group">Happens Before 原则（之前的对之后的可见） 
+    <div id="happens-before-原则之前的对之后的可见" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#happens-before-%e5%8e%9f%e5%88%99%e4%b9%8b%e5%89%8d%e7%9a%84%e5%af%b9%e4%b9%8b%e5%90%8e%e7%9a%84%e5%8f%af%e8%a7%81" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>程序次序规则，监视器锁原则，volatile关键字原则（写操作在读操作之前），</p>
+<h4 class="relative group">start(线程启动规则) 
+    <div id="start线程启动规则" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#start%e7%ba%bf%e7%a8%8b%e5%90%af%e5%8a%a8%e8%a7%84%e5%88%99" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>A线程用start调用B线程，那么A在B之前（A happens before B）</p>
+<h4 class="relative group">join线程加入规则 
+    <div id="join线程加入规则" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#join%e7%ba%bf%e7%a8%8b%e5%8a%a0%e5%85%a5%e8%a7%84%e5%88%99" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>A线程join线程B，那么B在A之前（B happens before A）</p>
+<h4 class="relative group">程和线程的区别 
+    <div id="程和线程的区别" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e7%a8%8b%e5%92%8c%e7%ba%bf%e7%a8%8b%e7%9a%84%e5%8c%ba%e5%88%ab" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>程序软件 &gt; 进程 &gt; 线程</p>
+<h3 class="relative group">锁的框：Lock 
+    <div id="锁的框lock" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e9%94%81%e7%9a%84%e6%a1%86lock" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>为了代替传统的synchronized,notify,wait,notifyAll关键字，Lock接口-&gt;ReentrantLock可重入锁</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/%E5%B9%B6%E5%8F%91/juc/img_9_huae739811f45702620da350639875e27e_408850_330x0_resize_box_3.png 330w,
+        /%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/%E5%B9%B6%E5%8F%91/juc/img_9_huae739811f45702620da350639875e27e_408850_660x0_resize_box_3.png 660w,
+        /%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/%E5%B9%B6%E5%8F%91/juc/img_9_huae739811f45702620da350639875e27e_408850_1024x0_resize_box_3.png 1024w,
+        /%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/%E5%B9%B6%E5%8F%91/juc/img_9_huae739811f45702620da350639875e27e_408850_1320x0_resize_box_3.png 2x"
+        src="/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/%E5%B9%B6%E5%8F%91/juc/img_9_huae739811f45702620da350639875e27e_408850_660x0_resize_box_3.png"
+        alt="img_9.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<h2 class="relative group">可重入锁（排他锁） 
+    <div id="可重入锁排他锁" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e5%8f%af%e9%87%8d%e5%85%a5%e9%94%81%e6%8e%92%e4%bb%96%e9%94%81" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<p>多次加锁，其他线程想要得到锁需要把多次的锁释放才可以获取这把锁</p>
+<p>当存在线程想要获取锁但是锁没有释放的时候，此时这些线程将会进入线程队列里面</p>
+<h3 class="relative group">公平锁和非公平锁（AQS） 
+    <div id="公平锁和非公平锁aqs" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e5%85%ac%e5%b9%b3%e9%94%81%e5%92%8c%e9%9d%9e%e5%85%ac%e5%b9%b3%e9%94%81aqs" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/%E5%B9%B6%E5%8F%91/juc/img_10_hu3bba01abc2c2a1bc9def90b697ae9bb1_149575_330x0_resize_box_3.png 330w,
+        /%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/%E5%B9%B6%E5%8F%91/juc/img_10_hu3bba01abc2c2a1bc9def90b697ae9bb1_149575_660x0_resize_box_3.png 660w,
+        /%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/%E5%B9%B6%E5%8F%91/juc/img_10_hu3bba01abc2c2a1bc9def90b697ae9bb1_149575_1024x0_resize_box_3.png 1024w,
+        /%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/%E5%B9%B6%E5%8F%91/juc/img_10_hu3bba01abc2c2a1bc9def90b697ae9bb1_149575_1320x0_resize_box_3.png 2x"
+        src="/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/%E5%B9%B6%E5%8F%91/juc/img_10_hu3bba01abc2c2a1bc9def90b697ae9bb1_149575_660x0_resize_box_3.png"
+        alt="img_10.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>公平锁始终保持先到先得到锁，非公平锁则是在等待队列中所有等待线程同时尝试获取锁，获取不到则再次进入等待队列</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">ReentrantLock lock=new ReentrantLock(false);//公平锁不一定总是保持公平。队列同步器
+</span></span><span class="line"><span class="cl">        Runnable runnable=()-&gt;{
+</span></span><span class="line"><span class="cl">            System.out.println(Thread.currentThread().getName() + &#34;开始尝试获取锁资源&#34;);
+</span></span><span class="line"><span class="cl">            lock.lock();
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            System.out.println(Thread.currentThread().getName() + &#34;成功😺😺😺😺😺😺😺😺😺获取锁资源&#34;);
+</span></span><span class="line"><span class="cl">            lock.unlock();
+</span></span><span class="line"><span class="cl">        };
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        for (int i = 0; i &lt; 10; i++) {
+</span></span><span class="line"><span class="cl">            new Thread(runnable,&#34;T&#34;+i).start();
+</span></span><span class="line"><span class="cl">        }
+</span></span></code></pre></div><h3 class="relative group">读写锁： 
+    <div id="读写锁" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e8%af%bb%e5%86%99%e9%94%81" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<blockquote>
+<p>除了可重入锁之外，还有一种类型的锁叫做读写锁，当然它并不是专门用作读写操作的锁，
+它和可重入锁不同的地方在于，可重入锁是一种排他锁，当一个线程得到锁之后，另一个线程必须等待其释放锁，否则一律不允许获取到锁。而读写锁在同一时间，是可以让多个线程获取到锁的，它其实就是针对于读写场景而出现的。</p>
+<p>读写锁维护了一个读锁和一个写锁，这两个锁的机制是不同的。</p>
+<p>读锁：在没有任何线程占用写锁的情况下，同一时间可以有多个线程加读锁。</p>
+<p>写锁：在没有任何线程占用读锁的情况下，同一时间只能有一个线程加写锁。</p>
+</blockquote>
+<p>显然读锁是可以重复获取的但是写锁不能，当一个线程同时拥有写锁和读锁的时候，先申请读锁
+然后释放写锁，此时其他的线程又可以获取读锁，只剩下读锁，此时称之为“锁降级”。
+在仅仅持有读锁的时候去申请写锁，称为“锁升级”，这时候ReentryReadWriteLock类不支持。</p>
+<h3 class="relative group">队列同步器AQS（AbstractQueuedSynchronizer） 
+    <div id="队列同步器aqsabstractqueuedsynchronizer" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e9%98%9f%e5%88%97%e5%90%8c%e6%ad%a5%e5%99%a8aqsabstractqueuedsynchronizer" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>继承关系：Lock-&gt; Sync -&gt; AbstractQueuedSynchronizer</p>
+<h3 class="relative group">多线程并发环境下的ABA问题 
+    <div id="多线程并发环境下的aba问题" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e5%a4%9a%e7%ba%bf%e7%a8%8b%e5%b9%b6%e5%8f%91%e7%8e%af%e5%a2%83%e4%b8%8b%e7%9a%84aba%e9%97%ae%e9%a2%98" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//ABA问题的版本号解决方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">AtomicReference</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">atomicReference</span><span class="o">=</span><span class="k">new</span> <span class="n">AtomicReference</span><span class="o">&lt;&gt;(</span><span class="s">&#34;A&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">atomicReference</span><span class="o">.</span><span class="na">compareAndSet</span><span class="o">(</span><span class="s">&#34;a&#34;</span><span class="o">,</span> <span class="s">&#34;c&#34;</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">String</span> <span class="n">hello</span> <span class="o">=</span> <span class="s">&#34;hello&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">String</span> <span class="n">world</span> <span class="o">=</span> <span class="s">&#34;world&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">Runnable</span> <span class="n">r</span><span class="o">=()-&gt;{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">atomicReference</span><span class="o">.</span><span class="na">compareAndSet</span><span class="o">(</span><span class="s">&#34;A&#34;</span><span class="o">,</span> <span class="s">&#34;B&#34;</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="o">};</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">new</span> <span class="n">Thread</span><span class="o">(</span><span class="n">r</span><span class="o">).</span><span class="na">start</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span></code></pre></div><p>可以看到多个线程尝试去修改的时候出现了一个true</p>
+<p>解决办法：添加版本号，每次修改的时候对版本号（stamp）进行修正</p>
+<h2 class="relative group">并发容器 
+    <div id="并发容器" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e5%b9%b6%e5%8f%91%e5%ae%b9%e5%99%a8" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<p>比如在对链表添加元素的时候，还没有完成对链表扩容之前，其他线程插队，非法插入元素，就会造成数组越界的报错。</p>
+<ul>
+<li>ConcurrentHashMap:在jdk1.7之前的实现方法，比如在原子类里面实现LongAdder具有压力分散的思想，提高了性能，选择将数据一段一段的存储，这样就减少了等待，当线程访问锁的时候只占用锁的一小部分</li>
+<li>jdk8之后，实现方法是通过cas算法配合锁机制实现的。由于HashMap利用了哈希表，容量越大，加锁的粒度就会越细。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//原子类的测试操作
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">//ABA问题的版本号解决方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">CopyOnWriteArrayList</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">&gt;</span> <span class="n">objects</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CopyOnWriteArrayList</span><span class="o">&lt;&gt;();</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//读取不加锁，写数据需要加锁，所以性能还行
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">//专用于多线程环境下的容器
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;();</span><span class="c1">//没有发生并发异常
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">&gt;</span> <span class="n">list1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ConcurrentHashMap</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">map</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ConcurrentHashMap</span><span class="o">&lt;&gt;();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">hashMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Runnable</span> <span class="n">r</span><span class="o">=()-&gt;{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="kt">int</span> <span class="n">finalI</span><span class="o">=</span><span class="n">j</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">objects</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&#34;aaa&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">finalI</span><span class="o">,</span><span class="s">&#34;aaa&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">hashMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">finalI</span><span class="o">,</span><span class="s">&#34;aaa&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">};</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">new</span> <span class="n">Thread</span><span class="o">(</span><span class="n">r</span><span class="o">).</span><span class="na">start</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">TimeUnit</span><span class="o">.</span><span class="na">SECONDS</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+</span></span></code></pre></div><h3 class="relative group">阻塞队列（BlokingQueue） 
+    <div id="阻塞队列blokingqueue" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e9%98%bb%e5%a1%9e%e9%98%9f%e5%88%97blokingqueue" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>生产者消费之模型：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"> <span class="c1">//测试阻塞队列实现生产者消费者模型
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">BlockingQueue</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">&gt;</span> <span class="n">queue</span><span class="o">=</span><span class="k">new</span> <span class="n">ArrayBlockingQueue</span><span class="o">&lt;&gt;(</span><span class="mi">1</span><span class="o">);</span><span class="c1">//窗口只能放一个菜，阻塞队列的容量
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">Runnable</span> <span class="n">supplier</span><span class="o">=()-&gt;{</span>
+</span></span><span class="line"><span class="cl">          <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">              <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                  <span class="n">String</span> <span class="n">name</span> <span class="o">=</span> <span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">getName</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">                  <span class="n">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">time</span><span class="o">()+</span><span class="s">&#34;生产者&#34;</span><span class="o">+</span><span class="n">name</span><span class="o">+</span><span class="s">&#34;正在准备餐品&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                  <span class="n">TimeUnit</span><span class="o">.</span><span class="na">SECONDS</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">3</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                  <span class="n">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">time</span><span class="o">()+</span><span class="s">&#34;生产者&#34;</span><span class="o">+</span><span class="n">name</span><span class="o">+</span><span class="s">&#34;已出餐&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                  <span class="n">queue</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="k">new</span> <span class="n">Object</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">              <span class="o">}</span><span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">                  <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">                  <span class="k">break</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">              <span class="o">}</span>
+</span></span><span class="line"><span class="cl">          <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">Runnable</span> <span class="n">consumer</span><span class="o">=()-&gt;{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">                <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">String</span> <span class="n">name</span> <span class="o">=</span> <span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">getName</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">time</span><span class="o">()+</span><span class="s">&#34;消费者&#34;</span><span class="o">+</span><span class="n">name</span><span class="o">+</span><span class="s">&#34;正在等待餐品&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">queue</span><span class="o">.</span><span class="na">take</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">time</span><span class="o">()+</span><span class="s">&#34;消费者&#34;</span><span class="o">+</span><span class="n">name</span><span class="o">+</span><span class="s">&#34;已取餐&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">TimeUnit</span><span class="o">.</span><span class="na">SECONDS</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">4</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">time</span><span class="o">()+</span><span class="s">&#34;消费者&#34;</span><span class="o">+</span><span class="n">name</span><span class="o">+</span><span class="s">&#34;已吃完&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="o">}</span><span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">break</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">                <span class="o">}</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">};</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">new</span> <span class="n">Thread</span><span class="o">(</span><span class="n">supplier</span><span class="o">,</span><span class="s">&#34;supplier&#34;</span><span class="o">+</span><span class="n">i</span><span class="o">).</span><span class="na">start</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">new</span> <span class="n">Thread</span><span class="o">(</span><span class="n">consumer</span><span class="o">,</span><span class="s">&#34;consumer&#34;</span><span class="o">+</span><span class="n">i</span><span class="o">).</span><span class="na">start</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">time</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">SimpleDateFormat</span> <span class="n">format</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SimpleDateFormat</span><span class="o">(</span><span class="s">&#34;HH:mm:ss&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s">&#34;[&#34;</span><span class="o">+</span><span class="n">format</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">())+</span><span class="s">&#34;]&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></div><p>常见的阻塞队列：ArrayBlokingQueue(有界缓冲阻塞队列),SynchronousQueue(无缓冲阻塞队列),LinkedBlokingQueue(无界带缓冲阻塞队列)</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">offer</span><span class="o">(</span><span class="n">E</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Objects</span><span class="o">.</span><span class="na">requireNonNull</span><span class="o">(</span><span class="n">e</span><span class="o">);</span><span class="c1">//检查当前的队列是否为空
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kd">final</span> <span class="n">ReentrantLock</span> <span class="n">lock</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">lock</span><span class="o">;</span><span class="c1">//对当前线程加锁
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">lock</span><span class="o">.</span><span class="na">lock</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="n">count</span> <span class="o">==</span> <span class="n">items</span><span class="o">.</span><span class="na">length</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">enqueue</span><span class="o">(</span><span class="n">e</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">lock</span><span class="o">.</span><span class="na">unlock</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">E</span> <span class="nf">take</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">InterruptedException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">final</span> <span class="n">ReentrantLock</span> <span class="n">lock</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">lock</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">lock</span><span class="o">.</span><span class="na">lockInterruptibly</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">while</span> <span class="o">(</span><span class="n">count</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                <span class="n">notEmpty</span><span class="o">.</span><span class="na">await</span><span class="o">();</span><span class="c1">//当当前线程读取到队列为空时，由于take操作时阻塞的，需要挂起当前线程，等待直到队列里面有值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">return</span> <span class="n">dequeue</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">lock</span><span class="o">.</span><span class="na">unlock</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></div><h4 class="relative group">SynchronousQueue(没有任何容量，插入和取出是一一对应的) 
+    <div id="synchronousqueue没有任何容量插入和取出是一一对应的" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#synchronousqueue%e6%b2%a1%e6%9c%89%e4%bb%bb%e4%bd%95%e5%ae%b9%e9%87%8f%e6%8f%92%e5%85%a5%e5%92%8c%e5%8f%96%e5%87%ba%e6%98%af%e4%b8%80%e4%b8%80%e5%af%b9%e5%ba%94%e7%9a%84" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">SynchronousQueue</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">queue</span><span class="o">=</span><span class="k">new</span> <span class="n">SynchronousQueue</span><span class="o">&lt;&gt;();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">new</span> <span class="n">Thread</span><span class="o">(()-&gt;{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">queue</span><span class="o">.</span><span class="na">take</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">throw</span> <span class="k">new</span> <span class="n">RuntimeException</span><span class="o">(</span><span class="n">e</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}).</span><span class="na">start</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">queue</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;sss&#34;</span><span class="o">);</span>
+</span></span></code></pre></div><p>这是一个特殊的队列，内部维护了一个抽象类Transfer（put和take操作糅合在一起了），
+里面有一个方法：transfer（E e,bolean timed,long nanos）直接通过生产者和消费者模型来实现数据的传递。
+当新的元素put进去线程将会阻塞。直到元素被take。同时这个类维护了公平锁和非公平锁两种方法。</p>
+<blockquote>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/%E5%B9%B6%E5%8F%91/juc/tansfer_hufe674dbe47725539d9ec5120ba2ca444_90525_330x0_resize_box_3.png 330w,
+        /%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/%E5%B9%B6%E5%8F%91/juc/tansfer_hufe674dbe47725539d9ec5120ba2ca444_90525_660x0_resize_box_3.png 660w,
+        /%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/%E5%B9%B6%E5%8F%91/juc/tansfer_hufe674dbe47725539d9ec5120ba2ca444_90525_1024x0_resize_box_3.png 1024w,
+        /%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/%E5%B9%B6%E5%8F%91/juc/tansfer_hufe674dbe47725539d9ec5120ba2ca444_90525_1320x0_resize_box_3.png 2x"
+        src="/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/%E5%B9%B6%E5%8F%91/juc/tansfer_hufe674dbe47725539d9ec5120ba2ca444_90525_660x0_resize_box_3.png"
+        alt="image.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+</blockquote>
+<p>当当前队列里面有元素但是没有线程来取元素时候，就会开启自旋，当自旋一定次数之后还没有来取就会挂起</p>
+<h5 class="relative group">PriorityBlockingQueue优先队列 
+    <div id="priorityblockingqueue优先队列" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#priorityblockingqueue%e4%bc%98%e5%85%88%e9%98%9f%e5%88%97" aria-label="锚点">#</a>
+    </span>        
+    
+</h5>
+<p>构造方法：PriorityQueue<Integer> queue=new PriorityQueue<Integer>(10,Integer::compare);</p>
+<p>传入容量和函数逻辑（优先逻辑）</p>
+<h4 class="relative group">DelayQueue延时队列 
+    <div id="delayqueue延时队列" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#delayqueue%e5%bb%b6%e6%97%b6%e9%98%9f%e5%88%97" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>特殊地方：存储的元素必须是继承自Delayed接口的类，同时元素类必须实现Delayed接口。</p>
+<p>使用时可以实现延时出队，按照同时的时候按照优先级（自己实现）进行出队，这样就可以实现缓存了。</p>
+<p>底层实现：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">DelayQueue</span><span class="o">&lt;</span><span class="n">E</span> <span class="kd">extends</span> <span class="n">Delayed</span><span class="o">&gt;</span> <span class="kd">extends</span> <span class="n">AbstractQueue</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">implements</span> <span class="n">BlockingQueue</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="kd">transient</span> <span class="n">ReentrantLock</span> <span class="n">lock</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ReentrantLock</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="n">PriorityQueue</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">q</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PriorityQueue</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;();</span>  <span class="c1">//通过内部维护的优先队列来实现元素的存储，而不是本身进行存储
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></div><h4 class="relative group">主要常见的阻塞队列总结如下： 
+    <div id="主要常见的阻塞队列总结如下" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e4%b8%bb%e8%a6%81%e5%b8%b8%e8%a7%81%e7%9a%84%e9%98%bb%e5%a1%9e%e9%98%9f%e5%88%97%e6%80%bb%e7%bb%93%e5%a6%82%e4%b8%8b" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<ul>
+<li>ArrayBlokingQueue底层通过数组实现的阻塞队列，可以设置初始的容量，换句话容量是固定的</li>
+<li>LinkedTransferQueue</li>
+<li>SynchronousQueue要求入队和出队必须同时进行，一一对应，原因是内部维护了一个抽象类tansfer，需要等到消费者和生产者同时到齐才可以完成交接工作，支持公平和非公平</li>
+<li>PriorityBlokingQueue优先队列，元素的获取顺序按照优先级决定</li>
+<li>DelayQueue能够实现延迟获取元素，同样支持优先级，要求加入的元素必须继承Delayed接口</li>
+</ul>
+<h3 class="relative group">数据字典 
+    <div id="数据字典" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e6%95%b0%e6%8d%ae%e5%ad%97%e5%85%b8" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>常见的常用的数据，具有分级的特点，现在将比如省份县市地点的信息维护成一张表就可以是实现
+据字典，通常具有id，parent_id这些字段，维护父级和子级的关系。</p>
+<p>关于ElementUi的数据字典的显示方法就是检查hasChildren字段的值进行渲染</p>
+<h3 class="relative group">线程池 
+    <div id="线程池" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e7%ba%bf%e7%a8%8b%e6%b1%a0" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>引入原因：频繁创建和销毁线程对系统资源的浪费十分严重，为了合理分配和调用系统资源，产生了线程池的技术</p>
+<p>实现原理：将已创建的线程复用，利用池化技术，就像数据库连接池一样，我们也可以创建很多个线程，然后反复地使用这些线程，而不对它们进行销毁。</p>
+<p>由于线程池可以反复利用已有线程执行多线程操作，所以它一般是有容量限制的，当所有的线程都处于工作状态时，那么新的多线程请求会被阻塞，直到有一个线程空闲出来为止，实际上这里就会用到我们之前讲解的阻塞队列。</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/%E5%B9%B6%E5%8F%91/juc/ThreadPool_hu20338508153ddd21c388bd938aa59125_93540_330x0_resize_box_3.png 330w,
+        /%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/%E5%B9%B6%E5%8F%91/juc/ThreadPool_hu20338508153ddd21c388bd938aa59125_93540_660x0_resize_box_3.png 660w,
+        /%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/%E5%B9%B6%E5%8F%91/juc/ThreadPool_hu20338508153ddd21c388bd938aa59125_93540_1024x0_resize_box_3.png 1024w,
+        /%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/%E5%B9%B6%E5%8F%91/juc/ThreadPool_hu20338508153ddd21c388bd938aa59125_93540_1320x0_resize_box_3.png 2x"
+        src="/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/%E5%B9%B6%E5%8F%91/juc/ThreadPool_hu20338508153ddd21c388bd938aa59125_93540_660x0_resize_box_3.png"
+        alt="image.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+
+      </div>
+
+
+
+
+    </div>
+
+    
+    <script>
+      var oid = "views_编程语言\\java\\并发\\index.md"
+      var oid_likes = "likes_编程语言\\java\\并发\\index.md"
+    </script>
+    
+    
+    
+    <script type="text/javascript" src="/js/page.min.5b1bad196a6075a1e11bae1dc95f24f67b610948a00525e347566c5a62338ea78f1c7224ab9a53873dcdb2a1a7d7d391b8a8ef45561297f68806c01315b0c4f6.js" integrity="sha512-WxutGWpgdaHhG64dyV8k9nthCUigBSXjR1ZsWmIzjqePHHIkq5pThz3NsqGn19ORuKjvRVYSl/aIBsATFbDE9g=="></script>
+
+  </section>
+
+
+  <footer style="width: 100%">
+          
+
+          
+  
+  <section class="flex flex-row flex-wrap justify-center pt-4 text-xl">
+    
+      
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="https://twitter.com/intent/tweet/?url=/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/%E5%B9%B6%E5%8F%91/&amp;text=Java-Concurrent"
+      title="分享到 Twitter"
+      aria-label="分享到 Twitter"
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg>
+  </span>
+
+
+    </a>
+      
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="https://t.me/share/url?url=/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/%E5%B9%B6%E5%8F%91/&amp;resubmit=true&amp;title=Java-Concurrent"
+      title=""
+      aria-label=""
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M248,8C111.033,8,0,119.033,0,256S111.033,504,248,504,496,392.967,496,256,384.967,8,248,8ZM362.952,176.66c-3.732,39.215-19.881,134.378-28.1,178.3-3.476,18.584-10.322,24.816-16.948,25.425-14.4,1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25,5.342-39.5,3.652-3.793,67.107-61.51,68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608,69.142-14.845,10.194-26.894,9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7,18.45-13.7,108.446-47.248,144.628-62.3c68.872-28.647,83.183-33.623,92.511-33.789,2.052-.034,6.639.474,9.61,2.885a10.452,10.452,0,0,1,3.53,6.716A43.765,43.765,0,0,1,362.952,176.66Z"/></svg>
+
+  </span>
+
+
+    </a>
+      
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="mailto:?body=/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/%E5%B9%B6%E5%8F%91/&amp;subject=Java-Concurrent"
+      title="通过电子邮件发送"
+      aria-label="通过电子邮件发送"
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M207.8 20.73c-93.45 18.32-168.7 93.66-187 187.1c-27.64 140.9 68.65 266.2 199.1 285.1c19.01 2.888 36.17-12.26 36.17-31.49l.0001-.6631c0-15.74-11.44-28.88-26.84-31.24c-84.35-12.98-149.2-86.13-149.2-174.2c0-102.9 88.61-185.5 193.4-175.4c91.54 8.869 158.6 91.25 158.6 183.2l0 16.16c0 22.09-17.94 40.05-40 40.05s-40.01-17.96-40.01-40.05v-120.1c0-8.847-7.161-16.02-16.01-16.02l-31.98 .0036c-7.299 0-13.2 4.992-15.12 11.68c-24.85-12.15-54.24-16.38-86.06-5.106c-38.75 13.73-68.12 48.91-73.72 89.64c-9.483 69.01 43.81 128 110.9 128c26.44 0 50.43-9.544 69.59-24.88c24 31.3 65.23 48.69 109.4 37.49C465.2 369.3 496 324.1 495.1 277.2V256.3C495.1 107.1 361.2-9.332 207.8 20.73zM239.1 304.3c-26.47 0-48-21.56-48-48.05s21.53-48.05 48-48.05s48 21.56 48 48.05S266.5 304.3 239.1 304.3z"/></svg>
+
+  </span>
+
+
+    </a>
+      
+    
+  </section>
+
+
+          
+
+
+<h2 class="mt-8 text-2xl font-extrabold mb-10">相关文章</h2>
+<section class="w-full grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+  
+  
+
+  <a href="/%E7%AC%94%E8%AE%B0/" class="min-w-full">
+    
+    <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
+        
+        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/%E7%AC%94%E8%AE%B0/featured_hu6534542605d56a7187ca4a5d252cd4c4_1422640_600x0_resize_q75_box.jpg);"></div>
+        
+      
+
+      <div class="px-6 py-4">
+
+        
+        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
+          href="/%E7%AC%94%E8%AE%B0/">如何通过hugo搭建自己的博客</div>
+        
+
+        <div class="text-sm text-neutral-500 dark:text-neutral-400">
+          
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2023-10-03 23:44:01 &#43;0800 CST">3 October 2023</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
+  
+
+  
+  
+</div>
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/%E6%9D%82%E8%AE%B0/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    杂记
+  </span>
+</span>
+  </span>
+  
+  
+  
+  
+</div>
+
+
+
+
+        </div>
+
+        
+      </div>
+      <div class="px-6 pt-4 pb-2">
+
+      </div>
+    </div>
+  </a>
+
+  
+  
+
+  <a href="/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/javase/object/%E5%AF%B9%E8%B1%A1%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB/" class="min-w-full">
+    
+    <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
+        
+        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/img/annimation/4c758d7c82292f81f99d63ff1072aa9adb5c3536_raw_hu9b60894d5013d728985af7ffc2fcbbdd_675352_600x0_resize_q75_box.jpg);"></div>
+        
+      
+
+      <div class="px-6 py-4">
+
+        
+        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
+          href="/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/javase/object/%E5%AF%B9%E8%B1%A1%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB/">对象间的关系</div>
+        
+
+        <div class="text-sm text-neutral-500 dark:text-neutral-400">
+          
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2023-10-03 20:53:21 &#43;0800 CST">3 October 2023</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
+  
+
+  
+  
+</div>
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/java-se/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Java SE
+  </span>
+</span>
+  </span>
+  
+  
+  
+  
+</div>
+
+
+
+
+        </div>
+
+        
+      </div>
+      <div class="px-6 pt-4 pb-2">
+
+      </div>
+    </div>
+  </a>
+
+  
+  
+
+  <a href="/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/javase/words/" class="min-w-full">
+    
+    <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
+        
+        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/javase/words/featured_hueaad0fe708e242e217b2053b25ce0de6_1476434_600x0_resize_box_3.png);"></div>
+        
+      
+
+      <div class="px-6 py-4">
+
+        
+        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
+          href="/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/javase/words/">关键字</div>
+        
+
+        <div class="text-sm text-neutral-500 dark:text-neutral-400">
+          
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2023-10-03 20:53:12 &#43;0800 CST">3 October 2023</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">5 分钟</span>
+  
+
+  
+  
+</div>
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/java-se/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Java SE
+  </span>
+</span>
+  </span>
+  
+  
+  
+  
+</div>
+
+
+
+
+        </div>
+
+        
+      </div>
+      <div class="px-6 pt-4 pb-2">
+
+      </div>
+    </div>
+  </a>
+
+  
+</section>
+
+
+    
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="flex group mr-3" href="/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/javase/object/%E5%AF%B9%E8%B1%A1%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB/">
+              <span
+                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
+                >&larr;</span
+              >
+              <span
+                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
+                >&rarr;</span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >对象间的关系</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2023-10-03 20:53:21 &#43;0800 CST">3 October 2023</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="flex text-right group ml-3" href="/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/%E8%BF%9B%E9%98%B6/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >并发进阶</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2023-10-09 20:38:19 &#43;0800 CST">9 October 2023</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
+                >&rarr;</span
+              >
+              <span
+                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
+                >&larr;</span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+    
+    
+    <div class="pt-3">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="pt-3">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br/>
+<span style="color:rgba(var(--color-neutral-400),var(--tw-text-opacity));">
+    <span class="post-meta-item-text" >&nbsp;&nbsp;:  </span>
+    <span class="waline-pageview-count">⏳</span><div></div><br/>
+</span>
+<script type="text/javascript">
+    document.getElementByClassName("aline-pageview-count")[0].data-path = window.location.pathname;
+</script>
+
+
+
+<script src='/waline/waline.js'></script>
+<link href='/waline/waline.css' rel='stylesheet' />
+<div id="vcomments"></div>
+<script>
+    if (""=="zh-CN") {
+        Waline.init({
+            el: '#vcomments',
+            serverURL: 'https://comment-eosin.vercel.app/',
+            emoji: ['https://valine-emoji.bili33.top/bilibilitv','https://valine-emoji.bili33.top/bilibiliHotKey','https://valine-emoji.bili33.top/Tieba-New','https://valine-emoji.bili33.top/weibo',],
+            meta:['nick', 'mail', 'link'],
+            pageview: true,
+            reaction: true,
+            lang: "zh-CN",
+            locale: {
+                reactionTitle: '•畅所欲言——这里是开放区•',
+                comment: '留言板',
+                placeholder: '点击下方登录后再评论，会有惊喜哦~',
+                gifSearchPlaceholder: '搜索表情包...',
+                admin: '作者',
+                sofa: '还没有人评论，快来抢沙发吧',
+                anonymous: '匿名者'
+            }
+        });
+
+    }
+    else {
+        Waline.init({
+            el: '#vcomments',
+            serverURL: 'https://comment-eosin.vercel.app/',
+            emoji: ['https://valine-emoji.bili33.top/bilibilitv','https://valine-emoji.bili33.top/bilibiliHotKey','https://valine-emoji.bili33.top/Tieba-New','https://valine-emoji.bili33.top/weibo',],
+            meta:['nick', 'mail'],
+            pageview: true,
+            reaction: true,
+            
+            lang: "zh-CN",
+            locale: {
+                reactionTitle: '•畅所欲言——这里是开放区•',
+                comment: '留言板',
+                placeholder: '点击下方登录后再评论，会有惊喜哦~',
+                gifSearchPlaceholder: '搜索表情包...',
+                admin: '作者',
+                sofa: '还没有人评论，快来抢沙发吧',
+                anonymous: '匿名者'
+            }
+    });
+
+    }
+    document.getElementsByClassName('wl-power')[0].style.display = 'none';
+    document.querySelector(".wl-actions a").style.display = 'none'
+</script>
+<style type="text/css">
+    :root{
+        --waline-color: var(--tw-prose-quotes);
+        --waline-info-color: var(--tw-prose-quotes);
+        --waline-info-bgcolor: var(--tw-ring-color);
+        --waline-theme-color: rgba(var(--color-primary-400));
+        --waline-bgcolor: transparent;
+        --waline-border-color: #747474;
+    }
+    .wl-editor:focus, .wl-input:focus {
+        background: transparent;
+    }
+    .wl-editor,.wl-input{
+        max-width:88%;
+    }
+    .wl-reaction-item.active .wl-reaction-votes {
+        color: white;
+    }
+</style>
+
+<script type="text/javascript">
+    var pagect = document.getElementById('pagec');
+    var observer = new MutationObserver(function(){
+        var itl,itll;
+        var element = document.getElementById("pagec");
+        observer.disconnect();
+        itl  = element.innerText;
+        itll = Number(itl).toLocaleString();
+        document.getElementById('pagec').innerHTML = itll;
+    });
+    var article = document.getElementById('pagec');
+
+    var options = {
+        'childList': true,
+        'subtree': true
+    };
+
+    observer.observe(article, options);
+</script>
+
+      </div>
+    </div>
+    
+    
+  </footer>
+
+</article>
+
+      <div id="top-scroller" class="pointer-events-none absolute top-[110vh] bottom-0 w-12 ltr:right-0 rtl:left-0">
+  <a href="#the-top"
+    class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 mb-16 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+    aria-label="回到顶部" title="回到顶部">
+    &uarr;
+  </a>
+</div>
+    </main>
+
+<div class="busuanzi-footer" style="margin-top: 40px">
+  <span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+  </span>
+  <span id="busuanzi_container_site_uv">
+    本站访客数<span id="busuanzi_value_site_uv"></span>人次
+  </span>
+</div><footer id="site-footer" class="py-10 print:hidden">
+  
+  
+    
+    <nav class="flex flex-row pb-4 text-base font-medium text-neutral-500 dark:text-neutral-400">
+      <ul class="flex flex-col list-none sm:flex-row">
+        
+        <li class="flex mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+          <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2" href="/tags/"
+            title="Tags">系列文章</a>
+        </li>
+        
+        <li class="flex mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+          <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2" href="/tasks/"
+            title="学习计划">事项</a>
+        </li>
+        
+        <li class="flex mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+          <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2" href="/info/"
+            title="应该没人来这里吧">关于我</a>
+        </li>
+        
+        <li class="flex mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+          <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2" href="/doc/"
+            title="Docs">文档</a>
+        </li>
+        
+      </ul>
+    </nav>
+    
+  
+  <div class="flex items-center justify-between">
+
+    
+    
+    <p class="text-sm text-neutral-500 dark:text-neutral-400">
+      &copy;
+      2024
+      春江花朝秋月夜
+    </p>
+    
+
+    
+    
+    <p class="text-xs text-neutral-500 dark:text-neutral-400">
+      
+      
+      由 <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+        href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+        href="https://blowfish.page/" target="_blank" rel="noopener noreferrer">Blowfish</a> 强力驱动
+    </p>
+    
+
+  </div>
+  <script>
+    
+    mediumZoom(document.querySelectorAll("img:not(.nozoom)"), {
+      margin: 24,
+      background: 'rgba(0,0,0,0.5)',
+      scrollOffset: 0,
+    })
+    
+  </script>
+  
+  
+  <script type="text/javascript" src="/js/process.min.62060bb247f4de2b6dde45903668fefb68d792f365587605177b1227c0cf43588701edaca0cb40e2c8e2789bd5ce67c1d2a215b9fb258c3496a7cd25e7cb5fdf.js" integrity="sha512-YgYLskf03itt3kWQNmj&#43;&#43;2jXkvNlWHYFF3sSJ8DPQ1iHAe2soMtA4sjieJvVzmfB0qIVufsljDSWp80l58tf3w=="></script>
+  
+  
+</footer>
+<div
+  id="search-wrapper"
+  class="invisible fixed inset-0 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]"
+  data-url="/"
+  style="z-index:500"
+>
+  <div
+    id="search-modal"
+    class="flex flex-col w-full max-w-3xl min-h-0 mx-auto border rounded-md shadow-lg top-20 border-neutral-200 bg-neutral dark:border-neutral-700 dark:bg-neutral-800"
+  >
+    <header class="relative z-10 flex items-center justify-between flex-none px-2">
+      <form class="flex items-center flex-auto min-w-0">
+        <div class="flex items-center justify-center w-8 h-8 text-neutral-400">
+          
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+        </div>
+        <input
+          type="search"
+          id="search-query"
+          class="flex flex-auto h-12 mx-1 bg-transparent appearance-none focus:outline-dotted focus:outline-2 focus:outline-transparent"
+          placeholder="搜索"
+          tabindex="0"
+        />
+      </form>
+      <button
+        id="close-search-button"
+        class="flex items-center justify-center w-8 h-8 text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+        title="关闭 (Esc)"
+      >
+        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+  </span>
+
+
+      </button>
+    </header>
+    <section class="flex-auto px-2 overflow-auto">
+      <ul id="search-results">
+        
+      </ul>
+    </section>
+  </div>
+</div>
+
+  </div>
+</body>
+
+</html>

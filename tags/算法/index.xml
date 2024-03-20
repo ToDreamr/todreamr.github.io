@@ -20,12 +20,12 @@
     
     <item>
       <title>数据结构篇</title>
-      <link>/entire-note/java/javase/datastruct/</link>
+      <link>/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/javase/datastruct/</link>
       <pubDate>Tue, 03 Oct 2023 20:52:20 +0800</pubDate>
       
-      <guid>/entire-note/java/javase/datastruct/</guid>
+      <guid>/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/javase/datastruct/</guid>
       <description>数组： # 1 public class Demo1_Array { 2 public static void main(String[] args) { 3 String [] array=new String[5];//需要初始化长度 4 array[0]=&amp;#34;hello&amp;#34;; 5 array[1]=&amp;#34;world&amp;#34;; 6 array[4]=&amp;#34;Mufasa&amp;#34;; 7 // array[5]=&amp;#34;right or not&amp;#34;;//ArrayIndexOutOfBoundsException 8 for(String str:array){ 9 System.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/java/javase/datastruct/featured.jpg" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/javase/datastruct/featured.jpg" />
     </item>
     
   </channel>

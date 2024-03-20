@@ -10,10 +10,10 @@
     <lastBuildDate>Tue, 14 Nov 2023 13:47:44 +0800</lastBuildDate><atom:link href="/tags/leetcode/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>区间个位和</title>
-      <link>/%E7%AE%97%E6%B3%95/%E6%95%B0%E5%AD%A6/</link>
+      <link>/algorithm/%E7%AE%97%E6%B3%95/%E6%95%B0%E5%AD%A6/</link>
       <pubDate>Tue, 14 Nov 2023 13:47:44 +0800</pubDate>
       
-      <guid>/%E7%AE%97%E6%B3%95/%E6%95%B0%E5%AD%A6/</guid>
+      <guid>/algorithm/%E7%AE%97%E6%B3%95/%E6%95%B0%E5%AD%A6/</guid>
       <description>计算区间之间的所有数的个位数之和 # 思路： 总体用数学办法，45循环，补齐不全的区间
 #include &amp;#34;class/head.h&amp;#34; //导入万能依赖 long long Sum(long long left,long long right,long long len) { long long left_sum=0,right_sum=0; long long left_len,right_len; left_len=right_len=0; if(left!=0)//计算左补齐 { left_sum=((left-1)*left)/2.0; left_len=left; } if(right!=9)//计算右补齐 { right_sum=((right+10)*(9-right))/2.</description>
       
@@ -21,10 +21,10 @@
     
     <item>
       <title>数之和</title>
-      <link>/%E7%AE%97%E6%B3%95/%E6%95%B0%E4%B9%8B%E5%92%8C/</link>
+      <link>/algorithm/%E7%AE%97%E6%B3%95/%E6%95%B0%E4%B9%8B%E5%92%8C/</link>
       <pubDate>Tue, 14 Nov 2023 13:47:44 +0800</pubDate>
       
-      <guid>/%E7%AE%97%E6%B3%95/%E6%95%B0%E4%B9%8B%E5%92%8C/</guid>
+      <guid>/algorithm/%E7%AE%97%E6%B3%95/%E6%95%B0%E4%B9%8B%E5%92%8C/</guid>
       <description>题目：
 两数之和
 三数之和

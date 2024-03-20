@@ -7,24 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>© 2024 春江花朝秋月夜</copyright>
-    <lastBuildDate>Fri, 03 Nov 2023 22:43:25 +0800</lastBuildDate><atom:link href="/tags/%E6%9D%82%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>搭建图床</title>
-      <link>/entire-note/%E5%9B%BE%E5%BA%8A/</link>
-      <pubDate>Fri, 03 Nov 2023 22:43:25 +0800</pubDate>
-      
-      <guid>/entire-note/%E5%9B%BE%E5%BA%8A/</guid>
-      <description>通过GitHub+PicGo+CDN搭建自己的图床 # 图床一般是指储存图片的服务器，有国内和国外之分。国外的图床由于有 空间距离等因素决定访问速度很慢影响图片显示速度。国内也分为单线空间、 多线空间和cdn加速三种。# CDN 是构建在数据网络上的一种分布式的内容分发网。 CDN 的作用是采用 流媒体服务器 集群技术，克服单机系统输出带宽及并发能力不足的缺点，可极大提升系统支持的 并发流数目，减少或避免 单点失效带来的不良影响。# github搭建仓库
-下载 PicGO 配置 CDN
-创建仓库 # PICGO # 配置加速
-如何配置token？
-首先到github上选择生成自己的token：
-点击首页选择设置：
-下拉到develop settings
-选择下方生成GitHub token：</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/%E5%9B%BE%E5%BA%8A/featured.png" />
-    </item>
-    
+    <lastBuildDate>Tue, 03 Oct 2023 23:44:01 +0800</lastBuildDate><atom:link href="/tags/%E6%9D%82%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>如何通过hugo搭建自己的博客</title>
       <link>/%E7%AC%94%E8%AE%B0/</link>

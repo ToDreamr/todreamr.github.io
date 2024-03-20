@@ -19,7 +19,18 @@
     </item>
     
     <item>
-      <title>Zset</title>
+      <title>抽象数据类型ADT</title>
+      <link>/entire-note/%E9%93%BE%E8%A1%A8%E9%98%9F%E5%88%97%E5%92%8C%E6%A0%91/</link>
+      <pubDate>Mon, 18 Mar 2024 18:23:23 +0800</pubDate>
+      
+      <guid>/entire-note/%E9%93%BE%E8%A1%A8%E9%98%9F%E5%88%97%E5%92%8C%E6%A0%91/</guid>
+      <description>链表 ，队列和二叉树 # 尝试使用cpp实现二叉树，下面是粗劣的代码： # 指针和引用传递的区别：
+//如果传递引用： void List_Init(List &amp;amp;list) { // 防止访问空指针 if (list.next != NULL) { list.next = NULL; list.node_count = 0; } } //如果传递指针： void List_Init(List *list) { // 防止访问空指针 if (list-&amp;gt;next !</description>
+      
+    </item>
+    
+    <item>
+      <title>Mysql-Redis</title>
       <link>/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/zset/</link>
       <pubDate>Fri, 15 Mar 2024 17:06:00 +0800</pubDate>
       
@@ -37,45 +48,12 @@ hash；hash的作用就是关联元素value和权重score，保障元素value的
     </item>
     
     <item>
-      <title>Mac体验版</title>
-      <link>/entire-note/mac%E4%BD%93%E9%AA%8C%E7%89%88bushi/</link>
-      <pubDate>Thu, 14 Mar 2024 18:23:23 +0800</pubDate>
-      
-      <guid>/entire-note/mac%E4%BD%93%E9%AA%8C%E7%89%88bushi/</guid>
-      <description>经过我的不懈努力，RedmiBook终于变成了Mac Book⬇️⬇️
-参考笔记 参考视频 # 目前看起来还行：
-不得不说这个文件夹样式效果真好：
-偶尔出现卡顿，之后记录</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/mac%E4%BD%93%E9%AA%8C%E7%89%88bushi/featured.png" />
-    </item>
-    
-    <item>
-      <title>Waline评论系统</title>
-      <link>/entire-note/%E6%80%8E%E4%B9%88%E8%AF%84%E8%AE%BA/</link>
-      <pubDate>Mon, 11 Mar 2024 18:23:23 +0800</pubDate>
-      
-      <guid>/entire-note/%E6%80%8E%E4%B9%88%E8%AF%84%E8%AE%BA/</guid>
-      <description>Waline博客网站评论 # 注册账号 # 注册账号✈️
-创建应用✈️
-创建仓库-》用于存放评论
-创建好之后，去到settings里面修改Environment三个参数
-LEAN_ID：AppId LEAN_KEY：App_key LEAN_MASTER_KEY：Master_KEY
-添加好之后，刷新工作流
-通过HTML部署
-导入样式文件和js脚本文件
-通过Waline的配置键添加自定义的东西
-注： 借鉴自金圣浩
-&amp;lt;br/&amp;gt; &amp;lt;span style=&amp;#34;color:rgba(var(--color-neutral-400),var(--tw-text-opacity));&amp;#34;&amp;gt; &amp;lt;span class=&amp;#34;post-meta-item-text&amp;#34; &amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;{{i18n &amp;#34;article.page_views&amp;#34;}}: &amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;waline-pageview-count&amp;#34;&amp;gt;⏳&amp;lt;/span&amp;gt;&amp;lt;div&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;br/&amp;gt; &amp;lt;/span&amp;gt; &amp;lt;script type=&amp;#34;text/javascript&amp;#34;&amp;gt; document.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/%E6%80%8E%E4%B9%88%E8%AF%84%E8%AE%BA/featured.png" />
-    </item>
-    
-    <item>
-      <title>常规面试题</title>
+      <title>计算机科学基础</title>
       <link>/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/%E9%9D%A2%E8%AF%95/</link>
       <pubDate>Sat, 09 Mar 2024 18:23:23 +0800</pubDate>
       
       <guid>/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/%E9%9D%A2%E8%AF%95/</guid>
-      <description>八股 # Hash是什么，有哪些常见的hash定址法 # 散列表算法希望能尽量做到不经过任何比较，通过一次存取就能得到所查找的数据元素 ，因而必 须要在数据元素的存储位置和它的关键字（可用 key 表示）之间建立一个确定的对应关系，使每个 关键字和散列表中一个唯一的存储位置相对应。因此在查找时，只要根据这个对应关系找到给定 关键字在散列表中的位置即可。这种对应关系被称为散列函数(可用 h(key)表示)。
+      <description>基础知识 # Hash是什么，有哪些常见的hash定址法 # 散列表算法希望能尽量做到不经过任何比较，通过一次存取就能得到所查找的数据元素 ，因而必 须要在数据元素的存储位置和它的关键字（可用 key 表示）之间建立一个确定的对应关系，使每个 关键字和散列表中一个唯一的存储位置相对应。因此在查找时，只要根据这个对应关系找到给定 关键字在散列表中的位置即可。这种对应关系被称为散列函数(可用 h(key)表示)。
 1）直接定址法： 取关键字或关键字的某个线性函数值为散列地址。 即：h(key) = key 或 h(key) = a * key + b，其中 a 和 b 为常数。 （2）数字分析法 （3）平方取值法： 取关键字平方后的中间几位为散列地址。 （4）折叠法：将关键字分割成位数相同的几部分，然后取这几部分的叠加和作为散列地址。 （5）除留余数法：取关键字被某个不大于散列表表长 m 的数 p 除后所得的余数为散列地址， 即：h(key) = key MOD p p ≤ m （6）随机数法：选择一个随机函数，取关键字的随机函数值为它的散列地址， 即：h(key) = random(key) 什么是排序二叉树 # 首先如果普通二叉树每个节点满足：左子树所有节点值小于它的根节点值，且右子树所有节点值 大于它的根节点值，则这样的二叉树就是排序二叉树</description>
       <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/%E9%9D%A2%E8%AF%95/featured.png" />
     </item>
@@ -86,91 +64,34 @@ LEAN_ID：AppId LEAN_KEY：App_key LEAN_MASTER_KEY：Master_KEY
       <pubDate>Wed, 06 Mar 2024 21:21:06 +0800</pubDate>
       
       <guid>/entire-note/netty/</guid>
-      <description>通过NIO非阻塞式模型我们可以搭建一个Reactor-SubReactor-Handler的消息服务器 # 主要目的是利用Selector选择器实现IO多路复用
+      <description>通过NIO非阻塞式模型我们可以搭建一个Reactor-SubReactor-Handler的消息服务器 # netty的三大基本组件是：buffer，channel，selector
+目的：
+主要目的是利用Selector选择器实现IO多路复用
 先来编写一下客户端，简单起见，只需要建立一个SocketChannel获取管道流传输数据
-/* * Copyright (c) 2024. 禁止抄袭和不经同意的商用行为 * Author: 春江花朝秋月夜 */ /** * @author 春江花朝秋月夜 */ public class ClientReactor { public static void main(String[] args) { // 创建一个新的SocketChannel，一会通过通道进行通信 try (SocketChannel channel =SocketChannel.</description>
+/** * @author 春江花朝秋月夜 */ public class ClientReactor { public static void main(String[] args) { // 创建一个新的SocketChannel，一会通过通道进行通信 try (SocketChannel channel =SocketChannel.open(newInetSocketAddress(&amp;#34;localhost&amp;#34;, 9000)); Scanner scanner = new Scanner(System.</description>
       
     </item>
     
     <item>
-      <title>微信登录</title>
-      <link>/entire-note/wexin-oauth/</link>
-      <pubDate>Sat, 02 Mar 2024 13:22:59 +0800</pubDate>
+      <title>微服务基础知识</title>
+      <link>/entire-note/spring/</link>
+      <pubDate>Tue, 05 Mar 2024 15:08:23 +0000</pubDate>
       
-      <guid>/entire-note/wexin-oauth/</guid>
-      <description>微信登录 # 参考文章：
-Vue生成二维码
-构建微信登录服务器 验证后端
-微信开发公众平台
-效果展示： # 通过前端生成的二维码：
-前端部分（使用Dom来创建script节点）： # createWxLoginQrCode(){ const script=document.createElement(&amp;#39;script&amp;#39;); script.type=&amp;#39;text/javascript&amp;#39;; script.src=&amp;#39;https://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js&amp;#39;; const wxElement = document.body.appendChild(script) wxElement.onload = function () { var obj = new WxLogin({ id: &amp;#39;wxLoginCode&amp;#39;, // 需要显示的容器id appid: &amp;#39;&amp;#39;,// 公众号appid wx******* scope: &amp;#39;snsapi_login&amp;#39;, // 网页默认即可 redirect_uri: encodeURIComponent(&amp;#39; &amp;#39;), // 授权成功后回调的url state: Math.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/wexin-oauth/featured.png" />
-    </item>
-    
-    <item>
-      <title>自用的Vscode个人觉得还算耐看的主题和字体以及编码习惯</title>
-      <link>/entire-note/vscode/</link>
-      <pubDate>Sat, 02 Mar 2024 13:22:59 +0800</pubDate>
-      
-      <guid>/entire-note/vscode/</guid>
-      <description>Java 选手为什么用 Vscode 了？
-答：苦于 IDEA 的启动速度，本人的电脑带不动了很多了，就算改了索引和 Maven，经常还是要编辑 js，vue，html 文件，小全栈辣鸡吧，故而转战 Vscode。并不完全弃坑 IDEA
-目前调教 Vscode 还算挺好哒哈哈，好用呀！！！
-这里我选择了本地的 Maven 和用于日语的字体()，主题选用的是：Default Dark Modern，目前看起来还行，经典就是好，配合我的背景图片很搭!
-当选择编写 Spring 应用程序时可选用 Idea 主题，较为接近 Jetbrains 家族的 Idea,字体选用的是 JetBrains 家族的 JetBrains Mono，normal 版；</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/vscode/featured.png" />
-    </item>
-    
-    <item>
-      <title>Oauth2</title>
-      <link>/entire-note/oauth2/</link>
-      <pubDate>Thu, 29 Feb 2024 17:52:31 +0800</pubDate>
-      
-      <guid>/entire-note/oauth2/</guid>
-      <description>参考文章： SpringSecurity-Oauth基于Spring3.x
-单点登录（SSO） # 名词解释（UA）：user account and authentication
-请求流程图：
-客户端模式：
-密码模式：
-隐式授权模式
-授权码模式（目前采用的主流方案）：
-第三方登录Oauth2示意图：
-使用jwt存储Token 官网：https://jwt.io
-JSON Web Token令牌（JWT）是一个开放标准（RFC 7519），它定义了一种紧凑和自成一体的方式，用于在各方之间作为JSON对象安全地传输信息。这些信息可以被验证和信任，因为它是数字签名的。JWT可以使用密钥（使用HMAC算法）或使用RSA或ECDSA进行公钥/私钥对进行签名。
-实际上，我们之前都是携带Token向资源服务器发起请求后，资源服务器由于不知道我们Token的用户信息，所以需要向验证服务器询问此Token的认证信息，这样才能得到Token代表的用户信息，但是各位是否考虑过，如果每次用户请求都去查询用户信息，那么在大量请求下，验证服务器的压力可能会非常的大。而使用JWT之后，Token中会直接保存用户信息，这样资源服务器就不再需要询问验证服务器，自行就可以完成解析，我们的目标是不联系验证服务器就能直接完成验证。
-一个JWT令牌由3部分组成：标头(Header)、有效载荷(Payload)和签名(Signature)。在传输的时候，会将JWT的3部分分别进行Base64编码后用.进行连接形成最终需要传输的字符串。
-标头：包含一些元数据信息，比如JWT签名所使用的加密算法，还有类型，这里统一都是JWT。 有效载荷：包括用户名称、令牌发布时间、过期时间、JWT ID等，当然我们也可以自定义添加字段，我们的用户信息一般都在这里存放。 签名：首先需要指定一个密钥，该密钥仅仅保存在服务器中，保证不能让其他用户知道。然后使用Header中指定的算法对Header和Payload进行base64加密之后的结果通过密钥计算哈希值，然后就得出一个签名哈希。这个会用于之后验证内容是否被篡改。
-Base64（不是加密算法而是编码方式）： 就是包括小写字母a-z、大写字母A-Z、数字0-9、符号&amp;quot;+&amp;quot;、&amp;quot;/&amp;ldquo;一共64个字符的字符集（末尾还有1个或多个=用来凑够字节数），任何的符号都可以转换成这个字符集中的字符，这个转换过程就叫做Base64编码，编码之后会生成只包含上述64个字符的字符串。相反，如果需要原本的内容，我们也可以进行Base64解码，回到原有的样子。
-加密算法： 加密算法分为对称加密和非对称加密，其中**对称加密（Symmetric Cryptography）**比较好理解，就像一把锁配了两把钥匙一样，这两把钥匙你和别人都有一把，然后你们直接传递数据，都会把数据用锁给锁上，就算传递的途中有人把数据窃取了，也没办法解密，因为钥匙只有你和对方有，没有钥匙无法进行解密，但是这样有个问题，既然解密的关键在于钥匙本身，那么如果有人不仅窃取了数据，而且对方那边的治安也不好，于是顺手就偷走了钥匙，那你们之间发的数据不就凉凉了吗。</description>
-      
-    </item>
-    
-    <item>
-      <title>Spring-Security</title>
-      <link>/entire-note/security/</link>
-      <pubDate>Fri, 23 Feb 2024 00:00:00 +0000</pubDate>
-      
-      <guid>/entire-note/security/</guid>
-      <description>基于Spring6+JDK18的SpringSecurity环境的项目DEMO # 项目地址：
-ToDreamr/backend-base 基于 Spring6+Vue+Jwt+JDK18环境的SecurityDemo Java 0 0 基本实现的功能 # Security通过数据库实现自定义登录 通过自己添加的过滤器链完成JWT+Token的请求权限认证 Token加入Redis做无状态无Session处理 邮箱验证码收发功能 注意事项 # sql执行脚本在项目doc文件目录下，Security在Spring6下已经废除
-通过WebSecurityAdaptor来实现HttpSecurity这个Bean的配置注入。
-目前只支持Lamda表达式。
-请在application.yml中自行配置自己的邮箱SMTP服务
-配置案例：
-@Bean public SecurityFilterChain filterChain(HttpSecurity http) throws Exception { return http .</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/security/featured.png" />
-    </item>
-    
-    <item>
-      <title>本站Music搭建相关</title>
-      <link>/entire-note/spring/music/</link>
-      <pubDate>Wed, 07 Feb 2024 19:22:59 +0800</pubDate>
-      
-      <guid>/entire-note/spring/music/</guid>
-      <description>搭建本站音乐 # 搭建过程绕了一些弯子，吃了前端的亏，主要借鉴了 金圣皓，得知了目前主流的博客音乐依托于APlayer&amp;amp;Meting JS,前者是嵌入HTML的音乐组件库，后者是可用通过网易，QQ音乐等网站的音乐插件，本网站作为静态页面，故只需通过CDN引入即可
-Meting Js参数, 官方文档
-&amp;lt;!--MetingJS参数详情--&amp;gt; &amp;lt;!-- id=&amp;#39;外链播放器id&amp;#39;,必须参数 type=[song=单曲, playlist=歌单, album=专辑, search=搜索结果, artist=艺术家],必须参数 server=[netease=网易云音乐, tencent=QQ音乐, kugou=酷狗音乐, xiami=虾米音乐, baidu=百度音乐],必须参数 fixed=启用固定模式，固定在左下角,默认false mini=启用迷你模式,默认false preload=[none,metadata,auto] mutex=[互斥锁，默认true],默认false order=[random=随机播放,list=列表播放] loop=[all=全部循环, one=循环一次 ,none=不循环] volume=[音量，默认0.7] lrc-type=[歌词类型，默认0] list-folded=[列表是否折叠，默认false] list-max-height=列表最大高度,默认340px storage-name=本地存储存储密钥，用于存储播放器设置,默认metingjs --&amp;gt; 网站搭建主题为Blowfish，在blog/layouts/shortcodes文件夹下添加album.</description>
-      
+      <guid>/entire-note/spring/</guid>
+      <description>基于SpringCloudAlibaba+Nacos+Feign+Seata+Sentinel作为微服务路线叙述 # 前言：本次SpringCloud微服务学习涉及NetFlix和Alibaba两不同版本，主要对应关系为：
+微服务原则：所有的服务都需要保证职责的单一原则
+SpringCloud作为一系列框架的有序集合，是SOA的延续
+SpringCloud Alibaba 是遵循SpringCloud来开发的套件，Nacos亦然
+服务注册和发现 # Eureka # Eureka能够自动注册并发现微服务，然后对服务的状态、信息进行集中管理，这样当我们需要获取其他服务的信息时，我们只需要向Eureka进行查询就可以了。
+通过Eureka服务器进行服务注册与发现，那么现在我们来看看，它的负载均衡到底是如何实现的，实际上之前演示的负载均衡是依靠LoadBalancer实现的。
+在2020年前的SpringCloud版本是采用Ribbon作为负载均衡实现，但是2020年的版本之后SpringCloud把Ribbon移除了，进而用自己编写的LoadBalancer替代。
+如何找到服务？
+Nacos # Nacos注册中心 # 功能：
+服务注册发现 配置中心 服务元数据/实例元数据：可以用于流量控制（在实例的metadata（元数据）中加上标签信息。通过IRule获取Server列表并根据这些Server中元数据的标签信息决定路由情况） 局域网内服务信息传输快 服务集群分级模式
+服务-集群-实例
+修改yml：
+spring: cloud: nacos: server-addr: localhost:8848 discovery: cluster-name: ClUSTER-01 对指定服务进行配置</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/spring/featured.jpg" />
     </item>
     
     <item>
@@ -181,56 +102,6 @@ Meting Js参数, 官方文档
       <guid>/entire-note/music/</guid>
       <description></description>
       
-    </item>
-    
-    <item>
-      <title>NetFlix和SpringCloudAlibaba</title>
-      <link>/entire-note/spring/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%BC%94%E8%BF%9B/</link>
-      <pubDate>Fri, 26 Jan 2024 13:56:23 +0000</pubDate>
-      
-      <guid>/entire-note/spring/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%BC%94%E8%BF%9B/</guid>
-      <description>Spring Cloud Netflix 介绍Netflix套件中有Eureka、Ribbon、Hystrix、Zuul、Feign五个非常知名的开源项目，分别被用于服务治理、负载均衡、服务容错、服务网关、服务通信。
-2018年，Netflix套件中的开源项目陆续进入了维护模式。
-2020年12月22日，Spring Cloud 2020.0.0版本发布，该版本中移除了Netflix套件中的相关依赖。
-Spring Cloud Alibaba 介绍2018年7月，Spring Cloud Alibaba正式开源，进入Spring Cloud孵化器。2018年10月，Spring Cloud Alibaba发布开源后的第一个版本。
-Spring Cloud Alibaba提供的组件如下：
-Sentinel：阿里巴巴开源产品，不仅仅可以作为断路器，也支持流量控制和服务降级。Nacos：阿里巴巴开源产品，服务注册与服务发现，同时也可以作为配置中心。RocketMQ：阿里巴巴开源的分布式消息和流计算平台。Dubbo：阿里巴巴开源产品，高性能Java RPC框架，服务通信组件。Seata：阿里巴巴开源产品，一个易于使用的高性能微服务分布式事务解决方案。Alibaba Cloud ACM：其前身为淘宝内部配置中心Diamond，是一款应用配置中心产品，需付费。Alibaba Cloud OSS：阿里云对象存储OSS是一款海量、安全、低成本、高可靠的云存储服务，需付费。Alibaba Cloud SMS：阿里云短信服务，需付费。Alibaba Cloud SchedulerX：阿里中间件自研的基于Akka架构的新一代分布式任务调度平台，需付费。spring-cloud 和 spring-cloud-alibaba 的区别Spring Cloud：Spring 官方提供的分布式应用开发的一套共用模式，也可以理解成一套微服务开发的统一的抽象编程模型。Spring Cloud Netflix：基于 Spring Cloud 编程模型实现的微服务框架，是最早期的微服务框架。近年来，Netflix 宣布大多数组件停止维护。Spring Cloud Alibaba：Alibaba 提供的基于 Spring Cloud 编程模型实现的微服务框架，其所有组件都来自于阿里巴巴微服务技术，无论是解决方案完整性、技术成熟度、社区还是文档资料等都对国内开发者非常友好。spring-cloud是Spring官方提供的微服务开发工具。它基于Spring Boot构建，提供了一系列框架和工具帮助我们快速构建分布式系统中的微服务架构。spring-cloud主要包含以下组件:</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/spring/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%BC%94%E8%BF%9B/featured.png" />
-    </item>
-    
-    <item>
-      <title>Eureka</title>
-      <link>/entire-note/spring/eureka/</link>
-      <pubDate>Sat, 11 Nov 2023 23:55:26 +0800</pubDate>
-      
-      <guid>/entire-note/spring/eureka/</guid>
-      <description>整个项目很简单，主要需要注意版本的问题,这也是微服务的主要问题
-启动成功
-还是贴一下maven好
-&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;project xmlns=&amp;#34;http://maven.apache.org/POM/4.0.0&amp;#34; xmlns:xsi=&amp;#34;http://www.w3.org/2001/XMLSchema-instance&amp;#34; xsi:schemaLocation=&amp;#34;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&amp;#34;&amp;gt; &amp;lt;modelVersion&amp;gt;4.0.0&amp;lt;/modelVersion&amp;gt; &amp;lt;parent&amp;gt; &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-boot-starter-parent&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;3.0.2&amp;lt;/version&amp;gt; &amp;lt;relativePath/&amp;gt; &amp;lt;!-- lookup parent from repository --&amp;gt; &amp;lt;/parent&amp;gt; &amp;lt;groupId&amp;gt;com.example&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;eureka&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;0.0.1-SNAPSHOT&amp;lt;/version&amp;gt; &amp;lt;name&amp;gt;eureka&amp;lt;/name&amp;gt; &amp;lt;description&amp;gt;eureka&amp;lt;/description&amp;gt; &amp;lt;properties&amp;gt; &amp;lt;java.</description>
-      
-    </item>
-    
-    <item>
-      <title>SpringCloud</title>
-      <link>/entire-note/spring/cloud/</link>
-      <pubDate>Sat, 11 Nov 2023 15:08:23 +0000</pubDate>
-      
-      <guid>/entire-note/spring/cloud/</guid>
-      <description>SpringCloud # 前言：本次SpringCloud微服务学习涉及NetFlix和Alibaba两不同版本，主要对应关系为：
-微服务原则：所有的服务都需要保证职责的单一原则
-SpringCloud作为一系列框架的有序集合，是SOA的延续
-SpringCloud Alibaba 是遵循SpringCloud来开发的套件，Nacos亦然
-服务注册和发现 # Eureka # Eureka能够自动注册并发现微服务，然后对服务的状态、信息进行集中管理，这样当我们需要获取其他服务的信息时，我们只需要向Eureka进行查询就可以了。
-通过Eureka服务器进行服务注册与发现，那么现在我们来看看，它的负载均衡到底是如何实现的，实际上之前演示的负载均衡是依靠LoadBalancer实现的。
-在2020年前的SpringCloud版本是采用Ribbon作为负载均衡实现，但是2020年的版本之后SpringCloud把Ribbon移除了，进而用自己编写的LoadBalancer替代。
-如何找到服务？
-Nacos注册中心 # 功能：
-服务注册发现 配置中心 服务元数据/实例元数据：可以用于流量控制（在实例的metadata（元数据）中加上标签信息。通过IRule获取Server列表并根据这些Server中元数据的标签信息决定路由情况） 局域网内服务信息传输快 服务集群分级模式
-服务-集群-实例
-修改yml：
-spring: cloud: nacos: server-addr: localhost:8848 discovery: cluster-name: ClUSTER-01 对指定服务进行配置</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/spring/cloud/featured.png" />
     </item>
     
     <item>
@@ -259,53 +130,6 @@ public	公共资源目录。
 package.json	项目配置文件。
 vue3创建应用 # 实际案例 # 语法： const app = Vue.</description>
       <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/vue/featured.png" />
-    </item>
-    
-    <item>
-      <title>搭建图床</title>
-      <link>/entire-note/%E5%9B%BE%E5%BA%8A/</link>
-      <pubDate>Fri, 03 Nov 2023 22:43:25 +0800</pubDate>
-      
-      <guid>/entire-note/%E5%9B%BE%E5%BA%8A/</guid>
-      <description>通过GitHub+PicGo+CDN搭建自己的图床 # 图床一般是指储存图片的服务器，有国内和国外之分。国外的图床由于有 空间距离等因素决定访问速度很慢影响图片显示速度。国内也分为单线空间、 多线空间和cdn加速三种。# CDN 是构建在数据网络上的一种分布式的内容分发网。 CDN 的作用是采用 流媒体服务器 集群技术，克服单机系统输出带宽及并发能力不足的缺点，可极大提升系统支持的 并发流数目，减少或避免 单点失效带来的不良影响。# github搭建仓库
-下载 PicGO 配置 CDN
-创建仓库 # PICGO # 配置加速
-如何配置token？
-首先到github上选择生成自己的token：
-点击首页选择设置：
-下拉到develop settings
-选择下方生成GitHub token：</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/%E5%9B%BE%E5%BA%8A/featured.png" />
-    </item>
-    
-    <item>
-      <title>Spring事务传播机制</title>
-      <link>/entire-note/%E4%BA%8B%E5%8A%A1/</link>
-      <pubDate>Fri, 03 Nov 2023 11:31:54 +0800</pubDate>
-      
-      <guid>/entire-note/%E4%BA%8B%E5%8A%A1/</guid>
-      <description>Spring事务传播机制：# # 事务传播的定义：# # 事务传播行为主要用来描述由某一个事务传播行为修饰的方法被嵌套进另一个方法的事务中，该 事务如何传播。这个概述可能不好理解，换句话就是当一个事务方法被另一个事务方法调用时，这个事务方法应该如何进行。
-spring中的事务级别#
-REQUIRED# # REQUIRED是Spring默认的传播机制。如果当前存在事务，则加入该事务；如果当前没有事务，则创建一个新事务。 REQUIRED传播机制最常用的情况是在一个事务 中进行多个操作，要么全部成功，要么全部失败。如果其中一个操作失败，整个事务都将被回滚。
-SUPPORTS# # SUPPORTS传播机制表示当前方法如果在一个事务中被调用，则加入该事务； 否则，以非事务的方式运行。SUPPORTS传播机制适用于对事务要求不高的操作，例如读取操作。
-MANDATORY# # MANDATORY传播机制表示当前方法必须在一个事务中被调用，否则将抛出异常。 MANDATORY传播机制适用于在需要事务的情况下调用方法。
-REQUIRES_NEW# # REQUIRES_NEW传播机制表示当前方法必须开启一个新事务运行，如果当前存在事务，则挂起该事务。 REQUIRES_NEW传播机制适用于对事务要求较高的操作，例如更新操作。
-NOT_SUPPORTED# # NOT_SUPPORTED传播机制表示当前方法不应该在事务中运行，如果存在事务，则挂起该事务。 NOT_SUPPORTED传播机制适用于对事务没有要求的操作，例如日志记录等。
-NEVER# # NEVER传播机制表示当前方法不应该在事务中运行，如果存在事务，则抛出异常。 NEVER传播机制适用于禁止在事务中运行的操作，例如安全检查等。</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/%E4%BA%8B%E5%8A%A1/featured.png" />
-    </item>
-    
-    <item>
-      <title>C&#43;&#43;</title>
-      <link>/entire-note/c&#43;&#43;/</link>
-      <pubDate>Fri, 27 Oct 2023 20:52:20 +0800</pubDate>
-      
-      <guid>/entire-note/c&#43;&#43;/</guid>
-      <description>C++实现数据结构和初步的认识 # 鉴于未来数据结构和算法的实现我想通过 C++来实现，现在简要总结下 C++的常用方法和数据结构类型
-头文件和方法声明 # 等同于 C 语言
-标准输入输出函数 # std::cout &amp;lt;&amp;lt; &amp;#34;Hello, World!&amp;#34; &amp;lt;&amp;lt; std::endl; 引入 using namespace std;这可以避免函数要不断的添加前缀
-using namespace std; ... int input; cout&amp;lt;&amp;lt;&amp;#34;Hello world&amp;#34;&amp;lt;&amp;lt;endl;//输出函数 cin&amp;gt;&amp;gt;input; printf(&amp;#34;%d&amp;#34;,input); .</description>
-      
     </item>
     
     <item>
@@ -350,21 +174,6 @@ ReferenceQueue&amp;lt;Object&amp;gt; queue = new ReferenceQueue&amp;lt;&amp;gt;(
     </item>
     
     <item>
-      <title>Latex语法</title>
-      <link>/entire-note/latex/</link>
-      <pubDate>Thu, 19 Oct 2023 15:55:16 +0800</pubDate>
-      
-      <guid>/entire-note/latex/</guid>
-      <description>环境设置： # \begin{center} \end{center} 这样就是一个环境，所有的都是隔离的。
-头部文件 # \documentclass{setting} \usepackage[utf8]{inputenc} \usepackage[T1]{fontenc} \usepackage{graphicx} \usepackage[]{setspace} 在头部设置文件排版样式，导入依赖包，基本在本地
-运行部分 # \begin{document} 选择合适的编译器才可以编译，否则出错
-导入自定义式样 # 更新命令：texhash 式样文件的后缀：.cls文件，在里面自定义命令和样式实现排版布局
-例如下面：
-\newcommand{\role}[2]{ {\par \textit{#1} ~ #2 \par} \vspace{0.5ex} } \newcommand{\biInfo}[2]{ {#1 \quad #2} } \newcommand{\tripleInfo}[3]{ {#1 \quad #2 \quad #3} } </description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/latex/featured.png" />
-    </item>
-    
-    <item>
       <title>Jvm</title>
       <link>/entire-note/%E8%99%9A%E6%8B%9F%E6%9C%BA/jvm/</link>
       <pubDate>Thu, 12 Oct 2023 23:51:04 +0800</pubDate>
@@ -400,141 +209,6 @@ Major GC - 主要垃圾回收，主要进行老年代的垃圾收集。
 Full GC - 完全垃圾回收，对整个Java堆内存和方法区进行垃圾回收。
 触发条件1：每次晋升到老年代的对象平均大小大于老年代剩余空间</description>
       <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/%E8%99%9A%E6%8B%9F%E6%9C%BA/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/featured.png" />
-    </item>
-    
-    <item>
-      <title>并发进阶</title>
-      <link>/entire-note/java/%E8%BF%9B%E9%98%B6/</link>
-      <pubDate>Mon, 09 Oct 2023 20:38:19 +0800</pubDate>
-      
-      <guid>/entire-note/java/%E8%BF%9B%E9%98%B6/</guid>
-      <description>线程池 # new Thread缺点：频繁创建和销毁，浪费了线程资源，短时间创建大量线程和销毁 线程池是有限可重复使用的线程，用完需要归还
-//构造方法，含有七个参数 public ThreadPoolExecutor(int corePoolSize,//核心线程池大小 int maximumPoolSize,//最大线程池大小 long keepAliveTime,//线程最大空闲时间 TimeUnit unit,//最大空闲时间单位 BlockingQueue&amp;lt;Runnable&amp;gt; workQueue//线程等待队列，当超出最大容量时，任务进入等待队列) { this(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue, Executors.defaultThreadFactory(),//线程创建工厂，可自定义 defaultHandler//拒绝策略，实在不能加入新的任务时，拒绝任务); } 根据CPU类型分配线程池大小 # ThreadPoolExecutor # public static void main(String[] args) throws InterruptedException { ThreadPoolExecutor executor = new ThreadPoolExecutor(2, 4, //2个核心线程，最大线程数为4个 3, TimeUnit.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/java/%E8%BF%9B%E9%98%B6/featured.jpg" />
-    </item>
-    
-    <item>
-      <title>Java-Concurrent</title>
-      <link>/entire-note/java/%E5%B9%B6%E5%8F%91/</link>
-      <pubDate>Mon, 09 Oct 2023 19:49:34 +0800</pubDate>
-      
-      <guid>/entire-note/java/%E5%B9%B6%E5%8F%91/</guid>
-      <description>Java 并发编程 # 轻量级锁： # 检查当前对象的mark word是否有被其他线程占用，假如没有就会在当前栈帧里面建立一个 锁记录，复制并存储当前对象的mark word 信息。
-不像重量级锁需要向系统申请互斥量，
-CAS（无锁算法） # 显然，当cas失败的时候，说明有线程进入了这个同步代码块，这个时候，虚拟机将会检查 当前对象的mark word是否指向当前对象的栈帧，是的话就说明当前已经获得锁，否则不是-》退化为重量级锁(不可逆) 解锁时，同样使用CAS算法操作，同时唤醒挂起的线程
-偏向锁 # 当某个锁频繁的被同一个线程获取，对轻量级锁进行优化，所以偏向锁专门为单个线程服务，此时，无须再进行CAS操作，当其他线程 又开始抢锁，偏向锁可能退化为轻量级锁。注意当调用对象的hashCode（）方法，由于mark word 数据结构无法 保存hash值，偏向锁直接退化为轻量级锁。
-锁的退化不可逆
-锁消除和锁优化 # 代码块中有可能不会总是出现请求锁和释放锁的问题，（比如循环中加锁），此时锁为了优化出现锁消除和锁优化
-Java内存模型（JMM） # 主内存： 存放对象实例的部分 工作内存：虚拟机栈的部分，放入cpu的高速缓存里面。 自增操作不是由一个指令实现的！！！包括获取，修改和保存</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/java/%E5%B9%B6%E5%8F%91/featured.png" />
-    </item>
-    
-    <item>
-      <title>对象间的关系</title>
-      <link>/entire-note/java/javase/object/%E5%AF%B9%E8%B1%A1%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB/</link>
-      <pubDate>Tue, 03 Oct 2023 20:53:21 +0800</pubDate>
-      
-      <guid>/entire-note/java/javase/object/%E5%AF%B9%E8%B1%A1%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB/</guid>
-      <description>1 综述 在Java中对象与对象的关系总体分为四类，分别是：依赖、关联、聚合和组合。
-（1）依赖(Dependency)关系是类与类之间的联接。依赖关系表示一个类依赖于另一个类的定义，一般而言，依赖关系在Java语言中体现为局域变量、方法的形参，或者对静态方法的调用。 （2）关联(Association）关系是类与类之间的联接，它使一个类知道另一个类的属性和方法。关联可以是双向的，也可以是单向的。在Java语言中，关联关系一般使用成员变量来实现 （3）聚合(Aggregation) 关系是关联关系的一种，是强的关联关系。聚合是整体和个体之间的关系 （4）组合(Composition) 关系是关联关系的一种，是比聚合关系强的关系。它要求普通的聚合关系中代表整体的对象负责代表部分对象的生命周期，组合关系是不能共享的
-依赖： # 个类A使用到了另一个类B，而这种使用关系是具有偶然性的、临时性的、非常弱的，但是B类的变化会影响到A
-关联： # 关联是一种“拥有”的关系。表现在代码上，就是一个类包含另一个类的实例，通常表现为被关联类以类属性的形式出现在关联类的类定义中，也可以表现为关联类引用了一个类型为被关联类的全局变量。关联可以使单向的，也可以使双向的。依赖和关联的区别在于依赖是使用，关联是拥有.
-聚合 # 聚合是关联关系的一种，它是一种强关联关系（has-a）;聚合关系是整体和个体/部分之间的关系;关联关系的两个类处于同一个层次上,而聚合关系的两个类处于不同的层次上,一个是整体,一个是个体/部分;在聚合关系中,代表个体/部分的对象有可能会被多个代表整体的对象所共享;表现在代码层面上就是在构造器初始化时将两个类关联起来
-组合 # 组合也是关联关系的一种（is-a）,但它是比聚合关系更强的关系.组合关系要求聚合关系中代表整体的对象要负责代表个体/部分的对象的整个生命周期;组合关系不能共享;在组合关系中,如果代表整体的对象被销毁或破坏,那么代表个体/部分的对象也一定会被销毁或破坏,而聚在合关系中,代表个体/部分的对象则有可能被多个代表整体的对象所共享,而不一定会随着某个代表整体的对象被销毁或破坏而被销毁或破坏;</description>
-      
-    </item>
-    
-    <item>
-      <title>关键字</title>
-      <link>/entire-note/java/javase/words/</link>
-      <pubDate>Tue, 03 Oct 2023 20:53:12 +0800</pubDate>
-      
-      <guid>/entire-note/java/javase/words/</guid>
-      <description>Java中常用的关键字有以下分类： 访问控制 private protected public
-类,方法和变量修饰符 abstract class extends final implements interface native new static strictfp synchronized transient volatile
-程序控制 break continue return do while if else for instanceof switch case default</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/java/javase/words/featured.png" />
-    </item>
-    
-    <item>
-      <title>实例化Node</title>
-      <link>/entire-note/java/javase/node/%E5%AE%9E%E4%BE%8B%E5%8C%96node/</link>
-      <pubDate>Tue, 03 Oct 2023 20:52:56 +0800</pubDate>
-      
-      <guid>/entire-note/java/javase/node/%E5%AE%9E%E4%BE%8B%E5%8C%96node/</guid>
-      <description>如何从 Java 中的 LinkedList 类外部声明 Node 类型？ # 标签 java linked-list 如何声明 Node 类型的变量？ Node是LinkedList的内部类，在我正在编写的程序的main方法中，我想创建一个Node变量。但在下面代码片段的最后一行中，我收到错误消息“Nose 在 LinkedList 中具有私有(private)访问权限”。为什么我不能使用 Node 类型？
-import java.util.LinkedList; public class MinSplit { public static long leastAmount; public static void main(String args[]) { LinkedList list = new LinkedList(); LinkedList.</description>
-      
-    </item>
-    
-    <item>
-      <title>数据结构篇</title>
-      <link>/entire-note/java/javase/datastruct/</link>
-      <pubDate>Tue, 03 Oct 2023 20:52:20 +0800</pubDate>
-      
-      <guid>/entire-note/java/javase/datastruct/</guid>
-      <description>数组： # 1 public class Demo1_Array { 2 public static void main(String[] args) { 3 String [] array=new String[5];//需要初始化长度 4 array[0]=&amp;#34;hello&amp;#34;; 5 array[1]=&amp;#34;world&amp;#34;; 6 array[4]=&amp;#34;Mufasa&amp;#34;; 7 // array[5]=&amp;#34;right or not&amp;#34;;//ArrayIndexOutOfBoundsException 8 for(String str:array){ 9 System.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/java/javase/datastruct/featured.jpg" />
-    </item>
-    
-    <item>
-      <title>ThreadLocal</title>
-      <link>/entire-note/java/javase/threadlocal/</link>
-      <pubDate>Tue, 03 Oct 2023 20:51:27 +0800</pubDate>
-      
-      <guid>/entire-note/java/javase/threadlocal/</guid>
-      <description>特点：线程隔离，相互是隔离的，不影响的,每个线程都自己玩自己的，只操作自己的单独的变量副本
-内部维护的是ThreadLocalMap，所以有key和value
-当key指向的值为null时，value不被清理，由于key是弱引用，此时就会造成内存泄露，所以必须要通过ThreadLocal里面的remove方法手动删除值，避免内存泄露。
-ThreadLocalMap里面面由一个个由数组组成的key-value，组成了Entry 由ThreadLocal来设置值，删除值
-弱引用非常容易GC，很容易造成内存泄露，所以需要将key为null的entry清除
-引用关系：Thread-&amp;gt; ThreadLocal-&amp;gt;Entry（弱）-&amp;gt;key（弱）-&amp;gt;value(强)（不清除时容易发生内存泄露）
-//内部类，实=实现 static ThreadLocalMap createInheritedMap(ThreadLocalMap parentMap) { return new ThreadLocalMap(parentMap); } static class ThreadLocalMap { static class Entry extends WeakReference&amp;lt;ThreadLocal&amp;lt;?&amp;gt;&amp;gt; { /** The value associated with this ThreadLocal.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/java/javase/threadlocal/featured.png" />
-    </item>
-    
-    <item>
-      <title>Redis</title>
-      <link>/entire-note/java/%E7%BC%93%E5%AD%98/</link>
-      <pubDate>Tue, 03 Oct 2023 20:31:04 +0800</pubDate>
-      
-      <guid>/entire-note/java/%E7%BC%93%E5%AD%98/</guid>
-      <description>Redis学习： # 通用命令 # 不要在主节点用：keys param 命令来查询，这查询速率很慢，单线程将会被阻塞 del param（可以是多个参数） :删除指定的key exists param(判断key是否存在) expire key time :设置有效期时间 ttl key :查看key的有效期
-String类型 # 最简单的Redis数据类型，value：string,int,float；最大空间不超过512M set key value get key
-Mset 批量 添加key-value</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/java/%E7%BC%93%E5%AD%98/featured.png" />
-    </item>
-    
-    <item>
-      <title>Hello Friend</title>
-      <link>/entire-note/post/</link>
-      <pubDate>Fri, 03 Oct 2003 00:00:00 +0000</pubDate>
-      
-      <guid>/entire-note/post/</guid>
-      <description>我的名字是春江花朝秋月夜，我是这个博客的作者。我这样做是为了记录之前学习的笔记，这样很有成就感。 我们都知道在网络上开始做一些事情有多难，尤其是现在。但是，为了自己的头发没有白掉，加油吧，大家！
-— 春江花朝秋月夜 S01E01</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/post/featured.png" />
-    </item>
-    
-    <item>
-      <title></title>
-      <link>/entire-note/%E5%BF%83%E8%B7%AF%E5%8E%86%E7%A8%8B/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/entire-note/%E5%BF%83%E8%B7%AF%E5%8E%86%E7%A8%8B/</guid>
-      <description>发誓： # 本人将会参加校招和研究生考试中，为之努力！谦虚向学而不是三天打鱼两天晒网</description>
-      
-    </item>
-    
-    <item>
-      <title></title>
-      <link>/entire-note/%E9%93%BE%E8%A1%A8%E9%98%9F%E5%88%97%E5%92%8C%E6%A0%91/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/entire-note/%E9%93%BE%E8%A1%A8%E9%98%9F%E5%88%97%E5%92%8C%E6%A0%91/</guid>
-      <description>链表 ，队列和二叉树 # 尝试使用cpp实现二叉树，下面是粗劣的代码： # 指针和引用传递的区别：
-//如果传递引用： void List_Init(List &amp;amp;list) { // 防止访问空指针 if (list.next != NULL) { list.next = NULL; list.node_count = 0; } } //如果传递指针： void List_Init(List *list) { // 防止访问空指针 if (list-&amp;gt;next !</description>
-      
     </item>
     
   </channel>
