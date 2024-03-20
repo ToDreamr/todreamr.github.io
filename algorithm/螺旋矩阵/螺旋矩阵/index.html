@@ -9,11 +9,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   
-  <title> &middot; 春江花朝秋月夜</title>
-  <meta name="title" content=" &middot; 春江花朝秋月夜" />
+  <title>螺旋矩阵 &middot; 春江花朝秋月夜</title>
+  <meta name="title" content="螺旋矩阵 &middot; 春江花朝秋月夜" />
   
   <meta name="description" content="A powerful, lightweight theme for Hugo built with Tailwind CSS." />
-  
+  <meta name="keywords" content="代码随想录, " />
   
   
   <link rel="canonical" href="/algorithm/%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5/%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5/" />
@@ -64,7 +64,7 @@
   
   
   
-  <meta property="og:title" content="" />
+  <meta property="og:title" content="螺旋矩阵" />
 <meta property="og:description" content="处理边界条件？
 循环不可靠！找到循环不变量！
 #include &#34;../cunion.h&#34; class Solution { public: vector&lt;vector&lt;int&gt;&gt; generateMatrix(int n) { int num = 1; //注意这里是全闭区间 vector&lt;vector&lt;int&gt;&gt; matrix(n, vector&lt;int&gt;(n)); int left = 0, right = n - 1, top = 0, bottom = n - 1; while (left &lt;= right &amp;&amp; top &lt;= bottom) { //从左往右 for (int column = left; column &lt;= right; &#43;&#43;column) { matrix[top][column] = num; num&#43;&#43;; } for (int row = top &#43; 1; row &lt;= bottom; &#43;&#43;row) { matrix[row][right] = num; num&#43;&#43;; } //从右往左 if (left &lt; right &amp;&amp; top &lt; bottom) { for (int column = right - 1; column &gt; left; --column) { matrix[bottom][column] = num; num&#43;&#43;; } for (int row = bottom; row &gt; top; --row) { matrix[row][left] = num; num&#43;&#43;; } } left&#43;&#43;; right--; top&#43;&#43;; bottom--; } return matrix; } }; int main() { Solution *solution; vector&lt;vector&lt;int&gt;&gt; vo = solution-&gt;generateMatrix(4); for (int i = 0; i &lt; vo." />
@@ -75,7 +75,7 @@
 
 
   <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content=""/>
+<meta name="twitter:title" content="螺旋矩阵"/>
 <meta name="twitter:description" content="处理边界条件？
 循环不可靠！找到循环不变量！
 #include &#34;../cunion.h&#34; class Solution { public: vector&lt;vector&lt;int&gt;&gt; generateMatrix(int n) { int num = 1; //注意这里是全闭区间 vector&lt;vector&lt;int&gt;&gt; matrix(n, vector&lt;int&gt;(n)); int left = 0, right = n - 1, top = 0, bottom = n - 1; while (left &lt;= right &amp;&amp; top &lt;= bottom) { //从左往右 for (int column = left; column &lt;= right; &#43;&#43;column) { matrix[top][column] = num; num&#43;&#43;; } for (int row = top &#43; 1; row &lt;= bottom; &#43;&#43;row) { matrix[row][right] = num; num&#43;&#43;; } //从右往左 if (left &lt; right &amp;&amp; top &lt; bottom) { for (int column = right - 1; column &gt; left; --column) { matrix[bottom][column] = num; num&#43;&#43;; } for (int row = bottom; row &gt; top; --row) { matrix[row][left] = num; num&#43;&#43;; } } left&#43;&#43;; right--; top&#43;&#43;; bottom--; } return matrix; } }; int main() { Solution *solution; vector&lt;vector&lt;int&gt;&gt; vo = solution-&gt;generateMatrix(4); for (int i = 0; i &lt; vo."/>
@@ -86,8 +86,8 @@
     "@context": "https://schema.org",
     "@type": "Article",
     "articleSection": "Algorithms",
-    "name": "",
-    "headline": "",
+    "name": "螺旋矩阵",
+    "headline": "螺旋矩阵",
     
     "abstract": "处理边界条件？\n循环不可靠！找到循环不变量！\n#include \u0026#34;..\/cunion.h\u0026#34; class Solution { public: vector\u0026lt;vector\u0026lt;int\u0026gt;\u0026gt; generateMatrix(int n) { int num = 1; \/\/注意这里是全闭区间 vector\u0026lt;vector\u0026lt;int\u0026gt;\u0026gt; matrix(n, vector\u0026lt;int\u0026gt;(n)); int left = 0, right = n - 1, top = 0, bottom = n - 1; while (left \u0026lt;= right \u0026amp;\u0026amp; top \u0026lt;= bottom) { \/\/从左往右 for (int column = left; column \u0026lt;= right; \u002b\u002bcolumn) { matrix[top][column] = num; num\u002b\u002b; } for (int row = top \u002b 1; row \u0026lt;= bottom; \u002b\u002brow) { matrix[row][right] = num; num\u002b\u002b; } \/\/从右往左 if (left \u0026lt; right \u0026amp;\u0026amp; top \u0026lt; bottom) { for (int column = right - 1; column \u0026gt; left; --column) { matrix[bottom][column] = num; num\u002b\u002b; } for (int row = bottom; row \u0026gt; top; --row) { matrix[row][left] = num; num\u002b\u002b; } } left\u002b\u002b; right--; top\u002b\u002b; bottom--; } return matrix; } }; int main() { Solution *solution; vector\u0026lt;vector\u0026lt;int\u0026gt;\u0026gt; vo = solution-\u0026gt;generateMatrix(4); for (int i = 0; i \u0026lt; vo.",
     "inLanguage": "zh-CN",
@@ -102,7 +102,7 @@
     
     
     
-    
+    "keywords": ["代码随想录"],
     
     "mainEntityOfPage": "true",
     "wordCount": "222"
@@ -613,7 +613,7 @@
 
     
     <div class="fixed inset-x-0 top-0 h-[800px] single_hero_background nozoom"
-    style="background-image:url(/img/%E4%BD%A0%E7%9A%84%E5%90%8D%E5%AD%97_hu58dd3bf4079e2d69ef87c0777d129691_1821305_1200x0_resize_box_3.png);">
+    style="background-image:url(/img/featured_hudb063fd96b0863c8427eb25f55b23049_1428542_1200x0_resize_box_3.png);">
     
 
 
@@ -667,7 +667,7 @@
     <a
       class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
       href="/algorithm/%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5/%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5/"
-      >algorithm</a
+      >螺旋矩阵</a
     ><span class="px-1 text-primary-500">/</span>
   </li>
 
@@ -676,7 +676,7 @@
 
     
     <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral" style="font-family: 华文中宋,serif">
-      
+      螺旋矩阵
     </h1>
     <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
       
@@ -754,6 +754,16 @@
   
   
   
+  
+  
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    代码随想录
+  </span>
+</span>
+  </span>
   
   
   
@@ -1056,7 +1066,7 @@
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://twitter.com/intent/tweet/?url=/algorithm/%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5/%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5/&amp;text="
+      href="https://twitter.com/intent/tweet/?url=/algorithm/%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5/%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5/&amp;text=%e8%9e%ba%e6%97%8b%e7%9f%a9%e9%98%b5"
       title="分享到 Twitter"
       aria-label="分享到 Twitter"
       >
@@ -1074,7 +1084,7 @@
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://t.me/share/url?url=/algorithm/%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5/%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5/&amp;resubmit=true&amp;title="
+      href="https://t.me/share/url?url=/algorithm/%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5/%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5/&amp;resubmit=true&amp;title=%e8%9e%ba%e6%97%8b%e7%9f%a9%e9%98%b5"
       title=""
       aria-label=""
       >
@@ -1093,7 +1103,7 @@
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="mailto:?body=/algorithm/%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5/%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5/&amp;subject="
+      href="mailto:?body=/algorithm/%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5/%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5/&amp;subject=%e8%9e%ba%e6%97%8b%e7%9f%a9%e9%98%b5"
       title="通过电子邮件发送"
       aria-label="通过电子邮件发送"
       >
@@ -1114,6 +1124,371 @@
           
 
 
+<h2 class="mt-8 text-2xl font-extrabold mb-10">相关文章</h2>
+<section class="w-full grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+  
+  
+
+  <a href="/algorithm/%E4%BA%8C%E5%88%86%E6%B3%95/" class="min-w-full">
+    
+    <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
+        
+        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/img/annimation/4c758d7c82292f81f99d63ff1072aa9adb5c3536_raw_hu9b60894d5013d728985af7ffc2fcbbdd_675352_600x0_resize_q75_box.jpg);"></div>
+        
+      
+
+      <div class="px-6 py-4">
+
+        
+        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
+          href="/algorithm/%E4%BA%8C%E5%88%86%E6%B3%95/">二分法</div>
+        
+
+        <div class="text-sm text-neutral-500 dark:text-neutral-400">
+          
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="0001-01-01 00:00:00 &#43;0000 UTC">1 January 0001</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
+  
+
+  
+  
+</div>
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    代码随想录
+  </span>
+</span>
+  </span>
+  
+  
+  
+  
+</div>
+
+
+
+
+        </div>
+
+        
+      </div>
+      <div class="px-6 pt-4 pb-2">
+
+      </div>
+    </div>
+  </a>
+
+  
+  
+
+  <a href="/algorithm/%E7%AE%97%E6%B3%95/c/" class="min-w-full">
+    
+    <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
+        
+        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/img/annimation/4c758d7c82292f81f99d63ff1072aa9adb5c3536_raw_hu9b60894d5013d728985af7ffc2fcbbdd_675352_600x0_resize_q75_box.jpg);"></div>
+        
+      
+
+      <div class="px-6 py-4">
+
+        
+        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
+          href="/algorithm/%E7%AE%97%E6%B3%95/c/">复杂度</div>
+        
+
+        <div class="text-sm text-neutral-500 dark:text-neutral-400">
+          
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="0001-01-01 00:00:00 &#43;0000 UTC">1 January 0001</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
+  
+
+  
+  
+</div>
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    代码随想录
+  </span>
+</span>
+  </span>
+  
+  
+  
+  
+</div>
+
+
+
+
+        </div>
+
+        
+      </div>
+      <div class="px-6 pt-4 pb-2">
+
+      </div>
+    </div>
+  </a>
+
+  
+  
+
+  <a href="/algorithm/%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9/" class="min-w-full">
+    
+    <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
+        
+        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/img/annimation/4c758d7c82292f81f99d63ff1072aa9adb5c3536_raw_hu9b60894d5013d728985af7ffc2fcbbdd_675352_600x0_resize_q75_box.jpg);"></div>
+        
+      
+
+      <div class="px-6 py-4">
+
+        
+        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
+          href="/algorithm/%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9/">有序数组的平方</div>
+        
+
+        <div class="text-sm text-neutral-500 dark:text-neutral-400">
+          
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="0001-01-01 00:00:00 &#43;0000 UTC">1 January 0001</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
+  
+
+  
+  
+</div>
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    代码随想录
+  </span>
+</span>
+  </span>
+  
+  
+  
+  
+</div>
+
+
+
+
+        </div>
+
+        
+      </div>
+      <div class="px-6 pt-4 pb-2">
+
+      </div>
+    </div>
+  </a>
+
+  
+</section>
+
 
     
   
@@ -1125,7 +1500,7 @@
       <div class="flex justify-between pt-3">
         <span>
           
-            <a class="flex group mr-3" href="/algorithm/%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E6%95%B0%E7%BB%84/">
+            <a class="flex group mr-3" href="/algorithm/%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0/">
               <span
                 class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
                 >&larr;</span
@@ -1137,7 +1512,7 @@
               <span class="flex flex-col">
                 <span
                   class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
-                  ></span
+                  >移除元素</span
                 >
                 <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
                   
@@ -1150,11 +1525,11 @@
         </span>
         <span>
           
-            <a class="flex text-right group ml-3" href="/algorithm/%E7%AE%97%E6%B3%95/c/">
+            <a class="flex text-right group ml-3" href="/algorithm/%E9%93%BE%E8%A1%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">
               <span class="flex flex-col">
                 <span
                   class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
-                  ></span
+                  >链表的基本操作</span
                 >
                 <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
                   

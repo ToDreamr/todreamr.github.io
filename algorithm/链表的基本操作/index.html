@@ -9,14 +9,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   
-  <title>抽象数据类型ADT &middot; 春江花朝秋月夜</title>
-  <meta name="title" content="抽象数据类型ADT &middot; 春江花朝秋月夜" />
+  <title>链表的基本操作 &middot; 春江花朝秋月夜</title>
+  <meta name="title" content="链表的基本操作 &middot; 春江花朝秋月夜" />
   
-  <meta name="description" content="算法与数据结构" />
-  <meta name="keywords" content="要求熟记, " />
+  <meta name="description" content="A powerful, lightweight theme for Hugo built with Tailwind CSS." />
+  <meta name="keywords" content="代码随想录, " />
   
   
-  <link rel="canonical" href="/entire-note/%E9%93%BE%E8%A1%A8%E9%98%9F%E5%88%97%E5%92%8C%E6%A0%91/" />
+  <link rel="canonical" href="/algorithm/%E9%93%BE%E8%A1%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" />
   
   
   
@@ -64,44 +64,46 @@
   
   
   
-  <meta property="og:title" content="抽象数据类型ADT" />
-<meta property="og:description" content="算法与数据结构" />
+  <meta property="og:title" content="链表的基本操作" />
+<meta property="og:description" content="ADT模型
+&lt;--java--&gt; public class ListNode { // 结点的值 int val; // 下一个结点 ListNode next; // 节点的构造函数(无参) public ListNode() { } // 节点的构造函数(有一个参数) public ListNode(int val) { this.val = val; } // 节点的构造函数(有两个参数) public ListNode(int val, ListNode next) { this." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/entire-note/%E9%93%BE%E8%A1%A8%E9%98%9F%E5%88%97%E5%92%8C%E6%A0%91/" /><meta property="article:section" content="entire-note" />
-<meta property="article:published_time" content="2024-03-18T18:23:23+08:00" />
-<meta property="article:modified_time" content="2024-03-18T18:23:23+08:00" />
+<meta property="og:url" content="/algorithm/%E9%93%BE%E8%A1%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" /><meta property="article:section" content="algorithm" />
+
+
 
 
   <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="抽象数据类型ADT"/>
-<meta name="twitter:description" content="算法与数据结构"/>
+<meta name="twitter:title" content="链表的基本操作"/>
+<meta name="twitter:description" content="ADT模型
+&lt;--java--&gt; public class ListNode { // 结点的值 int val; // 下一个结点 ListNode next; // 节点的构造函数(无参) public ListNode() { } // 节点的构造函数(有一个参数) public ListNode(int val) { this.val = val; } // 节点的构造函数(有两个参数) public ListNode(int val, ListNode next) { this."/>
 
   
   <script type="application/ld+json">
   [{
     "@context": "https://schema.org",
     "@type": "Article",
-    "articleSection": "Entire-notes",
-    "name": "抽象数据类型ADT",
-    "headline": "抽象数据类型ADT",
-    "description": "算法与数据结构",
-    "abstract": "链表 ，队列和二叉树 # 尝试使用cpp实现二叉树，下面是粗劣的代码： # 指针和引用传递的区别：\n\/\/如果传递引用： void List_Init(List \u0026amp;list) { \/\/ 防止访问空指针 if (list.next != NULL) { list.next = NULL; list.node_count = 0; } } \/\/如果传递指针： void List_Init(List *list) { \/\/ 防止访问空指针 if (list-\u0026gt;next !",
+    "articleSection": "Algorithms",
+    "name": "链表的基本操作",
+    "headline": "链表的基本操作",
+    
+    "abstract": "ADT模型\n\u0026lt;--java--\u0026gt; public class ListNode { \/\/ 结点的值 int val; \/\/ 下一个结点 ListNode next; \/\/ 节点的构造函数(无参) public ListNode() { } \/\/ 节点的构造函数(有一个参数) public ListNode(int val) { this.val = val; } \/\/ 节点的构造函数(有两个参数) public ListNode(int val, ListNode next) { this.",
     "inLanguage": "zh-CN",
-    "url" : "\/entire-note\/%E9%93%BE%E8%A1%A8%E9%98%9F%E5%88%97%E5%92%8C%E6%A0%91\/",
+    "url" : "\/algorithm\/%E9%93%BE%E8%A1%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C\/",
     "author" : {
       "@type": "Person",
       "name": "春江花朝秋月夜"
     },
-    "copyrightYear": "2024",
-    "dateCreated": "2024-03-18T18:23:23\u002b08:00",
-    "datePublished": "2024-03-18T18:23:23\u002b08:00",
     
-    "dateModified": "2024-03-18T18:23:23\u002b08:00",
     
-    "keywords": ["要求熟记"],
+    
+    
+    
+    
+    "keywords": ["代码随想录"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "398"
+    "wordCount": "167"
   }]
   </script>
 
@@ -653,8 +655,8 @@
   <li class="inline ">
     <a
       class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
-      href="/entire-note/"
-      >Entire-notes</a
+      href="/algorithm/"
+      >Algorithms</a
     ><span class="px-1 text-primary-500">/</span>
   </li>
 
@@ -662,8 +664,8 @@
   <li class="inline hidden">
     <a
       class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
-      href="/entire-note/%E9%93%BE%E8%A1%A8%E9%98%9F%E5%88%97%E5%92%8C%E6%A0%91/"
-      >抽象数据类型ADT</a
+      href="/algorithm/%E9%93%BE%E8%A1%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/"
+      >链表的基本操作</a
     ><span class="px-1 text-primary-500">/</span>
   </li>
 
@@ -672,7 +674,7 @@
 
     
     <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral" style="font-family: 华文中宋,serif">
-      抽象数据类型ADT
+      链表的基本操作
     </h1>
     <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
       
@@ -715,7 +717,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2024-03-18 18:23:23 &#43;0800 CST">18 March 2024</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">2 分钟</span>
+  <time datetime="0001-01-01 00:00:00 &#43;0000 UTC">1 January 0001</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
   
 
   
@@ -753,10 +755,10 @@
   
   
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/%E8%A6%81%E6%B1%82%E7%86%9F%E8%AE%B0/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/&#34;,'_self');">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    要求熟记
+    代码随想录
   </span>
 </span>
   </span>
@@ -919,121 +921,6 @@
   <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row" style="font-family: 华文中宋,serif">
 
     
-    <div style="width: 28%" class="order-first lg:ml-auto px-0 lg:order-last ltr:lg:pl-8 rtl:lg:pr-8">
-    <div class="toc ltr:pl-5 rtl:pr-5 print:hidden lg:sticky lg:top-[140px]">
-
-     <details open class="toc-right mt-0 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 hidden lg:block">
-  <summary
-    class="block py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
-    
-  </summary>
-  <div
-    class="min-w-[220px] py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#链表-队列和二叉树">链表 ，队列和二叉树</a>
-      <ul>
-        <li>
-          <ul>
-            <li><a href="#尝试使用cpp实现二叉树下面是粗劣的代码">尝试使用cpp实现二叉树，下面是粗劣的代码：</a>
-              <ul>
-                <li><a href="#二叉树的基本知识">二叉树的基本知识：</a>
-                  <ul>
-                    <li>
-                      <ul>
-                        <li><a href="#遍历二叉树">遍历二叉树</a></li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </li>
-  </ul>
-</nav>
-  </div>
-</details>
-<details class="toc-inside mt-0 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 lg:hidden">
-  <summary
-    class="py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
-    
-  </summary>
-  <div
-    class="py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#链表-队列和二叉树">链表 ，队列和二叉树</a>
-      <ul>
-        <li>
-          <ul>
-            <li><a href="#尝试使用cpp实现二叉树下面是粗劣的代码">尝试使用cpp实现二叉树，下面是粗劣的代码：</a>
-              <ul>
-                <li><a href="#二叉树的基本知识">二叉树的基本知识：</a>
-                  <ul>
-                    <li>
-                      <ul>
-                        <li><a href="#遍历二叉树">遍历二叉树</a></li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </li>
-  </ul>
-</nav>
-  </div>
-</details>
-
- 
-<script>
-  (function () {
-    var $toc = $('#TableOfContents');
-    if ($toc.length > 0) {
-      var $window = $(window);
-
-      function onScroll() {
-        var currentScroll = $window.scrollTop();
-        var h = $('.anchor');
-        var id = "";
-        h.each(function (i, e) {
-          e = $(e);
-          if (e.offset().top - $(window).height()/3 <= currentScroll) {
-            id = e.attr('id');
-          }
-        });
-        var active = $toc.find('a.active');      
-        if (active.length == 1 && active.eq(0).attr('href') == '#' + id) return true;
-
-        active.each(function (i, e) {
-          
-            $(e).removeClass('active');
-          
-        });
-        $toc.find('a[href="#' + id + '"]').addClass('active')
-        $toc.find('a[href="#' + id + '"]').parentsUntil('#TableOfContents').each(function (i, e) {
-          $(e).children('a').parents('ul').show();          
-        });
-      }
-
-      $window.on('scroll', onScroll);
-      $(document).ready(function () {
-        
-        onScroll();
-      });
-    }
-  })();
-</script>
-  
-    </div>
-    </div>
-    
 
 
     <div class="min-w-0 min-h-0 max-w-fit" style="width: 100%">
@@ -1041,239 +928,87 @@
 
 
       <div class="article-content max-w-prose mb-20">
-        <h1 class="relative group">链表 ，队列和二叉树 
-    <div id="链表-队列和二叉树" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%e9%93%be%e8%a1%a8-%e9%98%9f%e5%88%97%e5%92%8c%e4%ba%8c%e5%8f%89%e6%a0%91" aria-label="锚点">#</a>
-    </span>        
-    
-</h1>
-<h3 class="relative group">尝试使用cpp实现二叉树，下面是粗劣的代码： 
-    <div id="尝试使用cpp实现二叉树下面是粗劣的代码" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%e5%b0%9d%e8%af%95%e4%bd%bf%e7%94%a8cpp%e5%ae%9e%e7%8e%b0%e4%ba%8c%e5%8f%89%e6%a0%91%e4%b8%8b%e9%9d%a2%e6%98%af%e7%b2%97%e5%8a%a3%e7%9a%84%e4%bb%a3%e7%a0%81" aria-label="锚点">#</a>
-    </span>        
-    
-</h3>
-<p>指针和引用传递的区别：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">//如果传递引用：
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">List_Init</span><span class="p">(</span><span class="n">List</span> <span class="o">&amp;</span><span class="n">list</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// 防止访问空指针
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="n">list</span><span class="p">.</span><span class="n">next</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">list</span><span class="p">.</span><span class="n">next</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="n">list</span><span class="p">.</span><span class="n">node_count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="c1">//如果传递指针：
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">List_Init</span><span class="p">(</span><span class="n">List</span> <span class="o">*</span><span class="n">list</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// 防止访问空指针
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="n">list</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">list</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="n">list</span><span class="o">-&gt;</span><span class="n">node_count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
+        <p>ADT模型</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="o">&lt;--</span><span class="n">java</span><span class="o">--&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ListNode</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 结点的值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">val</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">//如果不想用指针，想用引用：
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span> <span class="n">List</span> <span class="o">&amp;</span><span class="n">tmp</span> <span class="o">=</span> <span class="o">*</span><span class="n">list</span><span class="p">;</span>
-</span></span></code></pre></div><p>使用类模板：</p>
-<p>类模板使用只能用显示指定类型方式
-类模板中的模板参数列表可以有默认参数</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">NameType</span><span class="o">&gt;</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;stdio.h&#34;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;stdlib.h&#34;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;iostream&#34;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 下一个结点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">ListNode</span> <span class="n">next</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">// 定义一个链表
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">typedef</span> <span class="k">struct</span> <span class="nc">list</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">item</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">bool</span> <span class="n">isEmpty</span><span class="p">;</span>   <span class="c1">// 是否空链表
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">node_count</span><span class="p">;</span> <span class="c1">// 节点数
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">list</span> <span class="o">*</span><span class="n">next</span><span class="p">;</span>     <span class="c1">// 下一节点
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span> <span class="n">List</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 节点的构造函数(无参)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="nf">ListNode</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">// 定义一个二叉树ADT
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">typedef</span> <span class="k">struct</span> <span class="nc">tree</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">list</span> <span class="n">node</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">tree</span> <span class="o">*</span><span class="n">tree</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="n">Tree</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 节点的构造函数(有一个参数)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="nf">ListNode</span><span class="o">(</span><span class="kt">int</span> <span class="n">val</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">val</span> <span class="o">=</span> <span class="n">val</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">List_Init</span><span class="p">(</span><span class="n">List</span> <span class="o">&amp;</span><span class="n">list</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// 防止访问空指针
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="n">list</span><span class="p">.</span><span class="n">next</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">list</span><span class="p">.</span><span class="n">next</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="n">list</span><span class="p">.</span><span class="n">node_count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kt">bool</span> <span class="nf">List_IsEmpty</span><span class="p">(</span><span class="n">List</span> <span class="o">&amp;</span><span class="n">list</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">list</span><span class="p">.</span><span class="n">isEmpty</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="kt">bool</span> <span class="nf">Add_List_Item</span><span class="p">(</span><span class="n">List</span> <span class="o">&amp;</span><span class="n">list</span><span class="p">,</span> <span class="kt">int</span> <span class="o">&amp;</span><span class="n">new_item</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">list</span><span class="p">.</span><span class="n">next</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">// 加入元素
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">List</span> <span class="o">*</span><span class="n">tp</span> <span class="o">=</span> <span class="p">(</span><span class="n">List</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">List</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl">        <span class="n">List</span> <span class="o">&amp;</span><span class="n">tmp</span> <span class="o">=</span> <span class="o">*</span><span class="n">tp</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">tmp</span><span class="p">.</span><span class="n">next</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">        <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="c1">//
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">tmp</span><span class="p">.</span><span class="n">item</span> <span class="o">=</span> <span class="n">new_item</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">            <span class="n">tmp</span><span class="p">.</span><span class="n">next</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">            <span class="n">tmp</span><span class="p">.</span><span class="n">isEmpty</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">            <span class="n">tmp</span><span class="p">.</span><span class="n">node_count</span><span class="o">++</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">            <span class="n">list</span><span class="p">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">.</span><span class="n">next</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">Travel_List</span><span class="p">(</span><span class="n">List</span> <span class="o">&amp;</span><span class="n">list</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">list</span><span class="p">.</span><span class="n">next</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;元素是：&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">list</span><span class="p">.</span><span class="n">item</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="n">list</span> <span class="o">=</span> <span class="o">*</span><span class="n">list</span><span class="p">.</span><span class="n">next</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;元素是：&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">list</span><span class="p">.</span><span class="n">item</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">List</span> <span class="o">*</span><span class="n">test</span> <span class="o">=</span> <span class="p">(</span><span class="n">List</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">List</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl">    <span class="n">List</span> <span class="o">&amp;</span><span class="n">res</span> <span class="o">=</span> <span class="o">*</span><span class="n">test</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">List_Init</span><span class="p">(</span><span class="n">res</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">item</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">12</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">Add_List_Item</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">item</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">Travel_List</span><span class="p">(</span><span class="n">res</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h4 class="relative group">二叉树的基本知识： 
-    <div id="二叉树的基本知识" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%e4%ba%8c%e5%8f%89%e6%a0%91%e7%9a%84%e5%9f%ba%e6%9c%ac%e7%9f%a5%e8%af%86" aria-label="锚点">#</a>
-    </span>        
-    
-</h4>
-<blockquote>
-<p><a href="https://cloud.tencent.com/developer/article/1353388"   target="_blank">
-    参考文章</a></p>
-</blockquote>
-<p>满二叉树：</p>
-<ul>
-<li>所有元素全部占满，必定是完全二叉树</li>
-<li>只有最下层才有叶子节点</li>
-<li>非叶子节点的度为 2</li>
-</ul>
-<p>完全二叉树：</p>
-<p>叶子结点只能出现在最下两层；
-最下层的叶子结点一定集中在左边并且连续；
-若结点度为1，则该节点只有左子节点；</p>
-<h6 class="relative group">遍历二叉树 
-    <div id="遍历二叉树" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%e9%81%8d%e5%8e%86%e4%ba%8c%e5%8f%89%e6%a0%91" aria-label="锚点">#</a>
-    </span>        
-    
-</h6>
-<p>
-
-
-
-
-  <figure>
-    <img class="my-0 rounded-md" src="https://ask.qcloudimg.com/http-save/yehe-2161968/xflz8w0vi1.png" alt="例子" />
-    
-  </figure>
-
-</p>
-<pre><code>①、前序遍历：
-</code></pre>
-<p>　　定义：先访问根节点，然后访问左子树，再访问右子树；</p>
-<p>　　按照定义遍历的顺序遍历结果为：A B D H I E J C F K G</p>
-<p>　　②、中序遍历：</p>
-<p>　　定义：先访问左子树，再访问根节点，最后访问右子树；</p>
-<p>　　按照定义遍历的顺序遍历结果为：H D I B E J A F K C G</p>
-<p>　　③、后序遍历：</p>
-<p>　　定义：先访问左子树，再访问右子树，最后访问根节点；</p>
-<p>　　按照定义遍历的顺序遍历结果为：H I D J E B K F G C A</p>
-<p>　　④、层次遍历：</p>
-<p>　　定义：逐层的从根节点开始，每层从左至右遍历；</p>
-<p>　　按照定义遍历的顺序遍历结果为：A B C D E F G H I J K</p>
-<p>经常使用的库：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">//
-</span></span></span><span class="line"><span class="cl"><span class="c1">// Created by Rainy-Heights on 2024/3/19.
-</span></span></span><span class="line"><span class="cl"><span class="c1">//
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl"><span class="cp">#ifndef CARL_CODE_UNION_H
-</span></span></span><span class="line"><span class="cl"><span class="cp">#define CARL_CODE_UNION_H
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
-</span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">//链表ADT
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">struct</span> <span class="nc">ListNode</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 节点的构造函数(有两个参数)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="nf">ListNode</span><span class="o">(</span><span class="kt">int</span> <span class="n">val</span><span class="o">,</span> <span class="n">ListNode</span> <span class="n">next</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">val</span> <span class="o">=</span> <span class="n">val</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">next</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="o">&lt;--</span><span class="n">Cpp</span><span class="o">--&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">ListNode</span><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">val</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">ListNode</span> <span class="o">*</span><span class="n">next</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">ListNode</span><span class="p">()</span> <span class="o">:</span> <span class="n">val</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">next</span><span class="p">(</span><span class="k">nullptr</span><span class="p">)</span> <span class="p">{}</span>
-</span></span><span class="line"><span class="cl">    <span class="n">ListNode</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="o">:</span> <span class="n">val</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">next</span><span class="p">(</span><span class="k">nullptr</span><span class="p">)</span> <span class="p">{}</span>
-</span></span><span class="line"><span class="cl">    <span class="n">ListNode</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="n">ListNode</span> <span class="o">*</span><span class="n">next</span><span class="p">)</span> <span class="o">:</span> <span class="n">val</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">next</span><span class="p">(</span><span class="n">next</span><span class="p">)</span> <span class="p">{}</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">initNode</span><span class="p">(</span><span class="n">ListNode</span> <span class="o">*</span><span class="n">listNode</span><span class="p">,</span><span class="kt">int</span> <span class="n">len</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">        <span class="n">ListNode</span> <span class="o">*</span><span class="n">head</span><span class="o">=</span><span class="n">listNode</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">index</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="p">(</span><span class="n">index</span><span class="o">&lt;</span><span class="n">len</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">            <span class="n">head</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">=</span><span class="k">new</span> <span class="n">ListNode</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">            <span class="n">head</span><span class="o">-&gt;</span><span class="n">val</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">            <span class="n">head</span><span class="o">=</span><span class="n">head</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">            <span class="n">index</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ListNode</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="o">:</span> <span class="n">val</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">next</span><span class="p">(</span><span class="k">nullptr</span><span class="p">)</span> <span class="p">{}</span> <span class="c1">// 节点的构造函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//所以如果不定义构造函数使用默认构造函数的话，在初始化的时候就不能直接给变量赋值！
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">ListNode</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="n">ListNode</span> <span class="o">*</span><span class="n">next</span><span class="p">)</span> <span class="o">:</span> <span class="n">val</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">next</span><span class="p">(</span><span class="n">next</span><span class="p">)</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="c1">//
+</span></span></span><span class="line"><span class="cl"><span class="c1">// Created by Rainy-Heights on 2024/3/20.
+</span></span></span><span class="line"><span class="cl"><span class="c1">//
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#include</span> <span class="cpf">&#34;../cunion.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Definition for singly-linked list.
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ListNode</span><span class="o">*</span> <span class="n">removeElements</span><span class="p">(</span><span class="n">ListNode</span><span class="o">*</span> <span class="n">head</span><span class="p">,</span> <span class="kt">int</span> <span class="n">val</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ListNode</span> <span class="o">*</span><span class="n">dummyHead</span><span class="o">=</span><span class="k">new</span> <span class="n">ListNode</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="c1">//创建虚拟头节点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">dummyHead</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">=</span><span class="n">head</span><span class="p">;</span><span class="c1">//虚拟头节点的下一个节点指向头节点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">ListNode</span> <span class="o">*</span><span class="n">cur</span><span class="o">=</span><span class="n">dummyHead</span><span class="p">;</span><span class="c1">//当前节点,用于遍历,为了能够删除头节点，需要知道头结点的上一个节点也就是dummyHead
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">//删除一般节点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">while</span> <span class="p">(</span><span class="n">cur</span><span class="o">!=</span> <span class="nb">NULL</span><span class="o">&amp;&amp;</span><span class="n">cur</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">!=</span> <span class="nb">NULL</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">cur</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">-&gt;</span><span class="n">val</span><span class="o">==</span><span class="n">val</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">                <span class="n">cur</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">=</span><span class="n">cur</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span> <span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">cur</span><span class="o">=</span><span class="n">cur</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">head</span><span class="o">=</span><span class="n">dummyHead</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">delete</span><span class="p">(</span><span class="n">dummyHead</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//删除头节点，使用虚拟节点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">return</span> <span class="n">head</span><span class="p">;</span><span class="c1">//返回头节点即可
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ListNode</span> <span class="o">*</span><span class="n">node</span><span class="o">=</span><span class="k">new</span> <span class="n">ListNode</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ListNode</span> <span class="o">*</span><span class="n">head</span><span class="o">=</span><span class="n">node</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">v</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">7</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">head</span><span class="o">-&gt;</span><span class="n">val</span><span class="o">=</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">head</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">=</span><span class="k">new</span> <span class="n">ListNode</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">head</span><span class="o">=</span><span class="n">head</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span><span class="line"><span class="cl"><span class="c1">//树ADT
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">struct</span> <span class="nc">TreeNode</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">val</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">TreeNode</span> <span class="o">*</span><span class="n">left</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">TreeNode</span> <span class="o">*</span><span class="n">right</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">TreeNode</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="o">:</span> <span class="n">val</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">left</span><span class="p">(</span><span class="nb">NULL</span><span class="p">),</span> <span class="n">right</span><span class="p">(</span><span class="nb">NULL</span><span class="p">)</span> <span class="p">{}</span>
-</span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span><span class="line"><span class="cl"><span class="cp">#endif </span><span class="c1">//CARL_CODE_UNION_H
-</span></span></span></code></pre></div>
+</span></span><span class="line"><span class="cl"><span class="c1">//    head-&gt;initNode(head,8);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Solution</span> <span class="o">*</span><span class="n">solution</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ListNode</span> <span class="o">*</span><span class="n">res</span><span class="o">=</span><span class="n">solution</span><span class="o">-&gt;</span><span class="n">removeElements</span><span class="p">(</span><span class="n">node</span><span class="p">,</span><span class="mi">6</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">res</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">!=</span> <span class="nb">NULL</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">res</span><span class="o">-&gt;</span><span class="n">val</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">res</span><span class="o">=</span><span class="n">res</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div>
       </div>
 
 
@@ -1283,8 +1018,8 @@
 
     
     <script>
-      var oid = "views_entire-note\\链表队列和树\\index.md"
-      var oid_likes = "likes_entire-note\\链表队列和树\\index.md"
+      var oid = "views_algorithm\\链表的基本操作.md"
+      var oid_likes = "likes_algorithm\\链表的基本操作.md"
     </script>
     
     
@@ -1307,7 +1042,7 @@
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://twitter.com/intent/tweet/?url=/entire-note/%E9%93%BE%E8%A1%A8%E9%98%9F%E5%88%97%E5%92%8C%E6%A0%91/&amp;text=%e6%8a%bd%e8%b1%a1%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8bADT"
+      href="https://twitter.com/intent/tweet/?url=/algorithm/%E9%93%BE%E8%A1%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/&amp;text=%e9%93%be%e8%a1%a8%e7%9a%84%e5%9f%ba%e6%9c%ac%e6%93%8d%e4%bd%9c"
       title="分享到 Twitter"
       aria-label="分享到 Twitter"
       >
@@ -1325,7 +1060,7 @@
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://t.me/share/url?url=/entire-note/%E9%93%BE%E8%A1%A8%E9%98%9F%E5%88%97%E5%92%8C%E6%A0%91/&amp;resubmit=true&amp;title=%e6%8a%bd%e8%b1%a1%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8bADT"
+      href="https://t.me/share/url?url=/algorithm/%E9%93%BE%E8%A1%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/&amp;resubmit=true&amp;title=%e9%93%be%e8%a1%a8%e7%9a%84%e5%9f%ba%e6%9c%ac%e6%93%8d%e4%bd%9c"
       title=""
       aria-label=""
       >
@@ -1344,7 +1079,7 @@
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="mailto:?body=/entire-note/%E9%93%BE%E8%A1%A8%E9%98%9F%E5%88%97%E5%92%8C%E6%A0%91/&amp;subject=%e6%8a%bd%e8%b1%a1%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8bADT"
+      href="mailto:?body=/algorithm/%E9%93%BE%E8%A1%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/&amp;subject=%e9%93%be%e8%a1%a8%e7%9a%84%e5%9f%ba%e6%9c%ac%e6%93%8d%e4%bd%9c"
       title="通过电子邮件发送"
       aria-label="通过电子邮件发送"
       >
@@ -1370,247 +1105,7 @@
   
   
 
-  <a href="/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/%E9%9D%A2%E8%AF%95/" class="min-w-full">
-    
-    <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
-        
-        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/%E9%9D%A2%E8%AF%95/featured_hudb063fd96b0863c8427eb25f55b23049_1428542_600x0_resize_box_3.png);"></div>
-        
-      
-
-      <div class="px-6 py-4">
-
-        
-        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
-          href="/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/%E9%9D%A2%E8%AF%95/">计算机科学基础</div>
-        
-
-        <div class="text-sm text-neutral-500 dark:text-neutral-400">
-          
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="flex flex-row flex-wrap items-center">
-  
-  
-  <time datetime="2024-03-09 18:23:23 &#43;0800 CST">9 March 2024</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">2 分钟</span>
-  
-
-  
-  
-</div>
-
-
-<div class="flex flex-row flex-wrap items-center">
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-</div>
-
-
-
-
-<div class="flex flex-row flex-wrap items-center">
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/%E8%A6%81%E6%B1%82%E7%86%9F%E8%AE%B0/&#34;,'_self');">
-    <span class="flex" style="cursor: pointer;">
-  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    要求熟记
-  </span>
-</span>
-  </span>
-  
-  
-  
-  
-</div>
-
-
-
-
-        </div>
-
-        
-      </div>
-      <div class="px-6 pt-4 pb-2">
-
-      </div>
-    </div>
-  </a>
-
-  
-  
-
-  <a href="/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/zset/" class="min-w-full">
-    
-    <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
-        
-        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/zset/featured_huf470dd402a44c458f291f2e8762354b4_2494439_600x0_resize_box_3.png);"></div>
-        
-      
-
-      <div class="px-6 py-4">
-
-        
-        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
-          href="/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/zset/">Mysql-Redis</div>
-        
-
-        <div class="text-sm text-neutral-500 dark:text-neutral-400">
-          
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="flex flex-row flex-wrap items-center">
-  
-  
-  <time datetime="2024-03-15 17:06:00 &#43;0800 CST">15 March 2024</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
-  
-
-  
-  
-</div>
-
-
-<div class="flex flex-row flex-wrap items-center">
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-</div>
-
-
-
-
-<div class="flex flex-row flex-wrap items-center">
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/%E4%B8%BB%E4%BB%8E%E9%83%A8%E5%88%86/&#34;,'_self');">
-    <span class="flex" style="cursor: pointer;">
-  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    主从部分
-  </span>
-</span>
-  </span>
-  
-  
-  
-  
-</div>
-
-
-
-
-        </div>
-
-        
-      </div>
-      <div class="px-6 pt-4 pb-2">
-
-      </div>
-    </div>
-  </a>
-
-  
-  
-
-  <a href="/entire-note/netty/" class="min-w-full">
+  <a href="/algorithm/%E4%BA%8C%E5%88%86%E6%B3%95/" class="min-w-full">
     
     <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
         
@@ -1622,7 +1117,7 @@
 
         
         <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
-          href="/entire-note/netty/">使用主从模式搭建一个Socket网络通信模型</div>
+          href="/algorithm/%E4%BA%8C%E5%88%86%E6%B3%95/">二分法</div>
         
 
         <div class="text-sm text-neutral-500 dark:text-neutral-400">
@@ -1663,7 +1158,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2024-03-06 21:21:06 &#43;0800 CST">6 March 2024</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
+  <time datetime="0001-01-01 00:00:00 &#43;0000 UTC">1 January 0001</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
   
 
   
@@ -1701,10 +1196,250 @@
   
   
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/nio/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/&#34;,'_self');">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    nio
+    代码随想录
+  </span>
+</span>
+  </span>
+  
+  
+  
+  
+</div>
+
+
+
+
+        </div>
+
+        
+      </div>
+      <div class="px-6 pt-4 pb-2">
+
+      </div>
+    </div>
+  </a>
+
+  
+  
+
+  <a href="/algorithm/%E7%AE%97%E6%B3%95/c/" class="min-w-full">
+    
+    <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
+        
+        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/img/annimation/4c758d7c82292f81f99d63ff1072aa9adb5c3536_raw_hu9b60894d5013d728985af7ffc2fcbbdd_675352_600x0_resize_q75_box.jpg);"></div>
+        
+      
+
+      <div class="px-6 py-4">
+
+        
+        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
+          href="/algorithm/%E7%AE%97%E6%B3%95/c/">复杂度</div>
+        
+
+        <div class="text-sm text-neutral-500 dark:text-neutral-400">
+          
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="0001-01-01 00:00:00 &#43;0000 UTC">1 January 0001</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
+  
+
+  
+  
+</div>
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    代码随想录
+  </span>
+</span>
+  </span>
+  
+  
+  
+  
+</div>
+
+
+
+
+        </div>
+
+        
+      </div>
+      <div class="px-6 pt-4 pb-2">
+
+      </div>
+    </div>
+  </a>
+
+  
+  
+
+  <a href="/algorithm/%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9/" class="min-w-full">
+    
+    <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
+        
+        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/img/annimation/4c758d7c82292f81f99d63ff1072aa9adb5c3536_raw_hu9b60894d5013d728985af7ffc2fcbbdd_675352_600x0_resize_q75_box.jpg);"></div>
+        
+      
+
+      <div class="px-6 py-4">
+
+        
+        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
+          href="/algorithm/%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9/">有序数组的平方</div>
+        
+
+        <div class="text-sm text-neutral-500 dark:text-neutral-400">
+          
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="0001-01-01 00:00:00 &#43;0000 UTC">1 January 0001</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
+  
+
+  
+  
+</div>
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    代码随想录
   </span>
 </span>
   </span>
@@ -1741,7 +1476,7 @@
       <div class="flex justify-between pt-3">
         <span>
           
-            <a class="flex group mr-3" href="/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/zset/">
+            <a class="flex group mr-3" href="/algorithm/%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5/%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5/">
               <span
                 class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
                 >&larr;</span
@@ -1753,11 +1488,11 @@
               <span class="flex flex-col">
                 <span
                   class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
-                  >Mysql-Redis</span
+                  >螺旋矩阵</span
                 >
                 <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
                   
-                    <time datetime="2024-03-15 17:06:00 &#43;0800 CST">15 March 2024</time>
+                    <time datetime="0001-01-01 00:00:00 &#43;0000 UTC">1 January 0001</time>
                   
                 </span>
               </span>
@@ -1766,15 +1501,15 @@
         </span>
         <span>
           
-            <a class="flex text-right group ml-3" href="/entire-note/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95-%E7%AE%97%E6%B3%95/">
+            <a class="flex text-right group ml-3" href="/algorithm/%E7%AE%97%E6%B3%95/c/">
               <span class="flex flex-col">
                 <span
                   class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
-                  >代码随想录算法合辑</span
+                  >复杂度</span
                 >
                 <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
                   
-                    <time datetime="2024-03-19 17:31:54 &#43;0800 CST">19 March 2024</time>
+                    <time datetime="0001-01-01 00:00:00 &#43;0000 UTC">1 January 0001</time>
                   
                 </span>
               </span>
