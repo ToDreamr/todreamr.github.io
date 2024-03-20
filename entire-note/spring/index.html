@@ -126,7 +126,7 @@ spring: cloud: nacos: server-addr: localhost:8848 discovery: cluster-name: ClUST
     "keywords": ["微服务"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "309"
+    "wordCount": "353"
   }]
   </script>
 
@@ -974,7 +974,12 @@ spring: cloud: nacos: server-addr: localhost:8848 discovery: cluster-name: ClUST
             <li><a href="#负载均衡">负载均衡</a></li>
             <li><a href="#rpc远程调用">RPC远程调用</a></li>
             <li><a href="#服务网关">服务网关</a></li>
-            <li><a href="#断路器">断路器</a></li>
+            <li><a href="#断路器">断路器</a>
+              <ul>
+                <li><a href="#hystrix">Hystrix</a></li>
+                <li><a href="#sentinel">Sentinel</a></li>
+              </ul>
+            </li>
             <li><a href="#分布式事务">分布式事务</a></li>
             <li><a href="#单点登录">单点登录</a></li>
           </ul>
@@ -1012,7 +1017,12 @@ spring: cloud: nacos: server-addr: localhost:8848 discovery: cluster-name: ClUST
             <li><a href="#负载均衡">负载均衡</a></li>
             <li><a href="#rpc远程调用">RPC远程调用</a></li>
             <li><a href="#服务网关">服务网关</a></li>
-            <li><a href="#断路器">断路器</a></li>
+            <li><a href="#断路器">断路器</a>
+              <ul>
+                <li><a href="#hystrix">Hystrix</a></li>
+                <li><a href="#sentinel">Sentinel</a></li>
+              </ul>
+            </li>
             <li><a href="#分布式事务">分布式事务</a></li>
             <li><a href="#单点登录">单点登录</a></li>
           </ul>
@@ -1600,7 +1610,8 @@ LoadBalancer默认提供了两种负载均衡策略：</p>
 </h3>
 <p>统一网关GateWay(基于WebFlux实现，有响应式编程的优势)</p>
 <blockquote>
-<p>服务网关是微服务架构中一个非常关键的角色，作为后端服务的统一入口，负责统筹和管理后端服务。能够提供的功能有路由功能、负载均衡、安全认证、流量染色、灰度发布、限流熔断、协议转换、日志收集等</p>
+<p>服务网关是微服务架构中一个非常关键的角色，作为后端服务的统一入口，负责统筹和管理后端服务。能够提供的功能有路由功能、
+负载均衡、安全认证、流量染色、灰度发布、限流熔断、协议转换、日志收集等</p>
 </blockquote>
 <p>基本作用：认证，校验，路由微服务请求，负载均衡，限流,路由过滤器</p>
 <p>工作原理：</p>
@@ -1618,9 +1629,9 @@ LoadBalancer默认提供了两种负载均衡策略：</p>
 </span></span><span class="line"><span class="cl">    gateway:
 </span></span><span class="line"><span class="cl">      routes:
 </span></span><span class="line"><span class="cl">        - id: auth-center
-</span></span><span class="line"><span class="cl">          uri: lb://auth-center
+</span></span><span class="line"><span class="cl">          uri: lb://auth-center #加上lb代表负载均衡
 </span></span><span class="line"><span class="cl">          predicates:
-</span></span><span class="line"><span class="cl">            - Path=/oauth
+</span></span><span class="line"><span class="cl">            - Path=/oauth #谓词判断依据
 </span></span></code></pre></div><ol>
 <li>lb：固定格式，指的是从Nacos中按照名称获取微服务，并遵循负载均衡策略</li>
 <li>service-name：Nacos注册中心的服务名称</li>
@@ -1755,6 +1766,18 @@ LoadBalancer默认提供了两种负载均衡策略：</p>
     </span>        
     
 </h3>
+<p>微服务存在雪崩问题，也就是说一个微服务出现问题，有可能导致整个链路直接不可用，这种时候我们就需要进行及时的熔断和降级</p>
+<h4 class="relative group">Hystrix 
+    <div id="hystrix" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#hystrix" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>Hystrix断路器，已经停止维护</p>
 <p>依赖：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;dependency&gt;</span>
 </span></span><span class="line"><span class="cl">        <span class="nt">&lt;groupId&gt;</span>org.springframework.cloud<span class="nt">&lt;/groupId&gt;</span>
@@ -1818,7 +1841,72 @@ LoadBalancer默认提供了两种负载均衡策略：</p>
   
 
 </p>
-<h3 class="relative group">分布式事务 
+<h4 class="relative group">Sentinel 
+    <div id="sentinel" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#sentinel" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>随着微服务的流行，服务和服务之间的稳定性变得越来越重要。Sentinel 以流量为切入点，
+从流量控制、熔断降级、系统负载保护等多个维度保护服务的稳定性。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;groupId&gt;</span>com.alibaba.cloud<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;artifactId&gt;</span>spring-cloud-starter-alibaba-sentinel<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/dependency&gt;</span>
+</span></span></code></pre></div><p>可以实现的监控事项有：</p>
+<p>时间点、QPS(每秒查询率)、响应时间等数据。</p>
+<p><strong>三种限流策略</strong></p>
+<ol>
+<li>方案一：快速拒绝，既然不再接受新的请求，那么我们可以直接返回一个拒绝信息，告诉用户访问频率过高。</li>
+<li>方案二：预热，依然基于方案一，但是由于某些情况下高并发请求是在某一时刻突然到来，我们可以缓慢地将阈值提高到指定阈值，形成一个缓冲保护。</li>
+<li>方案三：排队等待，不接受新的请求，但是也不直接拒绝，而是进队列先等一下，如果规定时间内能够执行，那么就执行，要是超时就算了。</li>
+</ol>
+<p>流量阈值的判断，这里我们提4种算法：</p>
+<p>漏桶算法，令牌桶算法，固定时间窗口算法，滑动时间窗口算法</p>
+<p>限流时，如果发生异常，可以有替代方案；</p>
+<p>注解:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">@SentinelResource(value = &#34;test&#34;,
+</span></span><span class="line"><span class="cl">        fallback = &#34;except&#34;,    //fallback指定出现异常时的替代方案
+</span></span><span class="line"><span class="cl">        exceptionsToIgnore = IOException.class)
+</span></span></code></pre></div><p>思考： 服务降级时，新来的请求就会导致线程数不断地增加，这样，CPU的资源很快就会被耗尽。</p>
+<p>解决办法：</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /entire-note/spring/img_hu1fff2121e2d1e15beb4ec86d636e068a_220934_330x0_resize_box_3.png 330w,
+        /entire-note/spring/img_hu1fff2121e2d1e15beb4ec86d636e068a_220934_660x0_resize_box_3.png 660w,
+        /entire-note/spring/img_hu1fff2121e2d1e15beb4ec86d636e068a_220934_1024x0_resize_box_3.png 1024w,
+        /entire-note/spring/img_hu1fff2121e2d1e15beb4ec86d636e068a_220934_1320x0_resize_box_3.png 2x"
+        src="/entire-note/spring/img_hu1fff2121e2d1e15beb4ec86d636e068a_220934_660x0_resize_box_3.png"
+        alt="img.png"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>对feign开启断路器</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">feign</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">sentinel</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span></code></pre></div><h3 class="relative group">分布式事务 
     <div id="分布式事务" class="anchor"></div>
     
     <span
@@ -1974,47 +2062,42 @@ LoadBalancer默认提供了两种负载均衡策略：</p>
 </p>
 <p>使用jwt存储Token</p>
 <p>官网：https://jwt.io</p>
-<blockquote>
-</blockquote>
-<pre><code>JSON Web Token令牌（JWT）是一个开放标准（RFC 7519），它定义了一种紧凑和自成一体的方式，用于在各方之间作为JSON对象安全地传输信息。这些信息可以被验证和信任，因为它是数字签名的。
-
-JWT可以使用密钥（使用HMAC算法）或使用RSA或ECDSA进行公钥/私钥对进行签名。
-
-实际上，我们之前都是携带Token向资源服务器发起请求后，资源服务器由于不知道我们Token的用户信息，所以需要向验证服务器询问此Token的认证信息，
-
-这样才能得到Token代表的用户信息，但是各位是否考虑过，如果每次用户请求都去查询用户信息，那么在大量请求下，验证服务器的压力可能会非常的大。而使用JWT之后，Token中会直接保存用户信息，
-这样资源服务器就不再需要询问验证服务器，自行就可以完成解析，我们的目标是不联系验证服务器就能直接完成验证。
-
-一个JWT令牌由3部分组成：标头(Header)、有效载荷(Payload)和签名(Signature)。在传输的时候，会将JWT的3部分分别进行Base64编码后用.进行连接形成最终需要传输的字符串。
-
-标头：包含一些元数据信息，比如JWT签名所使用的加密算法，还有类型，这里统一都是JWT。
-有效载荷：包括用户名称、令牌发布时间、过期时间、JWT ID等，当然我们也可以自定义添加字段，我们的用户信息一般都在这里存放。
-签名：首先需要指定一个密钥，该密钥仅仅保存在服务器中，保证不能让其他用户知道。然后使用Header中指定的算法对Header和Payload进行base64加密之后的结果通过密钥计算哈希值，然后就得出一个签名哈希。这个会用于之后验证内容是否被篡改。
-
-	Base64（不是加密算法而是编码方式）： 就是包括小写字母a-z、大写字母A-Z、数字0-9、符号&quot;+&quot;、&quot;/&quot;一共64个字符的字符集（末尾还有1个或多个=用来凑够字节数），任何的符号都可以转换成这个字符集中的字符，
-这个转换过程就叫做Base64编码，编码之后会生成只包含上述64个字符的字符串。相反，如果需要原本的内容，我们也可以进行Base64解码，回到原有的样子。
-	
-	加密算法： 加密算法分为对称加密和非对称加密，其中**对称加密（Symmetric Cryptography）**比较好理解，就像一把锁配了两把钥匙一样，这两把钥匙你和别人都有一把，然后你们直接传递数据，都会把数据用锁给锁上，
-就算传递的途中有人把数据窃取了，也没办法解密，因为钥匙只有你和对方有，没有钥匙无法进行解密，但是这样有个问题，既然解密的关键在于钥匙本身，那么如果有人不仅窃取了数据，而且对方那边的治安也不好，
-于是顺手就偷走了钥匙，那你们之间发的数据不就凉凉了吗。
-	
-	因此，**非对称加密（Asymmetric Cryptography）**算法出现了，它并不是直接生成一把钥匙，而是生成一个公钥和一个私钥，私钥只能由你保管，而公钥交给对方或是你要发送的任何人都行，现在你需要把数据传给对方，
-那么就需要使用私钥进行加密，但是，这个数据只能使用对应的公钥进行解密，相反，如果对方需要给你发送数据，那么就需要用公钥进行加密，而数据只能使用私钥进行解密，这样的话就算对方的公钥被窃取，那么别人发给你的数据也没办法解密出来，
-因为需要私钥才能解密，而只有你才有私钥。
-	
-	因此，非对称加密的安全性会更高一些，包括HTTPS的隐私信息正是使用非对称加密来保障传输数据的安全（当然HTTPS并不是单纯地使用非对称加密完成的，感兴趣的可以去了解一下）
-	
-	对称加密和非对称加密都有很多的算法，比如对称加密，就有：DES、IDEA、RC2，非对称加密有：RSA、DAS、ECC
-	
-	不可逆加密算法： 常见的不可逆加密算法有MD5, HMAC, SHA-1, SHA-224, SHA-256, SHA-384, 和SHA-512, 其中SHA-224、SHA-256、SHA-384，和SHA-512我们可以统称为SHA2加密算法，
-SHA加密算法的安全性要比MD5更高，而SHA2加密算法比SHA1的要高，其中SHA后面的数字表示的是加密后的字符串长度，SHA1默认会产生一个160位的信息摘要。经过不可逆加密算法得到的加密结果，是无法解密回去的，
-也就是说加密出来是什么就是什么了。本质上，其就是一种哈希函数，用于对一段信息产生摘要，以防止被篡改。
-	
-实际上这种算法就常常被用作信息摘要计算，同样的数据通过同样的算法计算得到的结果肯定也一样，而如果数据被修改，那么计算的结果肯定就不一样了。
-</code></pre>
-<blockquote>
-</blockquote>
-<p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">	JSON Web Token令牌（JWT）是一个开放标准（RFC 7519），它定义了一种紧凑和自成一体的方式，用于在各方之间作为JSON对象安全地传输信息。这些信息可以被验证和信任，因为它是数字签名的。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    JWT可以使用密钥（使用HMAC算法）或使用RSA或ECDSA进行公钥/私钥对进行签名。
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	实际上，我们之前都是携带Token向资源服务器发起请求后，资源服务器由于不知道我们Token的用户信息，所以需要向验证服务器询问此Token的认证信息，
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    这样才能得到Token代表的用户信息，但是各位是否考虑过，如果每次用户请求都去查询用户信息，那么在大量请求下，验证服务器的压力可能会非常的大。而使用JWT之后，Token中会直接保存用户信息，
+</span></span><span class="line"><span class="cl">    这样资源服务器就不再需要询问验证服务器，自行就可以完成解析，我们的目标是不联系验证服务器就能直接完成验证。
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	一个JWT令牌由3部分组成：标头(Header)、有效载荷(Payload)和签名(Signature)。在传输的时候，会将JWT的3部分分别进行Base64编码后用.进行连接形成最终需要传输的字符串。
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	标头：包含一些元数据信息，比如JWT签名所使用的加密算法，还有类型，这里统一都是JWT。
+</span></span><span class="line"><span class="cl">	有效载荷：包括用户名称、令牌发布时间、过期时间、JWT ID等，当然我们也可以自定义添加字段，我们的用户信息一般都在这里存放。
+</span></span><span class="line"><span class="cl">	签名：首先需要指定一个密钥，该密钥仅仅保存在服务器中，保证不能让其他用户知道。然后使用Header中指定的算法对Header和Payload进行base64加密之后的结果通过密钥计算哈希值，然后就得出一个签名哈希。这个会用于之后验证内容是否被篡改。
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">    	Base64（不是加密算法而是编码方式）： 就是包括小写字母a-z、大写字母A-Z、数字0-9、符号&#34;+&#34;、&#34;/&#34;一共64个字符的字符集（末尾还有1个或多个=用来凑够字节数），任何的符号都可以转换成这个字符集中的字符，
+</span></span><span class="line"><span class="cl">    这个转换过程就叫做Base64编码，编码之后会生成只包含上述64个字符的字符串。相反，如果需要原本的内容，我们也可以进行Base64解码，回到原有的样子。
+</span></span><span class="line"><span class="cl">    	
+</span></span><span class="line"><span class="cl">    	加密算法： 加密算法分为对称加密和非对称加密，其中**对称加密（Symmetric Cryptography）**比较好理解，就像一把锁配了两把钥匙一样，这两把钥匙你和别人都有一把，然后你们直接传递数据，都会把数据用锁给锁上，
+</span></span><span class="line"><span class="cl">    就算传递的途中有人把数据窃取了，也没办法解密，因为钥匙只有你和对方有，没有钥匙无法进行解密，但是这样有个问题，既然解密的关键在于钥匙本身，那么如果有人不仅窃取了数据，而且对方那边的治安也不好，
+</span></span><span class="line"><span class="cl">    于是顺手就偷走了钥匙，那你们之间发的数据不就凉凉了吗。
+</span></span><span class="line"><span class="cl">    	
+</span></span><span class="line"><span class="cl">    	因此，**非对称加密（Asymmetric Cryptography）**算法出现了，它并不是直接生成一把钥匙，而是生成一个公钥和一个私钥，私钥只能由你保管，而公钥交给对方或是你要发送的任何人都行，现在你需要把数据传给对方，
+</span></span><span class="line"><span class="cl">    那么就需要使用私钥进行加密，但是，这个数据只能使用对应的公钥进行解密，相反，如果对方需要给你发送数据，那么就需要用公钥进行加密，而数据只能使用私钥进行解密，这样的话就算对方的公钥被窃取，那么别人发给你的数据也没办法解密出来，
+</span></span><span class="line"><span class="cl">    因为需要私钥才能解密，而只有你才有私钥。
+</span></span><span class="line"><span class="cl">    	
+</span></span><span class="line"><span class="cl">    	因此，非对称加密的安全性会更高一些，包括HTTPS的隐私信息正是使用非对称加密来保障传输数据的安全（当然HTTPS并不是单纯地使用非对称加密完成的，感兴趣的可以去了解一下）
+</span></span><span class="line"><span class="cl">    	
+</span></span><span class="line"><span class="cl">    	对称加密和非对称加密都有很多的算法，比如对称加密，就有：DES、IDEA、RC2，非对称加密有：RSA、DAS、ECC
+</span></span><span class="line"><span class="cl">    	
+</span></span><span class="line"><span class="cl">    	不可逆加密算法： 常见的不可逆加密算法有MD5, HMAC, SHA-1, SHA-224, SHA-256, SHA-384, 和SHA-512, 其中SHA-224、SHA-256、SHA-384，和SHA-512我们可以统称为SHA2加密算法，
+</span></span><span class="line"><span class="cl">    SHA加密算法的安全性要比MD5更高，而SHA2加密算法比SHA1的要高，其中SHA后面的数字表示的是加密后的字符串长度，SHA1默认会产生一个160位的信息摘要。经过不可逆加密算法得到的加密结果，是无法解密回去的，
+</span></span><span class="line"><span class="cl">    也就是说加密出来是什么就是什么了。本质上，其就是一种哈希函数，用于对一段信息产生摘要，以防止被篡改。
+</span></span><span class="line"><span class="cl">    	
+</span></span><span class="line"><span class="cl">	实际上这种算法就常常被用作信息摘要计算，同样的数据通过同样的算法计算得到的结果肯定也一样，而如果数据被修改，那么计算的结果肯定就不一样了。
+</span></span></code></pre></div><p>
 
 
 
