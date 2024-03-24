@@ -86,7 +86,7 @@
     "name": "Mysql-Redis",
     "headline": "Mysql-Redis",
     "description": "复习Redis和Mysql",
-    "abstract": "认识 # 有序集合和普通集合set很相似，是一个没有重复元素的字符串集合。\n每个成员都关联了一个评分（score），这个评分被用来按照最低分到最高分的方式排序集合种的成员。集合的成员是唯一的，但是分数可以重复\n底层： # Redis提供的一个非常特别的数据结构，一方面它等价于java的数据结构Map\u0026lt;String, double\u0026gt;，可以给每一个元素value赋予一个权重score， 另一方面它又类似于TreeSet，内部的元素会按照权重进行排序，可以得到每个元素的名次，还可以通过score的范围来获取元素的列表\n实现：\nhash；hash的作用就是关联元素value和权重score，保障元素value的唯一性，可以通过元素value找到score 跳跃表，跳跃表的目的在于给元素value排序，根据score的范围获取元素列表\n相同分数的时候\n有序集合里面的成员是不能重复的都是唯一的，但是，不同成员间有可能有相同的分数。当多个成员有相同的分数时，他们将是有序的字典（ordered lexicographically）（仍由分数作为第一排序条件，然后，相同分数的成员按照字典规则相对排序）。\n字典顺序排序用的是二进制，它比较的是字符串的字节数组。\n命令 # ",
+    "abstract": "Redis详解 # 1. Redis简介 # 使用C语言开发的内存数据库，读写速度快，广泛用于缓存方向 可以用于分布式锁，甚至是消息队列 提供多种数据类型来支持不同的业务场景 支持事务、持久化、Lua脚本、多种集群方案 2. Redis 和 Memcached 对比 # 2.1 相同点 # 都基于内存，一般都是用来当缓存使用 都有过期策略 两者性能都非常高 2.2 区别 # Redis 支持更丰富的数据类型【key-value类型、提供l ist set zset hash等数据结构的存储】、更复杂的应用场景。Memcached只支持简单的 key-value 类型； Redis支持数据的持久化，有灾难恢复机制，Memcached不支持； Redis在服务器内存不足时，可以将不用的数据放到磁盘上；Memcached则直接报异常； Redis原生支持集群模式，Memcached原生不支持，需要依靠客户端实现往集群分片写入数据； Memcached是多线程的非阻塞IO复用的网络模型，Redis使用单线程的多路IO复用模型【6.",
     "inLanguage": "zh-CN",
     "url" : "\/entire-note\/%E9%9D%A2%E8%AF%95%E9%A2%98\/zset\/",
     "author" : {
@@ -102,7 +102,7 @@
     "keywords": ["主从部分"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "18"
+    "wordCount": "1626"
   }]
   </script>
 
@@ -716,7 +716,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2024-03-15 17:06:00 &#43;0800 CST">15 March 2024</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
+  <time datetime="2024-03-15 17:06:00 &#43;0800 CST">15 March 2024</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">8 分钟</span>
   
 
   
@@ -932,18 +932,141 @@
     class="min-w-[220px] py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
     <nav id="TableOfContents">
   <ul>
-    <li>
+    <li><a href="#redis详解">Redis详解</a>
       <ul>
-        <li>
+        <li><a href="#1-redis简介">1. Redis简介</a></li>
+        <li><a href="#2-redis-和-memcached-对比">2. Redis 和 Memcached 对比</a>
           <ul>
-            <li><a href="#认识">认识</a>
+            <li><a href="#21-相同点">2.1 相同点</a></li>
+            <li><a href="#22-区别">2.2 区别</a></li>
+          </ul>
+        </li>
+        <li><a href="#3-缓存数据处理流程">3. 缓存数据处理流程</a></li>
+        <li><a href="#4-为什么使用redis">4. 为什么使用Redis</a>
+          <ul>
+            <li><a href="#41-高性能考虑">4.1 高性能考虑</a></li>
+            <li><a href="#42-高并发考虑">4.2 高并发考虑</a></li>
+          </ul>
+        </li>
+        <li><a href="#5-redis常见数据结构及应用场景">5. Redis常见数据结构及应用场景</a>
+          <ul>
+            <li><a href="#51-string">5.1 string</a>
               <ul>
-                <li><a href="#底层">底层：</a></li>
-                <li><a href="#命令">命令</a></li>
+                <li><a href="#511-基本操作">5.1.1 基本操作</a></li>
+                <li><a href="#512-计数器">5.1.2 计数器</a></li>
+                <li><a href="#513-过期时间设置">5.1.3 过期时间设置</a></li>
+              </ul>
+            </li>
+            <li><a href="#52-list">5.2 list</a>
+              <ul>
+                <li><a href="#通过rpushlpop实现队列">通过<code>rpush/lpop</code>实现队列</a></li>
+              </ul>
+            </li>
+            <li><a href="#53-hash">5.3 hash</a></li>
+            <li><a href="#54-set">5.4 set</a></li>
+            <li><a href="#55-sorted-set">5.5 sorted set</a></li>
+            <li><a href="#56-bitmap">5.6 bitmap</a>
+              <ul>
+                <li><a href="#561-使用场景一">5.6.1 使用场景一</a></li>
+                <li><a href="#562-使用场景二">5.6.2 使用场景二</a></li>
               </ul>
             </li>
           </ul>
         </li>
+        <li><a href="#6-redis单线程模型详解">6. Redis单线程模型详解</a></li>
+        <li><a href="#7-redis-60-之前为什么不使用多线程">7. Redis 6.0 之前为什么不使用多线程</a></li>
+        <li><a href="#8-redis-60-之后为什么引入多线程">8. Redis 6.0 之后为什么引入多线程</a></li>
+        <li><a href="#9-redis-过期时间的作用">9. Redis 过期时间的作用</a></li>
+        <li><a href="#10-redis-如何判断数据是否过期">10. Redis 如何判断数据是否过期</a></li>
+        <li><a href="#11-过期的数据的删除策略">11. 过期的数据的删除策略</a></li>
+        <li><a href="#12-内存淘汰机制">12. 内存淘汰机制</a></li>
+        <li><a href="#13-redis-持久化机制">13. Redis 持久化机制</a>
+          <ul>
+            <li><a href="#131-两种持久化方式">13.1 两种持久化方式</a>
+              <ul>
+                <li><a href="#1311-快照持久化">13.1.1 快照持久化</a></li>
+                <li><a href="#1312-aof持久化">13.1.2 AOF持久化</a></li>
+              </ul>
+            </li>
+            <li><a href="#132-redis-40-对于持久化机制的优化">13.2 Redis 4.0 对于持久化机制的优化</a></li>
+            <li><a href="#133-aof重写">13.3 AOF重写</a></li>
+          </ul>
+        </li>
+        <li><a href="#14ｒｅｄｉｓ事务">14.　Ｒｅｄｉｓ事务</a></li>
+        <li><a href="#15--缓存穿透">15.  缓存穿透</a>
+          <ul>
+            <li><a href="#151-简介">15.1 简介</a></li>
+            <li><a href="#152-解决方案">15.2 解决方案</a>
+              <ul>
+                <li><a href="#1521-做好参数校验">15.2.1 做好参数校验</a></li>
+                <li><a href="#1522-缓存无效的-key">15.2.2 缓存无效的 key</a></li>
+                <li><a href="#1523-布隆过滤器">15.2.3 布隆过滤器</a>
+                  <ul>
+                    <li><a href="#15231-简介">15.2.3.1 简介</a></li>
+                    <li><a href="#15232-布隆过滤器原理">15.2.3.2 布隆过滤器原理</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#16-缓存雪崩">16. 缓存雪崩</a>
+          <ul>
+            <li><a href="#161-简介">16.1 简介</a></li>
+            <li><a href="#162-解决方案">16.2 解决方案</a>
+              <ul>
+                <li><a href="#1621-服务器不可用情况">16.2.1 服务器不可用情况</a></li>
+                <li><a href="#1622-热点缓存失效情况">16.2.2 热点缓存失效情况</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#17-如何保证缓存和数据库的数据一致性">17. 如何保证缓存和数据库的数据一致性</a>
+          <ul>
+            <li><a href="#171-数据不一致情况">17.1 数据不一致情况</a></li>
+            <li><a href="#172-解决方案">17.2 解决方案</a>
+              <ul>
+                <li><a href="#1721-采用延时双删策略">17.2.1 采用延时双删策略</a></li>
+                <li><a href="#1722-异步更新缓存基于订阅binlog的同步机制">17.2.2 异步更新缓存【基于订阅binlog的同步机制】</a></li>
+              </ul>
+            </li>
+            <li><a href="#认识">认识</a>
+              <ul>
+                <li><a href="#底层">底层：</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#mysql索引">Mysql索引</a></li>
+    <li><a href="#mysql索引详解">MySQL索引详解</a>
+      <ul>
+        <li><a href="#1-什么是索引">1. 什么是索引</a></li>
+        <li><a href="#2-索引优缺点">2. 索引优缺点</a></li>
+        <li><a href="#3-索引底层数据结构">3. 索引底层数据结构</a>
+          <ul>
+            <li><a href="#31-mysql为何不使用hash作为索引">3.1 MySQL为何不使用Hash作为索引</a></li>
+            <li><a href="#32-b树-和-b树">3.2 B树 和 B+树</a></li>
+          </ul>
+        </li>
+        <li><a href="#4-索引类型">4. 索引类型</a>
+          <ul>
+            <li><a href="#41-主键索引">4.1 主键索引</a></li>
+            <li><a href="#42-辅助索引">4.2 辅助索引</a></li>
+          </ul>
+        </li>
+        <li><a href="#5-聚集索引和非聚集索引">5. 聚集索引和非聚集索引</a>
+          <ul>
+            <li><a href="#51-聚集索引">5.1 聚集索引</a></li>
+            <li><a href="#52-非聚集索引">5.2 非聚集索引</a></li>
+          </ul>
+        </li>
+        <li><a href="#6-覆盖索引">6. 覆盖索引</a></li>
+        <li><a href="#7-创建索引注意事项">7. 创建索引注意事项</a></li>
+        <li><a href="#8-使用索引的注意事项">8. 使用索引的注意事项</a></li>
+        <li><a href="#9-mysql如何为表字段添加索引">9. MySQL如何为表字段添加索引</a></li>
+        <li><a href="#10-最左前缀匹配">10. 最左前缀匹配</a></li>
       </ul>
     </li>
   </ul>
@@ -959,18 +1082,141 @@
     class="py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
     <nav id="TableOfContents">
   <ul>
-    <li>
+    <li><a href="#redis详解">Redis详解</a>
       <ul>
-        <li>
+        <li><a href="#1-redis简介">1. Redis简介</a></li>
+        <li><a href="#2-redis-和-memcached-对比">2. Redis 和 Memcached 对比</a>
           <ul>
-            <li><a href="#认识">认识</a>
+            <li><a href="#21-相同点">2.1 相同点</a></li>
+            <li><a href="#22-区别">2.2 区别</a></li>
+          </ul>
+        </li>
+        <li><a href="#3-缓存数据处理流程">3. 缓存数据处理流程</a></li>
+        <li><a href="#4-为什么使用redis">4. 为什么使用Redis</a>
+          <ul>
+            <li><a href="#41-高性能考虑">4.1 高性能考虑</a></li>
+            <li><a href="#42-高并发考虑">4.2 高并发考虑</a></li>
+          </ul>
+        </li>
+        <li><a href="#5-redis常见数据结构及应用场景">5. Redis常见数据结构及应用场景</a>
+          <ul>
+            <li><a href="#51-string">5.1 string</a>
               <ul>
-                <li><a href="#底层">底层：</a></li>
-                <li><a href="#命令">命令</a></li>
+                <li><a href="#511-基本操作">5.1.1 基本操作</a></li>
+                <li><a href="#512-计数器">5.1.2 计数器</a></li>
+                <li><a href="#513-过期时间设置">5.1.3 过期时间设置</a></li>
+              </ul>
+            </li>
+            <li><a href="#52-list">5.2 list</a>
+              <ul>
+                <li><a href="#通过rpushlpop实现队列">通过<code>rpush/lpop</code>实现队列</a></li>
+              </ul>
+            </li>
+            <li><a href="#53-hash">5.3 hash</a></li>
+            <li><a href="#54-set">5.4 set</a></li>
+            <li><a href="#55-sorted-set">5.5 sorted set</a></li>
+            <li><a href="#56-bitmap">5.6 bitmap</a>
+              <ul>
+                <li><a href="#561-使用场景一">5.6.1 使用场景一</a></li>
+                <li><a href="#562-使用场景二">5.6.2 使用场景二</a></li>
               </ul>
             </li>
           </ul>
         </li>
+        <li><a href="#6-redis单线程模型详解">6. Redis单线程模型详解</a></li>
+        <li><a href="#7-redis-60-之前为什么不使用多线程">7. Redis 6.0 之前为什么不使用多线程</a></li>
+        <li><a href="#8-redis-60-之后为什么引入多线程">8. Redis 6.0 之后为什么引入多线程</a></li>
+        <li><a href="#9-redis-过期时间的作用">9. Redis 过期时间的作用</a></li>
+        <li><a href="#10-redis-如何判断数据是否过期">10. Redis 如何判断数据是否过期</a></li>
+        <li><a href="#11-过期的数据的删除策略">11. 过期的数据的删除策略</a></li>
+        <li><a href="#12-内存淘汰机制">12. 内存淘汰机制</a></li>
+        <li><a href="#13-redis-持久化机制">13. Redis 持久化机制</a>
+          <ul>
+            <li><a href="#131-两种持久化方式">13.1 两种持久化方式</a>
+              <ul>
+                <li><a href="#1311-快照持久化">13.1.1 快照持久化</a></li>
+                <li><a href="#1312-aof持久化">13.1.2 AOF持久化</a></li>
+              </ul>
+            </li>
+            <li><a href="#132-redis-40-对于持久化机制的优化">13.2 Redis 4.0 对于持久化机制的优化</a></li>
+            <li><a href="#133-aof重写">13.3 AOF重写</a></li>
+          </ul>
+        </li>
+        <li><a href="#14ｒｅｄｉｓ事务">14.　Ｒｅｄｉｓ事务</a></li>
+        <li><a href="#15--缓存穿透">15.  缓存穿透</a>
+          <ul>
+            <li><a href="#151-简介">15.1 简介</a></li>
+            <li><a href="#152-解决方案">15.2 解决方案</a>
+              <ul>
+                <li><a href="#1521-做好参数校验">15.2.1 做好参数校验</a></li>
+                <li><a href="#1522-缓存无效的-key">15.2.2 缓存无效的 key</a></li>
+                <li><a href="#1523-布隆过滤器">15.2.3 布隆过滤器</a>
+                  <ul>
+                    <li><a href="#15231-简介">15.2.3.1 简介</a></li>
+                    <li><a href="#15232-布隆过滤器原理">15.2.3.2 布隆过滤器原理</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#16-缓存雪崩">16. 缓存雪崩</a>
+          <ul>
+            <li><a href="#161-简介">16.1 简介</a></li>
+            <li><a href="#162-解决方案">16.2 解决方案</a>
+              <ul>
+                <li><a href="#1621-服务器不可用情况">16.2.1 服务器不可用情况</a></li>
+                <li><a href="#1622-热点缓存失效情况">16.2.2 热点缓存失效情况</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#17-如何保证缓存和数据库的数据一致性">17. 如何保证缓存和数据库的数据一致性</a>
+          <ul>
+            <li><a href="#171-数据不一致情况">17.1 数据不一致情况</a></li>
+            <li><a href="#172-解决方案">17.2 解决方案</a>
+              <ul>
+                <li><a href="#1721-采用延时双删策略">17.2.1 采用延时双删策略</a></li>
+                <li><a href="#1722-异步更新缓存基于订阅binlog的同步机制">17.2.2 异步更新缓存【基于订阅binlog的同步机制】</a></li>
+              </ul>
+            </li>
+            <li><a href="#认识">认识</a>
+              <ul>
+                <li><a href="#底层">底层：</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#mysql索引">Mysql索引</a></li>
+    <li><a href="#mysql索引详解">MySQL索引详解</a>
+      <ul>
+        <li><a href="#1-什么是索引">1. 什么是索引</a></li>
+        <li><a href="#2-索引优缺点">2. 索引优缺点</a></li>
+        <li><a href="#3-索引底层数据结构">3. 索引底层数据结构</a>
+          <ul>
+            <li><a href="#31-mysql为何不使用hash作为索引">3.1 MySQL为何不使用Hash作为索引</a></li>
+            <li><a href="#32-b树-和-b树">3.2 B树 和 B+树</a></li>
+          </ul>
+        </li>
+        <li><a href="#4-索引类型">4. 索引类型</a>
+          <ul>
+            <li><a href="#41-主键索引">4.1 主键索引</a></li>
+            <li><a href="#42-辅助索引">4.2 辅助索引</a></li>
+          </ul>
+        </li>
+        <li><a href="#5-聚集索引和非聚集索引">5. 聚集索引和非聚集索引</a>
+          <ul>
+            <li><a href="#51-聚集索引">5.1 聚集索引</a></li>
+            <li><a href="#52-非聚集索引">5.2 非聚集索引</a></li>
+          </ul>
+        </li>
+        <li><a href="#6-覆盖索引">6. 覆盖索引</a></li>
+        <li><a href="#7-创建索引注意事项">7. 创建索引注意事项</a></li>
+        <li><a href="#8-使用索引的注意事项">8. 使用索引的注意事项</a></li>
+        <li><a href="#9-mysql如何为表字段添加索引">9. MySQL如何为表字段添加索引</a></li>
+        <li><a href="#10-最左前缀匹配">10. 最左前缀匹配</a></li>
       </ul>
     </li>
   </ul>
@@ -1028,7 +1274,1105 @@
 
 
       <div class="article-content max-w-prose mb-20">
-        <h3 class="relative group">认识 
+        <h1 class="relative group">Redis详解 
+    <div id="redis详解" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#redis%e8%af%a6%e8%a7%a3" aria-label="锚点">#</a>
+    </span>        
+    
+</h1>
+<h2 class="relative group">1. Redis简介 
+    <div id="1-redis简介" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#1-redis%e7%ae%80%e4%bb%8b" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<blockquote>
+<ul>
+<li>使用C语言开发的内存数据库，读写速度快，广泛用于缓存方向</li>
+<li>可以用于分布式锁，甚至是消息队列</li>
+<li>提供多种数据类型来支持不同的业务场景</li>
+<li>支持事务、持久化、Lua脚本、多种集群方案</li>
+</ul>
+</blockquote>
+<h2 class="relative group">2. Redis 和 Memcached 对比 
+    <div id="2-redis-和-memcached-对比" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#2-redis-%e5%92%8c-memcached-%e5%af%b9%e6%af%94" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<h3 class="relative group">2.1 相同点 
+    <div id="21-相同点" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#21-%e7%9b%b8%e5%90%8c%e7%82%b9" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<blockquote>
+<ul>
+<li>都基于内存，一般都是用来当缓存使用</li>
+<li>都有过期策略</li>
+<li>两者性能都非常高</li>
+</ul>
+</blockquote>
+<h3 class="relative group">2.2 区别 
+    <div id="22-区别" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#22-%e5%8c%ba%e5%88%ab" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<blockquote>
+<ul>
+<li>Redis 支持更丰富的数据类型【key-value类型、提供l ist set zset hash等数据结构的存储】、更复杂的应用场景。Memcached只支持简单的 key-value 类型；</li>
+<li>Redis支持数据的持久化，有灾难恢复机制，Memcached不支持；</li>
+<li>Redis在服务器内存不足时，可以将不用的数据放到磁盘上；Memcached则直接报异常；</li>
+<li>Redis原生支持集群模式，Memcached原生不支持，需要依靠客户端实现往集群分片写入数据；</li>
+<li>Memcached是多线程的非阻塞IO复用的网络模型，Redis使用单线程的多路IO复用模型【6.0以后引入了多线程】</li>
+<li>Redis支持发布订阅模型、Lua脚本、事务等功能，而Memcached不支持。并且，Redis支持更多的编程语言</li>
+<li>Memcached过期数据只使用惰性删除，而Redis同时使用惰性删除和定期删除</li>
+</ul>
+</blockquote>
+<h2 class="relative group">3. 缓存数据处理流程 
+    <div id="3-缓存数据处理流程" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#3-%e7%bc%93%e5%ad%98%e6%95%b0%e6%8d%ae%e5%a4%84%e7%90%86%e6%b5%81%e7%a8%8b" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<blockquote>
+<ol>
+<li>若用户请求的数据在缓存中则直接返回</li>
+<li>若缓存中不存在，则查询数据库</li>
+<li>若数据库中存在，则更新缓存</li>
+<li>若数据库不存在，则返回空数据</li>
+</ol>
+</blockquote>
+<h2 class="relative group">4. 为什么使用Redis 
+    <div id="4-为什么使用redis" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#4-%e4%b8%ba%e4%bb%80%e4%b9%88%e4%bd%bf%e7%94%a8redis" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<h3 class="relative group">4.1 高性能考虑 
+    <div id="41-高性能考虑" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#41-%e9%ab%98%e6%80%a7%e8%83%bd%e8%80%83%e8%99%91" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<blockquote>
+<ul>
+<li>用户每次请求都查询数据库，涉及磁盘IO操作，速度慢。</li>
+<li>若把高频访问且不经常改变的数据放入缓存，能极大提高查询速度。</li>
+<li>注意要保持数据库和缓存中的数据的一致性。如果数据库中的对应数据改变，需要同步改变缓存中的数据</li>
+</ul>
+</blockquote>
+<h3 class="relative group">4.2 高并发考虑 
+    <div id="42-高并发考虑" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#42-%e9%ab%98%e5%b9%b6%e5%8f%91%e8%80%83%e8%99%91" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<blockquote>
+<ul>
+<li>如MySQL数据库的QPS大概在1w左右【4核8G】，但是使用Redis缓存之后，很容易能达到10w+，甚至最高能到达30w+【单机情况】</li>
+<li>故，直接操作缓存能承受更多的请求，进而提供系统的并发能力</li>
+</ul>
+</blockquote>
+<h2 class="relative group">5. Redis常见数据结构及应用场景 
+    <div id="5-redis常见数据结构及应用场景" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#5-redis%e5%b8%b8%e8%a7%81%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84%e5%8f%8a%e5%ba%94%e7%94%a8%e5%9c%ba%e6%99%af" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<h3 class="relative group">5.1 string 
+    <div id="51-string" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#51-string" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<blockquote>
+<ul>
+<li>string数据结构是简单的 key-value类型，是Redis自行构建的<code>动态字符串</code>。可以保存文本数据、二进制数据，获取长度的复杂度为O(1)，不会造成缓冲区溢出</li>
+<li>常用命令：<code>set, get, strlen, exists, decr, incr, setex</code></li>
+<li><code>应用场景</code>：需要计数的场景，如用户访问次数、热点文章的点赞转发数量等等</li>
+</ul>
+</blockquote>
+<h4 class="relative group">5.1.1 基本操作 
+    <div id="511-基本操作" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#511-%e5%9f%ba%e6%9c%ac%e6%93%8d%e4%bd%9c" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<pre tabindex="0"><code>127.0.0.1:6379&gt; set key value #设置 key-value 类型的值
+OK
+127.0.0.1:6379&gt; get key # 根据 key 获得对应的 value
+&#34;value&#34;
+127.0.0.1:6379&gt; exists key  # 判断某个 key 是否存在
+(integer) 1
+127.0.0.1:6379&gt; strlen key # 返回 key 所储存的字符串值的长度。
+(integer) 5
+127.0.0.1:6379&gt; del key # 删除某个 key 对应的值
+(integer) 1
+127.0.0.1:6379&gt; get key
+(nil)
+127.0.0.1:6379&gt; mset key1 value1 key2 value2 # 批量设置 key-value 类型的值
+OK
+127.0.0.1:6379&gt; mget key1 key2 # 批量获取多个 key 对应的 value
+1) &#34;value1&#34;
+2) &#34;value2&#34;
+</code></pre><h4 class="relative group">5.1.2 计数器 
+    <div id="512-计数器" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#512-%e8%ae%a1%e6%95%b0%e5%99%a8" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<pre tabindex="0"><code>127.0.0.1:6379&gt; set number 1
+OK
+127.0.0.1:6379&gt; incr number # 将 key 中储存的数字值增一
+(integer) 2
+127.0.0.1:6379&gt; get number
+&#34;2&#34;
+127.0.0.1:6379&gt; decr number # 将 key 中储存的数字值减一
+(integer) 1
+127.0.0.1:6379&gt; get number
+&#34;1&#34;
+</code></pre><h4 class="relative group">5.1.3 过期时间设置 
+    <div id="513-过期时间设置" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#513-%e8%bf%87%e6%9c%9f%e6%97%b6%e9%97%b4%e8%ae%be%e7%bd%ae" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<pre tabindex="0"><code>127.0.0.1:6379&gt; expire key  60 # 数据在 60s 后过期
+(integer) 1
+127.0.0.1:6379&gt; setex key 60 value # 数据在 60s 后过期 (setex:[set] + [ex]pire)
+OK
+127.0.0.1:6379&gt; ttl key # 查看数据还有多久过期
+(integer) 56
+</code></pre><h3 class="relative group">5.2 list 
+    <div id="52-list" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#52-list" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<blockquote>
+<ul>
+<li>Redis自行实现了自己的链表结构，为双向链表</li>
+<li>常用命令：<code>rpush, lpop, lpush, rpop, lrange, llen</code></li>
+<li>应用场景：发布订阅【消息队列】，慢查询</li>
+</ul>
+</blockquote>
+<h4 class="relative group">通过<code>rpush/lpop</code>实现队列 
+    <div id="通过rpushlpop实现队列" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e9%80%9a%e8%bf%87rpushlpop%e5%ae%9e%e7%8e%b0%e9%98%9f%e5%88%97" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<pre tabindex="0"><code>127.0.0.1:6379&gt; rpush myList value1 # 向 list 的最右边添加元素
+(integer) 1
+127.0.0.1:6379&gt; rpush myList value2 value3 # 向list的最右边添加多个元素
+(integer) 3
+127.0.0.1:6379&gt; lpop myList # 将 list的最左边元素取出
+&#34;value1&#34;
+127.0.0.1:6379&gt; lrange myList 0 1 # 查看对应下标的list列表， 0 为 start,1为 end
+1) &#34;value2&#34;
+2) &#34;value3&#34;
+127.0.0.1:6379&gt; lrange myList 0 -1 # 查看列表中的所有元素，-1表示倒数第一
+1) &#34;value2&#34;
+2) &#34;value3&#34;
+127.0.0.1:6379&gt; llen myList # 查看链表长度
+(integer) 2
+</code></pre><h3 class="relative group">5.3 hash 
+    <div id="53-hash" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#53-hash" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<blockquote>
+<ul>
+<li>内部实现为【数组 + 链表】</li>
+<li>适合存储对象，可以直接仅仅修改这个对象中某个字段的值。如，存储用户信息、商品信息</li>
+<li>常用命令：<code>hset, hmset, hget, hgetall, hkeys, hvals</code></li>
+<li>应用场景：系统中对象数据的存储</li>
+</ul>
+</blockquote>
+<pre tabindex="0"><code>127.0.0.1:6379&gt; hmset userInfoKey name &#34;guide&#34; description &#34;dev&#34; age &#34;24&#34;
+OK
+127.0.0.1:6379&gt; hexists userInfoKey name # 查看 key 对应的 value中指定的字段是否存在。
+(integer) 1
+127.0.0.1:6379&gt; hget userInfoKey name # 获取存储在哈希表中指定字段的值。
+&#34;guide&#34;
+127.0.0.1:6379&gt; hget userInfoKey age
+&#34;24&#34;
+127.0.0.1:6379&gt; hgetall userInfoKey # 获取在哈希表中指定 key 的所有字段和值
+1) &#34;name&#34;
+2) &#34;guide&#34;
+3) &#34;description&#34;
+4) &#34;dev&#34;
+5) &#34;age&#34;
+6) &#34;24&#34;
+127.0.0.1:6379&gt; hkeys userInfoKey # 获取 key 列表
+1) &#34;name&#34;
+2) &#34;description&#34;
+3) &#34;age&#34;
+127.0.0.1:6379&gt; hvals userInfoKey # 获取 value 列表
+1) &#34;guide&#34;
+2) &#34;dev&#34;
+3) &#34;24&#34;
+127.0.0.1:6379&gt; hset userInfoKey name &#34;GuideGeGe&#34; # 修改某个字段对应的值
+127.0.0.1:6379&gt; hget userInfoKey name
+&#34;GuideGeGe&#34;
+</code></pre><h3 class="relative group">5.4 set 
+    <div id="54-set" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#54-set" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<blockquote>
+<ul>
+<li>存储无重复元素</li>
+<li>容易实现交集、并集、差集操作。实现如共同关注、共同粉丝、共同喜好等功能</li>
+<li>常用命令：<code>sadd, spop, smembers, sismembers, scard, sinterstore, sunion</code></li>
+<li>应用场景：需要存放的数据不能重复、需要获取多个数据源交集和并集等场景</li>
+</ul>
+</blockquote>
+<pre tabindex="0"><code>127.0.0.1:6379&gt; sadd mySet value1 value2 # 添加元素进去
+(integer) 2
+127.0.0.1:6379&gt; sadd mySet value1 # 不允许有重复元素
+(integer) 0
+127.0.0.1:6379&gt; smembers mySet # 查看 set 中所有的元素
+1) &#34;value1&#34;
+2) &#34;value2&#34;
+127.0.0.1:6379&gt; scard mySet # 查看 set 的长度
+(integer) 2
+127.0.0.1:6379&gt; sismember mySet value1 # 检查某个元素是否存在set 中，只能接收单个元素
+(integer) 1
+127.0.0.1:6379&gt; sadd mySet2 value2 value3
+(integer) 2
+127.0.0.1:6379&gt; sinterstore mySet3 mySet mySet2 # 获取 mySet 和 mySet2 的交集并存放在 mySet3 中
+(integer) 1
+127.0.0.1:6379&gt; smembers mySet3
+1) &#34;value2&#34;
+</code></pre><h3 class="relative group">5.5 sorted set 
+    <div id="55-sorted-set" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#55-sorted-set" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<blockquote>
+<ul>
+<li>介绍：和 set比，增加了一个权重参数 score，使得集合中的元素能够按score进行有序排序，也可通过score的范围来获取元素的列表。</li>
+<li>常用命令：<code>zadd, zcard, zscore, zrange, zreverange, zrem</code></li>
+<li>应用场景：需要根据权重对数据进行排序的场景。如，直播系统中，实时排行信息包含直播间在线用户列表，各种礼物排行榜，弹幕消息等信息</li>
+</ul>
+</blockquote>
+<pre tabindex="0"><code>127.0.0.1:6379&gt; zadd myZset 3.0 value1 # 添加元素到 sorted set 中 3.0 为权重
+(integer) 1
+127.0.0.1:6379&gt; zadd myZset 2.0 value2 1.0 value3 # 一次添加多个元素
+(integer) 2
+127.0.0.1:6379&gt; zcard myZset # 查看 sorted set 中的元素数量
+(integer) 3
+127.0.0.1:6379&gt; zscore myZset value1 # 查看某个 value 的权重
+&#34;3&#34;
+127.0.0.1:6379&gt; zrange  myZset 0 -1 # 顺序输出某个范围区间的元素，0 -1 表示输出所有元素
+1) &#34;value3&#34;
+2) &#34;value2&#34;
+3) &#34;value1&#34;
+127.0.0.1:6379&gt; zrange  myZset 0 1 # 顺序输出某个范围区间的元素，0 为 start  1 为 stop
+1) &#34;value3&#34;
+2) &#34;value2&#34;
+127.0.0.1:6379&gt; zrevrange  myZset 0 1 # 逆序输出某个范围区间的元素，0 为 start  1 为 stop
+1) &#34;value1&#34;
+2) &#34;value2&#34;
+</code></pre><h3 class="relative group">5.6 bitmap 
+    <div id="56-bitmap" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#56-bitmap" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<blockquote>
+<ul>
+<li>介绍：bitmap存储连续二进制数字【0和 1】，一个二进制位对应某个元素的值或者状态，key 对应元素本身。</li>
+<li>能极大节省存储空间</li>
+<li>常用命令：<code>setbit, getbit, bitcount, bitop</code></li>
+<li>应用场景：适合需要保存状态信息并需要进一步对这些信息进行分析的场景。如，用户签到、活跃用户行为统计【如是否点赞过某个视频】</li>
+</ul>
+</blockquote>
+<pre tabindex="0"><code># SETBIT 会返回之前位的值（默认是 0）这里会生成 7 个位
+127.0.0.1:6379&gt; setbit mykey 7 1
+(integer) 0
+127.0.0.1:6379&gt; setbit mykey 7 0
+(integer) 1
+127.0.0.1:6379&gt; getbit mykey 7
+(integer) 0
+127.0.0.1:6379&gt; setbit mykey 6 1
+(integer) 0
+127.0.0.1:6379&gt; setbit mykey 8 1
+(integer) 0
+# 通过 bitcount 统计被被设置为 1 的位的数量。
+127.0.0.1:6379&gt; bitcount mykey
+(integer) 2
+</code></pre><h4 class="relative group">5.6.1 使用场景一 
+    <div id="561-使用场景一" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#561-%e4%bd%bf%e7%94%a8%e5%9c%ba%e6%99%af%e4%b8%80" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<blockquote>
+<p><code>用户行为分析</code></p>
+<pre tabindex="0"><code># 记录你喜欢过 001 号小姐姐
+127.0.0.1:6379&gt; setbit beauty_girl_001 uid 1
+</code></pre></blockquote>
+<h4 class="relative group">5.6.2 使用场景二 
+    <div id="562-使用场景二" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#562-%e4%bd%bf%e7%94%a8%e5%9c%ba%e6%99%af%e4%ba%8c" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<blockquote>
+<p><code>统计活跃用户</code></p>
+<pre tabindex="0"><code># 对一个或多个保存二进制位的字符串 key 进行位元操作，并将结果保存到 destkey 上。
+# BITOP 命令支持 AND 、 OR 、 NOT 、 XOR 这四种操作中的任意一种参数
+BITOP operation destkey key [key ...]
+</code></pre><p>使用时间作为 key，然后用户 ID 为 offset，如果当日活跃过就设置为 1</p>
+<p>初始化数据：</p>
+<pre tabindex="0"><code>127.0.0.1:6379&gt; setbit 20210308 1 1
+(integer) 0
+127.0.0.1:6379&gt; setbit 20210308 2 1
+(integer) 0
+127.0.0.1:6379&gt; setbit 20210309 1 1
+(integer) 0
+</code></pre><p>统计 20210308~20210309 总活跃用户数: 1</p>
+<pre tabindex="0"><code>127.0.0.1:6379&gt; bitop and desk1 20210308 20210309
+(integer) 1
+127.0.0.1:6379&gt; bitcount desk1
+(integer) 1
+</code></pre><p>统计 20210308~20210309 在线活跃用户数: 2</p>
+<pre tabindex="0"><code>127.0.0.1:6379&gt; bitop or desk2 20210308 20210309
+(integer) 1
+127.0.0.1:6379&gt; bitcount desk2
+(integer) 2
+</code></pre></blockquote>
+<p>5.6.3 使用场景三</p>
+<blockquote>
+<p>对于获取或者统计用户在线状态，使用 bitmap 是一个节约空间效率又高的一种方法。</p>
+<p>只需要一个 key，然后用户 ID 为 offset，如果在线就设置为 1，不在线就设置为 0。</p>
+</blockquote>
+<h2 class="relative group">6. Redis单线程模型详解 
+    <div id="6-redis单线程模型详解" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#6-redis%e5%8d%95%e7%ba%bf%e7%a8%8b%e6%a8%a1%e5%9e%8b%e8%af%a6%e8%a7%a3" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<blockquote>
+<ul>
+<li>Redis 基于 Reactor 模式来设计开发一套高效的事件处理模型，这套事件处理模型对应的是Redis中的文件事件处理器。</li>
+<li>由于文件事件处理器是单线程运行的，所以一般都说Redis是单线程模型</li>
+<li>Redis通过IO多路复用程序来监听来自客户端的大量连接【监听多个socket】，将特定的事件及类型【读、写】注册到内核中并监听每个事件是否发生</li>
+<li>IO多路复用技术使得Redis不需要额外创建多余的线程来监听客户端的大量连接，降低资源的消耗</li>
+<li>Redis服务器是一个事件驱动程序，服务器需要处理两类事件：<code>文件事件</code> 和 <code>时间事件</code></li>
+</ul>
+</blockquote>
+<blockquote>
+<p>Redis基于Reactor模式开发了自己的网络事件处理器：这个处理器被称为文件事件处理器。该处理器使用IO多路复用程序来同时监听多个套接字，并根据套接字目前执行的任务来为套接字关联不同的事件处理器。</p>
+<p>当前被监听的套接字准备好执行连接应答【accept】、读取【read】、写入【read】、关闭【close】等操作时，若与操作相对应的文件事件产生，这时文件事件处理器就会调用套接字之前关联好的事件处理器来处理这些事件。</p>
+<p><strong>虽然文件事件处理器以单线程方式运行，但通过使用 I/O 多路复用程序来监听多个套接字</strong>，文件事件处理器既实现了高性能的网络通信模型，又可以很好地与 Redis 服务器中其他同样以单线程方式运行的模块进行对接，这保持了 Redis 内部单线程设计的简单性。</p>
+</blockquote>
+<blockquote>
+<p>文件事件处理器主要包含四部分：</p>
+<ul>
+<li>多个socket</li>
+<li>IO多路复用程序</li>
+<li>文件事件分派器</li>
+<li>事件处理器</li>
+</ul>
+</blockquote>
+<h2 class="relative group">7. Redis 6.0 之前为什么不使用多线程 
+    <div id="7-redis-60-之前为什么不使用多线程" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#7-redis-60-%e4%b9%8b%e5%89%8d%e4%b8%ba%e4%bb%80%e4%b9%88%e4%b8%8d%e4%bd%bf%e7%94%a8%e5%a4%9a%e7%ba%bf%e7%a8%8b" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<blockquote>
+<ul>
+<li>实际上，<strong>Redis 在 4.0 之后的版本中就已经加入了对多线程的支持</strong></li>
+<li>不过，Redis 4.0 增加的多线程主要是针对一些大键值对的删除操作的命令，使用这些命令就会使用主处理之外的其他线程来“异步处理”</li>
+<li>大体上来说，<strong>Redis 6.0 之前主要还是单线程处理</strong></li>
+</ul>
+</blockquote>
+<blockquote>
+<p>Redis 6.0 之前为什么不使用多线程：</p>
+<ol>
+<li>单线程编程容易且易于维护</li>
+<li>Redis的性能瓶颈不在CPU，主要在内存和网络</li>
+<li>多线程存在死锁、线程上下文切换等问题，有可能会影响性能</li>
+</ol>
+</blockquote>
+<h2 class="relative group">8. Redis 6.0 之后为什么引入多线程 
+    <div id="8-redis-60-之后为什么引入多线程" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#8-redis-60-%e4%b9%8b%e5%90%8e%e4%b8%ba%e4%bb%80%e4%b9%88%e5%bc%95%e5%85%a5%e5%a4%9a%e7%ba%bf%e7%a8%8b" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<blockquote>
+<ul>
+<li>为了提高网络IO读写性能，这是Redis的一个性能瓶颈之一</li>
+<li>Redis的多线程只是在网络数据的读写这一类耗时较多的操作上使用，执行命令时仍然是单线程执行，故也不需要担心线程安全问题</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>Redis6.0 的多线程默认是禁用的，只使用主线程。如需开启需要修改 redis 配置文件 <code>redis.conf</code> ：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">io-threads-do-reads yes
+</span></span></code></pre></div><p>开启多线程后，还需要设置线程数，否则是不生效的。同样需要修改 redis 配置文件 <code>redis.conf</code> :</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">io-threads <span class="m">4</span> <span class="c1">#官网建议4核的机器建议设置为2或3个线程，8核的建议设置为6个线程</span>
+</span></span></code></pre></div></blockquote>
+<h2 class="relative group">9. Redis 过期时间的作用 
+    <div id="9-redis-过期时间的作用" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#9-redis-%e8%bf%87%e6%9c%9f%e6%97%b6%e9%97%b4%e7%9a%84%e4%bd%9c%e7%94%a8" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<blockquote>
+<ul>
+<li>
+<p>服务器内存有限，若缓存的所有数据都一直保存，最终将导致OOM</p>
+</li>
+<li>
+<p>Redis自带了给缓存数据设置过期时间的功能：</p>
+</li>
+<li>
+<pre tabindex="0"><code>127.0.0.1:6379&gt; exp key  60 # 数据在 60s 后过期
+(integer) 1
+127.0.0.1:6379&gt; setex key 60 value # 数据在 60s 后过期 (setex:[set] + [ex]pire)
+OK
+127.0.0.1:6379&gt; ttl key # 查看数据还有多久过期
+(integer) 56
+</code></pre></li>
+</ul>
+<pre tabindex="0"><code>
+* Redis 中除了字符串类型有自己独有设置过期时间的命令 `setex` 外，其他方法都需要依靠 `expire` 命令来设置过期时间 。另外， `persist` 命令可以移除一个键的过期时间
+
+* 某些业务场景需要某个数据只在某一时间段内存在，比如我们的短信验证码可能只在 1 分钟内有效，用户登录的 token 可能只在 1 天内有效
+</code></pre></blockquote>
+<h2 class="relative group">10. Redis 如何判断数据是否过期 
+    <div id="10-redis-如何判断数据是否过期" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#10-redis-%e5%a6%82%e4%bd%95%e5%88%a4%e6%96%ad%e6%95%b0%e6%8d%ae%e6%98%af%e5%90%a6%e8%bf%87%e6%9c%9f" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<blockquote>
+<ul>
+<li>Redis通过一个叫做  过期字典【相当于 hash 表】 的结构来保存数据过期时间。</li>
+<li>过期字典的建指向Redis数据库中的某个 key</li>
+<li>过期字典的值是一个 long long类型的整数，保存了 key 所指向的数据库建的过期时间【毫秒精度的UNIX时间戳】</li>
+</ul>
+</blockquote>
+<p>过期字典是存储在 redisDb 这个结构里的：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">redisDb</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">dict</span> <span class="o">*</span><span class="n">dict</span><span class="p">;</span>     <span class="c1">//数据库键空间,保存着数据库中所有键值对
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">dict</span> <span class="o">*</span><span class="n">expires</span>   <span class="c1">// 过期字典,保存着键的过期时间
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="n">redisDb</span><span class="p">;</span>
+</span></span></code></pre></div><h2 class="relative group">11. 过期的数据的删除策略 
+    <div id="11-过期的数据的删除策略" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#11-%e8%bf%87%e6%9c%9f%e7%9a%84%e6%95%b0%e6%8d%ae%e7%9a%84%e5%88%a0%e9%99%a4%e7%ad%96%e7%95%a5" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<blockquote>
+<p>常用的过期数据删除从策略：</p>
+<ul>
+<li>惰性删除：只会在取出 key 的时候才对数据进行过期检查。对 CPU 友好，但是可能会造成过多的过期数据堆积</li>
+<li>定期删除：每隔一段时间抽取一批 key 执行删除过期数据操作。Redis底层会通过限制删除操作执行的时长和频率来减少对 CPU 的影响</li>
+</ul>
+<p>定期删除对内存友好，惰性删除对 CPU 友好。Redis 采用定期删除 + 惰性删除</p>
+</blockquote>
+<h2 class="relative group">12. 内存淘汰机制 
+    <div id="12-内存淘汰机制" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#12-%e5%86%85%e5%ad%98%e6%b7%98%e6%b1%b0%e6%9c%ba%e5%88%b6" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<blockquote>
+<p>采用 定期删除 + 惰性删除 仍有可能导致 OOM。解决策略是：内存淘汰机制</p>
+</blockquote>
+<blockquote>
+<p>Redis 提供 6 种数据淘汰策略：</p>
+<ul>
+<li>volatile-lru【least recently used】：从已设置过期时间的数据集中挑选最近最少使用的数据淘汰</li>
+<li>valatile-ttl：从已设置过期时间的数据集中挑选将要过期的数据淘汰</li>
+<li>volatile-random：从已设置过期时间的数据集中任意挑选数据淘汰</li>
+<li>allkeys-lru【least recently used】：当内存不足以容纳新写入数据时，在建空间中，移除最近最少使用的 key</li>
+<li>allkeys-random：从数据集中任意选择数据淘汰</li>
+<li>no-eviction：禁止驱逐数据，也就是当前内存不足以容纳新写入数据时，新写入操作会报错。</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>4.0 版本新增加以下两种：</p>
+<ol>
+<li>valatile-lfu【least frequently used】：从已设置过期时间的数据集中挑选最不经常使用的数据淘汰</li>
+<li>allkeys-lfu【least frequently used】：当内存不足以容纳新写入数据时，在键空间中，移除最不经常使用的 key</li>
+</ol>
+</blockquote>
+<h2 class="relative group">13. Redis 持久化机制 
+    <div id="13-redis-持久化机制" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#13-redis-%e6%8c%81%e4%b9%85%e5%8c%96%e6%9c%ba%e5%88%b6" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<h3 class="relative group">13.1 两种持久化方式 
+    <div id="131-两种持久化方式" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#131-%e4%b8%a4%e7%a7%8d%e6%8c%81%e4%b9%85%e5%8c%96%e6%96%b9%e5%bc%8f" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>快照持久化（RDB）和追加文件持久化（AOF）</p>
+<blockquote>
+<p>Redis支持两种持久化方式：</p>
+<ul>
+<li>快照持久化【RDB】</li>
+<li>只追加文件【AOF】</li>
+</ul>
+</blockquote>
+<h4 class="relative group">13.1.1 快照持久化 
+    <div id="1311-快照持久化" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#1311-%e5%bf%ab%e7%85%a7%e6%8c%81%e4%b9%85%e5%8c%96" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<blockquote>
+<p>快照持久化：</p>
+<ul>
+<li>Redis 通过创建快照来获得存储在内存里面的数据在某个时间点上的副本。</li>
+<li>快照创建后，可以对快照进行备份，可以将快照复制到其他服务器从而创建具有相同数据的服务器副本【Redis主从结构，主要用来提高Redis性能】</li>
+<li>可以将快照留在原地以便重启服务器的时候使用。</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>快照持久化时Redis 默认采用的持久化方式，在Redis.conf配置文件中默认有以下配置：</p>
+<pre tabindex="0"><code>save 900 1           #在900秒(15分钟)之后，如果至少有1个key发生变化，Redis就会自动触发BGSAVE命令创建快照。
+
+save 300 10          #在300秒(5分钟)之后，如果至少有10个key发生变化，Redis就会自动触发BGSAVE命令创建快照。
+
+save 60 10000        #在60秒(1分钟)之后，如果至少有10000个key发生变化，Redis就会自动触发BGSAVE命令创建快照。
+</code></pre></blockquote>
+<h4 class="relative group">13.1.2 AOF持久化 
+    <div id="1312-aof持久化" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#1312-aof%e6%8c%81%e4%b9%85%e5%8c%96" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<blockquote>
+<p>AOF【append-only file】持久化</p>
+<p>与快照持久化相比，AOF 持久化 的实时性更好，因此已成为主流的持久化方案。默认情况下 Redis 没有开启 AOF（append only file）方式的持久化，可以通过 appendonly 参数开启：</p>
+<pre tabindex="0"><code>appendonly yes
+</code></pre><p>开启 AOF 持久化后每执行一条会更改 Redis 中的数据的命令，Redis 就会将该命令写入硬盘中的 AOF 文件。AOF 文件的保存位置和 RDB 文件的位置相同，都是通过 dir 参数设置的，默认的文件名是 appendonly.aof。</p>
+<p>在 Redis 的配置文件中存在三种不同的 AOF 持久化方式，它们分别是：</p>
+<pre tabindex="0"><code>appendfsync always    #每次有数据修改发生时都会写入AOF文件,这样会严重降低Redis的速度
+appendfsync everysec  #每秒钟同步一次，显示地将多个写命令同步到硬盘
+appendfsync no        #让操作系统决定何时进行同步
+</code></pre><p>为了兼顾数据和写入性能，用户可以考虑 appendfsync everysec 选项 ，让 Redis 每秒同步一次 AOF 文件，Redis 性能几乎没受到任何影响。而且这样即使出现系统崩溃，
+用户最多只会丢失一秒之内产生的数据。当硬盘忙于执行写入操作的时候，Redis 还会优雅的放慢自己的速度以便适应硬盘的最大写入速度。</p>
+</blockquote>
+<h3 class="relative group">13.2 Redis 4.0 对于持久化机制的优化 
+    <div id="132-redis-40-对于持久化机制的优化" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#132-redis-40-%e5%af%b9%e4%ba%8e%e6%8c%81%e4%b9%85%e5%8c%96%e6%9c%ba%e5%88%b6%e7%9a%84%e4%bc%98%e5%8c%96" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<blockquote>
+<p>Redis 4.0 开始支持RDB和AOF的混合持久化【默认关闭，可以通过配置项 <code>aof-use-rdb-preamble</code>开启】</p>
+<p>混合持久化在 AOF重写的时候就直接把RDB的内容写到AOF文件开头。好处是可以结合RDB和AOF优点，快速加载的同时避免丢失过多的数据。缺点：AOF里的RDB部分是压缩格式而不再是AOF格式，可读性较差。</p>
+</blockquote>
+<h3 class="relative group">13.3 AOF重写 
+    <div id="133-aof重写" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#133-aof%e9%87%8d%e5%86%99" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<blockquote>
+<ul>
+<li>AOF重写可以产生一个新的AOF文件，这个新文件和原有AOF文件所保存的数据库状态一样，但体积更小</li>
+<li>AOF重写通过读取数据库的键值对来实现，程序无需对现有AOF文件进行任何读入、分析或者写入操作</li>
+<li>在执行　ＢＧＲＥＷＲＩＴＥＡＯＦ　命令时，Ｒｅｄｉｓ服务器会维护一个AOF重写缓冲区，该缓冲区会在子进程创建新的AOF文件期间，记录服务器执行的所有写命令。当紫禁城完成创建新AOF文件的工作之后，服务器会将重写缓冲区所有内容追加到新的AOF文件的末尾，使得新旧的两个AOF文件所保存的数据库状态一致。最后，服务器用新的AOF文件替换旧的AOF文件，以此来完成AOF文件重写操作。</li>
+</ul>
+</blockquote>
+<h2 class="relative group">14.　Ｒｅｄｉｓ事务 
+    <div id="14ｒｅｄｉｓ事务" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#14%ef%bd%92%ef%bd%85%ef%bd%84%ef%bd%89%ef%bd%93%e4%ba%8b%e5%8a%a1" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<blockquote>
+<p>　Ｒｅｄｉｓ可以通过<code>MULTI, EXEC, DISCARD, WATCH</code>等命令来实现事务功能</p>
+<pre tabindex="0"><code>&gt; MULTI
+OK
+&gt; SET USER &#34;张三
+QUEUED
+&gt; GET USER
+QUEUED
+&gt; EXEC
+1) OK
+2) &#34;张三&#34;
+</code></pre><p>使用 <code>MULTI</code>命令后可以输入多个命令。Redis不会立即执行这些命令。而是将它放到队列，当调用<code>EXEC</code>命令，将执行队列中所有命令。</p>
+<p>过程如下：</p>
+<ul>
+<li>开始事务【MULTI】</li>
+<li>命令入队【先进先出顺序执行】</li>
+<li>执行事务【EXEC】</li>
+</ul>
+</blockquote>
+<blockquote>
+<p><code>DISCARD</code>命令可以取消一个事务，将清空该事务对应队列所保存的命令</p>
+<pre tabindex="0"><code>&gt; MULTI
+OK
+&gt; SET USER &#34;张三&#34;
+QUEUED
+&gt; GET USER
+QUEUED
+&gt; DISCARD
+OK
+</code></pre></blockquote>
+<blockquote>
+<p><code>WATCH</code>命令用于监听指定的键，当调用<code>EXEC</code>命令执行事务时，如果发现被监听键被修改时，整个事务将执行失败。</p>
+<pre tabindex="0"><code>&gt; WATCH USER
+OK
+&gt; MULTI
+&gt; SET USER &#34;张三&#34;
+OK
+&gt; GET USER
+张三
+&gt; EXEC
+ERR EXEC without MULTI
+</code></pre></blockquote>
+<blockquote>
+<p>Redis 不支持回滚，不满足一般事务定义的原子性和持久性</p>
+</blockquote>
+<h2 class="relative group">15.  缓存穿透 
+    <div id="15--缓存穿透" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#15--%e7%bc%93%e5%ad%98%e7%a9%bf%e9%80%8f" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<h3 class="relative group">15.1 简介 
+    <div id="151-简介" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#151-%e7%ae%80%e4%bb%8b" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<blockquote>
+<p>大量请求的 key 不存在缓存中，导致请求全部落在了数据库上。</p>
+</blockquote>
+<h3 class="relative group">15.2 解决方案 
+    <div id="152-解决方案" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#152-%e8%a7%a3%e5%86%b3%e6%96%b9%e6%a1%88" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<h4 class="relative group">15.2.1 做好参数校验 
+    <div id="1521-做好参数校验" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#1521-%e5%81%9a%e5%a5%bd%e5%8f%82%e6%95%b0%e6%a0%a1%e9%aa%8c" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<blockquote>
+<p>​	一些不合法的参数请求直接抛出异常信息返回给客户端。比如查询的数据库 id 不能小于 0、传入的邮箱格式不对的时候直接返回错误消息给客户端等等。</p>
+</blockquote>
+<h4 class="relative group">15.2.2 缓存无效的 key 
+    <div id="1522-缓存无效的-key" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#1522-%e7%bc%93%e5%ad%98%e6%97%a0%e6%95%88%e7%9a%84-key" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<blockquote>
+<p>如果缓存和数据库都查不到某个 key 的数据就写一个到 Redis 中去并设置过期时间，具体命令如下： <code>SET key value EX 10086</code> 。这种方式可以解决请求的 key 变化不频繁的情况，如果黑客恶意攻击，每次构建不同的请求 key，会导致 Redis 中缓存大量无效的 key 。很明显，这种方案并不能从根本上解决此问题。如果非要用这种方式来解决穿透问题的话，尽量将无效的 key 的过期时间设置短一点比如 1 分钟。</p>
+<p>一般情况下我 key 的格式： <code>表名:列名:主键名:主键值</code> 。</p>
+</blockquote>
+<h4 class="relative group">15.2.3 布隆过滤器 
+    <div id="1523-布隆过滤器" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#1523-%e5%b8%83%e9%9a%86%e8%bf%87%e6%bb%a4%e5%99%a8" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<h5 class="relative group">15.2.3.1 简介 
+    <div id="15231-简介" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#15231-%e7%ae%80%e4%bb%8b" aria-label="锚点">#</a>
+    </span>        
+    
+</h5>
+<blockquote>
+<ul>
+<li>可以方便地判断一个给定的数据是否存在于海量的数据中，即判断 key 是否合法。</li>
+<li>具体操作：把所有可能存在的请求值都存放在布隆过滤器，当用户请求过来时，先判断用户发来的请求的值是否存在与布隆过滤器。不存在的话，直接返回请求参数错误信息给客户端，存在的话才会正常执行业务流程。</li>
+<li>布隆过滤器认为某元素存在时，有小概率会误判；但是认为某元素不存在时，则该元素一定不存在。</li>
+</ul>
+</blockquote>
+<h5 class="relative group">15.2.3.2 布隆过滤器原理 
+    <div id="15232-布隆过滤器原理" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#15232-%e5%b8%83%e9%9a%86%e8%bf%87%e6%bb%a4%e5%99%a8%e5%8e%9f%e7%90%86" aria-label="锚点">#</a>
+    </span>        
+    
+</h5>
+<blockquote>
+<p>当一个元素加入布隆过滤器时：</p>
+<ol>
+<li>使用布隆过滤器中的哈希函数对元素值进行计算，得到哈希值【有几个哈希 函数就得到几个哈希值】</li>
+<li>根据哈希值，在位数组中把对应下标的值置为 1</li>
+</ol>
+<p>当需要判断一个元素是否存在与布隆过滤器时：</p>
+<ol>
+<li>对给定元素再次进行相同的哈希计算</li>
+<li>得到值后，判断位数组中的每一个元素是否都为 1，如果值都为 1，说明这个值在布隆过滤器，如果存在一个值不为 1，说明该元素不在布隆过滤器中。</li>
+</ol>
+<p><code>若不同的字符串哈希出来的位置相同，则会造成布隆过滤器的误判，但是概率比较小。可以适当增加位数组大小或者调整哈希函数来降低概率</code></p>
+</blockquote>
+<h2 class="relative group">16. 缓存雪崩 
+    <div id="16-缓存雪崩" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#16-%e7%bc%93%e5%ad%98%e9%9b%aa%e5%b4%a9" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<h3 class="relative group">16.1 简介 
+    <div id="161-简介" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#161-%e7%ae%80%e4%bb%8b" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<blockquote>
+<ul>
+<li>缓存在同一时间大面积的失效，后面的请求都直接落到了数据库上，造成数据库短时间内承受了大量的请求。</li>
+</ul>
+<ul>
+<li>例子：秒杀开始 1 个小时前，统一存放了一批商品到 Redis 中，设置的缓存过期时间也是 1 个小时，秒杀开始时，这些秒杀的商品的访问直接失效。导致相应的请求直接就落到了数据库上，就像雪崩一样可怕。</li>
+</ul>
+</blockquote>
+<h3 class="relative group">16.2 解决方案 
+    <div id="162-解决方案" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#162-%e8%a7%a3%e5%86%b3%e6%96%b9%e6%a1%88" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<h4 class="relative group">16.2.1 服务器不可用情况 
+    <div id="1621-服务器不可用情况" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#1621-%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%b8%8d%e5%8f%af%e7%94%a8%e6%83%85%e5%86%b5" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<blockquote>
+<ul>
+<li>采用Redis集群，避免单机出现问题导致整个缓存服务器无法使用</li>
+<li>限流，避免同时处理大量的请求</li>
+</ul>
+</blockquote>
+<h4 class="relative group">16.2.2 热点缓存失效情况 
+    <div id="1622-热点缓存失效情况" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#1622-%e7%83%ad%e7%82%b9%e7%bc%93%e5%ad%98%e5%a4%b1%e6%95%88%e6%83%85%e5%86%b5" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<blockquote>
+<ul>
+<li>设置不同的失效时间，如随机设置缓存的失效时间</li>
+<li>缓存永不失效</li>
+</ul>
+</blockquote>
+<h2 class="relative group">17. 如何保证缓存和数据库的数据一致性 
+    <div id="17-如何保证缓存和数据库的数据一致性" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#17-%e5%a6%82%e4%bd%95%e4%bf%9d%e8%af%81%e7%bc%93%e5%ad%98%e5%92%8c%e6%95%b0%e6%8d%ae%e5%ba%93%e7%9a%84%e6%95%b0%e6%8d%ae%e4%b8%80%e8%87%b4%e6%80%a7" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<h3 class="relative group">17.1 数据不一致情况 
+    <div id="171-数据不一致情况" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#171-%e6%95%b0%e6%8d%ae%e4%b8%8d%e4%b8%80%e8%87%b4%e6%83%85%e5%86%b5" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<blockquote>
+<p>读取缓存步骤一般没有什么问题，但是一旦涉及到数据更新：数据库和缓存更新，就容易出现<strong>缓存(Redis)和数据库（MySQL）间的数据一致性问题</strong>。不管是先写MySQL数据库，再删除Redis缓存；还是先删除缓存，再写库，都有可能出现数据不一致的情况。</p>
+<p>举一个例子：
+1.如果删除了缓存Redis，还没有来得及写库MySQL，另一个线程就来读取，发现缓存为空，则去数据库中读取数据写入缓存，此时缓存中为脏数据。
+2.如果先写了库，在删除缓存前，写库的线程宕机了，没有删除掉缓存，则也会出现数据不一致情况。
+因为写和读是并发的，没法保证顺序,就会出现缓存和数据库的数据不一致的问题。</p>
+</blockquote>
+<h3 class="relative group">17.2 解决方案 
+    <div id="172-解决方案" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#172-%e8%a7%a3%e5%86%b3%e6%96%b9%e6%a1%88" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<h4 class="relative group">17.2.1 采用延时双删策略 
+    <div id="1721-采用延时双删策略" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#1721-%e9%87%87%e7%94%a8%e5%bb%b6%e6%97%b6%e5%8f%8c%e5%88%a0%e7%ad%96%e7%95%a5" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<blockquote>
+<p>在写库前后都进行redis.del(key)操作，并且设定合理的超时时间。</p>
+<p>伪代码如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">public void write(String key,Object data){
+</span></span><span class="line"><span class="cl"> redis.delKey(key);
+</span></span><span class="line"><span class="cl"> db.updateData(data);
+</span></span><span class="line"><span class="cl"> Thread.sleep(500);
+</span></span><span class="line"><span class="cl"> redis.delKey(key);
+</span></span><span class="line"><span class="cl"> }
+</span></span></code></pre></div><p><strong>具体的步骤就是：</strong></p>
+<ul>
+<li>先删除缓存；</li>
+<li>再写数据库；</li>
+<li>休眠500毫秒；</li>
+<li>再次删除缓存。</li>
+</ul>
+<p><strong>那么，这个500毫秒怎么确定的，具体该休眠多久呢？</strong></p>
+<p>需要评估自己的项目的读数据业务逻辑的耗时。这么做的目的，就是确保读请求结束，写请求可以删除读请求造成的缓存脏数据。</p>
+<p>当然这种策略还要考虑redis和数据库主从同步的耗时。最后的的写数据的休眠时间：则在读数据业务逻辑的耗时基础上，加几百ms即可。比如：休眠1秒。</p>
+<p><strong>设置缓存过期时间</strong></p>
+<p>从理论上来说，给缓存设置过期时间，是保证最终一致性的解决方案。所有的写操作以数据库为准，只要到达缓存过期时间，则后面的读请求自然会从数据库中读取新值然后回填缓存。</p>
+<p><strong>该方案的弊端</strong></p>
+<p>结合双删策略+缓存超时设置，这样最差的情况就是在超时时间内数据存在不一致，而且又增加了写请求的耗时。</p>
+</blockquote>
+<h4 class="relative group">17.2.2 异步更新缓存【基于订阅binlog的同步机制】 
+    <div id="1722-异步更新缓存基于订阅binlog的同步机制" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#1722-%e5%bc%82%e6%ad%a5%e6%9b%b4%e6%96%b0%e7%bc%93%e5%ad%98%e5%9f%ba%e4%ba%8e%e8%ae%a2%e9%98%85binlog%e7%9a%84%e5%90%8c%e6%ad%a5%e6%9c%ba%e5%88%b6" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<blockquote>
+<p><strong>技术整体思路：</strong></p>
+<p>MySQL binlog增量订阅消费+消息队列+增量数据更新到redis</p>
+<ul>
+<li><strong>读Redis</strong>：热数据基本都在Redis</li>
+<li><strong>写MySQL</strong>:增删改都是操作MySQL</li>
+<li><strong>更新Redis数据</strong>：MySQ的数据操作binlog，来更新到Redis</li>
+</ul>
+<p><strong>Redis更新</strong></p>
+<p><strong>1）数据操作主要分为两大块：</strong></p>
+<ul>
+<li>一个是全量(将全部数据一次写入到redis)</li>
+<li>一个是增量（实时更新）</li>
+</ul>
+<p>这里说的是增量,指的是mysql的update、insert、delate变更数据。</p>
+<p><strong>2）读取binlog后分析 ，利用消息队列,推送更新各台的redis缓存数据。</strong></p>
+<p>这样一旦MySQL中产生了新的写入、更新、删除等操作，就可以把binlog相关的消息推送至Redis，Redis再根据binlog中的记录，对Redis进行更新。</p>
+<p>其实这种机制，很类似MySQL的主从备份机制，因为MySQL的主备也是通过binlog来实现的数据一致性。</p>
+<p>这里可以结合使用canal(阿里的一款开源框架)，通过该框架可以对MySQL的binlog进行订阅，而canal正是模仿了mysql的slave数据库的备份请求，使得Redis的数据更新达到了相同的效果。</p>
+<p>当然，这里的消息推送工具你也可以采用别的第三方：kafka、rabbitMQ等来实现推送更新Redis。</p>
+</blockquote>
+<h3 class="relative group">认识 
     <div id="认识" class="anchor"></div>
     
     <span
@@ -1058,16 +2402,329 @@
 <p>相同分数的时候</p>
 <p>有序集合里面的成员是不能重复的都是唯一的，但是，不同成员间有可能有相同的分数。当多个成员有相同的分数时，他们将是有序的字典（ordered lexicographically）（仍由分数作为第一排序条件，然后，相同分数的成员按照字典规则相对排序）。</p>
 <p>字典顺序排序用的是二进制，它比较的是字符串的字节数组。</p>
-<h4 class="relative group">命令 
-    <div id="命令" class="anchor"></div>
+<h1 class="relative group">Mysql索引 
+    <div id="mysql索引" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%e5%91%bd%e4%bb%a4" aria-label="锚点">#</a>
+            style="text-decoration-line: none !important;" href="#mysql%e7%b4%a2%e5%bc%95" aria-label="锚点">#</a>
     </span>        
     
-</h4>
+</h1>
+<h1 class="relative group">MySQL索引详解 
+    <div id="mysql索引详解" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#mysql%e7%b4%a2%e5%bc%95%e8%af%a6%e8%a7%a3" aria-label="锚点">#</a>
+    </span>        
+    
+</h1>
+<h2 class="relative group">1. 什么是索引 
+    <div id="1-什么是索引" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#1-%e4%bb%80%e4%b9%88%e6%98%af%e7%b4%a2%e5%bc%95" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<blockquote>
+<ul>
+<li><strong>索引是一种用于快速查询和检索数据的数据结构。常见的索引结构有: B 树， B+树和 Hash</strong></li>
+</ul>
+</blockquote>
+<h2 class="relative group">2. 索引优缺点 
+    <div id="2-索引优缺点" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#2-%e7%b4%a2%e5%bc%95%e4%bc%98%e7%bc%ba%e7%82%b9" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<blockquote>
+<p>优点：</p>
+<ul>
+<li>能极大提高查询效率</li>
+<li>创建唯一索引可以保证数据库表中每一行数据的唯一性</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>创建和维护索引比较耗时，当数据表频繁增删改时，对应的索引也要动态改变，会降低SQL执行效率</li>
+<li>索引需要使用物理文件存储，会耗费一定存储空间</li>
+</ul>
+<p><code>大多数情况下，索引查询都比全表扫描快。但是数据库数据量不大的话，使用索引不一定能提升查询效率</code></p>
+</blockquote>
+<h2 class="relative group">3. 索引底层数据结构 
+    <div id="3-索引底层数据结构" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#3-%e7%b4%a2%e5%bc%95%e5%ba%95%e5%b1%82%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<h3 class="relative group">3.1 MySQL为何不使用Hash作为索引 
+    <div id="31-mysql为何不使用hash作为索引" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#31-mysql%e4%b8%ba%e4%bd%95%e4%b8%8d%e4%bd%bf%e7%94%a8hash%e4%bd%9c%e4%b8%ba%e7%b4%a2%e5%bc%95" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<blockquote>
+<ul>
+<li>Hash存在哈希冲突</li>
+<li>Hash索引不支持顺序查找和范围查找</li>
+</ul>
+</blockquote>
+<h3 class="relative group">3.2 B树 和 B+树 
+    <div id="32-b树-和-b树" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#32-b%e6%a0%91-%e5%92%8c-b%e6%a0%91" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<blockquote>
+<ul>
+<li>B 树的所有节点既存放键(key) 也存放 数据(data)，而 B+树只有叶子节点存放 key 和 data，其他内节点只存放 key。</li>
+<li>B 树的叶子节点都是独立的;B+树的叶子节点有一条引用链指向与它相邻的叶子节点</li>
+<li>B 树的检索的过程相当于对范围内的每个节点的关键字做二分查找，可能还没有到达叶子节点，检索就结束了。而 B+树的检索效率就很稳定了，任何查找都是从根节点到叶子节点的过程，叶子节点的顺序检索很明显</li>
+<li>在 MySQL 中，MyISAM 引擎和 InnoDB 引擎都是使用 B+Tree 作为索引结构，但是，两者的实现方式不太一样。</li>
+<li>MyISAM 引擎中，B+Tree 叶节点的 data 域存放的是数据记录的地址。在索引检索的时候，首先按照 B+Tree 搜索算法搜索索引，如果指定的 Key 存在，则取出其 data 域的值，然后以 data 域的值为地址读取相应的数据记录。这被称为“<strong>非聚簇索引</strong>”。</li>
+<li>InnoDB 引擎中，其数据文件本身就是索引文件。相比 MyISAM，索引文件和数据文件是分离的，其表数据文件本身就是按 B+Tree 组织的一个索引结构，树的叶节点 data 域保存了完整的数据记录。这个索引的 key 是数据表的主键，因此 InnoDB 表数据文件本身就是主索引。这被称为“<strong>聚簇索引（或聚集索引</strong>）”，而其余的索引都作为<strong>辅助索引</strong>，辅助索引的 data 域存储相应记录主键的值而不是地址，这也是和 MyISAM 不同的地方。在根据主索引搜索时，直接找到 key 所在的节点即可取出数据；在根据辅助索引查找时，则需要先取出主键的值，在走一遍主索引【回表】。 <strong>因此，在设计表的时候，不建议使用过长的字段作为主键，也不建议使用非单调的字段作为主键，这样会造成主索引频繁分裂</strong>。</li>
+</ul>
+</blockquote>
+<h2 class="relative group">4. 索引类型 
+    <div id="4-索引类型" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#4-%e7%b4%a2%e5%bc%95%e7%b1%bb%e5%9e%8b" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<h3 class="relative group">4.1 主键索引 
+    <div id="41-主键索引" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#41-%e4%b8%bb%e9%94%ae%e7%b4%a2%e5%bc%95" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<blockquote>
+<ul>
+<li>数据表的主键列使用的就是主键索引</li>
+<li>一张数据表有且只能有一个主键，并且主键不能为 null，不能重复</li>
+<li>在 MySQL 的 InnoDB 的表中，当没有显示的指定表的主键时，InnoDB 会自动先检查表中是否有唯一索引的字段，如果有，则选择该字段为默认的主键，否则 InnoDB 将会自动创建一个 6Byte 的自增主键。</li>
+</ul>
+</blockquote>
+<h3 class="relative group">4.2 辅助索引 
+    <div id="42-辅助索引" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#42-%e8%be%85%e5%8a%a9%e7%b4%a2%e5%bc%95" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<blockquote>
+<ul>
+<li><strong>二级索引又称为辅助索引，是因为二级索引的叶子节点存储的数据是主键。也就是说，通过二级索引，可以定位主键的位置。</strong></li>
+<li>唯一索引，普通索引，前缀索引等索引属于二级索引
+&gt;   * <strong>唯一索引(Unique Key)</strong> ：唯一索引也是一种约束。<strong>唯一索引的属性列不能出现重复的数据，但是允许数据为 NULL，一张表允许创建多个唯一索引。</strong> 建立唯一索引的目的大部分时候都是为了该属性列的数据的唯一性，而不是为了查询效率
+<ul>
+<li><strong>普通索引(Index)</strong> ：<strong>普通索引的唯一作用就是为了快速查询数据，一张表允许创建多个普通索引，并允许数据重复和 NULL</strong></li>
+<li><strong>前缀索引(Prefix)</strong> ：前缀索引只适用于字符串类型的数据。前缀索引是对文本的前几个字符创建索引，相比普通索引建立的数据更小， 因为只取前几个字符</li>
+<li><strong>全文索引(Full Text)</strong> ：全文索引主要是为了检索大文本数据中的关键字的信息，是目前搜索引擎数据库使用的一种技术。Mysql5.6 之前只有 MYISAM 引擎支持全文索引，5.6 之后 InnoDB 也支持了全文索引</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h2 class="relative group">5. 聚集索引和非聚集索引 
+    <div id="5-聚集索引和非聚集索引" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#5-%e8%81%9a%e9%9b%86%e7%b4%a2%e5%bc%95%e5%92%8c%e9%9d%9e%e8%81%9a%e9%9b%86%e7%b4%a2%e5%bc%95" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<h3 class="relative group">5.1 聚集索引 
+    <div id="51-聚集索引" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#51-%e8%81%9a%e9%9b%86%e7%b4%a2%e5%bc%95" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<blockquote>
+<ul>
+<li><strong>索引结构和数据一起存放的索引。主键索引属于聚集索引</strong></li>
+<li>在 Mysql 中，InnoDB 引擎的表的 <code>.ibd</code>文件就包含了该表的索引和数据，对于 InnoDB 引擎表来说，该表的索引(B+树)的每个非叶子节点存储索引，叶子节点存储索引和索引对应的数据</li>
+<li>优点：聚集索引的查询速度非常的快，因为整个 B+树本身就是一颗多叉平衡树，叶子节点也都是有序的，定位到索引的节点，就相当于定位到了数据。</li>
+<li>缺点：
+&gt;   * <strong>依赖于有序的数据</strong> ，因为 B+树是多路平衡树，如果索引的数据不是有序的，那么就需要在插入时排序，整型数据还好，若类似于字符串或 UUID 这种又长又难比较的数据，会造成主索引频繁分裂，插入或查找的速度肯定比较慢
+<ul>
+<li><strong>更新代价大</strong>，如果对索引列的数据被修改时，那么对应的索引也将会被修改， 而且聚集索引的叶子节点还存放着数据，修改代价肯定是较大的， 所以对于主键索引来说，主键一般都是不可被修改的</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h3 class="relative group">5.2 非聚集索引 
+    <div id="52-非聚集索引" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#52-%e9%9d%9e%e8%81%9a%e9%9b%86%e7%b4%a2%e5%bc%95" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<blockquote>
+<ul>
+<li><strong>即索引结构和数据分开存放的索引</strong></li>
+<li><strong>二级索引属于非聚集索引</strong></li>
+<li>MYISAM 引擎的表的.MYI 文件包含了表的索引， 该表的索引(B+树)的每个叶子非叶子节点存储索引， 叶子节点存储索引和索引对应数据的指针，指向.MYD 文件的数据。</li>
+<li><strong>非聚集索引的叶子节点并不一定存放数据的指针， 因为二级索引的叶子节点就存放的是主键，根据主键再回表查数据。</strong></li>
+<li>优点：<strong>更新代价比聚集索引要小</strong> 。非聚集索引的更新代价就没有聚集索引那么大了，非聚集索引的叶子节点是不存放数据的</li>
+<li>缺点：
+&gt;   * 非聚集索引也依赖于有序的数据
+<ul>
+<li><strong>可能会二次查询(回表)</strong> : 当查到索引对应的指针或主键后，可能还需要根据指针或主键再到数据文件或表中查询。</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h2 class="relative group">6. 覆盖索引 
+    <div id="6-覆盖索引" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#6-%e8%a6%86%e7%9b%96%e7%b4%a2%e5%bc%95" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<blockquote>
+<ul>
+<li>一个索引包含（或者说覆盖）所有需要查询的字段的值，我们就称之为“<strong>覆盖索引</strong>”</li>
+<li>在 InnoDB 存储引擎中，如果不是主键索引，叶子节点存储的是主键+列值。最终还是要“回表”，也就是要通过主键再查找一次。这样就会比较慢</li>
+<li>覆盖索引就是把要查询出的列和索引是对应的，<strong>不做回表操作</strong></li>
+</ul>
+</blockquote>
+<h2 class="relative group">7. 创建索引注意事项 
+    <div id="7-创建索引注意事项" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#7-%e5%88%9b%e5%bb%ba%e7%b4%a2%e5%bc%95%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a1%b9" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<blockquote>
+<ul>
+<li><strong>选择合适的字段创建索引</strong>：
+&gt;   * <strong>不为 NULL 的字段</strong> ：索引字段的数据应该尽量不为 NULL，因为对于数据为 NULL 的字段，数据库较难优化。如果字段频繁被查询，但又避免不了为 NULL，建议使用 0,1,true,false 这样语义较为清晰的短值或短字符作为替代。
+<ul>
+<li><strong>被频繁查询的字段</strong> ：我们创建索引的字段应该是查询操作非常频繁的字段。</li>
+<li><strong>被作为条件查询的字段</strong> ：被作为 WHERE 条件查询的字段，应该被考虑建立索引。</li>
+<li><strong>频繁需要排序的字段</strong> ：索引已经排序，这样查询可以利用索引的排序，加快排序查询时间。</li>
+<li><strong>被经常频繁用于连接的字段</strong> ：经常用于连接的字段可能是一些外键列，对于外键列并不一定要建立外键，只是说该列涉及到表与表的关系。对于频繁被连接查询的字段，可以考虑建立索引，提高多表连接查询的效率。</li>
+</ul>
+</li>
+<li><strong>被频繁更新的字段应该慎重建立索引</strong>。</li>
+<li><strong>尽可能的考虑建立联合索引而不是单列索引</strong>。因为索引是需要占用磁盘空间的，可以简单理解为每个索引都对应着一颗 B+树。如果一个表的字段过多，索引过多，那么当这个表的数据达到一个体量后，索引占用的空间也是很多的，且修改索引时，耗费的时间也是较多的。如果是联合索引，多个字段在一个索引上，那么将会节约很大磁盘空间，且修改数据的操作效率也会提升</li>
+<li><strong>注意避免冗余索引</strong>。冗余索引指的是索引的功能相同，能够命中索引(a, b)就肯定能命中索引(a) ，那么索引(a)就是冗余索引。如（name,city ）和（name ）这两个索引就是冗余索引，能够命中前者的查询肯定是能够命中后者的 在大多数情况下，都应该尽量扩展已有的索引而不是创建新索引</li>
+<li><strong>考虑在字符串类型的字段上使用前缀索引代替普通索引</strong>。前缀索引仅限于字符串类型，较普通索引会占用更小的空间，所以可以考虑使用前缀索引带替普通索引</li>
+</ul>
+</blockquote>
+<h2 class="relative group">8. 使用索引的注意事项 
+    <div id="8-使用索引的注意事项" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#8-%e4%bd%bf%e7%94%a8%e7%b4%a2%e5%bc%95%e7%9a%84%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a1%b9" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<blockquote>
+<ul>
+<li>对于中到大型表索引都是非常有效的，但是特大型表的话维护开销会很大，不适合建索引</li>
+<li>避免 where 子句中对字段施加函数，这会造成无法命中索引</li>
+<li>在使用 InnoDB 时使用与业务无关的自增主键作为主键，即使用逻辑主键，而不要使用业务主键</li>
+<li>删除长期未使用的索引，不用的索引的存在会造成不必要的性能损耗 MySQL 5.7 可以通过查询 sys 库的 schema_unused_indexes 视图来查询哪些索引从未被使用</li>
+<li>在使用 limit offset 查询缓慢时，可以借助索引来提高性能</li>
+</ul>
+</blockquote>
+<h2 class="relative group">9. MySQL如何为表字段添加索引 
+    <div id="9-mysql如何为表字段添加索引" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#9-mysql%e5%a6%82%e4%bd%95%e4%b8%ba%e8%a1%a8%e5%ad%97%e6%ae%b5%e6%b7%bb%e5%8a%a0%e7%b4%a2%e5%bc%95" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<blockquote>
+<ol>
+<li>添加主键索引</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">table_name</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="p">(</span><span class="k">column</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></div><ol start="2">
+<li>添加唯一索引</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">table_name</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="k">unique</span><span class="p">(</span><span class="k">column</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></div><ol start="3">
+<li>添加普通索引</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">table_name</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="k">index</span><span class="w"> </span><span class="n">index_name</span><span class="p">(</span><span class="k">column</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></div><ol start="4">
+<li>添加全部索引</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">table_name</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="n">fulltext</span><span class="p">(</span><span class="k">column</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></div><ol start="5">
+<li>添加多列索引</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">table_name</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="k">index</span><span class="w"> </span><span class="n">index_name</span><span class="p">(</span><span class="n">column1</span><span class="p">,</span><span class="w"> </span><span class="n">column2</span><span class="p">,</span><span class="w"> </span><span class="n">column3</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></div></blockquote>
+<h2 class="relative group">10. 最左前缀匹配 
+    <div id="10-最左前缀匹配" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#10-%e6%9c%80%e5%b7%a6%e5%89%8d%e7%bc%80%e5%8c%b9%e9%85%8d" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<blockquote>
+<ul>
+<li>在MySQL建立联合索引时会遵守最左前缀匹配原则，即最左优先，在检索数据时从联合索引的最左边开始匹配。</li>
+<li>MySQL创建联合索引的规则是首先会对联合索引的最左边第一个字段排序，在第一个字段的排序基础上，然后在对第二个字段进行排序。</li>
+</ul>
+</blockquote>
 
       </div>
 
@@ -1162,126 +2819,6 @@
 
 <h2 class="mt-8 text-2xl font-extrabold mb-10">相关文章</h2>
 <section class="w-full grid gap-4 sm:grid-cols-2 md:grid-cols-3">
-  
-  
-
-  <a href="/docker/" class="min-w-full">
-    
-    <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
-        
-        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/img/annimation/4c758d7c82292f81f99d63ff1072aa9adb5c3536_raw_hu9b60894d5013d728985af7ffc2fcbbdd_675352_600x0_resize_q75_box.jpg);"></div>
-        
-      
-
-      <div class="px-6 py-4">
-
-        
-        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
-          href="/docker/">Docker</div>
-        
-
-        <div class="text-sm text-neutral-500 dark:text-neutral-400">
-          
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="flex flex-row flex-wrap items-center">
-  
-  
-  <time datetime="2024-02-08 14:22:59 &#43;0800 CST">8 February 2024</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
-  
-
-  
-  
-</div>
-
-
-<div class="flex flex-row flex-wrap items-center">
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-</div>
-
-
-
-
-<div class="flex flex-row flex-wrap items-center">
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/%E7%AC%94%E8%AE%B0/&#34;,'_self');">
-    <span class="flex" style="cursor: pointer;">
-  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    笔记
-  </span>
-</span>
-  </span>
-  
-  
-  
-  
-</div>
-
-
-
-
-        </div>
-
-        
-      </div>
-      <div class="px-6 pt-4 pb-2">
-
-      </div>
-    </div>
-  </a>
-
   
   
 
@@ -1500,6 +3037,126 @@
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     nio
+  </span>
+</span>
+  </span>
+  
+  
+  
+  
+</div>
+
+
+
+
+        </div>
+
+        
+      </div>
+      <div class="px-6 pt-4 pb-2">
+
+      </div>
+    </div>
+  </a>
+
+  
+  
+
+  <a href="/entire-note/spring/" class="min-w-full">
+    
+    <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
+        
+        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/entire-note/spring/featured_hu6534542605d56a7187ca4a5d252cd4c4_1422640_600x0_resize_q75_box.jpg);"></div>
+        
+      
+
+      <div class="px-6 py-4">
+
+        
+        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
+          href="/entire-note/spring/">微服务基础知识</div>
+        
+
+        <div class="text-sm text-neutral-500 dark:text-neutral-400">
+          
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2024-03-05 15:08:23 &#43;0000 UTC">5 March 2024</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">2 分钟</span>
+  
+
+  
+  
+</div>
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    微服务
   </span>
 </span>
   </span>

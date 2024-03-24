@@ -9,14 +9,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   
-  <title>有序数组的平方 &middot; 春江花朝秋月夜</title>
-  <meta name="title" content="有序数组的平方 &middot; 春江花朝秋月夜" />
+  <title>哈希篇 &middot; 春江花朝秋月夜</title>
+  <meta name="title" content="哈希篇 &middot; 春江花朝秋月夜" />
   
   <meta name="description" content="A powerful, lightweight theme for Hugo built with Tailwind CSS." />
   <meta name="keywords" content="代码随想录, " />
   
   
-  <link rel="canonical" href="/algorithm/%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9/" />
+  <link rel="canonical" href="/algorithm/%E5%93%88%E5%B8%8C%E7%AF%87/" />
   
   
   
@@ -64,25 +64,19 @@
   
   
   
-  <meta property="og:title" content="有序数组的平方" />
-<meta property="og:description" content="977
-有序数组的平方
-输入：nums = [-4,-1,0,3,10] 输出：[0,1,9,16,100] 解释：平方后，数组变为 [16,1,0,9,100] 排序后，数组变为 [0,1,9,16,100] 最大元素在两边，使用两个指针从两边到中间合拢
-更新方法从大到小
-vector&lt;int&gt;result(nums.size(),0); int k=nums.size()-1;//新数组的下标 int i=0,j=nums.size()-1; //分别从两边往中间取 while(i&lt;=j){ if(nums[i]*nums[i]&lt;nums[j]*nums[j]){ result[k--]=nums[j]*nums[j]; j--; } //num[i]*nums[i] &gt;= nums[j]*nums[j] else { result[k--]=nums[i]*nums[i]; i&#43;&#43;; } } return result; class Solution { public int[] sortedSquares(int[] nums) { int []res = new int [nums." />
+  <meta property="og:title" content="哈希篇" />
+<meta property="og:description" content="字母异位词
+class Solution { public: bool isAnagram(string s, string t) { int record[26] = {0}; for (int i = 0; i &lt; s.size(); i&#43;&#43;) { // 并不需要记住字符a的ASCII，只要求出一个相对数值就可以了 record[s[i] - &#39;a&#39;]&#43;&#43;; } for (int i = 0; i &lt; t." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/algorithm/%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9/" /><meta property="article:section" content="algorithm" />
+<meta property="og:url" content="/algorithm/%E5%93%88%E5%B8%8C%E7%AF%87/" /><meta property="article:section" content="algorithm" />
 
 
 
 
   <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="有序数组的平方"/>
-<meta name="twitter:description" content="977
-有序数组的平方
-输入：nums = [-4,-1,0,3,10] 输出：[0,1,9,16,100] 解释：平方后，数组变为 [16,1,0,9,100] 排序后，数组变为 [0,1,9,16,100] 最大元素在两边，使用两个指针从两边到中间合拢
-更新方法从大到小
-vector&lt;int&gt;result(nums.size(),0); int k=nums.size()-1;//新数组的下标 int i=0,j=nums.size()-1; //分别从两边往中间取 while(i&lt;=j){ if(nums[i]*nums[i]&lt;nums[j]*nums[j]){ result[k--]=nums[j]*nums[j]; j--; } //num[i]*nums[i] &gt;= nums[j]*nums[j] else { result[k--]=nums[i]*nums[i]; i&#43;&#43;; } } return result; class Solution { public int[] sortedSquares(int[] nums) { int []res = new int [nums."/>
+<meta name="twitter:title" content="哈希篇"/>
+<meta name="twitter:description" content="字母异位词
+class Solution { public: bool isAnagram(string s, string t) { int record[26] = {0}; for (int i = 0; i &lt; s.size(); i&#43;&#43;) { // 并不需要记住字符a的ASCII，只要求出一个相对数值就可以了 record[s[i] - &#39;a&#39;]&#43;&#43;; } for (int i = 0; i &lt; t."/>
 
   
   <script type="application/ld+json">
@@ -90,12 +84,12 @@ vector&lt;int&gt;result(nums.size(),0); int k=nums.size()-1;//新数组的下标
     "@context": "https://schema.org",
     "@type": "Article",
     "articleSection": "Algorithms",
-    "name": "有序数组的平方",
-    "headline": "有序数组的平方",
+    "name": "哈希篇",
+    "headline": "哈希篇",
     
-    "abstract": "977\n有序数组的平方\n输入：nums = [-4,-1,0,3,10] 输出：[0,1,9,16,100] 解释：平方后，数组变为 [16,1,0,9,100] 排序后，数组变为 [0,1,9,16,100] 最大元素在两边，使用两个指针从两边到中间合拢\n更新方法从大到小\nvector\u0026lt;int\u0026gt;result(nums.size(),0); int k=nums.size()-1;\/\/新数组的下标 int i=0,j=nums.size()-1; \/\/分别从两边往中间取 while(i\u0026lt;=j){ if(nums[i]*nums[i]\u0026lt;nums[j]*nums[j]){ result[k--]=nums[j]*nums[j]; j--; } \/\/num[i]*nums[i] \u0026gt;= nums[j]*nums[j] else { result[k--]=nums[i]*nums[i]; i\u002b\u002b; } } return result; class Solution { public int[] sortedSquares(int[] nums) { int []res = new int [nums.",
+    "abstract": "字母异位词\nclass Solution { public: bool isAnagram(string s, string t) { int record[26] = {0}; for (int i = 0; i \u0026lt; s.size(); i\u002b\u002b) { \/\/ 并不需要记住字符a的ASCII，只要求出一个相对数值就可以了 record[s[i] - \u0026#39;a\u0026#39;]\u002b\u002b; } for (int i = 0; i \u0026lt; t.",
     "inLanguage": "zh-CN",
-    "url" : "\/algorithm\/%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9\/",
+    "url" : "\/algorithm\/%E5%93%88%E5%B8%8C%E7%AF%87\/",
     "author" : {
       "@type": "Person",
       "name": "春江花朝秋月夜"
@@ -109,7 +103,7 @@ vector&lt;int&gt;result(nums.size(),0); int k=nums.size()-1;//新数组的下标
     "keywords": ["代码随想录"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "78"
+    "wordCount": "164"
   }]
   </script>
 
@@ -670,8 +664,8 @@ vector&lt;int&gt;result(nums.size(),0); int k=nums.size()-1;//新数组的下标
   <li class="inline hidden">
     <a
       class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
-      href="/algorithm/%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9/"
-      >有序数组的平方</a
+      href="/algorithm/%E5%93%88%E5%B8%8C%E7%AF%87/"
+      >哈希篇</a
     ><span class="px-1 text-primary-500">/</span>
   </li>
 
@@ -680,7 +674,7 @@ vector&lt;int&gt;result(nums.size(),0); int k=nums.size()-1;//新数组的下标
 
     
     <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral" style="font-family: 华文中宋,serif">
-      有序数组的平方
+      哈希篇
     </h1>
     <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
       
@@ -934,47 +928,64 @@ vector&lt;int&gt;result(nums.size(),0); int k=nums.size()-1;//新数组的下标
 
 
       <div class="article-content max-w-prose mb-20">
-        <p>977</p>
-<p>有序数组的平方</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">输入：nums = [-4,-1,0,3,10]
-</span></span><span class="line"><span class="cl">输出：[0,1,9,16,100]
-</span></span><span class="line"><span class="cl">解释：平方后，数组变为 [16,1,0,9,100]
-</span></span><span class="line"><span class="cl">排序后，数组变为 [0,1,9,16,100]
-</span></span></code></pre></div><p>最大元素在两边，使用两个指针从两边到中间合拢</p>
-<p>更新方法从大到小</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="n">result</span><span class="p">(</span><span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">(),</span><span class="mi">0</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"> <span class="kt">int</span> <span class="n">k</span><span class="o">=</span><span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span><span class="c1">//新数组的下标
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span> <span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">j</span><span class="o">=</span><span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="c1">//分别从两边往中间取
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span> <span class="k">while</span><span class="p">(</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">j</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">     <span class="k">if</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;</span><span class="n">nums</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="n">nums</span><span class="p">[</span><span class="n">j</span><span class="p">]){</span>
-</span></span><span class="line"><span class="cl">         <span class="n">result</span><span class="p">[</span><span class="n">k</span><span class="o">--</span><span class="p">]</span><span class="o">=</span><span class="n">nums</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="n">nums</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">         <span class="n">j</span><span class="o">--</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">     <span class="p">}</span>
-</span></span><span class="line"><span class="cl">     <span class="c1">//num[i]*nums[i] &gt;= nums[j]*nums[j]
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>     <span class="k">else</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">         <span class="n">result</span><span class="p">[</span><span class="n">k</span><span class="o">--</span><span class="p">]</span><span class="o">=</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">         <span class="n">i</span><span class="o">++</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">     <span class="p">}</span>
-</span></span><span class="line"><span class="cl"> <span class="p">}</span>
-</span></span><span class="line"><span class="cl"> <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">sortedSquares</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="o">[]</span><span class="n">res</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span> <span class="o">[</span><span class="n">nums</span><span class="o">.</span><span class="na">length</span> <span class="o">];</span>
-</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">-</span><span class="mi">1</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span><span class="mi">0</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">         <span class="k">while</span><span class="o">(</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">j</span><span class="o">){</span>
-</span></span><span class="line"><span class="cl">            <span class="k">if</span><span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]*</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">nums</span><span class="o">[</span><span class="n">j</span><span class="o">]*</span><span class="n">nums</span><span class="o">[</span><span class="n">j</span><span class="o">]){</span>
-</span></span><span class="line"><span class="cl">                <span class="n">res</span><span class="o">[</span><span class="n">k</span><span class="o">--]</span> <span class="o">=</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]*</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
-</span></span><span class="line"><span class="cl">                <span class="n">i</span><span class="o">++;</span>
-</span></span><span class="line"><span class="cl">            <span class="o">}</span><span class="k">else</span><span class="o">{</span>
-</span></span><span class="line"><span class="cl">                <span class="n">res</span><span class="o">[</span><span class="n">k</span><span class="o">--]</span> <span class="o">=</span> <span class="n">nums</span><span class="o">[</span><span class="n">j</span><span class="o">]*</span><span class="n">nums</span><span class="o">[</span><span class="n">j</span><span class="o">];</span>
-</span></span><span class="line"><span class="cl">                <span class="n">j</span><span class="o">--;</span>
-</span></span><span class="line"><span class="cl">            <span class="o">}</span>
-</span></span><span class="line"><span class="cl">         <span class="o">}</span>
-</span></span><span class="line"><span class="cl">         <span class="k">return</span> <span class="n">res</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+        <p>字母异位词</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">bool</span> <span class="n">isAnagram</span><span class="p">(</span><span class="n">string</span> <span class="n">s</span><span class="p">,</span> <span class="n">string</span> <span class="n">t</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">record</span><span class="p">[</span><span class="mi">26</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">s</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 并不需要记住字符a的ASCII，只要求出一个相对数值就可以了
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">record</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="sc">&#39;a&#39;</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">t</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">record</span><span class="p">[</span><span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="sc">&#39;a&#39;</span><span class="p">]</span><span class="o">--</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">26</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">record</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">// record数组如果有的元素不为零0，说明字符串s和t 一定是谁多了字符或者谁少了字符。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// record数组所有元素都为零0，说明字符串s和t是字母异位词
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><p>重叠数</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">intersection</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">nums1</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">nums2</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">res</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">nums1</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">==</span><span class="mi">0</span><span class="o">||</span><span class="n">nums2</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">unordered_set</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">setp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">unordered_set</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">setq</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nums1</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">setp</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">nums1</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//在前面的数组中出现过
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nums2</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">setp</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">nums2</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">!=</span> <span class="n">setp</span><span class="p">.</span><span class="n">end</span><span class="p">())</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">setq</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">nums2</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">setq</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="n">setq</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><p>两数之和</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">twoSum</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">nums</span><span class="p">,</span> <span class="kt">int</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">unordered_map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">map</span><span class="p">;</span><span class="c1">//k：元素，v：下标
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">map</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">target</span><span class="o">-</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">!=</span><span class="n">map</span><span class="p">.</span><span class="n">end</span><span class="p">()){</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="p">{</span><span class="n">map</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">target</span><span class="o">-</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">,</span><span class="n">i</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="n">map</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">i</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="p">{};</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span></code></pre></div>
       </div>
 
@@ -985,8 +996,8 @@ vector&lt;int&gt;result(nums.size(),0); int k=nums.size()-1;//新数组的下标
 
     
     <script>
-      var oid = "views_algorithm\\有序数组的平方.md"
-      var oid_likes = "likes_algorithm\\有序数组的平方.md"
+      var oid = "views_algorithm\\哈希篇.md"
+      var oid_likes = "likes_algorithm\\哈希篇.md"
     </script>
     
     
@@ -1009,7 +1020,7 @@ vector&lt;int&gt;result(nums.size(),0); int k=nums.size()-1;//新数组的下标
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://twitter.com/intent/tweet/?url=/algorithm/%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9/&amp;text=%e6%9c%89%e5%ba%8f%e6%95%b0%e7%bb%84%e7%9a%84%e5%b9%b3%e6%96%b9"
+      href="https://twitter.com/intent/tweet/?url=/algorithm/%E5%93%88%E5%B8%8C%E7%AF%87/&amp;text=%e5%93%88%e5%b8%8c%e7%af%87"
       title="分享到 Twitter"
       aria-label="分享到 Twitter"
       >
@@ -1027,7 +1038,7 @@ vector&lt;int&gt;result(nums.size(),0); int k=nums.size()-1;//新数组的下标
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://t.me/share/url?url=/algorithm/%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9/&amp;resubmit=true&amp;title=%e6%9c%89%e5%ba%8f%e6%95%b0%e7%bb%84%e7%9a%84%e5%b9%b3%e6%96%b9"
+      href="https://t.me/share/url?url=/algorithm/%E5%93%88%E5%B8%8C%E7%AF%87/&amp;resubmit=true&amp;title=%e5%93%88%e5%b8%8c%e7%af%87"
       title=""
       aria-label=""
       >
@@ -1046,7 +1057,7 @@ vector&lt;int&gt;result(nums.size(),0); int k=nums.size()-1;//新数组的下标
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="mailto:?body=/algorithm/%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9/&amp;subject=%e6%9c%89%e5%ba%8f%e6%95%b0%e7%bb%84%e7%9a%84%e5%b9%b3%e6%96%b9"
+      href="mailto:?body=/algorithm/%E5%93%88%E5%B8%8C%E7%AF%87/&amp;subject=%e5%93%88%e5%b8%8c%e7%af%87"
       title="通过电子邮件发送"
       aria-label="通过电子邮件发送"
       >
@@ -1085,126 +1096,6 @@ vector&lt;int&gt;result(nums.size(),0); int k=nums.size()-1;//新数组的下标
         
         <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
           href="/algorithm/%E4%BA%8C%E5%88%86%E6%B3%95/">二分法</div>
-        
-
-        <div class="text-sm text-neutral-500 dark:text-neutral-400">
-          
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="flex flex-row flex-wrap items-center">
-  
-  
-  <time datetime="0001-01-01 00:00:00 &#43;0000 UTC">1 January 0001</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
-  
-
-  
-  
-</div>
-
-
-<div class="flex flex-row flex-wrap items-center">
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-</div>
-
-
-
-
-<div class="flex flex-row flex-wrap items-center">
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/&#34;,'_self');">
-    <span class="flex" style="cursor: pointer;">
-  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    代码随想录
-  </span>
-</span>
-  </span>
-  
-  
-  
-  
-</div>
-
-
-
-
-        </div>
-
-        
-      </div>
-      <div class="px-6 pt-4 pb-2">
-
-      </div>
-    </div>
-  </a>
-
-  
-  
-
-  <a href="/algorithm/%E5%93%88%E5%B8%8C%E7%AF%87/" class="min-w-full">
-    
-    <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
-        
-        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/img/annimation/4c758d7c82292f81f99d63ff1072aa9adb5c3536_raw_hu9b60894d5013d728985af7ffc2fcbbdd_675352_600x0_resize_q75_box.jpg);"></div>
-        
-      
-
-      <div class="px-6 py-4">
-
-        
-        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
-          href="/algorithm/%E5%93%88%E5%B8%8C%E7%AF%87/">哈希篇</div>
         
 
         <div class="text-sm text-neutral-500 dark:text-neutral-400">
@@ -1430,6 +1321,126 @@ vector&lt;int&gt;result(nums.size(),0); int k=nums.size()-1;//新数组的下标
   </a>
 
   
+  
+
+  <a href="/algorithm/%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9/" class="min-w-full">
+    
+    <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
+        
+        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/img/annimation/4c758d7c82292f81f99d63ff1072aa9adb5c3536_raw_hu9b60894d5013d728985af7ffc2fcbbdd_675352_600x0_resize_q75_box.jpg);"></div>
+        
+      
+
+      <div class="px-6 py-4">
+
+        
+        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
+          href="/algorithm/%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9/">有序数组的平方</div>
+        
+
+        <div class="text-sm text-neutral-500 dark:text-neutral-400">
+          
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="0001-01-01 00:00:00 &#43;0000 UTC">1 January 0001</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
+  
+
+  
+  
+</div>
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    代码随想录
+  </span>
+</span>
+  </span>
+  
+  
+  
+  
+</div>
+
+
+
+
+        </div>
+
+        
+      </div>
+      <div class="px-6 pt-4 pb-2">
+
+      </div>
+    </div>
+  </a>
+
+  
 </section>
 
 
@@ -1443,7 +1454,7 @@ vector&lt;int&gt;result(nums.size(),0); int k=nums.size()-1;//新数组的下标
       <div class="flex justify-between pt-3">
         <span>
           
-            <a class="flex group mr-3" href="/algorithm/%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E6%95%B0%E7%BB%84/">
+            <a class="flex group mr-3" href="/algorithm/%E9%93%BE%E8%A1%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">
               <span
                 class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
                 >&larr;</span
@@ -1455,7 +1466,7 @@ vector&lt;int&gt;result(nums.size(),0); int k=nums.size()-1;//新数组的下标
               <span class="flex flex-col">
                 <span
                   class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
-                  >长度最小的数组</span
+                  >链表的基本操作</span
                 >
                 <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
                   
@@ -1468,11 +1479,11 @@ vector&lt;int&gt;result(nums.size(),0); int k=nums.size()-1;//新数组的下标
         </span>
         <span>
           
-            <a class="flex text-right group ml-3" href="/algorithm/%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0/">
+            <a class="flex text-right group ml-3" href="/algorithm/%E7%AE%97%E6%B3%95/c/">
               <span class="flex flex-col">
                 <span
                   class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
-                  >移除元素</span
+                  >复杂度</span
                 >
                 <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
                   

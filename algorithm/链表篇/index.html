@@ -9,14 +9,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   
-  <title>有序数组的平方 &middot; 春江花朝秋月夜</title>
-  <meta name="title" content="有序数组的平方 &middot; 春江花朝秋月夜" />
+  <title>链表篇 &middot; 春江花朝秋月夜</title>
+  <meta name="title" content="链表篇 &middot; 春江花朝秋月夜" />
   
   <meta name="description" content="A powerful, lightweight theme for Hugo built with Tailwind CSS." />
   <meta name="keywords" content="代码随想录, " />
   
   
-  <link rel="canonical" href="/algorithm/%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9/" />
+  <link rel="canonical" href="/algorithm/%E9%93%BE%E8%A1%A8%E7%AF%87/" />
   
   
   
@@ -64,25 +64,19 @@
   
   
   
-  <meta property="og:title" content="有序数组的平方" />
-<meta property="og:description" content="977
-有序数组的平方
-输入：nums = [-4,-1,0,3,10] 输出：[0,1,9,16,100] 解释：平方后，数组变为 [16,1,0,9,100] 排序后，数组变为 [0,1,9,16,100] 最大元素在两边，使用两个指针从两边到中间合拢
-更新方法从大到小
-vector&lt;int&gt;result(nums.size(),0); int k=nums.size()-1;//新数组的下标 int i=0,j=nums.size()-1; //分别从两边往中间取 while(i&lt;=j){ if(nums[i]*nums[i]&lt;nums[j]*nums[j]){ result[k--]=nums[j]*nums[j]; j--; } //num[i]*nums[i] &gt;= nums[j]*nums[j] else { result[k--]=nums[i]*nums[i]; i&#43;&#43;; } } return result; class Solution { public int[] sortedSquares(int[] nums) { int []res = new int [nums." />
+  <meta property="og:title" content="链表篇" />
+<meta property="og:description" content="翻转链表
+class Solution { public: //翻转链表 //输入：head = [1,2,3,4,5] //输出：[5,4,3,2,1] //双指针法 ListNode *reverseList(ListNode *head) { ListNode *cur = head; ListNode *pre = NULL; ListNode *tmp = cur;//保存变量 while (cur) { tmp = cur-&gt;next;//保存原来的下一个指向 cur-&gt;next = pre;//将下一个指向改为pre pre = cur;//修改pre往前移动一格 cur = tmp;//修改cur往前移动一格 } return pre; } //递归法 ListNode *reverse(ListNode *cur,ListNode *pre){ if(cur == NULL) return pre; ListNode *tmp= NULL; tmp=cur-&gt;next; cur-&gt;next=pre; return reverse(tmp,cur); } }; 环形链表" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/algorithm/%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9/" /><meta property="article:section" content="algorithm" />
+<meta property="og:url" content="/algorithm/%E9%93%BE%E8%A1%A8%E7%AF%87/" /><meta property="article:section" content="algorithm" />
 
 
 
 
   <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="有序数组的平方"/>
-<meta name="twitter:description" content="977
-有序数组的平方
-输入：nums = [-4,-1,0,3,10] 输出：[0,1,9,16,100] 解释：平方后，数组变为 [16,1,0,9,100] 排序后，数组变为 [0,1,9,16,100] 最大元素在两边，使用两个指针从两边到中间合拢
-更新方法从大到小
-vector&lt;int&gt;result(nums.size(),0); int k=nums.size()-1;//新数组的下标 int i=0,j=nums.size()-1; //分别从两边往中间取 while(i&lt;=j){ if(nums[i]*nums[i]&lt;nums[j]*nums[j]){ result[k--]=nums[j]*nums[j]; j--; } //num[i]*nums[i] &gt;= nums[j]*nums[j] else { result[k--]=nums[i]*nums[i]; i&#43;&#43;; } } return result; class Solution { public int[] sortedSquares(int[] nums) { int []res = new int [nums."/>
+<meta name="twitter:title" content="链表篇"/>
+<meta name="twitter:description" content="翻转链表
+class Solution { public: //翻转链表 //输入：head = [1,2,3,4,5] //输出：[5,4,3,2,1] //双指针法 ListNode *reverseList(ListNode *head) { ListNode *cur = head; ListNode *pre = NULL; ListNode *tmp = cur;//保存变量 while (cur) { tmp = cur-&gt;next;//保存原来的下一个指向 cur-&gt;next = pre;//将下一个指向改为pre pre = cur;//修改pre往前移动一格 cur = tmp;//修改cur往前移动一格 } return pre; } //递归法 ListNode *reverse(ListNode *cur,ListNode *pre){ if(cur == NULL) return pre; ListNode *tmp= NULL; tmp=cur-&gt;next; cur-&gt;next=pre; return reverse(tmp,cur); } }; 环形链表"/>
 
   
   <script type="application/ld+json">
@@ -90,12 +84,12 @@ vector&lt;int&gt;result(nums.size(),0); int k=nums.size()-1;//新数组的下标
     "@context": "https://schema.org",
     "@type": "Article",
     "articleSection": "Algorithms",
-    "name": "有序数组的平方",
-    "headline": "有序数组的平方",
+    "name": "链表篇",
+    "headline": "链表篇",
     
-    "abstract": "977\n有序数组的平方\n输入：nums = [-4,-1,0,3,10] 输出：[0,1,9,16,100] 解释：平方后，数组变为 [16,1,0,9,100] 排序后，数组变为 [0,1,9,16,100] 最大元素在两边，使用两个指针从两边到中间合拢\n更新方法从大到小\nvector\u0026lt;int\u0026gt;result(nums.size(),0); int k=nums.size()-1;\/\/新数组的下标 int i=0,j=nums.size()-1; \/\/分别从两边往中间取 while(i\u0026lt;=j){ if(nums[i]*nums[i]\u0026lt;nums[j]*nums[j]){ result[k--]=nums[j]*nums[j]; j--; } \/\/num[i]*nums[i] \u0026gt;= nums[j]*nums[j] else { result[k--]=nums[i]*nums[i]; i\u002b\u002b; } } return result; class Solution { public int[] sortedSquares(int[] nums) { int []res = new int [nums.",
+    "abstract": "翻转链表\nclass Solution { public: \/\/翻转链表 \/\/输入：head = [1,2,3,4,5] \/\/输出：[5,4,3,2,1] \/\/双指针法 ListNode *reverseList(ListNode *head) { ListNode *cur = head; ListNode *pre = NULL; ListNode *tmp = cur;\/\/保存变量 while (cur) { tmp = cur-\u0026gt;next;\/\/保存原来的下一个指向 cur-\u0026gt;next = pre;\/\/将下一个指向改为pre pre = cur;\/\/修改pre往前移动一格 cur = tmp;\/\/修改cur往前移动一格 } return pre; } \/\/递归法 ListNode *reverse(ListNode *cur,ListNode *pre){ if(cur == NULL) return pre; ListNode *tmp= NULL; tmp=cur-\u0026gt;next; cur-\u0026gt;next=pre; return reverse(tmp,cur); } }; 环形链表",
     "inLanguage": "zh-CN",
-    "url" : "\/algorithm\/%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9\/",
+    "url" : "\/algorithm\/%E9%93%BE%E8%A1%A8%E7%AF%87\/",
     "author" : {
       "@type": "Person",
       "name": "春江花朝秋月夜"
@@ -109,7 +103,7 @@ vector&lt;int&gt;result(nums.size(),0); int k=nums.size()-1;//新数组的下标
     "keywords": ["代码随想录"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "78"
+    "wordCount": "470"
   }]
   </script>
 
@@ -670,8 +664,8 @@ vector&lt;int&gt;result(nums.size(),0); int k=nums.size()-1;//新数组的下标
   <li class="inline hidden">
     <a
       class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
-      href="/algorithm/%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9/"
-      >有序数组的平方</a
+      href="/algorithm/%E9%93%BE%E8%A1%A8%E7%AF%87/"
+      >链表篇</a
     ><span class="px-1 text-primary-500">/</span>
   </li>
 
@@ -680,7 +674,7 @@ vector&lt;int&gt;result(nums.size(),0); int k=nums.size()-1;//新数组的下标
 
     
     <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral" style="font-family: 华文中宋,serif">
-      有序数组的平方
+      链表篇
     </h1>
     <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
       
@@ -723,7 +717,7 @@ vector&lt;int&gt;result(nums.size(),0); int k=nums.size()-1;//新数组的下标
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="0001-01-01 00:00:00 &#43;0000 UTC">1 January 0001</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
+  <time datetime="0001-01-01 00:00:00 &#43;0000 UTC">1 January 0001</time><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">3 分钟</span>
   
 
   
@@ -934,47 +928,202 @@ vector&lt;int&gt;result(nums.size(),0); int k=nums.size()-1;//新数组的下标
 
 
       <div class="article-content max-w-prose mb-20">
-        <p>977</p>
-<p>有序数组的平方</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">输入：nums = [-4,-1,0,3,10]
-</span></span><span class="line"><span class="cl">输出：[0,1,9,16,100]
-</span></span><span class="line"><span class="cl">解释：平方后，数组变为 [16,1,0,9,100]
-</span></span><span class="line"><span class="cl">排序后，数组变为 [0,1,9,16,100]
-</span></span></code></pre></div><p>最大元素在两边，使用两个指针从两边到中间合拢</p>
-<p>更新方法从大到小</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="n">result</span><span class="p">(</span><span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">(),</span><span class="mi">0</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"> <span class="kt">int</span> <span class="n">k</span><span class="o">=</span><span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span><span class="c1">//新数组的下标
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span> <span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">j</span><span class="o">=</span><span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="c1">//分别从两边往中间取
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span> <span class="k">while</span><span class="p">(</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">j</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">     <span class="k">if</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;</span><span class="n">nums</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="n">nums</span><span class="p">[</span><span class="n">j</span><span class="p">]){</span>
-</span></span><span class="line"><span class="cl">         <span class="n">result</span><span class="p">[</span><span class="n">k</span><span class="o">--</span><span class="p">]</span><span class="o">=</span><span class="n">nums</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="n">nums</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">         <span class="n">j</span><span class="o">--</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">     <span class="p">}</span>
-</span></span><span class="line"><span class="cl">     <span class="c1">//num[i]*nums[i] &gt;= nums[j]*nums[j]
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>     <span class="k">else</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">         <span class="n">result</span><span class="p">[</span><span class="n">k</span><span class="o">--</span><span class="p">]</span><span class="o">=</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">         <span class="n">i</span><span class="o">++</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">     <span class="p">}</span>
-</span></span><span class="line"><span class="cl"> <span class="p">}</span>
-</span></span><span class="line"><span class="cl"> <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">sortedSquares</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="o">[]</span><span class="n">res</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span> <span class="o">[</span><span class="n">nums</span><span class="o">.</span><span class="na">length</span> <span class="o">];</span>
-</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">-</span><span class="mi">1</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span><span class="mi">0</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">         <span class="k">while</span><span class="o">(</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">j</span><span class="o">){</span>
-</span></span><span class="line"><span class="cl">            <span class="k">if</span><span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]*</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">nums</span><span class="o">[</span><span class="n">j</span><span class="o">]*</span><span class="n">nums</span><span class="o">[</span><span class="n">j</span><span class="o">]){</span>
-</span></span><span class="line"><span class="cl">                <span class="n">res</span><span class="o">[</span><span class="n">k</span><span class="o">--]</span> <span class="o">=</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]*</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
-</span></span><span class="line"><span class="cl">                <span class="n">i</span><span class="o">++;</span>
-</span></span><span class="line"><span class="cl">            <span class="o">}</span><span class="k">else</span><span class="o">{</span>
-</span></span><span class="line"><span class="cl">                <span class="n">res</span><span class="o">[</span><span class="n">k</span><span class="o">--]</span> <span class="o">=</span> <span class="n">nums</span><span class="o">[</span><span class="n">j</span><span class="o">]*</span><span class="n">nums</span><span class="o">[</span><span class="n">j</span><span class="o">];</span>
-</span></span><span class="line"><span class="cl">                <span class="n">j</span><span class="o">--;</span>
-</span></span><span class="line"><span class="cl">            <span class="o">}</span>
-</span></span><span class="line"><span class="cl">         <span class="o">}</span>
-</span></span><span class="line"><span class="cl">         <span class="k">return</span> <span class="n">res</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+        <p>翻转链表</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//翻转链表
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//输入：head = [1,2,3,4,5]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//输出：[5,4,3,2,1]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//双指针法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">ListNode</span> <span class="o">*</span><span class="n">reverseList</span><span class="p">(</span><span class="n">ListNode</span> <span class="o">*</span><span class="n">head</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ListNode</span> <span class="o">*</span><span class="n">cur</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ListNode</span> <span class="o">*</span><span class="n">pre</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ListNode</span> <span class="o">*</span><span class="n">tmp</span> <span class="o">=</span> <span class="n">cur</span><span class="p">;</span><span class="c1">//保存变量
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">while</span> <span class="p">(</span><span class="n">cur</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tmp</span> <span class="o">=</span> <span class="n">cur</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span><span class="c1">//保存原来的下一个指向
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">cur</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">pre</span><span class="p">;</span><span class="c1">//将下一个指向改为pre
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">pre</span> <span class="o">=</span> <span class="n">cur</span><span class="p">;</span><span class="c1">//修改pre往前移动一格
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">cur</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">;</span><span class="c1">//修改cur往前移动一格
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">pre</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">//递归法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">ListNode</span> <span class="o">*</span><span class="nf">reverse</span><span class="p">(</span><span class="n">ListNode</span> <span class="o">*</span><span class="n">cur</span><span class="p">,</span><span class="n">ListNode</span> <span class="o">*</span><span class="n">pre</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">cur</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="k">return</span> <span class="n">pre</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ListNode</span> <span class="o">*</span><span class="n">tmp</span><span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">tmp</span><span class="o">=</span><span class="n">cur</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cur</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">=</span><span class="n">pre</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">reverse</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span><span class="n">cur</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><p>环形链表</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;../cunion.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ListNode</span> <span class="o">*</span><span class="n">detectCycle</span><span class="p">(</span><span class="n">ListNode</span> <span class="o">*</span><span class="n">head</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ListNode</span> <span class="o">*</span> <span class="n">dummyHead</span><span class="o">=</span><span class="k">new</span> <span class="n">ListNode</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dummyHead</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">=</span><span class="n">head</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ListNode</span> <span class="o">*</span><span class="n">fast</span><span class="o">=</span><span class="n">dummyHead</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ListNode</span> <span class="o">*</span><span class="n">slow</span><span class="o">=</span><span class="n">dummyHead</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="p">(</span><span class="n">fast</span><span class="o">!=</span> <span class="k">nullptr</span><span class="o">&amp;&amp;</span> <span class="n">fast</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">!=</span> <span class="k">nullptr</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">fast</span><span class="o">=</span><span class="n">fast</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">slow</span><span class="o">=</span><span class="n">slow</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">fast</span><span class="o">==</span><span class="n">slow</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">                <span class="n">ListNode</span> <span class="o">*</span><span class="n">pos</span><span class="o">=</span><span class="n">fast</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">ListNode</span> <span class="o">*</span><span class="n">run</span><span class="o">=</span><span class="n">head</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="k">while</span> <span class="p">(</span><span class="n">run</span><span class="o">!=</span><span class="n">pos</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">pos</span><span class="o">=</span><span class="n">pos</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">run</span><span class="o">=</span><span class="n">run</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="n">run</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">nullptr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><p>交换链表</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;../cunion.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//输入：head = [1,2,3,4]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//输出：[2,1,4,3]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">ListNode</span><span class="o">*</span> <span class="n">swapPairs</span><span class="p">(</span><span class="n">ListNode</span><span class="o">*</span> <span class="n">head</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ListNode</span> <span class="o">*</span><span class="n">pre</span><span class="o">=</span><span class="k">new</span> <span class="n">ListNode</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">pre</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">=</span><span class="n">head</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ListNode</span> <span class="o">*</span><span class="n">cur</span><span class="o">=</span><span class="n">pre</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ListNode</span> <span class="o">*</span><span class="n">tmp</span><span class="o">=</span><span class="n">cur</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ListNode</span> <span class="o">*</span><span class="n">tmp1</span><span class="o">=</span><span class="n">cur</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="p">(</span><span class="n">cur</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">!=</span> <span class="k">nullptr</span> <span class="o">&amp;&amp;</span> <span class="n">cur</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">!=</span> <span class="k">nullptr</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tmp</span><span class="o">=</span><span class="n">cur</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tmp1</span><span class="o">=</span><span class="n">tmp</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tmp</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">=</span><span class="n">cur</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cur</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">=</span><span class="n">tmp1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cur</span><span class="o">=</span><span class="n">tmp1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">pre</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><p>链表相交</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="c1">//
+</span></span></span><span class="line"><span class="cl"><span class="c1">// Created by 春江花朝秋月夜 on 2024/3/23.
+</span></span></span><span class="line"><span class="cl"><span class="c1">//
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#include</span> <span class="cpf">&#34;../cunion.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ListNode</span> <span class="o">*</span><span class="n">getIntersectionNode</span><span class="p">(</span><span class="n">ListNode</span> <span class="o">*</span><span class="n">headA</span><span class="p">,</span> <span class="n">ListNode</span> <span class="o">*</span><span class="n">headB</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ListNode</span> <span class="o">*</span><span class="n">A</span> <span class="o">=</span> <span class="n">headA</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ListNode</span> <span class="o">*</span><span class="n">B</span> <span class="o">=</span> <span class="n">headB</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">lenA</span> <span class="o">=</span> <span class="n">len</span><span class="p">(</span><span class="n">A</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">lenB</span> <span class="o">=</span> <span class="n">len</span><span class="p">(</span><span class="n">B</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ListNode</span> <span class="o">*</span><span class="n">curA</span> <span class="o">=</span> <span class="n">headA</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ListNode</span> <span class="o">*</span><span class="n">curB</span> <span class="o">=</span> <span class="n">headB</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">lenA</span> <span class="o">&gt;</span> <span class="n">lenB</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">diff</span> <span class="o">=</span> <span class="n">lenA</span> <span class="o">-</span> <span class="n">lenB</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="nf">findInsect</span><span class="p">(</span><span class="n">curA</span><span class="p">,</span><span class="n">curB</span><span class="p">,</span><span class="n">diff</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">lenB</span> <span class="o">&gt;</span> <span class="n">lenA</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">diff</span> <span class="o">=</span> <span class="n">lenB</span> <span class="o">-</span> <span class="n">lenA</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">findInsect</span><span class="p">(</span><span class="n">curB</span><span class="p">,</span><span class="n">curA</span><span class="p">,</span><span class="n">diff</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">lenA</span> <span class="o">==</span> <span class="n">lenB</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">findInsect</span><span class="p">(</span><span class="n">curA</span><span class="p">,</span><span class="n">curB</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">nullptr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">ListNode</span> <span class="o">*</span><span class="nf">findInsect</span><span class="p">(</span><span class="n">ListNode</span> <span class="o">*</span><span class="n">left</span><span class="p">,</span><span class="n">ListNode</span> <span class="o">*</span><span class="n">right</span><span class="p">,</span><span class="kt">int</span> <span class="n">diff</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="p">(</span><span class="n">diff</span><span class="o">--</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">left</span><span class="o">=</span><span class="n">left</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">left</span><span class="o">!=</span><span class="n">right</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="k">while</span> <span class="p">(</span><span class="n">left</span><span class="o">!=</span> <span class="k">nullptr</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="p">(</span><span class="n">left</span><span class="o">==</span><span class="n">right</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">return</span> <span class="n">left</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="n">left</span><span class="o">=</span><span class="n">left</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">right</span><span class="o">=</span><span class="n">right</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">left</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">nullptr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="nf">len</span><span class="p">(</span><span class="n">ListNode</span> <span class="o">*</span><span class="n">node</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="p">(</span><span class="n">node</span> <span class="o">!=</span> <span class="k">nullptr</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">len</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">len</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><p>删除链表的倒数第n个节点</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="c1">//
+</span></span></span><span class="line"><span class="cl"><span class="c1">// Created by 春江花朝秋月夜 on 2024/3/21.
+</span></span></span><span class="line"><span class="cl"><span class="c1">//
+</span></span></span><span class="line"><span class="cl"><span class="c1">//删除链表的倒数第n个节点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#include</span> <span class="cpf">&#34;../cunion.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ListNode</span> <span class="o">*</span><span class="n">removeNthFromEnd</span><span class="p">(</span><span class="n">ListNode</span> <span class="o">*</span><span class="n">head</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ListNode</span> <span class="o">*</span><span class="n">dummyHead</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListNode</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">head</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ListNode</span> <span class="o">*</span><span class="n">node</span> <span class="o">=</span> <span class="n">dummyHead</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="p">(</span><span class="n">node</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">len</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ListNode</span> <span class="o">*</span><span class="n">travelNode</span> <span class="o">=</span> <span class="n">dummyHead</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//因为是通过倒数来实现计数，所以索引从1开始
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">len</span> <span class="o">-</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">travelNode</span> <span class="o">=</span> <span class="n">travelNode</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">travelNode</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">travelNode</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">dummyHead</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//使用双指针来解决这个问题！！！
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">ListNode</span><span class="o">*</span> <span class="nf">removeNthFromEndWithDouble</span><span class="p">(</span><span class="n">ListNode</span><span class="o">*</span> <span class="n">head</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ListNode</span> <span class="o">*</span><span class="n">dummyHead</span><span class="o">=</span><span class="k">new</span> <span class="n">ListNode</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dummyHead</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">=</span><span class="n">head</span><span class="p">;</span><span class="c1">//虚拟头节点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">        <span class="n">ListNode</span> <span class="o">*</span><span class="n">fast</span><span class="o">=</span><span class="n">dummyHead</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ListNode</span> <span class="o">*</span><span class="n">slow</span><span class="o">=</span><span class="n">dummyHead</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">//fast向前移动n步
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">while</span> <span class="p">(</span><span class="n">fast</span><span class="o">!=</span> <span class="nb">NULL</span><span class="o">&amp;&amp;</span><span class="n">n</span><span class="o">--</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">fast</span><span class="o">=</span><span class="n">fast</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">fast</span> <span class="o">=</span> <span class="n">fast</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span> <span class="c1">// fast再提前走一步，因为需要让slow指向删除节点的上一个节点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">while</span> <span class="p">(</span><span class="n">fast</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">fast</span> <span class="o">=</span> <span class="n">fast</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">slow</span> <span class="o">=</span> <span class="n">slow</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">slow</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">=</span><span class="n">slow</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">dummyHead</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/** 采用虚拟头节点来解决的方法：
+</span></span></span><span class="line"><span class="cl"><span class="cm">* ListNode *removeNthFromEnd(ListNode *head, int n) {
+</span></span></span><span class="line"><span class="cl"><span class="cm">        //使用双指针来解决这个问题！！！
+</span></span></span><span class="line"><span class="cl"><span class="cm">        ListNode *dummyHead = new ListNode(0, head);
+</span></span></span><span class="line"><span class="cl"><span class="cm">        int len = 0;
+</span></span></span><span class="line"><span class="cl"><span class="cm">        ListNode *node = dummyHead-&gt;next;
+</span></span></span><span class="line"><span class="cl"><span class="cm">        while (node) {
+</span></span></span><span class="line"><span class="cl"><span class="cm">            len++;
+</span></span></span><span class="line"><span class="cl"><span class="cm">            node = node-&gt;next;
+</span></span></span><span class="line"><span class="cl"><span class="cm">        }
+</span></span></span><span class="line"><span class="cl"><span class="cm">        ListNode *travelNode = dummyHead-&gt;next;
+</span></span></span><span class="line"><span class="cl"><span class="cm">        //因为是通过倒数来实现计数，所以索引从1开始
+</span></span></span><span class="line"><span class="cl"><span class="cm">        for (int i = 1; i &lt; len - i + 1; ++i) {
+</span></span></span><span class="line"><span class="cl"><span class="cm">            travelNode = travelNode-&gt;next;
+</span></span></span><span class="line"><span class="cl"><span class="cm">        }
+</span></span></span><span class="line"><span class="cl"><span class="cm">        travelNode-&gt;next = travelNode-&gt;next-&gt;next;
+</span></span></span><span class="line"><span class="cl"><span class="cm">        return dummyHead-&gt;next;
+</span></span></span><span class="line"><span class="cl"><span class="cm">    }
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
 </span></span></code></pre></div>
       </div>
 
@@ -985,8 +1134,8 @@ vector&lt;int&gt;result(nums.size(),0); int k=nums.size()-1;//新数组的下标
 
     
     <script>
-      var oid = "views_algorithm\\有序数组的平方.md"
-      var oid_likes = "likes_algorithm\\有序数组的平方.md"
+      var oid = "views_algorithm\\链表篇.md"
+      var oid_likes = "likes_algorithm\\链表篇.md"
     </script>
     
     
@@ -1009,7 +1158,7 @@ vector&lt;int&gt;result(nums.size(),0); int k=nums.size()-1;//新数组的下标
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://twitter.com/intent/tweet/?url=/algorithm/%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9/&amp;text=%e6%9c%89%e5%ba%8f%e6%95%b0%e7%bb%84%e7%9a%84%e5%b9%b3%e6%96%b9"
+      href="https://twitter.com/intent/tweet/?url=/algorithm/%E9%93%BE%E8%A1%A8%E7%AF%87/&amp;text=%e9%93%be%e8%a1%a8%e7%af%87"
       title="分享到 Twitter"
       aria-label="分享到 Twitter"
       >
@@ -1027,7 +1176,7 @@ vector&lt;int&gt;result(nums.size(),0); int k=nums.size()-1;//新数组的下标
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://t.me/share/url?url=/algorithm/%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9/&amp;resubmit=true&amp;title=%e6%9c%89%e5%ba%8f%e6%95%b0%e7%bb%84%e7%9a%84%e5%b9%b3%e6%96%b9"
+      href="https://t.me/share/url?url=/algorithm/%E9%93%BE%E8%A1%A8%E7%AF%87/&amp;resubmit=true&amp;title=%e9%93%be%e8%a1%a8%e7%af%87"
       title=""
       aria-label=""
       >
@@ -1046,7 +1195,7 @@ vector&lt;int&gt;result(nums.size(),0); int k=nums.size()-1;//新数组的下标
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="mailto:?body=/algorithm/%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9/&amp;subject=%e6%9c%89%e5%ba%8f%e6%95%b0%e7%bb%84%e7%9a%84%e5%b9%b3%e6%96%b9"
+      href="mailto:?body=/algorithm/%E9%93%BE%E8%A1%A8%E7%AF%87/&amp;subject=%e9%93%be%e8%a1%a8%e7%af%87"
       title="通过电子邮件发送"
       aria-label="通过电子邮件发送"
       >
@@ -1443,7 +1592,7 @@ vector&lt;int&gt;result(nums.size(),0); int k=nums.size()-1;//新数组的下标
       <div class="flex justify-between pt-3">
         <span>
           
-            <a class="flex group mr-3" href="/algorithm/%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E6%95%B0%E7%BB%84/">
+            <a class="flex group mr-3" href="/algorithm/%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5/%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5/">
               <span
                 class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
                 >&larr;</span
@@ -1455,7 +1604,7 @@ vector&lt;int&gt;result(nums.size(),0); int k=nums.size()-1;//新数组的下标
               <span class="flex flex-col">
                 <span
                   class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
-                  >长度最小的数组</span
+                  >螺旋矩阵</span
                 >
                 <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
                   
@@ -1468,11 +1617,11 @@ vector&lt;int&gt;result(nums.size(),0); int k=nums.size()-1;//新数组的下标
         </span>
         <span>
           
-            <a class="flex text-right group ml-3" href="/algorithm/%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0/">
+            <a class="flex text-right group ml-3" href="/algorithm/%E9%93%BE%E8%A1%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">
               <span class="flex flex-col">
                 <span
                   class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
-                  >移除元素</span
+                  >链表的基本操作</span
                 >
                 <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
                   
