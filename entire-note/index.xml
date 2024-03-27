@@ -31,12 +31,12 @@
     
     <item>
       <title>Mysql-Redis</title>
-      <link>/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/zset/</link>
+      <link>/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/sql-redis-db/</link>
       <pubDate>Fri, 15 Mar 2024 17:06:00 +0800</pubDate>
       
-      <guid>/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/zset/</guid>
+      <guid>/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/sql-redis-db/</guid>
       <description>Redis详解 # 1. Redis简介 # 使用C语言开发的内存数据库，读写速度快，广泛用于缓存方向 可以用于分布式锁，甚至是消息队列 提供多种数据类型来支持不同的业务场景 支持事务、持久化、Lua脚本、多种集群方案 2. Redis 和 Memcached 对比 # 2.1 相同点 # 都基于内存，一般都是用来当缓存使用 都有过期策略 两者性能都非常高 2.2 区别 # Redis 支持更丰富的数据类型【key-value类型、提供l ist set zset hash等数据结构的存储】、更复杂的应用场景。Memcached只支持简单的 key-value 类型； Redis支持数据的持久化，有灾难恢复机制，Memcached不支持； Redis在服务器内存不足时，可以将不用的数据放到磁盘上；Memcached则直接报异常； Redis原生支持集群模式，Memcached原生不支持，需要依靠客户端实现往集群分片写入数据； Memcached是多线程的非阻塞IO复用的网络模型，Redis使用单线程的多路IO复用模型【6.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/zset/featured.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="/entire-note/%E9%9D%A2%E8%AF%95%E9%A2%98/sql-redis-db/featured.png" />
     </item>
     
     <item>
