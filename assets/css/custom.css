@@ -1,0 +1,33 @@
+/* 先保留字体引入（不变） */
+@import url('https://cdn.bootcdn.net/ajax/libs/noto-serif-sc/2.004/font.css');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,500;0,700;1,400;1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;700&display=swap');
+
+/* 中文：稍微加粗（font-weight: 500） */
+:lang(zh-cn) {
+    font-family: Noto Serif SC, SimSun, "Songti SC", serif;
+    font-weight: 600; /* 核心：轻微加粗，满足你的需求 */
+}
+
+/* 英文：稍微加粗 */
+:lang(en) {
+    font-family: Noto Serif, Noto Serif SC, Georgia, "Times New Roman", serif;
+}
+
+/* 日文：稍微加粗 */
+:lang(ja) {
+    font-family: Noto Serif JP, Noto Serif SC, "MS Mincho", serif;
+    font-weight: 500; /* 统一视觉风格 */
+}
+
+/* 可选：若想让标题比正文再粗一点（保持层级感） */
+:lang(zh-cn) h1, h2, h3, h4, h5, h6,
+:lang(en) h1, h2, h3, h4, h5, h6,
+:lang(ja) h1, h2, h3, h4, h5, h6 {
+    font-weight: 600; /* 标题中度加粗，与正文的 500 形成区分 */
+}
+
+/* 网站全面黑白（注释不变，按需启用） */
+/*html{
+filter: grayscale(1);
+}*/
