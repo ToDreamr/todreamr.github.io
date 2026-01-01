@@ -27,6 +27,8 @@ tags: [ "朋友们" ]
 
 {{<author 成成 "世界很大，折腾折腾" "/assets/images/avator/chengAvator.png" "https://www.vission.top/" >}}
 
+{{<author ziworld "人世漫长得转瞬即逝，有人见尘埃，有人见星辰。" "https://previewengine.zoho.com.cn/image/WD/8fg6nc373a5b3f1324bfeb5e93f8a32687a51" "https://blog.ziworld.top" >}}
+
 {{<author  z3475 "泛 ACGN 爱好者，喜欢业余写点小作品改善生活" "https://z3475.work/rebirth/images/avatar.png" "https://z3475.work/" >}}
 
 {{<author AncientElement "春江潮水连海平，海上明月共潮生" "https://todreamr.github.io/img/%E4%B8%89%E5%8F%B6_huefd8a5d2e6c0b8ff3aa6580d0e50af5a_1328716_288x288_fill_box_center_3.png" "https://ancientelement.github.io/" >}}
